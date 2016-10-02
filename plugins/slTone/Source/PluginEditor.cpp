@@ -10,11 +10,10 @@
 
 #include "PluginProcessor.h"
 #include "PluginEditor.h"
-#include "slParameter.h"
 
 //==============================================================================
 slToneAudioProcessorEditor::slToneAudioProcessorEditor (slToneAudioProcessor& p)
-    : AudioProcessorEditor (&p), processor (p)
+    : slAudioProcessorEditor (&p), processor (p)
 {
     for (slParameter* pp : p.getPluginParameters())
     {
@@ -24,7 +23,7 @@ slToneAudioProcessorEditor::slToneAudioProcessorEditor (slToneAudioProcessor& p)
         sliders.add (ps);
     }
     
-    setSize (400, 300);
+    setSize (600, 300);
 }
 
 slToneAudioProcessorEditor::~slToneAudioProcessorEditor()

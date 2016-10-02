@@ -236,7 +236,10 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\..\common\slComponents.cpp"/>
+    <ClCompile Include="..\..\..\..\common\slDsp.cpp"/>
+    <ClCompile Include="..\..\..\..\common\slLookAndFeel.cpp"/>
     <ClCompile Include="..\..\..\..\common\slParameter.cpp"/>
+    <ClCompile Include="..\..\..\..\common\slPluginEditor.cpp"/>
     <ClCompile Include="..\..\..\..\common\slProcessor.cpp"/>
     <ClCompile Include="..\..\..\..\common\slProgram.cpp"/>
     <ClCompile Include="..\..\..\..\common\slUtil.cpp"/>
@@ -1908,8 +1911,12 @@
     <ClCompile Include="..\..\JuceLibraryCode\juce_video.cpp"/>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\..\..\common\slCommon.h"/>
     <ClInclude Include="..\..\..\..\common\slComponents.h"/>
+    <ClInclude Include="..\..\..\..\common\slDsp.h"/>
+    <ClInclude Include="..\..\..\..\common\slLookAndFeel.h"/>
     <ClInclude Include="..\..\..\..\common\slParameter.h"/>
+    <ClInclude Include="..\..\..\..\common\slPluginEditor.h"/>
     <ClInclude Include="..\..\..\..\common\slProcessor.h"/>
     <ClInclude Include="..\..\..\..\common\slProgram.h"/>
     <ClInclude Include="..\..\..\..\common\slUtil.h"/>

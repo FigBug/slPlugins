@@ -2,9 +2,10 @@
 
 #include "../JuceLibraryCode/JuceHeader.h"
 
+//==============================================================================
 class slParameter : public AudioProcessorParameter,
-                       public ChangeBroadcaster,
-                       public Timer
+                    public ChangeBroadcaster,
+                    public Timer
 {
 public:
     slParameter (String uid, String name, String label, float minValue, float maxValue, float intervalValue, float defaultValue, float skewFactor = 1.0f);

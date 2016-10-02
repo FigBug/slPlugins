@@ -12,7 +12,7 @@
 #define PLUGINPROCESSOR_H_INCLUDED
 
 #include "../JuceLibraryCode/JuceHeader.h"
-#include "slProcessor.h"
+#include "slCommon.h"
 
 #define PARAM_ENABLE        "enable"
 #define PARAM_FREQ          "freq"

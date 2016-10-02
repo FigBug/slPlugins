@@ -13,12 +13,12 @@
 
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "PluginProcessor.h"
-#include "slComponents.h"
+#include "slCommon.h"
 
 //==============================================================================
 /**
 */
-class slToneAudioProcessorEditor  : public AudioProcessorEditor
+class slToneAudioProcessorEditor  : public slAudioProcessorEditor
 {
 public:
     slToneAudioProcessorEditor (slToneAudioProcessor&);

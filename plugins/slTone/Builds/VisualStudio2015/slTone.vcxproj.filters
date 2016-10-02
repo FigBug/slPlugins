@@ -388,7 +388,16 @@
     <ClCompile Include="..\..\..\..\common\slComponents.cpp">
       <Filter>slTone\Source\Common</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\..\common\slDsp.cpp">
+      <Filter>slTone\Source\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\common\slLookAndFeel.cpp">
+      <Filter>slTone\Source\Common</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\..\..\common\slParameter.cpp">
+      <Filter>slTone\Source\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\common\slPluginEditor.cpp">
       <Filter>slTone\Source\Common</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\common\slProcessor.cpp">
@@ -2241,10 +2250,22 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\..\..\common\slCommon.h">
+      <Filter>slTone\Source\Common</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\..\..\common\slComponents.h">
       <Filter>slTone\Source\Common</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\..\common\slDsp.h">
+      <Filter>slTone\Source\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\common\slLookAndFeel.h">
+      <Filter>slTone\Source\Common</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\..\..\common\slParameter.h">
+      <Filter>slTone\Source\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\common\slPluginEditor.h">
       <Filter>slTone\Source\Common</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\common\slProcessor.h">

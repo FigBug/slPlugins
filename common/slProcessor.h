@@ -10,7 +10,7 @@
 /**
 */
 class slProcessor : public AudioProcessor,
-                       public ChangeBroadcaster
+                    public ChangeBroadcaster
 {
 public:
     //==============================================================================

@@ -12,6 +12,9 @@ void LevelTracker::trackBuffer (const float* buffer, int numSamples)
     
     float peakDB = Decibels::gainToDecibels (jmax (v1, v2));
     
+    if (peakDB > 0)
+        clip = true;
+    
     const float time = (Time::getMillisecondCounter() / 1000.0f);
     
     if (getLevel() < peakDB)
@@ -29,6 +32,7 @@ float LevelTracker::getLevel()
     
     if (elapsed < hold)
         return peakLevel;
+    
     return peakLevel - (decayRate * (elapsed - hold));
 }
 

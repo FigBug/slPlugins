@@ -4,6 +4,7 @@
 
 #include "slParameter.h"
 
+//==============================================================================
 class PluginSlider : public Slider,
                      public Slider::Listener,
                      public ChangeListener

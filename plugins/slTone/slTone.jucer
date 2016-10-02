@@ -13,11 +13,21 @@
   <MAINGROUP id="dPRjsF" name="slTone">
     <GROUP id="{EE796482-0D02-0052-80F4-B1FE6CE0D41A}" name="Source">
       <GROUP id="{DA748B7D-42D5-4A16-B897-0DD85D003309}" name="Common">
+        <FILE id="prLAS5" name="slCommon.h" compile="0" resource="0" file="../../common/slCommon.h"/>
         <FILE id="Adbcnm" name="slComponents.cpp" compile="1" resource="0"
               file="../../common/slComponents.cpp"/>
         <FILE id="BtJuxa" name="slComponents.h" compile="0" resource="0" file="../../common/slComponents.h"/>
+        <FILE id="qmeJLD" name="slDsp.cpp" compile="1" resource="0" file="../../common/slDsp.cpp"/>
+        <FILE id="qGggnw" name="slDsp.h" compile="0" resource="0" file="../../common/slDsp.h"/>
+        <FILE id="Ww4Qjl" name="slLookAndFeel.cpp" compile="1" resource="0"
+              file="../../common/slLookAndFeel.cpp"/>
+        <FILE id="js1ZD6" name="slLookAndFeel.h" compile="0" resource="0" file="../../common/slLookAndFeel.h"/>
         <FILE id="Cr2RjL" name="slParameter.cpp" compile="1" resource="0" file="../../common/slParameter.cpp"/>
         <FILE id="zv51WX" name="slParameter.h" compile="0" resource="0" file="../../common/slParameter.h"/>
+        <FILE id="s1EsD3" name="slPluginEditor.cpp" compile="1" resource="0"
+              file="../../common/slPluginEditor.cpp"/>
+        <FILE id="gxFDWt" name="slPluginEditor.h" compile="0" resource="0"
+              file="../../common/slPluginEditor.h"/>
         <FILE id="yPMEHi" name="slProcessor.cpp" compile="1" resource="0" file="../../common/slProcessor.cpp"/>
         <FILE id="KKvrZW" name="slProcessor.h" compile="0" resource="0" file="../../common/slProcessor.h"/>
         <FILE id="ocHj8L" name="slProgram.cpp" compile="1" resource="0" file="../../common/slProgram.cpp"/>
