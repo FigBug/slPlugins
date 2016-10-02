@@ -45,6 +45,11 @@ void slParameter::setUserValueNotifingHost (float v)
     }
 }
 
+String slParameter::getUserValueText() const
+{
+    return getText (getValue(), 1000);
+}
+
 void slParameter::beginUserAction()
 {
     userActionCount++;

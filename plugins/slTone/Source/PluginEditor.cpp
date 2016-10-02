@@ -17,13 +17,13 @@ slToneAudioProcessorEditor::slToneAudioProcessorEditor (slToneAudioProcessor& p)
 {
     for (slParameter* pp : p.getPluginParameters())
     {
-        PluginSlider* ps = new PluginSlider (pp, Slider::LinearVertical, Slider::NoTextBox);
-        ps->setSkewFactor (pp->getSkew());
-        addAndMakeVisible (ps);
-        sliders.add (ps);
+        Knob* k = new Knob (pp);
+        
+        addAndMakeVisible (k);
+        sliders.add (k);
     }
     
-    setSize (600, 300);
+    setSize (600, 150);
 }
 
 slToneAudioProcessorEditor::~slToneAudioProcessorEditor()
@@ -38,10 +38,10 @@ void slToneAudioProcessorEditor::paint(Graphics& g)
 
 void slToneAudioProcessorEditor::resized()
 {
-    Rectangle<int> r = getLocalBounds().reduced (6);
+    Rectangle<int> r = getControlsArea();
     
     int w = r.getWidth() / sliders.size();
     
-    for (PluginSlider* s : sliders)
+    for (auto s : sliders)
         s->setBounds (r.removeFromLeft (w));
 }

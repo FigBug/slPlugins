@@ -12,5 +12,7 @@ public:
     slAudioProcessorEditor (slProcessor*) noexcept;
     
 protected:
+    Rectangle<int> getControlsArea();
+    
     void paint (Graphics& g) override;
 };

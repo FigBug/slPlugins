@@ -12,10 +12,11 @@ public:
     
     String getUid() { return uid; }
 
-    virtual float getUserValue() const;
-    virtual float getUserDefaultValue() const;
-    virtual void setUserValue(float v);
-    virtual void setUserValueNotifingHost(float f);
+    float getUserValue() const;
+    float getUserDefaultValue() const;
+    void setUserValue(float v);
+    void setUserValueNotifingHost(float f);
+    String getUserValueText() const;
     
     void beginUserAction();
     void beginUserTimedAction();

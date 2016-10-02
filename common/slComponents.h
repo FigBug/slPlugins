@@ -68,3 +68,31 @@ public:
 private:
     slParameter* parameter;
 };
+
+//==============================================================================
+class Readout : public Label,
+                private ChangeListener
+{
+public:
+    Readout (slParameter* parameter);
+    ~Readout();
+    
+private:
+    void changeListenerCallback (ChangeBroadcaster* source) override;
+    
+    slParameter* parameter;
+};
+
+//==============================================================================
+class Knob : public Component
+{
+public:
+    Knob (slParameter* parameter);
+    
+private:
+    void resized() override;
+    
+    Label name;
+    Readout value;
+    PluginSlider knob;
+};

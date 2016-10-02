@@ -17,3 +17,8 @@ void slAudioProcessorEditor::paint (Graphics& g)
 {
     
 }
+
+Rectangle<int> slAudioProcessorEditor::getControlsArea()
+{
+    return getLocalBounds().withTrimmedTop (20);
+}
