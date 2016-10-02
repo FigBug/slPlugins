@@ -202,10 +202,10 @@ void slProcessor::deleteProgram (int index)
 File slProcessor::getProgramDirectory()
 {
 #ifdef JUCE_MAC
-    File dir = File::getSpecialLocation(File::userApplicationDataDirectory).getChildFile("Application Support/ca.sldesign/" JucePlugin_Name "/programs");
+    File dir = File::getSpecialLocation(File::userApplicationDataDirectory).getChildFile("Application Support/com.socalabs/" JucePlugin_Name "/programs");
 #endif
 #ifdef JUCE_WINDOWS
-    File dir = File::getSpecialLocation(File::userApplicationDataDirectory).getChildFile("ca.sldesign/" JucePlugin_Name "/programs");
+    File dir = File::getSpecialLocation(File::userApplicationDataDirectory).getChildFile("com.socalabs/" JucePlugin_Name "/programs");
 #endif
     
     if (!dir.isDirectory())
@@ -216,10 +216,10 @@ File slProcessor::getProgramDirectory()
 File slProcessor::getSettingsFile()
 {
 #ifdef JUCE_MAC
-    File file = File::getSpecialLocation(File::userApplicationDataDirectory).getChildFile("Application Support/ca.sldesign/" JucePlugin_Name "/settings.xml");
+    File file = File::getSpecialLocation(File::userApplicationDataDirectory).getChildFile("Application Support/com.socalabs/" JucePlugin_Name "/settings.xml");
 #endif
 #ifdef JUCE_WINDOWS
-    File file = File::getSpecialLocation(File::userApplicationDataDirectory).getChildFile("ca.sldesign/" JucePlugin_Name "/settings.xml");
+    File file = File::getSpecialLocation(File::userApplicationDataDirectory).getChildFile("com.socalabs/" JucePlugin_Name "/settings.xml");
 #endif
     
     if (!file.getParentDirectory().isDirectory())

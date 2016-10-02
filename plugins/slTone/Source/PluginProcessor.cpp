@@ -64,22 +64,27 @@ void slToneAudioProcessor::processBlock (AudioSampleBuffer& buffer, MidiBuffer& 
     sine.processBlock (work, numSamples);
     scratch.applyGain (Decibels::decibelsToGain (getParameter (PARAM_SINE_LEVEL)->getUserValue()));
     buffer.addFrom (0, 0, work, numSamples);
+    buffer.addFrom (1, 0, work, numSamples);
     
     triangle.processBlock (work, numSamples);
     scratch.applyGain (Decibels::decibelsToGain (getParameter (PARAM_TRI_LEVEL)->getUserValue()));
     buffer.addFrom (0, 0, work, numSamples);
+    buffer.addFrom (1, 0, work, numSamples);
     
     saw.processBlock (work, numSamples);
     scratch.applyGain (Decibels::decibelsToGain (getParameter (PARAM_SAW_LEVEL)->getUserValue()));
     buffer.addFrom (0, 0, work, numSamples);
+    buffer.addFrom (1, 0, work, numSamples);
     
     square.processBlock (work, numSamples);
     scratch.applyGain (Decibels::decibelsToGain (getParameter (PARAM_SQUARE_LEVEL)->getUserValue()));
     buffer.addFrom (0, 0, work, numSamples);
+    buffer.addFrom (1, 0, work, numSamples);
     
     noise.addNoiseToBuffer (work, numSamples);
     scratch.applyGain (Decibels::decibelsToGain (getParameter (PARAM_NOISE_LEVEL)->getUserValue()));
     buffer.addFrom (0, 0, work, numSamples);
+    buffer.addFrom (1, 0, work, numSamples);
     
     if (getParameter (PARAM_ENABLE)->getUserValue() == 0)
         buffer.clear();
