@@ -37,17 +37,23 @@ void slToneAudioProcessor::prepareToPlay (double sampleRate, int samplesPerBlock
 {
     scratch.setSize (1, samplesPerBlock);
     
-    sine.setSampleRate (sampleRate);
-    triangle.setSampleRate (sampleRate);
-    saw.setSampleRate (sampleRate);
-    square.setSampleRate (sampleRate);
+    sine.setSampleRate (float (sampleRate));
+    triangle.setSampleRate (float (sampleRate));
+    saw.setSampleRate (float (sampleRate));
+    square.setSampleRate (float (sampleRate));
+
+    enableVal.reset (sampleRate, 0.05);
+    sineVal.reset (sampleRate, 0.05);
+    triangleVal.reset (sampleRate, 0.05);
+    sawVal.reset (sampleRate, 0.05);
+    squareVal.reset (sampleRate, 0.05);
 }
 
 void slToneAudioProcessor::releaseResources()
 {
 }
 
-void slToneAudioProcessor::processBlock (AudioSampleBuffer& buffer, MidiBuffer& midiMessages)
+void slToneAudioProcessor::processBlock (AudioSampleBuffer& buffer, MidiBuffer&)
 {
     int numSamples = buffer.getNumSamples();
     scratch.setSize (1, numSamples, false, false, true);
@@ -58,36 +64,37 @@ void slToneAudioProcessor::processBlock (AudioSampleBuffer& buffer, MidiBuffer& 
     triangle.setParameters (ToneGen::Parameters (freq, 0, 0, ToneGen::Triangle));
     saw.setParameters      (ToneGen::Parameters (freq, 0, 0, ToneGen::Saw));
     square.setParameters   (ToneGen::Parameters (freq, 0, 0, ToneGen::Square));
-    
+
+    enableVal.setValue (getParameter (PARAM_ENABLE)->getUserValue());
+    sineVal.setValue (Decibels::decibelsToGain (getParameter (PARAM_SINE_LEVEL)->getUserValue()));
+    triangleVal.setValue (Decibels::decibelsToGain (getParameter (PARAM_TRI_LEVEL)->getUserValue()));
+    sawVal.setValue (Decibels::decibelsToGain (getParameter (PARAM_SAW_LEVEL)->getUserValue()));
+    squareVal.setValue (Decibels::decibelsToGain (getParameter (PARAM_SQUARE_LEVEL)->getUserValue()));
+    noiseVal.setValue (Decibels::decibelsToGain (getParameter (PARAM_NOISE_LEVEL)->getUserValue()));
+
     float* work = scratch.getWritePointer (0);
 
     sine.processBlock (work, numSamples);
-    scratch.applyGain (Decibels::decibelsToGain (getParameter (PARAM_SINE_LEVEL)->getUserValue()));
+    applyGain (scratch, sineVal);
     buffer.addFrom (0, 0, work, numSamples);
-    buffer.addFrom (1, 0, work, numSamples);
     
     triangle.processBlock (work, numSamples);
-    scratch.applyGain (Decibels::decibelsToGain (getParameter (PARAM_TRI_LEVEL)->getUserValue()));
+    applyGain (scratch, triangleVal);
     buffer.addFrom (0, 0, work, numSamples);
-    buffer.addFrom (1, 0, work, numSamples);
     
     saw.processBlock (work, numSamples);
-    scratch.applyGain (Decibels::decibelsToGain (getParameter (PARAM_SAW_LEVEL)->getUserValue()));
+    applyGain (scratch, sawVal);
     buffer.addFrom (0, 0, work, numSamples);
-    buffer.addFrom (1, 0, work, numSamples);
     
     square.processBlock (work, numSamples);
-    scratch.applyGain (Decibels::decibelsToGain (getParameter (PARAM_SQUARE_LEVEL)->getUserValue()));
+    applyGain (scratch, squareVal);
     buffer.addFrom (0, 0, work, numSamples);
-    buffer.addFrom (1, 0, work, numSamples);
     
     noise.addNoiseToBuffer (work, numSamples);
-    scratch.applyGain (Decibels::decibelsToGain (getParameter (PARAM_NOISE_LEVEL)->getUserValue()));
+    applyGain (scratch, noiseVal);
     buffer.addFrom (0, 0, work, numSamples);
-    buffer.addFrom (1, 0, work, numSamples);
     
-    if (getParameter (PARAM_ENABLE)->getUserValue() == 0)
-        buffer.clear();
+    applyGain (buffer, enableVal);
 }
 
 //==============================================================================

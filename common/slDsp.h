@@ -5,6 +5,10 @@
 #include "slUtil.h"
 
 //==============================================================================
+void applyGain (AudioSampleBuffer& buffer, LinearSmoothedValue<float>& gain);
+
+//==============================================================================
+
 class ToneGen
 {
 public:

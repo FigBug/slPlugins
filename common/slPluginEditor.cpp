@@ -13,7 +13,7 @@ slAudioProcessorEditor::slAudioProcessorEditor (slProcessor* p) noexcept
     setLookAndFeel (slLookAndFeel::getInstance());
 }
 
-void slAudioProcessorEditor::paint (Graphics& g)
+void slAudioProcessorEditor::paint (Graphics&)
 {
     
 }

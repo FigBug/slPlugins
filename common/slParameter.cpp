@@ -131,9 +131,9 @@ int slParameter::getNumSteps() const
     return roundFloatToInt ((range.end - range.start) / range.interval);
 }
 
-String slParameter::getText (float value, int /*maximumStringLength*/) const
+String slParameter::getText (float val, int /*maximumStringLength*/) const
 {
-    return String (range.snapToLegalValue (range.convertFrom0to1 (value))) + " " + label;
+    return String (range.snapToLegalValue (range.convertFrom0to1 (val))) + " " + label;
 }
 
 float slParameter::getValueForText (const String& text) const

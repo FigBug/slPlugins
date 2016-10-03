@@ -4,7 +4,7 @@
               bundleIdentifier="com.socalabs.slTone" includeBinaryInAppConfig="1"
               buildVST="1" buildVST3="0" buildAU="1" buildAUv3="0" buildRTAS="0"
               buildAAX="0" pluginName="slTone" pluginDesc="slTone" pluginManufacturer="SocaLabs"
-              pluginManufacturerCode="Soca" pluginCode="Tone" pluginChannelConfigs="{0,2}"
+              pluginManufacturerCode="Soca" pluginCode="Tone" pluginChannelConfigs="{0,1}"
               pluginIsSynth="1" pluginWantsMidiIn="0" pluginProducesMidiOut="0"
               pluginIsMidiEffectPlugin="0" pluginEditorRequiresKeys="0" pluginAUExportPrefix="slToneAU"
               pluginRTASCategory="" aaxIdentifier="com.socalabs.slTone" pluginAAXCategory="AAX_ePlugInCategory_Dynamics"
@@ -70,13 +70,17 @@
     <VS2015 targetFolder="Builds/VisualStudio2015">
       <CONFIGURATIONS>
         <CONFIGURATION name="Debug" winWarningLevel="4" generateManifest="1" winArchitecture="32-bit"
-                       isDebug="1" optimisation="1" targetName="slTone"/>
+                       isDebug="1" optimisation="1" targetName="slTone" headerPath="../../../../common"
+                       postbuildCommand="copy /Y &quot;$(OutDir)\$(TargetFileName)&quot; &quot;C:\Program Files (x86)\VSTPlugins&quot;"/>
         <CONFIGURATION name="Release" winWarningLevel="4" generateManifest="1" winArchitecture="32-bit"
-                       isDebug="0" optimisation="3" targetName="slTone"/>
+                       isDebug="0" optimisation="3" targetName="slTone" headerPath="../../../../common"
+                       postbuildCommand="copy /Y &quot;$(OutDir)\$(TargetFileName)&quot; &quot;C:\Program Files (x86)\VSTPlugins&quot;"/>
         <CONFIGURATION name="Debug64" winWarningLevel="4" generateManifest="1" winArchitecture="x64"
-                       isDebug="1" optimisation="1" targetName="slTone"/>
+                       isDebug="1" optimisation="1" targetName="slTone" headerPath="../../../../common"
+                       postbuildCommand="copy /Y &quot;$(OutDir)\$(TargetFileName)&quot; &quot;C:\Program Files\VSTPlugins&quot;"/>
         <CONFIGURATION name="Release64" winWarningLevel="4" generateManifest="1" winArchitecture="x64"
-                       isDebug="0" optimisation="3" targetName="slTone"/>
+                       isDebug="0" optimisation="3" targetName="slTone" headerPath="../../../../common"
+                       postbuildCommand="copy /Y &quot;$(OutDir)\$(TargetFileName)&quot; &quot;C:\Program Files\VSTPlugins&quot;"/>
       </CONFIGURATIONS>
       <MODULEPATHS>
         <MODULEPATH id="juce_core" path="../../../JUCE/modules"/>

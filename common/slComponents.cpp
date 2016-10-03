@@ -23,7 +23,7 @@ Readout::~Readout()
     parameter->removeChangeListener (this);
 }
 
-void Readout::changeListenerCallback (ChangeBroadcaster* source)
+void Readout::changeListenerCallback (ChangeBroadcaster*)
 {
     setText (parameter->getUserValueText(), dontSendNotification);
 }

@@ -50,6 +50,13 @@ private:
     ToneGen saw;
     ToneGen square;
     WhiteGaussianNoise noise;
+
+    LinearSmoothedValue<float> enableVal;
+    LinearSmoothedValue<float> sineVal;
+    LinearSmoothedValue<float> triangleVal;
+    LinearSmoothedValue<float> sawVal;
+    LinearSmoothedValue<float> squareVal;
+    LinearSmoothedValue<float> noiseVal;
     
     AudioSampleBuffer scratch;
     

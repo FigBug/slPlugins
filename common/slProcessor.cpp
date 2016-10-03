@@ -11,9 +11,8 @@
 
 #define MOXIE_PLUGIN 1
 
-#include "PluginProcessor.h"
-#include "PluginEditor.h"
 #include "slProgram.h"
+#include "slProcessor.h"
 
 //==============================================================================
 slProcessor::slProcessor()
@@ -27,6 +26,7 @@ slProcessor::slProcessor()
 
 slProcessor::~slProcessor()
 {    
+    MessageManagerLock mmLock;
     LookAndFeel::setDefaultLookAndFeel (nullptr);
 }
 
@@ -64,26 +64,6 @@ const String slProcessor::getName() const
     return JucePlugin_Name;
 }
 
-const String slProcessor::getInputChannelName (int channelIndex) const
-{
-    return String (channelIndex + 1);
-}
-
-const String slProcessor::getOutputChannelName (int channelIndex) const
-{
-    return String (channelIndex + 1);
-}
-
-bool slProcessor::isInputChannelStereoPair (int) const
-{
-    return true;
-}
-
-bool slProcessor::isOutputChannelStereoPair (int) const
-{
-    return true;
-}
-
 bool slProcessor::acceptsMidi() const
 {
    #if JucePlugin_WantsMidiInput
@@ -100,11 +80,6 @@ bool slProcessor::producesMidi() const
    #else
     return false;
    #endif
-}
-
-bool slProcessor::silenceInProducesSilenceOut() const
-{
-    return false;
 }
 
 double slProcessor::getTailLengthSeconds() const
