@@ -20,7 +20,7 @@ slToneAudioProcessorEditor::slToneAudioProcessorEditor (slToneAudioProcessor& p)
         Knob* k = new Knob (pp);
         
         addAndMakeVisible (k);
-        sliders.add (k);
+        controls.add (k);
     }
     
     setSize (600, 150);
@@ -40,8 +40,8 @@ void slToneAudioProcessorEditor::resized()
 {
     Rectangle<int> r = getControlsArea();
     
-    int w = r.getWidth() / sliders.size();
+    int w = r.getWidth() / controls.size();
     
-    for (auto s : sliders)
-        s->setBounds (r.removeFromLeft (w));
+    for (auto c : controls)
+        c->setBounds (r.removeFromLeft (w));
 }

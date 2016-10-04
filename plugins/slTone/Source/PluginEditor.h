@@ -31,7 +31,7 @@ public:
 private:
     slToneAudioProcessor& processor;
     
-    OwnedArray<Component> sliders;
+    OwnedArray<ParamComponent> controls;
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (slToneAudioProcessorEditor)
 };

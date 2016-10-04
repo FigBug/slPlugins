@@ -84,7 +84,14 @@ private:
 };
 
 //==============================================================================
-class Knob : public Component
+class ParamComponent : public Component
+{
+public:
+    ParamComponent (slParameter* parameter);
+};
+
+//==============================================================================
+class Knob : public ParamComponent
 {
 public:
     Knob (slParameter* parameter);

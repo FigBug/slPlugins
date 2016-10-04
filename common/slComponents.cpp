@@ -29,8 +29,14 @@ void Readout::changeListenerCallback (ChangeBroadcaster*)
 }
 
 //==============================================================================
+ParamComponent::ParamComponent (slParameter* parameter)
+  : Component ("")
+{
+    
+}
+//==============================================================================
 Knob::Knob (slParameter* parameter)
-  : name ("", ""),
+  : ParamComponent (parameter),
     value (parameter),
     knob (parameter, Slider::RotaryHorizontalVerticalDrag, Slider::NoTextBox)
 {
