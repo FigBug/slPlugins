@@ -1,0 +1,65 @@
+typedef struct {
+    void *faust;
+    int argpos;
+    SPFLOAT *args[{{.Count}}];
+    {{range $index, $element := .Params}}SPFLOAT *{{$element}};
+    {{end}}
+} sp_{{.Name}};
+
+int sp_{{.Name}}_create(sp_{{.Name}} **p);
+int sp_{{.Name}}_destroy(sp_{{.Name}} **p);
+int sp_{{.Name}}_init(sp_data *sp, sp_{{.Name}} *p);
+int sp_{{.Name}}_compute(sp_data *sp, sp_{{.Name}} *p, SPFLOAT *in, SPFLOAT *out);
+
+
+static void addHorizontalSlider(void* ui_interface, const char* label, FAUSTFLOAT* zone, FAUSTFLOAT init, FAUSTFLOAT min, FAUSTFLOAT max, FAUSTFLOAT step)
+{
+    sp_{{.Name}} *p = ui_interface;
+    p->args[p->argpos] = zone;
+    p->argpos++;
+}
+
+int sp_{{.Name}}_create(sp_{{.Name}} **p)
+{
+    *p = malloc(sizeof(sp_{{.Name}}));
+    return SP_OK;
+}
+
+int sp_{{.Name}}_destroy(sp_{{.Name}} **p)
+{
+    sp_{{.Name}} *pp = *p;
+    {{.Name}} *dsp = pp->faust;
+    delete{{.Name}} (dsp);
+    free(*p);
+    return SP_OK;
+}
+
+int sp_{{.Name}}_init(sp_data *sp, sp_{{.Name}} *p)
+{
+    {{.Name}} *dsp = new{{.Name}}(); 
+    UIGlue UI;
+    p->argpos = 0;
+    UI.addHorizontalSlider= addHorizontalSlider;
+    UI.uiInterface = p;
+    buildUserInterface{{.Name}}(dsp, &UI);
+    init{{.Name}}(dsp, sp->sr);
+
+    {{range $index, $element := .Params}} 
+    p->{{$element}} = p->args[{{$index}}];{{end}}
+
+    p->faust = dsp;
+    return SP_OK;
+}
+
+int sp_{{.Name}}_compute(sp_data *sp, sp_{{.Name}} *p, SPFLOAT *in, SPFLOAT *out) 
+{
+
+    {{.Name}} *dsp = p->faust;
+    SPFLOAT out1 = 0;
+    SPFLOAT *faust_out[] = {&out1};
+    SPFLOAT *faust_in[] = {in};
+    compute{{.Name}}(dsp, 1, faust_in, faust_out);
+
+    *out = out1;
+    return SP_OK;
+}
