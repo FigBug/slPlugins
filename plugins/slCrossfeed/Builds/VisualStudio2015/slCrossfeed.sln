@@ -1,0 +1,25 @@
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2015
+Project("{93DB7763-E081-E3D7-5908-121B4D078C3D}") = "slCrossfeed", "slCrossfeed.vcxproj", "{81CC84F1-7D4D-BB08-8A87-1A840EB88895}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+		Debug64|x64 = Debug64|x64
+		Release64|x64 = Release64|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{81CC84F1-7D4D-BB08-8A87-1A840EB88895}.Debug|Win32.ActiveCfg = Debug|Win32
+		{81CC84F1-7D4D-BB08-8A87-1A840EB88895}.Debug|Win32.Build.0 = Debug|Win32
+		{81CC84F1-7D4D-BB08-8A87-1A840EB88895}.Release|Win32.ActiveCfg = Release|Win32
+		{81CC84F1-7D4D-BB08-8A87-1A840EB88895}.Release|Win32.Build.0 = Release|Win32
+		{81CC84F1-7D4D-BB08-8A87-1A840EB88895}.Debug64|x64.ActiveCfg = Debug64|x64
+		{81CC84F1-7D4D-BB08-8A87-1A840EB88895}.Debug64|x64.Build.0 = Debug64|x64
+		{81CC84F1-7D4D-BB08-8A87-1A840EB88895}.Release64|x64.ActiveCfg = Release64|x64
+		{81CC84F1-7D4D-BB08-8A87-1A840EB88895}.Release64|x64.Build.0 = Release64|x64
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
