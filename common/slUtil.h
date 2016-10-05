@@ -32,6 +32,8 @@ public:
     LevelTracker (float decayPerSecond);
     
     void trackBuffer (const float* buffer, int numSamples);
+    void trackBuffer (AudioSampleBuffer& buffer);
+    
     float getLevel();
     bool getClip()      { return clip;  }
     void clearClip()    { clip = false; }
@@ -44,13 +46,16 @@ protected:
 };
 
 //==============================================================================
-class LevelMeter : public Component
+class LevelMeter : public Component,
+                   private Timer
 {
 public:
-    LevelMeter ()
+    LevelMeter (LevelTracker& tracker_) : tracker (tracker_)
     {
         setColour (backgroundColourId, Colours::darkgrey);
         setColour (meterColourId, Colours::yellow);
+        
+        startTimerHz (30);
     }
     
     void setLevel (float level_)
@@ -62,6 +67,13 @@ public:
         }
     }
     
+    enum ColourIds
+    {
+        backgroundColourId              = 0x6500000,
+        meterColourId                   = 0x6500001
+    };
+    
+private:
     void paint (Graphics& g) override
     {
         Rectangle<int> r = getLocalBounds();
@@ -77,15 +89,14 @@ public:
         g.fillRect (r);
     }
     
-    enum ColourIds
+    void timerCallback() override
     {
-        backgroundColourId              = 0x6500000,
-        meterColourId                   = 0x6500001
-    };
+        setLevel (tracker.getLevel());
+    }
     
-private:
     float level {0};
     NormalisableRange<float> range {-48.0, 0};
+    LevelTracker& tracker;
 };
 
 //==============================================================================

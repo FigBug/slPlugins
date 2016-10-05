@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<JUCERPROJECT id="JPnRUR" name="slPitchTrack" projectType="audioplug" version="1.0.0"
+              bundleIdentifier="com.socalabs.slPitchTrack" includeBinaryInAppConfig="1"
+              buildVST="1" buildVST3="0" buildAU="1" buildAUv3="0" buildRTAS="0"
+              buildAAX="0" pluginName="slPitchTrack" pluginDesc="slPitchTrack"
+              pluginManufacturer="SocaLabs" pluginManufacturerCode="Soca" pluginCode="Pitc"
+              pluginChannelConfigs="{1,1},{2,2}" pluginIsSynth="0" pluginWantsMidiIn="0"
+              pluginProducesMidiOut="0" pluginIsMidiEffectPlugin="0" pluginEditorRequiresKeys="0"
+              pluginAUExportPrefix="slPitchTrackAU" pluginRTASCategory="" aaxIdentifier="com.socalabs.slPitchTrack"
+              pluginAAXCategory="AAX_ePlugInCategory_Dynamics" jucerVersion="4.2.4"
+              companyName="SocaLabs" companyWebsite="www.socalabs.com" companyEmail="info@socalabs.com">
+  <MAINGROUP id="dPRjsF" name="slPitchTrack">
+    <GROUP id="{EE796482-0D02-0052-80F4-B1FE6CE0D41A}" name="Source">
+      <GROUP id="{6F2315D7-3D20-892D-4519-7653440048F1}" name="3rdParty">
+        <FILE id="clQ6GX" name="dywapitchtrack.c" compile="1" resource="0"
+              file="../../3rdparty/dywapitchtrack/src/dywapitchtrack.c"/>
+        <FILE id="NyZdU9" name="dywapitchtrack.h" compile="0" resource="0"
+              file="../../3rdparty/dywapitchtrack/src/dywapitchtrack.h"/>
+      </GROUP>
+      <GROUP id="{DA748B7D-42D5-4A16-B897-0DD85D003309}" name="Common">
+        <FILE id="prLAS5" name="slCommon.h" compile="0" resource="0" file="../../common/slCommon.h"/>
+        <FILE id="Adbcnm" name="slComponents.cpp" compile="1" resource="0"
+              file="../../common/slComponents.cpp"/>
+        <FILE id="BtJuxa" name="slComponents.h" compile="0" resource="0" file="../../common/slComponents.h"/>
+        <FILE id="qmeJLD" name="slDsp.cpp" compile="1" resource="0" file="../../common/slDsp.cpp"/>
+        <FILE id="qGggnw" name="slDsp.h" compile="0" resource="0" file="../../common/slDsp.h"/>
+        <FILE id="Ww4Qjl" name="slLookAndFeel.cpp" compile="1" resource="0"
+              file="../../common/slLookAndFeel.cpp"/>
+        <FILE id="js1ZD6" name="slLookAndFeel.h" compile="0" resource="0" file="../../common/slLookAndFeel.h"/>
+        <FILE id="Cr2RjL" name="slParameter.cpp" compile="1" resource="0" file="../../common/slParameter.cpp"/>
+        <FILE id="zv51WX" name="slParameter.h" compile="0" resource="0" file="../../common/slParameter.h"/>
+        <FILE id="s1EsD3" name="slPluginEditor.cpp" compile="1" resource="0"
+              file="../../common/slPluginEditor.cpp"/>
+        <FILE id="gxFDWt" name="slPluginEditor.h" compile="0" resource="0"
+              file="../../common/slPluginEditor.h"/>
+        <FILE id="yPMEHi" name="slProcessor.cpp" compile="1" resource="0" file="../../common/slProcessor.cpp"/>
+        <FILE id="KKvrZW" name="slProcessor.h" compile="0" resource="0" file="../../common/slProcessor.h"/>
+        <FILE id="ocHj8L" name="slProgram.cpp" compile="1" resource="0" file="../../common/slProgram.cpp"/>
+        <FILE id="WNQQjI" name="slProgram.h" compile="0" resource="0" file="../../common/slProgram.h"/>
+        <FILE id="ugO2BI" name="slUtil.cpp" compile="1" resource="0" file="../../common/slUtil.cpp"/>
+        <FILE id="vsFxt8" name="slUtil.h" compile="0" resource="0" file="../../common/slUtil.h"/>
+      </GROUP>
+      <FILE id="iEbZ9q" name="PluginProcessor.cpp" compile="1" resource="0"
+            file="Source/PluginProcessor.cpp"/>
+      <FILE id="XzLyGB" name="PluginProcessor.h" compile="0" resource="0"
+            file="Source/PluginProcessor.h"/>
+      <FILE id="sm654A" name="PluginEditor.cpp" compile="1" resource="0"
+            file="Source/PluginEditor.cpp"/>
+      <FILE id="xX3taW" name="PluginEditor.h" compile="0" resource="0" file="Source/PluginEditor.h"/>
+    </GROUP>
+  </MAINGROUP>
+  <EXPORTFORMATS>
+    <XCODE_MAC targetFolder="Builds/MacOSX">
+      <CONFIGURATIONS>
+        <CONFIGURATION name="Debug" isDebug="1" optimisation="1" targetName="slPitchTrack"/>
+        <CONFIGURATION name="Release" isDebug="0" optimisation="3" targetName="slPitchTrack"/>
+      </CONFIGURATIONS>
+      <MODULEPATHS>
+        <MODULEPATH id="juce_core" path="../../../JUCE/modules"/>
+        <MODULEPATH id="juce_events" path="../../../JUCE/modules"/>
+        <MODULEPATH id="juce_graphics" path="../../../JUCE/modules"/>
+        <MODULEPATH id="juce_data_structures" path="../../../JUCE/modules"/>
+        <MODULEPATH id="juce_gui_basics" path="../../../JUCE/modules"/>
+        <MODULEPATH id="juce_gui_extra" path="../../../JUCE/modules"/>
+        <MODULEPATH id="juce_cryptography" path="../../../JUCE/modules"/>
+        <MODULEPATH id="juce_video" path="../../../JUCE/modules"/>
+        <MODULEPATH id="juce_opengl" path="../../../JUCE/modules"/>
+        <MODULEPATH id="juce_audio_basics" path="../../../JUCE/modules"/>
+        <MODULEPATH id="juce_audio_devices" path="../../../JUCE/modules"/>
+        <MODULEPATH id="juce_audio_formats" path="../../../JUCE/modules"/>
+        <MODULEPATH id="juce_audio_processors" path="../../../JUCE/modules"/>
+        <MODULEPATH id="juce_audio_plugin_client" path="../../../JUCE/modules"/>
+      </MODULEPATHS>
+    </XCODE_MAC>
+    <VS2015 targetFolder="Builds/VisualStudio2015">
+      <CONFIGURATIONS>
+        <CONFIGURATION name="Debug" winWarningLevel="4" generateManifest="1" winArchitecture="32-bit"
+                       isDebug="1" optimisation="1" targetName="slPitchTrack" headerPath="../../../../common"
+                       postbuildCommand="copy /Y &quot;$(OutDir)\$(TargetFileName)&quot; &quot;C:\Program Files (x86)\VSTPlugins&quot;"/>
+        <CONFIGURATION name="Release" winWarningLevel="4" generateManifest="1" winArchitecture="32-bit"
+                       isDebug="0" optimisation="3" targetName="slPitchTrack" headerPath="../../../../common"
+                       postbuildCommand="copy /Y &quot;$(OutDir)\$(TargetFileName)&quot; &quot;C:\Program Files (x86)\VSTPlugins&quot;"/>
+        <CONFIGURATION name="Debug64" winWarningLevel="4" generateManifest="1" winArchitecture="x64"
+                       isDebug="1" optimisation="1" targetName="slPitchTrack" headerPath="../../../../common"
+                       postbuildCommand="copy /Y &quot;$(OutDir)\$(TargetFileName)&quot; &quot;C:\Program Files\VSTPlugins&quot;"/>
+        <CONFIGURATION name="Release64" winWarningLevel="4" generateManifest="1" winArchitecture="x64"
+                       isDebug="0" optimisation="3" targetName="slPitchTrack" headerPath="../../../../common"
+                       postbuildCommand="copy /Y &quot;$(OutDir)\$(TargetFileName)&quot; &quot;C:\Program Files\VSTPlugins&quot;"/>
+      </CONFIGURATIONS>
+      <MODULEPATHS>
+        <MODULEPATH id="juce_core" path="../../../JUCE/modules"/>
+        <MODULEPATH id="juce_events" path="../../../JUCE/modules"/>
+        <MODULEPATH id="juce_graphics" path="../../../JUCE/modules"/>
+        <MODULEPATH id="juce_data_structures" path="../../../JUCE/modules"/>
+        <MODULEPATH id="juce_gui_basics" path="../../../JUCE/modules"/>
+        <MODULEPATH id="juce_gui_extra" path="../../../JUCE/modules"/>
+        <MODULEPATH id="juce_cryptography" path="../../../JUCE/modules"/>
+        <MODULEPATH id="juce_video" path="../../../JUCE/modules"/>
+        <MODULEPATH id="juce_opengl" path="../../../JUCE/modules"/>
+        <MODULEPATH id="juce_audio_basics" path="../../../JUCE/modules"/>
+        <MODULEPATH id="juce_audio_devices" path="../../../JUCE/modules"/>
+        <MODULEPATH id="juce_audio_formats" path="../../../JUCE/modules"/>
+        <MODULEPATH id="juce_audio_processors" path="../../../JUCE/modules"/>
+        <MODULEPATH id="juce_audio_plugin_client" path="../../../JUCE/modules"/>
+      </MODULEPATHS>
+    </VS2015>
+  </EXPORTFORMATS>
+  <MODULES>
+    <MODULE id="juce_audio_basics" showAllCode="1" useLocalCopy="0"/>
+    <MODULE id="juce_audio_devices" showAllCode="1" useLocalCopy="0"/>
+    <MODULE id="juce_audio_formats" showAllCode="1" useLocalCopy="0"/>
+    <MODULE id="juce_audio_plugin_client" showAllCode="1" useLocalCopy="0"/>
+    <MODULE id="juce_audio_processors" showAllCode="1" useLocalCopy="0"/>
+    <MODULE id="juce_core" showAllCode="1" useLocalCopy="0"/>
+    <MODULE id="juce_cryptography" showAllCode="1" useLocalCopy="0"/>
+    <MODULE id="juce_data_structures" showAllCode="1" useLocalCopy="0"/>
+    <MODULE id="juce_events" showAllCode="1" useLocalCopy="0"/>
+    <MODULE id="juce_graphics" showAllCode="1" useLocalCopy="0"/>
+    <MODULE id="juce_gui_basics" showAllCode="1" useLocalCopy="0"/>
+    <MODULE id="juce_gui_extra" showAllCode="1" useLocalCopy="0"/>
+    <MODULE id="juce_opengl" showAllCode="1" useLocalCopy="0"/>
+    <MODULE id="juce_video" showAllCode="1" useLocalCopy="0"/>
+  </MODULES>
+  <JUCEOPTIONS JUCE_QUICKTIME="disabled"/>
+</JUCERPROJECT>

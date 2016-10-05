@@ -18,23 +18,26 @@
 //==============================================================================
 /**
 */
-class slToneAudioProcessorEditor  : public slAudioProcessorEditor
+class slPitchTrackAudioProcessorEditor : public slAudioProcessorEditor,
+                                         private Timer
 {
 public:
-    slToneAudioProcessorEditor (slToneAudioProcessor&);
-    ~slToneAudioProcessorEditor();
+    slPitchTrackAudioProcessorEditor (slPitchTrackAudioProcessor&);
+    ~slPitchTrackAudioProcessorEditor();
 
     //==============================================================================
     void resized() override;
     void paint(Graphics& g) override;
+    void timerCallback() override;
 
 private:
-    slToneAudioProcessor& processor;
+    slPitchTrackAudioProcessor& processor;
     
-    OwnedArray<ParamComponent> controls;
+    float lastPitch = -1;
+    Label pitch;
     LevelMeter meter;
 
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (slToneAudioProcessorEditor)
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (slPitchTrackAudioProcessorEditor)
 };
 
 

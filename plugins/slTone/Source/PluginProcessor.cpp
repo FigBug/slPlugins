@@ -95,6 +95,8 @@ void slToneAudioProcessor::processBlock (AudioSampleBuffer& buffer, MidiBuffer&)
     buffer.addFrom (0, 0, work, numSamples);
     
     applyGain (buffer, enableVal);
+    
+    outputLevel.trackBuffer (buffer);
 }
 
 //==============================================================================

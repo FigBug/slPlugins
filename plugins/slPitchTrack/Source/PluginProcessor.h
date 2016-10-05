@@ -13,24 +13,17 @@
 
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "slCommon.h"
-
-#define PARAM_ENABLE        "enable"
-#define PARAM_FREQ          "freq"
-#define PARAM_SINE_LEVEL    "sine"
-#define PARAM_TRI_LEVEL     "triangle"
-#define PARAM_SAW_LEVEL     "saw"
-#define PARAM_SQUARE_LEVEL  "square"
-#define PARAM_NOISE_LEVEL   "noise"
+#include "dywapitchtrack.h"
 
 //==============================================================================
 /**
 */
-class slToneAudioProcessor : public slProcessor
+class slPitchTrackAudioProcessor : public slProcessor
 {
 public:
     //==============================================================================
-    slToneAudioProcessor();
-    ~slToneAudioProcessor();
+    slPitchTrackAudioProcessor();
+    ~slPitchTrackAudioProcessor();
 
     //==============================================================================
     void prepareToPlay (double sampleRate, int samplesPerBlock) override;
@@ -45,27 +38,21 @@ public:
     //==============================================================================
     
     LevelTracker& getOutputLevel() { return outputLevel; }
+    float getPitch() { return pitch; }
 
 private:
-    ToneGen sine;
-    ToneGen triangle;
-    ToneGen saw;
-    ToneGen square;
-    WhiteGaussianNoise noise;
-    
     LevelTracker outputLevel {48.0};
-
-    LinearSmoothedValue<float> enableVal;
-    LinearSmoothedValue<float> sineVal;
-    LinearSmoothedValue<float> triangleVal;
-    LinearSmoothedValue<float> sawVal;
-    LinearSmoothedValue<float> squareVal;
-    LinearSmoothedValue<float> noiseVal;
     
-    AudioSampleBuffer scratch;
+    AudioSampleBuffer scratch, work;
+    CircularAudioBuffer audioHistory;
+    dywapitchtracker trackInfo;
+    RollingAverage averager {20};
+    int workSize = 0;
+    float pitch = 0;
+    double sampleRate = 0;
     
     //==============================================================================
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (slToneAudioProcessor)
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (slPitchTrackAudioProcessor)
 };
 
 

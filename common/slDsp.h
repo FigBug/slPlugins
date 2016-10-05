@@ -231,6 +231,105 @@ private:
 };
 
 //==============================================================================
+class CircularAudioBuffer
+{
+public:
+    CircularAudioBuffer (int channels = 1, int numSamples = 1000)
+      : fifo (numSamples), buffer (channels, numSamples)
+    {
+        buffer.clear();
+        
+        int toFill = fifo.getFreeSpace();
+        
+        int start1, size1, start2, size2;
+        fifo.prepareToWrite (toFill, start1, size1, start2, size2);
+        fifo.finishedWrite (toFill);
+    }
+    
+    void setSize (int numChannels, int numSamples)
+    {
+        fifo.setTotalSize (numSamples);
+        buffer.setSize (numChannels, numSamples);
+        buffer.clear();
+        
+        int toFill = fifo.getFreeSpace();
+        
+        int start1, size1, start2, size2;
+        fifo.prepareToWrite (toFill, start1, size1, start2, size2);
+        fifo.finishedWrite (toFill);
+    }
+    
+    void reset() noexcept
+    {
+        fifo.reset();
+        buffer.clear();
+    }
+    
+    bool write (const AudioSampleBuffer& src)
+    {
+        return write (src.getArrayOfReadPointers(), src.getNumSamples());
+    }
+    
+    bool write (const float* const* data, int numSamples)
+    {
+        if (numSamples <= 0)
+            return true;
+        
+        int spaceNeeded = numSamples - fifo.getFreeSpace();
+        if (spaceNeeded > 0)
+        {
+            int start1, end1, start2, end2;
+            fifo.prepareToRead (spaceNeeded, start1, end1, start2, end2);
+            fifo.finishedRead (spaceNeeded);
+        }
+        
+        int start1, size1, start2, size2;
+        fifo.prepareToWrite (numSamples, start1, size1, start2, size2);
+        
+        if (size1 + size2 < numSamples)
+            return false;
+        
+        for (int i = buffer.getNumChannels(); --i >= 0;)
+        {
+            buffer.copyFrom (i, start1, data[i], size1);
+            buffer.copyFrom (i, start2, data[i] + size1, size2);
+        }
+        
+        fifo.finishedWrite (size1 + size2);
+        return true;
+    }
+    
+    bool read (AudioSampleBuffer& dest, int startSampleInDestBuffer = 0)
+    {
+        return read (dest, startSampleInDestBuffer, dest.getNumSamples());
+    }
+    
+    bool read (AudioSampleBuffer& dest, int startSampleInDestBuffer, int numSamples)
+    {
+        int start1, size1, start2, size2;
+        fifo.prepareToRead (numSamples, start1, size1, start2, size2);
+        
+        if ((size1 + size2) < numSamples)
+            return false;
+        
+        for (int i = buffer.getNumChannels(); --i >= 0;)
+        {
+            dest.copyFrom (i, startSampleInDestBuffer, buffer, i, start1, size1);
+            dest.copyFrom (i, startSampleInDestBuffer + size1, buffer, i, start2, size2);
+        }
+        
+        return true;
+    }
+    
+private:
+    AbstractFifo fifo;
+    AudioSampleBuffer buffer;
+    
+    JUCE_LEAK_DETECTOR (CircularAudioBuffer)
+};
+
+
+//==============================================================================
 /** White Gaussian Noise. - box muller method */
 class WhiteGaussianNoise
 {
@@ -286,4 +385,25 @@ private:
     }
     
     Random rnd;
+};
+
+//==============================================================================
+struct RollingAverage
+{
+    RollingAverage (int numVals_) : numVals (numVals_), currAvg (0) {}
+    
+    float average (float nextValue)
+    {
+        currAvg = (nextValue + numVals * currAvg) / (float)(numVals + 1);
+        return currAvg;
+    }
+    
+    float getAverage()
+    {
+        return currAvg;
+    }
+    
+private:
+    int numVals;
+    float currAvg;
 };

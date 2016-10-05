@@ -4,6 +4,12 @@ LevelTracker::LevelTracker (float decayPerSecond) : decayRate (decayPerSecond)
 {
 }
 
+void LevelTracker::trackBuffer (AudioSampleBuffer& buffer)
+{
+    for (int i = 0; i < buffer.getNumChannels(); i++)
+        trackBuffer (buffer.getReadPointer (0), buffer.getNumSamples());
+}
+
 void LevelTracker::trackBuffer (const float* buffer, int numSamples)
 {
     Range<float> range = FloatVectorOperations::findMinAndMax (buffer, numSamples);

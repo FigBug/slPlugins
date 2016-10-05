@@ -12,40 +12,42 @@
 #include "PluginEditor.h"
 
 //==============================================================================
-slToneAudioProcessorEditor::slToneAudioProcessorEditor (slToneAudioProcessor& p)
+slPitchTrackAudioProcessorEditor::slPitchTrackAudioProcessorEditor (slPitchTrackAudioProcessor& p)
     : slAudioProcessorEditor (&p), processor (p), meter (p.getOutputLevel())
 {
-    for (slParameter* pp : p.getPluginParameters())
-    {
-        Knob* k = new Knob (pp);
-        
-        addAndMakeVisible (k);
-        controls.add (k);
-    }
-    
     addAndMakeVisible (&meter);
+    addAndMakeVisible (&pitch);
+    
+    pitch.setJustificationType (Justification::centred);
+    
+    startTimerHz (4);
     
     setSize (600, 150);
 }
 
-slToneAudioProcessorEditor::~slToneAudioProcessorEditor()
+slPitchTrackAudioProcessorEditor::~slPitchTrackAudioProcessorEditor()
 {
 }
 
 //==============================================================================
-void slToneAudioProcessorEditor::paint(Graphics& g)
+void slPitchTrackAudioProcessorEditor::paint(Graphics& g)
 {
     g.fillAll (Colours::white);
 }
 
-void slToneAudioProcessorEditor::resized()
+void slPitchTrackAudioProcessorEditor::resized()
 {
     Rectangle<int> r = getControlsArea();
     
     meter.setBounds (r.removeFromRight (15));
-    
-    int w = r.getWidth() / controls.size();
-    
-    for (auto c : controls)
-        c->setBounds (r.removeFromLeft (w));
+    pitch.setBounds (r);
+}
+
+void slPitchTrackAudioProcessorEditor::timerCallback()
+{
+    if (processor.getPitch() != lastPitch)
+    {
+        lastPitch = processor.getPitch();
+        pitch.setText (String::formatted ("%.1f Hz", lastPitch), dontSendNotification);
+    }
 }
