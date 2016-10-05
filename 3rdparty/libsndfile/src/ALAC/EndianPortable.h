@@ -28,7 +28,7 @@
 #ifndef _EndianPortable_h
 #define _EndianPortable_h
 
-#include <sfendian.h>
+#include "sfendian.h"
 
 #define Swap16NtoB(x)	H2BE_16 (x)
 #define Swap16BtoN(x)	BE2H_16 (x)

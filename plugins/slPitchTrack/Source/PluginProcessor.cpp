@@ -14,10 +14,15 @@
 //==============================================================================
 slPitchTrackAudioProcessor::slPitchTrackAudioProcessor()
 {
+    sp_create (&sp);
+    sp_pitchamdf_create (&pitchamdf);
+    sp_pitchamdf_init (sp, pitchamdf, 100, 4000);
 }
 
 slPitchTrackAudioProcessor::~slPitchTrackAudioProcessor()
 {
+    sp_pitchamdf_destroy (&pitchamdf);
+    sp_destroy (&sp);
 }
 
 //==============================================================================
@@ -26,12 +31,6 @@ void slPitchTrackAudioProcessor::prepareToPlay (double sampleRate_, int samplesP
     sampleRate = sampleRate_;
     
     scratch.setSize (1, samplesPerBlock);
-    
-    workSize = dywapitch_neededsamplecount (130 * sampleRate / 44100.0);
-    audioHistory.setSize (1, workSize + 1);
-    work.setSize (1, workSize);
-    
-    dywapitch_inittracking (&trackInfo);
 }
 
 void slPitchTrackAudioProcessor::releaseResources()
@@ -50,18 +49,17 @@ void slPitchTrackAudioProcessor::processBlock (AudioSampleBuffer& buffer, MidiBu
         scratch.applyGain (0.5f);
     }
     
-    audioHistory.write (scratch);
-    audioHistory.read (work);
+    float in = 0;
+    float out = 0;
+    float rms = 0;
+    for (int i = 0; i < scratch.getNumSamples(); i++)
+    {
+        in = *(scratch.getReadPointer (0) + i);
+        if (sp_pitchamdf_compute(sp, pitchamdf, &in, &out, &rms) == SP_OK)
+            pitch = out;
+    }
     
-    const float* src = work.getReadPointer (0);
-    double dst[workSize];
-    
-    for (int i = 0; i < work.getNumSamples(); i++)
-        dst[i] = src[i];
-    
-    pitch = dywapitch_computepitch (&trackInfo, dst, 0, work.getNumSamples()) * 44100 / sampleRate;
-    
-    outputLevel.trackBuffer (work);
+    outputLevel.trackBuffer (scratch);
 }
 
 //==============================================================================

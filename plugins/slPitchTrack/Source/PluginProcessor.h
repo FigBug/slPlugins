@@ -13,7 +13,10 @@
 
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "slCommon.h"
-#include "dywapitchtrack.h"
+
+extern "C" {
+#include "soundpipe.h"
+}
 
 //==============================================================================
 /**
@@ -43,13 +46,13 @@ public:
 private:
     LevelTracker outputLevel {48.0};
     
-    AudioSampleBuffer scratch, work;
-    CircularAudioBuffer audioHistory;
-    dywapitchtracker trackInfo;
-    RollingAverage averager {20};
-    int workSize = 0;
+    AudioSampleBuffer scratch;
+
     float pitch = 0;
     double sampleRate = 0;
+    
+    sp_data *sp;
+    sp_pitchamdf *pitchamdf;
     
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (slPitchTrackAudioProcessor)

@@ -91,6 +91,8 @@ ENDSWAP_64 (uint64_t x)
 ** The following MAKE_MARKER macro allows th creation of integer constants
 ** for these markers.
 */
+#define CPU_IS_LITTLE_ENDIAN    1
+#define CPU_IS_BIG_ENDIAN       0
 
 #if (CPU_IS_LITTLE_ENDIAN == 1)
 	#define	MAKE_MARKER(a, b, c, d)		((uint32_t) ((a) | ((b) << 8) | ((c) << 16) | (((uint32_t) (d)) << 24)))

@@ -81,7 +81,7 @@
       <Optimization>Disabled</Optimization>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <AdditionalIncludeDirectories>..\..\JuceLibraryCode;..\..\..\..\..\JUCE\modules;../../../../common;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;WIN32;_WINDOWS;DEBUG;_DEBUG;JUCER_VS2015_78A5022=1;JUCE_APP_VERSION=1.0.0;JUCE_APP_VERSION_HEX=0x10000;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;WIN32;_WINDOWS;DEBUG;_DEBUG;NO_LIBSNDFILE;JUCER_VS2015_78A5022=1;JUCE_APP_VERSION=1.0.0;JUCE_APP_VERSION_HEX=0x10000;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <PrecompiledHeader/>
@@ -125,7 +125,7 @@
     <ClCompile>
       <Optimization>Full</Optimization>
       <AdditionalIncludeDirectories>..\..\JuceLibraryCode;..\..\..\..\..\JUCE\modules;../../../../common;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;WIN32;_WINDOWS;NDEBUG;JUCER_VS2015_78A5022=1;JUCE_APP_VERSION=1.0.0;JUCE_APP_VERSION_HEX=0x10000;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;WIN32;_WINDOWS;NDEBUG;NO_LIBSNDFILE;JUCER_VS2015_78A5022=1;JUCE_APP_VERSION=1.0.0;JUCE_APP_VERSION_HEX=0x10000;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <PrecompiledHeader/>
@@ -171,7 +171,7 @@
       <Optimization>Disabled</Optimization>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <AdditionalIncludeDirectories>..\..\JuceLibraryCode;..\..\..\..\..\JUCE\modules;../../../../common;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;WIN32;_WINDOWS;DEBUG;_DEBUG;JUCER_VS2015_78A5022=1;JUCE_APP_VERSION=1.0.0;JUCE_APP_VERSION_HEX=0x10000;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;WIN32;_WINDOWS;DEBUG;_DEBUG;NO_LIBSNDFILE;JUCER_VS2015_78A5022=1;JUCE_APP_VERSION=1.0.0;JUCE_APP_VERSION_HEX=0x10000;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <PrecompiledHeader/>
@@ -213,7 +213,7 @@
     <ClCompile>
       <Optimization>Full</Optimization>
       <AdditionalIncludeDirectories>..\..\JuceLibraryCode;..\..\..\..\..\JUCE\modules;../../../../common;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;WIN32;_WINDOWS;NDEBUG;JUCER_VS2015_78A5022=1;JUCE_APP_VERSION=1.0.0;JUCE_APP_VERSION_HEX=0x10000;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;WIN32;_WINDOWS;NDEBUG;NO_LIBSNDFILE;JUCER_VS2015_78A5022=1;JUCE_APP_VERSION=1.0.0;JUCE_APP_VERSION_HEX=0x10000;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <PrecompiledHeader/>
@@ -247,7 +247,106 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\..\3rdparty\dywapitchtrack\src\dywapitchtrack.c"/>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\adsr.c"/>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\allpass.c"/>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\atone.c"/>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\bal.c"/>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\bar.c"/>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\base.c"/>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\biquad.c"/>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\biscale.c"/>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\bitcrush.c"/>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\butbp.c"/>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\butbr.c"/>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\buthp.c"/>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\butlp.c"/>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\clip.c"/>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\comb.c"/>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\conv.c"/>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\count.c"/>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\crossfade.c"/>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\dcblock.c"/>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\delay.c"/>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\dist.c"/>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\dmetro.c"/>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\drip.c"/>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\dtrig.c"/>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\dust.c"/>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\eqfil.c"/>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\expon.c"/>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\fof.c"/>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\fofilt.c"/>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\fog.c"/>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\fold.c"/>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\foo.c"/>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\fosc.c"/>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\ftbl.c"/>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\gbuzz.c"/>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\hilbert.c"/>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\in.c"/>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\incr.c"/>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\jitter.c"/>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\line.c"/>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\lpf18.c"/>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\maygate.c"/>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\metro.c"/>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\mincer.c"/>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\mode.c"/>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\moogladder.c"/>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\noise.c"/>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\osc.c"/>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\oscmorph.c"/>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\padsynth.c"/>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\pan2.c"/>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\panst.c"/>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\pareq.c"/>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\pdhalf.c"/>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\peaklim.c"/>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\phasor.c"/>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\pinknoise.c"/>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\pitchamdf.c"/>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\pluck.c"/>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\port.c"/>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\posc3.c"/>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\progress.c"/>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\prop.c"/>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\ptrack.c"/>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\randh.c"/>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\randi.c"/>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\randmt.c"/>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\random.c"/>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\reson.c"/>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\reverse.c"/>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\revsc.c"/>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\rms.c"/>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\rpt.c"/>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\samphold.c"/>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\scale.c"/>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\sdelay.c"/>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\slice.c"/>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\smoothdelay.c"/>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\streson.c"/>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\switch.c"/>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\tabread.c"/>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\tadsr.c"/>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\tblrec.c"/>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\tbvcf.c"/>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\tdiv.c"/>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\tenv.c"/>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\tenv2.c"/>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\tenvx.c"/>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\tevent.c"/>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\tgate.c"/>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\thresh.c"/>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\timer.c"/>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\tin.c"/>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\tone.c"/>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\trand.c"/>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\tseg.c"/>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\tseq.c"/>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\vdelay.c"/>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\waveset.c"/>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\wpkorg35.c"/>
     <ClCompile Include="..\..\..\..\common\slComponents.cpp"/>
     <ClCompile Include="..\..\..\..\common\slDsp.cpp"/>
     <ClCompile Include="..\..\..\..\common\slLookAndFeel.cpp"/>
@@ -1924,7 +2023,7 @@
     <ClCompile Include="..\..\JuceLibraryCode\juce_video.cpp"/>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\..\3rdparty\dywapitchtrack\src\dywapitchtrack.h"/>
+    <ClInclude Include="..\..\..\..\3rdparty\soundpipe\h\soundpipe.h"/>
     <ClInclude Include="..\..\..\..\common\slCommon.h"/>
     <ClInclude Include="..\..\..\..\common\slComponents.h"/>
     <ClInclude Include="..\..\..\..\common\slDsp.h"/>

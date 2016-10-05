@@ -68,3 +68,5 @@ Common_wolf
 *.xcscmblueprint
 
 *.opendb
+
+3rdparty/libsndfile/src/.sndfile.h.in.swp

@@ -13,10 +13,109 @@
   <MAINGROUP id="dPRjsF" name="slPitchTrack">
     <GROUP id="{EE796482-0D02-0052-80F4-B1FE6CE0D41A}" name="Source">
       <GROUP id="{6F2315D7-3D20-892D-4519-7653440048F1}" name="3rdParty">
-        <FILE id="clQ6GX" name="dywapitchtrack.c" compile="1" resource="0"
-              file="../../3rdparty/dywapitchtrack/src/dywapitchtrack.c"/>
-        <FILE id="NyZdU9" name="dywapitchtrack.h" compile="0" resource="0"
-              file="../../3rdparty/dywapitchtrack/src/dywapitchtrack.h"/>
+        <GROUP id="{07F5C7EC-57FE-E852-9264-48F062680671}" name="soundpipe">
+          <FILE id="wcRZMO" name="adsr.c" compile="1" resource="0" file="../../3rdparty/soundpipe/modules/adsr.c"/>
+          <FILE id="JyuOfU" name="allpass.c" compile="1" resource="0" file="../../3rdparty/soundpipe/modules/allpass.c"/>
+          <FILE id="WDqc1z" name="atone.c" compile="1" resource="0" file="../../3rdparty/soundpipe/modules/atone.c"/>
+          <FILE id="F6eFxD" name="bal.c" compile="1" resource="0" file="../../3rdparty/soundpipe/modules/bal.c"/>
+          <FILE id="W27no5" name="bar.c" compile="1" resource="0" file="../../3rdparty/soundpipe/modules/bar.c"/>
+          <FILE id="xzo53i" name="base.c" compile="1" resource="0" file="../../3rdparty/soundpipe/modules/base.c"/>
+          <FILE id="uIYV1W" name="biquad.c" compile="1" resource="0" file="../../3rdparty/soundpipe/modules/biquad.c"/>
+          <FILE id="O7LtOI" name="biscale.c" compile="1" resource="0" file="../../3rdparty/soundpipe/modules/biscale.c"/>
+          <FILE id="tSvF2o" name="bitcrush.c" compile="1" resource="0" file="../../3rdparty/soundpipe/modules/bitcrush.c"/>
+          <FILE id="xESq43" name="butbp.c" compile="1" resource="0" file="../../3rdparty/soundpipe/modules/butbp.c"/>
+          <FILE id="HC9sC5" name="butbr.c" compile="1" resource="0" file="../../3rdparty/soundpipe/modules/butbr.c"/>
+          <FILE id="ARjk1S" name="buthp.c" compile="1" resource="0" file="../../3rdparty/soundpipe/modules/buthp.c"/>
+          <FILE id="wwq1KO" name="butlp.c" compile="1" resource="0" file="../../3rdparty/soundpipe/modules/butlp.c"/>
+          <FILE id="PQkox9" name="clip.c" compile="1" resource="0" file="../../3rdparty/soundpipe/modules/clip.c"/>
+          <FILE id="NBVJXm" name="comb.c" compile="1" resource="0" file="../../3rdparty/soundpipe/modules/comb.c"/>
+          <FILE id="UApMqP" name="conv.c" compile="1" resource="0" file="../../3rdparty/soundpipe/modules/conv.c"/>
+          <FILE id="EHuns1" name="count.c" compile="1" resource="0" file="../../3rdparty/soundpipe/modules/count.c"/>
+          <FILE id="VVQLgo" name="crossfade.c" compile="1" resource="0" file="../../3rdparty/soundpipe/modules/crossfade.c"/>
+          <FILE id="HVSmpX" name="dcblock.c" compile="1" resource="0" file="../../3rdparty/soundpipe/modules/dcblock.c"/>
+          <FILE id="wM6tAg" name="delay.c" compile="1" resource="0" file="../../3rdparty/soundpipe/modules/delay.c"/>
+          <FILE id="Fqo8J2" name="dist.c" compile="1" resource="0" file="../../3rdparty/soundpipe/modules/dist.c"/>
+          <FILE id="YlKv7t" name="dmetro.c" compile="1" resource="0" file="../../3rdparty/soundpipe/modules/dmetro.c"/>
+          <FILE id="j0Fkzm" name="drip.c" compile="1" resource="0" file="../../3rdparty/soundpipe/modules/drip.c"/>
+          <FILE id="qV4uG1" name="dtrig.c" compile="1" resource="0" file="../../3rdparty/soundpipe/modules/dtrig.c"/>
+          <FILE id="BjXvLG" name="dust.c" compile="1" resource="0" file="../../3rdparty/soundpipe/modules/dust.c"/>
+          <FILE id="AcpLgT" name="eqfil.c" compile="1" resource="0" file="../../3rdparty/soundpipe/modules/eqfil.c"/>
+          <FILE id="okbFQD" name="expon.c" compile="1" resource="0" file="../../3rdparty/soundpipe/modules/expon.c"/>
+          <FILE id="zc6tBr" name="fof.c" compile="1" resource="0" file="../../3rdparty/soundpipe/modules/fof.c"/>
+          <FILE id="GrZKXz" name="fofilt.c" compile="1" resource="0" file="../../3rdparty/soundpipe/modules/fofilt.c"/>
+          <FILE id="vzbKwK" name="fog.c" compile="1" resource="0" file="../../3rdparty/soundpipe/modules/fog.c"/>
+          <FILE id="xSLCdN" name="fold.c" compile="1" resource="0" file="../../3rdparty/soundpipe/modules/fold.c"/>
+          <FILE id="rE1ajB" name="foo.c" compile="1" resource="0" file="../../3rdparty/soundpipe/modules/foo.c"/>
+          <FILE id="TDIMww" name="fosc.c" compile="1" resource="0" file="../../3rdparty/soundpipe/modules/fosc.c"/>
+          <FILE id="TcBfuj" name="ftbl.c" compile="1" resource="0" file="../../3rdparty/soundpipe/modules/ftbl.c"/>
+          <FILE id="l1gpoj" name="gbuzz.c" compile="1" resource="0" file="../../3rdparty/soundpipe/modules/gbuzz.c"/>
+          <FILE id="xAgtDR" name="hilbert.c" compile="1" resource="0" file="../../3rdparty/soundpipe/modules/hilbert.c"/>
+          <FILE id="ltNjUd" name="in.c" compile="1" resource="0" file="../../3rdparty/soundpipe/modules/in.c"/>
+          <FILE id="XjKFpF" name="incr.c" compile="1" resource="0" file="../../3rdparty/soundpipe/modules/incr.c"/>
+          <FILE id="kyFXok" name="jitter.c" compile="1" resource="0" file="../../3rdparty/soundpipe/modules/jitter.c"/>
+          <FILE id="AvW04W" name="line.c" compile="1" resource="0" file="../../3rdparty/soundpipe/modules/line.c"/>
+          <FILE id="aXF9iy" name="lpf18.c" compile="1" resource="0" file="../../3rdparty/soundpipe/modules/lpf18.c"/>
+          <FILE id="os0QqQ" name="maygate.c" compile="1" resource="0" file="../../3rdparty/soundpipe/modules/maygate.c"/>
+          <FILE id="BXxEVH" name="metro.c" compile="1" resource="0" file="../../3rdparty/soundpipe/modules/metro.c"/>
+          <FILE id="tYJ7PR" name="mincer.c" compile="1" resource="0" file="../../3rdparty/soundpipe/modules/mincer.c"/>
+          <FILE id="n4qCoO" name="mode.c" compile="1" resource="0" file="../../3rdparty/soundpipe/modules/mode.c"/>
+          <FILE id="EfnZ42" name="moogladder.c" compile="1" resource="0" file="../../3rdparty/soundpipe/modules/moogladder.c"/>
+          <FILE id="sixcJq" name="noise.c" compile="1" resource="0" file="../../3rdparty/soundpipe/modules/noise.c"/>
+          <FILE id="h4r4CP" name="osc.c" compile="1" resource="0" file="../../3rdparty/soundpipe/modules/osc.c"/>
+          <FILE id="BATozy" name="oscmorph.c" compile="1" resource="0" file="../../3rdparty/soundpipe/modules/oscmorph.c"/>
+          <FILE id="qDTQzr" name="padsynth.c" compile="1" resource="0" file="../../3rdparty/soundpipe/modules/padsynth.c"/>
+          <FILE id="ZRus5R" name="pan2.c" compile="1" resource="0" file="../../3rdparty/soundpipe/modules/pan2.c"/>
+          <FILE id="FFHGaG" name="panst.c" compile="1" resource="0" file="../../3rdparty/soundpipe/modules/panst.c"/>
+          <FILE id="IuaCoJ" name="pareq.c" compile="1" resource="0" file="../../3rdparty/soundpipe/modules/pareq.c"/>
+          <FILE id="nEl3eG" name="pdhalf.c" compile="1" resource="0" file="../../3rdparty/soundpipe/modules/pdhalf.c"/>
+          <FILE id="zzJPtB" name="peaklim.c" compile="1" resource="0" file="../../3rdparty/soundpipe/modules/peaklim.c"/>
+          <FILE id="NtlV6j" name="phasor.c" compile="1" resource="0" file="../../3rdparty/soundpipe/modules/phasor.c"/>
+          <FILE id="IGXFyp" name="pinknoise.c" compile="1" resource="0" file="../../3rdparty/soundpipe/modules/pinknoise.c"/>
+          <FILE id="FS1ZOo" name="pitchamdf.c" compile="1" resource="0" file="../../3rdparty/soundpipe/modules/pitchamdf.c"/>
+          <FILE id="Cgznx8" name="pluck.c" compile="1" resource="0" file="../../3rdparty/soundpipe/modules/pluck.c"/>
+          <FILE id="WbIuWN" name="port.c" compile="1" resource="0" file="../../3rdparty/soundpipe/modules/port.c"/>
+          <FILE id="AGHYVk" name="posc3.c" compile="1" resource="0" file="../../3rdparty/soundpipe/modules/posc3.c"/>
+          <FILE id="o700jb" name="progress.c" compile="1" resource="0" file="../../3rdparty/soundpipe/modules/progress.c"/>
+          <FILE id="QmzziA" name="prop.c" compile="1" resource="0" file="../../3rdparty/soundpipe/modules/prop.c"/>
+          <FILE id="qr1YR1" name="ptrack.c" compile="1" resource="0" file="../../3rdparty/soundpipe/modules/ptrack.c"/>
+          <FILE id="vWeydD" name="randh.c" compile="1" resource="0" file="../../3rdparty/soundpipe/modules/randh.c"/>
+          <FILE id="VA4Cct" name="randi.c" compile="1" resource="0" file="../../3rdparty/soundpipe/modules/randi.c"/>
+          <FILE id="pPg1WE" name="randmt.c" compile="1" resource="0" file="../../3rdparty/soundpipe/modules/randmt.c"/>
+          <FILE id="erDfDK" name="random.c" compile="1" resource="0" file="../../3rdparty/soundpipe/modules/random.c"/>
+          <FILE id="y1GU3D" name="reson.c" compile="1" resource="0" file="../../3rdparty/soundpipe/modules/reson.c"/>
+          <FILE id="fnC8A7" name="reverse.c" compile="1" resource="0" file="../../3rdparty/soundpipe/modules/reverse.c"/>
+          <FILE id="qlNJn4" name="revsc.c" compile="1" resource="0" file="../../3rdparty/soundpipe/modules/revsc.c"/>
+          <FILE id="xwQOPb" name="rms.c" compile="1" resource="0" file="../../3rdparty/soundpipe/modules/rms.c"/>
+          <FILE id="JrMjqg" name="rpt.c" compile="1" resource="0" file="../../3rdparty/soundpipe/modules/rpt.c"/>
+          <FILE id="x84gyf" name="samphold.c" compile="1" resource="0" file="../../3rdparty/soundpipe/modules/samphold.c"/>
+          <FILE id="AP2CBl" name="scale.c" compile="1" resource="0" file="../../3rdparty/soundpipe/modules/scale.c"/>
+          <FILE id="RzNcu6" name="sdelay.c" compile="1" resource="0" file="../../3rdparty/soundpipe/modules/sdelay.c"/>
+          <FILE id="VadXt8" name="slice.c" compile="1" resource="0" file="../../3rdparty/soundpipe/modules/slice.c"/>
+          <FILE id="nKFcH9" name="smoothdelay.c" compile="1" resource="0" file="../../3rdparty/soundpipe/modules/smoothdelay.c"/>
+          <FILE id="uy5MTN" name="soundpipe.h" compile="0" resource="0" file="../../3rdparty/soundpipe/h/soundpipe.h"/>
+          <FILE id="oJjVap" name="streson.c" compile="1" resource="0" file="../../3rdparty/soundpipe/modules/streson.c"/>
+          <FILE id="GWo876" name="switch.c" compile="1" resource="0" file="../../3rdparty/soundpipe/modules/switch.c"/>
+          <FILE id="qlOP8T" name="tabread.c" compile="1" resource="0" file="../../3rdparty/soundpipe/modules/tabread.c"/>
+          <FILE id="K7NwHI" name="tadsr.c" compile="1" resource="0" file="../../3rdparty/soundpipe/modules/tadsr.c"/>
+          <FILE id="cY5OT8" name="tblrec.c" compile="1" resource="0" file="../../3rdparty/soundpipe/modules/tblrec.c"/>
+          <FILE id="HrZu3u" name="tbvcf.c" compile="1" resource="0" file="../../3rdparty/soundpipe/modules/tbvcf.c"/>
+          <FILE id="U5vqQE" name="tdiv.c" compile="1" resource="0" file="../../3rdparty/soundpipe/modules/tdiv.c"/>
+          <FILE id="gGrJbe" name="tenv.c" compile="1" resource="0" file="../../3rdparty/soundpipe/modules/tenv.c"/>
+          <FILE id="Tjml0G" name="tenv2.c" compile="1" resource="0" file="../../3rdparty/soundpipe/modules/tenv2.c"/>
+          <FILE id="Uxt4QY" name="tenvx.c" compile="1" resource="0" file="../../3rdparty/soundpipe/modules/tenvx.c"/>
+          <FILE id="b9salX" name="tevent.c" compile="1" resource="0" file="../../3rdparty/soundpipe/modules/tevent.c"/>
+          <FILE id="m9N8OD" name="tgate.c" compile="1" resource="0" file="../../3rdparty/soundpipe/modules/tgate.c"/>
+          <FILE id="YiGN26" name="thresh.c" compile="1" resource="0" file="../../3rdparty/soundpipe/modules/thresh.c"/>
+          <FILE id="VcEk8a" name="timer.c" compile="1" resource="0" file="../../3rdparty/soundpipe/modules/timer.c"/>
+          <FILE id="N559sv" name="tin.c" compile="1" resource="0" file="../../3rdparty/soundpipe/modules/tin.c"/>
+          <FILE id="Zd5U7l" name="tone.c" compile="1" resource="0" file="../../3rdparty/soundpipe/modules/tone.c"/>
+          <FILE id="uQoPEa" name="trand.c" compile="1" resource="0" file="../../3rdparty/soundpipe/modules/trand.c"/>
+          <FILE id="qLOM3x" name="tseg.c" compile="1" resource="0" file="../../3rdparty/soundpipe/modules/tseg.c"/>
+          <FILE id="UORiIS" name="tseq.c" compile="1" resource="0" file="../../3rdparty/soundpipe/modules/tseq.c"/>
+          <FILE id="t87FSq" name="vdelay.c" compile="1" resource="0" file="../../3rdparty/soundpipe/modules/vdelay.c"/>
+          <FILE id="Fr6uQW" name="waveset.c" compile="1" resource="0" file="../../3rdparty/soundpipe/modules/waveset.c"/>
+          <FILE id="fjAfb1" name="wpkorg35.c" compile="1" resource="0" file="../../3rdparty/soundpipe/modules/wpkorg35.c"/>
+        </GROUP>
       </GROUP>
       <GROUP id="{DA748B7D-42D5-4A16-B897-0DD85D003309}" name="Common">
         <FILE id="prLAS5" name="slCommon.h" compile="0" resource="0" file="../../common/slCommon.h"/>
@@ -51,7 +150,7 @@
     </GROUP>
   </MAINGROUP>
   <EXPORTFORMATS>
-    <XCODE_MAC targetFolder="Builds/MacOSX">
+    <XCODE_MAC targetFolder="Builds/MacOSX" extraDefs="NO_LIBSNDFILE">
       <CONFIGURATIONS>
         <CONFIGURATION name="Debug" isDebug="1" optimisation="1" targetName="slPitchTrack"/>
         <CONFIGURATION name="Release" isDebug="0" optimisation="3" targetName="slPitchTrack"/>
@@ -73,7 +172,7 @@
         <MODULEPATH id="juce_audio_plugin_client" path="../../../JUCE/modules"/>
       </MODULEPATHS>
     </XCODE_MAC>
-    <VS2015 targetFolder="Builds/VisualStudio2015">
+    <VS2015 targetFolder="Builds/VisualStudio2015" extraDefs="NO_LIBSNDFILE">
       <CONFIGURATIONS>
         <CONFIGURATION name="Debug" winWarningLevel="4" generateManifest="1" winArchitecture="32-bit"
                        isDebug="1" optimisation="1" targetName="slPitchTrack" headerPath="../../../../common"
