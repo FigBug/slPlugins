@@ -11,6 +11,9 @@
     <Filter Include="slPitchTrack\Source\3rdParty">
       <UniqueIdentifier>{15D5ABE5-F378-1076-4BB2-57A94E07D141}</UniqueIdentifier>
     </Filter>
+    <Filter Include="slPitchTrack\Source\3rdParty\soundpipe">
+      <UniqueIdentifier>{E27738CC-AA9C-14B8-680A-4F0292A5B6F2}</UniqueIdentifier>
+    </Filter>
     <Filter Include="slPitchTrack\Source\Common">
       <UniqueIdentifier>{7A16B733-B1CD-FA10-F35F-34E63CD29EA1}</UniqueIdentifier>
     </Filter>
@@ -388,6 +391,357 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\adsr.c">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\allpass.c">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\atone.c">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\autowah.c">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\bal.c">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\bar.c">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\base.c">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\biquad.c">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\biscale.c">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\bitcrush.c">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\blsaw.c">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\blsquare.c">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\bltriangle.c">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\butbp.c">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\butbr.c">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\buthp.c">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\butlp.c">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\clip.c">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\comb.c">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\compressor.c">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\conv.c">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\count.c">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\crossfade.c">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\dcblock.c">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\delay.c">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\diskin.c">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\dist.c">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\dmetro.c">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\drip.c">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\dtrig.c">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\dust.c">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\eqfil.c">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\expon.c">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\fftwrapper.c">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\fof.c">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\fofilt.c">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\fog.c">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\fold.c">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\foo.c">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\fosc.c">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\ftbl.c">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\gbuzz.c">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\hilbert.c">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\in.c">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\incr.c">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\jack.c">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\jcrev.c">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\jitter.c">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\line.c">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\lpf18.c">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\maygate.c">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\metro.c">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\mincer.c">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\mode.c">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\moogladder.c">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\noise.c">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\nsmp.c">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\osc.c">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\oscmorph.c">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\padsynth.c">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\pan2.c">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\panst.c">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\pareq.c">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\paulstretch.c">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\pdhalf.c">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\peaklim.c">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\phaser.c">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\phasor.c">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\pinknoise.c">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\pitchamdf.c">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\pluck.c">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\port.c">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\posc3.c">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\progress.c">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\prop.c">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\pshift.c">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\ptrack.c">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\randh.c">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\randi.c">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\randmt.c">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\random.c">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\reson.c">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\reverse.c">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\revsc.c">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\rms.c">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\rpi.c">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\rpt.c">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\samphold.c">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\scale.c">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\scrambler.c">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\sdelay.c">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\slice.c">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\smoothdelay.c">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\streson.c">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\switch.c">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\tabread.c">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\tadsr.c">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\tblrec.c">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\tbvcf.c">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\tdiv.c">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\tenv.c">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\tenv2.c">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\tenvx.c">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\tevent.c">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\tgate.c">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\thresh.c">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\timer.c">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\tin.c">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\tone.c">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\trand.c">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\tseg.c">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\tseq.c">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\vdelay.c">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\vocoder.c">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\waveset.c">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\wpkorg35.c">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\3rdparty\soundpipe\modules\zitarev.c">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\..\..\3rdparty\dywapitchtrack\src\dywapitchtrack.c">
       <Filter>slPitchTrack\Source\3rdParty</Filter>
     </ClCompile>
@@ -2256,6 +2610,357 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\..\..\3rdparty\soundpipe\h\adsr.h">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\3rdparty\soundpipe\h\allpass.h">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\3rdparty\soundpipe\h\atone.h">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\3rdparty\soundpipe\h\autowah.h">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\3rdparty\soundpipe\h\bal.h">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\3rdparty\soundpipe\h\bar.h">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\3rdparty\soundpipe\h\base.h">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\3rdparty\soundpipe\h\biquad.h">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\3rdparty\soundpipe\h\biscale.h">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\3rdparty\soundpipe\h\bitcrush.h">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\3rdparty\soundpipe\h\blsaw.h">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\3rdparty\soundpipe\h\blsquare.h">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\3rdparty\soundpipe\h\bltriangle.h">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\3rdparty\soundpipe\h\butbp.h">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\3rdparty\soundpipe\h\butbr.h">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\3rdparty\soundpipe\h\buthp.h">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\3rdparty\soundpipe\h\butlp.h">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\3rdparty\soundpipe\h\clip.h">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\3rdparty\soundpipe\h\comb.h">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\3rdparty\soundpipe\h\compressor.h">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\3rdparty\soundpipe\h\conv.h">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\3rdparty\soundpipe\h\count.h">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\3rdparty\soundpipe\h\crossfade.h">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\3rdparty\soundpipe\h\dcblock.h">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\3rdparty\soundpipe\h\delay.h">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\3rdparty\soundpipe\h\diskin.h">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\3rdparty\soundpipe\h\dist.h">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\3rdparty\soundpipe\h\dmetro.h">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\3rdparty\soundpipe\h\drip.h">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\3rdparty\soundpipe\h\dtrig.h">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\3rdparty\soundpipe\h\dust.h">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\3rdparty\soundpipe\h\eqfil.h">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\3rdparty\soundpipe\h\expon.h">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\3rdparty\soundpipe\h\fftwrapper.h">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\3rdparty\soundpipe\h\fof.h">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\3rdparty\soundpipe\h\fofilt.h">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\3rdparty\soundpipe\h\fog.h">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\3rdparty\soundpipe\h\fold.h">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\3rdparty\soundpipe\h\foo.h">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\3rdparty\soundpipe\h\fosc.h">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\3rdparty\soundpipe\h\ftbl.h">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\3rdparty\soundpipe\h\gbuzz.h">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\3rdparty\soundpipe\h\hilbert.h">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\3rdparty\soundpipe\h\in.h">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\3rdparty\soundpipe\h\incr.h">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\3rdparty\soundpipe\h\jack.h">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\3rdparty\soundpipe\h\jcrev.h">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\3rdparty\soundpipe\h\jitter.h">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\3rdparty\soundpipe\h\line.h">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\3rdparty\soundpipe\h\lpf18.h">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\3rdparty\soundpipe\h\maygate.h">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\3rdparty\soundpipe\h\metro.h">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\3rdparty\soundpipe\h\mincer.h">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\3rdparty\soundpipe\h\mode.h">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\3rdparty\soundpipe\h\moogladder.h">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\3rdparty\soundpipe\h\noise.h">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\3rdparty\soundpipe\h\nsmp.h">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\3rdparty\soundpipe\h\osc.h">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\3rdparty\soundpipe\h\oscmorph.h">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\3rdparty\soundpipe\h\padsynth.h">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\3rdparty\soundpipe\h\pan2.h">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\3rdparty\soundpipe\h\panst.h">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\3rdparty\soundpipe\h\pareq.h">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\3rdparty\soundpipe\h\paulstretch.h">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\3rdparty\soundpipe\h\pdhalf.h">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\3rdparty\soundpipe\h\peaklim.h">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\3rdparty\soundpipe\h\phaser.h">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\3rdparty\soundpipe\h\phasor.h">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\3rdparty\soundpipe\h\pinknoise.h">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\3rdparty\soundpipe\h\pitchamdf.h">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\3rdparty\soundpipe\h\pluck.h">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\3rdparty\soundpipe\h\port.h">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\3rdparty\soundpipe\h\posc3.h">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\3rdparty\soundpipe\h\progress.h">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\3rdparty\soundpipe\h\prop.h">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\3rdparty\soundpipe\h\pshift.h">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\3rdparty\soundpipe\h\ptrack.h">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\3rdparty\soundpipe\h\randh.h">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\3rdparty\soundpipe\h\randi.h">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\3rdparty\soundpipe\h\randmt.h">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\3rdparty\soundpipe\h\random.h">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\3rdparty\soundpipe\h\reson.h">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\3rdparty\soundpipe\h\reverse.h">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\3rdparty\soundpipe\h\revsc.h">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\3rdparty\soundpipe\h\rms.h">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\3rdparty\soundpipe\h\rpi.h">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\3rdparty\soundpipe\h\rpt.h">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\3rdparty\soundpipe\h\samphold.h">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\3rdparty\soundpipe\h\scale.h">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\3rdparty\soundpipe\h\scrambler.h">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\3rdparty\soundpipe\h\sdelay.h">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\3rdparty\soundpipe\h\slice.h">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\3rdparty\soundpipe\h\smoothdelay.h">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\3rdparty\soundpipe\h\streson.h">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\3rdparty\soundpipe\h\switch.h">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\3rdparty\soundpipe\h\tabread.h">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\3rdparty\soundpipe\h\tadsr.h">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\3rdparty\soundpipe\h\tblrec.h">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\3rdparty\soundpipe\h\tbvcf.h">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\3rdparty\soundpipe\h\tdiv.h">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\3rdparty\soundpipe\h\tenv.h">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\3rdparty\soundpipe\h\tenv2.h">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\3rdparty\soundpipe\h\tenvx.h">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\3rdparty\soundpipe\h\tevent.h">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\3rdparty\soundpipe\h\tgate.h">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\3rdparty\soundpipe\h\thresh.h">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\3rdparty\soundpipe\h\timer.h">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\3rdparty\soundpipe\h\tin.h">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\3rdparty\soundpipe\h\tone.h">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\3rdparty\soundpipe\h\trand.h">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\3rdparty\soundpipe\h\tseg.h">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\3rdparty\soundpipe\h\tseq.h">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\3rdparty\soundpipe\h\vdelay.h">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\3rdparty\soundpipe\h\vocoder.h">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\3rdparty\soundpipe\h\waveset.h">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\3rdparty\soundpipe\h\wpkorg35.h">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\3rdparty\soundpipe\h\zitarev.h">
+      <Filter>slPitchTrack\Source\3rdParty\soundpipe</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\..\..\3rdparty\dywapitchtrack\src\dywapitchtrack.h">
       <Filter>slPitchTrack\Source\3rdParty</Filter>
     </ClInclude>
