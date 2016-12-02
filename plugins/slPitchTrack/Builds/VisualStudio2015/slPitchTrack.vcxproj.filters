@@ -44,9 +44,6 @@
     <Filter Include="Juce Modules\juce_audio_devices">
       <UniqueIdentifier>{CACD7B50-4DB3-76AF-A6E8-90DF94F8F594}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Juce Modules\juce_audio_devices\audio_cd">
-      <UniqueIdentifier>{45C2CE26-EC4B-BA52-58F3-297C408E1483}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Juce Modules\juce_audio_devices\audio_io">
       <UniqueIdentifier>{9D270B31-2425-8FDB-84A4-6A2288FF5B2F}</UniqueIdentifier>
     </Filter>
@@ -871,9 +868,6 @@
     <ClCompile Include="..\..\..\..\..\JUCE\modules\juce_audio_basics\juce_audio_basics.mm">
       <Filter>Juce Modules\juce_audio_basics</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\JUCE\modules\juce_audio_devices\audio_cd\juce_AudioCDReader.cpp">
-      <Filter>Juce Modules\juce_audio_devices\audio_cd</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\..\..\JUCE\modules\juce_audio_devices\audio_io\juce_AudioDeviceManager.cpp">
       <Filter>Juce Modules\juce_audio_devices\audio_io</Filter>
     </ClCompile>
@@ -904,19 +898,10 @@
     <ClCompile Include="..\..\..\..\..\JUCE\modules\juce_audio_devices\native\juce_linux_ALSA.cpp">
       <Filter>Juce Modules\juce_audio_devices\native</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\JUCE\modules\juce_audio_devices\native\juce_linux_AudioCDReader.cpp">
-      <Filter>Juce Modules\juce_audio_devices\native</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\..\..\JUCE\modules\juce_audio_devices\native\juce_linux_JackAudio.cpp">
       <Filter>Juce Modules\juce_audio_devices\native</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\..\JUCE\modules\juce_audio_devices\native\juce_linux_Midi.cpp">
-      <Filter>Juce Modules\juce_audio_devices\native</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\..\JUCE\modules\juce_audio_devices\native\juce_mac_AudioCDBurner.mm">
-      <Filter>Juce Modules\juce_audio_devices\native</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\..\JUCE\modules\juce_audio_devices\native\juce_mac_AudioCDReader.mm">
       <Filter>Juce Modules\juce_audio_devices\native</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\..\JUCE\modules\juce_audio_devices\native\juce_mac_CoreAudio.cpp">
@@ -926,12 +911,6 @@
       <Filter>Juce Modules\juce_audio_devices\native</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\..\JUCE\modules\juce_audio_devices\native\juce_win32_ASIO.cpp">
-      <Filter>Juce Modules\juce_audio_devices\native</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\..\JUCE\modules\juce_audio_devices\native\juce_win32_AudioCDBurner.cpp">
-      <Filter>Juce Modules\juce_audio_devices\native</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\..\JUCE\modules\juce_audio_devices\native\juce_win32_AudioCDReader.cpp">
       <Filter>Juce Modules\juce_audio_devices\native</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\..\JUCE\modules\juce_audio_devices\native\juce_win32_DirectSound.cpp">
@@ -1339,6 +1318,9 @@
     <ClCompile Include="..\..\..\..\..\JUCE\modules\juce_core\containers\juce_DynamicObject.cpp">
       <Filter>Juce Modules\juce_core\containers</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\..\..\JUCE\modules\juce_core\containers\juce_ListenerList.cpp">
+      <Filter>Juce Modules\juce_core\containers</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\..\..\..\JUCE\modules\juce_core\containers\juce_NamedValueSet.cpp">
       <Filter>Juce Modules\juce_core\containers</Filter>
     </ClCompile>
@@ -1487,6 +1469,9 @@
       <Filter>Juce Modules\juce_core\network</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\..\JUCE\modules\juce_core\network\juce_URL.cpp">
+      <Filter>Juce Modules\juce_core\network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\JUCE\modules\juce_core\network\juce_WebInputStream.cpp">
       <Filter>Juce Modules\juce_core\network</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\..\JUCE\modules\juce_core\streams\juce_BufferedInputStream.cpp">
@@ -3111,12 +3096,6 @@
     <ClInclude Include="..\..\..\..\..\JUCE\modules\juce_audio_basics\juce_audio_basics.h">
       <Filter>Juce Modules\juce_audio_basics</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\..\JUCE\modules\juce_audio_devices\audio_cd\juce_AudioCDBurner.h">
-      <Filter>Juce Modules\juce_audio_devices\audio_cd</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\..\JUCE\modules\juce_audio_devices\audio_cd\juce_AudioCDReader.h">
-      <Filter>Juce Modules\juce_audio_devices\audio_cd</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\..\..\JUCE\modules\juce_audio_devices\audio_io\juce_AudioDeviceManager.h">
       <Filter>Juce Modules\juce_audio_devices\audio_io</Filter>
     </ClInclude>
@@ -3883,6 +3862,9 @@
       <Filter>Juce Modules\juce_core\network</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\..\JUCE\modules\juce_core\network\juce_URL.h">
+      <Filter>Juce Modules\juce_core\network</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\JUCE\modules\juce_core\network\juce_WebInputStream.h">
       <Filter>Juce Modules\juce_core\network</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\..\JUCE\modules\juce_core\streams\juce_BufferedInputStream.h">

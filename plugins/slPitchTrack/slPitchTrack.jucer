@@ -8,7 +8,7 @@
               pluginChannelConfigs="{1,1},{2,2}" pluginIsSynth="0" pluginWantsMidiIn="0"
               pluginProducesMidiOut="0" pluginIsMidiEffectPlugin="0" pluginEditorRequiresKeys="0"
               pluginAUExportPrefix="slPitchTrackAU" pluginRTASCategory="" aaxIdentifier="com.socalabs.slPitchTrack"
-              pluginAAXCategory="AAX_ePlugInCategory_Dynamics" jucerVersion="4.2.4"
+              pluginAAXCategory="AAX_ePlugInCategory_Dynamics" jucerVersion="4.3.0"
               companyName="SocaLabs" companyWebsite="www.socalabs.com" companyEmail="info@socalabs.com">
   <MAINGROUP id="dPRjsF" name="slPitchTrack">
     <GROUP id="{EE796482-0D02-0052-80F4-B1FE6CE0D41A}" name="Source">
@@ -287,7 +287,7 @@
     </GROUP>
   </MAINGROUP>
   <EXPORTFORMATS>
-    <XCODE_MAC targetFolder="Builds/MacOSX">
+    <XCODE_MAC targetFolder="Builds/MacOSX" extraDefs="NO_LIBSNDFILE">
       <CONFIGURATIONS>
         <CONFIGURATION name="Debug" isDebug="1" optimisation="1" targetName="slPitchTrack"/>
         <CONFIGURATION name="Release" isDebug="0" optimisation="3" targetName="slPitchTrack"/>
@@ -309,7 +309,7 @@
         <MODULEPATH id="juce_audio_plugin_client" path="../../../JUCE/modules"/>
       </MODULEPATHS>
     </XCODE_MAC>
-    <VS2015 targetFolder="Builds/VisualStudio2015">
+    <VS2015 targetFolder="Builds/VisualStudio2015" extraDefs="NO_LIBSNDFILE">
       <CONFIGURATIONS>
         <CONFIGURATION name="Debug" winWarningLevel="4" generateManifest="1" winArchitecture="32-bit"
                        isDebug="1" optimisation="1" targetName="slPitchTrack" headerPath="../../../../common"

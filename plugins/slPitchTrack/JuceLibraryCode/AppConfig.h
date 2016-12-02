@@ -79,14 +79,6 @@
  //#define JUCE_USE_ANDROID_OPENSLES
 #endif
 
-#ifndef    JUCE_USE_CDREADER
- //#define JUCE_USE_CDREADER
-#endif
-
-#ifndef    JUCE_USE_CDBURNER
- //#define JUCE_USE_CDBURNER
-#endif
-
 //==============================================================================
 // juce_audio_formats flags:
 
@@ -115,6 +107,10 @@
 
 #ifndef    JUCE_FORCE_USE_LEGACY_PARAM_IDS
  //#define JUCE_FORCE_USE_LEGACY_PARAM_IDS
+#endif
+
+#ifndef    JUCE_USE_STUDIO_ONE_COMPATIBLE_PARAMETERS
+ //#define JUCE_USE_STUDIO_ONE_COMPATIBLE_PARAMETERS
 #endif
 
 //==============================================================================
