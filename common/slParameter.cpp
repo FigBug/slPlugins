@@ -29,7 +29,7 @@ void slParameter::setUserValue (float v)
     {
         value = v;
         
-        sendChangeMessage();
+        triggerAsyncUpdate();
     }
 }
 
@@ -41,8 +41,15 @@ void slParameter::setUserValueNotifingHost (float v)
         value = v;
         setValueNotifyingHost (getValue());
         
-        sendChangeMessage();
+        triggerAsyncUpdate();
     }
+}
+
+void slParameter::setUserValueAsUserAction (float f)
+{
+    beginUserAction();
+    setUserValueNotifingHost (f);
+    endUserAction();
 }
 
 String slParameter::getUserValueText() const
@@ -78,6 +85,21 @@ void slParameter::timerCallback()
     stopTimer();
 }
 
+void slParameter::addListener (Listener* listener)
+{
+    listeners.add (listener);
+}
+
+void slParameter::removeListener (Listener* listener)
+{
+    listeners.remove (listener);
+}
+
+void slParameter::handleAsyncUpdate()
+{
+    listeners.call (&Listener::parameterChanged, this);
+}
+
 slParameter::ParamState slParameter::getState()
 {
     ParamState state;
@@ -105,7 +127,7 @@ void slParameter::setValue (float valueIn)
     if (! almostEqual(value, newValue))
     {
         value = newValue;
-        sendChangeMessage();
+        triggerAsyncUpdate();
     }
 }
 

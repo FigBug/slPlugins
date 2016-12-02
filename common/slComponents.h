@@ -6,8 +6,8 @@
 
 //==============================================================================
 class PluginSlider : public Slider,
-                     public Slider::Listener,
-                     public ChangeListener
+                     private Slider::Listener,
+                     private slParameter::Listener
 {
 public:
     PluginSlider (slParameter* parameter_, SliderStyle style, TextEntryBoxPosition textBoxPosition) : Slider (style, textBoxPosition), parameter (parameter_)
@@ -16,12 +16,12 @@ public:
         setRange (parameter->getUserRangeStart(), parameter->getUseRangeEnd());
         setValue (parameter->getUserValue(), juce::dontSendNotification);
         
-        parameter->addChangeListener (this);
+        parameter->addListener (this);
     }
     
     ~PluginSlider()
     {
-        parameter->removeChangeListener (this);
+        parameter->removeListener (this);
     }
     
     void sliderValueChanged (Slider*) override
@@ -40,7 +40,7 @@ public:
         parameter->endUserAction();
     }
     
-    void changeListenerCallback (ChangeBroadcaster*) override
+    void parameterChanged (slParameter*) override
     {
         setValue (parameter->getUserValue(), dontSendNotification);
     }
@@ -71,14 +71,14 @@ private:
 
 //==============================================================================
 class Readout : public Label,
-                private ChangeListener
+                private slParameter::Listener
 {
 public:
     Readout (slParameter* parameter);
     ~Readout();
     
 private:
-    void changeListenerCallback (ChangeBroadcaster* source) override;
+    void parameterChanged (slParameter* source) override;
     
     slParameter* parameter;
 };

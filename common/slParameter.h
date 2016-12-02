@@ -4,8 +4,8 @@
 
 //==============================================================================
 class slParameter : public AudioProcessorParameter,
-                    public ChangeBroadcaster,
-                    public Timer
+                    private Timer,
+                    private AsyncUpdater
 {
 public:
     slParameter (String uid, String name, String label, float minValue, float maxValue, float intervalValue, float defaultValue, float skewFactor = 1.0f);
@@ -16,16 +16,26 @@ public:
     float getUserDefaultValue() const;
     void setUserValue(float v);
     void setUserValueNotifingHost(float f);
+    void setUserValueAsUserAction(float f);
     String getUserValueText() const;
     
     void beginUserAction();
     void beginUserTimedAction();
     void endUserAction();
-    void timerCallback() override;
 
     NormalisableRange<float> getUserRange() { return range;         }
     float getUserRangeStart()               { return range.start;   }
     float getUseRangeEnd()                  { return range.end;     }
+    
+    class Listener
+    {
+    public:
+        virtual ~Listener() {}
+        virtual void parameterChanged (slParameter* param) = 0;
+    };
+    
+    void addListener (Listener* listener);
+    void removeListener (Listener* listener);    
     
     struct ParamState
     {
@@ -54,6 +64,9 @@ public:
     float getSkew() { return skewFactor; }
     
 protected:
+    void handleAsyncUpdate() override;
+    void timerCallback() override;
+    
     NormalisableRange<float> range;
     
     float value;
@@ -65,5 +78,7 @@ protected:
     String label;
     
     int userActionCount {0};
+    
+    ListenerList<Listener> listeners;
 };
 

@@ -14,16 +14,16 @@
 Readout::Readout (slParameter* parameter_)
   : parameter (parameter_)
 {
-    parameter->addChangeListener (this);
+    parameter->addListener (this);
     setText (parameter->getUserValueText(), dontSendNotification);
 }
 
 Readout::~Readout()
 {
-    parameter->removeChangeListener (this);
+    parameter->removeListener (this);
 }
 
-void Readout::changeListenerCallback (ChangeBroadcaster*)
+void Readout::parameterChanged (slParameter *source)
 {
     setText (parameter->getUserValueText(), dontSendNotification);
 }

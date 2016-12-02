@@ -8,7 +8,7 @@
               pluginIsSynth="1" pluginWantsMidiIn="0" pluginProducesMidiOut="0"
               pluginIsMidiEffectPlugin="0" pluginEditorRequiresKeys="0" pluginAUExportPrefix="slToneAU"
               pluginRTASCategory="" aaxIdentifier="com.socalabs.slTone" pluginAAXCategory="AAX_ePlugInCategory_Dynamics"
-              jucerVersion="4.2.4" companyName="SocaLabs" companyWebsite="www.socalabs.com"
+              jucerVersion="4.3.0" companyName="SocaLabs" companyWebsite="www.socalabs.com"
               companyEmail="info@socalabs.com">
   <MAINGROUP id="dPRjsF" name="slTone">
     <GROUP id="{EE796482-0D02-0052-80F4-B1FE6CE0D41A}" name="Source">
