@@ -22,6 +22,8 @@ slProcessor::slProcessor()
     properties = new PropertiesFile (getSettingsFile(), PropertiesFile::Options());
     
     loadAllPrograms();
+    
+    state = ValueTree (Identifier ("state"));
 }
 
 slProcessor::~slProcessor()
@@ -207,6 +209,9 @@ void slProcessor::getStateInformation (MemoryBlock& destData)
 {
     ScopedPointer<XmlElement> rootE (new XmlElement ("state"));
     
+    if (state.isValid())
+        rootE->setAttribute ("valueTree", state.toXmlString());
+    
     rootE->setAttribute("program", currentProgram);
     
     for (slParameter* p : getPluginParameters())
@@ -234,6 +239,14 @@ void slProcessor::setStateInformation (const void* data, int sizeInBytes)
     ScopedPointer<XmlElement> rootE (doc.getDocumentElement());
     if (rootE)
     {
+        if (rootE->hasAttribute("valueTree"))
+        {
+            String xml = rootE->getStringAttribute("valueTree");
+            XmlDocument treeDoc(xml);
+            if (ScopedPointer<XmlElement> vtE = treeDoc.getDocumentElement())
+                state = ValueTree::fromXml (*vtE.get());
+        }
+        
         currentProgram = rootE->getIntAttribute ("program");
         
         XmlElement* paramE = rootE->getChildByName ("param");
