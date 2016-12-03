@@ -12,6 +12,7 @@ public:
     
     String getUid() { return uid; }
 
+    //==============================================================================
     float getUserValue() const;
     float getUserDefaultValue() const;
     void setUserValue(float v);
@@ -19,14 +20,17 @@ public:
     void setUserValueAsUserAction(float f);
     String getUserValueText() const;
     
+    //==============================================================================
     void beginUserAction();
     void beginUserTimedAction();
     void endUserAction();
 
+    //==============================================================================
     NormalisableRange<float> getUserRange() { return range;         }
     float getUserRangeStart()               { return range.start;   }
     float getUseRangeEnd()                  { return range.end;     }
     
+    //==============================================================================
     class Listener
     {
     public:
@@ -37,6 +41,7 @@ public:
     void addListener (Listener* listener);
     void removeListener (Listener* listener);    
     
+    //==============================================================================
     struct ParamState
     {
         String uid;
@@ -46,6 +51,7 @@ public:
     ParamState getState();
     void setState(const ParamState& state);
     
+    //==============================================================================
     float getValue() const override;
     void setValue (float newValue) override;
     float getDefaultValue() const override;
@@ -64,9 +70,11 @@ public:
     float getSkew() { return skewFactor; }
     
 protected:
+    //==============================================================================
     void handleAsyncUpdate() override;
     void timerCallback() override;
     
+    //==============================================================================
     NormalisableRange<float> range;
     
     float value;

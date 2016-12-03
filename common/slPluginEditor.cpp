@@ -13,7 +13,15 @@ slAudioProcessorEditor::slAudioProcessorEditor (slProcessor* p) noexcept
     setLookAndFeel (slLookAndFeel::getInstance());
 }
 
-void slAudioProcessorEditor::paint (Graphics&)
+void slAudioProcessorEditor::paint (Graphics& g)
+{
+    if (slLookAndFeel* lf = dynamic_cast<slLookAndFeel*> (&getLookAndFeel()))
+    {
+        g.fillAll (lf->veryPaleYellow);
+    }
+}
+
+void slAudioProcessorEditor::resized()
 {
     
 }

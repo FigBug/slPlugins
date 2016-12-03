@@ -15,4 +15,5 @@ protected:
     Rectangle<int> getControlsArea();
     
     void paint (Graphics& g) override;
+    void resized() override;
 };

@@ -33,13 +33,10 @@ slToneAudioProcessorEditor::~slToneAudioProcessorEditor()
 }
 
 //==============================================================================
-void slToneAudioProcessorEditor::paint(Graphics& g)
-{
-    g.fillAll (Colours::white);
-}
-
 void slToneAudioProcessorEditor::resized()
 {
+    slAudioProcessorEditor::resized();
+    
     Rectangle<int> r = getControlsArea();
     
     meter.setBounds (r.removeFromRight (15));

@@ -155,7 +155,7 @@ int slParameter::getNumSteps() const
 
 String slParameter::getText (float val, int /*maximumStringLength*/) const
 {
-    return String (range.snapToLegalValue (range.convertFrom0to1 (val))) + " " + label;
+    return String (range.snapToLegalValue (range.convertFrom0to1 (val)), 1) + " " + label;
 }
 
 float slParameter::getValueForText (const String& text) const
