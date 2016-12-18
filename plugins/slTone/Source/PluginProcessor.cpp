@@ -72,27 +72,27 @@ void slToneAudioProcessor::processBlock (AudioSampleBuffer& buffer, MidiBuffer&)
     squareVal.setValue (Decibels::decibelsToGain (getParameter (PARAM_SQUARE_LEVEL)->getUserValue()));
     noiseVal.setValue (Decibels::decibelsToGain (getParameter (PARAM_NOISE_LEVEL)->getUserValue()));
 
-    float* work = scratch.getWritePointer (0);
+    float* scratchSamples = scratch.getWritePointer (0);
 
-    sine.processBlock (work, numSamples);
+    sine.processBlock (scratchSamples, numSamples);
     applyGain (scratch, sineVal);
-    buffer.addFrom (0, 0, work, numSamples);
+    buffer.addFrom (0, 0, scratchSamples, numSamples);
     
-    triangle.processBlock (work, numSamples);
+    triangle.processBlock (scratchSamples, numSamples);
     applyGain (scratch, triangleVal);
-    buffer.addFrom (0, 0, work, numSamples);
+    buffer.addFrom (0, 0, scratchSamples, numSamples);
     
-    saw.processBlock (work, numSamples);
+    saw.processBlock (scratchSamples, numSamples);
     applyGain (scratch, sawVal);
-    buffer.addFrom (0, 0, work, numSamples);
+    buffer.addFrom (0, 0, scratchSamples, numSamples);
     
-    square.processBlock (work, numSamples);
+    square.processBlock (scratchSamples, numSamples);
     applyGain (scratch, squareVal);
-    buffer.addFrom (0, 0, work, numSamples);
+    buffer.addFrom (0, 0, scratchSamples, numSamples);
     
-    noise.addNoiseToBuffer (work, numSamples);
+    noise.copyNoiseToBuffer (scratchSamples, numSamples);
     applyGain (scratch, noiseVal);
-    buffer.addFrom (0, 0, work, numSamples);
+    buffer.addFrom (0, 0, scratchSamples, numSamples);
     
     applyGain (buffer, enableVal);
     

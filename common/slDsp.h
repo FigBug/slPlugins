@@ -339,13 +339,13 @@ public:
         float x = 0;
         float y = 0;
         
-        for (int i = 0; i < numSamples; i++)
+        for (int i = 0; i < numSamples; i += 2)
         {
             getTwo (x, y);
             
             buffer[i] += x;
             if (i + 1 < numSamples)
-                buffer[i] += y;
+                buffer[i + 1] += y;
         }
     }
     
@@ -354,13 +354,13 @@ public:
         float x = 0;
         float y = 0;
         
-        for (int i = 0; i < numSamples; i++)
+        for (int i = 0; i < numSamples; i += 2)
         {
             getTwo (x, y);
             
-            buffer[i] = x;
+            buffer[i] = jlimit (-1.0f, 1.0f, x);
             if (i + 1 < numSamples)
-                buffer[i] = y;
+                buffer[i + 1] = jlimit (-1.0f, 1.0f, y);
         }
     }
     
