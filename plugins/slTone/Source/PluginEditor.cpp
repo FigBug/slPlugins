@@ -13,19 +13,27 @@
 
 //==============================================================================
 slToneAudioProcessorEditor::slToneAudioProcessorEditor (slToneAudioProcessor& p)
-    : slAudioProcessorEditor (&p), processor (p), meter (p.getOutputLevel())
+    : slAudioProcessorEditor (p), processor (p)
 {
+    addAndMakeVisible (&scope);
+    
     for (slParameter* pp : p.getPluginParameters())
     {
-        Knob* k = new Knob (pp);
+        ParamComponent* pc;
         
-        addAndMakeVisible (k);
-        controls.add (k);
+        if (pp->isOnOff())
+            pc = new Switch (pp);
+        else
+            pc = new Knob (pp);
+        
+        addAndMakeVisible (pc);
+        controls.add (pc);
     }
     
-    addAndMakeVisible (&meter);
+    setGridSize (7, 2);
     
-    setSize (600, 150);
+    scope.setNumSamplesPerPixel (2);
+    scope.setVerticalZoomFactor (1.0f);
 }
 
 slToneAudioProcessorEditor::~slToneAudioProcessorEditor()
@@ -36,13 +44,16 @@ slToneAudioProcessorEditor::~slToneAudioProcessorEditor()
 void slToneAudioProcessorEditor::resized()
 {
     slAudioProcessorEditor::resized();
+
+    componentForId (PARAM_ENABLE)->setBounds (getGridArea (0, 0));
+    componentForId (PARAM_FREQ)->setBounds (getGridArea (0, 1));
     
-    Rectangle<int> r = getControlsArea();
+    scope.setBounds (getGridArea (1, 0, 3, 2));
     
-    meter.setBounds (r.removeFromRight (15));
-    
-    int w = r.getWidth() / controls.size();
-    
-    for (auto c : controls)
-        c->setBounds (r.removeFromLeft (w));
+    componentForId (PARAM_SINE_LEVEL)->setBounds (getGridArea (4, 0));
+    componentForId (PARAM_TRI_LEVEL)->setBounds (getGridArea (4, 1));
+    componentForId (PARAM_SAW_UP_LEVEL)->setBounds (getGridArea (5, 0));
+    componentForId (PARAM_SAW_DN_LEVEL)->setBounds (getGridArea (5, 1));
+    componentForId (PARAM_SQUARE_LEVEL)->setBounds (getGridArea (6, 0));
+    componentForId (PARAM_NOISE_LEVEL)->setBounds (getGridArea (6, 1));
 }

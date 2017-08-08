@@ -10,22 +10,68 @@
 
 #include "PluginProcessor.h"
 #include "PluginEditor.h"
+#include <random>
+
+//==============================================================================
+String onOffTextFunction (const slParameter& p)
+{
+    return p.getUserValue() > 0.0f ? "On" : "Off";
+}
+
+//==============================================================================
+float sineFunc (float in)
+{
+    return sin (in);
+}
+
+float triangleFunc (float in)
+{
+    return (in < 0 ? in / -float_Pi : in / float_Pi) * 2 - 1;
+}
+
+float sawUpFunc (float in)
+{
+    return ((in + float_Pi) / (2 * float_Pi)) * 2 - 1;
+}
+
+float sawDownFunc (float in)
+{
+    return -(((in + float_Pi) / (2 * float_Pi)) * 2 - 1);
+}
+
+float squareFunc (float in)
+{
+    return in < 0 ? -1 : 1;
+}
+
+float noiseFunc (float)
+{
+    const float mean = 0.0;
+    const float stddev = 0.1;
+    
+    static std::default_random_engine generator;
+    static std::normal_distribution<float> dist (mean, stddev);
+    
+    return dist (generator);
+}
 
 //==============================================================================
 slToneAudioProcessor::slToneAudioProcessor()
+  : sine (sineFunc),
+    triangle (triangleFunc),
+    sawUp (sawUpFunc),
+    sawDown (sawDownFunc),
+    square (squareFunc),
+    noise (noiseFunc)
 {
-    addPluginParameter (new slParameter (PARAM_ENABLE,       "Enable",       "",     0.0f,      1.0f, 1.0f,    1.0f, 1.0f));
-    addPluginParameter (new slParameter (PARAM_FREQ,         "Frequency",    "Hz",   30.0f, 10000.0f, 0.0f, 1000.0f, 0.5f));
-    addPluginParameter (new slParameter (PARAM_SINE_LEVEL,   "Sine",         "dB", -100.0f,     6.0f, 0.0f, -100.0f, 5.f));
-    addPluginParameter (new slParameter (PARAM_TRI_LEVEL,    "Triangle",     "dB", -100.0f,     6.0f, 0.0f, -100.0f, 5.f));
-    addPluginParameter (new slParameter (PARAM_SAW_LEVEL,    "Saw",          "dB", -100.0f,     6.0f, 0.0f, -100.0f, 5.f));
-    addPluginParameter (new slParameter (PARAM_SQUARE_LEVEL, "Square",       "dB", -100.0f,     6.0f, 0.0f, -100.0f, 5.f));
-    addPluginParameter (new slParameter (PARAM_NOISE_LEVEL,  "Noise",        "dB", -100.0f,     6.0f, 0.0f, -100.0f, 5.f));
-    
-    sine.setParameters     (ToneGen::Parameters (0, 0, 0, ToneGen::Sine));
-    triangle.setParameters (ToneGen::Parameters (0, 0, 0, ToneGen::Triangle));
-    saw.setParameters      (ToneGen::Parameters (0, 0, 0, ToneGen::Saw));
-    square.setParameters   (ToneGen::Parameters (0, 0, 0, ToneGen::Square));
+    addPluginParameter (new slParameter (PARAM_ENABLE,       "Enable",       "", "",     0.0f,      1.0f, 1.0f,    1.0f, 1.0f, onOffTextFunction));
+    addPluginParameter (new slParameter (PARAM_FREQ,         "Frequency",    "", "Hz",   30.0f, 10000.0f, 0.0f, 1000.0f, 0.5f));
+    addPluginParameter (new slParameter (PARAM_SINE_LEVEL,   "Sine",         "", "dB", -100.0f,     6.0f, 0.0f, -100.0f, 5.f));
+    addPluginParameter (new slParameter (PARAM_TRI_LEVEL,    "Triangle",     "", "dB", -100.0f,     6.0f, 0.0f, -100.0f, 5.f));
+    addPluginParameter (new slParameter (PARAM_SAW_UP_LEVEL, "Saw Up",       "", "dB", -100.0f,     6.0f, 0.0f, -100.0f, 5.f));
+    addPluginParameter (new slParameter (PARAM_SAW_DN_LEVEL, "Saw Down",     "", "dB", -100.0f,     6.0f, 0.0f, -100.0f, 5.f));
+    addPluginParameter (new slParameter (PARAM_SQUARE_LEVEL, "Square",       "", "dB", -100.0f,     6.0f, 0.0f, -100.0f, 5.f));
+    addPluginParameter (new slParameter (PARAM_NOISE_LEVEL,  "Noise",        "", "dB", -100.0f,     6.0f, 0.0f, -100.0f, 5.f));
 }
 
 slToneAudioProcessor::~slToneAudioProcessor()
@@ -37,16 +83,20 @@ void slToneAudioProcessor::prepareToPlay (double sampleRate, int samplesPerBlock
 {
     scratch.setSize (1, samplesPerBlock);
     
-    sine.setSampleRate (float (sampleRate));
-    triangle.setSampleRate (float (sampleRate));
-    saw.setSampleRate (float (sampleRate));
-    square.setSampleRate (float (sampleRate));
-
+    sine.prepare ({ sampleRate, uint32 (samplesPerBlock), 1});
+    triangle.prepare ({ sampleRate, uint32 (samplesPerBlock), 1});
+    sawUp.prepare ({ sampleRate, uint32 (samplesPerBlock), 1});
+    sawDown.prepare ({ sampleRate, uint32 (samplesPerBlock), 1});
+    square.prepare ({ sampleRate, uint32 (samplesPerBlock), 1});
+    noise.prepare ({ sampleRate, uint32 (samplesPerBlock), 1});
+    
     enableVal.reset (sampleRate, 0.05);
     sineVal.reset (sampleRate, 0.05);
     triangleVal.reset (sampleRate, 0.05);
-    sawVal.reset (sampleRate, 0.05);
+    sawUpVal.reset (sampleRate, 0.05);
+    sawDownVal.reset (sampleRate, 0.05);
     squareVal.reset (sampleRate, 0.05);
+    noiseVal.reset (sampleRate, 0.05);
 }
 
 void slToneAudioProcessor::releaseResources()
@@ -60,43 +110,50 @@ void slToneAudioProcessor::processBlock (AudioSampleBuffer& buffer, MidiBuffer&)
     
     float freq = getParameter (PARAM_FREQ)->getUserValue();
     
-    sine.setParameters     (ToneGen::Parameters (freq, 0, 0, ToneGen::Sine));
-    triangle.setParameters (ToneGen::Parameters (freq, 0, 0, ToneGen::Triangle));
-    saw.setParameters      (ToneGen::Parameters (freq, 0, 0, ToneGen::Saw));
-    square.setParameters   (ToneGen::Parameters (freq, 0, 0, ToneGen::Square));
+    sine.setFrequency (freq);
+    triangle.setFrequency (freq);
+    sawUp.setFrequency (freq);
+    sawDown.setFrequency (freq);
+    square.setFrequency (freq);
 
     enableVal.setValue (getParameter (PARAM_ENABLE)->getUserValue());
     sineVal.setValue (Decibels::decibelsToGain (getParameter (PARAM_SINE_LEVEL)->getUserValue()));
     triangleVal.setValue (Decibels::decibelsToGain (getParameter (PARAM_TRI_LEVEL)->getUserValue()));
-    sawVal.setValue (Decibels::decibelsToGain (getParameter (PARAM_SAW_LEVEL)->getUserValue()));
+    sawUpVal.setValue (Decibels::decibelsToGain (getParameter (PARAM_SAW_UP_LEVEL)->getUserValue()));
+    sawDownVal.setValue (Decibels::decibelsToGain (getParameter (PARAM_SAW_DN_LEVEL)->getUserValue()));
     squareVal.setValue (Decibels::decibelsToGain (getParameter (PARAM_SQUARE_LEVEL)->getUserValue()));
     noiseVal.setValue (Decibels::decibelsToGain (getParameter (PARAM_NOISE_LEVEL)->getUserValue()));
 
-    float* scratchSamples = scratch.getWritePointer (0);
-
-    sine.processBlock (scratchSamples, numSamples);
+    AudioBlock<float> block (scratch);
+    
+    sine.process (ProcessContextReplacing<float> (block));
     applyGain (scratch, sineVal);
-    buffer.addFrom (0, 0, scratchSamples, numSamples);
+    buffer.addFrom (0, 0, scratch, 0, 0, numSamples);
     
-    triangle.processBlock (scratchSamples, numSamples);
+    triangle.process (ProcessContextReplacing<float> (block));
     applyGain (scratch, triangleVal);
-    buffer.addFrom (0, 0, scratchSamples, numSamples);
+    buffer.addFrom (0, 0, scratch, 0, 0, numSamples);
     
-    saw.processBlock (scratchSamples, numSamples);
-    applyGain (scratch, sawVal);
-    buffer.addFrom (0, 0, scratchSamples, numSamples);
-    
-    square.processBlock (scratchSamples, numSamples);
+    sawUp.process (ProcessContextReplacing<float> (block));
+    applyGain (scratch, sawUpVal);
+    buffer.addFrom (0, 0, scratch, 0, 0, numSamples);
+
+    sawDown.process (ProcessContextReplacing<float> (block));
+    applyGain (scratch, sawDownVal);
+    buffer.addFrom (0, 0, scratch, 0, 0, numSamples);
+
+    square.process (ProcessContextReplacing<float> (block));
     applyGain (scratch, squareVal);
-    buffer.addFrom (0, 0, scratchSamples, numSamples);
+    buffer.addFrom (0, 0, scratch, 0, 0, numSamples);
     
-    noise.copyNoiseToBuffer (scratchSamples, numSamples);
+    noise.process (ProcessContextReplacing<float> (block));
     applyGain (scratch, noiseVal);
-    buffer.addFrom (0, 0, scratchSamples, numSamples);
+    buffer.addFrom (0, 0, scratch, 0, 0, numSamples);
     
     applyGain (buffer, enableVal);
     
-    outputLevel.trackBuffer (buffer);
+    if (editor)
+        editor->scope.addSamples (buffer.getReadPointer (0), buffer.getNumSamples());
 }
 
 //==============================================================================
@@ -107,7 +164,8 @@ bool slToneAudioProcessor::hasEditor() const
 
 AudioProcessorEditor* slToneAudioProcessor::createEditor()
 {
-    return new slToneAudioProcessorEditor (*this);
+    editor = new slToneAudioProcessorEditor (*this);
+    return editor;
 }
 
 //==============================================================================

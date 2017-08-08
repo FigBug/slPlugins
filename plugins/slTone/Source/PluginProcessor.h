@@ -8,20 +8,24 @@
   ==============================================================================
 */
 
-#ifndef PLUGINPROCESSOR_H_INCLUDED
-#define PLUGINPROCESSOR_H_INCLUDED
+#pragma once
 
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "slCommon.h"
+
+using namespace juce::dsp;
+
 
 #define PARAM_ENABLE        "enable"
 #define PARAM_FREQ          "freq"
 #define PARAM_SINE_LEVEL    "sine"
 #define PARAM_TRI_LEVEL     "triangle"
-#define PARAM_SAW_LEVEL     "saw"
+#define PARAM_SAW_UP_LEVEL  "sawup"
+#define PARAM_SAW_DN_LEVEL  "sawdn"
 #define PARAM_SQUARE_LEVEL  "square"
 #define PARAM_NOISE_LEVEL   "noise"
 
+class slToneAudioProcessorEditor;
 //==============================================================================
 /**
 */
@@ -44,21 +48,21 @@ public:
 
     //==============================================================================
     
-    LevelTracker& getOutputLevel() { return outputLevel; }
-
 private:
-    ToneGen sine;
-    ToneGen triangle;
-    ToneGen saw;
-    ToneGen square;
-    WhiteGaussianNoise noise;
+    Oscillator<float> sine;
+    Oscillator<float> triangle;
+    Oscillator<float> sawUp;
+    Oscillator<float> sawDown;
+    Oscillator<float> square;
+    Oscillator<float> noise;
     
-    LevelTracker outputLevel {48.0};
+    Component::SafePointer<slToneAudioProcessorEditor> editor;
 
     LinearSmoothedValue<float> enableVal;
     LinearSmoothedValue<float> sineVal;
     LinearSmoothedValue<float> triangleVal;
-    LinearSmoothedValue<float> sawVal;
+    LinearSmoothedValue<float> sawUpVal;
+    LinearSmoothedValue<float> sawDownVal;
     LinearSmoothedValue<float> squareVal;
     LinearSmoothedValue<float> noiseVal;
     
@@ -67,6 +71,3 @@ private:
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (slToneAudioProcessor)
 };
-
-
-#endif  // PLUGINPROCESSOR_H_INCLUDED

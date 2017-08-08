@@ -8,8 +8,7 @@
   ==============================================================================
 */
 
-#ifndef PLUGINEDITOR_H_INCLUDED
-#define PLUGINEDITOR_H_INCLUDED
+#pragma once
 
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "PluginProcessor.h"
@@ -27,14 +26,10 @@ public:
     //==============================================================================
     void resized() override;
 
+    drow::TriggeredScope scope;
+
 private:
     slToneAudioProcessor& processor;
     
-    OwnedArray<ParamComponent> controls;
-    LevelMeter meter;
-
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (slToneAudioProcessorEditor)
 };
-
-
-#endif  // PLUGINEDITOR_H_INCLUDED

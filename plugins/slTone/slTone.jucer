@@ -8,32 +8,33 @@
               pluginIsSynth="1" pluginWantsMidiIn="0" pluginProducesMidiOut="0"
               pluginIsMidiEffectPlugin="0" pluginEditorRequiresKeys="0" pluginAUExportPrefix="slToneAU"
               pluginRTASCategory="" aaxIdentifier="com.socalabs.slTone" pluginAAXCategory="AAX_ePlugInCategory_Dynamics"
-              jucerVersion="4.3.0" companyName="SocaLabs" companyWebsite="www.socalabs.com"
-              companyEmail="info@socalabs.com">
+              jucerVersion="5.0.2" companyName="SocaLabs" companyWebsite="www.socalabs.com"
+              companyEmail="info@socalabs.com" displaySplashScreen="1" reportAppUsage="1"
+              splashScreenColour="Dark" buildStandalone="0" enableIAA="0">
   <MAINGROUP id="dPRjsF" name="slTone">
     <GROUP id="{EE796482-0D02-0052-80F4-B1FE6CE0D41A}" name="Source">
       <GROUP id="{DA748B7D-42D5-4A16-B897-0DD85D003309}" name="Common">
-        <FILE id="prLAS5" name="slCommon.h" compile="0" resource="0" file="../../common/slCommon.h"/>
-        <FILE id="Adbcnm" name="slComponents.cpp" compile="1" resource="0"
-              file="../../common/slComponents.cpp"/>
-        <FILE id="BtJuxa" name="slComponents.h" compile="0" resource="0" file="../../common/slComponents.h"/>
-        <FILE id="qmeJLD" name="slDsp.cpp" compile="1" resource="0" file="../../common/slDsp.cpp"/>
-        <FILE id="qGggnw" name="slDsp.h" compile="0" resource="0" file="../../common/slDsp.h"/>
-        <FILE id="Ww4Qjl" name="slLookAndFeel.cpp" compile="1" resource="0"
-              file="../../common/slLookAndFeel.cpp"/>
-        <FILE id="js1ZD6" name="slLookAndFeel.h" compile="0" resource="0" file="../../common/slLookAndFeel.h"/>
-        <FILE id="Cr2RjL" name="slParameter.cpp" compile="1" resource="0" file="../../common/slParameter.cpp"/>
-        <FILE id="zv51WX" name="slParameter.h" compile="0" resource="0" file="../../common/slParameter.h"/>
-        <FILE id="s1EsD3" name="slPluginEditor.cpp" compile="1" resource="0"
-              file="../../common/slPluginEditor.cpp"/>
-        <FILE id="gxFDWt" name="slPluginEditor.h" compile="0" resource="0"
-              file="../../common/slPluginEditor.h"/>
-        <FILE id="yPMEHi" name="slProcessor.cpp" compile="1" resource="0" file="../../common/slProcessor.cpp"/>
-        <FILE id="KKvrZW" name="slProcessor.h" compile="0" resource="0" file="../../common/slProcessor.h"/>
-        <FILE id="ocHj8L" name="slProgram.cpp" compile="1" resource="0" file="../../common/slProgram.cpp"/>
-        <FILE id="WNQQjI" name="slProgram.h" compile="0" resource="0" file="../../common/slProgram.h"/>
-        <FILE id="ugO2BI" name="slUtil.cpp" compile="1" resource="0" file="../../common/slUtil.cpp"/>
-        <FILE id="vsFxt8" name="slUtil.h" compile="0" resource="0" file="../../common/slUtil.h"/>
+        <FILE id="yeOizS" name="slCommon.h" compile="0" resource="0" file="../../module/slCommon/slCommon.h"/>
+        <FILE id="g3nLUF" name="slComponents.cpp" compile="1" resource="0"
+              file="../../module/slCommon/slComponents.cpp"/>
+        <FILE id="Jcf99R" name="slComponents.h" compile="0" resource="0" file="../../module/slCommon/slComponents.h"/>
+        <FILE id="WjwJyd" name="slDsp.cpp" compile="1" resource="0" file="../../module/slCommon/slDsp.cpp"/>
+        <FILE id="IW0E1e" name="slDsp.h" compile="0" resource="0" file="../../module/slCommon/slDsp.h"/>
+        <FILE id="qT8isg" name="slLookAndFeel.cpp" compile="1" resource="0"
+              file="../../module/slCommon/slLookAndFeel.cpp"/>
+        <FILE id="eNc98V" name="slLookAndFeel.h" compile="0" resource="0" file="../../module/slCommon/slLookAndFeel.h"/>
+        <FILE id="fLEn6j" name="slParameter.cpp" compile="1" resource="0" file="../../module/slCommon/slParameter.cpp"/>
+        <FILE id="p0JFK9" name="slParameter.h" compile="0" resource="0" file="../../module/slCommon/slParameter.h"/>
+        <FILE id="Hp7T8S" name="slPluginEditor.cpp" compile="1" resource="0"
+              file="../../module/slCommon/slPluginEditor.cpp"/>
+        <FILE id="ZKiuUF" name="slPluginEditor.h" compile="0" resource="0"
+              file="../../module/slCommon/slPluginEditor.h"/>
+        <FILE id="di4kDx" name="slProcessor.cpp" compile="1" resource="0" file="../../module/slCommon/slProcessor.cpp"/>
+        <FILE id="i6tz36" name="slProcessor.h" compile="0" resource="0" file="../../module/slCommon/slProcessor.h"/>
+        <FILE id="XuEX2u" name="slProgram.cpp" compile="1" resource="0" file="../../module/slCommon/slProgram.cpp"/>
+        <FILE id="rWeMQ6" name="slProgram.h" compile="0" resource="0" file="../../module/slCommon/slProgram.h"/>
+        <FILE id="Rnppom" name="slUtil.cpp" compile="1" resource="0" file="../../module/slCommon/slUtil.cpp"/>
+        <FILE id="tdIvm9" name="slUtil.h" compile="0" resource="0" file="../../module/slCommon/slUtil.h"/>
       </GROUP>
       <FILE id="iEbZ9q" name="PluginProcessor.cpp" compile="1" resource="0"
             file="Source/PluginProcessor.cpp"/>
@@ -47,8 +48,10 @@
   <EXPORTFORMATS>
     <XCODE_MAC targetFolder="Builds/MacOSX">
       <CONFIGURATIONS>
-        <CONFIGURATION name="Debug" isDebug="1" optimisation="1" targetName="slTone"/>
-        <CONFIGURATION name="Release" isDebug="0" optimisation="3" targetName="slTone"/>
+        <CONFIGURATION name="Debug" isDebug="1" optimisation="1" targetName="slTone"
+                       cppLanguageStandard="c++14" osxCompatibility="10.9 SDK" headerPath="../../../../module/slCommon"/>
+        <CONFIGURATION name="Release" isDebug="0" optimisation="3" targetName="slTone"
+                       cppLanguageStandard="c++14" osxCompatibility="10.9 SDK"/>
       </CONFIGURATIONS>
       <MODULEPATHS>
         <MODULEPATH id="juce_core" path="../../../JUCE/modules"/>
@@ -65,6 +68,9 @@
         <MODULEPATH id="juce_audio_formats" path="../../../JUCE/modules"/>
         <MODULEPATH id="juce_audio_processors" path="../../../JUCE/modules"/>
         <MODULEPATH id="juce_audio_plugin_client" path="../../../JUCE/modules"/>
+        <MODULEPATH id="dRowAudio" path="../../module/dRowAudio/module"/>
+        <MODULEPATH id="juce_audio_utils" path="../../../JUCE/modules"/>
+        <MODULEPATH id="juce_dsp" path="../../../JUCE/modules"/>
       </MODULEPATHS>
     </XCODE_MAC>
     <VS2015 targetFolder="Builds/VisualStudio2015">
@@ -97,18 +103,24 @@
         <MODULEPATH id="juce_audio_formats" path="../../../JUCE/modules"/>
         <MODULEPATH id="juce_audio_processors" path="../../../JUCE/modules"/>
         <MODULEPATH id="juce_audio_plugin_client" path="../../../JUCE/modules"/>
+        <MODULEPATH id="dRowAudio" path="../../module/dRowAudio/module"/>
+        <MODULEPATH id="juce_audio_utils" path="../../../JUCE/modules"/>
+        <MODULEPATH id="juce_dsp" path="../../../JUCE/modules"/>
       </MODULEPATHS>
     </VS2015>
   </EXPORTFORMATS>
   <MODULES>
+    <MODULE id="dRowAudio" showAllCode="1" useLocalCopy="0"/>
     <MODULE id="juce_audio_basics" showAllCode="1" useLocalCopy="0"/>
     <MODULE id="juce_audio_devices" showAllCode="1" useLocalCopy="0"/>
     <MODULE id="juce_audio_formats" showAllCode="1" useLocalCopy="0"/>
     <MODULE id="juce_audio_plugin_client" showAllCode="1" useLocalCopy="0"/>
     <MODULE id="juce_audio_processors" showAllCode="1" useLocalCopy="0"/>
+    <MODULE id="juce_audio_utils" showAllCode="1" useLocalCopy="0"/>
     <MODULE id="juce_core" showAllCode="1" useLocalCopy="0"/>
     <MODULE id="juce_cryptography" showAllCode="1" useLocalCopy="0"/>
     <MODULE id="juce_data_structures" showAllCode="1" useLocalCopy="0"/>
+    <MODULE id="juce_dsp" showAllCode="1" useLocalCopy="0"/>
     <MODULE id="juce_events" showAllCode="1" useLocalCopy="0"/>
     <MODULE id="juce_graphics" showAllCode="1" useLocalCopy="0"/>
     <MODULE id="juce_gui_basics" showAllCode="1" useLocalCopy="0"/>
