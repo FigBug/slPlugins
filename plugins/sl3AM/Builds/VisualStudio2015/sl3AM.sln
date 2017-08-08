@@ -1,0 +1,19 @@
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2015
+Project("{CB1F1F61-6773-E82E-C8CA-3C585103EAC8}") = "sl3AM", "sl3AM.vcxproj", "{9A1ED1A0-5018-3FC8-B04A-123FCD0613B9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9A1ED1A0-5018-3FC8-B04A-123FCD0613B9}.Debug|Win32.ActiveCfg = Debug|Win32
+		{9A1ED1A0-5018-3FC8-B04A-123FCD0613B9}.Debug|Win32.Build.0 = Debug|Win32
+		{9A1ED1A0-5018-3FC8-B04A-123FCD0613B9}.Release|Win32.ActiveCfg = Release|Win32
+		{9A1ED1A0-5018-3FC8-B04A-123FCD0613B9}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
