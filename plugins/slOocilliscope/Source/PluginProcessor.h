@@ -19,9 +19,12 @@ class PluginEditor;
 
 #define PARAM_SAMPLES_PER_PIXEL     "samplesPerPixel"
 #define PARAM_VERTICAL_ZOOM         "zoom"
+#define PARAM_VERTICAL_OFFSET_L     "offset_l"
+#define PARAM_VERTICAL_OFFSET_R     "offset_r"
 #define PARAM_TRIGGER_CHANNEL       "trigger_chan"
 #define PARAM_TRIGGER_MODE          "trigger_mode"
 #define PARAM_TRIGGER_LEVEL         "trigger_level"
+#define PARAM_TRIGGER_POS           "trigger_pos"
 
 //==============================================================================
 /**

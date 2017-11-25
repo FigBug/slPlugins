@@ -21,7 +21,9 @@ PluginEditor::PluginEditor (PluginProcessor& p)
     {
         ParamComponent* pc;
         
-        if (pp->isOnOff())
+        if (pp->getUid() == PARAM_TRIGGER_MODE || pp->getUid() == PARAM_TRIGGER_CHANNEL)
+            pc = new Select (pp);
+        else if (pp->isOnOff())
             pc = new Switch (pp);
         else
             pc = new Knob (pp);
@@ -30,7 +32,7 @@ PluginEditor::PluginEditor (PluginProcessor& p)
         controls.add (pc);
     }
     
-    setGridSize (7, 2);
+    setGridSize (7, 4);
     
     scope.setNumChannels (p.getTotalNumInputChannels());
     
@@ -51,20 +53,26 @@ void PluginEditor::resized()
 {
     slAudioProcessorEditor::resized();
 
-    scope.setBounds (getGridArea (1, 0, 3, 2));
+    scope.setBounds (getGridArea (0, 0, 5, 4));
     
-    componentForId (PARAM_SAMPLES_PER_PIXEL)->setBounds (getGridArea (4, 0));
-    componentForId (PARAM_VERTICAL_ZOOM)->setBounds (getGridArea (4, 1));
-    componentForId (PARAM_TRIGGER_CHANNEL)->setBounds (getGridArea (5, 0));
-    componentForId (PARAM_TRIGGER_MODE)->setBounds (getGridArea (5, 1));
-    componentForId (PARAM_TRIGGER_LEVEL)->setBounds (getGridArea (6, 0));
+    componentForId (PARAM_SAMPLES_PER_PIXEL)->setBounds (getGridArea (5, 0));
+    componentForId (PARAM_VERTICAL_ZOOM)->setBounds (getGridArea (5, 1));
+    componentForId (PARAM_VERTICAL_OFFSET_L)->setBounds (getGridArea (5, 2));
+    componentForId (PARAM_VERTICAL_OFFSET_R)->setBounds (getGridArea (5, 3));
+    componentForId (PARAM_TRIGGER_CHANNEL)->setBounds (getGridArea (6, 0));
+    componentForId (PARAM_TRIGGER_MODE)->setBounds (getGridArea (6, 1));
+    componentForId (PARAM_TRIGGER_LEVEL)->setBounds (getGridArea (6, 2));
+    componentForId (PARAM_TRIGGER_POS)->setBounds (getGridArea (6, 3));
 }
 
 void PluginEditor::updateScope()
 {
     scope.setNumSamplesPerPixel (processor.parameterIntValue (PARAM_SAMPLES_PER_PIXEL));
     scope.setVerticalZoomFactor (processor.parameterValue (PARAM_VERTICAL_ZOOM));
+    scope.setVerticalZoomOffset (processor.parameterValue (PARAM_VERTICAL_OFFSET_L), 0);
+    scope.setVerticalZoomOffset (processor.parameterValue (PARAM_VERTICAL_OFFSET_R), 1);
     scope.setTriggerChannel (processor.parameterIntValue (PARAM_TRIGGER_CHANNEL));
     scope.setTriggerMode ((drow::TriggeredScope::TriggerMode)processor.parameterIntValue (PARAM_TRIGGER_MODE));
     scope.setTriggerLevel (processor.parameterValue (PARAM_TRIGGER_LEVEL));
+    scope.setTriggerPos (processor.parameterValue (PARAM_TRIGGER_POS));
 }
