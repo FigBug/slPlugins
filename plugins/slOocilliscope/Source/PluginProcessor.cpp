@@ -21,6 +21,11 @@ String onOffTextFunction (const slParameter& p)
 //==============================================================================
 PluginProcessor::PluginProcessor()
 {
+    addPluginParameter (new slParameter (PARAM_SAMPLES_PER_PIXEL,       "Samp/px",       "", "",     1.0f,   48.0f,  1.0f,    1.0f, 1.0f));
+    addPluginParameter (new slParameter (PARAM_VERTICAL_ZOOM,           "Zoom",          "", "",     0.25f,  100.0f, 0.0f,    1.0f, 1.0f));
+    addPluginParameter (new slParameter (PARAM_TRIGGER_CHANNEL,         "Chan",          "", "",     -1.0f,  1.0f,   1.0f,    0.0f, 1.0f));
+    addPluginParameter (new slParameter (PARAM_TRIGGER_MODE,            "Mode",          "", "",     0.0f,   2.0f,   1.0f,    1.0f, 1.0f));
+    addPluginParameter (new slParameter (PARAM_TRIGGER_LEVEL,           "Level",         "", "",     -1.0f,  1.0f,   0.0f,    0.0f, 1.0f));
 }
 
 PluginProcessor::~PluginProcessor()

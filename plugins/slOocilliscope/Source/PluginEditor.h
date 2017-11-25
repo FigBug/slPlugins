@@ -17,7 +17,8 @@
 //==============================================================================
 /**
 */
-class PluginEditor  : public slAudioProcessorEditor
+class PluginEditor  : public slAudioProcessorEditor,
+                      private slParameter::Listener
 {
 public:
     PluginEditor (PluginProcessor&);
@@ -29,6 +30,9 @@ public:
     drow::TriggeredScope scope;
 
 private:
+    void updateScope();
+    void parameterChanged (slParameter*) override { updateScope(); }
+    
     PluginProcessor& processor;
     
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (PluginEditor)
