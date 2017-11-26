@@ -19,6 +19,7 @@
 *.sdf
 *.opensdf
 *.xccheckout
+*.db
 ipch/
 obj/
 [Bb]in
