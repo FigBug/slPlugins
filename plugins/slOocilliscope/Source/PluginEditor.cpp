@@ -17,6 +17,9 @@ PluginEditor::PluginEditor (PluginProcessor& p)
 {
     addAndMakeVisible (&scope);
     
+    scope.setColour (drow::TriggeredScope::traceColourId + 0, Colours::white.overlaidWith (Colours::blue.withAlpha (0.3f)));
+    scope.setColour (drow::TriggeredScope::traceColourId + 1, Colours::white.overlaidWith (Colours::yellow.withAlpha (0.3f)));
+    
     for (slParameter* pp : p.getPluginParameters())
     {
         ParamComponent* pc;
@@ -33,6 +36,7 @@ PluginEditor::PluginEditor (PluginProcessor& p)
     }
     
     setGridSize (7, 4);
+    makeResizable (getWidth(), getHeight(), 2000, 1500);
     
     scope.setNumChannels (p.getTotalNumInputChannels());
     
@@ -46,27 +50,37 @@ PluginEditor::~PluginEditor()
 {
     for (auto pp : processor.getPluginParameters())
         pp->removeListener (this);
+    
+    ScopedLock sl (processor.lock);
+    processor.editor = nullptr;
 }
 
 //==============================================================================
+
+Rectangle<int> PluginEditor::getGridArea (int x, int y, int w, int h)
+{
+    return Rectangle<int> (getWidth() - inset - 2 * cx + x * cx, headerHeight + y * cy + inset, w * cx, h * cy);
+}
+
 void PluginEditor::resized()
 {
     slAudioProcessorEditor::resized();
 
-    scope.setBounds (getGridArea (0, 0, 5, 4));
+    scope.setBounds (inset, headerHeight + inset, getWidth() - 2 * cx - inset, getHeight() - headerHeight - 2 * inset);
     
-    componentForId (PARAM_SAMPLES_PER_PIXEL)->setBounds (getGridArea (5, 0));
-    componentForId (PARAM_VERTICAL_ZOOM)->setBounds (getGridArea (5, 1));
-    componentForId (PARAM_VERTICAL_OFFSET_L)->setBounds (getGridArea (5, 2));
-    componentForId (PARAM_VERTICAL_OFFSET_R)->setBounds (getGridArea (5, 3));
-    componentForId (PARAM_TRIGGER_CHANNEL)->setBounds (getGridArea (6, 0));
-    componentForId (PARAM_TRIGGER_MODE)->setBounds (getGridArea (6, 1));
-    componentForId (PARAM_TRIGGER_LEVEL)->setBounds (getGridArea (6, 2));
-    componentForId (PARAM_TRIGGER_POS)->setBounds (getGridArea (6, 3));
+    componentForId (PARAM_SAMPLES_PER_PIXEL)->setBounds (getGridArea (0, 0));
+    componentForId (PARAM_VERTICAL_ZOOM)->setBounds (getGridArea (0, 1));
+    componentForId (PARAM_VERTICAL_OFFSET_L)->setBounds (getGridArea (0, 2));
+    componentForId (PARAM_VERTICAL_OFFSET_R)->setBounds (getGridArea (0, 3));
+    componentForId (PARAM_TRIGGER_CHANNEL)->setBounds (getGridArea (1, 0));
+    componentForId (PARAM_TRIGGER_MODE)->setBounds (getGridArea (1, 1));
+    componentForId (PARAM_TRIGGER_LEVEL)->setBounds (getGridArea (1, 2));
+    componentForId (PARAM_TRIGGER_POS)->setBounds (getGridArea (1, 3));
 }
 
 void PluginEditor::updateScope()
 {
+    scope.setDrawTriggerPos (true);
     scope.setNumSamplesPerPixel (processor.parameterIntValue (PARAM_SAMPLES_PER_PIXEL));
     scope.setVerticalZoomFactor (processor.parameterValue (PARAM_VERTICAL_ZOOM));
     scope.setVerticalZoomOffset (processor.parameterValue (PARAM_VERTICAL_OFFSET_L), 0);

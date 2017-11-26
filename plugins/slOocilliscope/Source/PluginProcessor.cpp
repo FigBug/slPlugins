@@ -79,6 +79,7 @@ void PluginProcessor::releaseResources()
 
 void PluginProcessor::processBlock (AudioSampleBuffer& buffer, MidiBuffer&)
 {
+    ScopedLock sl (lock);
     if (editor)
         editor->scope.addSamples (buffer);
 }

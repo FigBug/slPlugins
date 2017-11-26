@@ -48,9 +48,10 @@ public:
 
     //==============================================================================
     
-private:
-    Component::SafePointer<PluginEditor> editor;
-    
+    CriticalSection lock;
+    PluginEditor* editor = nullptr;
+
+private:    
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (PluginProcessor)
 };

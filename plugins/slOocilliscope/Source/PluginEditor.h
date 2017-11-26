@@ -26,10 +26,12 @@ public:
 
     //==============================================================================
     void resized() override;
+    Rectangle<int> getGridArea (int x, int y, int w = 1, int h = 1) override;
 
     drow::TriggeredScope scope;
 
 private:
+    CriticalSection lock;
     void updateScope();
     void parameterChanged (slParameter*) override { updateScope(); }
     
