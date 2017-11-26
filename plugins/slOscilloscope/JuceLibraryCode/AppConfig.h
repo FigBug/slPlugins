@@ -339,10 +339,10 @@
  #define JucePlugin_Enable_IAA             0
 #endif
 #ifndef  JucePlugin_Name
- #define JucePlugin_Name                   "Oscilliscope"
+ #define JucePlugin_Name                   "Oscilloscope"
 #endif
 #ifndef  JucePlugin_Desc
- #define JucePlugin_Desc                   "Oscilliscope"
+ #define JucePlugin_Desc                   "Oscilloscope"
 #endif
 #ifndef  JucePlugin_Manufacturer
  #define JucePlugin_Manufacturer           "SocaLabs"
@@ -396,16 +396,16 @@
  #define JucePlugin_AUSubType              JucePlugin_PluginCode
 #endif
 #ifndef  JucePlugin_AUExportPrefix
- #define JucePlugin_AUExportPrefix         slOscilliscopeAU
+ #define JucePlugin_AUExportPrefix         slOscilloscopeAU
 #endif
 #ifndef  JucePlugin_AUExportPrefixQuoted
- #define JucePlugin_AUExportPrefixQuoted   "slOscilliscopeAU"
+ #define JucePlugin_AUExportPrefixQuoted   "slOscilloscopeAU"
 #endif
 #ifndef  JucePlugin_AUManufacturerCode
  #define JucePlugin_AUManufacturerCode     JucePlugin_ManufacturerCode
 #endif
 #ifndef  JucePlugin_CFBundleIdentifier
- #define JucePlugin_CFBundleIdentifier     com.socalabs.Oscilliscope
+ #define JucePlugin_CFBundleIdentifier     com.socalabs.Oscilloscope
 #endif
 #ifndef  JucePlugin_RTASCategory
  #define JucePlugin_RTASCategory           ePlugInCategory_None
@@ -423,7 +423,7 @@
  #define JucePlugin_RTASDisableMultiMono   0
 #endif
 #ifndef  JucePlugin_AAXIdentifier
- #define JucePlugin_AAXIdentifier          com.socalabs.slOscilliscope
+ #define JucePlugin_AAXIdentifier          com.socalabs.slOscilloscope
 #endif
 #ifndef  JucePlugin_AAXManufacturerCode
  #define JucePlugin_AAXManufacturerCode    JucePlugin_ManufacturerCode
@@ -447,7 +447,7 @@
  #define JucePlugin_IAASubType             JucePlugin_PluginCode
 #endif
 #ifndef  JucePlugin_IAAName
- #define JucePlugin_IAAName                "SocaLabs: Oscilliscope"
+ #define JucePlugin_IAAName                "SocaLabs: Oscilloscope"
 #endif
 #ifndef  JucePlugin_MaxNumInputChannels
  #define JucePlugin_MaxNumInputChannels    2

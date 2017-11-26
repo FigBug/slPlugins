@@ -8,11 +8,11 @@
     <key>CFBundleIconFile</key>
     <string></string>
     <key>CFBundleIdentifier</key>
-    <string>com.socalabs.Oscilliscope</string>
+    <string>com.socalabs.Oscilloscope</string>
     <key>CFBundleName</key>
-    <string>Oscilliscope</string>
+    <string>Oscilloscope</string>
     <key>CFBundleDisplayName</key>
-    <string>Oscilliscope</string>
+    <string>Oscilloscope</string>
     <key>CFBundlePackageType</key>
     <string>BNDL</string>
     <key>CFBundleSignature</key>

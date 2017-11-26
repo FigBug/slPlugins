@@ -2,14 +2,14 @@
 
 <Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="slOscilliscope\Source\Common">
-      <UniqueIdentifier>{702FE4B3-E0F9-2B11-B7DB-88D4EC2A3616}</UniqueIdentifier>
+    <Filter Include="Oscilloscope\Source\Common">
+      <UniqueIdentifier>{774D7189-872F-DFFB-3594-3837051760E8}</UniqueIdentifier>
     </Filter>
-    <Filter Include="slOscilliscope\Source">
-      <UniqueIdentifier>{F0B9EC34-A674-856C-C258-997E015ACF4B}</UniqueIdentifier>
+    <Filter Include="Oscilloscope\Source">
+      <UniqueIdentifier>{C1DB196D-68AF-64A7-D7FA-D36AC0F40D6B}</UniqueIdentifier>
     </Filter>
-    <Filter Include="slOscilliscope">
-      <UniqueIdentifier>{8CE56AAD-63EF-EBB8-5AD2-427434F162D7}</UniqueIdentifier>
+    <Filter Include="Oscilloscope">
+      <UniqueIdentifier>{A4AA8435-6F7E-79A9-C793-32A8C185A268}</UniqueIdentifier>
     </Filter>
     <Filter Include="Juce Modules\dRowAudio\audio\fft\fftreal">
       <UniqueIdentifier>{7838572E-1B3F-3686-33BB-35915DB5D3E3}</UniqueIdentifier>
@@ -470,34 +470,34 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\..\module\slCommon\slComponents.cpp">
-      <Filter>slOscilliscope\Source\Common</Filter>
+      <Filter>Oscilloscope\Source\Common</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\module\slCommon\slDsp.cpp">
-      <Filter>slOscilliscope\Source\Common</Filter>
+      <Filter>Oscilloscope\Source\Common</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\module\slCommon\slLookAndFeel.cpp">
-      <Filter>slOscilliscope\Source\Common</Filter>
+      <Filter>Oscilloscope\Source\Common</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\module\slCommon\slParameter.cpp">
-      <Filter>slOscilliscope\Source\Common</Filter>
+      <Filter>Oscilloscope\Source\Common</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\module\slCommon\slPluginEditor.cpp">
-      <Filter>slOscilliscope\Source\Common</Filter>
+      <Filter>Oscilloscope\Source\Common</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\module\slCommon\slProcessor.cpp">
-      <Filter>slOscilliscope\Source\Common</Filter>
+      <Filter>Oscilloscope\Source\Common</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\module\slCommon\slProgram.cpp">
-      <Filter>slOscilliscope\Source\Common</Filter>
+      <Filter>Oscilloscope\Source\Common</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\module\slCommon\slUtil.cpp">
-      <Filter>slOscilliscope\Source\Common</Filter>
+      <Filter>Oscilloscope\Source\Common</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\PluginProcessor.cpp">
-      <Filter>slOscilliscope\Source</Filter>
+      <Filter>Oscilloscope\Source</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\PluginEditor.cpp">
-      <Filter>slOscilliscope\Source</Filter>
+      <Filter>Oscilloscope\Source</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\module\dRowAudio\module\dRowAudio\audio\fft\dRowAudio_FFT.cpp">
       <Filter>Juce Modules\dRowAudio\audio\fft</Filter>
@@ -2620,37 +2620,37 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\..\module\slCommon\slCommon.h">
-      <Filter>slOscilliscope\Source\Common</Filter>
+      <Filter>Oscilloscope\Source\Common</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\module\slCommon\slComponents.h">
-      <Filter>slOscilliscope\Source\Common</Filter>
+      <Filter>Oscilloscope\Source\Common</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\module\slCommon\slDsp.h">
-      <Filter>slOscilliscope\Source\Common</Filter>
+      <Filter>Oscilloscope\Source\Common</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\module\slCommon\slLookAndFeel.h">
-      <Filter>slOscilliscope\Source\Common</Filter>
+      <Filter>Oscilloscope\Source\Common</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\module\slCommon\slParameter.h">
-      <Filter>slOscilliscope\Source\Common</Filter>
+      <Filter>Oscilloscope\Source\Common</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\module\slCommon\slPluginEditor.h">
-      <Filter>slOscilliscope\Source\Common</Filter>
+      <Filter>Oscilloscope\Source\Common</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\module\slCommon\slProcessor.h">
-      <Filter>slOscilliscope\Source\Common</Filter>
+      <Filter>Oscilloscope\Source\Common</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\module\slCommon\slProgram.h">
-      <Filter>slOscilliscope\Source\Common</Filter>
+      <Filter>Oscilloscope\Source\Common</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\module\slCommon\slUtil.h">
-      <Filter>slOscilliscope\Source\Common</Filter>
+      <Filter>Oscilloscope\Source\Common</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\PluginProcessor.h">
-      <Filter>slOscilliscope\Source</Filter>
+      <Filter>Oscilloscope\Source</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\PluginEditor.h">
-      <Filter>slOscilliscope\Source</Filter>
+      <Filter>Oscilloscope\Source</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\module\dRowAudio\module\dRowAudio\audio\fft\fftreal\Array.h">
       <Filter>Juce Modules\dRowAudio\audio\fft\fftreal</Filter>
