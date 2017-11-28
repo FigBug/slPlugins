@@ -13,57 +13,110 @@
 #include <random>
 
 //==============================================================================
-String onOffTextFunction (const slParameter& p)
+String onOffTextFunction (const slParameter& p, float v)
 {
-    return p.getUserValue() > 0.0f ? "On" : "Off";
-}
-
-//==============================================================================
-float sineFunc (float in)
-{
-    return sin (in);
-}
-
-float triangleFunc (float in)
-{
-    return (in < 0 ? in / -float_Pi : in / float_Pi) * 2 - 1;
-}
-
-float sawUpFunc (float in)
-{
-    return ((in + float_Pi) / (2 * float_Pi)) * 2 - 1;
-}
-
-float sawDownFunc (float in)
-{
-    return -(((in + float_Pi) / (2 * float_Pi)) * 2 - 1);
-}
-
-float squareFunc (float in)
-{
-    return in < 0 ? -1 : 1;
-}
-
-float noiseFunc (float)
-{
-    const float mean = 0.0;
-    const float stddev = 0.1;
-    
-    static std::default_random_engine generator;
-    static std::normal_distribution<float> dist (mean, stddev);
-    
-    return dist (generator);
+    return v > 0.0f ? "On" : "Off";
 }
 
 //==============================================================================
 slToneAudioProcessor::slToneAudioProcessor()
-  : sine (sineFunc),
-    triangle (triangleFunc),
-    sawUp (sawUpFunc),
-    sawDown (sawDownFunc),
-    square (squareFunc),
-    noise (noiseFunc)
 {
+    //==============================================================================
+    auto sineFunc = [&] (float in) -> float
+    {
+        return sin (in);
+    };
+    
+    auto triangleFunc = [&] (float in) -> float
+    {
+        if (bandLimited)
+        {
+            double sum = 0;
+            for (int k = 0; k < 30; k++)
+            {
+                int n = 2 * k + 1;
+                sum += pow (-1, k) * pow (n, -2) * sin (std::abs (n * in / (2 * float_Pi)));
+            }
+            return sum;
+        }
+        return (in < 0 ? in / -float_Pi : in / float_Pi) * 2 - 1;
+    };
+    
+    auto sawUpFunc = [&] (float in) -> float
+    {
+        if (bandLimited)
+        {
+            double f = parameterValue (PARAM_FREQ);
+            
+            double sum = 0;
+            int k = 1;
+            while (f * k < getSampleRate() / 2)
+            {
+                sum += std::pow (-1, k) * sin (k * in) / k;
+                k++;
+            }
+            return -1.0f / float_Pi * sum;
+        }
+        return ((in + float_Pi) / (2 * float_Pi)) * 2 - 1;
+    };
+    
+    auto sawDownFunc = [&] (float in) -> float
+    {
+        if (bandLimited)
+        {
+            double f = parameterValue (PARAM_FREQ);
+            
+            double sum = 0;
+            int k = 1;
+            while (f * k < getSampleRate() / 2)
+            {
+                sum += std::pow (-1, k) * sin (k * in) / k;
+                k++;
+            }
+            return 2.0f / float_Pi * sum;
+        }
+        return -(((in + float_Pi) / (2 * float_Pi)) * 2 - 1);
+    };
+    
+    auto squareFunc = [&] (float in) -> float
+    {
+        if (bandLimited)
+        {
+            double f = parameterValue (PARAM_FREQ);
+            
+            double sum = 0;
+            int i = 1;
+            while (f * (2 * i - 1) < getSampleRate() / 2)
+            {
+                sum += sin ((2 * i - 1) * in) / ((2 * i - 1));
+                i++;
+            }
+            
+            return 4.0f / float_Pi * sum;
+        }
+        return in < 0 ? -1 : 1;
+    };
+    
+    auto noiseFunc = [&] (float) -> float
+    {
+        const float mean = 0.0;
+        const float stddev = 0.1;
+        
+        static std::default_random_engine generator;
+        static std::normal_distribution<float> dist (mean, stddev);
+        
+        return dist (generator);
+    };
+    
+    sine.initialise (sineFunc);
+    triangle.initialise (triangleFunc);
+    sawUp.initialise (sawUpFunc);
+    sawDown.initialise (sawDownFunc);
+    square.initialise (squareFunc);
+    noise.initialise (noiseFunc);
+
+    //==============================================================================
+    
     addPluginParameter (new slParameter (PARAM_ENABLE,       "Enable",       "", "",     0.0f,      1.0f, 1.0f,    1.0f, 1.0f, onOffTextFunction));
     addPluginParameter (new slParameter (PARAM_FREQ,         "Frequency",    "", "Hz",   30.0f, 10000.0f, 0.0f, 1000.0f, 0.5f));
     addPluginParameter (new slParameter (PARAM_SINE_LEVEL,   "Sine",         "", "dB", -100.0f,     6.0f, 0.0f, -100.0f, 5.f));

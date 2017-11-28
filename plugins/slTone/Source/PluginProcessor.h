@@ -49,6 +49,8 @@ public:
     //==============================================================================
     
 private:
+    bool bandLimited = true;
+    
     Oscillator<float> sine;
     Oscillator<float> triangle;
     Oscillator<float> sawUp;
