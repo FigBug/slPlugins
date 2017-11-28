@@ -24,6 +24,7 @@
   <PropertyGroup Label="Globals">
     <ProjectGuid>{C9B82667-C15C-C6F1-E303-081EA176C344}</ProjectGuid>
     <PlatformToolset>v140</PlatformToolset>
+    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props"/>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'"
@@ -31,6 +32,7 @@
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseOfMfc>false</UseOfMfc>
     <PlatformToolset>v140</PlatformToolset>
+    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"
                  Label="Configuration">
@@ -38,6 +40,7 @@
     <UseOfMfc>false</UseOfMfc>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <PlatformToolset>v140</PlatformToolset>
+    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug64|x64'"
                  Label="Configuration">
@@ -45,6 +48,7 @@
     <UseOfMfc>false</UseOfMfc>
     <PlatformToolset>v140</PlatformToolset>
     <PlatformToolset>v140</PlatformToolset>
+    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release64|x64'"
                  Label="Configuration">
@@ -53,6 +57,7 @@
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <PlatformToolset>v140</PlatformToolset>
     <PlatformToolset>v140</PlatformToolset>
+    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props"/>
   <ImportGroup Label="ExtensionSettings"/>
@@ -63,6 +68,7 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros">
     <PlatformToolset>v140</PlatformToolset>
+    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <PropertyGroup>
     <_ProjectFileVersion>10.0.30319.1</_ProjectFileVersion>
@@ -84,6 +90,7 @@
     <TargetName Condition="'$(Configuration)|$(Platform)'=='Release64|x64'">slTone</TargetName>
     <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Release64|x64'">true</GenerateManifest>
     <PlatformToolset>v140</PlatformToolset>
+    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <Midl>
@@ -95,7 +102,7 @@
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <AdditionalIncludeDirectories>..\..\JuceLibraryCode;..\..\..\..\module\dRowAudio\module;..\..\..\..\..\JUCE\modules;../../../../common;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;WIN32;_WINDOWS;DEBUG;_DEBUG;JUCER_VS2015_78A5022=1;JUCE_APP_VERSION=1.0.0;JUCE_APP_VERSION_HEX=0x10000;JucePlugin_Build_VST=1;JucePlugin_Build_VST3=0;JucePlugin_Build_AU=0;JucePlugin_Build_AUv3=0;JucePlugin_Build_RTAS=0;JucePlugin_Build_AAX=0;JucePlugin_Build_Standalone=0;JUCE_SHARED_CODE=1;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
@@ -107,6 +114,7 @@
       <WarningLevel>Level4</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <LanguageStandard>stdcpp14</LanguageStandard>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -119,13 +127,13 @@
       <ProgramDatabaseFile>$(IntDir)\slTone.pdb</ProgramDatabaseFile>
       <SubSystem>Windows</SubSystem>
       <TargetMachine>MachineX86</TargetMachine>
-      <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
       <LargeAddressAware>true</LargeAddressAware>
     </Link>
     <Bscmake>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <OutputFile>$(IntDir)\slTone.bsc</OutputFile>
     </Bscmake>
+    <Lib/>
     <Lib>
       <TargetMachine>MachineX86</TargetMachine>
     </Lib>
@@ -154,6 +162,7 @@
       <WarningLevel>Level4</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <LanguageStandard>stdcpp14</LanguageStandard>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -174,6 +183,7 @@
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <OutputFile>$(IntDir)\slTone.bsc</OutputFile>
     </Bscmake>
+    <Lib/>
     <Lib>
       <TargetMachine>MachineX86</TargetMachine>
     </Lib>
@@ -203,6 +213,7 @@
       <WarningLevel>Level4</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <LanguageStandard>stdcpp14</LanguageStandard>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -220,6 +231,7 @@
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <OutputFile>$(IntDir)\slTone.bsc</OutputFile>
     </Bscmake>
+    <Lib/>
     <PostBuildEvent>
       <Command>copy /Y &quot;$(OutDir)\$(TargetFileName)&quot; &quot;C:\Program Files\VSTPlugins&quot;</Command>
     </PostBuildEvent>
@@ -245,6 +257,7 @@
       <WarningLevel>Level4</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <LanguageStandard>stdcpp14</LanguageStandard>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -264,11 +277,13 @@
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <OutputFile>$(IntDir)\slTone.bsc</OutputFile>
     </Bscmake>
+    <Lib/>
     <PostBuildEvent>
       <Command>copy /Y &quot;$(OutDir)\$(TargetFileName)&quot; &quot;C:\Program Files\VSTPlugins&quot;</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\..\..\module\slCommon\SingleLineTextEditor.cpp"/>
     <ClCompile Include="..\..\..\..\module\slCommon\slComponents.cpp"/>
     <ClCompile Include="..\..\..\..\module\slCommon\slDsp.cpp"/>
     <ClCompile Include="..\..\..\..\module\slCommon\slLookAndFeel.cpp"/>
@@ -1341,6 +1356,12 @@
     <ClCompile Include="..\..\..\..\..\JUCE\modules\juce_dsp\processors\juce_IIRFilter.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="..\..\..\..\..\JUCE\modules\juce_dsp\processors\juce_LadderFilter.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\JUCE\modules\juce_dsp\processors\juce_Oversampling.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="..\..\..\..\..\JUCE\modules\juce_dsp\juce_dsp.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
@@ -2115,6 +2136,9 @@
     <ClCompile Include="..\..\..\..\..\JUCE\modules\juce_gui_extra\misc\juce_PreferencesPanel.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="..\..\..\..\..\JUCE\modules\juce_gui_extra\misc\juce_PushNotifications.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="..\..\..\..\..\JUCE\modules\juce_gui_extra\misc\juce_RecentlyOpenedFilesList.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
@@ -2124,7 +2148,16 @@
     <ClCompile Include="..\..\..\..\..\JUCE\modules\juce_gui_extra\misc\juce_SystemTrayIconComponent.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="..\..\..\..\..\JUCE\modules\juce_gui_extra\native\juce_android_PushNotifications.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="..\..\..\..\..\JUCE\modules\juce_gui_extra\native\juce_android_WebBrowserComponent.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\JUCE\modules\juce_gui_extra\native\juce_AndroidViewComponent.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\JUCE\modules\juce_gui_extra\native\juce_ios_PushNotifications.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\..\..\..\..\JUCE\modules\juce_gui_extra\native\juce_linux_X11_SystemTrayIcon.cpp">
@@ -2209,6 +2242,7 @@
     <ClCompile Include="..\..\JuceLibraryCode\include_juce_video.cpp"/>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\..\..\module\slCommon\SingleLineTextEditor.h"/>
     <ClInclude Include="..\..\..\..\module\slCommon\slCommon.h"/>
     <ClInclude Include="..\..\..\..\module\slCommon\slComponents.h"/>
     <ClInclude Include="..\..\..\..\module\slCommon\slDsp.h"/>
@@ -2733,11 +2767,14 @@
     <ClInclude Include="..\..\..\..\..\JUCE\modules\juce_dsp\processors\juce_Gain.h"/>
     <ClInclude Include="..\..\..\..\..\JUCE\modules\juce_dsp\processors\juce_IIRFilter.h"/>
     <ClInclude Include="..\..\..\..\..\JUCE\modules\juce_dsp\processors\juce_IIRFilter_Impl.h"/>
+    <ClInclude Include="..\..\..\..\..\JUCE\modules\juce_dsp\processors\juce_LadderFilter.h"/>
     <ClInclude Include="..\..\..\..\..\JUCE\modules\juce_dsp\processors\juce_Oscillator.h"/>
+    <ClInclude Include="..\..\..\..\..\JUCE\modules\juce_dsp\processors\juce_Oversampling.h"/>
     <ClInclude Include="..\..\..\..\..\JUCE\modules\juce_dsp\processors\juce_ProcessContext.h"/>
     <ClInclude Include="..\..\..\..\..\JUCE\modules\juce_dsp\processors\juce_ProcessorChain.h"/>
     <ClInclude Include="..\..\..\..\..\JUCE\modules\juce_dsp\processors\juce_ProcessorDuplicator.h"/>
     <ClInclude Include="..\..\..\..\..\JUCE\modules\juce_dsp\processors\juce_ProcessorWrapper.h"/>
+    <ClInclude Include="..\..\..\..\..\JUCE\modules\juce_dsp\processors\juce_Reverb.h"/>
     <ClInclude Include="..\..\..\..\..\JUCE\modules\juce_dsp\processors\juce_StateVariableFilter.h"/>
     <ClInclude Include="..\..\..\..\..\JUCE\modules\juce_dsp\processors\juce_WaveShaper.h"/>
     <ClInclude Include="..\..\..\..\..\JUCE\modules\juce_dsp\juce_dsp.h"/>
@@ -2966,6 +3003,7 @@
     <ClInclude Include="..\..\..\..\..\JUCE\modules\juce_gui_extra\code_editor\juce_XMLCodeTokeniser.h"/>
     <ClInclude Include="..\..\..\..\..\JUCE\modules\juce_gui_extra\documents\juce_FileBasedDocument.h"/>
     <ClInclude Include="..\..\..\..\..\JUCE\modules\juce_gui_extra\embedding\juce_ActiveXControlComponent.h"/>
+    <ClInclude Include="..\..\..\..\..\JUCE\modules\juce_gui_extra\embedding\juce_AndroidViewComponent.h"/>
     <ClInclude Include="..\..\..\..\..\JUCE\modules\juce_gui_extra\embedding\juce_NSViewComponent.h"/>
     <ClInclude Include="..\..\..\..\..\JUCE\modules\juce_gui_extra\embedding\juce_UIViewComponent.h"/>
     <ClInclude Include="..\..\..\..\..\JUCE\modules\juce_gui_extra\embedding\juce_XEmbedComponent.h"/>
@@ -2976,6 +3014,7 @@
     <ClInclude Include="..\..\..\..\..\JUCE\modules\juce_gui_extra\misc\juce_KeyMappingEditorComponent.h"/>
     <ClInclude Include="..\..\..\..\..\JUCE\modules\juce_gui_extra\misc\juce_LiveConstantEditor.h"/>
     <ClInclude Include="..\..\..\..\..\JUCE\modules\juce_gui_extra\misc\juce_PreferencesPanel.h"/>
+    <ClInclude Include="..\..\..\..\..\JUCE\modules\juce_gui_extra\misc\juce_PushNotifications.h"/>
     <ClInclude Include="..\..\..\..\..\JUCE\modules\juce_gui_extra\misc\juce_RecentlyOpenedFilesList.h"/>
     <ClInclude Include="..\..\..\..\..\JUCE\modules\juce_gui_extra\misc\juce_SplashScreen.h"/>
     <ClInclude Include="..\..\..\..\..\JUCE\modules\juce_gui_extra\misc\juce_SystemTrayIconComponent.h"/>

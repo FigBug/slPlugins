@@ -17,6 +17,7 @@ using namespace juce::dsp;
 
 
 #define PARAM_ENABLE        "enable"
+#define PARAM_BANDLIMIT     "bandlimit"
 #define PARAM_FREQ          "freq"
 #define PARAM_SINE_LEVEL    "sine"
 #define PARAM_TRI_LEVEL     "triangle"

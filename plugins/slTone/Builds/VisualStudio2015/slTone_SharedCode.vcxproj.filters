@@ -469,6 +469,9 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\..\..\module\slCommon\SingleLineTextEditor.cpp">
+      <Filter>slTone\Source\Common</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\..\..\module\slCommon\slComponents.cpp">
       <Filter>slTone\Source\Common</Filter>
     </ClCompile>
@@ -1633,6 +1636,12 @@
     <ClCompile Include="..\..\..\..\..\JUCE\modules\juce_dsp\processors\juce_IIRFilter.cpp">
       <Filter>Juce Modules\juce_dsp\processors</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\..\..\JUCE\modules\juce_dsp\processors\juce_LadderFilter.cpp">
+      <Filter>Juce Modules\juce_dsp\processors</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\JUCE\modules\juce_dsp\processors\juce_Oversampling.cpp">
+      <Filter>Juce Modules\juce_dsp\processors</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\..\..\..\JUCE\modules\juce_dsp\juce_dsp.cpp">
       <Filter>Juce Modules\juce_dsp</Filter>
     </ClCompile>
@@ -2452,6 +2461,9 @@
     <ClCompile Include="..\..\..\..\..\JUCE\modules\juce_gui_extra\misc\juce_PreferencesPanel.cpp">
       <Filter>Juce Modules\juce_gui_extra\misc</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\..\..\JUCE\modules\juce_gui_extra\misc\juce_PushNotifications.cpp">
+      <Filter>Juce Modules\juce_gui_extra\misc</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\..\..\..\JUCE\modules\juce_gui_extra\misc\juce_RecentlyOpenedFilesList.cpp">
       <Filter>Juce Modules\juce_gui_extra\misc</Filter>
     </ClCompile>
@@ -2461,7 +2473,16 @@
     <ClCompile Include="..\..\..\..\..\JUCE\modules\juce_gui_extra\misc\juce_SystemTrayIconComponent.cpp">
       <Filter>Juce Modules\juce_gui_extra\misc</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\..\..\JUCE\modules\juce_gui_extra\native\juce_android_PushNotifications.cpp">
+      <Filter>Juce Modules\juce_gui_extra\native</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\..\..\..\JUCE\modules\juce_gui_extra\native\juce_android_WebBrowserComponent.cpp">
+      <Filter>Juce Modules\juce_gui_extra\native</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\JUCE\modules\juce_gui_extra\native\juce_AndroidViewComponent.cpp">
+      <Filter>Juce Modules\juce_gui_extra\native</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\JUCE\modules\juce_gui_extra\native\juce_ios_PushNotifications.cpp">
       <Filter>Juce Modules\juce_gui_extra\native</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\..\JUCE\modules\juce_gui_extra\native\juce_ios_UIViewComponent.mm">
@@ -2601,6 +2622,9 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\..\..\module\slCommon\SingleLineTextEditor.h">
+      <Filter>slTone\Source\Common</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\..\..\module\slCommon\slCommon.h">
       <Filter>slTone\Source\Common</Filter>
     </ClInclude>
@@ -4173,7 +4197,13 @@
     <ClInclude Include="..\..\..\..\..\JUCE\modules\juce_dsp\processors\juce_IIRFilter_Impl.h">
       <Filter>Juce Modules\juce_dsp\processors</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\..\..\JUCE\modules\juce_dsp\processors\juce_LadderFilter.h">
+      <Filter>Juce Modules\juce_dsp\processors</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\..\..\..\JUCE\modules\juce_dsp\processors\juce_Oscillator.h">
+      <Filter>Juce Modules\juce_dsp\processors</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\JUCE\modules\juce_dsp\processors\juce_Oversampling.h">
       <Filter>Juce Modules\juce_dsp\processors</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\..\JUCE\modules\juce_dsp\processors\juce_ProcessContext.h">
@@ -4186,6 +4216,9 @@
       <Filter>Juce Modules\juce_dsp\processors</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\..\JUCE\modules\juce_dsp\processors\juce_ProcessorWrapper.h">
+      <Filter>Juce Modules\juce_dsp\processors</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\JUCE\modules\juce_dsp\processors\juce_Reverb.h">
       <Filter>Juce Modules\juce_dsp\processors</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\..\JUCE\modules\juce_dsp\processors\juce_StateVariableFilter.h">
@@ -4872,6 +4905,9 @@
     <ClInclude Include="..\..\..\..\..\JUCE\modules\juce_gui_extra\embedding\juce_ActiveXControlComponent.h">
       <Filter>Juce Modules\juce_gui_extra\embedding</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\..\..\JUCE\modules\juce_gui_extra\embedding\juce_AndroidViewComponent.h">
+      <Filter>Juce Modules\juce_gui_extra\embedding</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\..\..\..\JUCE\modules\juce_gui_extra\embedding\juce_NSViewComponent.h">
       <Filter>Juce Modules\juce_gui_extra\embedding</Filter>
     </ClInclude>
@@ -4900,6 +4936,9 @@
       <Filter>Juce Modules\juce_gui_extra\misc</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\..\JUCE\modules\juce_gui_extra\misc\juce_PreferencesPanel.h">
+      <Filter>Juce Modules\juce_gui_extra\misc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\JUCE\modules\juce_gui_extra\misc\juce_PushNotifications.h">
       <Filter>Juce Modules\juce_gui_extra\misc</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\..\JUCE\modules\juce_gui_extra\misc\juce_RecentlyOpenedFilesList.h">

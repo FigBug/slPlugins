@@ -19,6 +19,11 @@ String onOffTextFunction (const slParameter& p, float v)
 }
 
 //==============================================================================
+inline bool oddEven (int x)
+{
+    return (x % 2 == 0) ? 1 : -1;
+}
+//==============================================================================
 slToneAudioProcessor::slToneAudioProcessor()
 {
     //==============================================================================
@@ -31,13 +36,17 @@ slToneAudioProcessor::slToneAudioProcessor()
     {
         if (bandLimited)
         {
+            const double f = parameterValue (PARAM_FREQ);
+            const double sr = getSampleRate();
+            
             double sum = 0;
-            for (int k = 0; k < 30; k++)
+            int k = 1;
+            while (f * k < sr / 2)
             {
-                int n = 2 * k + 1;
-                sum += pow (-1, k) * pow (n, -2) * sin (std::abs (n * in / (2 * float_Pi)));
+                sum += std::pow (-1, (k - 1) / 2.0f) / (k * k) * sin (k * in);
+                k += 2;
             }
-            return sum;
+            return 8.0f / (float_Pi * float_Pi) * sum;
         }
         return (in < 0 ? in / -float_Pi : in / float_Pi) * 2 - 1;
     };
@@ -46,16 +55,17 @@ slToneAudioProcessor::slToneAudioProcessor()
     {
         if (bandLimited)
         {
-            double f = parameterValue (PARAM_FREQ);
+            const double f = parameterValue (PARAM_FREQ);
+            const double sr = getSampleRate();
             
             double sum = 0;
             int k = 1;
-            while (f * k < getSampleRate() / 2)
+            while (f * k < sr / 2)
             {
-                sum += std::pow (-1, k) * sin (k * in) / k;
+                sum += oddEven (k) * std::sin (k * in) / k;
                 k++;
             }
-            return -1.0f / float_Pi * sum;
+            return -2.0f / float_Pi * sum;
         }
         return ((in + float_Pi) / (2 * float_Pi)) * 2 - 1;
     };
@@ -64,13 +74,14 @@ slToneAudioProcessor::slToneAudioProcessor()
     {
         if (bandLimited)
         {
-            double f = parameterValue (PARAM_FREQ);
+            const double f = parameterValue (PARAM_FREQ);
+            const double sr = getSampleRate();
             
             double sum = 0;
             int k = 1;
-            while (f * k < getSampleRate() / 2)
+            while (f * k < sr / 2)
             {
-                sum += std::pow (-1, k) * sin (k * in) / k;
+                sum += oddEven (k) * std::sin (k * in) / k;
                 k++;
             }
             return 2.0f / float_Pi * sum;
@@ -82,13 +93,14 @@ slToneAudioProcessor::slToneAudioProcessor()
     {
         if (bandLimited)
         {
-            double f = parameterValue (PARAM_FREQ);
+            const double f = parameterValue (PARAM_FREQ);
+            const double sr = getSampleRate();
             
             double sum = 0;
             int i = 1;
-            while (f * (2 * i - 1) < getSampleRate() / 2)
+            while (f * (2 * i - 1) < sr / 2)
             {
-                sum += sin ((2 * i - 1) * in) / ((2 * i - 1));
+                sum += std::sin ((2 * i - 1) * in) / ((2 * i - 1));
                 i++;
             }
             
@@ -118,7 +130,8 @@ slToneAudioProcessor::slToneAudioProcessor()
     //==============================================================================
     
     addPluginParameter (new slParameter (PARAM_ENABLE,       "Enable",       "", "",     0.0f,      1.0f, 1.0f,    1.0f, 1.0f, onOffTextFunction));
-    addPluginParameter (new slParameter (PARAM_FREQ,         "Frequency",    "", "Hz",   30.0f, 10000.0f, 0.0f, 1000.0f, 0.5f));
+    addPluginParameter (new slParameter (PARAM_BANDLIMIT,    "Bandlimit",    "", "",     0.0f,      1.0f, 1.0f,    1.0f, 1.0f, onOffTextFunction));
+    addPluginParameter (new slParameter (PARAM_FREQ,         "Frequency",    "", "Hz",   30.0f, 10000.0f, 0.0f, 1000.0f, 0.3f));
     addPluginParameter (new slParameter (PARAM_SINE_LEVEL,   "Sine",         "", "dB", -100.0f,     6.0f, 0.0f, -100.0f, 5.f));
     addPluginParameter (new slParameter (PARAM_TRI_LEVEL,    "Triangle",     "", "dB", -100.0f,     6.0f, 0.0f, -100.0f, 5.f));
     addPluginParameter (new slParameter (PARAM_SAW_UP_LEVEL, "Saw Up",       "", "dB", -100.0f,     6.0f, 0.0f, -100.0f, 5.f));
@@ -161,6 +174,7 @@ void slToneAudioProcessor::processBlock (AudioSampleBuffer& buffer, MidiBuffer&)
     int numSamples = buffer.getNumSamples();
     scratch.setSize (1, numSamples, false, false, true);
     
+    bandLimited = parameterIntValue (PARAM_BANDLIMIT) != 0;
     float freq = getParameter (PARAM_FREQ)->getUserValue();
     
     sine.setFrequency (freq);
@@ -179,29 +193,47 @@ void slToneAudioProcessor::processBlock (AudioSampleBuffer& buffer, MidiBuffer&)
 
     AudioBlock<float> block (scratch);
     
-    sine.process (ProcessContextReplacing<float> (block));
-    applyGain (scratch, sineVal);
-    buffer.addFrom (0, 0, scratch, 0, 0, numSamples);
+    if (sineVal.isSmoothing() || sineVal.getTargetValue() > 0)
+    {
+        sine.process (ProcessContextReplacing<float> (block));
+        applyGain (scratch, sineVal);
+        buffer.addFrom (0, 0, scratch, 0, 0, numSamples);
+    }
     
-    triangle.process (ProcessContextReplacing<float> (block));
-    applyGain (scratch, triangleVal);
-    buffer.addFrom (0, 0, scratch, 0, 0, numSamples);
+    if (triangleVal.isSmoothing() || triangleVal.getTargetValue() > 0)
+    {
+        triangle.process (ProcessContextReplacing<float> (block));
+        applyGain (scratch, triangleVal);
+        buffer.addFrom (0, 0, scratch, 0, 0, numSamples);
+    }
     
-    sawUp.process (ProcessContextReplacing<float> (block));
-    applyGain (scratch, sawUpVal);
-    buffer.addFrom (0, 0, scratch, 0, 0, numSamples);
+    if (sawUpVal.isSmoothing() || sawUpVal.getTargetValue() > 0)
+    {
+        sawUp.process (ProcessContextReplacing<float> (block));
+        applyGain (scratch, sawUpVal);
+        buffer.addFrom (0, 0, scratch, 0, 0, numSamples);
+    }
 
-    sawDown.process (ProcessContextReplacing<float> (block));
-    applyGain (scratch, sawDownVal);
-    buffer.addFrom (0, 0, scratch, 0, 0, numSamples);
+    if (sawDownVal.isSmoothing() || sawDownVal.getTargetValue() > 0)
+    {
+        sawDown.process (ProcessContextReplacing<float> (block));
+        applyGain (scratch, sawDownVal);
+        buffer.addFrom (0, 0, scratch, 0, 0, numSamples);
+    }
 
-    square.process (ProcessContextReplacing<float> (block));
-    applyGain (scratch, squareVal);
-    buffer.addFrom (0, 0, scratch, 0, 0, numSamples);
+    if (squareVal.isSmoothing() || squareVal.getTargetValue() > 0)
+    {
+        square.process (ProcessContextReplacing<float> (block));
+        applyGain (scratch, squareVal);
+        buffer.addFrom (0, 0, scratch, 0, 0, numSamples);
+    }
     
-    noise.process (ProcessContextReplacing<float> (block));
-    applyGain (scratch, noiseVal);
-    buffer.addFrom (0, 0, scratch, 0, 0, numSamples);
+    if (noiseVal.isSmoothing() || noiseVal.getTargetValue() > 0)
+    {
+        noise.process (ProcessContextReplacing<float> (block));
+        applyGain (scratch, noiseVal);
+        buffer.addFrom (0, 0, scratch, 0, 0, numSamples);
+    }
     
     applyGain (buffer, enableVal);
     
