@@ -2,14 +2,14 @@
 
 <Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="slTone\Source\Common">
-      <UniqueIdentifier>{E8A589D2-F3F9-39EF-250F-3856ACF8274D}</UniqueIdentifier>
+    <Filter Include="ToneGenerator\Source\Common">
+      <UniqueIdentifier>{4C535702-AEC2-F2FA-AA01-A716D1A5C07A}</UniqueIdentifier>
     </Filter>
-    <Filter Include="slTone\Source">
-      <UniqueIdentifier>{1B748250-669B-564E-3791-1E9F04ADF608}</UniqueIdentifier>
+    <Filter Include="ToneGenerator\Source">
+      <UniqueIdentifier>{92B62538-F09B-A86C-B79B-0B53F60A102D}</UniqueIdentifier>
     </Filter>
-    <Filter Include="slTone">
-      <UniqueIdentifier>{D46EB597-EDB3-F824-5937-2C0BF25884ED}</UniqueIdentifier>
+    <Filter Include="ToneGenerator">
+      <UniqueIdentifier>{1004736E-3466-A414-B988-261F5F227D3B}</UniqueIdentifier>
     </Filter>
     <Filter Include="Juce Modules\dRowAudio\audio\fft\fftreal">
       <UniqueIdentifier>{7838572E-1B3F-3686-33BB-35915DB5D3E3}</UniqueIdentifier>
@@ -470,37 +470,37 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\..\module\slCommon\SingleLineTextEditor.cpp">
-      <Filter>slTone\Source\Common</Filter>
+      <Filter>ToneGenerator\Source\Common</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\module\slCommon\slComponents.cpp">
-      <Filter>slTone\Source\Common</Filter>
+      <Filter>ToneGenerator\Source\Common</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\module\slCommon\slDsp.cpp">
-      <Filter>slTone\Source\Common</Filter>
+      <Filter>ToneGenerator\Source\Common</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\module\slCommon\slLookAndFeel.cpp">
-      <Filter>slTone\Source\Common</Filter>
+      <Filter>ToneGenerator\Source\Common</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\module\slCommon\slParameter.cpp">
-      <Filter>slTone\Source\Common</Filter>
+      <Filter>ToneGenerator\Source\Common</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\module\slCommon\slPluginEditor.cpp">
-      <Filter>slTone\Source\Common</Filter>
+      <Filter>ToneGenerator\Source\Common</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\module\slCommon\slProcessor.cpp">
-      <Filter>slTone\Source\Common</Filter>
+      <Filter>ToneGenerator\Source\Common</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\module\slCommon\slProgram.cpp">
-      <Filter>slTone\Source\Common</Filter>
+      <Filter>ToneGenerator\Source\Common</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\module\slCommon\slUtil.cpp">
-      <Filter>slTone\Source\Common</Filter>
+      <Filter>ToneGenerator\Source\Common</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\PluginProcessor.cpp">
-      <Filter>slTone\Source</Filter>
+      <Filter>ToneGenerator\Source</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\PluginEditor.cpp">
-      <Filter>slTone\Source</Filter>
+      <Filter>ToneGenerator\Source</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\module\dRowAudio\module\dRowAudio\audio\fft\dRowAudio_FFT.cpp">
       <Filter>Juce Modules\dRowAudio\audio\fft</Filter>
@@ -2623,40 +2623,40 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\..\module\slCommon\SingleLineTextEditor.h">
-      <Filter>slTone\Source\Common</Filter>
+      <Filter>ToneGenerator\Source\Common</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\module\slCommon\slCommon.h">
-      <Filter>slTone\Source\Common</Filter>
+      <Filter>ToneGenerator\Source\Common</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\module\slCommon\slComponents.h">
-      <Filter>slTone\Source\Common</Filter>
+      <Filter>ToneGenerator\Source\Common</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\module\slCommon\slDsp.h">
-      <Filter>slTone\Source\Common</Filter>
+      <Filter>ToneGenerator\Source\Common</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\module\slCommon\slLookAndFeel.h">
-      <Filter>slTone\Source\Common</Filter>
+      <Filter>ToneGenerator\Source\Common</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\module\slCommon\slParameter.h">
-      <Filter>slTone\Source\Common</Filter>
+      <Filter>ToneGenerator\Source\Common</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\module\slCommon\slPluginEditor.h">
-      <Filter>slTone\Source\Common</Filter>
+      <Filter>ToneGenerator\Source\Common</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\module\slCommon\slProcessor.h">
-      <Filter>slTone\Source\Common</Filter>
+      <Filter>ToneGenerator\Source\Common</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\module\slCommon\slProgram.h">
-      <Filter>slTone\Source\Common</Filter>
+      <Filter>ToneGenerator\Source\Common</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\module\slCommon\slUtil.h">
-      <Filter>slTone\Source\Common</Filter>
+      <Filter>ToneGenerator\Source\Common</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\PluginProcessor.h">
-      <Filter>slTone\Source</Filter>
+      <Filter>ToneGenerator\Source</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\PluginEditor.h">
-      <Filter>slTone\Source</Filter>
+      <Filter>ToneGenerator\Source</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\module\dRowAudio\module\dRowAudio\audio\fft\fftreal\Array.h">
       <Filter>Juce Modules\dRowAudio\audio\fft\fftreal</Filter>

@@ -1,18 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<JUCERPROJECT id="JPnRUR" name="slTone" projectType="audioplug" version="1.0.0"
-              bundleIdentifier="com.socalabs.slTone" includeBinaryInAppConfig="1"
+<JUCERPROJECT id="JPnRUR" name="Tone Generator" projectType="audioplug" version="1.0.0"
+              bundleIdentifier="com.socalabs.ToneGenerator" includeBinaryInAppConfig="1"
               buildVST="1" buildVST3="0" buildAU="1" buildAUv3="0" buildRTAS="0"
-              buildAAX="0" pluginName="slTone" pluginDesc="slTone" pluginManufacturer="SocaLabs"
-              pluginManufacturerCode="Soca" pluginCode="Tone" pluginChannelConfigs="{0,1}"
-              pluginIsSynth="1" pluginWantsMidiIn="0" pluginProducesMidiOut="0"
-              pluginIsMidiEffectPlugin="0" pluginEditorRequiresKeys="0" pluginAUExportPrefix="slToneAU"
-              pluginRTASCategory="" aaxIdentifier="com.socalabs.slTone" pluginAAXCategory="AAX_ePlugInCategory_Dynamics"
+              buildAAX="0" pluginName="ToneGenerator" pluginDesc="ToneGenerator"
+              pluginManufacturer="SocaLabs" pluginManufacturerCode="Soca" pluginCode="Tone"
+              pluginChannelConfigs="{0,1}" pluginIsSynth="1" pluginWantsMidiIn="0"
+              pluginProducesMidiOut="0" pluginIsMidiEffectPlugin="0" pluginEditorRequiresKeys="0"
+              pluginAUExportPrefix="ToneGeneratorAU" pluginRTASCategory=""
+              aaxIdentifier="com.socalabs.ToneGenerator" pluginAAXCategory="AAX_ePlugInCategory_Dynamics"
               jucerVersion="5.2.0" companyName="SocaLabs" companyWebsite="www.socalabs.com"
               companyEmail="info@socalabs.com" displaySplashScreen="1" reportAppUsage="1"
               splashScreenColour="Dark" buildStandalone="0" enableIAA="0" cppLanguageStandard="14"
               companyCopyright="SocaLabs">
-  <MAINGROUP id="dPRjsF" name="slTone">
+  <MAINGROUP id="dPRjsF" name="ToneGenerator">
     <GROUP id="{EE796482-0D02-0052-80F4-B1FE6CE0D41A}" name="Source">
       <GROUP id="{DA748B7D-42D5-4A16-B897-0DD85D003309}" name="Common">
         <FILE id="WrrxUg" name="SingleLineTextEditor.cpp" compile="1" resource="0"
@@ -53,11 +54,12 @@
   <EXPORTFORMATS>
     <XCODE_MAC targetFolder="Builds/MacOSX">
       <CONFIGURATIONS>
-        <CONFIGURATION name="Debug" isDebug="1" optimisation="1" targetName="slTone"
+        <CONFIGURATION name="Debug" isDebug="1" optimisation="1" targetName="ToneGenerator"
                        cppLanguageStandard="c++14" osxCompatibility="10.9 SDK" headerPath="../../../../module/slCommon"
                        enablePluginBinaryCopyStep="1"/>
-        <CONFIGURATION name="Release" isDebug="0" optimisation="3" targetName="slTone"
-                       cppLanguageStandard="c++14" osxCompatibility="10.9 SDK" enablePluginBinaryCopyStep="1"/>
+        <CONFIGURATION name="Release" isDebug="0" optimisation="3" targetName="ToneGenerator"
+                       cppLanguageStandard="c++14" osxCompatibility="10.9 SDK" enablePluginBinaryCopyStep="1"
+                       headerPath="../../../../module/slCommon"/>
       </CONFIGURATIONS>
       <MODULEPATHS>
         <MODULEPATH id="juce_core" path="../../../JUCE/modules"/>
@@ -82,20 +84,20 @@
     <VS2015 targetFolder="Builds/VisualStudio2015">
       <CONFIGURATIONS>
         <CONFIGURATION name="Debug" winWarningLevel="4" generateManifest="1" winArchitecture="32-bit"
-                       isDebug="1" optimisation="1" targetName="slTone" headerPath="../../../../common"
+                       isDebug="1" optimisation="1" targetName="ToneGenerator_32b" headerPath="../../../../module/slCommon"
                        postbuildCommand="copy /Y &quot;$(OutDir)\$(TargetFileName)&quot; &quot;C:\Program Files (x86)\VSTPlugins&quot;"
                        debugInformationFormat="ProgramDatabase" enablePluginBinaryCopyStep="0"/>
         <CONFIGURATION name="Release" winWarningLevel="4" generateManifest="1" winArchitecture="32-bit"
-                       isDebug="0" optimisation="3" targetName="slTone" headerPath="../../../../common"
+                       isDebug="0" optimisation="3" targetName="ToneGenerator_32b" headerPath="../../../../module/slCommon"
                        postbuildCommand="copy /Y &quot;$(OutDir)\$(TargetFileName)&quot; &quot;C:\Program Files (x86)\VSTPlugins&quot;"
                        debugInformationFormat="ProgramDatabase" enablePluginBinaryCopyStep="0"
                        linkTimeOptimisation="1"/>
         <CONFIGURATION name="Debug64" winWarningLevel="4" generateManifest="1" winArchitecture="x64"
-                       isDebug="1" optimisation="1" targetName="slTone" headerPath="../../../../common"
+                       isDebug="1" optimisation="1" targetName="ToneGenerator_64b" headerPath="../../../../module/slCommon"
                        postbuildCommand="copy /Y &quot;$(OutDir)\$(TargetFileName)&quot; &quot;C:\Program Files\VSTPlugins&quot;"
                        debugInformationFormat="ProgramDatabase" enablePluginBinaryCopyStep="0"/>
         <CONFIGURATION name="Release64" winWarningLevel="4" generateManifest="1" winArchitecture="x64"
-                       isDebug="0" optimisation="3" targetName="slTone" headerPath="../../../../common"
+                       isDebug="0" optimisation="3" targetName="ToneGenerator_64b" headerPath="../../../../module/slCommon"
                        postbuildCommand="copy /Y &quot;$(OutDir)\$(TargetFileName)&quot; &quot;C:\Program Files\VSTPlugins&quot;"
                        debugInformationFormat="ProgramDatabase" enablePluginBinaryCopyStep="0"
                        linkTimeOptimisation="1"/>

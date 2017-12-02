@@ -64,7 +64,6 @@
 		064CC3D1A8E12442E4E6A9F1 = {isa = PBXFileReference; lastKnownFileType = file; name = "juce_audio_devices"; path = "../../../../../JUCE/modules/juce_audio_devices"; sourceTree = "SOURCE_ROOT"; };
 		06BD2AE317FC1CE3B319C064 = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = slLookAndFeel.h; path = ../../../../module/slCommon/slLookAndFeel.h; sourceTree = "SOURCE_ROOT"; };
 		1391C466687FD881B559A1EA = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = "include_juce_gui_basics.mm"; path = "../../JuceLibraryCode/include_juce_gui_basics.mm"; sourceTree = "SOURCE_ROOT"; };
-		146ECA3FB15E1B7A631A51CD = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = slTone.entitlements; path = slTone.entitlements; sourceTree = "SOURCE_ROOT"; };
 		14EB6C1EF136F1EBB5940B41 = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = "include_juce_opengl.mm"; path = "../../JuceLibraryCode/include_juce_opengl.mm"; sourceTree = "SOURCE_ROOT"; };
 		16CD7FC84EF67F8BF0DF4394 = {isa = PBXFileReference; lastKnownFileType = file; name = "juce_audio_processors"; path = "../../../../../JUCE/modules/juce_audio_processors"; sourceTree = "SOURCE_ROOT"; };
 		1B1FCAEE9895469FB3DBA9A1 = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = "include_juce_gui_extra.mm"; path = "../../JuceLibraryCode/include_juce_gui_extra.mm"; sourceTree = "SOURCE_ROOT"; };
@@ -85,26 +84,26 @@
 		4D8B58A4560E2D33F4B33CB4 = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = slProcessor.h; path = ../../../../module/slCommon/slProcessor.h; sourceTree = "SOURCE_ROOT"; };
 		4DAF6BB6F03770A913F64CE3 = {isa = PBXFileReference; lastKnownFileType = file.nib; name = RecentFilesMenuTemplate.nib; path = RecentFilesMenuTemplate.nib; sourceTree = "SOURCE_ROOT"; };
 		4E2CF5431DABC8B8425A887D = {isa = PBXFileReference; lastKnownFileType = file; name = "juce_audio_utils"; path = "../../../../../JUCE/modules/juce_audio_utils"; sourceTree = "SOURCE_ROOT"; };
+		4F46B24504DD5084C63A5345 = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = slParameter.cpp; path = ../../../../module/slCommon/slParameter.cpp; sourceTree = "SOURCE_ROOT"; };
 		5158CD0D54D4465405C8D883 = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = slComponents.h; path = ../../../../module/slCommon/slComponents.h; sourceTree = "SOURCE_ROOT"; };
 		581257E94F7D296426A57A61 = {isa = PBXFileReference; lastKnownFileType = file; name = "juce_audio_basics"; path = "../../../../../JUCE/modules/juce_audio_basics"; sourceTree = "SOURCE_ROOT"; };
 		5A4114B9EF0842CB31EAE55F = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SingleLineTextEditor.h; path = ../../../../module/slCommon/SingleLineTextEditor.h; sourceTree = "SOURCE_ROOT"; };
 		5E97800FC099791FEB67B8F9 = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DiscRecording.framework; path = System/Library/Frameworks/DiscRecording.framework; sourceTree = SDKROOT; };
+		62146BA944A6E1599175BD04 = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = slProgram.h; path = ../../../../module/slCommon/slProgram.h; sourceTree = "SOURCE_ROOT"; };
 		63C92CE44F93D171DE34C092 = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Info-VST.plist"; path = "Info-VST.plist"; sourceTree = "SOURCE_ROOT"; };
 		65CB07BC8F3C1D151305E8FA = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVKit.framework; path = System/Library/Frameworks/AVKit.framework; sourceTree = SDKROOT; };
-		74E7E764B3E3E82B66E023F8 = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = JuceHeader.h; path = ../../JuceLibraryCode/JuceHeader.h; sourceTree = "SOURCE_ROOT"; };
 		800E65D578464DBAEDDC2532 = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
-		E9A43D0E971690239E9BB476 = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = slTone.vst; sourceTree = "BUILT_PRODUCTS_DIR"; };
-		92625EFC69DCF497950C9A68 = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = slTone.component; sourceTree = "BUILT_PRODUCTS_DIR"; };
-		13A5BC81ECA4319407BC2DDF = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libslTone.a; sourceTree = "BUILT_PRODUCTS_DIR"; };
+		811826A1EAFAED9FC5740E32 = {isa = PBXFileReference; lastKnownFileType = file.r; name = "include_juce_audio_plugin_client_AU.r"; path = "../../JuceLibraryCode/include_juce_audio_plugin_client_AU.r"; sourceTree = "SOURCE_ROOT"; };
+		E9A43D0E971690239E9BB476 = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ToneGenerator.vst; sourceTree = "BUILT_PRODUCTS_DIR"; };
+		92625EFC69DCF497950C9A68 = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ToneGenerator.component; sourceTree = "BUILT_PRODUCTS_DIR"; };
+		13A5BC81ECA4319407BC2DDF = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libToneGenerator.a; sourceTree = "BUILT_PRODUCTS_DIR"; };
 		36E20C50B600CB2668791F62 = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
-		4F46B24504DD5084C63A5345 = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = slParameter.cpp; path = ../../../../module/slCommon/slParameter.cpp; sourceTree = "SOURCE_ROOT"; };
-		62146BA944A6E1599175BD04 = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = slProgram.h; path = ../../../../module/slCommon/slProgram.h; sourceTree = "SOURCE_ROOT"; };
 		64B699EEFEE6E3D92D5AEDEC = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
 		6A7F6E9D5B8523929D60CF43 = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = PluginProcessor.cpp; path = ../../Source/PluginProcessor.cpp; sourceTree = "SOURCE_ROOT"; };
 		6DDEF0E38063FF8B1805C883 = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = slUtil.cpp; path = ../../../../module/slCommon/slUtil.cpp; sourceTree = "SOURCE_ROOT"; };
+		74E7E764B3E3E82B66E023F8 = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = JuceHeader.h; path = ../../JuceLibraryCode/JuceHeader.h; sourceTree = "SOURCE_ROOT"; };
 		7E9AB01F85E5898801F7F704 = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		80497775F66555BDF96EDCED = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		811826A1EAFAED9FC5740E32 = {isa = PBXFileReference; lastKnownFileType = file.r; name = "include_juce_audio_plugin_client_AU.r"; path = "../../JuceLibraryCode/include_juce_audio_plugin_client_AU.r"; sourceTree = "SOURCE_ROOT"; };
 		81D275A7C52F6654FD2ABE2D = {isa = PBXFileReference; lastKnownFileType = file; name = "juce_video"; path = "../../../../../JUCE/modules/juce_video"; sourceTree = "SOURCE_ROOT"; };
 		83B5F2744BF9D792331698D9 = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = "include_dRowAudio.mm"; path = "../../JuceLibraryCode/include_dRowAudio.mm"; sourceTree = "SOURCE_ROOT"; };
 		88F23842C4F7F629B9927C1F = {isa = PBXFileReference; lastKnownFileType = file; name = "juce_audio_formats"; path = "../../../../../JUCE/modules/juce_audio_formats"; sourceTree = "SOURCE_ROOT"; };
@@ -123,6 +122,7 @@
 		ABB19ECD3E147EC91B41730A = {isa = PBXFileReference; lastKnownFileType = file; name = "juce_gui_extra"; path = "../../../../../JUCE/modules/juce_gui_extra"; sourceTree = "SOURCE_ROOT"; };
 		AC70AF7F64524C07C51C8CA6 = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioUnit.framework; path = System/Library/Frameworks/AudioUnit.framework; sourceTree = SDKROOT; };
 		B0303452FA1D81F28856D908 = {isa = PBXFileReference; lastKnownFileType = file; name = "juce_data_structures"; path = "../../../../../JUCE/modules/juce_data_structures"; sourceTree = "SOURCE_ROOT"; };
+		B41C1A28C1FFAFA05E674547 = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Tone Generator.entitlements"; path = "Tone Generator.entitlements"; sourceTree = "SOURCE_ROOT"; };
 		B5FD96A73C50C9083112788F = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = slParameter.h; path = ../../../../module/slCommon/slParameter.h; sourceTree = "SOURCE_ROOT"; };
 		B7F575A2FC9700E5CE702CB9 = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = "include_juce_cryptography.mm"; path = "../../JuceLibraryCode/include_juce_cryptography.mm"; sourceTree = "SOURCE_ROOT"; };
 		BE7CE14AD04C4CA3D284CF3A = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = "include_juce_core.mm"; path = "../../JuceLibraryCode/include_juce_core.mm"; sourceTree = "SOURCE_ROOT"; };
@@ -173,7 +173,7 @@
 					F6FE56B1A3B22D8D848B30A0,
 					DDD63854EEA993615442271F, ); name = Source; sourceTree = "<group>"; };
 		D3E1ABCDB409BAF67D97B6F4 = {isa = PBXGroup; children = (
-					306C5015CC6FACEEDDEFD975, ); name = slTone; sourceTree = "<group>"; };
+					306C5015CC6FACEEDDEFD975, ); name = ToneGenerator; sourceTree = "<group>"; };
 		C150C309706B28C788E06488 = {isa = PBXGroup; children = (
 					2A8F6416C6B2A01A15B3035F,
 					581257E94F7D296426A57A61,
@@ -243,7 +243,7 @@
 					92625EFC69DCF497950C9A68,
 					13A5BC81ECA4319407BC2DDF, ); name = Products; sourceTree = "<group>"; };
 		BB64C93FB2BCA9DA1D3B3A3B = {isa = PBXGroup; children = (
-					146ECA3FB15E1B7A631A51CD,
+					B41C1A28C1FFAFA05E674547,
 					D3E1ABCDB409BAF67D97B6F4,
 					C150C309706B28C788E06488,
 					B5F36CF3F169773C58D3B115,
@@ -286,8 +286,8 @@
 				LIBRARY_STYLE = Bundle;
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				MACOSX_DEPLOYMENT_TARGET_ppc = 10.4;
-				OTHER_LDFLAGS = "-bundle -lslTone";
-				PRODUCT_BUNDLE_IDENTIFIER = com.socalabs.slTone;
+				OTHER_LDFLAGS = "-bundle -lToneGenerator";
+				PRODUCT_BUNDLE_IDENTIFIER = com.socalabs.ToneGenerator;
 				SDKROOT_ppc = macosx10.5;
 				USE_HEADERMAP = NO;
 				WRAPPER_EXTENSION = vst; }; name = Debug; };
@@ -317,15 +317,15 @@
 				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GENERATE_PKGINFO_FILE = YES;
-				HEADER_SEARCH_PATHS = ("../../JuceLibraryCode", "../../../../module/dRowAudio/module", "../../../../../JUCE/modules", "../../../../../JUCE/modules/juce_audio_plugin_client", "$(inherited)");
+				HEADER_SEARCH_PATHS = ("../../JuceLibraryCode", "../../../../module/dRowAudio/module", "../../../../../JUCE/modules", "../../../../module/slCommon", "../../../../../JUCE/modules/juce_audio_plugin_client", "$(inherited)");
 				INFOPLIST_FILE = Info-VST.plist;
 				INFOPLIST_PREPROCESS = NO;
 				INSTALL_PATH = "$(HOME)/Library/Audio/Plug-Ins/VST/";
 				LIBRARY_STYLE = Bundle;
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				MACOSX_DEPLOYMENT_TARGET_ppc = 10.4;
-				OTHER_LDFLAGS = "-bundle -lslTone";
-				PRODUCT_BUNDLE_IDENTIFIER = com.socalabs.slTone;
+				OTHER_LDFLAGS = "-bundle -lToneGenerator";
+				PRODUCT_BUNDLE_IDENTIFIER = com.socalabs.ToneGenerator;
 				SDKROOT_ppc = macosx10.5;
 				USE_HEADERMAP = NO;
 				WRAPPER_EXTENSION = vst; }; name = Release; };
@@ -361,9 +361,9 @@
 				LIBRARY_STYLE = Bundle;
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				MACOSX_DEPLOYMENT_TARGET_ppc = 10.4;
-				OTHER_LDFLAGS = "-bundle -lslTone";
+				OTHER_LDFLAGS = "-bundle -lToneGenerator";
 				OTHER_REZFLAGS = "-d ppc_$ppc -d i386_$i386 -d ppc64_$ppc64 -d x86_64_$x86_64 -I /System/Library/Frameworks/CoreServices.framework/Frameworks/CarbonCore.framework/Versions/A/Headers -I \"$(DEVELOPER_DIR)/Extras/CoreAudio/AudioUnits/AUPublic/AUBase\"";
-				PRODUCT_BUNDLE_IDENTIFIER = com.socalabs.slTone;
+				PRODUCT_BUNDLE_IDENTIFIER = com.socalabs.ToneGenerator;
 				SDKROOT_ppc = macosx10.5;
 				USE_HEADERMAP = NO;
 				WRAPPER_EXTENSION = component; }; name = Debug; };
@@ -393,16 +393,16 @@
 				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GENERATE_PKGINFO_FILE = YES;
-				HEADER_SEARCH_PATHS = ("../../JuceLibraryCode", "../../../../module/dRowAudio/module", "../../../../../JUCE/modules", "../../../../../JUCE/modules/juce_audio_plugin_client", "$(inherited)");
+				HEADER_SEARCH_PATHS = ("../../JuceLibraryCode", "../../../../module/dRowAudio/module", "../../../../../JUCE/modules", "../../../../module/slCommon", "../../../../../JUCE/modules/juce_audio_plugin_client", "$(inherited)");
 				INFOPLIST_FILE = Info-AU.plist;
 				INFOPLIST_PREPROCESS = NO;
 				INSTALL_PATH = "$(HOME)/Library/Audio/Plug-Ins/Components/";
 				LIBRARY_STYLE = Bundle;
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				MACOSX_DEPLOYMENT_TARGET_ppc = 10.4;
-				OTHER_LDFLAGS = "-bundle -lslTone";
+				OTHER_LDFLAGS = "-bundle -lToneGenerator";
 				OTHER_REZFLAGS = "-d ppc_$ppc -d i386_$i386 -d ppc64_$ppc64 -d x86_64_$x86_64 -I /System/Library/Frameworks/CoreServices.framework/Frameworks/CarbonCore.framework/Versions/A/Headers -I \"$(DEVELOPER_DIR)/Extras/CoreAudio/AudioUnits/AUPublic/AUBase\"";
-				PRODUCT_BUNDLE_IDENTIFIER = com.socalabs.slTone;
+				PRODUCT_BUNDLE_IDENTIFIER = com.socalabs.ToneGenerator;
 				SDKROOT_ppc = macosx10.5;
 				USE_HEADERMAP = NO;
 				WRAPPER_EXTENSION = component; }; name = Release; };
@@ -433,7 +433,7 @@
 				INSTALL_PATH = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				MACOSX_DEPLOYMENT_TARGET_ppc = 10.4;
-				PRODUCT_BUNDLE_IDENTIFIER = com.socalabs.slTone;
+				PRODUCT_BUNDLE_IDENTIFIER = com.socalabs.ToneGenerator;
 				SDKROOT_ppc = macosx10.5;
 				USE_HEADERMAP = NO; }; name = Debug; };
 		4D1EEADA9F327CFB40AF9B88 = {isa = XCBuildConfiguration; buildSettings = {
@@ -460,11 +460,11 @@
 					"JUCE_SHARED_CODE=1", );
 				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
-				HEADER_SEARCH_PATHS = ("../../JuceLibraryCode", "../../../../module/dRowAudio/module", "../../../../../JUCE/modules", "../../../../../JUCE/modules/juce_audio_plugin_client", "$(inherited)");
+				HEADER_SEARCH_PATHS = ("../../JuceLibraryCode", "../../../../module/dRowAudio/module", "../../../../../JUCE/modules", "../../../../module/slCommon", "../../../../../JUCE/modules/juce_audio_plugin_client", "$(inherited)");
 				INSTALL_PATH = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				MACOSX_DEPLOYMENT_TARGET_ppc = 10.4;
-				PRODUCT_BUNDLE_IDENTIFIER = com.socalabs.slTone;
+				PRODUCT_BUNDLE_IDENTIFIER = com.socalabs.ToneGenerator;
 				SDKROOT_ppc = macosx10.5;
 				USE_HEADERMAP = NO; }; name = Release; };
 		B4C59F0AA5F921AA5388998C = {isa = XCBuildConfiguration; buildSettings = {
@@ -502,7 +502,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_NAME = "slTone";
+				PRODUCT_NAME = "ToneGenerator";
 				WARNING_CFLAGS = -Wreorder;
 				ZERO_LINK = NO; }; name = Debug; };
 		F25B0316F861DF42E2CECAC8 = {isa = XCBuildConfiguration; buildSettings = {
@@ -538,7 +538,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				PRODUCT_NAME = "slTone";
+				PRODUCT_NAME = "ToneGenerator";
 				WARNING_CFLAGS = -Wreorder;
 				ZERO_LINK = NO; }; name = Release; };
 		55AFB2DBBD885AE334F03391 = {isa = PBXTargetDependency; target = 25220F44A4E6E1F934B7C1EF; };
@@ -553,7 +553,7 @@
 		0E3A0B52C561ECE6208D0D38 = {isa = PBXAggregateTarget; buildConfigurationList = 37FBC433872B18F3D14396A5; buildPhases = (  ); buildRules = ( ); dependencies = (
 					55AFB2DBBD885AE334F03391,
 					DF9DFADE3D712D676D113B71,
-					9A5C921A1F8BE3F11C253D24, ); name = "slTone - All"; productName = slTone; };
+					9A5C921A1F8BE3F11C253D24, ); name = "Tone Generator - All"; productName = "Tone Generator"; };
 		ECEB1EF9564061F291582FDD = {isa = XCConfigurationList; buildConfigurations = (
 					4CE75EF5312C37FBBFE0F862,
 					CC8F8EB75AC785967CAC4F2C, ); defaultConfigurationIsVisible = 0; defaultConfigurationName = Debug; };
@@ -580,7 +580,7 @@
 					0941441315B0A1DA68F95BA2,
 					4F2F3C964F648E0515ED6168,
 					D4F4828EFD20B0AA6E121B47, ); buildRules = ( ); dependencies = (
-					9A5C921A1F8BE3F11C253D24, ); name = "slTone - VST"; productName = slTone; productReference = E9A43D0E971690239E9BB476; productType = "com.apple.product-type.bundle"; };
+					9A5C921A1F8BE3F11C253D24, ); name = "Tone Generator - VST"; productName = "Tone Generator"; productReference = E9A43D0E971690239E9BB476; productType = "com.apple.product-type.bundle"; };
 		AFA49AB1DEFD776487731D86 = {isa = XCConfigurationList; buildConfigurations = (
 					8EDE0D161EF4499CCF2BF175,
 					AC986E6D4155C97AEA4645B3, ); defaultConfigurationIsVisible = 0; defaultConfigurationName = Debug; };
@@ -613,7 +613,7 @@
 					9E56617D4C710E32F0F4BD80,
 					CC56CF24D5B483674F80EF0D,
 					19F319875850E817CAD3E0BE, ); buildRules = ( ); dependencies = (
-					9A5C921A1F8BE3F11C253D24, ); name = "slTone - AU"; productName = slTone; productReference = 92625EFC69DCF497950C9A68; productType = "com.apple.product-type.bundle"; };
+					9A5C921A1F8BE3F11C253D24, ); name = "Tone Generator - AU"; productName = "Tone Generator"; productReference = 92625EFC69DCF497950C9A68; productType = "com.apple.product-type.bundle"; };
 		2E8DDC8645C4CBFC64DA1917 = {isa = XCConfigurationList; buildConfigurations = (
 					E627043B9D9567C36A0D39D0,
 					4D1EEADA9F327CFB40AF9B88, ); defaultConfigurationIsVisible = 0; defaultConfigurationName = Debug; };
@@ -648,7 +648,7 @@
 					52D7872E1B74B2605C1B1849,
 					AAEFDF8D18746C101DE5648B, ); runOnlyForDeploymentPostprocessing = 0; };
 		5E278CB1AD4A3EF88176784B = {isa = PBXNativeTarget; buildConfigurationList = 2E8DDC8645C4CBFC64DA1917; buildPhases = (
-					EAB594E4C3DB912A801B6F7E, ); buildRules = ( ); dependencies = (  ); name = "slTone - Shared Code"; productName = slTone; productReference = 13A5BC81ECA4319407BC2DDF; productType = "com.apple.product-type.library.static"; };
+					EAB594E4C3DB912A801B6F7E, ); buildRules = ( ); dependencies = (  ); name = "Tone Generator - Shared Code"; productName = "Tone Generator"; productReference = 13A5BC81ECA4319407BC2DDF; productType = "com.apple.product-type.library.static"; };
 		0624B96834EA097F877B7528 = {isa = PBXProject; buildConfigurationList = 56AC8981D9C3FF0BC8F17CFD; attributes = { LastUpgradeCheck = 0830; ORGANIZATIONNAME = "SocaLabs"; TargetAttributes = { 0E3A0B52C561ECE6208D0D38 = { SystemCapabilities = {com.apple.ApplicationGroups.iOS = { enabled = 0; }; com.apple.InAppPurchase = { enabled = 0; }; com.apple.InterAppAudio = { enabled = 0; }; com.apple.Push = { enabled = 0; }; com.apple.Sandbox = { enabled = 0; }; }; };25220F44A4E6E1F934B7C1EF = { SystemCapabilities = {com.apple.ApplicationGroups.iOS = { enabled = 0; }; com.apple.InAppPurchase = { enabled = 0; }; com.apple.InterAppAudio = { enabled = 0; }; com.apple.Push = { enabled = 0; }; com.apple.Sandbox = { enabled = 0; }; }; };F70B106B45672147D9958AC7 = { SystemCapabilities = {com.apple.ApplicationGroups.iOS = { enabled = 0; }; com.apple.InAppPurchase = { enabled = 0; }; com.apple.InterAppAudio = { enabled = 0; }; com.apple.Push = { enabled = 0; }; com.apple.Sandbox = { enabled = 0; }; }; };5E278CB1AD4A3EF88176784B = { SystemCapabilities = {com.apple.ApplicationGroups.iOS = { enabled = 0; }; com.apple.InAppPurchase = { enabled = 0; }; com.apple.InterAppAudio = { enabled = 0; }; com.apple.Push = { enabled = 0; }; com.apple.Sandbox = { enabled = 0; }; }; }; }; }; compatibilityVersion = "Xcode 3.2"; hasScannedForEncodings = 0; mainGroup = BB64C93FB2BCA9DA1D3B3A3B; projectDirPath = ""; projectRoot = ""; targets = (0E3A0B52C561ECE6208D0D38, 25220F44A4E6E1F934B7C1EF, F70B106B45672147D9958AC7, 5E278CB1AD4A3EF88176784B); };
 	};
 	rootObject = 0624B96834EA097F877B7528;

@@ -339,10 +339,10 @@
  #define JucePlugin_Enable_IAA             0
 #endif
 #ifndef  JucePlugin_Name
- #define JucePlugin_Name                   "slTone"
+ #define JucePlugin_Name                   "ToneGenerator"
 #endif
 #ifndef  JucePlugin_Desc
- #define JucePlugin_Desc                   "slTone"
+ #define JucePlugin_Desc                   "ToneGenerator"
 #endif
 #ifndef  JucePlugin_Manufacturer
  #define JucePlugin_Manufacturer           "SocaLabs"
@@ -396,16 +396,16 @@
  #define JucePlugin_AUSubType              JucePlugin_PluginCode
 #endif
 #ifndef  JucePlugin_AUExportPrefix
- #define JucePlugin_AUExportPrefix         slToneAU
+ #define JucePlugin_AUExportPrefix         ToneGeneratorAU
 #endif
 #ifndef  JucePlugin_AUExportPrefixQuoted
- #define JucePlugin_AUExportPrefixQuoted   "slToneAU"
+ #define JucePlugin_AUExportPrefixQuoted   "ToneGeneratorAU"
 #endif
 #ifndef  JucePlugin_AUManufacturerCode
  #define JucePlugin_AUManufacturerCode     JucePlugin_ManufacturerCode
 #endif
 #ifndef  JucePlugin_CFBundleIdentifier
- #define JucePlugin_CFBundleIdentifier     com.socalabs.slTone
+ #define JucePlugin_CFBundleIdentifier     com.socalabs.ToneGenerator
 #endif
 #ifndef  JucePlugin_RTASCategory
  #define JucePlugin_RTASCategory           ePlugInCategory_SWGenerators
@@ -423,7 +423,7 @@
  #define JucePlugin_RTASDisableMultiMono   0
 #endif
 #ifndef  JucePlugin_AAXIdentifier
- #define JucePlugin_AAXIdentifier          com.socalabs.slTone
+ #define JucePlugin_AAXIdentifier          com.socalabs.ToneGenerator
 #endif
 #ifndef  JucePlugin_AAXManufacturerCode
  #define JucePlugin_AAXManufacturerCode    JucePlugin_ManufacturerCode
@@ -447,7 +447,7 @@
  #define JucePlugin_IAASubType             JucePlugin_PluginCode
 #endif
 #ifndef  JucePlugin_IAAName
- #define JucePlugin_IAAName                "SocaLabs: slTone"
+ #define JucePlugin_IAAName                "SocaLabs: ToneGenerator"
 #endif
 #ifndef  JucePlugin_MaxNumInputChannels
  #define JucePlugin_MaxNumInputChannels    0

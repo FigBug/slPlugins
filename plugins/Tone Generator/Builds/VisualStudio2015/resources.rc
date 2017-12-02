@@ -15,9 +15,9 @@ BEGIN
     BEGIN
       VALUE "CompanyName",  "SocaLabs\0"
       VALUE "LegalCopyright",  "SocaLabs\0"
-      VALUE "FileDescription",  "slTone\0"
+      VALUE "FileDescription",  "Tone Generator\0"
       VALUE "FileVersion",  "1.0.0\0"
-      VALUE "ProductName",  "slTone\0"
+      VALUE "ProductName",  "Tone Generator\0"
       VALUE "ProductVersion",  "1.0.0\0"
     END
   END

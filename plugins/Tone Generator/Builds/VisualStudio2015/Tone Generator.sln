@@ -1,12 +1,12 @@
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2015
 
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "slTone - VST", "slTone_VST.vcxproj", "{5BDAF59F-85C9-569F-6009-F34E9D6BA450}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Tone Generator - VST", "Tone Generator_VST.vcxproj", "{5BDAF59F-85C9-569F-6009-F34E9D6BA450}"
 	ProjectSection(ProjectDependencies) = postProject
 		{C9B82667-C15C-C6F1-E303-081EA176C344} = {C9B82667-C15C-C6F1-E303-081EA176C344}
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "slTone - Shared Code", "slTone_SharedCode.vcxproj", "{C9B82667-C15C-C6F1-E303-081EA176C344}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Tone Generator - Shared Code", "Tone Generator_SharedCode.vcxproj", "{C9B82667-C15C-C6F1-E303-081EA176C344}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
