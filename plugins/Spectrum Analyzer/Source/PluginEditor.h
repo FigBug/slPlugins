@@ -30,6 +30,9 @@ public:
 
     drow::Spectroscope scopeL {10};
     drow::Spectroscope scopeR {10};
+    
+    drow::Sonogram sonogramL {10};
+    drow::Sonogram sonogramR {10};
 
 private:
     CriticalSection lock;

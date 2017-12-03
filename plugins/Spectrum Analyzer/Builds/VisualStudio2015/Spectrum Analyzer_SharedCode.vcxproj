@@ -283,6 +283,7 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\..\..\module\slCommon\SingleLineTextEditor.cpp"/>
     <ClCompile Include="..\..\..\..\module\slCommon\slComponents.cpp"/>
     <ClCompile Include="..\..\..\..\module\slCommon\slDsp.cpp"/>
     <ClCompile Include="..\..\..\..\module\slCommon\slLookAndFeel.cpp"/>
@@ -1889,9 +1890,6 @@
     <ClCompile Include="..\..\..\..\..\JUCE\modules\juce_gui_basics\layout\juce_ScrollBar.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\JUCE\modules\juce_gui_basics\layout\juce_SidePanel.cpp">
-      <ExcludedFromBuild>true</ExcludedFromBuild>
-    </ClCompile>
     <ClCompile Include="..\..\..\..\..\JUCE\modules\juce_gui_basics\layout\juce_StretchableLayoutManager.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
@@ -1923,9 +1921,6 @@
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\..\..\..\..\JUCE\modules\juce_gui_basics\lookandfeel\juce_LookAndFeel_V4.cpp">
-      <ExcludedFromBuild>true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\..\JUCE\modules\juce_gui_basics\menus\juce_BurgerMenuComponent.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\..\..\..\..\JUCE\modules\juce_gui_basics\menus\juce_MenuBarComponent.cpp">
@@ -1971,9 +1966,6 @@
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\..\..\..\..\JUCE\modules\juce_gui_basics\native\juce_android_Windowing.cpp">
-      <ExcludedFromBuild>true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\..\JUCE\modules\juce_gui_basics\native\juce_common_MimeTypes.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\..\..\..\..\JUCE\modules\juce_gui_basics\native\juce_linux_FileChooser.cpp">
@@ -2250,6 +2242,7 @@
     <ClCompile Include="..\..\JuceLibraryCode\include_juce_video.cpp"/>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\..\..\module\slCommon\SingleLineTextEditor.h"/>
     <ClInclude Include="..\..\..\..\module\slCommon\slCommon.h"/>
     <ClInclude Include="..\..\..\..\module\slCommon\slComponents.h"/>
     <ClInclude Include="..\..\..\..\module\slCommon\slDsp.h"/>
@@ -2930,7 +2923,6 @@
     <ClInclude Include="..\..\..\..\..\JUCE\modules\juce_gui_basics\layout\juce_ResizableCornerComponent.h"/>
     <ClInclude Include="..\..\..\..\..\JUCE\modules\juce_gui_basics\layout\juce_ResizableEdgeComponent.h"/>
     <ClInclude Include="..\..\..\..\..\JUCE\modules\juce_gui_basics\layout\juce_ScrollBar.h"/>
-    <ClInclude Include="..\..\..\..\..\JUCE\modules\juce_gui_basics\layout\juce_SidePanel.h"/>
     <ClInclude Include="..\..\..\..\..\JUCE\modules\juce_gui_basics\layout\juce_StretchableLayoutManager.h"/>
     <ClInclude Include="..\..\..\..\..\JUCE\modules\juce_gui_basics\layout\juce_StretchableLayoutResizerBar.h"/>
     <ClInclude Include="..\..\..\..\..\JUCE\modules\juce_gui_basics\layout\juce_StretchableObjectResizer.h"/>
@@ -2942,7 +2934,6 @@
     <ClInclude Include="..\..\..\..\..\JUCE\modules\juce_gui_basics\lookandfeel\juce_LookAndFeel_V2.h"/>
     <ClInclude Include="..\..\..\..\..\JUCE\modules\juce_gui_basics\lookandfeel\juce_LookAndFeel_V3.h"/>
     <ClInclude Include="..\..\..\..\..\JUCE\modules\juce_gui_basics\lookandfeel\juce_LookAndFeel_V4.h"/>
-    <ClInclude Include="..\..\..\..\..\JUCE\modules\juce_gui_basics\menus\juce_BurgerMenuComponent.h"/>
     <ClInclude Include="..\..\..\..\..\JUCE\modules\juce_gui_basics\menus\juce_MenuBarComponent.h"/>
     <ClInclude Include="..\..\..\..\..\JUCE\modules\juce_gui_basics\menus\juce_MenuBarModel.h"/>
     <ClInclude Include="..\..\..\..\..\JUCE\modules\juce_gui_basics\menus\juce_PopupMenu.h"/>

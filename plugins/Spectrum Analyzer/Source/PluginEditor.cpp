@@ -17,9 +17,14 @@ PluginEditor::PluginEditor (PluginProcessor& p)
 {
     addAndMakeVisible (&scopeL);
     addAndMakeVisible (&scopeR);
+
+    addAndMakeVisible (&sonogramL);
+    addAndMakeVisible (&sonogramR);
     
     thread.addTimeSliceClient (&scopeL);
     thread.addTimeSliceClient (&scopeR);
+    thread.addTimeSliceClient (&sonogramL);
+    thread.addTimeSliceClient (&sonogramR);
     thread.startThread();
     
     scopeL.setColour (drow::Spectroscope::traceColourId, Colours::white.overlaidWith (Colours::blue.withAlpha (0.3f)));
@@ -29,7 +34,7 @@ PluginEditor::PluginEditor (PluginProcessor& p)
     {
         ParamComponent* pc;
         
-        if (pp->getUid() == PARAM_TRIGGER_MODE || pp->getUid() == PARAM_TRIGGER_CHANNEL)
+        if (pp->getUid() == PARAM_MODE)
             pc = new Select (pp);
         else if (pp->isOnOff())
             pc = new Switch (pp);
@@ -62,26 +67,48 @@ PluginEditor::~PluginEditor()
 
 Rectangle<int> PluginEditor::getGridArea (int x, int y, int w, int h)
 {
-    return Rectangle<int> (getWidth() - inset - 2 * cx + x * cx, headerHeight + y * cy + inset, w * cx, h * cy);
+    return Rectangle<int> (getWidth() - inset - cx + x * cx, headerHeight + y * cy + inset, w * cx, h * cy);
 }
 
 void PluginEditor::resized()
 {
     slAudioProcessorEditor::resized();
 
-    scopeL.setBounds (inset, headerHeight + inset, getWidth() - 2 * cx - inset, getHeight() - headerHeight - 2 * inset);
-    scopeR.setBounds (inset, headerHeight + inset, getWidth() - 2 * cx - inset, getHeight() - headerHeight - 2 * inset);
+    auto rc = Rectangle<int> (inset, headerHeight + inset, getWidth() - cx - 2 * inset, getHeight() - headerHeight - 2 * inset);
     
-    componentForId (PARAM_SAMPLES_PER_PIXEL)->setBounds (getGridArea (0, 0));
-    componentForId (PARAM_VERTICAL_ZOOM)->setBounds (getGridArea (0, 1));
-    componentForId (PARAM_VERTICAL_OFFSET_L)->setBounds (getGridArea (0, 2));
-    componentForId (PARAM_VERTICAL_OFFSET_R)->setBounds (getGridArea (0, 3));
-    componentForId (PARAM_TRIGGER_CHANNEL)->setBounds (getGridArea (1, 0));
-    componentForId (PARAM_TRIGGER_MODE)->setBounds (getGridArea (1, 1));
-    componentForId (PARAM_TRIGGER_LEVEL)->setBounds (getGridArea (1, 2));
-    componentForId (PARAM_TRIGGER_POS)->setBounds (getGridArea (1, 3));
+    scopeL.setBounds (rc);
+    scopeR.setBounds (rc);
+
+    if (processor.getTotalNumInputChannels() == 1)
+    {
+        sonogramL.setBounds (rc);
+        sonogramR.setBounds (Rectangle<int>());
+    }
+    else
+    {
+        int h = (rc.getHeight() - inset) / 2;
+        sonogramL.setBounds (rc.removeFromTop (h));
+        sonogramR.setBounds (rc.removeFromBottom (h));
+    }
+    
+    componentForId (PARAM_MODE)->setBounds (getGridArea (0, 0));
+    componentForId (PARAM_LOG)->setBounds (getGridArea (0, 1));
 }
 
 void PluginEditor::updateScope()
 {
+    int mode = processor.parameterIntValue (PARAM_MODE);
+    
+    scopeL.setVisible (mode == 0);
+    scopeR.setVisible (mode == 0);
+    
+    sonogramL.setVisible (mode == 1);
+    sonogramR.setVisible (mode == 1);
+    
+    bool log = processor.parameterIntValue (PARAM_LOG) != 0;
+    
+    scopeL.setLogFrequencyDisplay (log);
+    scopeR.setLogFrequencyDisplay (log);
+    sonogramL.setLogFrequencyDisplay (log);
+    sonogramR.setLogFrequencyDisplay (log);
 }

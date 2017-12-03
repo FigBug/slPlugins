@@ -16,6 +16,10 @@
   <MAINGROUP id="dPRjsF" name="Spectrum Analyzer">
     <GROUP id="{EE796482-0D02-0052-80F4-B1FE6CE0D41A}" name="Source">
       <GROUP id="{DA748B7D-42D5-4A16-B897-0DD85D003309}" name="Common">
+        <FILE id="vaaJf0" name="SingleLineTextEditor.cpp" compile="1" resource="0"
+              file="../../module/slCommon/SingleLineTextEditor.cpp"/>
+        <FILE id="Hq0QIv" name="SingleLineTextEditor.h" compile="0" resource="0"
+              file="../../module/slCommon/SingleLineTextEditor.h"/>
         <FILE id="yeOizS" name="slCommon.h" compile="0" resource="0" file="../../module/slCommon/slCommon.h"/>
         <FILE id="g3nLUF" name="slComponents.cpp" compile="1" resource="0"
               file="../../module/slCommon/slComponents.cpp"/>

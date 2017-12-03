@@ -13,55 +13,26 @@
 #include <random>
 
 //==============================================================================
-String onOffTextFunction (const slParameter& p)
+String onOffTextFunction (const slParameter& p, float v)
 {
-    return p.getUserValue() > 0.0f ? "On" : "Off";
-}
-
-String chanTextFunction (const slParameter& p, float v)
-{
-    switch (int (v))
-    {
-        case -1: return "Ave";
-        case 0:  return "Left";
-        case 1:  return "Right";
-        default: return "";
-    }
+    return v > 0.0f ? "On" : "Off";
 }
 
 String modeTextFunction (const slParameter& p, float v)
 {
     switch (int (v))
     {
-        case 0:  return "Off";
-        case 1:  return "Up";
-        case 2:  return "Down";
+        case 0:  return "Spectroscope";
+        case 1:  return "Sonogram";
         default: return "";
     }
 }
 
-String intTextFunction (const slParameter& p, float v)
-{
-    return String (int (v));
-}
-
-String tlTextFunction (const slParameter& p, float v)
-{
-    return String (v, 2);
-}
-
-
 //==============================================================================
 PluginProcessor::PluginProcessor()
 {
-    addPluginParameter (new slParameter (PARAM_SAMPLES_PER_PIXEL,       "Samp/px",       "", "",     1.0f,   48.0f,  1.0f,    1.0f, 1.0f, intTextFunction));
-    addPluginParameter (new slParameter (PARAM_VERTICAL_ZOOM,           "Zoom",          "", "",     0.1f,   100.0f, 0.0f,    1.0f, 0.3f));
-    addPluginParameter (new slParameter (PARAM_VERTICAL_OFFSET_L,       "Offset L",      "", "",     -2.0f,  2.0f,   0.0f,    0.0f, 1.0f));
-    addPluginParameter (new slParameter (PARAM_VERTICAL_OFFSET_R,       "Offset R",      "", "",     -2.0f,  2.0f,   0.0f,    0.0f, 1.0f));
-    addPluginParameter (new slParameter (PARAM_TRIGGER_CHANNEL,         "Trigger Chan",  "", "",     -1.0f,  1.0f,   1.0f,    0.0f, 1.0f, chanTextFunction));
-    addPluginParameter (new slParameter (PARAM_TRIGGER_MODE,            "Trigger Mode",  "", "",     0.0f,   2.0f,   1.0f,    1.0f, 1.0f, modeTextFunction));
-    addPluginParameter (new slParameter (PARAM_TRIGGER_LEVEL,           "Trigger Level", "", "",     -1.0f,  1.0f,   0.0f,    0.0f, 1.0f, tlTextFunction));
-    addPluginParameter (new slParameter (PARAM_TRIGGER_POS,             "Trigger Pos",   "", "",      0.0f,  1.0f,   0.0f,    0.0f, 1.0f, tlTextFunction));
+    addPluginParameter (new slParameter (PARAM_MODE,       "Mode",       "", "",     0.0f,   1.0f,  1.0f,    0.0f, 1.0f, modeTextFunction));
+    addPluginParameter (new slParameter (PARAM_LOG,        "Log",        "", "",     0.0f,   1.0f,  1.0f,    0.0f, 1.0f, onOffTextFunction));
 }
 
 PluginProcessor::~PluginProcessor()
@@ -84,8 +55,13 @@ void PluginProcessor::processBlock (AudioSampleBuffer& buffer, MidiBuffer&)
     {
         const int num = buffer.getNumSamples();
         editor->scopeL.copySamples (buffer.getReadPointer (0), num);
+        editor->sonogramL.copySamples (buffer.getReadPointer (0), num);
+        
         if (getTotalNumInputChannels() > 1)
+        {
             editor->scopeR.copySamples (buffer.getReadPointer (1), num);
+            editor->sonogramR.copySamples (buffer.getReadPointer (1), num);
+        }
     }
 }
 
