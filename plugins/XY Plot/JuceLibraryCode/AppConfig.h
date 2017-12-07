@@ -339,10 +339,10 @@
  #define JucePlugin_Enable_IAA             0
 #endif
 #ifndef  JucePlugin_Name
- #define JucePlugin_Name                   "SpectrumAnalyzer"
+ #define JucePlugin_Name                   "XYPlot"
 #endif
 #ifndef  JucePlugin_Desc
- #define JucePlugin_Desc                   "Spectrum Analyzer"
+ #define JucePlugin_Desc                   "XY Plot"
 #endif
 #ifndef  JucePlugin_Manufacturer
  #define JucePlugin_Manufacturer           "SocaLabs"
@@ -357,7 +357,7 @@
  #define JucePlugin_ManufacturerCode       0x536f6361 // 'Soca'
 #endif
 #ifndef  JucePlugin_PluginCode
- #define JucePlugin_PluginCode             0x53706563 // 'Spec'
+ #define JucePlugin_PluginCode             0x5879706c // 'Xypl'
 #endif
 #ifndef  JucePlugin_IsSynth
  #define JucePlugin_IsSynth                0
@@ -396,16 +396,16 @@
  #define JucePlugin_AUSubType              JucePlugin_PluginCode
 #endif
 #ifndef  JucePlugin_AUExportPrefix
- #define JucePlugin_AUExportPrefix         slSpectrumAnalyzerAU
+ #define JucePlugin_AUExportPrefix         slXYPlotAU
 #endif
 #ifndef  JucePlugin_AUExportPrefixQuoted
- #define JucePlugin_AUExportPrefixQuoted   "slSpectrumAnalyzerAU"
+ #define JucePlugin_AUExportPrefixQuoted   "slXYPlotAU"
 #endif
 #ifndef  JucePlugin_AUManufacturerCode
  #define JucePlugin_AUManufacturerCode     JucePlugin_ManufacturerCode
 #endif
 #ifndef  JucePlugin_CFBundleIdentifier
- #define JucePlugin_CFBundleIdentifier     com.socalabs.SpectrumAnalyzer
+ #define JucePlugin_CFBundleIdentifier     com.socalabs.XYPlot
 #endif
 #ifndef  JucePlugin_RTASCategory
  #define JucePlugin_RTASCategory           ePlugInCategory_None
@@ -423,7 +423,7 @@
  #define JucePlugin_RTASDisableMultiMono   0
 #endif
 #ifndef  JucePlugin_AAXIdentifier
- #define JucePlugin_AAXIdentifier          com.socalabs.slSpectrumAnalyzer
+ #define JucePlugin_AAXIdentifier          com.socalabs.slXYPlot
 #endif
 #ifndef  JucePlugin_AAXManufacturerCode
  #define JucePlugin_AAXManufacturerCode    JucePlugin_ManufacturerCode
@@ -447,7 +447,7 @@
  #define JucePlugin_IAASubType             JucePlugin_PluginCode
 #endif
 #ifndef  JucePlugin_IAAName
- #define JucePlugin_IAAName                "SocaLabs: SpectrumAnalyzer"
+ #define JucePlugin_IAAName                "SocaLabs: XYPlot"
 #endif
 #ifndef  JucePlugin_MaxNumInputChannels
  #define JucePlugin_MaxNumInputChannels    2
@@ -456,5 +456,5 @@
  #define JucePlugin_MaxNumOutputChannels   2
 #endif
 #ifndef  JucePlugin_PreferredChannelConfigurations
- #define JucePlugin_PreferredChannelConfigurations  {1,1}, {2,2}
+ #define JucePlugin_PreferredChannelConfigurations  {2,2}
 #endif

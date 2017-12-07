@@ -1,20 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<JUCERPROJECT id="JPnRUR" name="Spectrum Analyzer" projectType="audioplug"
-              version="1.0.0" bundleIdentifier="com.socalabs.SpectrumAnalyzer"
-              includeBinaryInAppConfig="1" buildVST="1" buildVST3="0" buildAU="1"
-              buildAUv3="0" buildRTAS="0" buildAAX="0" pluginName="SpectrumAnalyzer"
-              pluginDesc="Spectrum Analyzer" pluginManufacturer="SocaLabs"
-              pluginManufacturerCode="Soca" pluginCode="Spec" pluginChannelConfigs="{1,1}, {2,2}"
+<JUCERPROJECT id="JPnRUR" name="XY Plot" projectType="audioplug" version="1.0.0"
+              bundleIdentifier="com.socalabs.XYPlot" includeBinaryInAppConfig="1"
+              buildVST="1" buildVST3="0" buildAU="1" buildAUv3="0" buildRTAS="0"
+              buildAAX="0" pluginName="XYPlot" pluginDesc="XY Plot" pluginManufacturer="SocaLabs"
+              pluginManufacturerCode="Soca" pluginCode="Xypl" pluginChannelConfigs="{2,2}"
               pluginIsSynth="0" pluginWantsMidiIn="0" pluginProducesMidiOut="0"
-              pluginIsMidiEffectPlugin="0" pluginEditorRequiresKeys="0" pluginAUExportPrefix="slSpectrumAnalyzerAU"
-              pluginRTASCategory="" aaxIdentifier="com.socalabs.slSpectrumAnalyzer"
-              pluginAAXCategory="AAX_ePlugInCategory_Dynamics" jucerVersion="5.2.0"
-              companyName="SocaLabs" companyWebsite="www.socalabs.com" companyEmail="info@socalabs.com"
-              displaySplashScreen="1" reportAppUsage="1" splashScreenColour="Dark"
-              buildStandalone="0" enableIAA="0" cppLanguageStandard="14" companyCopyright="SocaLabs">
-  <MAINGROUP id="dPRjsF" name="Spectrum Analyzer">
+              pluginIsMidiEffectPlugin="0" pluginEditorRequiresKeys="0" pluginAUExportPrefix="slXYPlotAU"
+              pluginRTASCategory="" aaxIdentifier="com.socalabs.slXYPlot" pluginAAXCategory="AAX_ePlugInCategory_Dynamics"
+              jucerVersion="5.2.0" companyName="SocaLabs" companyWebsite="www.socalabs.com"
+              companyEmail="info@socalabs.com" displaySplashScreen="1" reportAppUsage="1"
+              splashScreenColour="Dark" buildStandalone="0" enableIAA="0" cppLanguageStandard="14"
+              companyCopyright="SocaLabs">
+  <MAINGROUP id="dPRjsF" name="XY Plot">
     <GROUP id="{EE796482-0D02-0052-80F4-B1FE6CE0D41A}" name="Source">
+      <FILE id="PrfzdU" name="XYScope.cpp" compile="1" resource="0" file="Source/XYScope.cpp"/>
+      <FILE id="Mxdmc7" name="XYScope.h" compile="0" resource="0" file="Source/XYScope.h"/>
       <GROUP id="{DA748B7D-42D5-4A16-B897-0DD85D003309}" name="Common">
         <FILE id="vaaJf0" name="SingleLineTextEditor.cpp" compile="1" resource="0"
               file="../../module/slCommon/SingleLineTextEditor.cpp"/>
@@ -54,10 +55,10 @@
   <EXPORTFORMATS>
     <XCODE_MAC targetFolder="Builds/MacOSX">
       <CONFIGURATIONS>
-        <CONFIGURATION name="Debug" isDebug="1" optimisation="1" targetName="SpectrumAnalyzer"
+        <CONFIGURATION name="Debug" isDebug="1" optimisation="1" targetName="XYPlot"
                        cppLanguageStandard="c++14" osxCompatibility="10.9 SDK" headerPath="../../../../module/slCommon"
                        enablePluginBinaryCopyStep="1"/>
-        <CONFIGURATION name="Release" isDebug="0" optimisation="3" targetName="SpectrumAnalyzer"
+        <CONFIGURATION name="Release" isDebug="0" optimisation="3" targetName="XYPlot"
                        cppLanguageStandard="c++14" osxCompatibility="10.9 SDK" enablePluginBinaryCopyStep="1"
                        headerPath="../../../../module/slCommon"/>
       </CONFIGURATIONS>
@@ -84,21 +85,21 @@
     <VS2015 targetFolder="Builds/VisualStudio2015" toolset="v140_xp" windowsTargetPlatformVersion="8.1">
       <CONFIGURATIONS>
         <CONFIGURATION name="Debug" winWarningLevel="4" generateManifest="1" winArchitecture="32-bit"
-                       isDebug="1" optimisation="1" targetName="SpectrumAnalyzer_32b"
-                       headerPath="../../../../module/slCommon" postbuildCommand="copy /Y &quot;$(OutDir)\$(TargetFileName)&quot; &quot;C:\Program Files (x86)\VSTPlugins&quot;"
+                       isDebug="1" optimisation="1" targetName="XYPlot_32b" headerPath="../../../../module/slCommon"
+                       postbuildCommand="copy /Y &quot;$(OutDir)\$(TargetFileName)&quot; &quot;C:\Program Files (x86)\VSTPlugins&quot;"
                        debugInformationFormat="ProgramDatabase" enablePluginBinaryCopyStep="0"/>
         <CONFIGURATION name="Release" winWarningLevel="4" generateManifest="1" winArchitecture="32-bit"
-                       isDebug="0" optimisation="3" targetName="SpectrumAnalyzer_32b"
-                       headerPath="../../../../module/slCommon" postbuildCommand="copy /Y &quot;$(OutDir)\$(TargetFileName)&quot; &quot;C:\Program Files (x86)\VSTPlugins&quot;"
+                       isDebug="0" optimisation="3" targetName="XYPlot_32b" headerPath="../../../../module/slCommon"
+                       postbuildCommand="copy /Y &quot;$(OutDir)\$(TargetFileName)&quot; &quot;C:\Program Files (x86)\VSTPlugins&quot;"
                        debugInformationFormat="ProgramDatabase" enablePluginBinaryCopyStep="0"
                        linkTimeOptimisation="1"/>
         <CONFIGURATION name="Debug64" winWarningLevel="4" generateManifest="1" winArchitecture="x64"
-                       isDebug="1" optimisation="1" targetName="SpectrumAnalyzer_64b"
-                       headerPath="../../../../module/slCommon" postbuildCommand="copy /Y &quot;$(OutDir)\$(TargetFileName)&quot; &quot;C:\Program Files\VSTPlugins&quot;"
+                       isDebug="1" optimisation="1" targetName="XYPlot_64b" headerPath="../../../../module/slCommon"
+                       postbuildCommand="copy /Y &quot;$(OutDir)\$(TargetFileName)&quot; &quot;C:\Program Files\VSTPlugins&quot;"
                        debugInformationFormat="ProgramDatabase" enablePluginBinaryCopyStep="0"/>
         <CONFIGURATION name="Release64" winWarningLevel="4" generateManifest="1" winArchitecture="x64"
-                       isDebug="0" optimisation="3" targetName="SpectrumAnalyzer_64b"
-                       headerPath="../../../../module/slCommon" postbuildCommand="copy /Y &quot;$(OutDir)\$(TargetFileName)&quot; &quot;C:\Program Files\VSTPlugins&quot;"
+                       isDebug="0" optimisation="3" targetName="XYPlot_64b" headerPath="../../../../module/slCommon"
+                       postbuildCommand="copy /Y &quot;$(OutDir)\$(TargetFileName)&quot; &quot;C:\Program Files\VSTPlugins&quot;"
                        debugInformationFormat="ProgramDatabase" enablePluginBinaryCopyStep="0"
                        linkTimeOptimisation="1"/>
       </CONFIGURATIONS>
