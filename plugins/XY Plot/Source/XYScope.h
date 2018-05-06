@@ -55,7 +55,7 @@ private:
         HeapBlock<float> minBuffer, maxBuffer;
 
         float currentMax, currentMin;
-        FifoBuffer<float> samplesToProcess;
+        drow::FifoBuffer<float> samplesToProcess;
         HeapBlock<float> tempProcessingBlock;
     };
     

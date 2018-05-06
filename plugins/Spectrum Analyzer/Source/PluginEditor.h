@@ -12,13 +12,12 @@
 
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "PluginProcessor.h"
-#include "slCommon.h"
 
 //==============================================================================
 /**
 */
-class PluginEditor  : public slAudioProcessorEditor,
-                      private slParameter::Listener
+class PluginEditor  : public gin::GinAudioProcessorEditor,
+                      private gin::Parameter::Listener
 {
 public:
     PluginEditor (PluginProcessor&);
@@ -37,7 +36,7 @@ public:
 private:
     CriticalSection lock;
     void updateScope();
-    void parameterChanged (slParameter*) override { updateScope(); }
+    void parameterChanged (gin::Parameter*) override { updateScope(); }
     
     PluginProcessor& processor;
     

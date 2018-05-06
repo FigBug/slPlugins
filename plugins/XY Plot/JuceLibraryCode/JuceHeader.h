@@ -15,6 +15,7 @@
 #include "AppConfig.h"
 
 #include <dRowAudio/dRowAudio.h>
+#include <gin/gin.h>
 #include <juce_audio_basics/juce_audio_basics.h>
 #include <juce_audio_devices/juce_audio_devices.h>
 #include <juce_audio_formats/juce_audio_formats.h>

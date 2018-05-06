@@ -11,13 +11,15 @@
 #include "PluginProcessor.h"
 #include "PluginEditor.h"
 
+using namespace gin;
+
 //==============================================================================
 PluginEditor::PluginEditor (PluginProcessor& p)
-    : slAudioProcessorEditor (p), processor (p)
+    : GinAudioProcessorEditor (p), processor (p)
 {
     addAndMakeVisible (&scope);
     
-    for (slParameter* pp : p.getPluginParameters())
+    for (Parameter* pp : p.getPluginParameters())
     {
         ParamComponent* pc;
         
@@ -59,7 +61,7 @@ Rectangle<int> PluginEditor::getGridArea (int x, int y, int w, int h)
 
 void PluginEditor::resized()
 {
-    slAudioProcessorEditor::resized();
+    GinAudioProcessorEditor::resized();
 
     auto rc = Rectangle<int> (inset, headerHeight + inset, getWidth() - cx - 2 * inset, getHeight() - headerHeight - 2 * inset);
     

@@ -12,6 +12,8 @@
 #include "PluginEditor.h"
 #include <random>
 
+using namespace gin;
+
 //==============================================================================
 String onOffTextFunction (const slParameter& p, float v)
 {

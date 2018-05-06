@@ -7,42 +7,15 @@
               pluginManufacturerCode="Soca" pluginCode="Xypl" pluginChannelConfigs="{2,2}"
               pluginIsSynth="0" pluginWantsMidiIn="0" pluginProducesMidiOut="0"
               pluginIsMidiEffectPlugin="0" pluginEditorRequiresKeys="0" pluginAUExportPrefix="slXYPlotAU"
-              pluginRTASCategory="" aaxIdentifier="com.socalabs.slXYPlot" pluginAAXCategory="AAX_ePlugInCategory_Dynamics"
-              jucerVersion="5.2.0" companyName="SocaLabs" companyWebsite="www.socalabs.com"
-              companyEmail="info@socalabs.com" displaySplashScreen="1" reportAppUsage="1"
-              splashScreenColour="Dark" buildStandalone="0" enableIAA="0" cppLanguageStandard="14"
-              companyCopyright="SocaLabs">
+              aaxIdentifier="com.socalabs.slXYPlot" pluginAAXCategory="2" jucerVersion="5.3.1"
+              companyName="SocaLabs" companyWebsite="www.socalabs.com" companyEmail="info@socalabs.com"
+              displaySplashScreen="1" reportAppUsage="1" splashScreenColour="Dark"
+              buildStandalone="0" enableIAA="0" cppLanguageStandard="14" companyCopyright="SocaLabs"
+              pluginFormats="buildVST,buildAU">
   <MAINGROUP id="dPRjsF" name="XY Plot">
     <GROUP id="{EE796482-0D02-0052-80F4-B1FE6CE0D41A}" name="Source">
       <FILE id="PrfzdU" name="XYScope.cpp" compile="1" resource="0" file="Source/XYScope.cpp"/>
       <FILE id="Mxdmc7" name="XYScope.h" compile="0" resource="0" file="Source/XYScope.h"/>
-      <GROUP id="{DA748B7D-42D5-4A16-B897-0DD85D003309}" name="Common">
-        <FILE id="vaaJf0" name="SingleLineTextEditor.cpp" compile="1" resource="0"
-              file="../../module/slCommon/SingleLineTextEditor.cpp"/>
-        <FILE id="Hq0QIv" name="SingleLineTextEditor.h" compile="0" resource="0"
-              file="../../module/slCommon/SingleLineTextEditor.h"/>
-        <FILE id="yeOizS" name="slCommon.h" compile="0" resource="0" file="../../module/slCommon/slCommon.h"/>
-        <FILE id="g3nLUF" name="slComponents.cpp" compile="1" resource="0"
-              file="../../module/slCommon/slComponents.cpp"/>
-        <FILE id="Jcf99R" name="slComponents.h" compile="0" resource="0" file="../../module/slCommon/slComponents.h"/>
-        <FILE id="WjwJyd" name="slDsp.cpp" compile="1" resource="0" file="../../module/slCommon/slDsp.cpp"/>
-        <FILE id="IW0E1e" name="slDsp.h" compile="0" resource="0" file="../../module/slCommon/slDsp.h"/>
-        <FILE id="qT8isg" name="slLookAndFeel.cpp" compile="1" resource="0"
-              file="../../module/slCommon/slLookAndFeel.cpp"/>
-        <FILE id="eNc98V" name="slLookAndFeel.h" compile="0" resource="0" file="../../module/slCommon/slLookAndFeel.h"/>
-        <FILE id="fLEn6j" name="slParameter.cpp" compile="1" resource="0" file="../../module/slCommon/slParameter.cpp"/>
-        <FILE id="p0JFK9" name="slParameter.h" compile="0" resource="0" file="../../module/slCommon/slParameter.h"/>
-        <FILE id="Hp7T8S" name="slPluginEditor.cpp" compile="1" resource="0"
-              file="../../module/slCommon/slPluginEditor.cpp"/>
-        <FILE id="ZKiuUF" name="slPluginEditor.h" compile="0" resource="0"
-              file="../../module/slCommon/slPluginEditor.h"/>
-        <FILE id="di4kDx" name="slProcessor.cpp" compile="1" resource="0" file="../../module/slCommon/slProcessor.cpp"/>
-        <FILE id="i6tz36" name="slProcessor.h" compile="0" resource="0" file="../../module/slCommon/slProcessor.h"/>
-        <FILE id="XuEX2u" name="slProgram.cpp" compile="1" resource="0" file="../../module/slCommon/slProgram.cpp"/>
-        <FILE id="rWeMQ6" name="slProgram.h" compile="0" resource="0" file="../../module/slCommon/slProgram.h"/>
-        <FILE id="Rnppom" name="slUtil.cpp" compile="1" resource="0" file="../../module/slCommon/slUtil.cpp"/>
-        <FILE id="tdIvm9" name="slUtil.h" compile="0" resource="0" file="../../module/slCommon/slUtil.h"/>
-      </GROUP>
       <FILE id="iEbZ9q" name="PluginProcessor.cpp" compile="1" resource="0"
             file="Source/PluginProcessor.cpp"/>
       <FILE id="XzLyGB" name="PluginProcessor.h" compile="0" resource="0"
@@ -63,23 +36,24 @@
                        headerPath="../../../../module/slCommon"/>
       </CONFIGURATIONS>
       <MODULEPATHS>
-        <MODULEPATH id="juce_core" path="../../../JUCE/modules"/>
-        <MODULEPATH id="juce_events" path="../../../JUCE/modules"/>
-        <MODULEPATH id="juce_graphics" path="../../../JUCE/modules"/>
-        <MODULEPATH id="juce_data_structures" path="../../../JUCE/modules"/>
-        <MODULEPATH id="juce_gui_basics" path="../../../JUCE/modules"/>
-        <MODULEPATH id="juce_gui_extra" path="../../../JUCE/modules"/>
-        <MODULEPATH id="juce_cryptography" path="../../../JUCE/modules"/>
-        <MODULEPATH id="juce_video" path="../../../JUCE/modules"/>
-        <MODULEPATH id="juce_opengl" path="../../../JUCE/modules"/>
-        <MODULEPATH id="juce_audio_basics" path="../../../JUCE/modules"/>
-        <MODULEPATH id="juce_audio_devices" path="../../../JUCE/modules"/>
-        <MODULEPATH id="juce_audio_formats" path="../../../JUCE/modules"/>
-        <MODULEPATH id="juce_audio_processors" path="../../../JUCE/modules"/>
-        <MODULEPATH id="juce_audio_plugin_client" path="../../../JUCE/modules"/>
+        <MODULEPATH id="juce_core" path="../../module/juce/modules"/>
+        <MODULEPATH id="juce_events" path="../../module/juce/modules"/>
+        <MODULEPATH id="juce_graphics" path="../../module/juce/modules"/>
+        <MODULEPATH id="juce_data_structures" path="../../module/juce/modules"/>
+        <MODULEPATH id="juce_gui_basics" path="../../module/juce/modules"/>
+        <MODULEPATH id="juce_gui_extra" path="../../module/juce/modules"/>
+        <MODULEPATH id="juce_cryptography" path="../../module/juce/modules"/>
+        <MODULEPATH id="juce_video" path="../../module/juce/modules"/>
+        <MODULEPATH id="juce_opengl" path="../../module/juce/modules"/>
+        <MODULEPATH id="juce_audio_basics" path="../../module/juce/modules"/>
+        <MODULEPATH id="juce_audio_devices" path="../../module/juce/modules"/>
+        <MODULEPATH id="juce_audio_formats" path="../../module/juce/modules"/>
+        <MODULEPATH id="juce_audio_processors" path="../../module/juce/modules"/>
+        <MODULEPATH id="juce_audio_plugin_client" path="../../module/juce/modules"/>
         <MODULEPATH id="dRowAudio" path="../../module/dRowAudio/module"/>
-        <MODULEPATH id="juce_audio_utils" path="../../../JUCE/modules"/>
-        <MODULEPATH id="juce_dsp" path="../../../JUCE/modules"/>
+        <MODULEPATH id="juce_audio_utils" path="../../module/juce/modules"/>
+        <MODULEPATH id="juce_dsp" path="../../module/juce/modules"/>
+        <MODULEPATH id="gin" path="../../module/gin/modules"/>
       </MODULEPATHS>
     </XCODE_MAC>
     <VS2015 targetFolder="Builds/VisualStudio2015" toolset="v140_xp" windowsTargetPlatformVersion="8.1">
@@ -104,28 +78,30 @@
                        linkTimeOptimisation="1"/>
       </CONFIGURATIONS>
       <MODULEPATHS>
-        <MODULEPATH id="juce_core" path="../../../JUCE/modules"/>
-        <MODULEPATH id="juce_events" path="../../../JUCE/modules"/>
-        <MODULEPATH id="juce_graphics" path="../../../JUCE/modules"/>
-        <MODULEPATH id="juce_data_structures" path="../../../JUCE/modules"/>
-        <MODULEPATH id="juce_gui_basics" path="../../../JUCE/modules"/>
-        <MODULEPATH id="juce_gui_extra" path="../../../JUCE/modules"/>
-        <MODULEPATH id="juce_cryptography" path="../../../JUCE/modules"/>
-        <MODULEPATH id="juce_video" path="../../../JUCE/modules"/>
-        <MODULEPATH id="juce_opengl" path="../../../JUCE/modules"/>
-        <MODULEPATH id="juce_audio_basics" path="../../../JUCE/modules"/>
-        <MODULEPATH id="juce_audio_devices" path="../../../JUCE/modules"/>
-        <MODULEPATH id="juce_audio_formats" path="../../../JUCE/modules"/>
-        <MODULEPATH id="juce_audio_processors" path="../../../JUCE/modules"/>
-        <MODULEPATH id="juce_audio_plugin_client" path="../../../JUCE/modules"/>
+        <MODULEPATH id="juce_core" path="../../module/juce/modules"/>
+        <MODULEPATH id="juce_events" path="../../module/juce/modules"/>
+        <MODULEPATH id="juce_graphics" path="../../module/juce/modules"/>
+        <MODULEPATH id="juce_data_structures" path="../../module/juce/modules"/>
+        <MODULEPATH id="juce_gui_basics" path="../../module/juce/modules"/>
+        <MODULEPATH id="juce_gui_extra" path="../../module/juce/modules"/>
+        <MODULEPATH id="juce_cryptography" path="../../module/juce/modules"/>
+        <MODULEPATH id="juce_video" path="../../module/juce/modules"/>
+        <MODULEPATH id="juce_opengl" path="../../module/juce/modules"/>
+        <MODULEPATH id="juce_audio_basics" path="../../module/juce/modules"/>
+        <MODULEPATH id="juce_audio_devices" path="../../module/juce/modules"/>
+        <MODULEPATH id="juce_audio_formats" path="../../module/juce/modules"/>
+        <MODULEPATH id="juce_audio_processors" path="../../module/juce/modules"/>
+        <MODULEPATH id="juce_audio_plugin_client" path="../../module/juce/modules"/>
         <MODULEPATH id="dRowAudio" path="../../module/dRowAudio/module"/>
-        <MODULEPATH id="juce_audio_utils" path="../../../JUCE/modules"/>
-        <MODULEPATH id="juce_dsp" path="../../../JUCE/modules"/>
+        <MODULEPATH id="juce_audio_utils" path="../../module/juce/modules"/>
+        <MODULEPATH id="juce_dsp" path="../../module/juce/modules"/>
+        <MODULEPATH id="gin" path="../../module/gin/modules"/>
       </MODULEPATHS>
     </VS2015>
   </EXPORTFORMATS>
   <MODULES>
     <MODULE id="dRowAudio" showAllCode="1" useLocalCopy="0"/>
+    <MODULE id="gin" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
     <MODULE id="juce_audio_basics" showAllCode="1" useLocalCopy="0"/>
     <MODULE id="juce_audio_devices" showAllCode="1" useLocalCopy="0"/>
     <MODULE id="juce_audio_formats" showAllCode="1" useLocalCopy="0"/>
@@ -143,5 +119,5 @@
     <MODULE id="juce_opengl" showAllCode="1" useLocalCopy="0"/>
     <MODULE id="juce_video" showAllCode="1" useLocalCopy="0"/>
   </MODULES>
-  <JUCEOPTIONS JUCE_QUICKTIME="disabled" DROWAUDIO_USE_FFTREAL="enabled"/>
+  <JUCEOPTIONS JUCE_QUICKTIME="disabled" DROWAUDIO_USE_FFTREAL="1"/>
 </JUCERPROJECT>

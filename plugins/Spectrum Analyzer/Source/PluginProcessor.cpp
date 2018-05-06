@@ -12,13 +12,15 @@
 #include "PluginEditor.h"
 #include <random>
 
+using namespace gin;
+
 //==============================================================================
-String onOffTextFunction (const slParameter& p, float v)
+String onOffTextFunction (const Parameter& p, float v)
 {
     return v > 0.0f ? "On" : "Off";
 }
 
-String modeTextFunction (const slParameter& p, float v)
+String modeTextFunction (const Parameter& p, float v)
 {
     switch (int (v))
     {
@@ -31,8 +33,8 @@ String modeTextFunction (const slParameter& p, float v)
 //==============================================================================
 PluginProcessor::PluginProcessor()
 {
-    addPluginParameter (new slParameter (PARAM_MODE,       "Mode",       "", "",     0.0f,   1.0f,  1.0f,    0.0f, 1.0f, modeTextFunction));
-    addPluginParameter (new slParameter (PARAM_LOG,        "Log",        "", "",     0.0f,   1.0f,  1.0f,    0.0f, 1.0f, onOffTextFunction));
+    addPluginParameter (new Parameter (PARAM_MODE,       "Mode",       "", "",     0.0f,   1.0f,  1.0f,    0.0f, 1.0f, modeTextFunction));
+    addPluginParameter (new Parameter (PARAM_LOG,        "Log",        "", "",     0.0f,   1.0f,  1.0f,    0.0f, 1.0f, onOffTextFunction));
 }
 
 PluginProcessor::~PluginProcessor()
