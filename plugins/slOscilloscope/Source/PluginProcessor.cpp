@@ -12,13 +12,15 @@
 #include "PluginEditor.h"
 #include <random>
 
+using namespace gin;
+
 //==============================================================================
-String onOffTextFunction (const slParameter& p)
+String onOffTextFunction (const Parameter& p)
 {
     return p.getUserValue() > 0.0f ? "On" : "Off";
 }
 
-String chanTextFunction (const slParameter& p, float v)
+String chanTextFunction (const Parameter& p, float v)
 {
     switch (int (v))
     {
@@ -29,7 +31,7 @@ String chanTextFunction (const slParameter& p, float v)
     }
 }
 
-String modeTextFunction (const slParameter& p, float v)
+String modeTextFunction (const Parameter& p, float v)
 {
     switch (int (v))
     {
@@ -40,12 +42,12 @@ String modeTextFunction (const slParameter& p, float v)
     }
 }
 
-String intTextFunction (const slParameter& p, float v)
+String intTextFunction (const Parameter& p, float v)
 {
     return String (int (v));
 }
 
-String tlTextFunction (const slParameter& p, float v)
+String tlTextFunction (const Parameter& p, float v)
 {
     return String (v, 2);
 }
@@ -54,14 +56,14 @@ String tlTextFunction (const slParameter& p, float v)
 //==============================================================================
 PluginProcessor::PluginProcessor()
 {
-    addPluginParameter (new slParameter (PARAM_SAMPLES_PER_PIXEL,       "Samp/px",       "", "",     1.0f,   48.0f,  1.0f,    1.0f, 1.0f, intTextFunction));
-    addPluginParameter (new slParameter (PARAM_VERTICAL_ZOOM,           "Zoom",          "", "",     0.1f,   100.0f, 0.0f,    1.0f, 0.3f));
-    addPluginParameter (new slParameter (PARAM_VERTICAL_OFFSET_L,       "Offset L",      "", "",     -2.0f,  2.0f,   0.0f,    0.0f, 1.0f));
-    addPluginParameter (new slParameter (PARAM_VERTICAL_OFFSET_R,       "Offset R",      "", "",     -2.0f,  2.0f,   0.0f,    0.0f, 1.0f));
-    addPluginParameter (new slParameter (PARAM_TRIGGER_CHANNEL,         "Trigger Chan",  "", "",     -1.0f,  1.0f,   1.0f,    0.0f, 1.0f, chanTextFunction));
-    addPluginParameter (new slParameter (PARAM_TRIGGER_MODE,            "Trigger Mode",  "", "",     0.0f,   2.0f,   1.0f,    1.0f, 1.0f, modeTextFunction));
-    addPluginParameter (new slParameter (PARAM_TRIGGER_LEVEL,           "Trigger Level", "", "",     -1.0f,  1.0f,   0.0f,    0.0f, 1.0f, tlTextFunction));
-    addPluginParameter (new slParameter (PARAM_TRIGGER_POS,             "Trigger Pos",   "", "",      0.0f,  1.0f,   0.0f,    0.0f, 1.0f, tlTextFunction));
+    addPluginParameter (new Parameter (PARAM_SAMPLES_PER_PIXEL,       "Samp/px",       "", "",     1.0f,   48.0f,  1.0f,    1.0f, 1.0f, intTextFunction));
+    addPluginParameter (new Parameter (PARAM_VERTICAL_ZOOM,           "Zoom",          "", "",     0.1f,   100.0f, 0.0f,    1.0f, 0.3f));
+    addPluginParameter (new Parameter (PARAM_VERTICAL_OFFSET_L,       "Offset L",      "", "",     -2.0f,  2.0f,   0.0f,    0.0f, 1.0f));
+    addPluginParameter (new Parameter (PARAM_VERTICAL_OFFSET_R,       "Offset R",      "", "",     -2.0f,  2.0f,   0.0f,    0.0f, 1.0f));
+    addPluginParameter (new Parameter (PARAM_TRIGGER_CHANNEL,         "Trigger Chan",  "", "",     -1.0f,  1.0f,   1.0f,    0.0f, 1.0f, chanTextFunction));
+    addPluginParameter (new Parameter (PARAM_TRIGGER_MODE,            "Trigger Mode",  "", "",     0.0f,   2.0f,   1.0f,    1.0f, 1.0f, modeTextFunction));
+    addPluginParameter (new Parameter (PARAM_TRIGGER_LEVEL,           "Trigger Level", "", "",     -1.0f,  1.0f,   0.0f,    0.0f, 1.0f, tlTextFunction));
+    addPluginParameter (new Parameter (PARAM_TRIGGER_POS,             "Trigger Pos",   "", "",      0.0f,  1.0f,   0.0f,    0.0f, 1.0f, tlTextFunction));
 }
 
 PluginProcessor::~PluginProcessor()

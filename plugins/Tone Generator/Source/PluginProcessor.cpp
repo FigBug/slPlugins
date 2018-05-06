@@ -12,8 +12,10 @@
 #include "PluginEditor.h"
 #include <random>
 
+using namespace gin;
+
 //==============================================================================
-String onOffTextFunction (const slParameter& p, float v)
+String onOffTextFunction (const Parameter& p, float v)
 {
     return v > 0.0f ? "On" : "Off";
 }
@@ -129,15 +131,15 @@ slToneAudioProcessor::slToneAudioProcessor()
 
     //==============================================================================
     
-    addPluginParameter (new slParameter (PARAM_ENABLE,       "Enable",       "", "",     0.0f,      1.0f, 1.0f,    1.0f, 1.0f, onOffTextFunction));
-    addPluginParameter (new slParameter (PARAM_BANDLIMIT,    "Bandlimit",    "", "",     0.0f,      1.0f, 1.0f,    1.0f, 1.0f, onOffTextFunction));
-    addPluginParameter (new slParameter (PARAM_FREQ,         "Frequency",    "", "Hz",   30.0f, 10000.0f, 0.0f, 1000.0f, 0.3f));
-    addPluginParameter (new slParameter (PARAM_SINE_LEVEL,   "Sine",         "", "dB", -100.0f,     6.0f, 0.0f, -100.0f, 5.f));
-    addPluginParameter (new slParameter (PARAM_TRI_LEVEL,    "Triangle",     "", "dB", -100.0f,     6.0f, 0.0f, -100.0f, 5.f));
-    addPluginParameter (new slParameter (PARAM_SAW_UP_LEVEL, "Saw Up",       "", "dB", -100.0f,     6.0f, 0.0f, -100.0f, 5.f));
-    addPluginParameter (new slParameter (PARAM_SAW_DN_LEVEL, "Saw Down",     "", "dB", -100.0f,     6.0f, 0.0f, -100.0f, 5.f));
-    addPluginParameter (new slParameter (PARAM_SQUARE_LEVEL, "Square",       "", "dB", -100.0f,     6.0f, 0.0f, -100.0f, 5.f));
-    addPluginParameter (new slParameter (PARAM_NOISE_LEVEL,  "Noise",        "", "dB", -100.0f,     6.0f, 0.0f, -100.0f, 5.f));
+    addPluginParameter (new Parameter (PARAM_ENABLE,       "Enable",       "", "",     0.0f,      1.0f, 1.0f,    1.0f, 1.0f, onOffTextFunction));
+    addPluginParameter (new Parameter (PARAM_BANDLIMIT,    "Bandlimit",    "", "",     0.0f,      1.0f, 1.0f,    1.0f, 1.0f, onOffTextFunction));
+    addPluginParameter (new Parameter (PARAM_FREQ,         "Frequency",    "", "Hz",   30.0f, 10000.0f, 0.0f, 1000.0f, 0.3f));
+    addPluginParameter (new Parameter (PARAM_SINE_LEVEL,   "Sine",         "", "dB", -100.0f,     6.0f, 0.0f, -100.0f, 5.f));
+    addPluginParameter (new Parameter (PARAM_TRI_LEVEL,    "Triangle",     "", "dB", -100.0f,     6.0f, 0.0f, -100.0f, 5.f));
+    addPluginParameter (new Parameter (PARAM_SAW_UP_LEVEL, "Saw Up",       "", "dB", -100.0f,     6.0f, 0.0f, -100.0f, 5.f));
+    addPluginParameter (new Parameter (PARAM_SAW_DN_LEVEL, "Saw Down",     "", "dB", -100.0f,     6.0f, 0.0f, -100.0f, 5.f));
+    addPluginParameter (new Parameter (PARAM_SQUARE_LEVEL, "Square",       "", "dB", -100.0f,     6.0f, 0.0f, -100.0f, 5.f));
+    addPluginParameter (new Parameter (PARAM_NOISE_LEVEL,  "Noise",        "", "dB", -100.0f,     6.0f, 0.0f, -100.0f, 5.f));
 }
 
 slToneAudioProcessor::~slToneAudioProcessor()

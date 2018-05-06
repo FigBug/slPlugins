@@ -11,16 +11,18 @@
 #include "PluginProcessor.h"
 #include "PluginEditor.h"
 
+using namespace gin;
+
 //==============================================================================
 PluginEditor::PluginEditor (PluginProcessor& p)
-    : slAudioProcessorEditor (p), processor (p)
+    : GinAudioProcessorEditor (p), processor (p)
 {
     addAndMakeVisible (&scope);
     
     scope.setColour (drow::TriggeredScope::traceColourId + 0, Colours::white.overlaidWith (Colours::blue.withAlpha (0.3f)));
     scope.setColour (drow::TriggeredScope::traceColourId + 1, Colours::white.overlaidWith (Colours::yellow.withAlpha (0.3f)));
     
-    for (slParameter* pp : p.getPluginParameters())
+    for (Parameter* pp : p.getPluginParameters())
     {
         ParamComponent* pc;
         
@@ -64,7 +66,7 @@ Rectangle<int> PluginEditor::getGridArea (int x, int y, int w, int h)
 
 void PluginEditor::resized()
 {
-    slAudioProcessorEditor::resized();
+    GinAudioProcessorEditor::resized();
 
     scope.setBounds (inset, headerHeight + inset, getWidth() - 2 * cx - inset, getHeight() - headerHeight - 2 * inset);
     

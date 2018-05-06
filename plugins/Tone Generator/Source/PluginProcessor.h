@@ -11,7 +11,6 @@
 #pragma once
 
 #include "../JuceLibraryCode/JuceHeader.h"
-#include "slCommon.h"
 
 using namespace juce::dsp;
 
@@ -30,7 +29,7 @@ class slToneAudioProcessorEditor;
 //==============================================================================
 /**
 */
-class slToneAudioProcessor : public slProcessor
+class slToneAudioProcessor : public gin::GinProcessor
 {
 public:
     //==============================================================================

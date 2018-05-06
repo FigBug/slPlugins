@@ -11,13 +11,15 @@
 #include "PluginProcessor.h"
 #include "PluginEditor.h"
 
+using namespace gin;
+
 //==============================================================================
 slToneAudioProcessorEditor::slToneAudioProcessorEditor (slToneAudioProcessor& p)
-    : slAudioProcessorEditor (p), processor (p)
+    : GinAudioProcessorEditor (p), processor (p)
 {
     addAndMakeVisible (&scope);
     
-    for (slParameter* pp : p.getPluginParameters())
+    for (Parameter* pp : p.getPluginParameters())
     {
         ParamComponent* pc;
         
@@ -43,7 +45,7 @@ slToneAudioProcessorEditor::~slToneAudioProcessorEditor()
 //==============================================================================
 void slToneAudioProcessorEditor::resized()
 {
-    slAudioProcessorEditor::resized();
+    GinAudioProcessorEditor::resized();
 
     componentForId (PARAM_ENABLE)->setBounds (getGridArea (0, 0));
     componentForId (PARAM_BANDLIMIT)->setBounds (getGridArea (0, 1));

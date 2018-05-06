@@ -11,7 +11,6 @@
 #pragma once
 
 #include "../JuceLibraryCode/JuceHeader.h"
-#include "slCommon.h"
 
 using namespace juce::dsp;
 
@@ -29,7 +28,7 @@ class PluginEditor;
 //==============================================================================
 /**
 */
-class PluginProcessor : public slProcessor
+class PluginProcessor : public gin::GinProcessor
 {
 public:
     //==============================================================================
