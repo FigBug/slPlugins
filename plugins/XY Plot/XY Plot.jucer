@@ -56,7 +56,7 @@
         <MODULEPATH id="gin" path="../../module/gin/modules"/>
       </MODULEPATHS>
     </XCODE_MAC>
-    <VS2015 targetFolder="Builds/VisualStudio2015" toolset="v140_xp" windowsTargetPlatformVersion="8.1">
+    <VS2017 targetFolder="Builds/VisualStudio2017" toolset="v141_xp" windowsTargetPlatformVersion="8.1">
       <CONFIGURATIONS>
         <CONFIGURATION name="Debug" winWarningLevel="4" generateManifest="1" winArchitecture="32-bit"
                        isDebug="1" optimisation="1" targetName="XYPlot_32b" headerPath="../../../../module/slCommon"
@@ -97,7 +97,7 @@
         <MODULEPATH id="juce_dsp" path="../../module/juce/modules"/>
         <MODULEPATH id="gin" path="../../module/gin/modules"/>
       </MODULEPATHS>
-    </VS2015>
+    </VS2017>
   </EXPORTFORMATS>
   <MODULES>
     <MODULE id="dRowAudio" showAllCode="1" useLocalCopy="0"/>

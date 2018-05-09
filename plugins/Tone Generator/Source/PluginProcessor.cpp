@@ -15,7 +15,7 @@
 using namespace gin;
 
 //==============================================================================
-String onOffTextFunction (const Parameter& p, float v)
+String onOffTextFunction (const Parameter&, float v)
 {
     return v > 0.0f ? "On" : "Off";
 }
@@ -48,7 +48,7 @@ slToneAudioProcessor::slToneAudioProcessor()
                 sum += std::pow (-1, (k - 1) / 2.0f) / (k * k) * sin (k * in);
                 k += 2;
             }
-            return 8.0f / (float_Pi * float_Pi) * sum;
+            return float (8.0f / (float_Pi * float_Pi) * sum);
         }
         return (in < 0 ? in / -float_Pi : in / float_Pi) * 2 - 1;
     };
@@ -67,7 +67,7 @@ slToneAudioProcessor::slToneAudioProcessor()
                 sum += oddEven (k) * std::sin (k * in) / k;
                 k++;
             }
-            return -2.0f / float_Pi * sum;
+            return float (-2.0f / float_Pi * sum);
         }
         return ((in + float_Pi) / (2 * float_Pi)) * 2 - 1;
     };
@@ -86,7 +86,7 @@ slToneAudioProcessor::slToneAudioProcessor()
                 sum += oddEven (k) * std::sin (k * in) / k;
                 k++;
             }
-            return 2.0f / float_Pi * sum;
+            return float (2.0f / float_Pi * sum);
         }
         return -(((in + float_Pi) / (2 * float_Pi)) * 2 - 1);
     };
@@ -106,15 +106,15 @@ slToneAudioProcessor::slToneAudioProcessor()
                 i++;
             }
             
-            return 4.0f / float_Pi * sum;
+            return float (4.0f / float_Pi * sum);
         }
-        return in < 0 ? -1 : 1;
+        return in < 0 ? -1.0f : 1.0f;
     };
     
     auto noiseFunc = [&] (float) -> float
     {
-        const float mean = 0.0;
-        const float stddev = 0.1;
+        const float mean = 0.0f;
+        const float stddev = 0.1f;
         
         static std::default_random_engine generator;
         static std::normal_distribution<float> dist (mean, stddev);

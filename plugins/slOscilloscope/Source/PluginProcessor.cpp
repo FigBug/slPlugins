@@ -20,7 +20,7 @@ String onOffTextFunction (const Parameter& p)
     return p.getUserValue() > 0.0f ? "On" : "Off";
 }
 
-String chanTextFunction (const Parameter& p, float v)
+String chanTextFunction (const Parameter&, float v)
 {
     switch (int (v))
     {
@@ -31,7 +31,7 @@ String chanTextFunction (const Parameter& p, float v)
     }
 }
 
-String modeTextFunction (const Parameter& p, float v)
+String modeTextFunction (const Parameter&, float v)
 {
     switch (int (v))
     {
@@ -42,12 +42,12 @@ String modeTextFunction (const Parameter& p, float v)
     }
 }
 
-String intTextFunction (const Parameter& p, float v)
+String intTextFunction (const Parameter&, float v)
 {
     return String (int (v));
 }
 
-String tlTextFunction (const Parameter& p, float v)
+String tlTextFunction (const Parameter&, float v)
 {
     return String (v, 2);
 }
@@ -71,7 +71,7 @@ PluginProcessor::~PluginProcessor()
 }
 
 //==============================================================================
-void PluginProcessor::prepareToPlay (double sampleRate, int samplesPerBlock)
+void PluginProcessor::prepareToPlay (double, int)
 {
 }
 

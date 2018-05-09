@@ -71,3 +71,7 @@ Common_wolf
 *.opendb
 
 3rdparty/libsndfile/src/.sndfile.h.in.swp
+
+x64
+Win32
+.vs
