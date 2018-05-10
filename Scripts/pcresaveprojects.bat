@@ -7,3 +7,5 @@ c:\JUCE\Projucer.exe --resave ..\..\Voc\plugin\Voc.jucer
 c:\JUCE\Projucer.exe --resave "..\plugins\slOscilloscope\slOscilloscope.jucer"
 c:\JUCE\Projucer.exe --resave "..\plugins\Spectrum Analyzer\Spectrum Analyzer.jucer"
 c:\JUCE\Projucer.exe --resave "..\plugins\Tone Generator\Tone Generator.jucer"
+c:\JUCE\Projucer.exe --resave "..\plugins\Tone Generator\Channel Mute.jucer"
+

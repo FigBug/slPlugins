@@ -41,6 +41,11 @@ if %errorlevel% neq 0 exit /b %errorlevel%
 "C:\Program Files (x86)\Microsoft Visual Studio\2017\BuildTools\MSBuild\15.0\Bin\MSBuild.exe" "..\plugins\Tone Generator\Builds\VisualStudio2017\Tone Generator.sln" /p:VisualStudioVersion=15.0 /m /p:Configuration=Release64 /p:Platform=x64
 if %errorlevel% neq 0 exit /b %errorlevel%
 
+"C:\Program Files (x86)\Microsoft Visual Studio\2017\BuildTools\MSBuild\15.0\Bin\MSBuild.exe" "..\plugins\Channel Mute\Builds\VisualStudio2017\Channel Mute.sln" /p:VisualStudioVersion=15.0 /m /p:Configuration=Release /p:PlatformTarget=x86
+if %errorlevel% neq 0 exit /b %errorlevel%
+"C:\Program Files (x86)\Microsoft Visual Studio\2017\BuildTools\MSBuild\15.0\Bin\MSBuild.exe" "..\plugins\Channel Mute\Builds\VisualStudio2017\Channel Mute.sln" /p:VisualStudioVersion=15.0 /m /p:Configuration=Release64 /p:Platform=x64
+if %errorlevel% neq 0 exit /b %errorlevel%
+
 
 copy "C:\Program Files\VSTPlugins\PAPU_64b.dll" bin
 copy "C:\Program Files\VSTPlugins\RP2A03_64b.dll" bin
@@ -50,6 +55,7 @@ copy "C:\Program Files\VSTPlugins\Voc_64b.dll" bin
 copy "C:\Program Files\VSTPlugins\Oscilloscope_64b.dll" bin
 copy "C:\Program Files\VSTPlugins\SpectrumAnalyzer_64b.dll" bin
 copy "C:\Program Files\VSTPlugins\ToneGenerator_64b.dll" bin
+copy "C:\Program Files\VSTPlugins\ChannelMute_64b.dll" bin
 
 copy "C:\Program Files (x86)\VSTPlugins\PAPU_32b.dll" bin
 copy "C:\Program Files (x86)\VSTPlugins\RP2A03_32b.dll" bin
@@ -59,6 +65,7 @@ copy "C:\Program Files (x86)\VSTPlugins\Voc_32b.dll" bin
 copy "C:\Program Files (x86)\VSTPlugins\Oscilloscope_32b.dll" bin
 copy "C:\Program Files (x86)\VSTPlugins\SpectrumAnalyzer_32b.dll" bin
 copy "C:\Program Files (x86)\VSTPlugins\ToneGenerator_32b.dll" bin
+copy "C:\Program Files (x86)\VSTPlugins\ChannelMute_32b.dll" bin
 
 cd bin
 zip PAPU_Win.zip PAPU_32b.dll PAPU_64b.dll
@@ -69,5 +76,6 @@ zip Voc_Win.zip Voc_32b.dll Voc_64b.dll
 zip Oscilloscope_Win.zip Oscilloscope_32b.dll Oscilloscope_64b.dll
 zip SpectrumAnalyzer_Win.zip SpectrumAnalyzer_32b.dll SpectrumAnalyzer_64b.dll
 zip ToneGenerator_Win.zip ToneGenerator_32b.dll ToneGenerator_64b.dll
+zip ChannelMute_Win.zip ChannelMute_32b.dll ChannelMute_64b.dll
 zip All_Win.zip *.dll
 cd ..
