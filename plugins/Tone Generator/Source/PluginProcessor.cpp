@@ -192,11 +192,12 @@ void slToneAudioProcessor::processBlock (AudioSampleBuffer& buffer, MidiBuffer&)
     sawDownVal.setValue (Decibels::decibelsToGain (getParameter (PARAM_SAW_DN_LEVEL)->getUserValue()));
     squareVal.setValue (Decibels::decibelsToGain (getParameter (PARAM_SQUARE_LEVEL)->getUserValue()));
     noiseVal.setValue (Decibels::decibelsToGain (getParameter (PARAM_NOISE_LEVEL)->getUserValue()));
-
-    AudioBlock<float> block (scratch);
     
     if (sineVal.isSmoothing() || sineVal.getTargetValue() > 0)
     {
+        scratch.clear();
+        AudioBlock<float> block (scratch);
+
         sine.process (ProcessContextReplacing<float> (block));
         applyGain (scratch, sineVal);
         buffer.addFrom (0, 0, scratch, 0, 0, numSamples);
@@ -204,6 +205,9 @@ void slToneAudioProcessor::processBlock (AudioSampleBuffer& buffer, MidiBuffer&)
     
     if (triangleVal.isSmoothing() || triangleVal.getTargetValue() > 0)
     {
+        scratch.clear();
+        AudioBlock<float> block (scratch);
+
         triangle.process (ProcessContextReplacing<float> (block));
         applyGain (scratch, triangleVal);
         buffer.addFrom (0, 0, scratch, 0, 0, numSamples);
@@ -211,6 +215,9 @@ void slToneAudioProcessor::processBlock (AudioSampleBuffer& buffer, MidiBuffer&)
     
     if (sawUpVal.isSmoothing() || sawUpVal.getTargetValue() > 0)
     {
+        scratch.clear();
+        AudioBlock<float> block (scratch);
+
         sawUp.process (ProcessContextReplacing<float> (block));
         applyGain (scratch, sawUpVal);
         buffer.addFrom (0, 0, scratch, 0, 0, numSamples);
@@ -218,6 +225,9 @@ void slToneAudioProcessor::processBlock (AudioSampleBuffer& buffer, MidiBuffer&)
 
     if (sawDownVal.isSmoothing() || sawDownVal.getTargetValue() > 0)
     {
+        scratch.clear();
+        AudioBlock<float> block (scratch);
+
         sawDown.process (ProcessContextReplacing<float> (block));
         applyGain (scratch, sawDownVal);
         buffer.addFrom (0, 0, scratch, 0, 0, numSamples);
@@ -225,6 +235,9 @@ void slToneAudioProcessor::processBlock (AudioSampleBuffer& buffer, MidiBuffer&)
 
     if (squareVal.isSmoothing() || squareVal.getTargetValue() > 0)
     {
+        scratch.clear();
+        AudioBlock<float> block (scratch);
+
         square.process (ProcessContextReplacing<float> (block));
         applyGain (scratch, squareVal);
         buffer.addFrom (0, 0, scratch, 0, 0, numSamples);
@@ -232,6 +245,9 @@ void slToneAudioProcessor::processBlock (AudioSampleBuffer& buffer, MidiBuffer&)
     
     if (noiseVal.isSmoothing() || noiseVal.getTargetValue() > 0)
     {
+        scratch.clear();
+        AudioBlock<float> block (scratch);
+
         noise.process (ProcessContextReplacing<float> (block));
         applyGain (scratch, noiseVal);
         buffer.addFrom (0, 0, scratch, 0, 0, numSamples);
