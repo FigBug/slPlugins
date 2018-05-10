@@ -69,4 +69,5 @@ zip Voc_Win.zip Voc_32b.dll Voc_64b.dll
 zip Oscilloscope_Win.zip Oscilloscope_32b.dll Oscilloscope_64b.dll
 zip SpectrumAnalyzer_Win.zip SpectrumAnalyzer_32b.dll SpectrumAnalyzer_64b.dll
 zip ToneGenerator_Win.zip ToneGenerator_32b.dll ToneGenerator_64b.dll
+zip All_Win.zip *.dll
 cd ..
