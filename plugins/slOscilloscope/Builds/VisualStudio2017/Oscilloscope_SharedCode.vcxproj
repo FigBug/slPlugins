@@ -135,7 +135,6 @@
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <OutputFile>$(IntDir)\Oscilloscope_32b.bsc</OutputFile>
     </Bscmake>
-    <Lib/>
     <Lib>
       <TargetMachine>MachineX86</TargetMachine>
     </Lib>
@@ -185,7 +184,6 @@
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <OutputFile>$(IntDir)\Oscilloscope_32b.bsc</OutputFile>
     </Bscmake>
-    <Lib/>
     <Lib>
       <TargetMachine>MachineX86</TargetMachine>
     </Lib>
@@ -233,7 +231,6 @@
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <OutputFile>$(IntDir)\Oscilloscope_64b.bsc</OutputFile>
     </Bscmake>
-    <Lib/>
     <PostBuildEvent>
       <Command>copy /Y &quot;$(OutDir)\$(TargetFileName)&quot; &quot;C:\Program Files\VSTPlugins&quot;</Command>
     </PostBuildEvent>
@@ -279,7 +276,6 @@
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <OutputFile>$(IntDir)\Oscilloscope_64b.bsc</OutputFile>
     </Bscmake>
-    <Lib/>
     <PostBuildEvent>
       <Command>copy /Y &quot;$(OutDir)\$(TargetFileName)&quot; &quot;C:\Program Files\VSTPlugins&quot;</Command>
     </PostBuildEvent>
@@ -2894,6 +2890,7 @@
     <ClInclude Include="..\..\..\..\module\juce\modules\juce_data_structures\juce_data_structures.h"/>
     <ClInclude Include="..\..\..\..\module\juce\modules\juce_dsp\containers\juce_AudioBlock.h"/>
     <ClInclude Include="..\..\..\..\module\juce\modules\juce_dsp\containers\juce_SIMDRegister.h"/>
+    <ClInclude Include="..\..\..\..\module\juce\modules\juce_dsp\containers\juce_SIMDRegister_Impl.h"/>
     <ClInclude Include="..\..\..\..\module\juce\modules\juce_dsp\filter_design\juce_FilterDesign.h"/>
     <ClInclude Include="..\..\..\..\module\juce\modules\juce_dsp\frequency\juce_Convolution.h"/>
     <ClInclude Include="..\..\..\..\module\juce\modules\juce_dsp\frequency\juce_FFT.h"/>
@@ -3196,6 +3193,7 @@
     <ClInclude Include="..\..\..\..\module\juce\modules\juce_opengl\juce_opengl.h"/>
     <ClInclude Include="..\..\..\..\module\juce\modules\juce_video\capture\juce_CameraDevice.h"/>
     <ClInclude Include="..\..\..\..\module\juce\modules\juce_video\native\juce_android_CameraDevice.h"/>
+    <ClInclude Include="..\..\..\..\module\juce\modules\juce_video\native\juce_ios_CameraDevice.h"/>
     <ClInclude Include="..\..\..\..\module\juce\modules\juce_video\native\juce_mac_CameraDevice.h"/>
     <ClInclude Include="..\..\..\..\module\juce\modules\juce_video\native\juce_mac_Video.h"/>
     <ClInclude Include="..\..\..\..\module\juce\modules\juce_video\native\juce_win32_CameraDevice.h"/>
@@ -3211,9 +3209,6 @@
     <None Include="..\..\..\..\module\juce\modules\juce_audio_formats\codecs\oggvorbis\Ogg Vorbis Licence.txt"/>
     <None Include="..\..\..\..\module\juce\modules\juce_graphics\image_formats\jpglib\changes to libjpeg for JUCE.txt"/>
     <None Include="..\..\..\..\module\juce\modules\juce_graphics\image_formats\pnglib\libpng_readme.txt"/>
-  </ItemGroup>
-  <ItemGroup>
-    <ResourceCompile Include=".\resources.rc"/>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets"/>
   <ImportGroup Label="ExtensionTargets"/>

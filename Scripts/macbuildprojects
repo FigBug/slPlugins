@@ -27,7 +27,7 @@ xcodebuild -configuration Release || exit 1
 popd
 
 pushd .
-cd "../plugins/Oscilloscope/Builds/MacOSX"
+cd "../plugins/slOscilloscope/Builds/MacOSX"
 xcodebuild -configuration Release || exit 1
 popd
 
@@ -37,35 +37,36 @@ xcodebuild -configuration Release || exit 1
 popd
 
 pushd .
-cd "../Tone Generator/plugin/Builds/MacOSX"
+cd "../plugins/Tone Generator/Builds/MacOSX"
 xcodebuild -configuration Release || exit 1
 popd
 
-cp -R "~/Library/Audio/Plug-Ins/VST/PAPU.vst" bin
-cp -R "~/Library/Audio/Plug-Ins/VST/RP2A03.vst" bin
-cp -R "~/Library/Audio/Plug-Ins/VST/SID.vst" bin
-cp -R "~/Library/Audio/Plug-Ins/VST/SN76489.vst" bin
-cp -R "~/Library/Audio/Plug-Ins/VST/Voc.vst" bin
-cp -R "~/Library/Audio/Plug-Ins/VST/Oscilloscope.vst" bin
-cp -R "~/Library/Audio/Plug-Ins/VST/SpectrumAnalyzer.vst" bin
-cp -R "~/Library/Audio/Plug-Ins/VST/ToneGenerator.vst" bin
+pwd
+cp -R ~/Library/Audio/Plug-Ins/VST/PAPU.vst bin
+cp -R ~/Library/Audio/Plug-Ins/VST/RP2A03.vst bin
+cp -R ~/Library/Audio/Plug-Ins/VST/SID.vst bin
+cp -R ~/Library/Audio/Plug-Ins/VST/SN76489.vst bin
+cp -R ~/Library/Audio/Plug-Ins/VST/Voc.vst bin
+cp -R ~/Library/Audio/Plug-Ins/VST/Oscilloscope.vst bin
+cp -R ~/Library/Audio/Plug-Ins/VST/SpectrumAnalyzer.vst bin
+cp -R ~/Library/Audio/Plug-Ins/VST/ToneGenerator.vst bin
 
-cp -R "~/Library/Audio/Plug-Ins/Components/PAPU.component" bin
-cp -R "~/Library/Audio/Plug-Ins/Components/RP2A03.component" bin
-cp -R "~/Library/Audio/Plug-Ins/Components/SID.component" bin
-cp -R "~/Library/Audio/Plug-Ins/Components/SN76489.component" bin
-cp -R "~/Library/Audio/Plug-Ins/Components/Voc.component" bin
-cp -R "~/Library/Audio/Plug-Ins/Components/Oscilloscope.component" bin
-cp -R "~/Library/Audio/Plug-Ins/Components/SpectrumAnalyzer.component" bin
-cp -R "~/Library/Audio/Plug-Ins/Components/ToneGenerator.component" bin
+cp -R ~/Library/Audio/Plug-Ins/Components/PAPU.component bin
+cp -R ~/Library/Audio/Plug-Ins/Components/RP2A03.component bin
+cp -R ~/Library/Audio/Plug-Ins/Components/SID.component bin
+cp -R ~/Library/Audio/Plug-Ins/Components/SN76489.component bin
+cp -R ~/Library/Audio/Plug-Ins/Components/Voc.component bin
+cp -R ~/Library/Audio/Plug-Ins/Components/Oscilloscope.component bin
+cp -R ~/Library/Audio/Plug-Ins/Components/SpectrumAnalyzer.component bin
+cp -R ~/Library/Audio/Plug-Ins/Components/ToneGenerator.component bin
 
 cd bin
-zip PAPU_Mac.zip PAPU.vst PAPU.component
-zip RP2A03_Mac.zip RP2A03.vst RP2A03.component
-zip SID_Mac.zip SID.vst SID.component
-zip SN76489_Mac.zip SN76489.vst SN76489.component
-zip Voc_Mac.zip Voc.vst Voc.component
-zip Oscilloscope_Mac.zip Oscilloscope.vst Oscilloscope.component
-zip SpectrumAnalyzer_Mac.zip SpectrumAnalyzer.vst SpectrumAnalyzer.component
-zip ToneGenerator_Mac.zip ToneGenerator.vst ToneGenerator.component
+zip -r PAPU_Mac.zip PAPU.vst PAPU.component
+zip -r RP2A03_Mac.zip RP2A03.vst RP2A03.component
+zip -r SID_Mac.zip SID.vst SID.component
+zip -r SN76489_Mac.zip SN76489.vst SN76489.component
+zip -r Voc_Mac.zip Voc.vst Voc.component
+zip -r Oscilloscope_Mac.zip Oscilloscope.vst Oscilloscope.component
+zip -r SpectrumAnalyzer_Mac.zip SpectrumAnalyzer.vst SpectrumAnalyzer.component
+zip -r ToneGenerator_Mac.zip ToneGenerator.vst ToneGenerator.component
 cd ..

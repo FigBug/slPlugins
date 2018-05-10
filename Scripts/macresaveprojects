@@ -1,0 +1,9 @@
+/Applications/JUCE/Projucer.app/Contents/MacOS/Projucer --resave ../../PAPU/plugin/PAPU.jucer
+/Applications/JUCE/Projucer.app/Contents/MacOS/Projucer --resave ../../RP2A03/plugin/RP2A03.jucer
+/Applications/JUCE/Projucer.app/Contents/MacOS/Projucer --resave ../../SID/plugin/SID.jucer
+/Applications/JUCE/Projucer.app/Contents/MacOS/Projucer --resave ../../SN76489/plugin/SN76489.jucer
+/Applications/JUCE/Projucer.app/Contents/MacOS/Projucer --resave ../../Voc/plugin/Voc.jucer
+
+/Applications/JUCE/Projucer.app/Contents/MacOS/Projucer --resave "../plugins/slOscilloscope/slOscilloscope.jucer"
+/Applications/JUCE/Projucer.app/Contents/MacOS/Projucer --resave "../plugins/Spectrum Analyzer/Spectrum Analyzer.jucer"
+/Applications/JUCE/Projucer.app/Contents/MacOS/Projucer --resave "../plugins/Tone Generator/Tone Generator.jucer"

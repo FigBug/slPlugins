@@ -8,11 +8,12 @@
               pluginChannelConfigs="{1,1}, {2,2}" pluginIsSynth="0" pluginWantsMidiIn="0"
               pluginProducesMidiOut="0" pluginIsMidiEffectPlugin="0" pluginEditorRequiresKeys="0"
               pluginAUExportPrefix="slOscilloscopeAU" aaxIdentifier="com.socalabs.slOscilloscope"
-              pluginAAXCategory="2" jucerVersion="5.3.1" companyName="SocaLabs"
+              pluginAAXCategory="2" jucerVersion="5.3.2" companyName="SocaLabs"
               companyWebsite="www.socalabs.com" companyEmail="info@socalabs.com"
               displaySplashScreen="0" reportAppUsage="0" splashScreenColour="Dark"
               buildStandalone="0" enableIAA="0" cppLanguageStandard="14" companyCopyright="SocaLabs"
-              pluginFormats="buildVST,buildAU">
+              pluginFormats="buildVST,buildAU" pluginVSTCategory="kPlugCategEffect"
+              pluginVST3Category="Fx" pluginRTASCategory="0" pluginAUMainType="'aufx'">
   <MAINGROUP id="dPRjsF" name="Oscilloscope">
     <GROUP id="{EE796482-0D02-0052-80F4-B1FE6CE0D41A}" name="Source">
       <FILE id="iEbZ9q" name="PluginProcessor.cpp" compile="1" resource="0"
@@ -119,4 +120,7 @@
     <MODULE id="juce_video" showAllCode="1" useLocalCopy="0"/>
   </MODULES>
   <JUCEOPTIONS JUCE_QUICKTIME="disabled"/>
+  <LIVE_SETTINGS>
+    <OSX/>
+  </LIVE_SETTINGS>
 </JUCERPROJECT>

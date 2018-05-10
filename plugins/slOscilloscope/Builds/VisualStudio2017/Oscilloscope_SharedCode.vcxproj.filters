@@ -4341,6 +4341,9 @@
     <ClInclude Include="..\..\..\..\module\juce\modules\juce_dsp\containers\juce_SIMDRegister.h">
       <Filter>JUCE Modules\juce_dsp\containers</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\..\module\juce\modules\juce_dsp\containers\juce_SIMDRegister_Impl.h">
+      <Filter>JUCE Modules\juce_dsp\containers</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\..\..\module\juce\modules\juce_dsp\filter_design\juce_FilterDesign.h">
       <Filter>JUCE Modules\juce_dsp\filter_design</Filter>
     </ClInclude>
@@ -5247,6 +5250,9 @@
     <ClInclude Include="..\..\..\..\module\juce\modules\juce_video\native\juce_android_CameraDevice.h">
       <Filter>JUCE Modules\juce_video\native</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\..\module\juce\modules\juce_video\native\juce_ios_CameraDevice.h">
+      <Filter>JUCE Modules\juce_video\native</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\..\..\module\juce\modules\juce_video\native\juce_mac_CameraDevice.h">
       <Filter>JUCE Modules\juce_video\native</Filter>
     </ClInclude>
@@ -5288,10 +5294,5 @@
     <None Include="..\..\..\..\module\juce\modules\juce_graphics\image_formats\pnglib\libpng_readme.txt">
       <Filter>JUCE Modules\juce_graphics\image_formats\pnglib</Filter>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <ResourceCompile Include=".\resources.rc">
-      <Filter>JUCE Library Code</Filter>
-    </ResourceCompile>
   </ItemGroup>
 </Project>
