@@ -25,6 +25,7 @@ public:
 
     //==============================================================================
     void resized() override;
+    void refresh();
 
 private:
     void textEditorReturnKeyPressed (TextEditor&) override;
@@ -33,6 +34,8 @@ private:
     
     MathsAudioProcessor& processor;
     TextEditor l, r;
-    
+    Label lLabel { "", "L out:" };
+    Label rLabel { "", "R out:" };
+
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MathsAudioProcessorEditor)
 };

@@ -16,8 +16,11 @@ using namespace juce::dsp;
 
 class MathsAudioProcessorEditor;
 //==============================================================================
-/**
-*/
+#define PARAM_P1     "p1"
+#define PARAM_P2     "p2"
+#define PARAM_P3     "p3"
+#define PARAM_P4     "p4"
+
 class MathsAudioProcessor : public gin::GinProcessor
 {
 public:
@@ -32,6 +35,10 @@ public:
     void processBlock (AudioSampleBuffer&, MidiBuffer&) override;
 
     //==============================================================================
+    void stateUpdated() override;
+    void updateState() override;
+
+    //==============================================================================
     AudioProcessorEditor* createEditor() override;
     bool hasEditor() const override;
 
@@ -43,7 +50,7 @@ private:
     void setupParsers();
     
     gin::EquationParser lParser, rParser;
-    double l = 0, r = 0;
+    double l = 0, r = 0, p1 = 0, p2 = 0, p3 = 0, p4 = 0, t = 0, c = 0, s = 0, sr = 0;
     
     Component::SafePointer<MathsAudioProcessorEditor> editor;
 

@@ -17,10 +17,31 @@ using namespace gin;
 //==============================================================================
 MathsAudioProcessor::MathsAudioProcessor()
 {
+    addPluginParameter (new Parameter (PARAM_P1,       "p1 (0..1)",       "", "",     0.0f,   1.0f,  0.0f,    1.0f));
+    addPluginParameter (new Parameter (PARAM_P2,       "p2 (0..1)",       "", "",     0.0f,   1.0f,  0.0f,    1.0f));
+    addPluginParameter (new Parameter (PARAM_P3,       "p3 (-1..1)",      "", "",     -1.0f,  1.0f,  0.0f,    1.0f));
+    addPluginParameter (new Parameter (PARAM_P4,       "p4 (-1..1)",      "", "",     -1.0f,  1.0f,  0.0f,    1.0f));
+
     lParser.addVariable ("l", &l);
     lParser.addVariable ("r", &r);
+    lParser.addVariable ("p1", &p1);
+    lParser.addVariable ("p2", &p2);
+    lParser.addVariable ("p3", &p3);
+    lParser.addVariable ("p4", &p4);
+    lParser.addVariable ("t", &t);
+    lParser.addVariable ("s", &s);
+    lParser.addVariable ("c", &c);
+    lParser.addVariable ("sr", &sr);
     rParser.addVariable ("l", &l);
     rParser.addVariable ("r", &r);
+    rParser.addVariable ("p1", &p1);
+    rParser.addVariable ("p2", &p2);
+    rParser.addVariable ("p3", &p3);
+    rParser.addVariable ("p4", &p4);
+    rParser.addVariable ("t", &t);
+    rParser.addVariable ("s", &s);
+    rParser.addVariable ("c", &c);
+    rParser.addVariable ("sr", &sr);
 
     setupParsers();
 }
@@ -30,8 +51,30 @@ MathsAudioProcessor::~MathsAudioProcessor()
 }
 
 //==============================================================================
+void MathsAudioProcessor::stateUpdated()
+{
+    lEquation = state.hasProperty ("l") ? state.getProperty ("l") : "(l + r) / 2";
+    rEquation = state.hasProperty ("r") ? state.getProperty ("r") : "(l + r) / 2";
+    
+    refreshEquations = true;
+    
+    if (editor != nullptr)
+        editor->refresh();
+}
+
+void MathsAudioProcessor::updateState()
+{
+    state.setProperty ("l", lEquation, nullptr);
+    state.setProperty ("r", rEquation, nullptr);
+}
+
+//==============================================================================
 void MathsAudioProcessor::prepareToPlay (double sampleRate, int samplesPerBlock)
 {
+    sr = sampleRate;
+    c = -1;
+    s = 0;
+    t = 0;
 }
 
 void MathsAudioProcessor::setupParsers()
@@ -55,6 +98,20 @@ void MathsAudioProcessor::processBlock (AudioSampleBuffer& buffer, MidiBuffer&)
     float* lData = buffer.getWritePointer (0);
     float* rData = buffer.getWritePointer (1);
     
+    p1 = parameterValue (PARAM_P1);
+    p2 = parameterValue (PARAM_P2);
+    p3 = parameterValue (PARAM_P3);
+    p4 = parameterValue (PARAM_P4);
+    
+    if (auto* p = getPlayHead())
+    {
+        AudioPlayHead::CurrentPositionInfo pos;
+        if (p->getCurrentPosition (pos))
+        {
+            c = pos.timeInSeconds;
+        }
+    }
+
     for (int i = 0; i < buffer.getNumSamples(); i++)
     {
         l = lData[i];
@@ -62,6 +119,10 @@ void MathsAudioProcessor::processBlock (AudioSampleBuffer& buffer, MidiBuffer&)
         
         lData[i] = lParser.evaluate();
         rData[i] = rParser.evaluate();
+        
+        if (c != -1) c = 1 / sr;
+        t += 1 / sr;
+        s++;
     }
 }
 
