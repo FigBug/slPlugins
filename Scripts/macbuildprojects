@@ -46,6 +46,12 @@ cd "../plugins/Channel Mute/Builds/MacOSX"
 xcodebuild -configuration Release || exit 1
 popd
 
+pushd .
+cd "../plugins/Maths/Builds/MacOSX"
+xcodebuild -configuration Release || exit 1
+popd
+
+
 pwd
 cp -R ~/Library/Audio/Plug-Ins/VST/PAPU.vst bin
 cp -R ~/Library/Audio/Plug-Ins/VST/RP2A03.vst bin
@@ -56,6 +62,7 @@ cp -R ~/Library/Audio/Plug-Ins/VST/Oscilloscope.vst bin
 cp -R ~/Library/Audio/Plug-Ins/VST/SpectrumAnalyzer.vst bin
 cp -R ~/Library/Audio/Plug-Ins/VST/ToneGenerator.vst bin
 cp -R ~/Library/Audio/Plug-Ins/VST/ChannelMute.vst bin
+cp -R ~/Library/Audio/Plug-Ins/VST/Maths.vst bin
 
 cp -R ~/Library/Audio/Plug-Ins/Components/PAPU.component bin
 cp -R ~/Library/Audio/Plug-Ins/Components/RP2A03.component bin
@@ -65,7 +72,8 @@ cp -R ~/Library/Audio/Plug-Ins/Components/Voc.component bin
 cp -R ~/Library/Audio/Plug-Ins/Components/Oscilloscope.component bin
 cp -R ~/Library/Audio/Plug-Ins/Components/SpectrumAnalyzer.component bin
 cp -R ~/Library/Audio/Plug-Ins/Components/ToneGenerator.component bin
-cp -R ~/Library/Audio/Plug-Ins/VST/ChannelMute.component bin
+cp -R ~/Library/Audio/Plug-Ins/Components/ChannelMute.component bin
+cp -R ~/Library/Audio/Plug-Ins/Components/Maths.component bin
 
 cd bin
 zip -r PAPU_Mac.zip PAPU.vst PAPU.component
@@ -77,5 +85,6 @@ zip -r Oscilloscope_Mac.zip Oscilloscope.vst Oscilloscope.component
 zip -r SpectrumAnalyzer_Mac.zip SpectrumAnalyzer.vst SpectrumAnalyzer.component
 zip -r ToneGenerator_Mac.zip ToneGenerator.vst ToneGenerator.component
 zip -r ChannelMute_Mac.zip ChannelMute.vst ChannelMute.component
+zip -r Maths_Mac.zip Maths.vst Maths.component
 zip -r All_Mac.zip *.vst *.component
 cd ..

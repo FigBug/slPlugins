@@ -7,3 +7,5 @@
 /Applications/JUCE/Projucer.app/Contents/MacOS/Projucer --resave "../plugins/slOscilloscope/slOscilloscope.jucer"
 /Applications/JUCE/Projucer.app/Contents/MacOS/Projucer --resave "../plugins/Spectrum Analyzer/Spectrum Analyzer.jucer"
 /Applications/JUCE/Projucer.app/Contents/MacOS/Projucer --resave "../plugins/Tone Generator/Tone Generator.jucer"
+/Applications/JUCE/Projucer.app/Contents/MacOS/Projucer --resave "../plugins/Channel Mute/Channel Mute.jucer"
+/Applications/JUCE/Projucer.app/Contents/MacOS/Projucer --resave "../plugins/Maths/Maths.jucer"
