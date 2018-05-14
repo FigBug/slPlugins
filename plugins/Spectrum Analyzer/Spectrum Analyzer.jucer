@@ -33,7 +33,7 @@
                        enablePluginBinaryCopyStep="1"/>
         <CONFIGURATION name="Release" isDebug="0" optimisation="3" targetName="SpectrumAnalyzer"
                        cppLanguageStandard="c++14" osxCompatibility="10.9 SDK" enablePluginBinaryCopyStep="1"
-                       headerPath="../../../../module/slCommon"/>
+                       headerPath="../../../../module/slCommon" osxArchitecture="64BitUniversal"/>
       </CONFIGURATIONS>
       <MODULEPATHS>
         <MODULEPATH id="juce_core" path="../../module/juce/modules"/>

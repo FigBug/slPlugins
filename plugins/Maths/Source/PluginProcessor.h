@@ -43,13 +43,14 @@ public:
     bool hasEditor() const override;
 
     String lEquation = "(l + r) / 2", rEquation = "(l + r) / 2";
-    bool refreshEquations = false;
+    void setupParsers();
 
 private:
     //==============================================================================
-    void setupParsers();
     
-    gin::EquationParser lParser, rParser;
+    CriticalSection lock;
+    LinearSmoothedValue<float> p1Val, p2Val, p3Val, p4Val;
+    ScopedPointer<gin::EquationParser> lParser, rParser;
     double l = 0, r = 0, p1 = 0, p2 = 0, p3 = 0, p4 = 0, t = 0, c = 0, s = 0, sr = 0;
     
     Component::SafePointer<MathsAudioProcessorEditor> editor;

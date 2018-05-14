@@ -77,12 +77,12 @@ void MathsAudioProcessorEditor::textEditorReturnKeyPressed (TextEditor& ed)
     if (&ed == &l)
     {
         processor.lEquation = ed.getText();
-        processor.refreshEquations = true;
+        processor.setupParsers();
     }
     else if (&ed == &r)
     {
         processor.rEquation = ed.getText();
-        processor.refreshEquations = true;
+        processor.setupParsers();
     }
 }
 

@@ -22,27 +22,6 @@ MathsAudioProcessor::MathsAudioProcessor()
     addPluginParameter (new Parameter (PARAM_P3,       "p3 (-1..1)",      "", "",     -1.0f,  1.0f,  0.0f,    1.0f));
     addPluginParameter (new Parameter (PARAM_P4,       "p4 (-1..1)",      "", "",     -1.0f,  1.0f,  0.0f,    1.0f));
 
-    lParser.addVariable ("l", &l);
-    lParser.addVariable ("r", &r);
-    lParser.addVariable ("p1", &p1);
-    lParser.addVariable ("p2", &p2);
-    lParser.addVariable ("p3", &p3);
-    lParser.addVariable ("p4", &p4);
-    lParser.addVariable ("t", &t);
-    lParser.addVariable ("s", &s);
-    lParser.addVariable ("c", &c);
-    lParser.addVariable ("sr", &sr);
-    rParser.addVariable ("l", &l);
-    rParser.addVariable ("r", &r);
-    rParser.addVariable ("p1", &p1);
-    rParser.addVariable ("p2", &p2);
-    rParser.addVariable ("p3", &p3);
-    rParser.addVariable ("p4", &p4);
-    rParser.addVariable ("t", &t);
-    rParser.addVariable ("s", &s);
-    rParser.addVariable ("c", &c);
-    rParser.addVariable ("sr", &sr);
-
     setupParsers();
 }
 
@@ -55,8 +34,8 @@ void MathsAudioProcessor::stateUpdated()
 {
     lEquation = state.hasProperty ("l") ? state.getProperty ("l") : "(l + r) / 2";
     rEquation = state.hasProperty ("r") ? state.getProperty ("r") : "(l + r) / 2";
-    
-    refreshEquations = true;
+   
+    setupParsers();
     
     if (editor != nullptr)
         editor->refresh();
@@ -75,12 +54,46 @@ void MathsAudioProcessor::prepareToPlay (double sampleRate, int samplesPerBlock)
     c = -1;
     s = 0;
     t = 0;
+    
+    p1Val.reset (sampleRate, 0.1);
+    p2Val.reset (sampleRate, 0.1);
+    p3Val.reset (sampleRate, 0.1);
+    p4Val.reset (sampleRate, 0.1);
 }
 
 void MathsAudioProcessor::setupParsers()
 {
-    lParser.setEquation (lEquation);
-    rParser.setEquation (rEquation);
+    auto* newL = new EquationParser();
+    auto* newR = new EquationParser();
+
+    newL->setEquation (lEquation);
+    newR->setEquation (rEquation);
+
+    newL->addVariable ("l", &l);
+    newL->addVariable ("r", &r);
+    newL->addVariable ("p1", &p1);
+    newL->addVariable ("p2", &p2);
+    newL->addVariable ("p3", &p3);
+    newL->addVariable ("p4", &p4);
+    newL->addVariable ("t", &t);
+    newL->addVariable ("s", &s);
+    newL->addVariable ("c", &c);
+    newL->addVariable ("sr", &sr);
+    newR->addVariable ("l", &l);
+    newR->addVariable ("r", &r);
+    newR->addVariable ("p1", &p1);
+    newR->addVariable ("p2", &p2);
+    newR->addVariable ("p3", &p3);
+    newR->addVariable ("p4", &p4);
+    newR->addVariable ("t", &t);
+    newR->addVariable ("s", &s);
+    newR->addVariable ("c", &c);
+    newR->addVariable ("sr", &sr);
+    
+    ScopedLock sl (lock);
+    
+    lParser = newL;
+    rParser = newR;
 }
 
 void MathsAudioProcessor::releaseResources()
@@ -89,20 +102,16 @@ void MathsAudioProcessor::releaseResources()
 
 void MathsAudioProcessor::processBlock (AudioSampleBuffer& buffer, MidiBuffer&)
 {
-    if (refreshEquations)
-    {
-        refreshEquations = false;
-        setupParsers();
-    }
+    ScopedLock sl (lock);
     
     float* lData = buffer.getWritePointer (0);
     float* rData = buffer.getWritePointer (1);
     
-    p1 = parameterValue (PARAM_P1);
-    p2 = parameterValue (PARAM_P2);
-    p3 = parameterValue (PARAM_P3);
-    p4 = parameterValue (PARAM_P4);
-    
+    p1Val.setValue (parameterValue (PARAM_P1));
+    p2Val.setValue (parameterValue (PARAM_P2));
+    p3Val.setValue (parameterValue (PARAM_P3));
+    p4Val.setValue (parameterValue (PARAM_P4));
+
     if (auto* p = getPlayHead())
     {
         AudioPlayHead::CurrentPositionInfo pos;
@@ -117,8 +126,13 @@ void MathsAudioProcessor::processBlock (AudioSampleBuffer& buffer, MidiBuffer&)
         l = lData[i];
         r = rData[i];
         
-        lData[i] = lParser.evaluate();
-        rData[i] = rParser.evaluate();
+        p1 = p1Val.getNextValue();
+        p2 = p2Val.getNextValue();
+        p3 = p3Val.getNextValue();
+        p4 = p4Val.getNextValue();
+
+        lData[i] = lParser->evaluate();
+        rData[i] = rParser->evaluate();
         
         if (c != -1) c = 1 / sr;
         t += 1 / sr;
