@@ -1,55 +1,39 @@
-Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27004.2005
-MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Tone Generator_VST", "Tone Generator_VST.vcxproj", "{5BDAF59F-85C9-569F-6009-F34E9D6BA450}"
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2017
+
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Tone Generator - VST", "Tone Generator_VST.vcxproj", "{5BDAF59F-85C9-569F-6009-F34E9D6BA450}"
 	ProjectSection(ProjectDependencies) = postProject
 		{C9B82667-C15C-C6F1-E303-081EA176C344} = {C9B82667-C15C-C6F1-E303-081EA176C344}
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Tone Generator_SharedCode", "Tone Generator_SharedCode.vcxproj", "{C9B82667-C15C-C6F1-E303-081EA176C344}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Tone Generator - Shared Code", "Tone Generator_SharedCode.vcxproj", "{C9B82667-C15C-C6F1-E303-081EA176C344}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
-		Debug|x64 = Debug|x64
-		Debug64|Win32 = Debug64|Win32
-		Debug64|x64 = Debug64|x64
 		Release|Win32 = Release|Win32
-		Release|x64 = Release|x64
-		Release64|Win32 = Release64|Win32
+		Debug64|x64 = Debug64|x64
 		Release64|x64 = Release64|x64
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{5BDAF59F-85C9-569F-6009-F34E9D6BA450}.Debug|Win32.ActiveCfg = Debug|Win32
 		{5BDAF59F-85C9-569F-6009-F34E9D6BA450}.Debug|Win32.Build.0 = Debug|Win32
-		{5BDAF59F-85C9-569F-6009-F34E9D6BA450}.Debug|x64.ActiveCfg = Debug|Win32
-		{5BDAF59F-85C9-569F-6009-F34E9D6BA450}.Debug64|Win32.ActiveCfg = Debug64|x64
-		{5BDAF59F-85C9-569F-6009-F34E9D6BA450}.Debug64|x64.ActiveCfg = Debug64|x64
-		{5BDAF59F-85C9-569F-6009-F34E9D6BA450}.Debug64|x64.Build.0 = Debug64|x64
 		{5BDAF59F-85C9-569F-6009-F34E9D6BA450}.Release|Win32.ActiveCfg = Release|Win32
 		{5BDAF59F-85C9-569F-6009-F34E9D6BA450}.Release|Win32.Build.0 = Release|Win32
-		{5BDAF59F-85C9-569F-6009-F34E9D6BA450}.Release|x64.ActiveCfg = Release|Win32
-		{5BDAF59F-85C9-569F-6009-F34E9D6BA450}.Release64|Win32.ActiveCfg = Release64|x64
+		{5BDAF59F-85C9-569F-6009-F34E9D6BA450}.Debug64|x64.ActiveCfg = Debug64|x64
+		{5BDAF59F-85C9-569F-6009-F34E9D6BA450}.Debug64|x64.Build.0 = Debug64|x64
 		{5BDAF59F-85C9-569F-6009-F34E9D6BA450}.Release64|x64.ActiveCfg = Release64|x64
 		{5BDAF59F-85C9-569F-6009-F34E9D6BA450}.Release64|x64.Build.0 = Release64|x64
 		{C9B82667-C15C-C6F1-E303-081EA176C344}.Debug|Win32.ActiveCfg = Debug|Win32
 		{C9B82667-C15C-C6F1-E303-081EA176C344}.Debug|Win32.Build.0 = Debug|Win32
-		{C9B82667-C15C-C6F1-E303-081EA176C344}.Debug|x64.ActiveCfg = Debug|Win32
-		{C9B82667-C15C-C6F1-E303-081EA176C344}.Debug64|Win32.ActiveCfg = Debug64|x64
-		{C9B82667-C15C-C6F1-E303-081EA176C344}.Debug64|x64.ActiveCfg = Debug64|x64
-		{C9B82667-C15C-C6F1-E303-081EA176C344}.Debug64|x64.Build.0 = Debug64|x64
 		{C9B82667-C15C-C6F1-E303-081EA176C344}.Release|Win32.ActiveCfg = Release|Win32
 		{C9B82667-C15C-C6F1-E303-081EA176C344}.Release|Win32.Build.0 = Release|Win32
-		{C9B82667-C15C-C6F1-E303-081EA176C344}.Release|x64.ActiveCfg = Release|Win32
-		{C9B82667-C15C-C6F1-E303-081EA176C344}.Release64|Win32.ActiveCfg = Release64|x64
+		{C9B82667-C15C-C6F1-E303-081EA176C344}.Debug64|x64.ActiveCfg = Debug64|x64
+		{C9B82667-C15C-C6F1-E303-081EA176C344}.Debug64|x64.Build.0 = Debug64|x64
 		{C9B82667-C15C-C6F1-E303-081EA176C344}.Release64|x64.ActiveCfg = Release64|x64
 		{C9B82667-C15C-C6F1-E303-081EA176C344}.Release64|x64.Build.0 = Release64|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {DAF34606-4E64-4E94-94AC-83E28B88B761}
 	EndGlobalSection
 EndGlobal

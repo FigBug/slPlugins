@@ -778,6 +778,9 @@
     <ClCompile Include="..\..\..\..\module\gin\modules\gin\plugin\program.cpp">
       <Filter>JUCE Modules\gin\plugin</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\..\module\gin\modules\gin\utilities\equationparser.cpp">
+      <Filter>JUCE Modules\gin\utilities</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\..\..\module\gin\modules\gin\utilities\filesystemwatcher.cpp">
       <Filter>JUCE Modules\gin\utilities</Filter>
     </ClCompile>
@@ -3197,6 +3200,9 @@
     </ClInclude>
     <ClInclude Include="..\..\..\..\module\gin\modules\gin\plugin\program.h">
       <Filter>JUCE Modules\gin\plugin</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\module\gin\modules\gin\utilities\equationparser.h">
+      <Filter>JUCE Modules\gin\utilities</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\module\gin\modules\gin\utilities\filesystemwatcher.h">
       <Filter>JUCE Modules\gin\utilities</Filter>

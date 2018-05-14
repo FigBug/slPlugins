@@ -547,6 +547,9 @@
     <ClCompile Include="..\..\..\..\module\gin\modules\gin\plugin\program.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="..\..\..\..\module\gin\modules\gin\utilities\equationparser.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="..\..\..\..\module\gin\modules\gin\utilities\filesystemwatcher.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
@@ -2519,6 +2522,7 @@
     <ClInclude Include="..\..\..\..\module\gin\modules\gin\plugin\plugineditor.h"/>
     <ClInclude Include="..\..\..\..\module\gin\modules\gin\plugin\processor.h"/>
     <ClInclude Include="..\..\..\..\module\gin\modules\gin\plugin\program.h"/>
+    <ClInclude Include="..\..\..\..\module\gin\modules\gin\utilities\equationparser.h"/>
     <ClInclude Include="..\..\..\..\module\gin\modules\gin\utilities\filesystemwatcher.h"/>
     <ClInclude Include="..\..\..\..\module\gin\modules\gin\utilities\integrator.h"/>
     <ClInclude Include="..\..\..\..\module\gin\modules\gin\utilities\leastsquaresregression.h"/>

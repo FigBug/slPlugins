@@ -382,7 +382,7 @@
  #define JucePlugin_ManufacturerCode       0x536f6361 // 'Soca'
 #endif
 #ifndef  JucePlugin_PluginCode
- #define JucePlugin_PluginCode             0x4d617468 // 'Math'
+ #define JucePlugin_PluginCode             0x4d417468 // 'MAth'
 #endif
 #ifndef  JucePlugin_IsSynth
  #define JucePlugin_IsSynth                0
