@@ -62,6 +62,12 @@
     <Filter Include="JUCE Modules\dRowAudio">
       <UniqueIdentifier>{1BB8FCC2-A9C5-2C96-F038-AFB8E30DE38C}</UniqueIdentifier>
     </Filter>
+    <Filter Include="JUCE Modules\gin\3rdparty\muParser">
+      <UniqueIdentifier>{563D771C-AC89-C3F6-0E82-1768813D2D05}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="JUCE Modules\gin\3rdparty">
+      <UniqueIdentifier>{AAF8D136-A92C-4506-4A91-B6983EF0546B}</UniqueIdentifier>
+    </Filter>
     <Filter Include="JUCE Modules\gin\components">
       <UniqueIdentifier>{560D92AE-AD79-D6DF-3F6C-8ABBAE2BD7AD}</UniqueIdentifier>
     </Filter>
@@ -700,6 +706,24 @@
     <ClCompile Include="..\..\..\..\module\dRowAudio\module\dRowAudio\dRowAudio.mm">
       <Filter>JUCE Modules\dRowAudio</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\..\module\gin\modules\gin\3rdparty\muParser\muParser.cpp">
+      <Filter>JUCE Modules\gin\3rdparty\muParser</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\module\gin\modules\gin\3rdparty\muParser\muParserBase.cpp">
+      <Filter>JUCE Modules\gin\3rdparty\muParser</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\module\gin\modules\gin\3rdparty\muParser\muParserBytecode.cpp">
+      <Filter>JUCE Modules\gin\3rdparty\muParser</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\module\gin\modules\gin\3rdparty\muParser\muParserCallback.cpp">
+      <Filter>JUCE Modules\gin\3rdparty\muParser</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\module\gin\modules\gin\3rdparty\muParser\muParserError.cpp">
+      <Filter>JUCE Modules\gin\3rdparty\muParser</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\module\gin\modules\gin\3rdparty\muParser\muParserTokenReader.cpp">
+      <Filter>JUCE Modules\gin\3rdparty\muParser</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\..\..\module\gin\modules\gin\components\mapviewer.cpp">
       <Filter>JUCE Modules\gin\components</Filter>
     </ClCompile>
@@ -753,6 +777,9 @@
     </ClCompile>
     <ClCompile Include="..\..\..\..\module\gin\modules\gin\plugin\program.cpp">
       <Filter>JUCE Modules\gin\plugin</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\module\gin\modules\gin\utilities\equationparser.cpp">
+      <Filter>JUCE Modules\gin\utilities</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\module\gin\modules\gin\utilities\filesystemwatcher.cpp">
       <Filter>JUCE Modules\gin\utilities</Filter>
@@ -3087,6 +3114,39 @@
     <ClInclude Include="..\..\..\..\module\dRowAudio\module\dRowAudio\dRowAudio.h">
       <Filter>JUCE Modules\dRowAudio</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\..\module\gin\modules\gin\3rdparty\muParser\muParser.h">
+      <Filter>JUCE Modules\gin\3rdparty\muParser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\module\gin\modules\gin\3rdparty\muParser\muParserBase.h">
+      <Filter>JUCE Modules\gin\3rdparty\muParser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\module\gin\modules\gin\3rdparty\muParser\muParserBytecode.h">
+      <Filter>JUCE Modules\gin\3rdparty\muParser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\module\gin\modules\gin\3rdparty\muParser\muParserCallback.h">
+      <Filter>JUCE Modules\gin\3rdparty\muParser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\module\gin\modules\gin\3rdparty\muParser\muParserDef.h">
+      <Filter>JUCE Modules\gin\3rdparty\muParser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\module\gin\modules\gin\3rdparty\muParser\muParserError.h">
+      <Filter>JUCE Modules\gin\3rdparty\muParser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\module\gin\modules\gin\3rdparty\muParser\muParserFixes.h">
+      <Filter>JUCE Modules\gin\3rdparty\muParser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\module\gin\modules\gin\3rdparty\muParser\muParserStack.h">
+      <Filter>JUCE Modules\gin\3rdparty\muParser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\module\gin\modules\gin\3rdparty\muParser\muParserTemplateMagic.h">
+      <Filter>JUCE Modules\gin\3rdparty\muParser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\module\gin\modules\gin\3rdparty\muParser\muParserToken.h">
+      <Filter>JUCE Modules\gin\3rdparty\muParser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\module\gin\modules\gin\3rdparty\muParser\muParserTokenReader.h">
+      <Filter>JUCE Modules\gin\3rdparty\muParser</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\..\..\module\gin\modules\gin\components\mapviewer.h">
       <Filter>JUCE Modules\gin\components</Filter>
     </ClInclude>
@@ -3140,6 +3200,9 @@
     </ClInclude>
     <ClInclude Include="..\..\..\..\module\gin\modules\gin\plugin\program.h">
       <Filter>JUCE Modules\gin\plugin</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\module\gin\modules\gin\utilities\equationparser.h">
+      <Filter>JUCE Modules\gin\utilities</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\module\gin\modules\gin\utilities\filesystemwatcher.h">
       <Filter>JUCE Modules\gin\utilities</Filter>

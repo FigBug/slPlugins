@@ -2,18 +2,19 @@
 
 <JUCERPROJECT id="JPnRUR" name="Maths" projectType="audioplug" version="1.0.0"
               bundleIdentifier="com.socalabs.Maths" includeBinaryInAppConfig="1"
-              buildVST="1" buildVST3="0" buildAU="1" buildAUv3="0" buildRTAS="0"
-              buildAAX="0" pluginName="Maths" pluginDesc="Maths" pluginManufacturer="SocaLabs"
-              pluginManufacturerCode="Soca" pluginCode="Math" pluginChannelConfigs="{2,2}"
+              pluginName="Maths" pluginDesc="Maths" pluginManufacturer="SocaLabs"
+              pluginManufacturerCode="Soca" pluginCode="MAth" pluginChannelConfigs="{2,2}"
               pluginIsSynth="0" pluginWantsMidiIn="0" pluginProducesMidiOut="0"
               pluginIsMidiEffectPlugin="0" pluginEditorRequiresKeys="0" pluginAUExportPrefix="MathsAU"
               aaxIdentifier="com.socalabs.Maths" pluginAAXCategory="2" jucerVersion="5.3.2"
               companyName="SocaLabs" companyWebsite="www.socalabs.com" companyEmail="info@socalabs.com"
               displaySplashScreen="0" reportAppUsage="0" splashScreenColour="Dark"
-              buildStandalone="0" enableIAA="0" cppLanguageStandard="14" companyCopyright="SocaLabs"
-              pluginFormats="buildVST,buildAU" pluginAUMainType="'aufx'" pluginVSTCategory="kPlugCategEffect"
-              pluginRTASDisableBypass="0" pluginRTASDisableMultiMono="0" pluginAAXDisableBypass="0"
-              pluginAAXDisableMultiMono="0">
+              cppLanguageStandard="14" companyCopyright="SocaLabs" pluginAUMainType="'aufx'"
+              pluginVSTCategory="kPlugCategEffect" pluginRTASDisableBypass="0"
+              pluginRTASDisableMultiMono="0" pluginAAXDisableBypass="0" pluginAAXDisableMultiMono="0"
+              pluginFormats="buildAU,buildVST" buildVST="1" buildVST3="0" buildAU="1"
+              buildAUv3="0" buildRTAS="0" buildAAX="0" buildStandalone="0"
+              enableIAA="0">
   <MAINGROUP id="dPRjsF" name="Maths">
     <GROUP id="{EE796482-0D02-0052-80F4-B1FE6CE0D41A}" name="Source">
       <FILE id="iEbZ9q" name="PluginProcessor.cpp" compile="1" resource="0"
@@ -29,11 +30,9 @@
     <XCODE_MAC targetFolder="Builds/MacOSX">
       <CONFIGURATIONS>
         <CONFIGURATION name="Debug" isDebug="1" optimisation="1" targetName="Maths"
-                       cppLanguageStandard="c++14" osxCompatibility="10.9 SDK" headerPath="../../../../module/slCommon"
-                       enablePluginBinaryCopyStep="1"/>
+                       cppLanguageStandard="c++14" osxCompatibility="10.9 SDK" enablePluginBinaryCopyStep="1"/>
         <CONFIGURATION name="Release" isDebug="0" optimisation="3" targetName="Maths"
-                       cppLanguageStandard="c++14" osxCompatibility="10.9 SDK" enablePluginBinaryCopyStep="1"
-                       headerPath="../../../../module/slCommon"/>
+                       cppLanguageStandard="c++14" osxCompatibility="10.9 SDK" enablePluginBinaryCopyStep="1"/>
       </CONFIGURATIONS>
       <MODULEPATHS>
         <MODULEPATH id="juce_core" path="../../module/juce/modules"/>
