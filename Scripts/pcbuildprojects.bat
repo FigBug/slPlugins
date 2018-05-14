@@ -1,4 +1,4 @@
-rd /s /q bin
+  rd /s /q bin
 mkdir bin
 
 "C:\Program Files (x86)\Microsoft Visual Studio\2017\BuildTools\MSBuild\15.0\Bin\MSBuild.exe" "..\..\PAPU\plugin\Builds\VisualStudio2017\PAPU.sln" /p:VisualStudioVersion=15.0 /m /p:Configuration=Release /p:PlatformTarget=x86
@@ -48,7 +48,7 @@ if %errorlevel% neq 0 exit /b %errorlevel%
 
 "C:\Program Files (x86)\Microsoft Visual Studio\2017\BuildTools\MSBuild\15.0\Bin\MSBuild.exe" "..\plugins\Maths\Builds\VisualStudio2017\Maths.sln" /p:VisualStudioVersion=15.0 /m /p:Configuration=Release /p:PlatformTarget=x86
 if %errorlevel% neq 0 exit /b %errorlevel%
-"C:\Program Files (x86)\Microsoft Visual Studio\2017\BuildTools\MSBuild\15.0\Bin\MSBuild.exe" "..\plugins\Math\Builds\VisualStudio2017\Maths.sln" /p:VisualStudioVersion=15.0 /m /p:Configuration=Release64 /p:Platform=x64
+"C:\Program Files (x86)\Microsoft Visual Studio\2017\BuildTools\MSBuild\15.0\Bin\MSBuild.exe" "..\plugins\Maths\Builds\VisualStudio2017\Maths.sln" /p:VisualStudioVersion=15.0 /m /p:Configuration=Release64 /p:Platform=x64
 if %errorlevel% neq 0 exit /b %errorlevel%
 
 
