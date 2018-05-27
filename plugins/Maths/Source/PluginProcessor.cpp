@@ -104,6 +104,8 @@ void MathsAudioProcessor::processBlock (AudioSampleBuffer& buffer, MidiBuffer&)
 {
     ScopedLock sl (lock);
     
+    ScopedNoDenormals noDenormals;
+    
     float* lData = buffer.getWritePointer (0);
     float* rData = buffer.getWritePointer (1);
     
@@ -131,8 +133,17 @@ void MathsAudioProcessor::processBlock (AudioSampleBuffer& buffer, MidiBuffer&)
         p3 = p3Val.getNextValue();
         p4 = p4Val.getNextValue();
 
-        lData[i] = lParser->evaluate();
-        rData[i] = rParser->evaluate();
+        double l2 = lParser->evaluate();
+        double r2 = rParser->evaluate();
+        
+        if (std::isnan (l2) || std::isinf (l2)) l2 = 0.0f;
+        if (std::isnan (r2) || std::isinf (r2)) r2 = 0.0f;
+        
+        l2 = jlimit (-1.0, 1.0, l2);
+        r2 = jlimit (-1.0, 1.0, r2);
+        
+        lData[i] = l2;
+        rData[i] = r2;
         
         if (c != -1) c = 1 / sr;
         t += 1 / sr;
