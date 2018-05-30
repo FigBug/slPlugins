@@ -21,6 +21,7 @@ MathsAudioProcessor::MathsAudioProcessor()
     addPluginParameter (new Parameter (PARAM_P2,       "p2 (0..1)",       "", "",     0.0f,   1.0f,  0.0f,    1.0f));
     addPluginParameter (new Parameter (PARAM_P3,       "p3 (-1..1)",      "", "",     -1.0f,  1.0f,  0.0f,    1.0f));
     addPluginParameter (new Parameter (PARAM_P4,       "p4 (-1..1)",      "", "",     -1.0f,  1.0f,  0.0f,    1.0f));
+    addPluginParameter (new Parameter (PARAM_LIMITER,  "Limiter",         "", "",      0.0f,  1.0f,  1.0f,    1.0f,    1.0f,    [] (const Parameter&, float v) { return v > 0.5 ? "On" : "Off"; }));
 
     setupParsers();
 }
@@ -139,8 +140,11 @@ void MathsAudioProcessor::processBlock (AudioSampleBuffer& buffer, MidiBuffer&)
         if (std::isnan (l2) || std::isinf (l2)) l2 = 0.0f;
         if (std::isnan (r2) || std::isinf (r2)) r2 = 0.0f;
         
-        l2 = jlimit (-1.0, 1.0, l2);
-        r2 = jlimit (-1.0, 1.0, r2);
+        if (parameterIntValue (PARAM_LIMITER) != 0)
+        {
+            l2 = jlimit (-1.0, 1.0, l2);
+            r2 = jlimit (-1.0, 1.0, r2);
+        }
         
         lData[i] = l2;
         rData[i] = r2;

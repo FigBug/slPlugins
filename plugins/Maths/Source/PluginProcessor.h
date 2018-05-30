@@ -16,10 +16,11 @@ using namespace juce::dsp;
 
 class MathsAudioProcessorEditor;
 //==============================================================================
-#define PARAM_P1     "p1"
-#define PARAM_P2     "p2"
-#define PARAM_P3     "p3"
-#define PARAM_P4     "p4"
+#define PARAM_P1        "p1"
+#define PARAM_P2        "p2"
+#define PARAM_P3        "p3"
+#define PARAM_P4        "p4"
+#define PARAM_LIMITER   "limiter"
 
 class MathsAudioProcessor : public gin::GinProcessor
 {

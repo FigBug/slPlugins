@@ -31,14 +31,23 @@ MathsAudioProcessorEditor::MathsAudioProcessorEditor (MathsAudioProcessor& p)
     int count = 0;
     for (Parameter* pp : p.getPluginParameters())
     {
-        auto* pc = new Knob (pp, count == 2 || count == 3);
-        addAndMakeVisible (pc);
-        controls.add (pc);
+        if (count == 4)
+        {
+            auto* pc = new Switch (pp);
+            addAndMakeVisible (pc);
+            controls.add (pc);
+        }
+        else
+        {
+            auto* pc = new Knob (pp, count == 2 || count == 3);
+            addAndMakeVisible (pc);
+            controls.add (pc);
+        }
         
         count++;
     }
     
-    setGridSize (8, 1);
+    setGridSize (9, 1);
 }
 
 MathsAudioProcessorEditor::~MathsAudioProcessorEditor()
@@ -60,6 +69,7 @@ void MathsAudioProcessorEditor::resized()
     componentForId (PARAM_P2)->setBounds (getGridArea (5, 0));
     componentForId (PARAM_P3)->setBounds (getGridArea (6, 0));
     componentForId (PARAM_P4)->setBounds (getGridArea (7, 0));
+    componentForId (PARAM_LIMITER)->setBounds (getGridArea (8, 0));
     
     auto rc = getGridArea (0, 0, 4, 1);
     rc = rc.withSizeKeepingCentre(rc.getWidth() - 4, 54);
