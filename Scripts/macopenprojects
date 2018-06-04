@@ -15,7 +15,7 @@ sleep 1
 sleep 1
 /Applications/JUCE/Projucer.app/Contents/MacOS/Projucer  "../plugins/Tone Generator/Tone Generator.jucer" &
 sleep 1
-/Applications/JUCE/Projucer.app/Contents/MacOS/Projucer  "../plugins/Tone Generator/Channel Mute.jucer" &
+/Applications/JUCE/Projucer.app/Contents/MacOS/Projucer  "../plugins/Channel Mute/Channel Mute.jucer" &
 sleep 1
-/Applications/JUCE/Projucer.app/Contents/MacOS/Projucer  "../plugins/Tone Generator/Maths.jucer" &
+/Applications/JUCE/Projucer.app/Contents/MacOS/Projucer  "../plugins/Maths/Maths.jucer" &
 sleep 1

@@ -58,11 +58,11 @@
     </XCODE_MAC>
     <VS2017 targetFolder="Builds/VisualStudio2017" toolset="v141_xp" windowsTargetPlatformVersion="8.1">
       <CONFIGURATIONS>
-        <CONFIGURATION name="Debug" winWarningLevel="4" generateManifest="1" winArchitecture="32-bit"
+        <CONFIGURATION name="Debug" winWarningLevel="4" generateManifest="1" winArchitecture="Win32"
                        isDebug="1" optimisation="1" targetName="SpectrumAnalyzer_32b"
                        headerPath="../../../../module/slCommon" postbuildCommand="copy /Y &quot;$(OutDir)\$(TargetFileName)&quot; &quot;C:\Program Files (x86)\VSTPlugins&quot;"
                        debugInformationFormat="ProgramDatabase" enablePluginBinaryCopyStep="0"/>
-        <CONFIGURATION name="Release" winWarningLevel="4" generateManifest="1" winArchitecture="32-bit"
+        <CONFIGURATION name="Release" winWarningLevel="4" generateManifest="1" winArchitecture="Win32"
                        isDebug="0" optimisation="3" targetName="SpectrumAnalyzer_32b"
                        headerPath="../../../../module/slCommon" postbuildCommand="copy /Y &quot;$(OutDir)\$(TargetFileName)&quot; &quot;C:\Program Files (x86)\VSTPlugins&quot;"
                        debugInformationFormat="ProgramDatabase" enablePluginBinaryCopyStep="0"
