@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<JUCERPROJECT id="JPnRUR" name="Formula" projectType="audioplug" version="1.0.0"
+              bundleIdentifier="com.socalabs.Formula" includeBinaryInAppConfig="1"
+              buildVST="1" buildVST3="0" buildAU="1" buildAUv3="0" buildRTAS="0"
+              buildAAX="0" pluginName="Formula" pluginDesc="Formula" pluginManufacturer="SocaLabs"
+              pluginManufacturerCode="Soca" pluginCode="Form" pluginChannelConfigs="{0,2}"
+              pluginIsSynth="0" pluginWantsMidiIn="0" pluginProducesMidiOut="0"
+              pluginIsMidiEffectPlugin="0" pluginEditorRequiresKeys="0" pluginAUExportPrefix="FormulaAU"
+              aaxIdentifier="com.socalabs.Formula" pluginAAXCategory="2" jucerVersion="5.3.2"
+              companyName="SocaLabs" companyWebsite="www.socalabs.com" companyEmail="info@socalabs.com"
+              displaySplashScreen="0" reportAppUsage="0" splashScreenColour="Dark"
+              buildStandalone="1" enableIAA="0" cppLanguageStandard="14" companyCopyright="SocaLabs"
+              pluginFormats="buildVST,buildAU,buildStandalone" pluginRTASDisableBypass="0"
+              pluginRTASDisableMultiMono="0" pluginAAXDisableBypass="0" pluginAAXDisableMultiMono="0"
+              pluginCharacteristicsValue="pluginIsSynth,pluginProducesMidiOut,pluginWantsMidiIn"
+              pluginAUMainType="'aumu'" pluginVSTCategory="kPlugCategSynth">
+  <MAINGROUP id="dPRjsF" name="Formula">
+    <GROUP id="{EE796482-0D02-0052-80F4-B1FE6CE0D41A}" name="Source">
+      <FILE id="xMVwU3" name="Oscillator.cpp" compile="1" resource="0" file="Source/Oscillator.cpp"/>
+      <FILE id="MIb9vh" name="Oscillator.h" compile="0" resource="0" file="Source/Oscillator.h"/>
+      <FILE id="AYIB0B" name="FormulaVoice.cpp" compile="1" resource="0"
+            file="Source/FormulaVoice.cpp"/>
+      <FILE id="pjDJk8" name="FormulaVoice.h" compile="0" resource="0" file="Source/FormulaVoice.h"/>
+      <FILE id="Ell6ls" name="FormulaSynth.cpp" compile="1" resource="0"
+            file="Source/FormulaSynth.cpp"/>
+      <FILE id="bsrFfZ" name="FormulaSynth.h" compile="0" resource="0" file="Source/FormulaSynth.h"/>
+      <FILE id="iEbZ9q" name="PluginProcessor.cpp" compile="1" resource="0"
+            file="Source/PluginProcessor.cpp"/>
+      <FILE id="XzLyGB" name="PluginProcessor.h" compile="0" resource="0"
+            file="Source/PluginProcessor.h"/>
+      <FILE id="sm654A" name="PluginEditor.cpp" compile="1" resource="0"
+            file="Source/PluginEditor.cpp"/>
+      <FILE id="xX3taW" name="PluginEditor.h" compile="0" resource="0" file="Source/PluginEditor.h"/>
+    </GROUP>
+  </MAINGROUP>
+  <EXPORTFORMATS>
+    <XCODE_MAC targetFolder="Builds/MacOSX">
+      <CONFIGURATIONS>
+        <CONFIGURATION name="Debug" isDebug="1" optimisation="1" targetName="Formula"
+                       cppLanguageStandard="c++14" osxCompatibility="10.9 SDK" headerPath="../../../../module/slCommon"
+                       enablePluginBinaryCopyStep="1"/>
+        <CONFIGURATION name="Release" isDebug="0" optimisation="3" targetName="Formula"
+                       cppLanguageStandard="c++14" osxCompatibility="10.9 SDK" enablePluginBinaryCopyStep="1"
+                       headerPath="../../../../module/slCommon" osxArchitecture="64BitUniversal"/>
+      </CONFIGURATIONS>
+      <MODULEPATHS>
+        <MODULEPATH id="juce_core" path="../../module/juce/modules"/>
+        <MODULEPATH id="juce_events" path="../../module/juce/modules"/>
+        <MODULEPATH id="juce_graphics" path="../../module/juce/modules"/>
+        <MODULEPATH id="juce_data_structures" path="../../module/juce/modules"/>
+        <MODULEPATH id="juce_gui_basics" path="../../module/juce/modules"/>
+        <MODULEPATH id="juce_gui_extra" path="../../module/juce/modules"/>
+        <MODULEPATH id="juce_cryptography" path="../../module/juce/modules"/>
+        <MODULEPATH id="juce_video" path="../../module/juce/modules"/>
+        <MODULEPATH id="juce_opengl" path="../../module/juce/modules"/>
+        <MODULEPATH id="juce_audio_basics" path="../../module/juce/modules"/>
+        <MODULEPATH id="juce_audio_devices" path="../../module/juce/modules"/>
+        <MODULEPATH id="juce_audio_formats" path="../../module/juce/modules"/>
+        <MODULEPATH id="juce_audio_processors" path="../../module/juce/modules"/>
+        <MODULEPATH id="juce_audio_plugin_client" path="../../module/juce/modules"/>
+        <MODULEPATH id="dRowAudio" path="../../module/dRowAudio/module"/>
+        <MODULEPATH id="juce_audio_utils" path="../../module/juce/modules"/>
+        <MODULEPATH id="juce_dsp" path="../../module/juce/modules"/>
+        <MODULEPATH id="gin" path="../../module/gin/modules"/>
+      </MODULEPATHS>
+    </XCODE_MAC>
+    <VS2017 targetFolder="Builds/VisualStudio2017" toolset="v141_xp">
+      <CONFIGURATIONS>
+        <CONFIGURATION name="Debug" winWarningLevel="4" generateManifest="1" winArchitecture="Win32"
+                       isDebug="1" optimisation="1" targetName="Formula_32b" headerPath="../../../../module/slCommon"
+                       postbuildCommand="copy /Y &quot;$(OutDir)\$(TargetFileName)&quot; &quot;C:\Program Files (x86)\VSTPlugins&quot;"
+                       debugInformationFormat="ProgramDatabase" enablePluginBinaryCopyStep="0"/>
+        <CONFIGURATION name="Release" winWarningLevel="4" generateManifest="1" winArchitecture="Win32"
+                       isDebug="0" optimisation="3" targetName="Formula_32b" headerPath="../../../../module/slCommon"
+                       postbuildCommand="copy /Y &quot;$(OutDir)\$(TargetFileName)&quot; &quot;C:\Program Files (x86)\VSTPlugins&quot;"
+                       debugInformationFormat="ProgramDatabase" enablePluginBinaryCopyStep="0"
+                       linkTimeOptimisation="1"/>
+        <CONFIGURATION name="Debug64" winWarningLevel="4" generateManifest="1" winArchitecture="x64"
+                       isDebug="1" optimisation="1" targetName="Formula_64b" headerPath="../../../../module/slCommon"
+                       postbuildCommand="copy /Y &quot;$(OutDir)\$(TargetFileName)&quot; &quot;C:\Program Files\VSTPlugins&quot;"
+                       debugInformationFormat="ProgramDatabase" enablePluginBinaryCopyStep="0"/>
+        <CONFIGURATION name="Release64" winWarningLevel="4" generateManifest="1" winArchitecture="x64"
+                       isDebug="0" optimisation="3" targetName="Formula_64b" headerPath="../../../../module/slCommon"
+                       postbuildCommand="copy /Y &quot;$(OutDir)\$(TargetFileName)&quot; &quot;C:\Program Files\VSTPlugins&quot;"
+                       debugInformationFormat="ProgramDatabase" enablePluginBinaryCopyStep="0"
+                       linkTimeOptimisation="1"/>
+      </CONFIGURATIONS>
+      <MODULEPATHS>
+        <MODULEPATH id="juce_core" path="../../module/juce/modules"/>
+        <MODULEPATH id="juce_events" path="../../module/juce/modules"/>
+        <MODULEPATH id="juce_graphics" path="../../module/juce/modules"/>
+        <MODULEPATH id="juce_data_structures" path="../../module/juce/modules"/>
+        <MODULEPATH id="juce_gui_basics" path="../../module/juce/modules"/>
+        <MODULEPATH id="juce_gui_extra" path="../../module/juce/modules"/>
+        <MODULEPATH id="juce_cryptography" path="../../module/juce/modules"/>
+        <MODULEPATH id="juce_video" path="../../module/juce/modules"/>
+        <MODULEPATH id="juce_opengl" path="../../module/juce/modules"/>
+        <MODULEPATH id="juce_audio_basics" path="../../module/juce/modules"/>
+        <MODULEPATH id="juce_audio_devices" path="../../module/juce/modules"/>
+        <MODULEPATH id="juce_audio_formats" path="../../module/juce/modules"/>
+        <MODULEPATH id="juce_audio_processors" path="../../module/juce/modules"/>
+        <MODULEPATH id="juce_audio_plugin_client" path="../../module/juce/modules"/>
+        <MODULEPATH id="dRowAudio" path="../../module/dRowAudio/module"/>
+        <MODULEPATH id="juce_audio_utils" path="../../module/juce/modules"/>
+        <MODULEPATH id="juce_dsp" path="../../module/juce/modules"/>
+        <MODULEPATH id="gin" path="../../module/gin/modules"/>
+      </MODULEPATHS>
+    </VS2017>
+  </EXPORTFORMATS>
+  <MODULES>
+    <MODULE id="dRowAudio" showAllCode="1" useLocalCopy="0"/>
+    <MODULE id="gin" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
+    <MODULE id="juce_audio_basics" showAllCode="1" useLocalCopy="0"/>
+    <MODULE id="juce_audio_devices" showAllCode="1" useLocalCopy="0"/>
+    <MODULE id="juce_audio_formats" showAllCode="1" useLocalCopy="0"/>
+    <MODULE id="juce_audio_plugin_client" showAllCode="1" useLocalCopy="0"/>
+    <MODULE id="juce_audio_processors" showAllCode="1" useLocalCopy="0"/>
+    <MODULE id="juce_audio_utils" showAllCode="1" useLocalCopy="0"/>
+    <MODULE id="juce_core" showAllCode="1" useLocalCopy="0"/>
+    <MODULE id="juce_cryptography" showAllCode="1" useLocalCopy="0"/>
+    <MODULE id="juce_data_structures" showAllCode="1" useLocalCopy="0"/>
+    <MODULE id="juce_dsp" showAllCode="1" useLocalCopy="0"/>
+    <MODULE id="juce_events" showAllCode="1" useLocalCopy="0"/>
+    <MODULE id="juce_graphics" showAllCode="1" useLocalCopy="0"/>
+    <MODULE id="juce_gui_basics" showAllCode="1" useLocalCopy="0"/>
+    <MODULE id="juce_gui_extra" showAllCode="1" useLocalCopy="0"/>
+    <MODULE id="juce_opengl" showAllCode="1" useLocalCopy="0"/>
+    <MODULE id="juce_video" showAllCode="1" useLocalCopy="0"/>
+  </MODULES>
+  <JUCEOPTIONS JUCE_QUICKTIME="disabled"/>
+  <LIVE_SETTINGS>
+    <OSX/>
+  </LIVE_SETTINGS>
+</JUCERPROJECT>
