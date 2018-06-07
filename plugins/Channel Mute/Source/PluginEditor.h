@@ -25,8 +25,6 @@ public:
     //==============================================================================
     void resized() override;
 
-    drow::TriggeredScope scope;
-
 private:
     ChannelMuteAudioProcessor& processor;
     

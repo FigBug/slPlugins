@@ -57,9 +57,6 @@ void ChannelMuteAudioProcessor::processBlock (AudioSampleBuffer& buffer, MidiBuf
 
     applyGain (buffer, 0, lVal);
     applyGain (buffer, 1, rVal);
-
-    if (editor)
-        editor->scope.addSamples (buffer);
 }
 
 //==============================================================================

@@ -9,4 +9,6 @@ c:\JUCE\Projucer.exe --resave "..\plugins\Spectrum Analyzer\Spectrum Analyzer.ju
 c:\JUCE\Projucer.exe --resave "..\plugins\Tone Generator\Tone Generator.jucer"
 c:\JUCE\Projucer.exe --resave "..\plugins\Channel Mute\Channel Mute.jucer"
 c:\JUCE\Projucer.exe --resave "..\plugins\Maths\Maths.jucer"
+c:\JUCE\Projucer.exe --resave "..\plugins\AB Tester\AB Tester.jucer"
+c:\JUCE\Projucer.exe --resave "..\plugins\AddInvert\AddInvert.jucer"
 

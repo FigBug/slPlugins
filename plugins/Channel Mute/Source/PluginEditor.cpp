@@ -17,8 +17,6 @@ using namespace gin;
 ChannelMuteAudioProcessorEditor::ChannelMuteAudioProcessorEditor (ChannelMuteAudioProcessor& p)
     : GinAudioProcessorEditor (p), processor (p)
 {
-    addAndMakeVisible (&scope);
-    
     for (Parameter* pp : p.getPluginParameters())
     {
         ParamComponent* pc;
@@ -32,11 +30,7 @@ ChannelMuteAudioProcessorEditor::ChannelMuteAudioProcessorEditor (ChannelMuteAud
         controls.add (pc);
     }
     
-    setGridSize (5, 2);
-    
-    scope.setNumChannels (2);
-    scope.setNumSamplesPerPixel (2);
-    scope.setVerticalZoomFactor (1.0f);
+    setGridSize (4, 1);
 }
 
 ChannelMuteAudioProcessorEditor::~ChannelMuteAudioProcessorEditor()
@@ -49,9 +43,7 @@ void ChannelMuteAudioProcessorEditor::resized()
     GinAudioProcessorEditor::resized();
 
     componentForId (PARAM_MUTE_L)->setBounds (getGridArea (0, 0));
-    componentForId (PARAM_LEVEL_L)->setBounds (getGridArea (0, 1));
-    componentForId (PARAM_MUTE_R)->setBounds (getGridArea (1, 0));
-    componentForId (PARAM_LEVEL_R)->setBounds (getGridArea (1, 1));
-
-    scope.setBounds (getGridArea (2, 0, 3, 2));
+    componentForId (PARAM_LEVEL_L)->setBounds (getGridArea (1, 0));
+    componentForId (PARAM_MUTE_R)->setBounds (getGridArea (2, 0));
+    componentForId (PARAM_LEVEL_R)->setBounds (getGridArea (3, 0));
 }

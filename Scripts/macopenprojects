@@ -1,21 +1,13 @@
 /Applications/JUCE/Projucer.app/Contents/MacOS/Projucer  ../../PAPU/plugin/PAPU.jucer &
-sleep 1
 /Applications/JUCE/Projucer.app/Contents/MacOS/Projucer  ../../RP2A03/plugin/RP2A03.jucer &
-sleep 1
 /Applications/JUCE/Projucer.app/Contents/MacOS/Projucer  ../../SID/plugin/SID.jucer &
-sleep 1
 /Applications/JUCE/Projucer.app/Contents/MacOS/Projucer  ../../SN76489/plugin/SN76489.jucer &
-sleep 1
 /Applications/JUCE/Projucer.app/Contents/MacOS/Projucer  ../../Voc/plugin/Voc.jucer &
-sleep 1
 
 /Applications/JUCE/Projucer.app/Contents/MacOS/Projucer  "../plugins/slOscilloscope/slOscilloscope.jucer" &
-sleep 1
 /Applications/JUCE/Projucer.app/Contents/MacOS/Projucer  "../plugins/Spectrum Analyzer/Spectrum Analyzer.jucer" &
-sleep 1
 /Applications/JUCE/Projucer.app/Contents/MacOS/Projucer  "../plugins/Tone Generator/Tone Generator.jucer" &
-sleep 1
 /Applications/JUCE/Projucer.app/Contents/MacOS/Projucer  "../plugins/Channel Mute/Channel Mute.jucer" &
-sleep 1
 /Applications/JUCE/Projucer.app/Contents/MacOS/Projucer  "../plugins/Maths/Maths.jucer" &
-sleep 1
+/Applications/JUCE/Projucer.app/Contents/MacOS/Projucer  "../plugins/Maths/AB\ Tester.jucer" &
+/Applications/JUCE/Projucer.app/Contents/MacOS/Projucer  "../plugins/Maths/AddInvert.jucer" &
