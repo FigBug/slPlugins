@@ -72,7 +72,7 @@ copy "C:\Program Files\VSTPlugins\SpectrumAnalyzer_64b.dll" bin
 copy "C:\Program Files\VSTPlugins\ToneGenerator_64b.dll" bin
 copy "C:\Program Files\VSTPlugins\ChannelMute_64b.dll" bin
 copy "C:\Program Files\VSTPlugins\Maths_64b.dll" bin
-copy "C:\Program Files\VSTPlugins\AB Tester_64b.dll" bin
+copy "C:\Program Files\VSTPlugins\ABTester_64b.dll" bin
 copy "C:\Program Files\VSTPlugins\AddInvert_64b.dll" bin
 
 copy "C:\Program Files (x86)\VSTPlugins\PAPU_32b.dll" bin
@@ -85,7 +85,7 @@ copy "C:\Program Files (x86)\VSTPlugins\SpectrumAnalyzer_32b.dll" bin
 copy "C:\Program Files (x86)\VSTPlugins\ToneGenerator_32b.dll" bin
 copy "C:\Program Files (x86)\VSTPlugins\ChannelMute_32b.dll" bin
 copy "C:\Program Files (x86)\VSTPlugins\Maths_32b.dll" bin
-copy "C:\Program Files (x86)\VSTPlugins\AB Tester_32b.dll" bin
+copy "C:\Program Files (x86)\VSTPlugins\ABTester_32b.dll" bin
 copy "C:\Program Files (x86)\VSTPlugins\AddInvert_32b.dll" bin
 
 cd bin
@@ -99,7 +99,7 @@ zip SpectrumAnalyzer_Win.zip SpectrumAnalyzer_32b.dll SpectrumAnalyzer_64b.dll
 zip ToneGenerator_Win.zip ToneGenerator_32b.dll ToneGenerator_64b.dll
 zip ChannelMute_Win.zip ChannelMute_32b.dll ChannelMute_64b.dll
 zip Maths_Win.zip Maths_32b.dll Maths_64b.dll
-zip "AB Tester_Win.zip" "AB Tester_32b.dll" "AB Tester_64b.dll"
+zip ABTester_Win.zip ABTester_32b.dll ABTester_64b.dll
 zip AddInvert_Win.zip AddInvert_32b.dll AddInvert_64b.dll
 zip All_Win.zip *.dll
 cd ..
