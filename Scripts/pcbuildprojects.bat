@@ -56,9 +56,9 @@ if %errorlevel% neq 0 exit /b %errorlevel%
 "C:\Program Files (x86)\Microsoft Visual Studio\2017\BuildTools\MSBuild\15.0\Bin\MSBuild.exe" "..\plugins\AB Tester\Builds\VisualStudio2017\AB Tester.sln" /p:VisualStudioVersion=15.0 /m /p:Configuration=Release64 /p:Platform=x64
 if %errorlevel% neq 0 exit /b %errorlevel%
 
-"C:\Program Files (x86)\Microsoft Visual Studio\2017\BuildTools\MSBuild\15.0\Bin\MSBuild.exe" "..\plugins\AddInvert\Builds\VisualStudio2017\AddInvert.sln" /p:VisualStudioVersion=15.0 /m /p:Configuration=Release /p:PlatformTarget=x86
+"C:\Program Files (x86)\Microsoft Visual Studio\2017\BuildTools\MSBuild\15.0\Bin\MSBuild.exe" "..\plugins\AddInvert\Builds\VisualStudio2017\Add and Invert.sln" /p:VisualStudioVersion=15.0 /m /p:Configuration=Release /p:PlatformTarget=x86
 if %errorlevel% neq 0 exit /b %errorlevel%
-"C:\Program Files (x86)\Microsoft Visual Studio\2017\BuildTools\MSBuild\15.0\Bin\MSBuild.exe" "..\plugins\AddInvert\Builds\VisualStudio2017\AddInvert.sln" /p:VisualStudioVersion=15.0 /m /p:Configuration=Release64 /p:Platform=x64
+"C:\Program Files (x86)\Microsoft Visual Studio\2017\BuildTools\MSBuild\15.0\Bin\MSBuild.exe" "..\plugins\AddInvert\Builds\VisualStudio2017\Add and Invert.sln" /p:VisualStudioVersion=15.0 /m /p:Configuration=Release64 /p:Platform=x64
 if %errorlevel% neq 0 exit /b %errorlevel%
 
 
