@@ -16,6 +16,10 @@
 
 using namespace juce::dsp;
 
+#define PARAM_OSC1_ENABLE   "osc1enable"
+#define PARAM_OSC2_ENABLE   "osc2enable"
+#define PARAM_OSC3_ENABLE   "osc3enable"
+
 #define PARAM_ATTACK        "attack"
 #define PARAM_DECAY         "decay"
 #define PARAM_SUSTAIN       "sustain"

@@ -19,10 +19,14 @@ FormulaAudioProcessor::FormulaAudioProcessor()
 {
     formulaSynth.setMPE (false);
     
-    addPluginParameter (new gin::Parameter (PARAM_ATTACK,    "Attack",   "A",    "s",     0.0f,   10.0f,  0.0f,    0.1f, 0.4f));
-    addPluginParameter (new gin::Parameter (PARAM_DECAY,     "Decay",    "D",    "s",     0.0f,   10.0f,  0.0f,    0.1f, 0.4f));
-    addPluginParameter (new gin::Parameter (PARAM_SUSTAIN,   "Sustain",  "S",    "%",     0.0f,   1.0f,   0.0f,    0.1f, 1.0f));
-    addPluginParameter (new gin::Parameter (PARAM_RELEASE,   "Release",  "R",    "s",     0.0f,   10.0f,  0.0f,    0.1f, 0.4f));
+    addPluginParameter (new gin::Parameter (PARAM_OSC1_ENABLE,  "OSC 1 Enable", "OSC1", "",      0.0f,   1.0f,   1.0f,    1.0f));
+    addPluginParameter (new gin::Parameter (PARAM_OSC2_ENABLE,  "OSC 2 Enable", "OSC2", "",      0.0f,   1.0f,   1.0f,    0.0f));
+    addPluginParameter (new gin::Parameter (PARAM_OSC3_ENABLE,  "OSC 3 Enable", "OSC3", "",      0.0f,   1.0f,   1.0f,    0.0f));
+
+    addPluginParameter (new gin::Parameter (PARAM_ATTACK,       "Attack",       "A",    "s",     0.0f,   10.0f,  0.0f,    0.1f, 0.4f));
+    addPluginParameter (new gin::Parameter (PARAM_DECAY,        "Decay",        "D",    "s",     0.0f,   10.0f,  0.0f,    0.1f, 0.4f));
+    addPluginParameter (new gin::Parameter (PARAM_SUSTAIN,      "Sustain",      "S",    "%",     0.0f,   1.0f,   0.0f,    0.1f, 1.0f));
+    addPluginParameter (new gin::Parameter (PARAM_RELEASE,      "Release",      "R",    "s",     0.0f,   10.0f,  0.0f,    0.1f, 0.4f));
     
     formulas[0] = "sine(phase) * env";
     formulas[1] = "sine(phase) * env";
@@ -86,10 +90,14 @@ void FormulaAudioProcessor::processBlock (AudioSampleBuffer& buffer, MidiBuffer&
     const int numSamples = buffer.getNumSamples();
 
     auto& params = formulaSynth.getParams();
-    params.attack  = parameterValue (PARAM_ATTACK);
-    params.decay   = parameterValue (PARAM_DECAY);
-    params.sustain = parameterValue (PARAM_SUSTAIN);
-    params.release = parameterValue (PARAM_RELEASE);
+    params.osc1enable = parameterBoolValue (PARAM_OSC1_ENABLE);
+    params.osc2enable = parameterBoolValue (PARAM_OSC2_ENABLE);
+    params.osc3enable = parameterBoolValue (PARAM_OSC3_ENABLE);
+
+    params.attack     = parameterValue (PARAM_ATTACK);
+    params.decay      = parameterValue (PARAM_DECAY);
+    params.sustain    = parameterValue (PARAM_SUSTAIN);
+    params.release    = parameterValue (PARAM_RELEASE);
 
     formulaSynth.renderNextBlock (buffer, midi, 0, numSamples);
     

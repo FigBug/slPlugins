@@ -98,11 +98,26 @@ void FormulaVoice::renderNextBlock (AudioBuffer<float>& outputBuffer, int startS
     for (int i = 0; i < numSamples; i++)
         *env++ = adsr.process();
     
+    int idx = 0;
+    
+    auto enabled = [&] (int i)
+    {
+        if (idx == 0) return owner.params.osc1enable;
+        if (idx == 1) return owner.params.osc2enable;
+        if (idx == 2) return owner.params.osc3enable;
+        jassertfalse;
+        return false;
+    };
+    
     for (auto& o : oscillators)
     {
-        o.setGain (note.noteOnVelocity.asUnsignedFloat());
-        o.setFrequency (freq);
-        o.process (envelopeBuffer, outputBuffer, startSample, numSamples);
+        if (enabled (idx))
+        {
+            o.setGain (note.noteOnVelocity.asUnsignedFloat());
+            o.setFrequency (freq);
+            o.process (envelopeBuffer, outputBuffer, startSample, numSamples);
+        }
+        idx++;
     }
     
     if (adsr.getState() == ADSR::idle)

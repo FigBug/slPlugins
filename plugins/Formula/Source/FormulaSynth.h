@@ -18,6 +18,10 @@ class FormulaSynth : public MPESynthesiser
 public:
     struct Params
     {
+        bool osc1enable = false;
+        bool osc2enable = false;
+        bool osc3enable = false;
+        
         float attack  = 0;
         float decay   = 0;
         float sustain = 0;
