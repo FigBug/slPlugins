@@ -32,3 +32,10 @@ void FormulaSynth::setMPE (bool mpe)
         setPitchbendTrackingMode (MPEInstrument::allNotesOnChannel);
     }
 }
+
+void FormulaSynth::setFormulas (String f1, String f2, String f3)
+{
+    for (int i = getNumVoices(); --i >= 0;)
+        if (auto* voice = dynamic_cast<FormulaVoice*> (getVoice (i)))
+            voice->setFormulas (f1, f2, f3);
+}

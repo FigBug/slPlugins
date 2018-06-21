@@ -22,6 +22,8 @@ class FormulaVoice : public MPESynthesiserVoice
 public:
     FormulaVoice (FormulaSynth& owner);
     
+    void setFormulas (String f1, String f2, String f3);
+    
     void noteStarted() override;
     void noteStopped (bool allowTailOff) override;
     void notePressureChanged() override;
@@ -34,8 +36,14 @@ public:
     void renderNextBlock (AudioBuffer<float>& outputBuffer, int startSample, int numSamples) override;
 
 private:
+    void updateParams();
+    
     FormulaSynth& owner;
     
     Oscillator oscillators[3];
     ADSR adsr;
+    
+    AudioSampleBuffer envelopeBuffer;
+    
+    int samplesProcessed = 0;
 };

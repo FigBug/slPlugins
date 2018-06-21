@@ -12,10 +12,28 @@
 
 #include "../JuceLibraryCode/JuceHeader.h"
 
+class FormulaVoice;
 class FormulaSynth : public MPESynthesiser
 {
 public:
+    struct Params
+    {
+        float attack  = 0;
+        float decay   = 0;
+        float sustain = 0;
+        float release = 0;
+    };
+    
     FormulaSynth();
     
     void setMPE (bool mpe);
+    
+    Params& getParams()     { return params; }
+    
+    void setFormulas (String f1, String f2, String f3);
+    
+private:
+    friend FormulaVoice;
+    
+    Params params;
 };

@@ -18,10 +18,57 @@ using namespace gin;
 FormulaAudioProcessor::FormulaAudioProcessor()
 {
     formulaSynth.setMPE (false);
+    
+    addPluginParameter (new gin::Parameter (PARAM_ATTACK,    "Attack",   "A",    "s",     0.0f,   10.0f,  0.0f,    0.1f, 0.4f));
+    addPluginParameter (new gin::Parameter (PARAM_DECAY,     "Decay",    "D",    "s",     0.0f,   10.0f,  0.0f,    0.1f, 0.4f));
+    addPluginParameter (new gin::Parameter (PARAM_SUSTAIN,   "Sustain",  "S",    "%",     0.0f,   1.0f,   0.0f,    0.1f, 1.0f));
+    addPluginParameter (new gin::Parameter (PARAM_RELEASE,   "Release",  "R",    "s",     0.0f,   10.0f,  0.0f,    0.1f, 0.4f));
+    
+    formulas[0] = "sine(phase) * env";
+    formulas[1] = "sine(phase) * env";
+    formulas[2] = "sine(phase) * env";
+    
+    refreshFormulas();
 }
 
 FormulaAudioProcessor::~FormulaAudioProcessor()
 {
+}
+
+//==============================================================================
+String FormulaAudioProcessor::getOscFormula (int idx)
+{
+    return formulas[idx];
+}
+
+void FormulaAudioProcessor::setOscFormula (int idx, String formula)
+{
+    formulas[idx] = formula;
+}
+
+//==============================================================================
+void FormulaAudioProcessor::refreshFormulas()
+{
+    formulaSynth.setFormulas (formulas[0], formulas[1], formulas[2]);
+}
+
+void FormulaAudioProcessor::stateUpdated()
+{
+    formulas[0] = state.hasProperty ("f1") ? state.getProperty ("f1") : "sine(phase) * env";
+    formulas[1] = state.hasProperty ("f2") ? state.getProperty ("f2") : "sine(phase) * env";
+    formulas[2] = state.hasProperty ("f3") ? state.getProperty ("f3") : "sine(phase) * env";
+
+    refreshFormulas();
+    
+    if (editor != nullptr)
+        editor->refresh();
+}
+
+void FormulaAudioProcessor::updateState()
+{
+    state.setProperty ("f1", formulas[0], nullptr);
+    state.setProperty ("f2", formulas[1], nullptr);
+    state.setProperty ("f3", formulas[2], nullptr);
 }
 
 //==============================================================================
@@ -37,6 +84,12 @@ void FormulaAudioProcessor::releaseResources()
 void FormulaAudioProcessor::processBlock (AudioSampleBuffer& buffer, MidiBuffer& midi)
 {
     const int numSamples = buffer.getNumSamples();
+
+    auto& params = formulaSynth.getParams();
+    params.attack  = parameterValue (PARAM_ATTACK);
+    params.decay   = parameterValue (PARAM_DECAY);
+    params.sustain = parameterValue (PARAM_SUSTAIN);
+    params.release = parameterValue (PARAM_RELEASE);
 
     formulaSynth.renderNextBlock (buffer, midi, 0, numSamples);
     

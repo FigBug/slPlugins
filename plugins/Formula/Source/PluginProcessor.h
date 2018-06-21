@@ -16,6 +16,11 @@
 
 using namespace juce::dsp;
 
+#define PARAM_ATTACK        "attack"
+#define PARAM_DECAY         "decay"
+#define PARAM_SUSTAIN       "sustain"
+#define PARAM_RELEASE       "release"
+
 class FormulaAudioProcessorEditor;
 //==============================================================================
 /**
@@ -38,11 +43,18 @@ public:
     bool hasEditor() const override;
 
     //==============================================================================
+    String getOscFormula (int idx);
+    void setOscFormula (int idx, String formula);
     
 private:
-    Component::SafePointer<FormulaAudioProcessorEditor> editor;
+    void stateUpdated() override;
+    void updateState() override;
+    void refreshFormulas();
     
+    String formulas[3];
     FormulaSynth formulaSynth;
+
+    Component::SafePointer<FormulaAudioProcessorEditor> editor;
     
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (FormulaAudioProcessor)

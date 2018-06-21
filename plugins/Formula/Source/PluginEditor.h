@@ -16,7 +16,8 @@
 //==============================================================================
 /**
 */
-class FormulaAudioProcessorEditor  : public gin::GinAudioProcessorEditor
+class FormulaAudioProcessorEditor  : public gin::GinAudioProcessorEditor,
+                                     private TextEditor::Listener
 {
 public:
     FormulaAudioProcessorEditor (FormulaAudioProcessor&);
@@ -24,11 +25,21 @@ public:
 
     //==============================================================================
     void resized() override;
+    void refresh();
     
     drow::TriggeredScope scope;
 
 private:
+    void textEditorReturnKeyPressed (TextEditor&) override;
+    void textEditorEscapeKeyPressed (TextEditor&) override;
+    void textEditorFocusLost (TextEditor&) override;
+
     FormulaAudioProcessor& processor;
     
+    TextEditor osc1, osc2, osc3;
+    Label osc1Label { "", "OSC 1:" };
+    Label osc2Label { "", "OSC 2:" };
+    Label osc3Label { "", "OSC 3:" };
+
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (FormulaAudioProcessorEditor)
 };
