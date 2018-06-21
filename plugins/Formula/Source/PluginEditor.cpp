@@ -108,8 +108,8 @@ void FormulaAudioProcessorEditor::resized()
 void FormulaAudioProcessorEditor::textEditorReturnKeyPressed (TextEditor& ed)
 {
     if (&ed == &osc1) processor.setOscFormula (0, osc1.getText());
-    if (&ed == &osc2) processor.setOscFormula (1, osc1.getText());
-    if (&ed == &osc3) processor.setOscFormula (2, osc1.getText());
+    if (&ed == &osc2) processor.setOscFormula (1, osc2.getText());
+    if (&ed == &osc3) processor.setOscFormula (2, osc3.getText());
 }
 
 void FormulaAudioProcessorEditor::textEditorEscapeKeyPressed (TextEditor&ed)

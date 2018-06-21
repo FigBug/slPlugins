@@ -48,6 +48,7 @@ String FormulaAudioProcessor::getOscFormula (int idx)
 void FormulaAudioProcessor::setOscFormula (int idx, String formula)
 {
     formulas[idx] = formula;
+    refreshFormulas();
 }
 
 //==============================================================================
