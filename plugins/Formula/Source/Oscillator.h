@@ -22,15 +22,18 @@ public:
     
     void start();
     
-    void setSampleRate (double sr)      { sampleRate = sr;  }
-    void setFrequency (double f)        { frequency = f;    }
-    void setGain (double g)             { gain = g;         }
+    void setController (int c, float v) { controllers[c].setValue (v);  }
+    void setSampleRate (double sr);
+    void setFrequency (double f)        { frequency = f;                }
+    void setGain (double g)             { gain = g;                     }
     
     void process (AudioSampleBuffer& envelope, AudioSampleBuffer& buffer, int startSample, int numSamples);
     
 private:
     CriticalSection lock;
     ScopedPointer<gin::EquationParser> parser;
+    
+    gin::ValueSmoother<double> controllers[128];
     
     double frequency = 0, phase = 0, envelope = 1, gain = 1;
     

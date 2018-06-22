@@ -31,6 +31,8 @@ public:
     void noteTimbreChanged() override;
     void noteKeyStateChanged() override;
     
+    void setController (int midiChannel, int controllerNumber, int controllerValue);
+    
     void setCurrentSampleRate (double newRate) override;
     
     void renderNextBlock (AudioBuffer<float>& outputBuffer, int startSample, int numSamples) override;

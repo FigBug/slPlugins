@@ -77,6 +77,7 @@ static double pulse (double phase, double pw, double freq)
     }
     else
     {
+        pw = jlimit (0.05, 0.95, pw);
         return sawUp (phase + 0.5 * pw, freq) - sawUp (phase - 0.5 * pw, freq);
     }
 };
@@ -101,6 +102,14 @@ Oscillator::~Oscillator()
 {
 }
 
+void Oscillator::setSampleRate (double sr)
+{
+    sampleRate = sr;
+    
+    for (auto& c : controllers)
+        c.reset (sr, 0.05);
+}
+
 void Oscillator::setFormula (String formula)
 {
     auto* p = new gin::EquationParser();
@@ -110,13 +119,16 @@ void Oscillator::setFormula (String formula)
     p->addVariable ("freq", &frequency);
     p->addVariable ("env", &envelope);
     
+    for (int i = 0; i <= 127; i++)
+        p->addVariable (String::formatted ( "cc%d", i), controllers[i].getValuePtr());
+    
     p->addFunction ("sine", sine);
     p->addFunction ("sawUp", sawUp);
     p->addFunction ("sawDown", sawDown);
     p->addFunction ("pulse", pulse);
     p->addFunction ("triangle", triangle);
     p->addFunction ("noise", noise);
-
+    
     ScopedLock sl (lock);
     parser = p;
 }
@@ -124,6 +136,9 @@ void Oscillator::setFormula (String formula)
 void Oscillator::start()
 {
     phase = 0;
+    
+    for (auto& c : controllers)
+        c.snapToValue();
 }
 
 void Oscillator::process (AudioSampleBuffer& envelopeBuffer, AudioSampleBuffer& buffer, int startSample, int numSamples)
@@ -145,6 +160,9 @@ void Oscillator::process (AudioSampleBuffer& envelopeBuffer, AudioSampleBuffer& 
     {
         for (int i = 0; i < numSamples; i++)
         {
+            for (auto& c : controllers)
+                c.updateValue();
+            
             envelope = e[i];
             
             phase += delta;

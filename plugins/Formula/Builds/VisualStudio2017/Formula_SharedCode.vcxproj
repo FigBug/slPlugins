@@ -281,11 +281,12 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\Source\Oscillator.cpp"/>
-    <ClCompile Include="..\..\Source\FormulaVoice.cpp"/>
     <ClCompile Include="..\..\Source\FormulaSynth.cpp"/>
-    <ClCompile Include="..\..\Source\PluginProcessor.cpp"/>
+    <ClCompile Include="..\..\Source\FormulaVoice.cpp"/>
+    <ClCompile Include="..\..\Source\Oscillator.cpp"/>
     <ClCompile Include="..\..\Source\PluginEditor.cpp"/>
+    <ClCompile Include="..\..\Source\PluginProcessor.cpp"/>
+    <ClCompile Include="..\..\Source\Utilities.cpp"/>
     <ClCompile Include="..\..\..\..\module\dRowAudio\module\dRowAudio\audio\fft\dRowAudio_FFT.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
@@ -2388,11 +2389,12 @@
     <ClCompile Include="..\..\JuceLibraryCode\include_juce_video.cpp"/>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\Source\Oscillator.h"/>
-    <ClInclude Include="..\..\Source\FormulaVoice.h"/>
     <ClInclude Include="..\..\Source\FormulaSynth.h"/>
-    <ClInclude Include="..\..\Source\PluginProcessor.h"/>
+    <ClInclude Include="..\..\Source\FormulaVoice.h"/>
+    <ClInclude Include="..\..\Source\Oscillator.h"/>
     <ClInclude Include="..\..\Source\PluginEditor.h"/>
+    <ClInclude Include="..\..\Source\PluginProcessor.h"/>
+    <ClInclude Include="..\..\Source\Utilities.h"/>
     <ClInclude Include="..\..\..\..\module\dRowAudio\module\dRowAudio\audio\fft\fftreal\Array.h"/>
     <ClInclude Include="..\..\..\..\module\dRowAudio\module\dRowAudio\audio\fft\fftreal\Array.hpp"/>
     <ClInclude Include="..\..\..\..\module\dRowAudio\module\dRowAudio\audio\fft\fftreal\def.h"/>

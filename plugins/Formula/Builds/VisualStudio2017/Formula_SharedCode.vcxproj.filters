@@ -496,19 +496,22 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\Source\Oscillator.cpp">
+    <ClCompile Include="..\..\Source\FormulaSynth.cpp">
       <Filter>Formula\Source</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\FormulaVoice.cpp">
       <Filter>Formula\Source</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Source\FormulaSynth.cpp">
+    <ClCompile Include="..\..\Source\Oscillator.cpp">
+      <Filter>Formula\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\PluginEditor.cpp">
       <Filter>Formula\Source</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\PluginProcessor.cpp">
       <Filter>Formula\Source</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Source\PluginEditor.cpp">
+    <ClCompile Include="..\..\Source\Utilities.cpp">
       <Filter>Formula\Source</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\module\dRowAudio\module\dRowAudio\audio\fft\dRowAudio_FFT.cpp">
@@ -2793,19 +2796,22 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\Source\Oscillator.h">
+    <ClInclude Include="..\..\Source\FormulaSynth.h">
       <Filter>Formula\Source</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\FormulaVoice.h">
       <Filter>Formula\Source</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Source\FormulaSynth.h">
+    <ClInclude Include="..\..\Source\Oscillator.h">
+      <Filter>Formula\Source</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\PluginEditor.h">
       <Filter>Formula\Source</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\PluginProcessor.h">
       <Filter>Formula\Source</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Source\PluginEditor.h">
+    <ClInclude Include="..\..\Source\Utilities.h">
       <Filter>Formula\Source</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\module\dRowAudio\module\dRowAudio\audio\fft\fftreal\Array.h">

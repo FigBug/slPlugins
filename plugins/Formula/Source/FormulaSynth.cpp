@@ -39,3 +39,10 @@ void FormulaSynth::setFormulas (String f1, String f2, String f3)
         if (auto* voice = dynamic_cast<FormulaVoice*> (getVoice (i)))
             voice->setFormulas (f1, f2, f3);
 }
+
+void FormulaSynth::handleController (int midiChannel, int controllerNumber, int controllerValue)
+{
+    for (int i = getNumVoices(); --i >= 0;)
+        if (auto* voice = dynamic_cast<FormulaVoice*> (getVoice (i)))
+            voice->setController (midiChannel, controllerNumber, controllerValue);
+}

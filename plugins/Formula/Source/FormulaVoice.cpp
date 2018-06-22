@@ -124,3 +124,8 @@ void FormulaVoice::renderNextBlock (AudioBuffer<float>& outputBuffer, int startS
         clearCurrentNote();
 }
 
+void FormulaVoice::setController (int midiChannel, int controllerNumber, int controllerValue)
+{
+    for (auto& o : oscillators)
+        o.setController (controllerNumber, controllerValue / 127.0);
+}
