@@ -39,7 +39,7 @@ public:
 private:
     friend FormulaVoice;
     
-    virtual void handleController (int /*midiChannel*/, int /*controllerNumber*/, int /*controllerValue*/) override;
+    void handleController (int /*midiChannel*/, int /*controllerNumber*/, int /*controllerValue*/) override;
     
     Params params;
 };
