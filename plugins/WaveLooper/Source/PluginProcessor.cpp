@@ -21,7 +21,6 @@ MathsAudioProcessor::MathsAudioProcessor()
     addPluginParameter (new Parameter (PARAM_P2,       "p2 (0..1)",       "", "",     0.0f,   1.0f,  0.0f,    1.0f));
     addPluginParameter (new Parameter (PARAM_P3,       "p3 (-1..1)",      "", "",     -1.0f,  1.0f,  0.0f,    1.0f));
     addPluginParameter (new Parameter (PARAM_P4,       "p4 (-1..1)",      "", "",     -1.0f,  1.0f,  0.0f,    1.0f));
-    addPluginParameter (new Parameter (PARAM_LIMITER,  "Limiter",         "", "",      0.0f,  1.0f,  1.0f,    1.0f,    1.0f,    [] (const Parameter&, float v) { return v > 0.5 ? "On" : "Off"; }));
 
     setupParsers();
 }
@@ -69,28 +68,32 @@ void MathsAudioProcessor::setupParsers()
 
     newL->setEquation (lEquation);
     newR->setEquation (rEquation);
-    
-    setupVars (newL);
-    setupVars (newR);
 
+    newL->addVariable ("l", &l);
+    newL->addVariable ("r", &r);
+    newL->addVariable ("p1", &p1);
+    newL->addVariable ("p2", &p2);
+    newL->addVariable ("p3", &p3);
+    newL->addVariable ("p4", &p4);
+    newL->addVariable ("t", &t);
+    newL->addVariable ("s", &s);
+    newL->addVariable ("c", &c);
+    newL->addVariable ("sr", &sr);
+    newR->addVariable ("l", &l);
+    newR->addVariable ("r", &r);
+    newR->addVariable ("p1", &p1);
+    newR->addVariable ("p2", &p2);
+    newR->addVariable ("p3", &p3);
+    newR->addVariable ("p4", &p4);
+    newR->addVariable ("t", &t);
+    newR->addVariable ("s", &s);
+    newR->addVariable ("c", &c);
+    newR->addVariable ("sr", &sr);
+    
     ScopedLock sl (lock);
     
     lParser = newL;
     rParser = newR;
-}
-
-void MathsAudioProcessor::setupVars (gin::EquationParser* p)
-{
-    p->addVariable ("l", &l);
-    p->addVariable ("r", &r);
-    p->addVariable ("p1", &p1);
-    p->addVariable ("p2", &p2);
-    p->addVariable ("p3", &p3);
-    p->addVariable ("p4", &p4);
-    p->addVariable ("t", &t);
-    p->addVariable ("s", &s);
-    p->addVariable ("c", &c);
-    p->addVariable ("sr", &sr);
 }
 
 void MathsAudioProcessor::releaseResources()
@@ -100,8 +103,6 @@ void MathsAudioProcessor::releaseResources()
 void MathsAudioProcessor::processBlock (AudioSampleBuffer& buffer, MidiBuffer&)
 {
     ScopedLock sl (lock);
-    
-    ScopedNoDenormals noDenormals;
     
     float* lData = buffer.getWritePointer (0);
     float* rData = buffer.getWritePointer (1);
@@ -130,20 +131,8 @@ void MathsAudioProcessor::processBlock (AudioSampleBuffer& buffer, MidiBuffer&)
         p3 = p3Val.getNextValue();
         p4 = p4Val.getNextValue();
 
-        double l2 = lParser->evaluate();
-        double r2 = rParser->evaluate();
-        
-        if (std::isnan (l2) || std::isinf (l2)) l2 = 0.0f;
-        if (std::isnan (r2) || std::isinf (r2)) r2 = 0.0f;
-        
-        if (parameterIntValue (PARAM_LIMITER) != 0)
-        {
-            l2 = jlimit (-1.0, 1.0, l2);
-            r2 = jlimit (-1.0, 1.0, r2);
-        }
-        
-        lData[i] = l2;
-        rData[i] = r2;
+        lData[i] = lParser->evaluate();
+        rData[i] = rParser->evaluate();
         
         if (c != -1) c = 1 / sr;
         t += 1 / sr;
