@@ -44,6 +44,7 @@
 namespace ProjectInfo
 {
     const char* const  projectName    = "Oscilloscope";
+    const char* const  companyName    = "SocaLabs";
     const char* const  versionString  = "1.0.1";
     const int          versionNumber  = 0x10001;
 }

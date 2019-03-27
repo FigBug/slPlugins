@@ -50,6 +50,8 @@
 //==============================================================================
 #define JUCE_MODULE_AVAILABLE_dRowAudio                     1
 #define JUCE_MODULE_AVAILABLE_gin                           1
+#define JUCE_MODULE_AVAILABLE_gin_dsp                       1
+#define JUCE_MODULE_AVAILABLE_gin_plugin                    1
 #define JUCE_MODULE_AVAILABLE_juce_audio_basics             1
 #define JUCE_MODULE_AVAILABLE_juce_audio_devices            1
 #define JUCE_MODULE_AVAILABLE_juce_audio_formats            1
@@ -64,8 +66,6 @@
 #define JUCE_MODULE_AVAILABLE_juce_graphics                 1
 #define JUCE_MODULE_AVAILABLE_juce_gui_basics               1
 #define JUCE_MODULE_AVAILABLE_juce_gui_extra                1
-#define JUCE_MODULE_AVAILABLE_juce_opengl                   1
-#define JUCE_MODULE_AVAILABLE_juce_video                    1
 
 #define JUCE_GLOBAL_MODULE_SETTINGS_INCLUDED 1
 
@@ -322,21 +322,6 @@
 #endif
 
 //==============================================================================
-// juce_video flags:
-
-#ifndef    JUCE_USE_CAMERA
- //#define JUCE_USE_CAMERA 0
-#endif
-//==============================================================================
-#ifndef    JUCE_STANDALONE_APPLICATION
- #if defined(JucePlugin_Name) && defined(JucePlugin_Build_Standalone)
-  #define  JUCE_STANDALONE_APPLICATION JucePlugin_Build_Standalone
- #else
-  #define  JUCE_STANDALONE_APPLICATION 0
- #endif
-#endif
-
-//==============================================================================
 // Audio plugin settings..
 
 #ifndef  JucePlugin_Build_VST
@@ -359,6 +344,9 @@
 #endif
 #ifndef  JucePlugin_Build_Standalone
  #define JucePlugin_Build_Standalone       1
+#endif
+#ifndef  JucePlugin_Build_Unity
+ #define JucePlugin_Build_Unity            0
 #endif
 #ifndef  JucePlugin_Enable_IAA
  #define JucePlugin_Enable_IAA             0
@@ -477,6 +465,12 @@
 #ifndef  JucePlugin_IAAName
  #define JucePlugin_IAAName                "SocaLabs: Formula"
 #endif
+#ifndef  JucePlugin_VSTNumMidiInputs
+ #define JucePlugin_VSTNumMidiInputs       16
+#endif
+#ifndef  JucePlugin_VSTNumMidiOutputs
+ #define JucePlugin_VSTNumMidiOutputs      16
+#endif
 #ifndef  JucePlugin_MaxNumInputChannels
  #define JucePlugin_MaxNumInputChannels    0
 #endif
@@ -485,4 +479,13 @@
 #endif
 #ifndef  JucePlugin_PreferredChannelConfigurations
  #define JucePlugin_PreferredChannelConfigurations  {0,2}
+#endif
+
+//==============================================================================
+#ifndef    JUCE_STANDALONE_APPLICATION
+ #if defined(JucePlugin_Name) && defined(JucePlugin_Build_Standalone)
+  #define  JUCE_STANDALONE_APPLICATION JucePlugin_Build_Standalone
+ #else
+  #define  JUCE_STANDALONE_APPLICATION 0
+ #endif
 #endif

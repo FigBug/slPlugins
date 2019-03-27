@@ -6,4 +6,4 @@
 */
 
 #include "AppConfig.h"
-#include <juce_video/juce_video.cpp>
+#include <gin_dsp/gin_dsp.cpp>

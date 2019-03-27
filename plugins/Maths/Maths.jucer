@@ -6,7 +6,7 @@
               pluginManufacturerCode="Soca" pluginCode="MAth" pluginChannelConfigs="{2,2}"
               pluginIsSynth="0" pluginWantsMidiIn="0" pluginProducesMidiOut="0"
               pluginIsMidiEffectPlugin="0" pluginEditorRequiresKeys="0" pluginAUExportPrefix="MathsAU"
-              aaxIdentifier="com.socalabs.Maths" pluginAAXCategory="2" jucerVersion="5.3.2"
+              aaxIdentifier="com.socalabs.Maths" pluginAAXCategory="2" jucerVersion="5.4.0"
               companyName="SocaLabs" companyWebsite="www.socalabs.com" companyEmail="info@socalabs.com"
               displaySplashScreen="0" reportAppUsage="0" splashScreenColour="Dark"
               cppLanguageStandard="14" companyCopyright="SocaLabs" pluginAUMainType="'aufx'"

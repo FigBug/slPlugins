@@ -44,6 +44,7 @@
 namespace ProjectInfo
 {
     const char* const  projectName    = "Spectrum Analyzer";
+    const char* const  companyName    = "SocaLabs";
     const char* const  versionString  = "1.0.0";
     const int          versionNumber  = 0x10000;
 }

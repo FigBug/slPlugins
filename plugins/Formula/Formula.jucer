@@ -7,7 +7,7 @@
               pluginManufacturerCode="Soca" pluginCode="Form" pluginChannelConfigs="{0,2}"
               pluginIsSynth="0" pluginWantsMidiIn="0" pluginProducesMidiOut="0"
               pluginIsMidiEffectPlugin="0" pluginEditorRequiresKeys="0" pluginAUExportPrefix="FormulaAU"
-              aaxIdentifier="com.socalabs.Formula" pluginAAXCategory="2" jucerVersion="5.3.2"
+              aaxIdentifier="com.socalabs.Formula" pluginAAXCategory="2" jucerVersion="5.4.3"
               companyName="SocaLabs" companyWebsite="www.socalabs.com" companyEmail="info@socalabs.com"
               displaySplashScreen="0" reportAppUsage="0" splashScreenColour="Dark"
               buildStandalone="1" enableIAA="0" cppLanguageStandard="14" companyCopyright="SocaLabs"
@@ -54,10 +54,7 @@
         <MODULEPATH id="juce_gui_basics" path="../../module/juce/modules"/>
         <MODULEPATH id="juce_gui_extra" path="../../module/juce/modules"/>
         <MODULEPATH id="juce_cryptography" path="../../module/juce/modules"/>
-        <MODULEPATH id="juce_video" path="../../module/juce/modules"/>
-        <MODULEPATH id="juce_opengl" path="../../module/juce/modules"/>
         <MODULEPATH id="juce_audio_basics" path="../../module/juce/modules"/>
-        <MODULEPATH id="juce_audio_devices" path="../../module/juce/modules"/>
         <MODULEPATH id="juce_audio_formats" path="../../module/juce/modules"/>
         <MODULEPATH id="juce_audio_processors" path="../../module/juce/modules"/>
         <MODULEPATH id="juce_audio_plugin_client" path="../../module/juce/modules"/>
@@ -65,6 +62,9 @@
         <MODULEPATH id="juce_audio_utils" path="../../module/juce/modules"/>
         <MODULEPATH id="juce_dsp" path="../../module/juce/modules"/>
         <MODULEPATH id="gin" path="../../module/gin/modules"/>
+        <MODULEPATH id="gin_dsp" path="../../module/gin/modules"/>
+        <MODULEPATH id="gin_plugin" path="../../module/gin/modules"/>
+        <MODULEPATH id="juce_audio_devices" path="../../module/juce/modules"/>
       </MODULEPATHS>
     </XCODE_MAC>
     <VS2017 targetFolder="Builds/VisualStudio2017" toolset="v141_xp">
@@ -96,10 +96,7 @@
         <MODULEPATH id="juce_gui_basics" path="../../module/juce/modules"/>
         <MODULEPATH id="juce_gui_extra" path="../../module/juce/modules"/>
         <MODULEPATH id="juce_cryptography" path="../../module/juce/modules"/>
-        <MODULEPATH id="juce_video" path="../../module/juce/modules"/>
-        <MODULEPATH id="juce_opengl" path="../../module/juce/modules"/>
         <MODULEPATH id="juce_audio_basics" path="../../module/juce/modules"/>
-        <MODULEPATH id="juce_audio_devices" path="../../module/juce/modules"/>
         <MODULEPATH id="juce_audio_formats" path="../../module/juce/modules"/>
         <MODULEPATH id="juce_audio_processors" path="../../module/juce/modules"/>
         <MODULEPATH id="juce_audio_plugin_client" path="../../module/juce/modules"/>
@@ -107,14 +104,19 @@
         <MODULEPATH id="juce_audio_utils" path="../../module/juce/modules"/>
         <MODULEPATH id="juce_dsp" path="../../module/juce/modules"/>
         <MODULEPATH id="gin" path="../../module/gin/modules"/>
+        <MODULEPATH id="gin_dsp" path="../../module/gin/modules"/>
+        <MODULEPATH id="gin_plugin" path="../../module/gin/modules"/>
+        <MODULEPATH id="juce_audio_devices" path="../../module/juce/modules"/>
       </MODULEPATHS>
     </VS2017>
   </EXPORTFORMATS>
   <MODULES>
     <MODULE id="dRowAudio" showAllCode="1" useLocalCopy="0"/>
     <MODULE id="gin" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
+    <MODULE id="gin_dsp" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
+    <MODULE id="gin_plugin" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
     <MODULE id="juce_audio_basics" showAllCode="1" useLocalCopy="0"/>
-    <MODULE id="juce_audio_devices" showAllCode="1" useLocalCopy="0"/>
+    <MODULE id="juce_audio_devices" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
     <MODULE id="juce_audio_formats" showAllCode="1" useLocalCopy="0"/>
     <MODULE id="juce_audio_plugin_client" showAllCode="1" useLocalCopy="0"/>
     <MODULE id="juce_audio_processors" showAllCode="1" useLocalCopy="0"/>
@@ -127,8 +129,6 @@
     <MODULE id="juce_graphics" showAllCode="1" useLocalCopy="0"/>
     <MODULE id="juce_gui_basics" showAllCode="1" useLocalCopy="0"/>
     <MODULE id="juce_gui_extra" showAllCode="1" useLocalCopy="0"/>
-    <MODULE id="juce_opengl" showAllCode="1" useLocalCopy="0"/>
-    <MODULE id="juce_video" showAllCode="1" useLocalCopy="0"/>
   </MODULES>
   <JUCEOPTIONS JUCE_QUICKTIME="disabled"/>
   <LIVE_SETTINGS>

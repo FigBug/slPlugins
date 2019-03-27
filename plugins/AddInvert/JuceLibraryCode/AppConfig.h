@@ -327,14 +327,6 @@
 #ifndef    JUCE_USE_CAMERA
  //#define JUCE_USE_CAMERA 0
 #endif
-//==============================================================================
-#ifndef    JUCE_STANDALONE_APPLICATION
- #if defined(JucePlugin_Name) && defined(JucePlugin_Build_Standalone)
-  #define  JUCE_STANDALONE_APPLICATION JucePlugin_Build_Standalone
- #else
-  #define  JUCE_STANDALONE_APPLICATION 0
- #endif
-#endif
 
 //==============================================================================
 // Audio plugin settings..
@@ -359,6 +351,9 @@
 #endif
 #ifndef  JucePlugin_Build_Standalone
  #define JucePlugin_Build_Standalone       0
+#endif
+#ifndef  JucePlugin_Build_Unity
+ #define JucePlugin_Build_Unity            0
 #endif
 #ifndef  JucePlugin_Enable_IAA
  #define JucePlugin_Enable_IAA             0
@@ -485,4 +480,13 @@
 #endif
 #ifndef  JucePlugin_PreferredChannelConfigurations
  #define JucePlugin_PreferredChannelConfigurations  {4,2}
+#endif
+
+//==============================================================================
+#ifndef    JUCE_STANDALONE_APPLICATION
+ #if defined(JucePlugin_Name) && defined(JucePlugin_Build_Standalone)
+  #define  JUCE_STANDALONE_APPLICATION JucePlugin_Build_Standalone
+ #else
+  #define  JUCE_STANDALONE_APPLICATION 0
+ #endif
 #endif

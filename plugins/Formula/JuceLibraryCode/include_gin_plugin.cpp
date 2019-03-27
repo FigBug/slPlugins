@@ -6,4 +6,4 @@
 */
 
 #include "AppConfig.h"
-#include <juce_opengl/juce_opengl.cpp>
+#include <gin_plugin/gin_plugin.cpp>

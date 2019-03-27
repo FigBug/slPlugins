@@ -16,6 +16,8 @@
 
 #include <dRowAudio/dRowAudio.h>
 #include <gin/gin.h>
+#include <gin_dsp/gin_dsp.h>
+#include <gin_plugin/gin_plugin.h>
 #include <juce_audio_basics/juce_audio_basics.h>
 #include <juce_audio_devices/juce_audio_devices.h>
 #include <juce_audio_formats/juce_audio_formats.h>
@@ -30,8 +32,6 @@
 #include <juce_graphics/juce_graphics.h>
 #include <juce_gui_basics/juce_gui_basics.h>
 #include <juce_gui_extra/juce_gui_extra.h>
-#include <juce_opengl/juce_opengl.h>
-#include <juce_video/juce_video.h>
 
 
 #if ! DONT_SET_USING_JUCE_NAMESPACE
@@ -44,6 +44,7 @@
 namespace ProjectInfo
 {
     const char* const  projectName    = "Formula";
+    const char* const  companyName    = "SocaLabs";
     const char* const  versionString  = "1.0.0";
     const int          versionNumber  = 0x10000;
 }
