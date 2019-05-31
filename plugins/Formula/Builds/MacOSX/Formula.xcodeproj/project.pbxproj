@@ -65,6 +65,10 @@
 			isa = PBXBuildFile;
 			fileRef = 80497775F66555BDF96EDCED;
 		};
+		664F8726B57D87F1F1DAE416 = {
+			isa = PBXBuildFile;
+			fileRef = 523DCB9F7A4C3EB6E345025E;
+		};
 		0B645CD7811466B187A3651D = {
 			isa = PBXBuildFile;
 			fileRef = 800E65D578464DBAEDDC2532;
@@ -353,6 +357,13 @@
 			name = RecentFilesMenuTemplate.nib;
 			path = RecentFilesMenuTemplate.nib;
 			sourceTree = "SOURCE_ROOT";
+		};
+		523DCB9F7A4C3EB6E345025E = {
+			isa = PBXFileReference;
+			lastKnownFileType = wrapper.framework;
+			name = Security.framework;
+			path = System/Library/Frameworks/Security.framework;
+			sourceTree = SDKROOT;
 		};
 		594CE11455BB0B2F3C9789C2 = {
 			isa = PBXFileReference;
@@ -842,6 +853,7 @@
 				5E97800FC099791FEB67B8F9,
 				E944181ACF039ED10E04D35F,
 				80497775F66555BDF96EDCED,
+				523DCB9F7A4C3EB6E345025E,
 				800E65D578464DBAEDDC2532,
 			);
 			name = Frameworks;
@@ -917,7 +929,8 @@
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GENERATE_PKGINFO_FILE = YES;
 				HEADER_SEARCH_PATHS = (
-					"$(HOME)/SDKs/VST3_SDK",
+					"../../../../module/juce/modules/juce_audio_processors/format_types/VST3_SDK",
+					"/Users/rrabien/SDKs/vstsdk2.4",
 					"../../JuceLibraryCode",
 					"../../../../module/dRowAudio/module",
 					"../../../../module/gin/modules",
@@ -972,7 +985,8 @@
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GENERATE_PKGINFO_FILE = YES;
 				HEADER_SEARCH_PATHS = (
-					"$(HOME)/SDKs/VST3_SDK",
+					"../../../../module/juce/modules/juce_audio_processors/format_types/VST3_SDK",
+					"/Users/rrabien/SDKs/vstsdk2.4",
 					"../../JuceLibraryCode",
 					"../../../../module/dRowAudio/module",
 					"../../../../module/gin/modules",
@@ -1026,7 +1040,8 @@
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GENERATE_PKGINFO_FILE = YES;
 				HEADER_SEARCH_PATHS = (
-					"$(HOME)/SDKs/VST3_SDK",
+					"../../../../module/juce/modules/juce_audio_processors/format_types/VST3_SDK",
+					"/Users/rrabien/SDKs/vstsdk2.4",
 					"../../JuceLibraryCode",
 					"../../../../module/dRowAudio/module",
 					"../../../../module/gin/modules",
@@ -1082,7 +1097,8 @@
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GENERATE_PKGINFO_FILE = YES;
 				HEADER_SEARCH_PATHS = (
-					"$(HOME)/SDKs/VST3_SDK",
+					"../../../../module/juce/modules/juce_audio_processors/format_types/VST3_SDK",
+					"/Users/rrabien/SDKs/vstsdk2.4",
 					"../../JuceLibraryCode",
 					"../../../../module/dRowAudio/module",
 					"../../../../module/gin/modules",
@@ -1134,7 +1150,8 @@
 				);
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				HEADER_SEARCH_PATHS = (
-					"$(HOME)/SDKs/VST3_SDK",
+					"../../../../module/juce/modules/juce_audio_processors/format_types/VST3_SDK",
+					"/Users/rrabien/SDKs/vstsdk2.4",
 					"../../JuceLibraryCode",
 					"../../../../module/dRowAudio/module",
 					"../../../../module/gin/modules",
@@ -1183,7 +1200,8 @@
 				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				HEADER_SEARCH_PATHS = (
-					"$(HOME)/SDKs/VST3_SDK",
+					"../../../../module/juce/modules/juce_audio_processors/format_types/VST3_SDK",
+					"/Users/rrabien/SDKs/vstsdk2.4",
 					"../../JuceLibraryCode",
 					"../../../../module/dRowAudio/module",
 					"../../../../module/gin/modules",
@@ -1232,7 +1250,8 @@
 				);
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				HEADER_SEARCH_PATHS = (
-					"$(HOME)/SDKs/VST3_SDK",
+					"../../../../module/juce/modules/juce_audio_processors/format_types/VST3_SDK",
+					"/Users/rrabien/SDKs/vstsdk2.4",
 					"../../JuceLibraryCode",
 					"../../../../module/dRowAudio/module",
 					"../../../../module/gin/modules",
@@ -1281,7 +1300,8 @@
 				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				HEADER_SEARCH_PATHS = (
-					"$(HOME)/SDKs/VST3_SDK",
+					"../../../../module/juce/modules/juce_audio_processors/format_types/VST3_SDK",
+					"/Users/rrabien/SDKs/vstsdk2.4",
 					"../../JuceLibraryCode",
 					"../../../../module/dRowAudio/module",
 					"../../../../module/gin/modules",
@@ -1472,10 +1492,12 @@
 				6C68B809161522A024E479D5,
 				8E847BE7BE2C6155D01B35CF,
 				5CA7B4F78B57BD44CA647DE4,
+				F0C7D668F7EC55BAD46506FB,
 				D60953D40178A1D6B92A2C3C,
 				CAF973797906797CBCD2CC59,
 				DE0D3BEEB9176892749DAED8,
 				02F619E5DC3368C805843916,
+				664F8726B57D87F1F1DAE416,
 				0B645CD7811466B187A3651D,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1546,6 +1568,7 @@
 				CAF973797906797CBCD2CC59,
 				DE0D3BEEB9176892749DAED8,
 				02F619E5DC3368C805843916,
+				664F8726B57D87F1F1DAE416,
 				0B645CD7811466B187A3651D,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1602,10 +1625,12 @@
 				6C68B809161522A024E479D5,
 				8E847BE7BE2C6155D01B35CF,
 				5CA7B4F78B57BD44CA647DE4,
+				F0C7D668F7EC55BAD46506FB,
 				D60953D40178A1D6B92A2C3C,
 				CAF973797906797CBCD2CC59,
 				DE0D3BEEB9176892749DAED8,
 				02F619E5DC3368C805843916,
+				664F8726B57D87F1F1DAE416,
 				0B645CD7811466B187A3651D,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -62,6 +62,9 @@
     <Filter Include="JUCE Modules\dRowAudio">
       <UniqueIdentifier>{1BB8FCC2-A9C5-2C96-F038-AFB8E30DE38C}</UniqueIdentifier>
     </Filter>
+    <Filter Include="JUCE Modules\gin\3rdparty\avir">
+      <UniqueIdentifier>{786376B8-4206-D109-0FEB-CC1D6E86142B}</UniqueIdentifier>
+    </Filter>
     <Filter Include="JUCE Modules\gin\3rdparty\muParser">
       <UniqueIdentifier>{563D771C-AC89-C3F6-0E82-1768813D2D05}</UniqueIdentifier>
     </Filter>
@@ -70,9 +73,6 @@
     </Filter>
     <Filter Include="JUCE Modules\gin\components">
       <UniqueIdentifier>{560D92AE-AD79-D6DF-3F6C-8ABBAE2BD7AD}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="JUCE Modules\gin\dsp">
-      <UniqueIdentifier>{BE238AA3-727D-2995-B09F-943A25A93235}</UniqueIdentifier>
     </Filter>
     <Filter Include="JUCE Modules\gin\geometry">
       <UniqueIdentifier>{4E1A3356-365B-324F-B528-0F143C5BBCC1}</UniqueIdentifier>
@@ -83,23 +83,32 @@
     <Filter Include="JUCE Modules\gin\metadata">
       <UniqueIdentifier>{D63B2E85-050D-0D10-D494-5627C45A3B21}</UniqueIdentifier>
     </Filter>
-    <Filter Include="JUCE Modules\gin\plugin">
-      <UniqueIdentifier>{7187FE70-3BD4-95AD-706C-344F81887A6B}</UniqueIdentifier>
-    </Filter>
     <Filter Include="JUCE Modules\gin\utilities">
       <UniqueIdentifier>{ABC8C4B7-6A7B-CB84-80A1-FCF6339CDC81}</UniqueIdentifier>
     </Filter>
     <Filter Include="JUCE Modules\gin">
       <UniqueIdentifier>{DB448E11-657F-23E8-E6D7-EC844A65E321}</UniqueIdentifier>
     </Filter>
+    <Filter Include="JUCE Modules\gin_dsp\dsp">
+      <UniqueIdentifier>{D90984DA-8BFF-0857-7F98-31FD2690CE60}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="JUCE Modules\gin_dsp">
+      <UniqueIdentifier>{B4698ACB-A464-14B1-6282-C4EC7DDA1F24}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="JUCE Modules\gin_plugin\components">
+      <UniqueIdentifier>{B3C6A2A5-A95E-0E37-2C9C-79FB2D9EF7E0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="JUCE Modules\gin_plugin\plugin">
+      <UniqueIdentifier>{A89EA7D7-497B-4004-81B3-F97770DF56C9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="JUCE Modules\gin_plugin">
+      <UniqueIdentifier>{E400E7FC-04F2-E5A2-7C83-A95BCD1F9B18}</UniqueIdentifier>
+    </Filter>
     <Filter Include="JUCE Modules\juce_audio_basics\audio_play_head">
       <UniqueIdentifier>{EB58F05A-A968-CEBE-40C4-107CDD8F240F}</UniqueIdentifier>
     </Filter>
     <Filter Include="JUCE Modules\juce_audio_basics\buffers">
       <UniqueIdentifier>{5FCF559E-451A-CB1E-B177-A5DC5A0005BB}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="JUCE Modules\juce_audio_basics\effects">
-      <UniqueIdentifier>{31054003-EA72-6A9D-D650-56451D9820E6}</UniqueIdentifier>
     </Filter>
     <Filter Include="JUCE Modules\juce_audio_basics\midi">
       <UniqueIdentifier>{D78296AF-218E-B17E-7F8B-9D148601188D}</UniqueIdentifier>
@@ -115,6 +124,9 @@
     </Filter>
     <Filter Include="JUCE Modules\juce_audio_basics\synthesisers">
       <UniqueIdentifier>{8292766D-2459-2E7E-7615-17216318BA93}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="JUCE Modules\juce_audio_basics\utilities">
+      <UniqueIdentifier>{9BD56105-DAB4-EBD5-00DD-BD540E98FE88}</UniqueIdentifier>
     </Filter>
     <Filter Include="JUCE Modules\juce_audio_basics">
       <UniqueIdentifier>{10472B2C-9888-D269-F351-0D0AC3BCD16C}</UniqueIdentifier>
@@ -194,6 +206,9 @@
     <Filter Include="JUCE Modules\juce_audio_plugin_client\Standalone">
       <UniqueIdentifier>{725C0EA8-9736-764D-81E6-01695B6B00B3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="JUCE Modules\juce_audio_plugin_client\Unity">
+      <UniqueIdentifier>{03ADCBAC-804E-4FDB-E12D-D5BE24075473}</UniqueIdentifier>
+    </Filter>
     <Filter Include="JUCE Modules\juce_audio_plugin_client\utility">
       <UniqueIdentifier>{09E4D4E3-1D92-962B-C66E-DD8C8C935FF6}</UniqueIdentifier>
     </Filter>
@@ -205,6 +220,51 @@
     </Filter>
     <Filter Include="JUCE Modules\juce_audio_processors\format">
       <UniqueIdentifier>{86737735-F6BA-F64A-5EC7-5C9F36755F79}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="JUCE Modules\juce_audio_processors\format_types\VST3_SDK\base\source">
+      <UniqueIdentifier>{4DC60E78-BBC0-B540-63A2-37E14ABBEF09}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="JUCE Modules\juce_audio_processors\format_types\VST3_SDK\base\thread\include">
+      <UniqueIdentifier>{80C72173-A1E1-C3C5-9288-B889CE2EAFEA}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="JUCE Modules\juce_audio_processors\format_types\VST3_SDK\base\thread\source">
+      <UniqueIdentifier>{4138B955-AA0B-FA86-DBF9-404CAFFFA866}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="JUCE Modules\juce_audio_processors\format_types\VST3_SDK\base\thread">
+      <UniqueIdentifier>{2B4166B8-F470-F07C-4F51-D2DAAAECBB18}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="JUCE Modules\juce_audio_processors\format_types\VST3_SDK\base">
+      <UniqueIdentifier>{9C295115-C0CD-3129-1C4D-FB53299B23FB}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="JUCE Modules\juce_audio_processors\format_types\VST3_SDK\pluginterfaces\base">
+      <UniqueIdentifier>{65526A8B-3447-9DF0-FD5D-00D111126027}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="JUCE Modules\juce_audio_processors\format_types\VST3_SDK\pluginterfaces\gui">
+      <UniqueIdentifier>{A54A1F5C-F32F-F97B-9E8A-69922B770A54}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="JUCE Modules\juce_audio_processors\format_types\VST3_SDK\pluginterfaces\vst">
+      <UniqueIdentifier>{B90A44F3-B62D-B5C0-81A2-683D2650AEE6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="JUCE Modules\juce_audio_processors\format_types\VST3_SDK\pluginterfaces">
+      <UniqueIdentifier>{DAF30656-5915-0E45-C4E4-54439617D525}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="JUCE Modules\juce_audio_processors\format_types\VST3_SDK\public.sdk\source\common">
+      <UniqueIdentifier>{9266EA90-6A0A-5DDB-9CB7-966BEF03BA5C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="JUCE Modules\juce_audio_processors\format_types\VST3_SDK\public.sdk\source\vst\hosting">
+      <UniqueIdentifier>{9C713CBA-A9E2-5F4E-F83C-2CAB8533913C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="JUCE Modules\juce_audio_processors\format_types\VST3_SDK\public.sdk\source\vst">
+      <UniqueIdentifier>{63571A07-9AA3-5BB0-1103-0B42A2E6BC9E}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="JUCE Modules\juce_audio_processors\format_types\VST3_SDK\public.sdk\source">
+      <UniqueIdentifier>{314F43F2-BC8F-B464-EAE7-86B9675454E9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="JUCE Modules\juce_audio_processors\format_types\VST3_SDK\public.sdk">
+      <UniqueIdentifier>{874C5D0C-6D29-68EE-38BB-26200B56BC89}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="JUCE Modules\juce_audio_processors\format_types\VST3_SDK">
+      <UniqueIdentifier>{86BAA7A7-DC50-35B6-910B-932AEAF257F2}</UniqueIdentifier>
     </Filter>
     <Filter Include="JUCE Modules\juce_audio_processors\format_types">
       <UniqueIdentifier>{6B7BE34D-1BC1-C7B9-111F-C55CA8250943}</UniqueIdentifier>
@@ -256,6 +316,9 @@
     </Filter>
     <Filter Include="JUCE Modules\juce_core\misc">
       <UniqueIdentifier>{09B91E68-1FF4-C7ED-9055-D4D96E66A0BA}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="JUCE Modules\juce_core\native\java">
+      <UniqueIdentifier>{30B3DA63-C1E4-F2EA-CEF0-8035D8CBFF64}</UniqueIdentifier>
     </Filter>
     <Filter Include="JUCE Modules\juce_core\native">
       <UniqueIdentifier>{4F24EEED-AA33-AC6C-9A39-72E71CF83EF0}</UniqueIdentifier>
@@ -400,6 +463,9 @@
     </Filter>
     <Filter Include="JUCE Modules\juce_gui_basics\components">
       <UniqueIdentifier>{E4EA47E5-B41C-2A19-1783-7E9104096ECD}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="JUCE Modules\juce_gui_basics\desktop">
+      <UniqueIdentifier>{B331BC33-9770-3DB5-73F2-BC2469ECCF7F}</UniqueIdentifier>
     </Filter>
     <Filter Include="JUCE Modules\juce_gui_basics\drawables">
       <UniqueIdentifier>{46A17AC9-0BFF-B5CE-26D6-B9D1992C88AC}</UniqueIdentifier>
@@ -727,23 +793,11 @@
     <ClCompile Include="..\..\..\..\module\gin\modules\gin\components\mapviewer.cpp">
       <Filter>JUCE Modules\gin\components</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\module\gin\modules\gin\components\plugincomponents.cpp">
-      <Filter>JUCE Modules\gin\components</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\module\gin\modules\gin\components\pluginlookandfeel.cpp">
-      <Filter>JUCE Modules\gin\components</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\..\module\gin\modules\gin\components\propertycomponents.cpp">
       <Filter>JUCE Modules\gin\components</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\module\gin\modules\gin\components\singlelinetexteditor.cpp">
       <Filter>JUCE Modules\gin\components</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\module\gin\modules\gin\dsp\adsr.cpp">
-      <Filter>JUCE Modules\gin\dsp</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\module\gin\modules\gin\dsp\audioutil.cpp">
-      <Filter>JUCE Modules\gin\dsp</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\module\gin\modules\gin\images\bmpimageformat.cpp">
       <Filter>JUCE Modules\gin\images</Filter>
@@ -769,19 +823,10 @@
     <ClCompile Include="..\..\..\..\module\gin\modules\gin\metadata\xmpmetadata.cpp">
       <Filter>JUCE Modules\gin\metadata</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\module\gin\modules\gin\plugin\parameter.cpp">
-      <Filter>JUCE Modules\gin\plugin</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\module\gin\modules\gin\plugin\plugineditor.cpp">
-      <Filter>JUCE Modules\gin\plugin</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\module\gin\modules\gin\plugin\processor.cpp">
-      <Filter>JUCE Modules\gin\plugin</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\module\gin\modules\gin\plugin\program.cpp">
-      <Filter>JUCE Modules\gin\plugin</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\..\module\gin\modules\gin\utilities\downloadmanager.cpp">
+      <Filter>JUCE Modules\gin\utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\module\gin\modules\gin\utilities\elevatedfilecopy.cpp">
       <Filter>JUCE Modules\gin\utilities</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\module\gin\modules\gin\utilities\equationparser.cpp">
@@ -826,23 +871,53 @@
     <ClCompile Include="..\..\..\..\module\gin\modules\gin\gin.mm">
       <Filter>JUCE Modules\gin</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\..\module\gin\modules\gin_dsp\dsp\adsr.cpp">
+      <Filter>JUCE Modules\gin_dsp\dsp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\module\gin\modules\gin_dsp\dsp\audioutil.cpp">
+      <Filter>JUCE Modules\gin_dsp\dsp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\module\gin\modules\gin_dsp\gin_dsp.cpp">
+      <Filter>JUCE Modules\gin_dsp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\module\gin\modules\gin_dsp\gin_dsp.mm">
+      <Filter>JUCE Modules\gin_dsp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\module\gin\modules\gin_plugin\components\plugincomponents.cpp">
+      <Filter>JUCE Modules\gin_plugin\components</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\module\gin\modules\gin_plugin\components\pluginlookandfeel.cpp">
+      <Filter>JUCE Modules\gin_plugin\components</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\module\gin\modules\gin_plugin\plugin\parameter.cpp">
+      <Filter>JUCE Modules\gin_plugin\plugin</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\module\gin\modules\gin_plugin\plugin\plugineditor.cpp">
+      <Filter>JUCE Modules\gin_plugin\plugin</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\module\gin\modules\gin_plugin\plugin\processor.cpp">
+      <Filter>JUCE Modules\gin_plugin\plugin</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\module\gin\modules\gin_plugin\plugin\program.cpp">
+      <Filter>JUCE Modules\gin_plugin\plugin</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\module\gin\modules\gin_plugin\gin_plugin.cpp">
+      <Filter>JUCE Modules\gin_plugin</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\module\gin\modules\gin_plugin\gin_plugin.mm">
+      <Filter>JUCE Modules\gin_plugin</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\..\..\module\juce\modules\juce_audio_basics\buffers\juce_AudioChannelSet.cpp">
       <Filter>JUCE Modules\juce_audio_basics\buffers</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\module\juce\modules\juce_audio_basics\buffers\juce_AudioDataConverters.cpp">
       <Filter>JUCE Modules\juce_audio_basics\buffers</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\module\juce\modules\juce_audio_basics\buffers\juce_FloatVectorOperations.cpp">
+    <ClCompile Include="..\..\..\..\module\juce\modules\juce_audio_basics\buffers\juce_AudioProcessLoadMeasurer.cpp">
       <Filter>JUCE Modules\juce_audio_basics\buffers</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\module\juce\modules\juce_audio_basics\effects\juce_CatmullRomInterpolator.cpp">
-      <Filter>JUCE Modules\juce_audio_basics\effects</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\module\juce\modules\juce_audio_basics\effects\juce_IIRFilter.cpp">
-      <Filter>JUCE Modules\juce_audio_basics\effects</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\module\juce\modules\juce_audio_basics\effects\juce_LagrangeInterpolator.cpp">
-      <Filter>JUCE Modules\juce_audio_basics\effects</Filter>
+    <ClCompile Include="..\..\..\..\module\juce\modules\juce_audio_basics\buffers\juce_FloatVectorOperations.cpp">
+      <Filter>JUCE Modules\juce_audio_basics\buffers</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\module\juce\modules\juce_audio_basics\midi\juce_MidiBuffer.cpp">
       <Filter>JUCE Modules\juce_audio_basics\midi</Filter>
@@ -916,6 +991,18 @@
     <ClCompile Include="..\..\..\..\module\juce\modules\juce_audio_basics\synthesisers\juce_Synthesiser.cpp">
       <Filter>JUCE Modules\juce_audio_basics\synthesisers</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\..\module\juce\modules\juce_audio_basics\utilities\juce_CatmullRomInterpolator.cpp">
+      <Filter>JUCE Modules\juce_audio_basics\utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\module\juce\modules\juce_audio_basics\utilities\juce_IIRFilter.cpp">
+      <Filter>JUCE Modules\juce_audio_basics\utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\module\juce\modules\juce_audio_basics\utilities\juce_LagrangeInterpolator.cpp">
+      <Filter>JUCE Modules\juce_audio_basics\utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\module\juce\modules\juce_audio_basics\utilities\juce_SmoothedValue.cpp">
+      <Filter>JUCE Modules\juce_audio_basics\utilities</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\..\..\module\juce\modules\juce_audio_basics\juce_audio_basics.cpp">
       <Filter>JUCE Modules\juce_audio_basics</Filter>
     </ClCompile>
@@ -931,10 +1018,10 @@
     <ClCompile Include="..\..\..\..\module\juce\modules\juce_audio_devices\audio_io\juce_AudioIODeviceType.cpp">
       <Filter>JUCE Modules\juce_audio_devices\audio_io</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\module\juce\modules\juce_audio_devices\midi_io\juce_MidiMessageCollector.cpp">
+    <ClCompile Include="..\..\..\..\module\juce\modules\juce_audio_devices\midi_io\juce_MidiDevices.cpp">
       <Filter>JUCE Modules\juce_audio_devices\midi_io</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\module\juce\modules\juce_audio_devices\midi_io\juce_MidiOutput.cpp">
+    <ClCompile Include="..\..\..\..\module\juce\modules\juce_audio_devices\midi_io\juce_MidiMessageCollector.cpp">
       <Filter>JUCE Modules\juce_audio_devices\midi_io</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\module\juce\modules\juce_audio_devices\native\juce_android_Audio.cpp">
@@ -1249,6 +1336,75 @@
     <ClCompile Include="..\..\..\..\module\juce\modules\juce_audio_processors\format\juce_AudioPluginFormatManager.cpp">
       <Filter>JUCE Modules\juce_audio_processors\format</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\..\module\juce\modules\juce_audio_processors\format_types\VST3_SDK\base\source\baseiids.cpp">
+      <Filter>JUCE Modules\juce_audio_processors\format_types\VST3_SDK\base\source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\module\juce\modules\juce_audio_processors\format_types\VST3_SDK\base\source\fbuffer.cpp">
+      <Filter>JUCE Modules\juce_audio_processors\format_types\VST3_SDK\base\source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\module\juce\modules\juce_audio_processors\format_types\VST3_SDK\base\source\fdebug.cpp">
+      <Filter>JUCE Modules\juce_audio_processors\format_types\VST3_SDK\base\source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\module\juce\modules\juce_audio_processors\format_types\VST3_SDK\base\source\fobject.cpp">
+      <Filter>JUCE Modules\juce_audio_processors\format_types\VST3_SDK\base\source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\module\juce\modules\juce_audio_processors\format_types\VST3_SDK\base\source\fstreamer.cpp">
+      <Filter>JUCE Modules\juce_audio_processors\format_types\VST3_SDK\base\source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\module\juce\modules\juce_audio_processors\format_types\VST3_SDK\base\source\fstring.cpp">
+      <Filter>JUCE Modules\juce_audio_processors\format_types\VST3_SDK\base\source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\module\juce\modules\juce_audio_processors\format_types\VST3_SDK\base\source\updatehandler.cpp">
+      <Filter>JUCE Modules\juce_audio_processors\format_types\VST3_SDK\base\source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\module\juce\modules\juce_audio_processors\format_types\VST3_SDK\base\thread\source\flock.cpp">
+      <Filter>JUCE Modules\juce_audio_processors\format_types\VST3_SDK\base\thread\source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\module\juce\modules\juce_audio_processors\format_types\VST3_SDK\pluginterfaces\base\conststringtable.cpp">
+      <Filter>JUCE Modules\juce_audio_processors\format_types\VST3_SDK\pluginterfaces\base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\module\juce\modules\juce_audio_processors\format_types\VST3_SDK\pluginterfaces\base\coreiids.cpp">
+      <Filter>JUCE Modules\juce_audio_processors\format_types\VST3_SDK\pluginterfaces\base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\module\juce\modules\juce_audio_processors\format_types\VST3_SDK\pluginterfaces\base\funknown.cpp">
+      <Filter>JUCE Modules\juce_audio_processors\format_types\VST3_SDK\pluginterfaces\base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\module\juce\modules\juce_audio_processors\format_types\VST3_SDK\pluginterfaces\base\ustring.cpp">
+      <Filter>JUCE Modules\juce_audio_processors\format_types\VST3_SDK\pluginterfaces\base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\module\juce\modules\juce_audio_processors\format_types\VST3_SDK\public.sdk\source\common\memorystream.cpp">
+      <Filter>JUCE Modules\juce_audio_processors\format_types\VST3_SDK\public.sdk\source\common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\module\juce\modules\juce_audio_processors\format_types\VST3_SDK\public.sdk\source\common\pluginview.cpp">
+      <Filter>JUCE Modules\juce_audio_processors\format_types\VST3_SDK\public.sdk\source\common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\module\juce\modules\juce_audio_processors\format_types\VST3_SDK\public.sdk\source\vst\hosting\hostclasses.cpp">
+      <Filter>JUCE Modules\juce_audio_processors\format_types\VST3_SDK\public.sdk\source\vst\hosting</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\module\juce\modules\juce_audio_processors\format_types\VST3_SDK\public.sdk\source\vst\hosting\pluginterfacesupport.cpp">
+      <Filter>JUCE Modules\juce_audio_processors\format_types\VST3_SDK\public.sdk\source\vst\hosting</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\module\juce\modules\juce_audio_processors\format_types\VST3_SDK\public.sdk\source\vst\vstbus.cpp">
+      <Filter>JUCE Modules\juce_audio_processors\format_types\VST3_SDK\public.sdk\source\vst</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\module\juce\modules\juce_audio_processors\format_types\VST3_SDK\public.sdk\source\vst\vstcomponent.cpp">
+      <Filter>JUCE Modules\juce_audio_processors\format_types\VST3_SDK\public.sdk\source\vst</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\module\juce\modules\juce_audio_processors\format_types\VST3_SDK\public.sdk\source\vst\vstcomponentbase.cpp">
+      <Filter>JUCE Modules\juce_audio_processors\format_types\VST3_SDK\public.sdk\source\vst</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\module\juce\modules\juce_audio_processors\format_types\VST3_SDK\public.sdk\source\vst\vsteditcontroller.cpp">
+      <Filter>JUCE Modules\juce_audio_processors\format_types\VST3_SDK\public.sdk\source\vst</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\module\juce\modules\juce_audio_processors\format_types\VST3_SDK\public.sdk\source\vst\vstinitiids.cpp">
+      <Filter>JUCE Modules\juce_audio_processors\format_types\VST3_SDK\public.sdk\source\vst</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\module\juce\modules\juce_audio_processors\format_types\VST3_SDK\public.sdk\source\vst\vstparameters.cpp">
+      <Filter>JUCE Modules\juce_audio_processors\format_types\VST3_SDK\public.sdk\source\vst</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\module\juce\modules\juce_audio_processors\format_types\VST3_SDK\public.sdk\source\vst\vstpresetfile.cpp">
+      <Filter>JUCE Modules\juce_audio_processors\format_types\VST3_SDK\public.sdk\source\vst</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\..\..\module\juce\modules\juce_audio_processors\format_types\juce_AudioUnitPluginFormat.mm">
       <Filter>JUCE Modules\juce_audio_processors\format_types</Filter>
     </ClCompile>
@@ -1276,6 +1432,9 @@
     <ClCompile Include="..\..\..\..\module\juce\modules\juce_audio_processors\processors\juce_AudioProcessorGraph.cpp">
       <Filter>JUCE Modules\juce_audio_processors\processors</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\..\module\juce\modules\juce_audio_processors\processors\juce_AudioProcessorParameterGroup.cpp">
+      <Filter>JUCE Modules\juce_audio_processors\processors</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\..\..\module\juce\modules\juce_audio_processors\processors\juce_GenericAudioProcessorEditor.cpp">
       <Filter>JUCE Modules\juce_audio_processors\processors</Filter>
     </ClCompile>
@@ -1291,10 +1450,25 @@
     <ClCompile Include="..\..\..\..\module\juce\modules\juce_audio_processors\scanning\juce_PluginListComponent.cpp">
       <Filter>JUCE Modules\juce_audio_processors\scanning</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\module\juce\modules\juce_audio_processors\utilities\juce_AudioProcessorParameters.cpp">
+    <ClCompile Include="..\..\..\..\module\juce\modules\juce_audio_processors\utilities\juce_AudioParameterBool.cpp">
+      <Filter>JUCE Modules\juce_audio_processors\utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\module\juce\modules\juce_audio_processors\utilities\juce_AudioParameterChoice.cpp">
+      <Filter>JUCE Modules\juce_audio_processors\utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\module\juce\modules\juce_audio_processors\utilities\juce_AudioParameterFloat.cpp">
+      <Filter>JUCE Modules\juce_audio_processors\utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\module\juce\modules\juce_audio_processors\utilities\juce_AudioParameterInt.cpp">
+      <Filter>JUCE Modules\juce_audio_processors\utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\module\juce\modules\juce_audio_processors\utilities\juce_AudioProcessorParameterWithID.cpp">
       <Filter>JUCE Modules\juce_audio_processors\utilities</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\module\juce\modules\juce_audio_processors\utilities\juce_AudioProcessorValueTreeState.cpp">
+      <Filter>JUCE Modules\juce_audio_processors\utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\module\juce\modules\juce_audio_processors\utilities\juce_RangedAudioParameter.cpp">
       <Filter>JUCE Modules\juce_audio_processors\utilities</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\module\juce\modules\juce_audio_processors\juce_audio_processors.cpp">
@@ -1369,6 +1543,9 @@
     <ClCompile Include="..\..\..\..\module\juce\modules\juce_core\containers\juce_AbstractFifo.cpp">
       <Filter>JUCE Modules\juce_core\containers</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\..\module\juce\modules\juce_core\containers\juce_ArrayBase.cpp">
+      <Filter>JUCE Modules\juce_core\containers</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\..\..\module\juce\modules\juce_core\containers\juce_DynamicObject.cpp">
       <Filter>JUCE Modules\juce_core\containers</Filter>
     </ClCompile>
@@ -1378,7 +1555,13 @@
     <ClCompile Include="..\..\..\..\module\juce\modules\juce_core\containers\juce_NamedValueSet.cpp">
       <Filter>JUCE Modules\juce_core\containers</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\..\module\juce\modules\juce_core\containers\juce_OwnedArray.cpp">
+      <Filter>JUCE Modules\juce_core\containers</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\..\..\module\juce\modules\juce_core\containers\juce_PropertySet.cpp">
+      <Filter>JUCE Modules\juce_core\containers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\module\juce\modules\juce_core\containers\juce_ReferenceCountedArray.cpp">
       <Filter>JUCE Modules\juce_core\containers</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\module\juce\modules\juce_core\containers\juce_SparseSet.cpp">
@@ -1435,6 +1618,9 @@
     <ClCompile Include="..\..\..\..\module\juce\modules\juce_core\memory\juce_MemoryBlock.cpp">
       <Filter>JUCE Modules\juce_core\memory</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\..\module\juce\modules\juce_core\misc\juce_ConsoleApplication.cpp">
+      <Filter>JUCE Modules\juce_core\misc</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\..\..\module\juce\modules\juce_core\misc\juce_Result.cpp">
       <Filter>JUCE Modules\juce_core\misc</Filter>
     </ClCompile>
@@ -1448,6 +1634,9 @@
       <Filter>JUCE Modules\juce_core\misc</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\module\juce\modules\juce_core\native\juce_android_Files.cpp">
+      <Filter>JUCE Modules\juce_core\native</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\module\juce\modules\juce_core\native\juce_android_JNIHelpers.cpp">
       <Filter>JUCE Modules\juce_core\native</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\module\juce\modules\juce_core\native\juce_android_Misc.cpp">
@@ -1717,6 +1906,9 @@
     <ClCompile Include="..\..\..\..\module\juce\modules\juce_data_structures\values\juce_ValueTreeSynchroniser.cpp">
       <Filter>JUCE Modules\juce_data_structures\values</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\..\module\juce\modules\juce_data_structures\values\juce_ValueWithDefault.cpp">
+      <Filter>JUCE Modules\juce_data_structures\values</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\..\..\module\juce\modules\juce_data_structures\juce_data_structures.cpp">
       <Filter>JUCE Modules\juce_data_structures</Filter>
     </ClCompile>
@@ -1740,6 +1932,9 @@
     </ClCompile>
     <ClCompile Include="..\..\..\..\module\juce\modules\juce_dsp\frequency\juce_Windowing.cpp">
       <Filter>JUCE Modules\juce_dsp\frequency</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\module\juce\modules\juce_dsp\maths\juce_LogRampedValue_test.cpp">
+      <Filter>JUCE Modules\juce_dsp\maths</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\module\juce\modules\juce_dsp\maths\juce_LookupTable.cpp">
       <Filter>JUCE Modules\juce_dsp\maths</Filter>
@@ -1799,6 +1994,9 @@
       <Filter>JUCE Modules\juce_events\interprocess</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\module\juce\modules\juce_events\interprocess\juce_InterprocessConnectionServer.cpp">
+      <Filter>JUCE Modules\juce_events\interprocess</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\module\juce\modules\juce_events\interprocess\juce_NetworkServiceDiscovery.cpp">
       <Filter>JUCE Modules\juce_events\interprocess</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\module\juce\modules\juce_events\messages\juce_ApplicationBase.cpp">
@@ -2206,11 +2404,14 @@
     <ClCompile Include="..\..\..\..\module\juce\modules\juce_gui_basics\components\juce_ComponentListener.cpp">
       <Filter>JUCE Modules\juce_gui_basics\components</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\module\juce\modules\juce_gui_basics\components\juce_Desktop.cpp">
-      <Filter>JUCE Modules\juce_gui_basics\components</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\..\module\juce\modules\juce_gui_basics\components\juce_ModalComponentManager.cpp">
       <Filter>JUCE Modules\juce_gui_basics\components</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\module\juce\modules\juce_gui_basics\desktop\juce_Desktop.cpp">
+      <Filter>JUCE Modules\juce_gui_basics\desktop</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\module\juce\modules\juce_gui_basics\desktop\juce_Displays.cpp">
+      <Filter>JUCE Modules\juce_gui_basics\desktop</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\module\juce\modules\juce_gui_basics\drawables\juce_Drawable.cpp">
       <Filter>JUCE Modules\juce_gui_basics\drawables</Filter>
@@ -2306,9 +2507,6 @@
       <Filter>JUCE Modules\juce_gui_basics\layout</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\module\juce\modules\juce_gui_basics\layout\juce_GridItem.cpp">
-      <Filter>JUCE Modules\juce_gui_basics\layout</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\module\juce\modules\juce_gui_basics\layout\juce_GridUnitTests.cpp">
       <Filter>JUCE Modules\juce_gui_basics\layout</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\module\juce\modules\juce_gui_basics\layout\juce_GroupComponent.cpp">
@@ -2737,6 +2935,12 @@
     <ClCompile Include="..\..\JuceLibraryCode\include_gin.cpp">
       <Filter>JUCE Library Code</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\JuceLibraryCode\include_gin_dsp.cpp">
+      <Filter>JUCE Library Code</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\JuceLibraryCode\include_gin_plugin.cpp">
+      <Filter>JUCE Library Code</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\JuceLibraryCode\include_juce_audio_basics.cpp">
       <Filter>JUCE Library Code</Filter>
     </ClCompile>
@@ -3120,6 +3324,18 @@
     <ClInclude Include="..\..\..\..\module\dRowAudio\module\dRowAudio\dRowAudio.h">
       <Filter>JUCE Modules\dRowAudio</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\..\module\gin\modules\gin\3rdparty\avir\avir.h">
+      <Filter>JUCE Modules\gin\3rdparty\avir</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\module\gin\modules\gin\3rdparty\avir\avir_dil.h">
+      <Filter>JUCE Modules\gin\3rdparty\avir</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\module\gin\modules\gin\3rdparty\avir\avir_float4_sse.h">
+      <Filter>JUCE Modules\gin\3rdparty\avir</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\module\gin\modules\gin\3rdparty\avir\avir_float8_avx.h">
+      <Filter>JUCE Modules\gin\3rdparty\avir</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\..\..\module\gin\modules\gin\3rdparty\muParser\muParser.h">
       <Filter>JUCE Modules\gin\3rdparty\muParser</Filter>
     </ClInclude>
@@ -3156,23 +3372,11 @@
     <ClInclude Include="..\..\..\..\module\gin\modules\gin\components\mapviewer.h">
       <Filter>JUCE Modules\gin\components</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\module\gin\modules\gin\components\plugincomponents.h">
-      <Filter>JUCE Modules\gin\components</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\module\gin\modules\gin\components\pluginlookandfeel.h">
-      <Filter>JUCE Modules\gin\components</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\..\module\gin\modules\gin\components\propertycomponents.h">
       <Filter>JUCE Modules\gin\components</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\module\gin\modules\gin\components\singlelinetexteditor.h">
       <Filter>JUCE Modules\gin\components</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\module\gin\modules\gin\dsp\adsr.h">
-      <Filter>JUCE Modules\gin\dsp</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\module\gin\modules\gin\dsp\audioutil.h">
-      <Filter>JUCE Modules\gin\dsp</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\module\gin\modules\gin\geometry\geometry.h">
       <Filter>JUCE Modules\gin\geometry</Filter>
@@ -3198,19 +3402,10 @@
     <ClInclude Include="..\..\..\..\module\gin\modules\gin\metadata\xmpmetadata.h">
       <Filter>JUCE Modules\gin\metadata</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\module\gin\modules\gin\plugin\parameter.h">
-      <Filter>JUCE Modules\gin\plugin</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\module\gin\modules\gin\plugin\plugineditor.h">
-      <Filter>JUCE Modules\gin\plugin</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\module\gin\modules\gin\plugin\processor.h">
-      <Filter>JUCE Modules\gin\plugin</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\module\gin\modules\gin\plugin\program.h">
-      <Filter>JUCE Modules\gin\plugin</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\..\module\gin\modules\gin\utilities\downloadmanager.h">
+      <Filter>JUCE Modules\gin\utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\module\gin\modules\gin\utilities\elevatedfilecopy.h">
       <Filter>JUCE Modules\gin\utilities</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\module\gin\modules\gin\utilities\equationparser.h">
@@ -3252,6 +3447,36 @@
     <ClInclude Include="..\..\..\..\module\gin\modules\gin\gin.h">
       <Filter>JUCE Modules\gin</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\..\module\gin\modules\gin_dsp\dsp\adsr.h">
+      <Filter>JUCE Modules\gin_dsp\dsp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\module\gin\modules\gin_dsp\dsp\audioutil.h">
+      <Filter>JUCE Modules\gin_dsp\dsp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\module\gin\modules\gin_dsp\gin_dsp.h">
+      <Filter>JUCE Modules\gin_dsp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\module\gin\modules\gin_plugin\components\plugincomponents.h">
+      <Filter>JUCE Modules\gin_plugin\components</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\module\gin\modules\gin_plugin\components\pluginlookandfeel.h">
+      <Filter>JUCE Modules\gin_plugin\components</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\module\gin\modules\gin_plugin\plugin\parameter.h">
+      <Filter>JUCE Modules\gin_plugin\plugin</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\module\gin\modules\gin_plugin\plugin\plugineditor.h">
+      <Filter>JUCE Modules\gin_plugin\plugin</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\module\gin\modules\gin_plugin\plugin\processor.h">
+      <Filter>JUCE Modules\gin_plugin\plugin</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\module\gin\modules\gin_plugin\plugin\program.h">
+      <Filter>JUCE Modules\gin_plugin\plugin</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\module\gin\modules\gin_plugin\gin_plugin.h">
+      <Filter>JUCE Modules\gin_plugin</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\..\..\module\juce\modules\juce_audio_basics\audio_play_head\juce_AudioPlayHead.h">
       <Filter>JUCE Modules\juce_audio_basics\audio_play_head</Filter>
     </ClInclude>
@@ -3261,29 +3486,14 @@
     <ClInclude Include="..\..\..\..\module\juce\modules\juce_audio_basics\buffers\juce_AudioDataConverters.h">
       <Filter>JUCE Modules\juce_audio_basics\buffers</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\..\module\juce\modules\juce_audio_basics\buffers\juce_AudioProcessLoadMeasurer.h">
+      <Filter>JUCE Modules\juce_audio_basics\buffers</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\..\..\module\juce\modules\juce_audio_basics\buffers\juce_AudioSampleBuffer.h">
       <Filter>JUCE Modules\juce_audio_basics\buffers</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\module\juce\modules\juce_audio_basics\buffers\juce_FloatVectorOperations.h">
       <Filter>JUCE Modules\juce_audio_basics\buffers</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\module\juce\modules\juce_audio_basics\effects\juce_CatmullRomInterpolator.h">
-      <Filter>JUCE Modules\juce_audio_basics\effects</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\module\juce\modules\juce_audio_basics\effects\juce_Decibels.h">
-      <Filter>JUCE Modules\juce_audio_basics\effects</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\module\juce\modules\juce_audio_basics\effects\juce_IIRFilter.h">
-      <Filter>JUCE Modules\juce_audio_basics\effects</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\module\juce\modules\juce_audio_basics\effects\juce_LagrangeInterpolator.h">
-      <Filter>JUCE Modules\juce_audio_basics\effects</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\module\juce\modules\juce_audio_basics\effects\juce_LinearSmoothedValue.h">
-      <Filter>JUCE Modules\juce_audio_basics\effects</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\module\juce\modules\juce_audio_basics\effects\juce_Reverb.h">
-      <Filter>JUCE Modules\juce_audio_basics\effects</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\module\juce\modules\juce_audio_basics\midi\juce_MidiBuffer.h">
       <Filter>JUCE Modules\juce_audio_basics\midi</Filter>
@@ -3366,6 +3576,27 @@
     <ClInclude Include="..\..\..\..\module\juce\modules\juce_audio_basics\synthesisers\juce_Synthesiser.h">
       <Filter>JUCE Modules\juce_audio_basics\synthesisers</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\..\module\juce\modules\juce_audio_basics\utilities\juce_ADSR.h">
+      <Filter>JUCE Modules\juce_audio_basics\utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\module\juce\modules\juce_audio_basics\utilities\juce_CatmullRomInterpolator.h">
+      <Filter>JUCE Modules\juce_audio_basics\utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\module\juce\modules\juce_audio_basics\utilities\juce_Decibels.h">
+      <Filter>JUCE Modules\juce_audio_basics\utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\module\juce\modules\juce_audio_basics\utilities\juce_IIRFilter.h">
+      <Filter>JUCE Modules\juce_audio_basics\utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\module\juce\modules\juce_audio_basics\utilities\juce_LagrangeInterpolator.h">
+      <Filter>JUCE Modules\juce_audio_basics\utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\module\juce\modules\juce_audio_basics\utilities\juce_Reverb.h">
+      <Filter>JUCE Modules\juce_audio_basics\utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\module\juce\modules\juce_audio_basics\utilities\juce_SmoothedValue.h">
+      <Filter>JUCE Modules\juce_audio_basics\utilities</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\..\..\module\juce\modules\juce_audio_basics\juce_audio_basics.h">
       <Filter>JUCE Modules\juce_audio_basics</Filter>
     </ClInclude>
@@ -3381,13 +3612,10 @@
     <ClInclude Include="..\..\..\..\module\juce\modules\juce_audio_devices\audio_io\juce_SystemAudioVolume.h">
       <Filter>JUCE Modules\juce_audio_devices\audio_io</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\module\juce\modules\juce_audio_devices\midi_io\juce_MidiInput.h">
+    <ClInclude Include="..\..\..\..\module\juce\modules\juce_audio_devices\midi_io\juce_MidiDevices.h">
       <Filter>JUCE Modules\juce_audio_devices\midi_io</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\module\juce\modules\juce_audio_devices\midi_io\juce_MidiMessageCollector.h">
-      <Filter>JUCE Modules\juce_audio_devices\midi_io</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\module\juce\modules\juce_audio_devices\midi_io\juce_MidiOutput.h">
       <Filter>JUCE Modules\juce_audio_devices\midi_io</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\module\juce\modules\juce_audio_devices\native\juce_ios_Audio.h">
@@ -3810,6 +4038,9 @@
     <ClInclude Include="..\..\..\..\module\juce\modules\juce_audio_plugin_client\Standalone\juce_StandaloneFilterWindow.h">
       <Filter>JUCE Modules\juce_audio_plugin_client\Standalone</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\..\module\juce\modules\juce_audio_plugin_client\Unity\juce_UnityPluginInterface.h">
+      <Filter>JUCE Modules\juce_audio_plugin_client\Unity</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\..\..\module\juce\modules\juce_audio_plugin_client\utility\juce_CarbonVisibility.h">
       <Filter>JUCE Modules\juce_audio_plugin_client\utility</Filter>
     </ClInclude>
@@ -3843,6 +4074,195 @@
     <ClInclude Include="..\..\..\..\module\juce\modules\juce_audio_processors\format\juce_AudioPluginFormatManager.h">
       <Filter>JUCE Modules\juce_audio_processors\format</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\..\module\juce\modules\juce_audio_processors\format_types\VST3_SDK\base\source\classfactoryhelpers.h">
+      <Filter>JUCE Modules\juce_audio_processors\format_types\VST3_SDK\base\source</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\module\juce\modules\juce_audio_processors\format_types\VST3_SDK\base\source\fbuffer.h">
+      <Filter>JUCE Modules\juce_audio_processors\format_types\VST3_SDK\base\source</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\module\juce\modules\juce_audio_processors\format_types\VST3_SDK\base\source\fdebug.h">
+      <Filter>JUCE Modules\juce_audio_processors\format_types\VST3_SDK\base\source</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\module\juce\modules\juce_audio_processors\format_types\VST3_SDK\base\source\fobject.h">
+      <Filter>JUCE Modules\juce_audio_processors\format_types\VST3_SDK\base\source</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\module\juce\modules\juce_audio_processors\format_types\VST3_SDK\base\source\fstreamer.h">
+      <Filter>JUCE Modules\juce_audio_processors\format_types\VST3_SDK\base\source</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\module\juce\modules\juce_audio_processors\format_types\VST3_SDK\base\source\fstring.h">
+      <Filter>JUCE Modules\juce_audio_processors\format_types\VST3_SDK\base\source</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\module\juce\modules\juce_audio_processors\format_types\VST3_SDK\base\source\updatehandler.h">
+      <Filter>JUCE Modules\juce_audio_processors\format_types\VST3_SDK\base\source</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\module\juce\modules\juce_audio_processors\format_types\VST3_SDK\base\thread\include\flock.h">
+      <Filter>JUCE Modules\juce_audio_processors\format_types\VST3_SDK\base\thread\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\module\juce\modules\juce_audio_processors\format_types\VST3_SDK\pluginterfaces\base\conststringtable.h">
+      <Filter>JUCE Modules\juce_audio_processors\format_types\VST3_SDK\pluginterfaces\base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\module\juce\modules\juce_audio_processors\format_types\VST3_SDK\pluginterfaces\base\falignpop.h">
+      <Filter>JUCE Modules\juce_audio_processors\format_types\VST3_SDK\pluginterfaces\base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\module\juce\modules\juce_audio_processors\format_types\VST3_SDK\pluginterfaces\base\falignpush.h">
+      <Filter>JUCE Modules\juce_audio_processors\format_types\VST3_SDK\pluginterfaces\base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\module\juce\modules\juce_audio_processors\format_types\VST3_SDK\pluginterfaces\base\fplatform.h">
+      <Filter>JUCE Modules\juce_audio_processors\format_types\VST3_SDK\pluginterfaces\base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\module\juce\modules\juce_audio_processors\format_types\VST3_SDK\pluginterfaces\base\fstrdefs.h">
+      <Filter>JUCE Modules\juce_audio_processors\format_types\VST3_SDK\pluginterfaces\base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\module\juce\modules\juce_audio_processors\format_types\VST3_SDK\pluginterfaces\base\ftypes.h">
+      <Filter>JUCE Modules\juce_audio_processors\format_types\VST3_SDK\pluginterfaces\base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\module\juce\modules\juce_audio_processors\format_types\VST3_SDK\pluginterfaces\base\funknown.h">
+      <Filter>JUCE Modules\juce_audio_processors\format_types\VST3_SDK\pluginterfaces\base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\module\juce\modules\juce_audio_processors\format_types\VST3_SDK\pluginterfaces\base\futils.h">
+      <Filter>JUCE Modules\juce_audio_processors\format_types\VST3_SDK\pluginterfaces\base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\module\juce\modules\juce_audio_processors\format_types\VST3_SDK\pluginterfaces\base\fvariant.h">
+      <Filter>JUCE Modules\juce_audio_processors\format_types\VST3_SDK\pluginterfaces\base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\module\juce\modules\juce_audio_processors\format_types\VST3_SDK\pluginterfaces\base\ibstream.h">
+      <Filter>JUCE Modules\juce_audio_processors\format_types\VST3_SDK\pluginterfaces\base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\module\juce\modules\juce_audio_processors\format_types\VST3_SDK\pluginterfaces\base\icloneable.h">
+      <Filter>JUCE Modules\juce_audio_processors\format_types\VST3_SDK\pluginterfaces\base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\module\juce\modules\juce_audio_processors\format_types\VST3_SDK\pluginterfaces\base\ipersistent.h">
+      <Filter>JUCE Modules\juce_audio_processors\format_types\VST3_SDK\pluginterfaces\base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\module\juce\modules\juce_audio_processors\format_types\VST3_SDK\pluginterfaces\base\ipluginbase.h">
+      <Filter>JUCE Modules\juce_audio_processors\format_types\VST3_SDK\pluginterfaces\base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\module\juce\modules\juce_audio_processors\format_types\VST3_SDK\pluginterfaces\base\istringresult.h">
+      <Filter>JUCE Modules\juce_audio_processors\format_types\VST3_SDK\pluginterfaces\base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\module\juce\modules\juce_audio_processors\format_types\VST3_SDK\pluginterfaces\base\iupdatehandler.h">
+      <Filter>JUCE Modules\juce_audio_processors\format_types\VST3_SDK\pluginterfaces\base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\module\juce\modules\juce_audio_processors\format_types\VST3_SDK\pluginterfaces\base\smartpointer.h">
+      <Filter>JUCE Modules\juce_audio_processors\format_types\VST3_SDK\pluginterfaces\base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\module\juce\modules\juce_audio_processors\format_types\VST3_SDK\pluginterfaces\base\typesizecheck.h">
+      <Filter>JUCE Modules\juce_audio_processors\format_types\VST3_SDK\pluginterfaces\base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\module\juce\modules\juce_audio_processors\format_types\VST3_SDK\pluginterfaces\base\ustring.h">
+      <Filter>JUCE Modules\juce_audio_processors\format_types\VST3_SDK\pluginterfaces\base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\module\juce\modules\juce_audio_processors\format_types\VST3_SDK\pluginterfaces\gui\iplugview.h">
+      <Filter>JUCE Modules\juce_audio_processors\format_types\VST3_SDK\pluginterfaces\gui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\module\juce\modules\juce_audio_processors\format_types\VST3_SDK\pluginterfaces\gui\iplugviewcontentscalesupport.h">
+      <Filter>JUCE Modules\juce_audio_processors\format_types\VST3_SDK\pluginterfaces\gui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\module\juce\modules\juce_audio_processors\format_types\VST3_SDK\pluginterfaces\vst\ivstattributes.h">
+      <Filter>JUCE Modules\juce_audio_processors\format_types\VST3_SDK\pluginterfaces\vst</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\module\juce\modules\juce_audio_processors\format_types\VST3_SDK\pluginterfaces\vst\ivstaudioprocessor.h">
+      <Filter>JUCE Modules\juce_audio_processors\format_types\VST3_SDK\pluginterfaces\vst</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\module\juce\modules\juce_audio_processors\format_types\VST3_SDK\pluginterfaces\vst\ivstautomationstate.h">
+      <Filter>JUCE Modules\juce_audio_processors\format_types\VST3_SDK\pluginterfaces\vst</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\module\juce\modules\juce_audio_processors\format_types\VST3_SDK\pluginterfaces\vst\ivstchannelcontextinfo.h">
+      <Filter>JUCE Modules\juce_audio_processors\format_types\VST3_SDK\pluginterfaces\vst</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\module\juce\modules\juce_audio_processors\format_types\VST3_SDK\pluginterfaces\vst\ivstcomponent.h">
+      <Filter>JUCE Modules\juce_audio_processors\format_types\VST3_SDK\pluginterfaces\vst</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\module\juce\modules\juce_audio_processors\format_types\VST3_SDK\pluginterfaces\vst\ivstcontextmenu.h">
+      <Filter>JUCE Modules\juce_audio_processors\format_types\VST3_SDK\pluginterfaces\vst</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\module\juce\modules\juce_audio_processors\format_types\VST3_SDK\pluginterfaces\vst\ivsteditcontroller.h">
+      <Filter>JUCE Modules\juce_audio_processors\format_types\VST3_SDK\pluginterfaces\vst</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\module\juce\modules\juce_audio_processors\format_types\VST3_SDK\pluginterfaces\vst\ivstevents.h">
+      <Filter>JUCE Modules\juce_audio_processors\format_types\VST3_SDK\pluginterfaces\vst</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\module\juce\modules\juce_audio_processors\format_types\VST3_SDK\pluginterfaces\vst\ivsthostapplication.h">
+      <Filter>JUCE Modules\juce_audio_processors\format_types\VST3_SDK\pluginterfaces\vst</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\module\juce\modules\juce_audio_processors\format_types\VST3_SDK\pluginterfaces\vst\ivstinterappaudio.h">
+      <Filter>JUCE Modules\juce_audio_processors\format_types\VST3_SDK\pluginterfaces\vst</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\module\juce\modules\juce_audio_processors\format_types\VST3_SDK\pluginterfaces\vst\ivstmessage.h">
+      <Filter>JUCE Modules\juce_audio_processors\format_types\VST3_SDK\pluginterfaces\vst</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\module\juce\modules\juce_audio_processors\format_types\VST3_SDK\pluginterfaces\vst\ivstmidicontrollers.h">
+      <Filter>JUCE Modules\juce_audio_processors\format_types\VST3_SDK\pluginterfaces\vst</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\module\juce\modules\juce_audio_processors\format_types\VST3_SDK\pluginterfaces\vst\ivstmidilearn.h">
+      <Filter>JUCE Modules\juce_audio_processors\format_types\VST3_SDK\pluginterfaces\vst</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\module\juce\modules\juce_audio_processors\format_types\VST3_SDK\pluginterfaces\vst\ivstnoteexpression.h">
+      <Filter>JUCE Modules\juce_audio_processors\format_types\VST3_SDK\pluginterfaces\vst</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\module\juce\modules\juce_audio_processors\format_types\VST3_SDK\pluginterfaces\vst\ivstparameterchanges.h">
+      <Filter>JUCE Modules\juce_audio_processors\format_types\VST3_SDK\pluginterfaces\vst</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\module\juce\modules\juce_audio_processors\format_types\VST3_SDK\pluginterfaces\vst\ivstphysicalui.h">
+      <Filter>JUCE Modules\juce_audio_processors\format_types\VST3_SDK\pluginterfaces\vst</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\module\juce\modules\juce_audio_processors\format_types\VST3_SDK\pluginterfaces\vst\ivstpluginterfacesupport.h">
+      <Filter>JUCE Modules\juce_audio_processors\format_types\VST3_SDK\pluginterfaces\vst</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\module\juce\modules\juce_audio_processors\format_types\VST3_SDK\pluginterfaces\vst\ivstplugview.h">
+      <Filter>JUCE Modules\juce_audio_processors\format_types\VST3_SDK\pluginterfaces\vst</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\module\juce\modules\juce_audio_processors\format_types\VST3_SDK\pluginterfaces\vst\ivstprefetchablesupport.h">
+      <Filter>JUCE Modules\juce_audio_processors\format_types\VST3_SDK\pluginterfaces\vst</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\module\juce\modules\juce_audio_processors\format_types\VST3_SDK\pluginterfaces\vst\ivstprocesscontext.h">
+      <Filter>JUCE Modules\juce_audio_processors\format_types\VST3_SDK\pluginterfaces\vst</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\module\juce\modules\juce_audio_processors\format_types\VST3_SDK\pluginterfaces\vst\ivstrepresentation.h">
+      <Filter>JUCE Modules\juce_audio_processors\format_types\VST3_SDK\pluginterfaces\vst</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\module\juce\modules\juce_audio_processors\format_types\VST3_SDK\pluginterfaces\vst\ivstunits.h">
+      <Filter>JUCE Modules\juce_audio_processors\format_types\VST3_SDK\pluginterfaces\vst</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\module\juce\modules\juce_audio_processors\format_types\VST3_SDK\pluginterfaces\vst\vstpshpack4.h">
+      <Filter>JUCE Modules\juce_audio_processors\format_types\VST3_SDK\pluginterfaces\vst</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\module\juce\modules\juce_audio_processors\format_types\VST3_SDK\pluginterfaces\vst\vstspeaker.h">
+      <Filter>JUCE Modules\juce_audio_processors\format_types\VST3_SDK\pluginterfaces\vst</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\module\juce\modules\juce_audio_processors\format_types\VST3_SDK\pluginterfaces\vst\vsttypes.h">
+      <Filter>JUCE Modules\juce_audio_processors\format_types\VST3_SDK\pluginterfaces\vst</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\module\juce\modules\juce_audio_processors\format_types\VST3_SDK\public.sdk\source\common\memorystream.h">
+      <Filter>JUCE Modules\juce_audio_processors\format_types\VST3_SDK\public.sdk\source\common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\module\juce\modules\juce_audio_processors\format_types\VST3_SDK\public.sdk\source\common\pluginview.h">
+      <Filter>JUCE Modules\juce_audio_processors\format_types\VST3_SDK\public.sdk\source\common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\module\juce\modules\juce_audio_processors\format_types\VST3_SDK\public.sdk\source\vst\hosting\hostclasses.h">
+      <Filter>JUCE Modules\juce_audio_processors\format_types\VST3_SDK\public.sdk\source\vst\hosting</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\module\juce\modules\juce_audio_processors\format_types\VST3_SDK\public.sdk\source\vst\hosting\pluginterfacesupport.h">
+      <Filter>JUCE Modules\juce_audio_processors\format_types\VST3_SDK\public.sdk\source\vst\hosting</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\module\juce\modules\juce_audio_processors\format_types\VST3_SDK\public.sdk\source\vst\vstbus.h">
+      <Filter>JUCE Modules\juce_audio_processors\format_types\VST3_SDK\public.sdk\source\vst</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\module\juce\modules\juce_audio_processors\format_types\VST3_SDK\public.sdk\source\vst\vstcomponent.h">
+      <Filter>JUCE Modules\juce_audio_processors\format_types\VST3_SDK\public.sdk\source\vst</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\module\juce\modules\juce_audio_processors\format_types\VST3_SDK\public.sdk\source\vst\vstcomponentbase.h">
+      <Filter>JUCE Modules\juce_audio_processors\format_types\VST3_SDK\public.sdk\source\vst</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\module\juce\modules\juce_audio_processors\format_types\VST3_SDK\public.sdk\source\vst\vsteditcontroller.h">
+      <Filter>JUCE Modules\juce_audio_processors\format_types\VST3_SDK\public.sdk\source\vst</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\module\juce\modules\juce_audio_processors\format_types\VST3_SDK\public.sdk\source\vst\vstparameters.h">
+      <Filter>JUCE Modules\juce_audio_processors\format_types\VST3_SDK\public.sdk\source\vst</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\module\juce\modules\juce_audio_processors\format_types\VST3_SDK\public.sdk\source\vst\vstpresetfile.h">
+      <Filter>JUCE Modules\juce_audio_processors\format_types\VST3_SDK\public.sdk\source\vst</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\..\..\module\juce\modules\juce_audio_processors\format_types\juce_AudioUnitPluginFormat.h">
       <Filter>JUCE Modules\juce_audio_processors\format_types</Filter>
     </ClInclude>
@@ -3859,9 +4279,6 @@
       <Filter>JUCE Modules\juce_audio_processors\format_types</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\module\juce\modules\juce_audio_processors\format_types\juce_VSTCommon.h">
-      <Filter>JUCE Modules\juce_audio_processors\format_types</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\module\juce\modules\juce_audio_processors\format_types\juce_VSTInterface.h">
       <Filter>JUCE Modules\juce_audio_processors\format_types</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\module\juce\modules\juce_audio_processors\format_types\juce_VSTMidiEventList.h">
@@ -3886,6 +4303,9 @@
       <Filter>JUCE Modules\juce_audio_processors\processors</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\module\juce\modules\juce_audio_processors\processors\juce_AudioProcessorParameter.h">
+      <Filter>JUCE Modules\juce_audio_processors\processors</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\module\juce\modules\juce_audio_processors\processors\juce_AudioProcessorParameterGroup.h">
       <Filter>JUCE Modules\juce_audio_processors\processors</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\module\juce\modules\juce_audio_processors\processors\juce_GenericAudioProcessorEditor.h">
@@ -3919,6 +4339,9 @@
       <Filter>JUCE Modules\juce_audio_processors\utilities</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\module\juce\modules\juce_audio_processors\utilities\juce_AudioProcessorValueTreeState.h">
+      <Filter>JUCE Modules\juce_audio_processors\utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\module\juce\modules\juce_audio_processors\utilities\juce_RangedAudioParameter.h">
       <Filter>JUCE Modules\juce_audio_processors\utilities</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\module\juce\modules\juce_audio_processors\juce_audio_processors.h">
@@ -3970,6 +4393,9 @@
       <Filter>JUCE Modules\juce_core\containers</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\module\juce\modules\juce_core\containers\juce_ArrayAllocationBase.h">
+      <Filter>JUCE Modules\juce_core\containers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\module\juce\modules\juce_core\containers\juce_ArrayBase.h">
       <Filter>JUCE Modules\juce_core\containers</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\module\juce\modules\juce_core\containers\juce_DynamicObject.h">
@@ -4083,6 +4509,9 @@
     <ClInclude Include="..\..\..\..\module\juce\modules\juce_core\memory\juce_HeapBlock.h">
       <Filter>JUCE Modules\juce_core\memory</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\..\module\juce\modules\juce_core\memory\juce_HeavyweightLeakedObjectDetector.h">
+      <Filter>JUCE Modules\juce_core\memory</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\..\..\module\juce\modules\juce_core\memory\juce_LeakedObjectDetector.h">
       <Filter>JUCE Modules\juce_core\memory</Filter>
     </ClInclude>
@@ -4110,6 +4539,9 @@
     <ClInclude Include="..\..\..\..\module\juce\modules\juce_core\memory\juce_WeakReference.h">
       <Filter>JUCE Modules\juce_core\memory</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\..\module\juce\modules\juce_core\misc\juce_ConsoleApplication.h">
+      <Filter>JUCE Modules\juce_core\misc</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\..\..\module\juce\modules\juce_core\misc\juce_Result.h">
       <Filter>JUCE Modules\juce_core\misc</Filter>
     </ClInclude>
@@ -4135,6 +4567,9 @@
       <Filter>JUCE Modules\juce_core\native</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\module\juce\modules\juce_core\native\juce_osx_ObjCHelpers.h">
+      <Filter>JUCE Modules\juce_core\native</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\module\juce\modules\juce_core\native\juce_posix_IPAddress.h">
       <Filter>JUCE Modules\juce_core\native</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\module\juce\modules\juce_core\native\juce_posix_SharedCode.h">
@@ -4308,6 +4743,9 @@
     <ClInclude Include="..\..\..\..\module\juce\modules\juce_core\unit_tests\juce_UnitTest.h">
       <Filter>JUCE Modules\juce_core\unit_tests</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\..\module\juce\modules\juce_core\unit_tests\juce_UnitTestCategories.h">
+      <Filter>JUCE Modules\juce_core\unit_tests</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\..\..\module\juce\modules\juce_core\xml\juce_XmlDocument.h">
       <Filter>JUCE Modules\juce_core\xml</Filter>
     </ClInclude>
@@ -4434,6 +4872,9 @@
     <ClInclude Include="..\..\..\..\module\juce\modules\juce_dsp\maths\juce_FastMathApproximations.h">
       <Filter>JUCE Modules\juce_dsp\maths</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\..\module\juce\modules\juce_dsp\maths\juce_LogRampedValue.h">
+      <Filter>JUCE Modules\juce_dsp\maths</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\..\..\module\juce\modules\juce_dsp\maths\juce_LookupTable.h">
       <Filter>JUCE Modules\juce_dsp\maths</Filter>
     </ClInclude>
@@ -4531,6 +4972,9 @@
       <Filter>JUCE Modules\juce_events\interprocess</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\module\juce\modules\juce_events\interprocess\juce_InterprocessConnectionServer.h">
+      <Filter>JUCE Modules\juce_events\interprocess</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\module\juce\modules\juce_events\interprocess\juce_NetworkServiceDiscovery.h">
       <Filter>JUCE Modules\juce_events\interprocess</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\module\juce\modules\juce_events\messages\juce_ApplicationBase.h">
@@ -4809,11 +5253,14 @@
     <ClInclude Include="..\..\..\..\module\juce\modules\juce_gui_basics\components\juce_ComponentListener.h">
       <Filter>JUCE Modules\juce_gui_basics\components</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\module\juce\modules\juce_gui_basics\components\juce_Desktop.h">
-      <Filter>JUCE Modules\juce_gui_basics\components</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\..\module\juce\modules\juce_gui_basics\components\juce_ModalComponentManager.h">
       <Filter>JUCE Modules\juce_gui_basics\components</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\module\juce\modules\juce_gui_basics\desktop\juce_Desktop.h">
+      <Filter>JUCE Modules\juce_gui_basics\desktop</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\module\juce\modules\juce_gui_basics\desktop\juce_Displays.h">
+      <Filter>JUCE Modules\juce_gui_basics\desktop</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\module\juce\modules\juce_gui_basics\drawables\juce_Drawable.h">
       <Filter>JUCE Modules\juce_gui_basics\drawables</Filter>
@@ -5205,6 +5652,9 @@
     <ClInclude Include="..\..\..\..\module\juce\modules\juce_gui_extra\embedding\juce_NSViewComponent.h">
       <Filter>JUCE Modules\juce_gui_extra\embedding</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\..\module\juce\modules\juce_gui_extra\embedding\juce_ScopedDPIAwarenessDisabler.h">
+      <Filter>JUCE Modules\juce_gui_extra\embedding</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\..\..\module\juce\modules\juce_gui_extra\embedding\juce_UIViewComponent.h">
       <Filter>JUCE Modules\juce_gui_extra\embedding</Filter>
     </ClInclude>
@@ -5325,6 +5775,9 @@
     <ClInclude Include="..\..\..\..\module\juce\modules\juce_video\native\juce_android_CameraDevice.h">
       <Filter>JUCE Modules\juce_video\native</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\..\module\juce\modules\juce_video\native\juce_android_Video.h">
+      <Filter>JUCE Modules\juce_video\native</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\..\..\module\juce\modules\juce_video\native\juce_ios_CameraDevice.h">
       <Filter>JUCE Modules\juce_video\native</Filter>
     </ClInclude>
@@ -5354,14 +5807,41 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\..\..\..\module\gin\modules\gin\3rdparty\avir\README.md">
+      <Filter>JUCE Modules\gin\3rdparty\avir</Filter>
+    </None>
     <None Include="..\..\..\..\module\gin\modules\gin\README.md">
       <Filter>JUCE Modules\gin</Filter>
+    </None>
+    <None Include="..\..\..\..\module\gin\modules\gin_dsp\README.md">
+      <Filter>JUCE Modules\gin_dsp</Filter>
+    </None>
+    <None Include="..\..\..\..\module\gin\modules\gin_plugin\README.md">
+      <Filter>JUCE Modules\gin_plugin</Filter>
     </None>
     <None Include="..\..\..\..\module\juce\modules\juce_audio_formats\codecs\flac\Flac Licence.txt">
       <Filter>JUCE Modules\juce_audio_formats\codecs\flac</Filter>
     </None>
     <None Include="..\..\..\..\module\juce\modules\juce_audio_formats\codecs\oggvorbis\Ogg Vorbis Licence.txt">
       <Filter>JUCE Modules\juce_audio_formats\codecs\oggvorbis</Filter>
+    </None>
+    <None Include="..\..\..\..\module\juce\modules\juce_audio_processors\format_types\VST3_SDK\base\LICENSE.txt">
+      <Filter>JUCE Modules\juce_audio_processors\format_types\VST3_SDK\base</Filter>
+    </None>
+    <None Include="..\..\..\..\module\juce\modules\juce_audio_processors\format_types\VST3_SDK\pluginterfaces\LICENSE.txt">
+      <Filter>JUCE Modules\juce_audio_processors\format_types\VST3_SDK\pluginterfaces</Filter>
+    </None>
+    <None Include="..\..\..\..\module\juce\modules\juce_audio_processors\format_types\VST3_SDK\public.sdk\LICENSE.txt">
+      <Filter>JUCE Modules\juce_audio_processors\format_types\VST3_SDK\public.sdk</Filter>
+    </None>
+    <None Include="..\..\..\..\module\juce\modules\juce_audio_processors\format_types\VST3_SDK\LICENSE.txt">
+      <Filter>JUCE Modules\juce_audio_processors\format_types\VST3_SDK</Filter>
+    </None>
+    <None Include="..\..\..\..\module\juce\modules\juce_audio_processors\format_types\VST3_SDK\README.md">
+      <Filter>JUCE Modules\juce_audio_processors\format_types\VST3_SDK</Filter>
+    </None>
+    <None Include="..\..\..\..\module\juce\modules\juce_core\native\java\README.txt">
+      <Filter>JUCE Modules\juce_core\native\java</Filter>
     </None>
     <None Include="..\..\..\..\module\juce\modules\juce_graphics\image_formats\jpglib\changes to libjpeg for JUCE.txt">
       <Filter>JUCE Modules\juce_graphics\image_formats\jpglib</Filter>

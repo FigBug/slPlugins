@@ -8,7 +8,7 @@
               pluginChannelConfigs="{0,1}" pluginIsSynth="1" pluginWantsMidiIn="0"
               pluginProducesMidiOut="0" pluginIsMidiEffectPlugin="0" pluginEditorRequiresKeys="0"
               pluginAUExportPrefix="ToneGeneratorAU" aaxIdentifier="com.socalabs.ToneGenerator"
-              pluginAAXCategory="2" jucerVersion="5.4.0" companyName="SocaLabs"
+              pluginAAXCategory="2" jucerVersion="5.4.3" companyName="SocaLabs"
               companyWebsite="www.socalabs.com" companyEmail="info@socalabs.com"
               displaySplashScreen="0" reportAppUsage="0" splashScreenColour="Dark"
               buildStandalone="0" enableIAA="0" cppLanguageStandard="14" companyCopyright="SocaLabs"
@@ -54,6 +54,8 @@
         <MODULEPATH id="juce_audio_utils" path="../../module/juce/modules"/>
         <MODULEPATH id="juce_dsp" path="../../module/juce/modules"/>
         <MODULEPATH id="gin" path="../../module/gin/modules"/>
+        <MODULEPATH id="gin_plugin" path="../../module/gin/modules"/>
+        <MODULEPATH id="gin_dsp" path="../../module/gin/modules"/>
       </MODULEPATHS>
     </XCODE_MAC>
     <VS2017 targetFolder="Builds/VisualStudio2017" toolset="v141_xp">
@@ -96,12 +98,16 @@
         <MODULEPATH id="juce_audio_utils" path="../../module/juce/modules"/>
         <MODULEPATH id="juce_dsp" path="../../module/juce/modules"/>
         <MODULEPATH id="gin" path="../../module/gin/modules"/>
+        <MODULEPATH id="gin_plugin" path="../../module/gin/modules"/>
+        <MODULEPATH id="gin_dsp" path="../../module/gin/modules"/>
       </MODULEPATHS>
     </VS2017>
   </EXPORTFORMATS>
   <MODULES>
     <MODULE id="dRowAudio" showAllCode="1" useLocalCopy="0"/>
     <MODULE id="gin" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
+    <MODULE id="gin_dsp" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
+    <MODULE id="gin_plugin" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
     <MODULE id="juce_audio_basics" showAllCode="1" useLocalCopy="0"/>
     <MODULE id="juce_audio_devices" showAllCode="1" useLocalCopy="0"/>
     <MODULE id="juce_audio_formats" showAllCode="1" useLocalCopy="0"/>
