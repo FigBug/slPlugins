@@ -13,6 +13,8 @@
 
 FormulaSynth::FormulaSynth()
 {
+    setCurrentPlaybackSampleRate (44100.0);
+    
     for (int i = 0; i < 32; i++)
         addVoice (new FormulaVoice (*this));
 }

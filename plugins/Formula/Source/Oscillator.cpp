@@ -82,6 +82,19 @@ static double pulse (double phase, double pw, double freq)
     }
 };
 
+static double squareWave (double phase, double freq)
+{
+    double sum = 0;
+    int i = 1;
+    while (freq * (2 * i - 1) < gSampleRate / 2)
+    {
+        sum += std::sin ((2 * i - 1) * (phase * 2 * MathConstants<double>::pi)) / ((2 * i - 1));
+        i++;
+    }
+    
+    return float (4.0f / float_Pi * sum);
+};
+
 static double noise()
 {
     const float mean = 0.0f;
@@ -104,39 +117,110 @@ Oscillator::~Oscillator()
 
 void Oscillator::setSampleRate (double sr)
 {
+    jassert (sr > 8000);    
     sampleRate = sr;
     
     for (auto& c : controllers)
         c.reset (sr, 0.05);
+    
+    for (auto& itr : funcStates)
+        itr.second->setSampleRate (sr);
 }
 
 void Oscillator::setFormula (String formula)
 {
-    auto* p = new gin::EquationParser();
+    std::unique_ptr<gin::EquationParser> p;
+    
+    {
+        ScopedLock sl (lock);
+        std::swap (parser, p);
+    }
+    
+    jassert (sampleRate > 8000);
+    
+    funcStates.clear();
+    
+    p = std::make_unique<gin::EquationParser>();
     
     p->setEquation (formula);
-    p->addVariable ("phase", &phase);
+    p->addVariable ("note", &note);
     p->addVariable ("freq", &frequency);
     p->addVariable ("env", &envelope);
     
     for (int i = 0; i <= 127; i++)
         p->addVariable (String::formatted ( "cc%d", i), controllers[i].getValuePtr());
     
-    p->addFunction ("sine", sine);
-    p->addFunction ("sawUp", sawUp);
-    p->addFunction ("sawDown", sawDown);
-    p->addFunction ("pulse", pulse);
-    p->addFunction ("triangle", triangle);
-    p->addFunction ("noise", noise);
+    p->addFunction ("sine", [this] (int id, double note)
+                    {
+                        auto p = getFuncParams<OscState> (id, sampleRate);
+                        p->incPhase (note);
+                        return sine (p->phase);
+                    });
+    p->addFunction ("saw", [this] (int id, double note)
+                    {
+                        auto p = getFuncParams<OscState> (id, sampleRate);
+                        p->incPhase (note);
+                        return sawUp (p->phase, p->frequency);
+                    });
+    p->addFunction ("sawdown", [this] (int id, double note)
+                    {
+                        auto p = getFuncParams<OscState> (id, sampleRate);
+                        p->incPhase (note);
+                        return sawDown (p->phase, p->frequency);
+                    });
+    p->addFunction ("pulse", [this] (int id, double note, double pw)
+                    {
+                        auto p = getFuncParams<OscState> (id, sampleRate);
+                        p->incPhase (note);
+                        return pulse (p->phase, p->frequency, pw);
+                    });
+    p->addFunction ("square", [this] (int id, double note)
+                    {
+                        auto p = getFuncParams<OscState> (id, sampleRate);
+                        p->incPhase (note);
+                        return squareWave (p->phase, p->frequency);
+                    });
+    p->addFunction ("triangle", [this] (int id, double note)
+                    {
+                        auto p = getFuncParams<OscState> (id, sampleRate);
+                        p->incPhase (note);
+                        return triangle (p->phase, p->frequency);
+                    });
+    p->addFunction ("noise", [this] (int, double note)
+                    {
+                        return noise();
+                    });
+    p->addFunction ("hp", [this] (int id, double v, double freq, double res)
+                    {
+                        auto p = getFuncParams<HPState> (id, sampleRate);
+                        return p->process (v, freq, res);
+                    });
+    p->addFunction ("lp", [this] (int id, double v, double freq, double res)
+                    {
+                        auto p = getFuncParams<LPState> (id, sampleRate);
+                        return p->process (v, freq, res);
+                    });
+    p->addFunction ("notch", [this] (int id, double v, double freq, double res)
+                    {
+                        auto p = getFuncParams<NotchState> (id, sampleRate);
+                        return p->process (v, freq, res);
+                    });
+    p->addFunction ("bp", [this] (int id, double v, double freq, double res)
+                    {
+                        auto p = getFuncParams<BPState> (id, sampleRate);
+                        return p->process (v, freq, res);
+                    });
+
+    p->evaluate();
     
-    ScopedLock sl (lock);
-    parser = p;
+    {
+        ScopedLock sl (lock);
+        std::swap (parser, p);
+    }
 }
 
 void Oscillator::start()
 {
-    phase = 0;
-    
     for (auto& c : controllers)
         c.snapToValue();
 }
@@ -152,10 +236,6 @@ void Oscillator::process (AudioSampleBuffer& envelopeBuffer, AudioSampleBuffer& 
     
     const float* e = envelopeBuffer.getReadPointer (0);
     
-    const double period = 1.0 / frequency;
-    const double periodInSamples = period * sampleRate;
-    const double delta = 1.0 / periodInSamples;
-    
     if (parser != nullptr)
     {
         for (int i = 0; i < numSamples; i++)
@@ -164,10 +244,6 @@ void Oscillator::process (AudioSampleBuffer& envelopeBuffer, AudioSampleBuffer& 
                 c.updateValue();
             
             envelope = e[i];
-            
-            phase += delta;
-            if (phase >= 1.0)
-                phase -= 1.0;
             
             auto out = parser->evaluate();
             

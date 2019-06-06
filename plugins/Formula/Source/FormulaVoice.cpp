@@ -91,7 +91,7 @@ void FormulaVoice::renderNextBlock (AudioBuffer<float>& outputBuffer, int startS
         updateParams();
     
     auto note = getCurrentlyPlayingNote();
-    double freq = note.getFrequencyInHertz();
+    double noteNum = note.initialNote + note.totalPitchbendInSemitones;
 
     float* env = envelopeBuffer.getWritePointer (0);
     
@@ -114,13 +114,13 @@ void FormulaVoice::renderNextBlock (AudioBuffer<float>& outputBuffer, int startS
         if (enabled (idx))
         {
             o.setGain (note.noteOnVelocity.asUnsignedFloat());
-            o.setFrequency (freq);
+            o.setNote (noteNum);
             o.process (envelopeBuffer, outputBuffer, startSample, numSamples);
         }
         idx++;
     }
     
-    if (adsr.getState() == ADSR::idle)
+    if (adsr.getState() == gin::ADSR::idle)
         clearCurrentNote();
 }
 
