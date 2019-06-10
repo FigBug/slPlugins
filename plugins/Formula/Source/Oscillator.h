@@ -147,7 +147,11 @@ private:
     {
         auto itr = funcStates.find (i);
         if (itr != funcStates.end())
-            return dynamic_cast<T*> (itr->second.get());
+        {
+            auto p = dynamic_cast<T*> (itr->second.get());
+            jassert (p != nullptr);
+            return p;
+        }
         
         auto p = new T (sr);
         funcStates[i].reset (p);
