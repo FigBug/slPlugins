@@ -50,7 +50,7 @@ FormulaAudioProcessorEditor::FormulaAudioProcessorEditor (FormulaAudioProcessor&
         }
     }
     
-    setGridSize (8, 4);
+    setGridSize (9, 5);
     
     scope.setNumChannels (2);
     scope.setNumSamplesPerPixel (2);
@@ -74,7 +74,7 @@ void FormulaAudioProcessorEditor::resized()
     GinAudioProcessorEditor::resized();
 
     // Set position for formula editors
-    auto rc = getGridArea (0, 0, 8, 1);
+    auto rc = getGridArea (0, 0, 9, 1);
     const int h = rc.getHeight() / 3;
     rc = rc.withSizeKeepingCentre (rc.getWidth() - 4, rc.getHeight());
     
@@ -94,7 +94,7 @@ void FormulaAudioProcessorEditor::resized()
         c->setBounds (getGridArea (x, y));
         
         x++;
-        if (x == 8)
+        if (x == 7 && y == 1)
         {
             x = 0;
             y++;
@@ -102,7 +102,7 @@ void FormulaAudioProcessorEditor::resized()
     }
     
     // Position the scope
-    scope.setBounds (getGridArea (0, 2, 8, 2));
+    scope.setBounds (getGridArea (0, 3, 9, 2));
 }
 
 void FormulaAudioProcessorEditor::textEditorReturnKeyPressed (TextEditor& ed)

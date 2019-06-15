@@ -19,10 +19,28 @@ FormulaVoice::FormulaVoice (FormulaSynth& o)
 
 void FormulaVoice::updateParams()
 {
-    adsr.setAttack (owner.params.attack);
-    adsr.setDecay (owner.params.decay);
-    adsr.setSustainLevel (owner.params.sustain);
-    adsr.setRelease (owner.params.release);
+    ampEnvelope.setAttack (owner.params.attack);
+    ampEnvelope.setDecay (owner.params.decay);
+    ampEnvelope.setSustainLevel (owner.params.sustain);
+    ampEnvelope.setRelease (owner.params.release);
+    
+    filterEnvelope.setAttack (owner.params.filterAttack);
+    filterEnvelope.setDecay (owner.params.filterDecay);
+    filterEnvelope.setSustainLevel (owner.params.filterSustain);
+    filterEnvelope.setRelease (owner.params.filterRelease);
+    
+    float filterEnv = filterEnvelope.getOutput();
+    float filterSens = owner.params.filterVelocity / 100.0f;
+    filterEnv *= currentlyPlayingNote.noteOnVelocity.asUnsignedFloat() * filterSens + 1.0f - filterSens;
+    
+    float freqNote = owner.params.filterFreq;
+    freqNote += (currentlyPlayingNote.initialNote - 60) * owner.params.filterKey / 100.0f;
+    freqNote += filterEnv * (owner.params.filterAmount * 135.076232f);
+    
+    float cutoff = jlimit (8.0f, jmin (20000.0f, float (currentSampleRate) / 2.0f), (float) getMidiNoteInHertz (freqNote));
+    
+    for (auto& o : oscillators)
+        o.setCutoffRes (cutoff, owner.params.filterRes / 100.0f);
 }
 
 void FormulaVoice::setFormulas (String f1, String f2, String f3)
@@ -36,7 +54,8 @@ void FormulaVoice::noteStarted()
 {
     updateParams();
     
-    adsr.noteOn();
+    ampEnvelope.noteOn();
+    filterEnvelope.noteOn();
     
     for (auto& o : oscillators)
         o.start();
@@ -46,11 +65,13 @@ void FormulaVoice::noteStopped (bool allowTailOff)
 {
     if (allowTailOff)
     {
-        adsr.noteOff();
+        ampEnvelope.noteOff();
+        filterEnvelope.noteOff();
     }
     else
     {
-        adsr.reset();
+        ampEnvelope.reset();
+        filterEnvelope.reset();
         clearCurrentNote();
     }
 }
@@ -78,11 +99,15 @@ void FormulaVoice::setCurrentSampleRate (double newRate)
     for (auto& o : oscillators)
         o.setSampleRate (newRate);
     
-    adsr.setSampleRate (newRate);
+    ampEnvelope.setSampleRate (newRate);
+    filterEnvelope.setSampleRate (newRate);
 }
 
 void FormulaVoice::renderNextBlock (AudioBuffer<float>& outputBuffer, int startSample, int numSamples)
 {
+    if (numSamples <= 0)
+        return;
+    
     if (numSamples > envelopeBuffer.getNumSamples())
         envelopeBuffer.setSize (1, numSamples, false, false, true);
     
@@ -96,7 +121,10 @@ void FormulaVoice::renderNextBlock (AudioBuffer<float>& outputBuffer, int startS
     float* env = envelopeBuffer.getWritePointer (0);
     
     for (int i = 0; i < numSamples; i++)
-        *env++ = adsr.process();
+    {
+        *env++ = ampEnvelope.process();
+        filterEnvelope.process();
+    }
     
     int idx = 0;
     
@@ -120,7 +148,7 @@ void FormulaVoice::renderNextBlock (AudioBuffer<float>& outputBuffer, int startS
         idx++;
     }
     
-    if (adsr.getState() == gin::ADSR::idle)
+    if (ampEnvelope.getState() == gin::AnalogADSR::State::idle)
         clearCurrentNote();
 }
 

@@ -64,33 +64,38 @@ void MathsAudioProcessor::prepareToPlay (double sampleRate, int samplesPerBlock)
 
 void MathsAudioProcessor::setupParsers()
 {
-    auto* newL = new EquationParser();
-    auto* newR = new EquationParser();
+    auto newL = std::make_unique<EquationParser>();
+    auto newR = std::make_unique<EquationParser>();
 
     newL->setEquation (lEquation);
     newR->setEquation (rEquation);
     
-    setupVars (newL);
-    setupVars (newR);
-
-    ScopedLock sl (lock);
+    setupVars (*newL);
+    setupVars (*newR);
     
-    lParser = newL;
-    rParser = newR;
+    newL->evaluate();
+    newR->evaluate();
+
+    {
+        ScopedLock sl (lock);
+        
+        std::swap (lParser, newL);
+        std::swap (rParser, newR);
+    }
 }
 
-void MathsAudioProcessor::setupVars (gin::EquationParser* p)
+void MathsAudioProcessor::setupVars (gin::EquationParser& p)
 {
-    p->addVariable ("l", &l);
-    p->addVariable ("r", &r);
-    p->addVariable ("p1", &p1);
-    p->addVariable ("p2", &p2);
-    p->addVariable ("p3", &p3);
-    p->addVariable ("p4", &p4);
-    p->addVariable ("t", &t);
-    p->addVariable ("s", &s);
-    p->addVariable ("c", &c);
-    p->addVariable ("sr", &sr);
+    p.addVariable ("l", &l);
+    p.addVariable ("r", &r);
+    p.addVariable ("p1", &p1);
+    p.addVariable ("p2", &p2);
+    p.addVariable ("p3", &p3);
+    p.addVariable ("p4", &p4);
+    p.addVariable ("t", &t);
+    p.addVariable ("s", &s);
+    p.addVariable ("c", &c);
+    p.addVariable ("sr", &sr);
 }
 
 void MathsAudioProcessor::releaseResources()
@@ -106,12 +111,12 @@ void MathsAudioProcessor::processBlock (AudioSampleBuffer& buffer, MidiBuffer&)
     float* lData = buffer.getWritePointer (0);
     float* rData = buffer.getWritePointer (1);
     
-    p1Val.setValue (parameterValue (PARAM_P1));
-    p2Val.setValue (parameterValue (PARAM_P2));
-    p3Val.setValue (parameterValue (PARAM_P3));
-    p4Val.setValue (parameterValue (PARAM_P4));
+    p1Val.setTargetValue (parameterValue (PARAM_P1));
+    p2Val.setTargetValue (parameterValue (PARAM_P2));
+    p3Val.setTargetValue (parameterValue (PARAM_P3));
+    p4Val.setTargetValue (parameterValue (PARAM_P4));
 
-    if (auto* p = getPlayHead())
+    if (auto p = getPlayHead())
     {
         AudioPlayHead::CurrentPositionInfo pos;
         if (p->getCurrentPosition (pos))

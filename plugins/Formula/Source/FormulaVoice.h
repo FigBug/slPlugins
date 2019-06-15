@@ -43,7 +43,8 @@ private:
     FormulaSynth& owner;
     
     Oscillator oscillators[3];
-    gin::ADSR adsr;
+    gin::AnalogADSR ampEnvelope;
+    gin::ADSR filterEnvelope;
     
     AudioSampleBuffer envelopeBuffer;
     

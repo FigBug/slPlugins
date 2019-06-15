@@ -24,10 +24,11 @@ public:
     
     void start();
     
-    void setController (int c, float v) { controllers[c].setValue (v);                       }
+    void setController (int c, float v)     { controllers[c].setValue (v);                       }
     void setSampleRate (double sr);
-    void setNote (double n)             { note = n; frequency = gin::getMidiNoteInHertz (n); }
-    void setGain (double g)             { gain = g;                                          }
+    void setNote (double n)                 { note = n; frequency = gin::getMidiNoteInHertz (n); }
+    void setGain (double g)                 { gain = g;                                          }
+    void setCutoffRes (double c, double r)  { cutoff = c; res = r;                               }
     
     void process (AudioSampleBuffer& envelope, AudioSampleBuffer& buffer, int startSample, int numSamples);
     
@@ -159,5 +160,6 @@ private:
     }
     
     double note = 0, frequency = 8.18, envelope = 1, gain = 1;
+    double cutoff = 6000, res = 0;
     double sampleRate = 44100.0;
 };

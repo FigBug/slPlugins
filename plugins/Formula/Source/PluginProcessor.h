@@ -25,6 +25,17 @@ using namespace juce::dsp;
 #define PARAM_SUSTAIN       "sustain"
 #define PARAM_RELEASE       "release"
 
+#define PARAM_FLT_ATTACK    "flt_attack"
+#define PARAM_FLT_DECAY     "flt_decay"
+#define PARAM_FLT_SUSTAIN   "flt_sustain"
+#define PARAM_FLT_RELEASE   "flt_release"
+#define PARAM_FLT_FREQ      "flt_freq"
+#define PARAM_FLT_RES       "flt_res"
+#define PARAM_FLT_AMOUNT    "flt_amount"
+#define PARAM_FLT_KEY       "flt_key"
+#define PARAM_FLT_VELOCITY  "flt_velocity"
+
+
 class FormulaAudioProcessorEditor;
 //==============================================================================
 /**

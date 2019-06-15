@@ -48,11 +48,11 @@ public:
 
 private:
     //==============================================================================
-    void setupVars (gin::EquationParser*);
+    void setupVars (gin::EquationParser&);
     
     CriticalSection lock;
     LinearSmoothedValue<float> p1Val, p2Val, p3Val, p4Val;
-    ScopedPointer<gin::EquationParser> lParser, rParser;
+    std::unique_ptr<gin::EquationParser> lParser, rParser;
     double l = 0, r = 0, p1 = 0, p2 = 0, p3 = 0, p4 = 0, t = 0, c = 0, s = 0, sr = 0;
     
     Component::SafePointer<MathsAudioProcessorEditor> editor;

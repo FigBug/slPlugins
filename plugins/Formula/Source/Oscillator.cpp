@@ -146,6 +146,8 @@ void Oscillator::setFormula (String formula)
     p->addVariable ("note", &note);
     p->addVariable ("freq", &frequency);
     p->addVariable ("env", &envelope);
+    p->addVariable ("cutoff", &cutoff);
+    p->addVariable ("res", &res);
     
     for (int i = 0; i <= 127; i++)
         p->addVariable (String::formatted ( "cc%d", i), controllers[i].getValuePtr());
@@ -193,22 +195,26 @@ void Oscillator::setFormula (String formula)
     p->addFunction ("hp", [this] (int id, double v, double freq, double res)
                     {
                         auto p = getFuncParams<HPState> (id, sampleRate);
-                        return p->process (v, freq, res);
+                        float q = 0.70710678118655f / (1.0f - (res) * 0.99f);
+                        return p->process (v, freq, q);
                     });
     p->addFunction ("lp", [this] (int id, double v, double freq, double res)
                     {
                         auto p = getFuncParams<LPState> (id, sampleRate);
-                        return p->process (v, freq, res);
+                        float q = 0.70710678118655f / (1.0f - (res) * 0.99f);
+                        return p->process (v, freq, q);
                     });
     p->addFunction ("notch", [this] (int id, double v, double freq, double res)
                     {
                         auto p = getFuncParams<NotchState> (id, sampleRate);
-                        return p->process (v, freq, res);
+                        float q = 0.70710678118655f / (1.0f - (res) * 0.99f);
+                        return p->process (v, freq, q);
                     });
     p->addFunction ("bp", [this] (int id, double v, double freq, double res)
                     {
                         auto p = getFuncParams<BPState> (id, sampleRate);
-                        return p->process (v, freq, res);
+                        float q = 0.70710678118655f / (1.0f - (res) * 0.99f);
+                        return p->process (v, freq, q);
                     });
 
     p->evaluate();
