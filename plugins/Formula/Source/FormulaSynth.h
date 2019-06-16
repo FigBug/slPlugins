@@ -20,7 +20,7 @@ public:
     {
         bool osc1enable = false, osc2enable = false, osc3enable = false;
         
-        float attack = 0, decay = 0, sustain = 0, release = 0;
+        float ampAttack = 0, ampDecay = 0, ampSustain = 0, ampRelease = 0, ampVelocity = 0;
         float filterAttack = 0, filterDecay = 0, filterSustain = 0, filterRelease = 0;
         float filterFreq = 0, filterRes = 0, filterAmount = 0, filterKey = 0, filterVelocity = 0;
     };

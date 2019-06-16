@@ -24,6 +24,7 @@ using namespace juce::dsp;
 #define PARAM_DECAY         "decay"
 #define PARAM_SUSTAIN       "sustain"
 #define PARAM_RELEASE       "release"
+#define PARAM_VELOCITY      "velocity"
 
 #define PARAM_FLT_ATTACK    "flt_attack"
 #define PARAM_FLT_DECAY     "flt_decay"

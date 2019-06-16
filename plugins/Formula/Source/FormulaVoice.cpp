@@ -19,10 +19,10 @@ FormulaVoice::FormulaVoice (FormulaSynth& o)
 
 void FormulaVoice::updateParams()
 {
-    ampEnvelope.setAttack (owner.params.attack);
-    ampEnvelope.setDecay (owner.params.decay);
-    ampEnvelope.setSustainLevel (owner.params.sustain);
-    ampEnvelope.setRelease (owner.params.release);
+    ampEnvelope.setAttack (owner.params.ampAttack);
+    ampEnvelope.setDecay (owner.params.ampDecay);
+    ampEnvelope.setSustainLevel (owner.params.ampSustain);
+    ampEnvelope.setRelease (owner.params.ampRelease);
     
     filterEnvelope.setAttack (owner.params.filterAttack);
     filterEnvelope.setDecay (owner.params.filterDecay);
@@ -141,7 +141,8 @@ void FormulaVoice::renderNextBlock (AudioBuffer<float>& outputBuffer, int startS
     {
         if (enabled (idx))
         {
-            o.setGain (note.noteOnVelocity.asUnsignedFloat());
+            auto gain = velocityToGain (note.noteOnVelocity.asUnsignedFloat(), owner.params.ampVelocity);
+            o.setGain (gain);
             o.setNote (noteNum);
             o.process (envelopeBuffer, outputBuffer, startSample, numSamples);
         }

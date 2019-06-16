@@ -94,7 +94,7 @@ void FormulaAudioProcessorEditor::resized()
         c->setBounds (getGridArea (x, y));
         
         x++;
-        if (x == 7 && y == 1)
+        if (x == 8 && y == 1)
         {
             x = 0;
             y++;
