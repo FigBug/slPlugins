@@ -97,7 +97,10 @@ void FormulaVoice::setCurrentSampleRate (double newRate)
     MPESynthesiserVoice::setCurrentSampleRate (newRate);
     
     for (auto& o : oscillators)
+    {
         o.setSampleRate (newRate);
+        o.lookupTables = owner.lookupTables.get();
+    }
     
     ampEnvelope.setSampleRate (newRate);
     filterEnvelope.setSampleRate (newRate);

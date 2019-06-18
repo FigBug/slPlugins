@@ -35,6 +35,14 @@ void FormulaSynth::setMPE (bool mpe)
     }
 }
 
+void FormulaSynth::setCurrentPlaybackSampleRate (double sampleRate)
+{
+    if (sampleRate != getSampleRate())
+        lookupTables = std::make_unique<gin::BandLimitedLookupTables> (sampleRate);
+        
+    MPESynthesiser::setCurrentPlaybackSampleRate (sampleRate);
+}
+
 void FormulaSynth::setFormulas (String f1, String f2, String f3)
 {
     for (int i = getNumVoices(); --i >= 0;)

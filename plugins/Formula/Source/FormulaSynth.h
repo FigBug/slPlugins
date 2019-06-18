@@ -28,6 +28,7 @@ public:
     FormulaSynth();
     
     void setMPE (bool mpe);
+    void setCurrentPlaybackSampleRate (double sampleRate) override;
     
     Params& getParams()     { return params; }
     
@@ -39,4 +40,6 @@ private:
     void handleController (int /*midiChannel*/, int /*controllerNumber*/, int /*controllerValue*/) override;
     
     Params params;
+    
+    std::unique_ptr<gin::BandLimitedLookupTables> lookupTables;
 };
