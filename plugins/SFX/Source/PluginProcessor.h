@@ -12,11 +12,14 @@
 
 #include "../JuceLibraryCode/JuceHeader.h"
 
+#include "Pad.h"
+
 using namespace juce::dsp;
 
 class SFXAudioProcessorEditor;
 //==============================================================================
-class SFXAudioProcessor : public gin::GinProcessor
+class SFXAudioProcessor : public gin::GinProcessor,
+                          private MPESynthesiser
 {
 public:
     //==============================================================================
@@ -36,12 +39,23 @@ public:
     //==============================================================================
     AudioProcessorEditor* createEditor() override;
     bool hasEditor() const override;
+    
+    Pad* getPadForNote (int note)
+    {
+        for (auto p : pads)
+            if (p->note == note)
+                return p;
+        
+        return nullptr;
+    }
 
 private:
     //==============================================================================
     
     CriticalSection lock;    
     Component::SafePointer<SFXAudioProcessorEditor> editor;
+    
+    OwnedArray<Pad> pads;
 
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (SFXAudioProcessor)

@@ -10,17 +10,18 @@
 
 #include "PluginProcessor.h"
 #include "PluginEditor.h"
-#include <random>
-
-#include "../../../module/bfxr/PinkNumber.h"
-#include "../../../module/bfxr/SfxrParams.h"
-#include "../../../module/bfxr/SfxrSynth.h"
+#include "Voice.h"
 
 using namespace gin;
 
 //==============================================================================
 SFXAudioProcessor::SFXAudioProcessor()
 {
+    for (int i = 0; i < 16; i++)
+        pads.add (new Pad());
+    
+    for (int i = 0; i < 32; i++)
+        addVoice (new Voice (*this));
 }
 
 SFXAudioProcessor::~SFXAudioProcessor()
@@ -39,17 +40,21 @@ void SFXAudioProcessor::updateState()
 //==============================================================================
 void SFXAudioProcessor::prepareToPlay (double sampleRate, int samplesPerBlock)
 {
+    setCurrentPlaybackSampleRate (sampleRate);
 }
 
 void SFXAudioProcessor::releaseResources()
 {
 }
 
-void SFXAudioProcessor::processBlock (AudioSampleBuffer& buffer, MidiBuffer&)
+void SFXAudioProcessor::processBlock (AudioSampleBuffer& buffer, MidiBuffer& midi)
 {
     ScopedLock sl (lock);
     
     ScopedNoDenormals noDenormals;
+    
+    renderNextBlock (buffer, midi, 0, buffer.getNumSamples());
+    
 }
 
 //==============================================================================

@@ -16,7 +16,9 @@
 //==============================================================================
 // [BEGIN_USER_CODE_SECTION]
 
-// (You can add your own code in this section, and the Projucer will not overwrite it)
+#include "../../../module/bfxr/PinkNumber.h"
+#include "../../../module/bfxr/SfxrParams.h"
+#include "../../../module/bfxr/SfxrSynth.h"
 
 // [END_USER_CODE_SECTION]
 

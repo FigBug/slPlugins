@@ -19,16 +19,23 @@
     <GROUP id="{EE796482-0D02-0052-80F4-B1FE6CE0D41A}" name="Source">
       <GROUP id="{DA748B7D-42D5-4A16-B897-0DD85D003309}" name="bfxr">
         <FILE id="pvV92r" name="PinkNumber.h" compile="0" resource="0" file="../../module/bfxr/PinkNumber.h"/>
+        <FILE id="a5X5ce" name="SfxrParams.cpp" compile="1" resource="0" file="../../module/bfxr/SfxrParams.cpp"/>
         <FILE id="OWVrrr" name="SfxrParams.h" compile="0" resource="0" file="../../module/bfxr/SfxrParams.h"/>
         <FILE id="haYJFr" name="SfxrSynth.h" compile="0" resource="0" file="../../module/bfxr/SfxrSynth.h"/>
+        <FILE id="HWmrAO" name="Util.cpp" compile="1" resource="0" file="../../module/bfxr/Util.cpp"/>
+        <FILE id="OICJf7" name="Util.h" compile="0" resource="0" file="../../module/bfxr/Util.h"/>
       </GROUP>
+      <FILE id="bqSJSc" name="Pad.cpp" compile="1" resource="0" file="Source/Pad.cpp"/>
+      <FILE id="GtF1GL" name="Pad.h" compile="0" resource="0" file="Source/Pad.h"/>
+      <FILE id="sm654A" name="PluginEditor.cpp" compile="1" resource="0"
+            file="Source/PluginEditor.cpp"/>
+      <FILE id="xX3taW" name="PluginEditor.h" compile="0" resource="0" file="Source/PluginEditor.h"/>
       <FILE id="iEbZ9q" name="PluginProcessor.cpp" compile="1" resource="0"
             file="Source/PluginProcessor.cpp"/>
       <FILE id="XzLyGB" name="PluginProcessor.h" compile="0" resource="0"
             file="Source/PluginProcessor.h"/>
-      <FILE id="sm654A" name="PluginEditor.cpp" compile="1" resource="0"
-            file="Source/PluginEditor.cpp"/>
-      <FILE id="xX3taW" name="PluginEditor.h" compile="0" resource="0" file="Source/PluginEditor.h"/>
+      <FILE id="dt0SPZ" name="Voice.cpp" compile="1" resource="0" file="Source/Voice.cpp"/>
+      <FILE id="j6cYl2" name="Voice.h" compile="0" resource="0" file="Source/Voice.h"/>
     </GROUP>
   </MAINGROUP>
   <EXPORTFORMATS>
