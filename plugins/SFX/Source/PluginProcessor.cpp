@@ -12,11 +12,12 @@
 #include "PluginEditor.h"
 #include <random>
 
-using namespace gin;
-
 #include "../../../module/bfxr/PinkNumber.h"
 #include "../../../module/bfxr/SfxrParams.h"
 #include "../../../module/bfxr/SfxrSynth.h"
+
+using namespace gin;
+
 //==============================================================================
 SFXAudioProcessor::SFXAudioProcessor()
 {
