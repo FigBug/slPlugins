@@ -34,6 +34,9 @@
             file="Source/PluginProcessor.cpp"/>
       <FILE id="XzLyGB" name="PluginProcessor.h" compile="0" resource="0"
             file="Source/PluginProcessor.h"/>
+      <FILE id="HIK6Z0" name="UIComponents.cpp" compile="1" resource="0"
+            file="Source/UIComponents.cpp"/>
+      <FILE id="y7eT5Z" name="UIComponents.h" compile="0" resource="0" file="Source/UIComponents.h"/>
       <FILE id="dt0SPZ" name="Voice.cpp" compile="1" resource="0" file="Source/Voice.cpp"/>
       <FILE id="j6cYl2" name="Voice.h" compile="0" resource="0" file="Source/Voice.h"/>
     </GROUP>

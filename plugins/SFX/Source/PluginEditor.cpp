@@ -17,14 +17,10 @@ using namespace gin;
 SFXAudioProcessorEditor::SFXAudioProcessorEditor (SFXAudioProcessor& p)
     : GinAudioProcessorEditor (p), processor (p)
 {
-    for (Parameter* pp : p.getPluginParameters())
-    {
-        auto* pc = new Knob (pp, false);
-        addAndMakeVisible (pc);
-        controls.add (pc);
-    }
-    
-    setGridSize (9, 1);
+    addAndMakeVisible (padGrid);
+    addAndMakeVisible (params);
+
+    setGridSize (10, 4);
 }
 
 SFXAudioProcessorEditor::~SFXAudioProcessorEditor()
@@ -39,5 +35,10 @@ void SFXAudioProcessorEditor::refresh()
 void SFXAudioProcessorEditor::resized()
 {
     GinAudioProcessorEditor::resized();
+
+    auto rc = getFullGridArea();
+
+    padGrid.setBounds (rc.removeFromLeft (rc.getHeight()));
+    params.setBounds (rc);
 }
 

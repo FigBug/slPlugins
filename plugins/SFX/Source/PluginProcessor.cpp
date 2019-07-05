@@ -17,11 +17,50 @@ using namespace gin;
 //==============================================================================
 SFXAudioProcessor::SFXAudioProcessor()
 {
-    for (int i = 0; i < 16; i++)
-        pads.add (new Pad());
-    
+    // Add voices
     for (int i = 0; i < 32; i++)
         addVoice (new Voice (*this));
+
+    int notes[] = { 64, 65, 66, 67,
+                    60, 61, 62, 63,
+                    56, 57, 58, 59,
+                    52, 53, 54, 55 };
+
+    // Add pads
+    for (int i = 0; i < 16; i++)
+        pads.add (new Pad (notes[i]));
+    
+    // Add parameters
+    for (int i = 0; i < 16; i++)
+    {
+        SfxrParams p;
+        auto ids = p.getParams();
+        for (auto id : ids)
+        {
+            String uniqueId = String (id.c_str()) + String (i + 1);
+
+            addPluginParameter (new Parameter (uniqueId,
+                                               String (p.getName (id).c_str()) + " " + String (i + 1),
+                                               p.getName (id),
+                                               "",
+                                               p.getMin (id),
+                                               p.getMax (id),
+                                               0.0f,
+                                               p.getDefault (id)));
+        }
+    }
+
+    // Add parameters to pads
+    auto allParams = getPluginParameters();
+    int paramsPerPad = allParams.size() / 16;
+
+    for (int i = 0; i < 16; i++)
+    {
+        auto p = pads[i];
+
+        for (int j = 0; j < paramsPerPad; j++)
+            p->pluginParams.add (allParams[i * paramsPerPad + j]);
+    }
 }
 
 SFXAudioProcessor::~SFXAudioProcessor()
@@ -50,11 +89,9 @@ void SFXAudioProcessor::releaseResources()
 void SFXAudioProcessor::processBlock (AudioSampleBuffer& buffer, MidiBuffer& midi)
 {
     ScopedLock sl (lock);
-    
     ScopedNoDenormals noDenormals;
-    
-    renderNextBlock (buffer, midi, 0, buffer.getNumSamples());
-    
+
+    renderNextBlock (buffer, midi, 0, buffer.getNumSamples());    
 }
 
 //==============================================================================

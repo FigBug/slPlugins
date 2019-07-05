@@ -12,6 +12,7 @@
 
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "PluginProcessor.h"
+#include "UIComponents.h"
 
 //==============================================================================
 /**
@@ -28,6 +29,9 @@ public:
 
 private:    
     SFXAudioProcessor& processor;
+
+    PadGridComponent padGrid {processor};
+    ParamComponent params {processor};
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (SFXAudioProcessorEditor)
 };

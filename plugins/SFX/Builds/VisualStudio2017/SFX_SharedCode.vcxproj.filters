@@ -577,6 +577,9 @@
     <ClCompile Include="..\..\Source\PluginProcessor.cpp">
       <Filter>SFX\Source</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\UIComponents.cpp">
+      <Filter>SFX\Source</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Source\Voice.cpp">
       <Filter>SFX\Source</Filter>
     </ClCompile>
@@ -3019,6 +3022,9 @@
       <Filter>SFX\Source</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\PluginProcessor.h">
+      <Filter>SFX\Source</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\UIComponents.h">
       <Filter>SFX\Source</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Voice.h">

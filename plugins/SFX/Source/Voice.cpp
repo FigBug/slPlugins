@@ -15,8 +15,8 @@ void Voice::noteStarted()
 {
     if (auto p = synth.getPadForNote (currentlyPlayingNote.initialNote))
     {
-        sfxr.reset (true);
         sfxr.setParams (p->params);
+        sfxr.reset (true);
     }
     else
     {
@@ -32,6 +32,6 @@ void Voice::renderNextBlock (AudioBuffer<float>& outputBuffer, int startSample, 
     if (sfxr.synthWave (work, 0, numSamples))
         clearCurrentNote();
     
-    for (int ch = 0; ch < outputBuffer.getNumSamples(); ch++)
+    for (int ch = 0; ch < outputBuffer.getNumChannels(); ch++)
         FloatVectorOperations::add (outputBuffer.getWritePointer (ch, startSample), work, numSamples);
 }

@@ -49,6 +49,9 @@ public:
         return nullptr;
     }
 
+    Pad* getPad (int idx)               { return pads[idx]; }
+    const OwnedArray<Pad>& getPads()    { return pads;      }
+
 private:
     //==============================================================================
     
