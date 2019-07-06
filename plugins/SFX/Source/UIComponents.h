@@ -115,6 +115,56 @@ public:
     ParamPageComponent (Pad& p)
         : pad (p)
     {
+        addAndMakeVisible (coin);
+        addAndMakeVisible (laser);
+        addAndMakeVisible (explosion);
+        addAndMakeVisible (hit);
+        addAndMakeVisible (jump);
+        addAndMakeVisible (blip);
+        addAndMakeVisible (random);
+        addAndMakeVisible (mutate);
+
+        coin.onClick = [this]
+        {
+            pad.params.generatePickupCoin();
+            pad.toPluginParams();
+        };
+        laser.onClick = [this]
+        {
+            pad.params.generateLaserShoot();
+            pad.toPluginParams();
+        };
+        explosion.onClick = [this]
+        {
+            pad.params.generateExplosion();
+            pad.toPluginParams();
+        };
+        hit.onClick = [this]
+        {
+            pad.params.generateHitHurt();
+            pad.toPluginParams();
+        };
+        jump.onClick = [this]
+        {
+            pad.params.generateJump();
+            pad.toPluginParams();
+        };
+        blip.onClick = [this]
+        {
+            pad.params.generateBlipSelect();
+            pad.toPluginParams();
+        };
+        random.onClick = [this]
+        {
+            pad.params.randomize();
+            pad.toPluginParams();
+        };
+        mutate.onClick = [this]
+        {
+            pad.params.mutate();
+            pad.toPluginParams();
+        };
+
         for (auto pp : pad.pluginParams)
         {
             auto pc = new gin::HorizontalFader (pp, false);
@@ -129,17 +179,22 @@ private:
         auto rc1 = getLocalBounds();
         auto rc2 = rc1.removeFromRight (rc1.getWidth() / 2);
 
+        int i = 0;
         for (auto c : controls)
         {
-            if (rc1.getHeight() >= 20)
+            if (i < controls.size() / 2)
                 c->setBounds (rc1.removeFromTop (20));
             else
                 c->setBounds (rc2.removeFromTop (20));
+
+            i++;
         }
     }
 
     Pad& pad;
     OwnedArray<gin::ParamComponent> controls;
+
+    TextButton coin {"Coin"}, laser {"Laser"}, explosion {"Explosion"}, hit {"Hit"}, jump {"Jump"}, blip {"Blip"}, random {"Random"}, mutate {"Mutate"};
 };
 
 //==============================================================================

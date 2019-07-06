@@ -55,10 +55,7 @@ public:
     void midiNoteOn (int note, int velocity = 128);
     void midiNoteOff (int note, int velocity = 0);
 
-    int isMidiNoteDown (int n)
-    {
-        return midiOn[n] || midiCnt[n];
-    }
+    int isMidiNoteDown (int n)          { return midiOn[n] || midiCnt[n]; }
 
     int midiOn[128] = {0}, midiCnt[128] = {0};
 
