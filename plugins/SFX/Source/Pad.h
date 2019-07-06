@@ -34,18 +34,24 @@ public:
     {
         auto ids = params.getParams();
         for (int i = 0; i < ids.size(); i++)
+        {
             pluginParams[i]->setUserValueAsUserAction (params.getParam (ids[i]));
+            pluginLockParams[i]->setUserValueAsUserAction (params.lockedParam (ids[i]) ? 1.0f : 0.0f);
+        }
     }
 
     void fromPluginParams()
     {
         auto ids = params.getParams();
         for (int i = 0; i < ids.size(); i++)
+        {
             params.setParam (ids[i], pluginParams[i]->getUserValue());
+            params.setParamLocked (ids[i], pluginLockParams[i]->getUserValue() > 0.0f);
+        }
     }
 
     int note = 0;
     SfxrParams params;
 
-    Array<gin::Parameter*> pluginParams;
+    Array<gin::Parameter*> pluginParams, pluginLockParams;
 };

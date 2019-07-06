@@ -48,6 +48,20 @@ SFXAudioProcessor::SFXAudioProcessor()
                                                0.0f,
                                                p.getDefault (id)));
         }
+        
+        for (auto id : ids)
+        {
+            String uniqueId = String (id.c_str()) + String (i + 1) + "l";
+            
+            addPluginParameter (new Parameter (uniqueId,
+                                               String (p.getName (id).c_str()) + " " + String (i + 1) + " Lock",
+                                               p.getName (id) + " Lock",
+                                               "",
+                                               0.0f,
+                                               1.0f,
+                                               1.0f,
+                                               0.0f));
+        }
     }
 
     // Add parameters to pads
@@ -58,9 +72,12 @@ SFXAudioProcessor::SFXAudioProcessor()
     {
         auto p = pads[i];
 
-        for (int j = 0; j < paramsPerPad; j++)
+        for (int j = 0; j < paramsPerPad / 2; j++)
             p->pluginParams.add (allParams[i * paramsPerPad + j]);
-
+        
+        for (int j = paramsPerPad / 2; j < paramsPerPad; j++)
+            p->pluginLockParams.add (allParams[i * paramsPerPad + j]);
+        
         p->toPluginParams();
     }
 }

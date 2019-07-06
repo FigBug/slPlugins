@@ -112,8 +112,8 @@ private:
 class ParamPageComponent : public Component
 {
 public:
-    ParamPageComponent (Pad& p)
-        : pad (p)
+    ParamPageComponent (SFXAudioProcessor& pr, Pad& p)
+        : processor (pr), pad (p)
     {
         addAndMakeVisible (coin);
         addAndMakeVisible (laser);
@@ -128,41 +128,57 @@ public:
         {
             pad.params.generatePickupCoin();
             pad.toPluginParams();
+            processor.midiNoteOn (pad.note);
+            processor.midiNoteOff (pad.note);
         };
         laser.onClick = [this]
         {
             pad.params.generateLaserShoot();
             pad.toPluginParams();
+            processor.midiNoteOn (pad.note);
+            processor.midiNoteOff (pad.note);
         };
         explosion.onClick = [this]
         {
             pad.params.generateExplosion();
             pad.toPluginParams();
+            processor.midiNoteOn (pad.note);
+            processor.midiNoteOff (pad.note);
         };
         hit.onClick = [this]
         {
             pad.params.generateHitHurt();
             pad.toPluginParams();
+            processor.midiNoteOn (pad.note);
+            processor.midiNoteOff (pad.note);
         };
         jump.onClick = [this]
         {
             pad.params.generateJump();
             pad.toPluginParams();
+            processor.midiNoteOn (pad.note);
+            processor.midiNoteOff (pad.note);
         };
         blip.onClick = [this]
         {
             pad.params.generateBlipSelect();
             pad.toPluginParams();
+            processor.midiNoteOn (pad.note);
+            processor.midiNoteOff (pad.note);
         };
         random.onClick = [this]
         {
             pad.params.randomize();
             pad.toPluginParams();
+            processor.midiNoteOn (pad.note);
+            processor.midiNoteOff (pad.note);
         };
         mutate.onClick = [this]
         {
             pad.params.mutate();
             pad.toPluginParams();
+            processor.midiNoteOn (pad.note);
+            processor.midiNoteOff (pad.note);
         };
 
         for (auto pp : pad.pluginParams)
@@ -189,8 +205,28 @@ private:
 
             i++;
         }
+        
+        auto rc = getLocalBounds().withTrimmedBottom (4).removeFromBottom (20);
+        int w = (rc.getWidth() - 7 * 4) / 8;
+        
+        coin.setBounds (rc.removeFromLeft (w));
+        rc.removeFromLeft (4);
+        laser.setBounds (rc.removeFromLeft (w));
+        rc.removeFromLeft (4);
+        explosion.setBounds (rc.removeFromLeft (w));
+        rc.removeFromLeft (4);
+        hit.setBounds (rc.removeFromLeft (w));
+        rc.removeFromLeft (4);
+        jump.setBounds (rc.removeFromLeft (w));
+        rc.removeFromLeft (4);
+        blip.setBounds (rc.removeFromLeft (w));
+        rc.removeFromLeft (4);
+        random.setBounds (rc.removeFromLeft (w));
+        rc.removeFromLeft (4);
+        mutate.setBounds (rc.removeFromLeft (w));
     }
 
+    SFXAudioProcessor& processor;
     Pad& pad;
     OwnedArray<gin::ParamComponent> controls;
 
@@ -206,7 +242,7 @@ public:
     {
         for (auto p : processor.getPads())
         {
-            auto ppc = new ParamPageComponent (*p);
+            auto ppc = new ParamPageComponent (processor, *p);
             addChildComponent (ppc);
 
             pages.add (ppc);
