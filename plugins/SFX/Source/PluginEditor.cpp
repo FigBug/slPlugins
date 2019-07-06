@@ -21,6 +21,23 @@ SFXAudioProcessorEditor::SFXAudioProcessorEditor (SFXAudioProcessor& p)
     addAndMakeVisible (params);
 
     setGridSize (10, 4);
+
+    auto& padComponents = padGrid.getPads();
+    for (int i = 0; i < padComponents.size(); i++)
+    {
+        auto pc = padComponents[i];
+
+        pc->onDown = [this, i] ()
+        {
+            processor.midiNoteOn (processor.getPads()[i]->note);
+            params.setPage (i);
+        };
+
+        pc->onUp = [this, i] ()
+        {
+            processor.midiNoteOff (processor.getPads()[i]->note);
+        };
+    }
 }
 
 SFXAudioProcessorEditor::~SFXAudioProcessorEditor()

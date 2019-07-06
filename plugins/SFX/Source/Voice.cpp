@@ -15,6 +15,7 @@ void Voice::noteStarted()
 {
     if (auto p = synth.getPadForNote (currentlyPlayingNote.initialNote))
     {
+        p->fromPluginParams();
         sfxr.setParams (p->params);
         sfxr.reset (true);
     }

@@ -52,13 +52,26 @@ public:
     Pad* getPad (int idx)               { return pads[idx]; }
     const OwnedArray<Pad>& getPads()    { return pads;      }
 
+    void midiNoteOn (int note, int velocity = 128);
+    void midiNoteOff (int note, int velocity = 0);
+
+    int isMidiNoteDown (int n)
+    {
+        return midiOn[n] || midiCnt[n];
+    }
+
+    int midiOn[128] = {0}, midiCnt[128] = {0};
+
 private:
+    void trackMidi (MidiBuffer& midi, int numSamples);
     //==============================================================================
     
     CriticalSection lock;    
     Component::SafePointer<SFXAudioProcessorEditor> editor;
     
     OwnedArray<Pad> pads;
+
+    MidiBuffer userMidi;
 
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (SFXAudioProcessor)

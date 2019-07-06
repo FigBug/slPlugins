@@ -30,6 +30,20 @@ public:
         }
     }
 
+    void toPluginParams()
+    {
+        auto ids = params.getParams();
+        for (int i = 0; i < ids.size(); i++)
+            pluginParams[i]->setUserValueAsUserAction (params.getParam (ids[i]));
+    }
+
+    void fromPluginParams()
+    {
+        auto ids = params.getParams();
+        for (int i = 0; i < ids.size(); i++)
+            params.setParam (ids[i], pluginParams[i]->getUserValue());
+    }
+
     int note = 0;
     SfxrParams params;
 

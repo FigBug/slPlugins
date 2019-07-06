@@ -13,23 +13,59 @@
 #include "PluginProcessor.h"
 
 //==============================================================================
-class PadComponent : public Component
+class PadComponent : public Component,
+                     private Timer
 {
 public:
-    PadComponent (Pad& p)
-        : pad (p)
+    PadComponent (SFXAudioProcessor& pc, Pad& p)
+        : processor (pc), pad (p)
     {
+        startTimerHz (30);
     }
 
+    std::function<void ()> onDown, onUp;
+
 private:
+    void timerCallback() override
+    {
+        bool newBright = processor.isMidiNoteDown (pad.note);
+        if (newBright != bright)
+        {
+            bright = newBright;
+            repaint();
+        }
+    }
+
+    void mouseDown (const MouseEvent&) override
+    {
+        if (onDown)
+            onDown();
+    }
+
+    void mouseUp (const MouseEvent&) override
+    {
+        if (onUp)
+            onUp();
+    }
+
     void paint (Graphics& g) override
     {
         auto rc = getLocalBounds().reduced (4);
+
+        if (bright)
+        {
+            g.setColour (Colours::white.withAlpha (0.3f));
+            g.fillRect (rc);
+        }
+
         g.setColour (Colours::white);
         g.drawRect (rc);
     }
 
+    SFXAudioProcessor& processor;
     Pad& pad;
+
+    bool bright = false;
 };
 
 //==============================================================================
@@ -41,11 +77,13 @@ public:
     {
         for (auto p : processor.getPads())
         {
-            auto pc = new PadComponent (*p);
+            auto pc = new PadComponent (processor, *p);
             addAndMakeVisible (pc);
             pads.add (pc);
         }
     }
+
+    const OwnedArray<PadComponent>& getPads() { return pads; }
 
 private:
     void resized() override
@@ -119,8 +157,15 @@ public:
             pages.add (ppc);
         }
 
-        if (auto f = pages.getFirst())
-            f->setVisible (true);
+        setPage (0);
+    }
+
+    void setPage (int num)
+    {
+        for (auto p : pages)
+            p->setVisible (false);
+
+        pages[num]->setVisible (true);
     }
 
 private:
