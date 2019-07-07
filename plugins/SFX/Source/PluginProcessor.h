@@ -51,7 +51,10 @@ public:
 
     Pad* getPad (int idx)               { return pads[idx]; }
     const OwnedArray<Pad>& getPads()    { return pads;      }
+    
+    String uniqueName (String prefix);
 
+    //==============================================================================
     void midiNoteOn (int note, int velocity = 128);
     void midiNoteOff (int note, int velocity = 0);
 

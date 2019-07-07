@@ -20,13 +20,34 @@ public:
     {
         switch (rand() % 7)
         {
-            case 0: params.generatePickupCoin(); break;
-            case 1: params.generateLaserShoot(); break;
-            case 2: params.generateExplosion();  break;
-            case 3: params.generatePowerup();    break;
-            case 4: params.generateHitHurt();    break;
-            case 5: params.generateJump();       break;
-            case 6: params.generateBlipSelect(); break;
+            case 0:
+                params.generatePickupCoin();
+                name = "Coin";
+                break;
+            case 1:
+                params.generateLaserShoot();
+                name = "Laser";
+                break;
+            case 2:
+                params.generateExplosion();
+                name = "Explosion";
+                break;
+            case 3:
+                params.generatePowerup();
+                name = "Powerup";
+                break;
+            case 4:
+                params.generateHitHurt();
+                name = "Hit";
+                break;
+            case 5:
+                params.generateJump();
+                name = "Jump";
+                break;
+            case 6:
+                params.generateBlipSelect();
+                name = "Coin";
+                break;
         }
     }
 
@@ -50,6 +71,7 @@ public:
         }
     }
 
+    String name;
     int note = 0;
     SfxrParams params;
 

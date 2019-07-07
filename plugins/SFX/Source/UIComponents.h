@@ -91,6 +91,10 @@ private:
 
         g.setColour (Colours::white);
         g.drawRect (rc);
+        
+        rc = rc.reduced (2);
+        
+        g.drawText (pad.name, rc, Justification::centredBottom);
     }
 
     SFXAudioProcessor& processor;
@@ -112,6 +116,12 @@ public:
             addAndMakeVisible (pc);
             pads.add (pc);
         }
+        
+        listener.onValueTreePropertyChanged = [this] (ValueTree&, const Identifier& i)
+        {
+            if (i.toString().startsWith ("name"))
+                repaint();
+        };
     }
 
     const OwnedArray<PadComponent>& getPads() { return pads; }
@@ -137,6 +147,7 @@ private:
     SFXAudioProcessor& processor;
 
     OwnedArray<PadComponent> pads;
+    gin::LambdaValueTreeListener listener {processor.state};
 };
 
 //==============================================================================
@@ -149,6 +160,7 @@ public:
         addAndMakeVisible (coin);
         addAndMakeVisible (laser);
         addAndMakeVisible (explosion);
+        addAndMakeVisible (powerup);
         addAndMakeVisible (hit);
         addAndMakeVisible (jump);
         addAndMakeVisible (blip);
@@ -160,6 +172,7 @@ public:
             pad.fromPluginParams();
             pad.params.generatePickupCoin();
             pad.toPluginParams();
+            pad.name = processor.uniqueName ("Coin");
             processor.midiNoteOn (pad.note);
             processor.midiNoteOff (pad.note);
         };
@@ -168,6 +181,7 @@ public:
             pad.fromPluginParams();
             pad.params.generateLaserShoot();
             pad.toPluginParams();
+            pad.name = processor.uniqueName ("Laser");
             processor.midiNoteOn (pad.note);
             processor.midiNoteOff (pad.note);
         };
@@ -176,6 +190,16 @@ public:
             pad.fromPluginParams();
             pad.params.generateExplosion();
             pad.toPluginParams();
+            pad.name = processor.uniqueName ("Explosion");
+            processor.midiNoteOn (pad.note);
+            processor.midiNoteOff (pad.note);
+        };
+        powerup.onClick = [this]
+        {
+            pad.fromPluginParams();
+            pad.params.generatePowerup();
+            pad.toPluginParams();
+            pad.name = processor.uniqueName ("Powerup");
             processor.midiNoteOn (pad.note);
             processor.midiNoteOff (pad.note);
         };
@@ -184,6 +208,7 @@ public:
             pad.fromPluginParams();
             pad.params.generateHitHurt();
             pad.toPluginParams();
+            pad.name = processor.uniqueName ("Hit");
             processor.midiNoteOn (pad.note);
             processor.midiNoteOff (pad.note);
         };
@@ -192,6 +217,7 @@ public:
             pad.fromPluginParams();
             pad.params.generateJump();
             pad.toPluginParams();
+            pad.name = processor.uniqueName ("Jump");
             processor.midiNoteOn (pad.note);
             processor.midiNoteOff (pad.note);
         };
@@ -200,6 +226,7 @@ public:
             pad.fromPluginParams();
             pad.params.generateBlipSelect();
             pad.toPluginParams();
+            pad.name = processor.uniqueName ("Blip");
             processor.midiNoteOn (pad.note);
             processor.midiNoteOff (pad.note);
         };
@@ -208,6 +235,7 @@ public:
             pad.fromPluginParams();
             pad.params.randomize();
             pad.toPluginParams();
+            pad.name = processor.uniqueName ("Random");
             processor.midiNoteOn (pad.note);
             processor.midiNoteOff (pad.note);
         };
@@ -256,13 +284,15 @@ private:
         }
         
         auto rc = getLocalBounds().withTrimmedBottom (4).removeFromBottom (20);
-        int w = (rc.getWidth() - 7 * 4) / 8;
+        int w = (rc.getWidth() - 7 * 4) / 9;
         
         coin.setBounds (rc.removeFromLeft (w));
         rc.removeFromLeft (4);
         laser.setBounds (rc.removeFromLeft (w));
         rc.removeFromLeft (4);
         explosion.setBounds (rc.removeFromLeft (w));
+        rc.removeFromLeft (4);
+        powerup.setBounds (rc.removeFromLeft (w));
         rc.removeFromLeft (4);
         hit.setBounds (rc.removeFromLeft (w));
         rc.removeFromLeft (4);
@@ -280,7 +310,8 @@ private:
     OwnedArray<gin::ParamComponent> controls;
     OwnedArray<LockComponent> locks;
 
-    TextButton coin {"Coin"}, laser {"Laser"}, explosion {"Explosion"}, hit {"Hit"}, jump {"Jump"}, blip {"Blip"}, random {"Random"}, mutate {"Mutate"};
+    TextButton coin {"Coin"}, laser {"Laser"}, explosion {"Explosion"}, powerup {"Powerup"}, hit {"Hit"},
+               jump {"Jump"}, blip {"Blip"}, random {"Random"}, mutate {"Mutate"};
 };
 
 //==============================================================================

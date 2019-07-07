@@ -28,7 +28,11 @@ SFXAudioProcessor::SFXAudioProcessor()
 
     // Add pads
     for (int i = 0; i < 16; i++)
-        pads.add (new Pad (notes[i]));
+    {
+        auto p = new Pad (notes[i]);
+        pads.add (p);
+        p->name = uniqueName (p->name);
+    }
     
     // Add parameters
     for (int i = 0; i < 16; i++)
@@ -89,10 +93,29 @@ SFXAudioProcessor::~SFXAudioProcessor()
 //==============================================================================
 void SFXAudioProcessor::stateUpdated()
 {
+    for (int i = 0; i < pads.size(); i++)
+    {
+        auto p = pads[i];
+        
+        auto nameKey = "name" + String (i);
+        auto noteKey = "note" + String (i);
+        
+        if (state.hasProperty (nameKey))
+            p->name = state.getProperty (nameKey);
+        if (state.hasProperty (noteKey))
+            p->note = state.getProperty (noteKey);
+    }
 }
 
 void SFXAudioProcessor::updateState()
 {
+    for (int i = 0; i < pads.size(); i++)
+    {
+        auto p = pads[i];
+        
+        state.setProperty ("name" + String (i), p->name, nullptr);
+        state.setProperty ("note" + String (i), p->note, nullptr);
+    }
 }
 
 //==============================================================================
@@ -172,6 +195,14 @@ void SFXAudioProcessor::processBlock (AudioSampleBuffer& buffer, MidiBuffer& mid
         trackMidi (midi, buffer.getNumSamples());
         renderNextBlock (buffer, midi, 0, buffer.getNumSamples());
     }
+}
+
+String SFXAudioProcessor::uniqueName (String prefix)
+{
+    int count = state.getProperty ("count" + prefix, 1);
+    state.setProperty ("count" + prefix, count + 1, nullptr);
+    
+    return prefix + " " + String (count);
 }
 
 //==============================================================================
