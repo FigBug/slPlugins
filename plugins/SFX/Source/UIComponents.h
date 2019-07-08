@@ -90,8 +90,9 @@ private:
     void timerCallback() override
     {
         bool newBright = processor.isMidiNoteDown (pad.note);
-        if (newBright != bright)
+        if (newBright != bright || lastCurrentPad != processor.getCurrentPad())
         {
+            lastCurrentPad = processor.getCurrentPad();
             bright = newBright;
             repaint();
         }
@@ -112,6 +113,12 @@ private:
     void paint (Graphics& g) override
     {
         auto rc = getLocalBounds().reduced (4);
+
+        if (processor.getCurrentPad() == pad.index)
+        {
+            g.setColour (Colours::white.withAlpha (0.25f));
+            g.fillRect (rc);
+        }
 
         if (isMouseOver())
         {
@@ -135,6 +142,7 @@ private:
 
     SFXAudioProcessor& processor;
     Pad& pad;
+    int lastCurrentPad = -1;
 
     bool bright = false;
 };

@@ -40,10 +40,10 @@ SFXAudioProcessor::SFXAudioProcessor()
     for (int i = 0; i < 32; i++)
         addVoice (new Voice (*this));
 
-    int notes[] = { 64, 65, 66, 67,
-                    60, 61, 62, 63,
-                    56, 57, 58, 59,
-                    52, 53, 54, 55 };
+    int notes[] = { 48, 49, 50, 51,
+                    44, 45, 46, 47,
+                    40, 41, 42, 43,
+                    36, 37, 38, 39 };
 
     // Add pads
     for (int i = 0; i < 16; i++)
@@ -209,7 +209,7 @@ void SFXAudioProcessor::trackMidi (MidiBuffer& midi, int numSamples)
                                                                                  {
                                                                                      midiLearn = false;
                                                                                  }
-                                                                             }, 750);
+                                                                             }, 500);
                                                           });
             }
         }
