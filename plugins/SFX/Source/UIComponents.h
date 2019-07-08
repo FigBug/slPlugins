@@ -509,7 +509,20 @@ public:
             pages.add (ppc);
         }
 
-        setPage (0);
+        setPage (processor.getCurrentPad());
+
+        processor.onCurrentPageChanged = [this] ()
+        {
+            for (auto p : pages)
+                p->setVisible (false);
+
+            pages[processor.getCurrentPad()]->setVisible (true);
+        };
+    }
+
+    ~ParamComponent()
+    {
+        processor.onCurrentPageChanged = nullptr;
     }
 
     void setPage (int num)

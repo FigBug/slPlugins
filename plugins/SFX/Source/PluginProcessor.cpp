@@ -196,6 +196,20 @@ void SFXAudioProcessor::trackMidi (MidiBuffer& midi, int numSamples)
                                                               
                                                               if (auto p = pads[currentPad])
                                                                   p->note = n;
+
+                                                              delayedLambda ([this]
+                                                                             {
+                                                                                 if (currentPad < 15)
+                                                                                 {
+                                                                                     currentPad++;
+                                                                                     if (onCurrentPageChanged)
+                                                                                         onCurrentPageChanged();
+                                                                                 }
+                                                                                 else
+                                                                                 {
+                                                                                     midiLearn = false;
+                                                                                 }
+                                                                             }, 750);
                                                           });
             }
         }

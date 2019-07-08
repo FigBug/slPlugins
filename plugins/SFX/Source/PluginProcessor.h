@@ -57,6 +57,7 @@ public:
     bool getMidiLearn()                 { return midiLearn; }
     void setMidiLearn (bool m)          { midiLearn = m;    }
     void setCurrentPad (int c)          { currentPad = c;   }
+    int getCurrentPad()                 { return currentPad;}
     
     //==============================================================================
     void midiNoteOn (int note, int velocity = 128);
@@ -65,6 +66,8 @@ public:
     bool isMidiNoteDown (int n)         { return (n >= 0 && n <= 127) ? (midiOn[n] || midiCnt[n]) : false; }
 
     int midiOn[128] = {0}, midiCnt[128] = {0};
+
+    std::function<void ()> onCurrentPageChanged;
 
 private:
     void trackMidi (MidiBuffer& midi, int numSamples);
