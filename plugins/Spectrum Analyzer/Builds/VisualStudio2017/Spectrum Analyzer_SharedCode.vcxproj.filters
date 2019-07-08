@@ -80,9 +80,6 @@
     <Filter Include="JUCE Modules\gin\images">
       <UniqueIdentifier>{421BB6AF-9FD5-95BF-FBFF-A1A60192B044}</UniqueIdentifier>
     </Filter>
-    <Filter Include="JUCE Modules\gin\metadata">
-      <UniqueIdentifier>{D63B2E85-050D-0D10-D494-5627C45A3B21}</UniqueIdentifier>
-    </Filter>
     <Filter Include="JUCE Modules\gin\utilities">
       <UniqueIdentifier>{ABC8C4B7-6A7B-CB84-80A1-FCF6339CDC81}</UniqueIdentifier>
     </Filter>
@@ -805,23 +802,11 @@
     <ClCompile Include="..\..\..\..\module\gin\modules\gin\images\imageeffects.cpp">
       <Filter>JUCE Modules\gin\images</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\module\gin\modules\gin\metadata\commentmetadata.cpp">
-      <Filter>JUCE Modules\gin\metadata</Filter>
+    <ClCompile Include="..\..\..\..\module\gin\modules\gin\images\imageeffects_blending.cpp">
+      <Filter>JUCE Modules\gin\images</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\module\gin\modules\gin\metadata\exifmetadata.cpp">
-      <Filter>JUCE Modules\gin\metadata</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\module\gin\modules\gin\metadata\imagemetadata.cpp">
-      <Filter>JUCE Modules\gin\metadata</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\module\gin\modules\gin\metadata\iptcmetadata.cpp">
-      <Filter>JUCE Modules\gin\metadata</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\module\gin\modules\gin\metadata\libjpegpng.cpp">
-      <Filter>JUCE Modules\gin\metadata</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\module\gin\modules\gin\metadata\xmpmetadata.cpp">
-      <Filter>JUCE Modules\gin\metadata</Filter>
+    <ClCompile Include="..\..\..\..\module\gin\modules\gin\images\imageeffects_stackblur.cpp">
+      <Filter>JUCE Modules\gin\images</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\module\gin\modules\gin\utilities\downloadmanager.cpp">
       <Filter>JUCE Modules\gin\utilities</Filter>
@@ -874,7 +859,16 @@
     <ClCompile Include="..\..\..\..\module\gin\modules\gin_dsp\dsp\adsr.cpp">
       <Filter>JUCE Modules\gin_dsp\dsp</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\..\module\gin\modules\gin_dsp\dsp\analogadsr.cpp">
+      <Filter>JUCE Modules\gin_dsp\dsp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\module\gin\modules\gin_dsp\dsp\audiofunctions.cpp">
+      <Filter>JUCE Modules\gin_dsp\dsp</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\..\..\module\gin\modules\gin_dsp\dsp\audioutil.cpp">
+      <Filter>JUCE Modules\gin_dsp\dsp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\module\gin\modules\gin_dsp\dsp\oscillators.cpp">
       <Filter>JUCE Modules\gin_dsp\dsp</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\module\gin\modules\gin_dsp\gin_dsp.cpp">
@@ -3387,21 +3381,6 @@
     <ClInclude Include="..\..\..\..\module\gin\modules\gin\images\imageeffects.h">
       <Filter>JUCE Modules\gin\images</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\module\gin\modules\gin\metadata\commentmetadata.h">
-      <Filter>JUCE Modules\gin\metadata</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\module\gin\modules\gin\metadata\exifmetadata.h">
-      <Filter>JUCE Modules\gin\metadata</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\module\gin\modules\gin\metadata\imagemetadata.h">
-      <Filter>JUCE Modules\gin\metadata</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\module\gin\modules\gin\metadata\iptcmetadata.h">
-      <Filter>JUCE Modules\gin\metadata</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\module\gin\modules\gin\metadata\xmpmetadata.h">
-      <Filter>JUCE Modules\gin\metadata</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\..\module\gin\modules\gin\utilities\downloadmanager.h">
       <Filter>JUCE Modules\gin\utilities</Filter>
     </ClInclude>
@@ -3450,7 +3429,16 @@
     <ClInclude Include="..\..\..\..\module\gin\modules\gin_dsp\dsp\adsr.h">
       <Filter>JUCE Modules\gin_dsp\dsp</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\..\module\gin\modules\gin_dsp\dsp\analogadsr.h">
+      <Filter>JUCE Modules\gin_dsp\dsp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\module\gin\modules\gin_dsp\dsp\audiofunctions.h">
+      <Filter>JUCE Modules\gin_dsp\dsp</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\..\..\module\gin\modules\gin_dsp\dsp\audioutil.h">
+      <Filter>JUCE Modules\gin_dsp\dsp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\module\gin\modules\gin_dsp\dsp\oscillators.h">
       <Filter>JUCE Modules\gin_dsp\dsp</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\module\gin\modules\gin_dsp\gin_dsp.h">
@@ -5155,6 +5143,9 @@
       <Filter>JUCE Modules\juce_graphics\image_formats\pnglib</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\module\juce\modules\juce_graphics\image_formats\pnglib\pngconf.h">
+      <Filter>JUCE Modules\juce_graphics\image_formats\pnglib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\module\juce\modules\juce_graphics\image_formats\pnglib\pngdebug.h">
       <Filter>JUCE Modules\juce_graphics\image_formats\pnglib</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\module\juce\modules\juce_graphics\image_formats\pnglib\pnginfo.h">

@@ -498,22 +498,10 @@
     <ClCompile Include="..\..\..\..\module\gin\modules\gin\images\imageeffects.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\module\gin\modules\gin\metadata\commentmetadata.cpp">
+    <ClCompile Include="..\..\..\..\module\gin\modules\gin\images\imageeffects_blending.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\module\gin\modules\gin\metadata\exifmetadata.cpp">
-      <ExcludedFromBuild>true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\module\gin\modules\gin\metadata\imagemetadata.cpp">
-      <ExcludedFromBuild>true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\module\gin\modules\gin\metadata\iptcmetadata.cpp">
-      <ExcludedFromBuild>true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\module\gin\modules\gin\metadata\libjpegpng.cpp">
-      <ExcludedFromBuild>true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\module\gin\modules\gin\metadata\xmpmetadata.cpp">
+    <ClCompile Include="..\..\..\..\module\gin\modules\gin\images\imageeffects_stackblur.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\..\..\..\module\gin\modules\gin\utilities\downloadmanager.cpp">
@@ -564,7 +552,16 @@
     <ClCompile Include="..\..\..\..\module\gin\modules\gin_dsp\dsp\adsr.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="..\..\..\..\module\gin\modules\gin_dsp\dsp\analogadsr.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\module\gin\modules\gin_dsp\dsp\audiofunctions.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="..\..\..\..\module\gin\modules\gin_dsp\dsp\audioutil.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\module\gin\modules\gin_dsp\dsp\oscillators.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\..\..\..\module\gin\modules\gin_dsp\gin_dsp.cpp">
@@ -2638,11 +2635,6 @@
     <ClInclude Include="..\..\..\..\module\gin\modules\gin\geometry\geometry.h"/>
     <ClInclude Include="..\..\..\..\module\gin\modules\gin\images\bmpimageformat.h"/>
     <ClInclude Include="..\..\..\..\module\gin\modules\gin\images\imageeffects.h"/>
-    <ClInclude Include="..\..\..\..\module\gin\modules\gin\metadata\commentmetadata.h"/>
-    <ClInclude Include="..\..\..\..\module\gin\modules\gin\metadata\exifmetadata.h"/>
-    <ClInclude Include="..\..\..\..\module\gin\modules\gin\metadata\imagemetadata.h"/>
-    <ClInclude Include="..\..\..\..\module\gin\modules\gin\metadata\iptcmetadata.h"/>
-    <ClInclude Include="..\..\..\..\module\gin\modules\gin\metadata\xmpmetadata.h"/>
     <ClInclude Include="..\..\..\..\module\gin\modules\gin\utilities\downloadmanager.h"/>
     <ClInclude Include="..\..\..\..\module\gin\modules\gin\utilities\elevatedfilecopy.h"/>
     <ClInclude Include="..\..\..\..\module\gin\modules\gin\utilities\equationparser.h"/>
@@ -2659,7 +2651,10 @@
     <ClInclude Include="..\..\..\..\module\gin\modules\gin\utilities\valuetreeobject.h"/>
     <ClInclude Include="..\..\..\..\module\gin\modules\gin\gin.h"/>
     <ClInclude Include="..\..\..\..\module\gin\modules\gin_dsp\dsp\adsr.h"/>
+    <ClInclude Include="..\..\..\..\module\gin\modules\gin_dsp\dsp\analogadsr.h"/>
+    <ClInclude Include="..\..\..\..\module\gin\modules\gin_dsp\dsp\audiofunctions.h"/>
     <ClInclude Include="..\..\..\..\module\gin\modules\gin_dsp\dsp\audioutil.h"/>
+    <ClInclude Include="..\..\..\..\module\gin\modules\gin_dsp\dsp\oscillators.h"/>
     <ClInclude Include="..\..\..\..\module\gin\modules\gin_dsp\gin_dsp.h"/>
     <ClInclude Include="..\..\..\..\module\gin\modules\gin_plugin\components\plugincomponents.h"/>
     <ClInclude Include="..\..\..\..\module\gin\modules\gin_plugin\components\pluginlookandfeel.h"/>
@@ -3228,6 +3223,7 @@
     <ClInclude Include="..\..\..\..\module\juce\modules\juce_graphics\image_formats\jpglib\transupp.h"/>
     <ClInclude Include="..\..\..\..\module\juce\modules\juce_graphics\image_formats\pnglib\png.h"/>
     <ClInclude Include="..\..\..\..\module\juce\modules\juce_graphics\image_formats\pnglib\pngconf.h"/>
+    <ClInclude Include="..\..\..\..\module\juce\modules\juce_graphics\image_formats\pnglib\pngdebug.h"/>
     <ClInclude Include="..\..\..\..\module\juce\modules\juce_graphics\image_formats\pnglib\pnginfo.h"/>
     <ClInclude Include="..\..\..\..\module\juce\modules\juce_graphics\image_formats\pnglib\pngpriv.h"/>
     <ClInclude Include="..\..\..\..\module\juce\modules\juce_graphics\image_formats\pnglib\pngstruct.h"/>
