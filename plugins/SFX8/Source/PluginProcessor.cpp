@@ -157,9 +157,9 @@ void SFXAudioProcessor::midiNoteOff (int note, int velocity)
 }
 
 //==============================================================================
-void SFXAudioProcessor::prepareToPlay (double sampleRate, int samplesPerBlock)
+void SFXAudioProcessor::prepareToPlay (double sampleRate_, int /*samplesPerBlock*/)
 {
-    setCurrentPlaybackSampleRate (sampleRate);
+    setCurrentPlaybackSampleRate (sampleRate_);
 }
 
 void SFXAudioProcessor::releaseResources()

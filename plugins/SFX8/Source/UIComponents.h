@@ -151,8 +151,8 @@ private:
 class PadGridComponent : public Component
 {
 public:
-    PadGridComponent (SFXAudioProcessor& p)
-        : processor (p)
+    PadGridComponent (SFXAudioProcessor& pr)
+        : processor (pr)
     {
         for (auto p : processor.getPads())
         {
@@ -372,9 +372,9 @@ private:
         int i = 0;
         for (auto c : controls)
         {
-            auto r = (i < controls.size() / 2) ? rc1.removeFromTop (20) : rc2.removeFromTop (20);
-            locks[i]->setBounds (r.removeFromLeft (r.getHeight()));
-            c->setBounds (r);
+            auto rc = (i < controls.size() / 2) ? rc1.removeFromTop (20) : rc2.removeFromTop (20);
+            locks[i]->setBounds (rc.removeFromLeft (rc.getHeight()));
+            c->setBounds (rc);
 
             i++;
         }
@@ -432,11 +432,11 @@ private:
             {
                 for (auto nv : obj->getProperties())
                 {
-                    auto name = nv.name.toString();
-                    if (name == "name")
+                    auto uid = nv.name.toString();
+                    if (uid == "name")
                         pad.name = nv.value.toString();
                     else
-                        pad.params.setParam (name.toRawUTF8(), (float) nv.value);
+                        pad.params.setParam (uid.toRawUTF8(), (float) nv.value);
                 }
             }
             
@@ -465,7 +465,7 @@ private:
         FileChooser fc ("Save", {}, "*.wav");
         if (fc.browseForFileToSave (true))
         {
-            SfxrSynth sfxr;
+            SfxrSynth sfxr (44100.0f);
             pad.fromPluginParams();
             sfxr.setParams (pad.params);
             sfxr.reset (true);
@@ -475,7 +475,7 @@ private:
             
             if (auto os = fc.getResult().createOutputStream())
             {
-                std::unique_ptr<AudioFormatWriter> writer (WavAudioFormat().createWriterFor (os, 44100, 1, 16, nullptr, 0));
+				std::unique_ptr<AudioFormatWriter> writer (WavAudioFormat().createWriterFor (os, 44100, 1, 16, {}, 0));
                 
                 if (writer != nullptr)
                 {
@@ -506,8 +506,8 @@ private:
 class ParamComponent : public Component
 {
 public:
-    ParamComponent (SFXAudioProcessor& p)
-        : processor (p)
+    ParamComponent (SFXAudioProcessor& pr)
+        : processor (pr)
     {
         for (auto p : processor.getPads())
         {
