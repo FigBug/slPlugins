@@ -9,6 +9,6 @@
 /Applications/JUCE/Projucer.app/Contents/MacOS/Projucer  "../plugins/Tone Generator/Tone Generator.jucer" &
 /Applications/JUCE/Projucer.app/Contents/MacOS/Projucer  "../plugins/Channel Mute/Channel Mute.jucer" &
 /Applications/JUCE/Projucer.app/Contents/MacOS/Projucer  "../plugins/Maths/Maths.jucer" &
-/Applications/JUCE/Projucer.app/Contents/MacOS/Projucer  "../plugins/Maths/AB\ Tester.jucer" &
-/Applications/JUCE/Projucer.app/Contents/MacOS/Projucer  "../plugins/Maths/AddInvert.jucer" &
-/Applications/JUCE/Projucer.app/Contents/MacOS/Projucer  "../plugins/Maths/SFX8.jucer" &
+/Applications/JUCE/Projucer.app/Contents/MacOS/Projucer  "../plugins/AB Tester/AB Tester.jucer" &
+/Applications/JUCE/Projucer.app/Contents/MacOS/Projucer  "../plugins/AddInvert/AddInvert.jucer" &
+/Applications/JUCE/Projucer.app/Contents/MacOS/Projucer  "../plugins/SFX8/SFX8.jucer" &

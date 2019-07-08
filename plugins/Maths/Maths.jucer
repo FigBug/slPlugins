@@ -30,10 +30,11 @@
     <XCODE_MAC targetFolder="Builds/MacOSX">
       <CONFIGURATIONS>
         <CONFIGURATION name="Debug" isDebug="1" optimisation="1" targetName="Maths"
-                       cppLanguageStandard="c++14" osxCompatibility="10.9 SDK" enablePluginBinaryCopyStep="1"/>
+                       cppLanguageStandard="c++14" osxCompatibility="10.9 SDK" enablePluginBinaryCopyStep="1"
+                       recommendedWarnings="LLVM"/>
         <CONFIGURATION name="Release" isDebug="0" optimisation="3" targetName="Maths"
                        cppLanguageStandard="c++14" osxCompatibility="10.9 SDK" enablePluginBinaryCopyStep="1"
-                       osxArchitecture="64BitUniversal"/>
+                       osxArchitecture="64BitUniversal" recommendedWarnings="LLVM"/>
       </CONFIGURATIONS>
       <MODULEPATHS>
         <MODULEPATH id="juce_core" path="../../module/juce/modules"/>
