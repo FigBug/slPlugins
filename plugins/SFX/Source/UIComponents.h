@@ -400,11 +400,18 @@ private:
     {
         PopupMenu m;
         
+        m.addItem (PopupMenu::Item ("MIDI Learn").setTicked (processor.getMidiLearn()).setAction ([this] { toggleMidiLearn(); }));
+        m.addSeparator();
         m.addItem (PopupMenu::Item ("Import Sound...").setAction ([this] { importSound(); }));
         m.addItem (PopupMenu::Item ("Export Sound...").setAction ([this] { exportSound(); }));
         m.addItem (PopupMenu::Item ("Export .WAV...").setAction ([this] { exportWav(); }));
 
         m.showMenuAsync ({}, {});
+    }
+    
+    void toggleMidiLearn()
+    {
+        processor.setMidiLearn (! processor.getMidiLearn());
     }
     
     void importSound()
@@ -511,6 +518,8 @@ public:
             p->setVisible (false);
 
         pages[num]->setVisible (true);
+        
+        processor.setCurrentPad (num);
     }
 
 private:

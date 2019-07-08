@@ -54,11 +54,15 @@ public:
     
     String uniqueName (String prefix);
 
+    bool getMidiLearn()                 { return midiLearn; }
+    void setMidiLearn (bool m)          { midiLearn = m;    }
+    void setCurrentPad (int c)          { currentPad = c;   }
+    
     //==============================================================================
     void midiNoteOn (int note, int velocity = 128);
     void midiNoteOff (int note, int velocity = 0);
 
-    int isMidiNoteDown (int n)          { return midiOn[n] || midiCnt[n]; }
+    bool isMidiNoteDown (int n)         { return (n >= 0 && n <= 127) ? (midiOn[n] || midiCnt[n]) : false; }
 
     int midiOn[128] = {0}, midiCnt[128] = {0};
 
@@ -72,6 +76,8 @@ private:
     OwnedArray<Pad> pads;
 
     MidiBuffer userMidi;
+    bool midiLearn = false;
+    int currentPad = 0;
 
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (SFXAudioProcessor)

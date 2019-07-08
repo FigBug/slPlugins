@@ -20,6 +20,8 @@ public:
     {
         name.referTo (state, String::formatted ("name%d", index), nullptr);
         note.referTo (state, String::formatted ("note%d", index), nullptr);
+        
+        note = n;
 
         switch (rand() % 7)
         {

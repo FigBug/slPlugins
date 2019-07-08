@@ -144,14 +144,16 @@ void SFXAudioProcessor::midiNoteOn (int note, int velocity)
 {
     ScopedLock sl (lock);
 
-    userMidi.addEvent (MidiMessage::noteOn (1, note, uint8 (velocity)), 0);
+    if (! midiLearn && note > 0)
+        userMidi.addEvent (MidiMessage::noteOn (1, note, uint8 (velocity)), 0);
 }
 
 void SFXAudioProcessor::midiNoteOff (int note, int velocity)
 {
     ScopedLock sl (lock);
 
-    userMidi.addEvent (MidiMessage::noteOff (1, note, uint8 (velocity)), 0);
+    if (! midiLearn && note > 0)
+        userMidi.addEvent (MidiMessage::noteOff (1, note, uint8 (velocity)), 0);
 }
 
 //==============================================================================
@@ -183,6 +185,19 @@ void SFXAudioProcessor::trackMidi (MidiBuffer& midi, int numSamples)
         {
             midiOn[n]++;
             midiCnt[n] = 100;
+            
+            if (midiLearn)
+            {
+                MessageManager::getInstance()->callAsync ([this, n]
+                                                          {
+                                                              for (auto p : pads)
+                                                                  if (p->note == n)
+                                                                      p->note = -1;
+                                                              
+                                                              if (auto p = pads[currentPad])
+                                                                  p->note = n;
+                                                          });
+            }
         }
         else if (msg.isNoteOff())
         {
