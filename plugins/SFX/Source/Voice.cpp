@@ -30,7 +30,7 @@ void Voice::renderNextBlock (AudioBuffer<float>& outputBuffer, int startSample, 
     float work[numSamples];
     memset (work, 0, sizeof (work));
     
-    if (sfxr.synthWave (work, 0, numSamples))
+    if (sfxr.synthWave (work, 0, numSamples, getSampleRate()))
         clearCurrentNote();
     
     for (int ch = 0; ch < outputBuffer.getNumChannels(); ch++)

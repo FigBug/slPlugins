@@ -44,6 +44,35 @@ private:
 };
 
 //==============================================================================
+class MenuButton : public TextButton
+{
+public:
+    MenuButton()
+    {
+        static const unsigned char pathData[] = { 110,109,0,0,208,68,0,0,168,68,108,0,0,208,68,0,0,184,68,113,0,0,208,68,0,64,187,68,0,160,205,68,0,160,189,68,113,0,64,203,68,0,0,192,68,0,0,200,68,0,0,192,68,108,0,0,64,67,0,0,192,68,113,0,0,38,67,0,0,192,68,0,0,19,67,0,160,189,68,113,0,0,0,67,0,64,187,
+            68,0,0,0,67,0,0,184,68,108,0,0,0,67,0,0,168,68,113,0,0,0,67,0,192,164,68,0,0,19,67,0,96,162,68,113,0,0,38,67,0,0,160,68,0,0,64,67,0,0,160,68,108,0,0,200,68,0,0,160,68,113,0,64,203,68,0,0,160,68,0,160,205,68,0,96,162,68,113,0,0,208,68,0,192,164,68,0,0,
+            208,68,0,0,168,68,99,109,0,0,208,68,0,0,80,68,108,0,0,208,68,0,0,112,68,113,0,0,208,68,0,128,118,68,0,160,205,68,0,64,123,68,113,0,64,203,68,0,0,128,68,0,0,200,68,0,0,128,68,108,0,0,64,67,0,0,128,68,113,0,0,38,67,0,0,128,68,0,0,19,67,0,64,123,68,113,
+            0,0,0,67,0,128,118,68,0,0,0,67,0,0,112,68,108,0,0,0,67,0,0,80,68,113,0,0,0,67,0,128,73,68,0,0,19,67,0,192,68,68,113,0,0,38,67,0,0,64,68,0,0,64,67,0,0,64,68,108,0,0,200,68,0,0,64,68,113,0,64,203,68,0,0,64,68,0,160,205,68,0,192,68,68,113,0,0,208,68,0,128,
+            73,68,0,0,208,68,0,0,80,68,99,109,0,0,208,68,0,0,160,67,108,0,0,208,68,0,0,224,67,113,0,0,208,68,0,0,237,67,0,160,205,68,0,128,246,67,113,0,64,203,68,0,0,0,68,0,0,200,68,0,0,0,68,108,0,0,64,67,0,0,0,68,113,0,0,38,67,0,0,0,68,0,0,19,67,0,128,246,67,113,
+            0,0,0,67,0,0,237,67,0,0,0,67,0,0,224,67,108,0,0,0,67,0,0,160,67,113,0,0,0,67,0,0,147,67,0,0,19,67,0,128,137,67,113,0,0,38,67,0,0,128,67,0,0,64,67,0,0,128,67,108,0,0,200,68,0,0,128,67,113,0,64,203,68,0,0,128,67,0,160,205,68,0,128,137,67,113,0,0,208,68,
+            0,0,147,67,0,0,208,68,0,0,160,67,99,101,0,0 };
+
+        path.loadPathFromData (pathData, sizeof (pathData));
+    }
+    
+private:
+    void paint (Graphics& g) override
+    {
+        auto rc = getLocalBounds().toFloat();
+        
+        g.setColour (Colours::white);
+        g.fillPath (path, path.getTransformToScaleToFit (rc.reduced (2), true));
+    }
+    
+    Path path;
+};
+
+//==============================================================================
 class PadComponent : public Component,
                      private Timer
 {
@@ -52,6 +81,7 @@ public:
         : processor (pc), pad (p)
     {
         startTimerHz (30);
+        setRepaintsOnMouseActivity (true);
     }
 
     std::function<void ()> onDown, onUp;
@@ -83,6 +113,12 @@ private:
     {
         auto rc = getLocalBounds().reduced (4);
 
+        if (isMouseOver())
+        {
+            g.setColour (Colours::white.withAlpha (0.2f));
+            g.fillRect (rc);
+        }
+        
         if (bright)
         {
             g.setColour (Colours::white.withAlpha (0.3f));
@@ -117,7 +153,7 @@ public:
             pads.add (pc);
         }
         
-        listener.onValueTreePropertyChanged = [this] (ValueTree&, const Identifier& i)
+        listener.onValueTreePropertyChanged = [this] (const ValueTree&, const Identifier& i)
         {
             if (i.toString().startsWith ("name"))
                 repaint();
@@ -147,7 +183,7 @@ private:
     SFXAudioProcessor& processor;
 
     OwnedArray<PadComponent> pads;
-    gin::LambdaValueTreeListener listener {processor.state};
+    gin::AsyncLambdaValueTreeListener listener {processor.state};
 };
 
 //==============================================================================
@@ -158,7 +194,9 @@ public:
         : processor (pr), pad (p)
     {
         addAndMakeVisible (name);
-        
+        addAndMakeVisible (note);
+        addAndMakeVisible (menu);
+
         addAndMakeVisible (coin);
         addAndMakeVisible (laser);
         addAndMakeVisible (explosion);
@@ -175,14 +213,31 @@ public:
         {
             pad.name = name.getText();
         };
+
+        note.setText (String (pad.note), dontSendNotification);
+        note.applyColourToAllText (Colours::white);
+        note.onTextChange = [this]
+        {
+            pad.note = jlimit (0, 127, note.getText().getIntValue());
+        };
         
-        listener.onValueTreePropertyChanged = [this] (ValueTree&, const Identifier& i)
+        listener.onValueTreePropertyChanged = [this] (const ValueTree&, const Identifier& i)
         {
             if (i.toString() == String ("name") + String (pad.index))
+            {
                 if (pad.name != name.getText())
                     name.setText (pad.name, dontSendNotification);
+            }
+            if (i.toString() == String ("note") + String (pad.index))
+            {
+                note.setText (String (pad.note), dontSendNotification);
+            }
         };
 
+        menu.onClick = [this]
+        {
+            showMenu();
+        };
         coin.onClick = [this]
         {
             pad.fromPluginParams();
@@ -296,7 +351,10 @@ private:
         // top
         {
             auto rc = r.removeFromTop (30);
-            name.setBounds (rc.withSizeKeepingCentre (150, 20));
+            name.setBounds (Rectangle<int> (rc).withSizeKeepingCentre (150, 20));
+            menu.setBounds (rc.removeFromLeft (20).reduced (0, 5));
+            note.setBounds (rc.removeFromRight (40).reduced (0, 5));
+            r.removeFromTop (10);
         }
         
         // faders
@@ -337,12 +395,91 @@ private:
             mutate.setBounds (rc.removeFromLeft (w));
         }
     }
+    
+    void showMenu()
+    {
+        PopupMenu m;
+        
+        m.addItem (PopupMenu::Item ("Import Sound...").setAction ([this] { importSound(); }));
+        m.addItem (PopupMenu::Item ("Export Sound...").setAction ([this] { exportSound(); }));
+        m.addItem (PopupMenu::Item ("Export .WAV...").setAction ([this] { exportWav(); }));
+
+        m.showMenuAsync ({}, {});
+    }
+    
+    void importSound()
+    {
+        FileChooser fc ("Load", {}, "*.sfx8sound");
+        if (fc.browseForFileToOpen())
+        {
+            auto json = JSON::parse (fc.getResult().loadFileAsString());
+            if (auto obj = json.getDynamicObject())
+            {
+                for (auto nv : obj->getProperties())
+                {
+                    auto name = nv.name.toString();
+                    if (name == "name")
+                        pad.name = nv.value.toString();
+                    else
+                        pad.params.setParam (name.toRawUTF8(), (float) nv.value);
+                }
+            }
+            
+            pad.toPluginParams();
+        }
+    }
+    
+    void exportSound()
+    {
+        FileChooser fc ("Save", {}, "*.sfx8sound");
+        if (fc.browseForFileToSave (true))
+        {
+            auto obj = new DynamicObject();
+            
+            for (auto pid : pad.params.getParams())
+                obj->setProperty (String (pid.c_str()), pad.params.getParam (pid));
+            obj->setProperty ("name", pad.name.get());
+            
+            auto text = JSON::toString (var (obj));
+            fc.getResult().replaceWithText (text);
+        }
+    }
+    
+    void exportWav()
+    {
+        FileChooser fc ("Save", {}, "*.wav");
+        if (fc.browseForFileToSave (true))
+        {
+            SfxrSynth sfxr;
+            pad.fromPluginParams();
+            sfxr.setParams (pad.params);
+            sfxr.reset (true);
+
+            AudioSampleBuffer buffer (1, 128);
+            buffer.clear();
+            
+            if (auto os = fc.getResult().createOutputStream())
+            {
+                std::unique_ptr<AudioFormatWriter> writer (WavAudioFormat().createWriterFor (os, 44100, 1, 16, nullptr, 0));
+                
+                if (writer != nullptr)
+                {
+                    while (! sfxr.synthWave (buffer.getWritePointer (0), 0, 128))
+                    {
+                        writer->writeFromAudioSampleBuffer (buffer, 0, 128);
+                        buffer.clear();
+                    }
+                }
+            }
+        }
+    }
 
     SFXAudioProcessor& processor;
     Pad& pad;
-    gin::LambdaValueTreeListener listener {processor.state};
+    gin::AsyncLambdaValueTreeListener listener {processor.state};
     
-    TextEditor name;
+    MenuButton menu;
+    TextEditor name, note;
     OwnedArray<gin::ParamComponent> controls;
     OwnedArray<LockComponent> locks;
 
