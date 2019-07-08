@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<JUCERPROJECT id="JPnRUR" name="SFX8" projectType="audioplug" version="1.0.0"
+              bundleIdentifier="com.socalabs.SFX8" includeBinaryInAppConfig="1"
+              pluginName="SFX8" pluginDesc="SFX8" pluginManufacturer="SocaLabs"
+              pluginManufacturerCode="Soca" pluginCode="MAth" pluginChannelConfigs="{0,2}"
+              pluginIsSynth="0" pluginWantsMidiIn="0" pluginProducesMidiOut="0"
+              pluginIsMidiEffectPlugin="0" pluginEditorRequiresKeys="0" pluginAUExportPrefix="SFXAU"
+              aaxIdentifier="com.socalabs.SFX8" pluginAAXCategory="2" jucerVersion="5.4.3"
+              companyName="SocaLabs" companyWebsite="www.socalabs.com" companyEmail="info@socalabs.com"
+              displaySplashScreen="0" reportAppUsage="0" splashScreenColour="Dark"
+              cppLanguageStandard="14" companyCopyright="SocaLabs" pluginRTASDisableBypass="0"
+              pluginRTASDisableMultiMono="0" pluginAAXDisableBypass="0" pluginAAXDisableMultiMono="0"
+              pluginFormats="buildAU,buildStandalone,buildVST" buildVST="1"
+              buildVST3="0" buildAU="1" buildAUv3="0" buildRTAS="0" buildAAX="0"
+              buildStandalone="1" enableIAA="0" pluginCharacteristicsValue="pluginIsSynth,pluginWantsMidiIn"
+              pluginAUMainType="'aumu'" pluginVST3Category="Instrument" pluginVSTCategory="kPlugCategSynth">
+  <MAINGROUP id="dPRjsF" name="SFX8">
+    <GROUP id="{EE796482-0D02-0052-80F4-B1FE6CE0D41A}" name="Source">
+      <GROUP id="{DA748B7D-42D5-4A16-B897-0DD85D003309}" name="bfxr">
+        <FILE id="pvV92r" name="PinkNumber.h" compile="0" resource="0" file="../../module/bfxr/PinkNumber.h"/>
+        <FILE id="a5X5ce" name="SfxrParams.cpp" compile="1" resource="0" file="../../module/bfxr/SfxrParams.cpp"/>
+        <FILE id="OWVrrr" name="SfxrParams.h" compile="0" resource="0" file="../../module/bfxr/SfxrParams.h"/>
+        <FILE id="haYJFr" name="SfxrSynth.h" compile="0" resource="0" file="../../module/bfxr/SfxrSynth.h"/>
+        <FILE id="HWmrAO" name="Util.cpp" compile="1" resource="0" file="../../module/bfxr/Util.cpp"/>
+        <FILE id="OICJf7" name="Util.h" compile="0" resource="0" file="../../module/bfxr/Util.h"/>
+      </GROUP>
+      <GROUP id="{ED31A78B-B898-1C31-9FA8-CBEED99DC5DE}" name="Resources">
+        <FILE id="g8u1Zl" name="logo.png" compile="0" resource="1" file="Resources/logo.png"/>
+      </GROUP>
+      <FILE id="bqSJSc" name="Pad.cpp" compile="1" resource="0" file="Source/Pad.cpp"/>
+      <FILE id="GtF1GL" name="Pad.h" compile="0" resource="0" file="Source/Pad.h"/>
+      <FILE id="sm654A" name="PluginEditor.cpp" compile="1" resource="0"
+            file="Source/PluginEditor.cpp"/>
+      <FILE id="xX3taW" name="PluginEditor.h" compile="0" resource="0" file="Source/PluginEditor.h"/>
+      <FILE id="iEbZ9q" name="PluginProcessor.cpp" compile="1" resource="0"
+            file="Source/PluginProcessor.cpp"/>
+      <FILE id="XzLyGB" name="PluginProcessor.h" compile="0" resource="0"
+            file="Source/PluginProcessor.h"/>
+      <FILE id="HIK6Z0" name="UIComponents.cpp" compile="1" resource="0"
+            file="Source/UIComponents.cpp"/>
+      <FILE id="y7eT5Z" name="UIComponents.h" compile="0" resource="0" file="Source/UIComponents.h"/>
+      <FILE id="dt0SPZ" name="Voice.cpp" compile="1" resource="0" file="Source/Voice.cpp"/>
+      <FILE id="j6cYl2" name="Voice.h" compile="0" resource="0" file="Source/Voice.h"/>
+    </GROUP>
+  </MAINGROUP>
+  <EXPORTFORMATS>
+    <XCODE_MAC targetFolder="Builds/MacOSX">
+      <CONFIGURATIONS>
+        <CONFIGURATION name="Debug" isDebug="1" optimisation="1" targetName="SFX8" cppLanguageStandard="c++14"
+                       osxCompatibility="10.9 SDK" enablePluginBinaryCopyStep="1"/>
+        <CONFIGURATION name="Release" isDebug="0" optimisation="3" targetName="SFX8"
+                       cppLanguageStandard="c++14" osxCompatibility="10.9 SDK" enablePluginBinaryCopyStep="1"
+                       osxArchitecture="64BitUniversal"/>
+      </CONFIGURATIONS>
+      <MODULEPATHS>
+        <MODULEPATH id="juce_core" path="../../module/juce/modules"/>
+        <MODULEPATH id="juce_events" path="../../module/juce/modules"/>
+        <MODULEPATH id="juce_graphics" path="../../module/juce/modules"/>
+        <MODULEPATH id="juce_data_structures" path="../../module/juce/modules"/>
+        <MODULEPATH id="juce_gui_basics" path="../../module/juce/modules"/>
+        <MODULEPATH id="juce_gui_extra" path="../../module/juce/modules"/>
+        <MODULEPATH id="juce_cryptography" path="../../module/juce/modules"/>
+        <MODULEPATH id="juce_video" path="../../module/juce/modules"/>
+        <MODULEPATH id="juce_opengl" path="../../module/juce/modules"/>
+        <MODULEPATH id="juce_audio_basics" path="../../module/juce/modules"/>
+        <MODULEPATH id="juce_audio_devices" path="../../module/juce/modules"/>
+        <MODULEPATH id="juce_audio_formats" path="../../module/juce/modules"/>
+        <MODULEPATH id="juce_audio_processors" path="../../module/juce/modules"/>
+        <MODULEPATH id="juce_audio_plugin_client" path="../../module/juce/modules"/>
+        <MODULEPATH id="dRowAudio" path="../../module/dRowAudio/module"/>
+        <MODULEPATH id="juce_audio_utils" path="../../module/juce/modules"/>
+        <MODULEPATH id="juce_dsp" path="../../module/juce/modules"/>
+        <MODULEPATH id="gin" path="../../module/gin/modules"/>
+        <MODULEPATH id="gin_plugin" path="../../module/gin/modules"/>
+        <MODULEPATH id="gin_dsp" path="../../module/gin/modules"/>
+      </MODULEPATHS>
+    </XCODE_MAC>
+    <VS2017 targetFolder="Builds/VisualStudio2017" toolset="v141_xp">
+      <CONFIGURATIONS>
+        <CONFIGURATION name="Debug" winWarningLevel="4" generateManifest="1" winArchitecture="Win32"
+                       isDebug="1" optimisation="1" targetName="SFX8_32b" headerPath="../../../../module/slCommon"
+                       postbuildCommand="copy /Y &quot;$(OutDir)\$(TargetFileName)&quot; &quot;C:\Program Files (x86)\VSTPlugins&quot;"
+                       debugInformationFormat="ProgramDatabase" enablePluginBinaryCopyStep="0"
+                       useRuntimeLibDLL="0"/>
+        <CONFIGURATION name="Release" winWarningLevel="4" generateManifest="1" winArchitecture="Win32"
+                       isDebug="0" optimisation="3" targetName="SFX8_32b" headerPath="../../../../module/slCommon"
+                       postbuildCommand="copy /Y &quot;$(OutDir)\$(TargetFileName)&quot; &quot;C:\Program Files (x86)\VSTPlugins&quot;"
+                       debugInformationFormat="ProgramDatabase" enablePluginBinaryCopyStep="0"
+                       linkTimeOptimisation="1" useRuntimeLibDLL="0"/>
+        <CONFIGURATION name="Debug64" winWarningLevel="4" generateManifest="1" winArchitecture="x64"
+                       isDebug="1" optimisation="1" targetName="SFX8_64b" headerPath="../../../../module/slCommon"
+                       postbuildCommand="copy /Y &quot;$(OutDir)\$(TargetFileName)&quot; &quot;C:\Program Files\VSTPlugins&quot;"
+                       debugInformationFormat="ProgramDatabase" enablePluginBinaryCopyStep="0"
+                       useRuntimeLibDLL="0"/>
+        <CONFIGURATION name="Release64" winWarningLevel="4" generateManifest="1" winArchitecture="x64"
+                       isDebug="0" optimisation="3" targetName="SFX8_64b" headerPath="../../../../module/slCommon"
+                       postbuildCommand="copy /Y &quot;$(OutDir)\$(TargetFileName)&quot; &quot;C:\Program Files\VSTPlugins&quot;"
+                       debugInformationFormat="ProgramDatabase" enablePluginBinaryCopyStep="0"
+                       linkTimeOptimisation="1" useRuntimeLibDLL="0"/>
+      </CONFIGURATIONS>
+      <MODULEPATHS>
+        <MODULEPATH id="juce_core" path="../../module/juce/modules"/>
+        <MODULEPATH id="juce_events" path="../../module/juce/modules"/>
+        <MODULEPATH id="juce_graphics" path="../../module/juce/modules"/>
+        <MODULEPATH id="juce_data_structures" path="../../module/juce/modules"/>
+        <MODULEPATH id="juce_gui_basics" path="../../module/juce/modules"/>
+        <MODULEPATH id="juce_gui_extra" path="../../module/juce/modules"/>
+        <MODULEPATH id="juce_cryptography" path="../../module/juce/modules"/>
+        <MODULEPATH id="juce_video" path="../../module/juce/modules"/>
+        <MODULEPATH id="juce_opengl" path="../../module/juce/modules"/>
+        <MODULEPATH id="juce_audio_basics" path="../../module/juce/modules"/>
+        <MODULEPATH id="juce_audio_devices" path="../../module/juce/modules"/>
+        <MODULEPATH id="juce_audio_formats" path="../../module/juce/modules"/>
+        <MODULEPATH id="juce_audio_processors" path="../../module/juce/modules"/>
+        <MODULEPATH id="juce_audio_plugin_client" path="../../module/juce/modules"/>
+        <MODULEPATH id="dRowAudio" path="../../module/dRowAudio/module"/>
+        <MODULEPATH id="juce_audio_utils" path="../../module/juce/modules"/>
+        <MODULEPATH id="juce_dsp" path="../../module/juce/modules"/>
+        <MODULEPATH id="gin" path="../../module/gin/modules"/>
+        <MODULEPATH id="gin_plugin" path="../../module/gin/modules"/>
+        <MODULEPATH id="gin_dsp" path="../../module/gin/modules"/>
+      </MODULEPATHS>
+    </VS2017>
+  </EXPORTFORMATS>
+  <MODULES>
+    <MODULE id="dRowAudio" showAllCode="1" useLocalCopy="0"/>
+    <MODULE id="gin" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
+    <MODULE id="gin_dsp" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
+    <MODULE id="gin_plugin" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
+    <MODULE id="juce_audio_basics" showAllCode="1" useLocalCopy="0"/>
+    <MODULE id="juce_audio_devices" showAllCode="1" useLocalCopy="0"/>
+    <MODULE id="juce_audio_formats" showAllCode="1" useLocalCopy="0"/>
+    <MODULE id="juce_audio_plugin_client" showAllCode="1" useLocalCopy="0"/>
+    <MODULE id="juce_audio_processors" showAllCode="1" useLocalCopy="0"/>
+    <MODULE id="juce_audio_utils" showAllCode="1" useLocalCopy="0"/>
+    <MODULE id="juce_core" showAllCode="1" useLocalCopy="0"/>
+    <MODULE id="juce_cryptography" showAllCode="1" useLocalCopy="0"/>
+    <MODULE id="juce_data_structures" showAllCode="1" useLocalCopy="0"/>
+    <MODULE id="juce_dsp" showAllCode="1" useLocalCopy="0"/>
+    <MODULE id="juce_events" showAllCode="1" useLocalCopy="0"/>
+    <MODULE id="juce_graphics" showAllCode="1" useLocalCopy="0"/>
+    <MODULE id="juce_gui_basics" showAllCode="1" useLocalCopy="0"/>
+    <MODULE id="juce_gui_extra" showAllCode="1" useLocalCopy="0"/>
+    <MODULE id="juce_opengl" showAllCode="1" useLocalCopy="0"/>
+    <MODULE id="juce_video" showAllCode="1" useLocalCopy="0"/>
+  </MODULES>
+  <JUCEOPTIONS JUCE_QUICKTIME="disabled"/>
+  <LIVE_SETTINGS>
+    <OSX/>
+  </LIVE_SETTINGS>
+</JUCERPROJECT>
