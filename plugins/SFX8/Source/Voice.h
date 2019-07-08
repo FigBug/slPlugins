@@ -20,6 +20,16 @@ public:
         : synth (s)
     {     
     }
+
+    void setCurrentSampleRate (double newRate) override
+    {
+        MPESynthesiserVoice::setCurrentSampleRate (newRate);
+
+        if (newRate != 44100.0 && newRate > 0)
+            resamplingFifo = std::make_unique<gin::ResamplingFifo> (64, 1);
+        else
+            resamplingFifo = nullptr;
+    }
     
     void noteStarted() override;
     
@@ -39,4 +49,6 @@ public:
 private:
     SFXAudioProcessor& synth;
 	SfxrSynth sfxr {44100.0f};
+
+    std::unique_ptr<gin::ResamplingFifo> resamplingFifo;
 };

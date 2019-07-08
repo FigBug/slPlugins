@@ -15,6 +15,9 @@ void Voice::noteStarted()
 {
     if (auto p = synth.getPadForNote (currentlyPlayingNote.initialNote))
     {
+        if (resamplingFifo != nullptr)
+            resamplingFifo->flushBuffers();
+
         p->fromPluginParams();
 		sfxr.setSampleRate (44100.0f);
         sfxr.setParams (p->params);
@@ -28,12 +31,42 @@ void Voice::noteStarted()
 
 void Voice::renderNextBlock (AudioBuffer<float>& outputBuffer, int startSample, int numSamples)
 {
-    float* work = (float*) alloca (size_t (numSamples) * sizeof (float));
-    memset (work, 0, size_t (numSamples) * sizeof (float));
-    
-    if (sfxr.synthWave (work, 0, numSamples))
-        clearCurrentNote();
-    
-    for (int ch = 0; ch < outputBuffer.getNumChannels(); ch++)
-        FloatVectorOperations::add (outputBuffer.getWritePointer (ch, startSample), work, numSamples);
+    if (currentSampleRate == 44100.0)
+    {
+        float* work = (float*) alloca (size_t (numSamples) * sizeof (float));
+        memset (work, 0, size_t (numSamples) * sizeof (float));
+
+        if (sfxr.synthWave (work, 0, numSamples))
+            clearCurrentNote();
+
+        for (int ch = 0; ch < outputBuffer.getNumChannels(); ch++)
+            FloatVectorOperations::add (outputBuffer.getWritePointer (ch, startSample), work, numSamples);
+    }
+    else
+    {
+        float* work = (float*) alloca (size_t (numSamples) * sizeof (float));
+        while (resamplingFifo->samplesReady() < numSamples)
+        {
+            memset (work, 0, size_t (numSamples) * sizeof (float));
+
+            if (sfxr.synthWave (work, 0, numSamples))
+                clearCurrentNote();
+
+            float* rawData[] = { work, nullptr };
+            AudioSampleBuffer temp (rawData, 1, numSamples);
+
+            resamplingFifo->pushAudioBuffer (temp);
+        }
+
+        {
+            memset (work, 0, size_t (numSamples) * sizeof (float));
+            float* rawData[] = { work, nullptr };
+            AudioSampleBuffer temp (rawData, 1, numSamples);
+
+            resamplingFifo->popAudioBuffer (temp);
+
+            for (int ch = 0; ch < outputBuffer.getNumChannels(); ch++)
+                FloatVectorOperations::add (outputBuffer.getWritePointer (ch, startSample), work, numSamples);
+        }
+    }
 }
