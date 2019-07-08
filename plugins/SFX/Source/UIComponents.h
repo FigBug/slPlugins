@@ -157,6 +157,8 @@ public:
     ParamPageComponent (SFXAudioProcessor& pr, Pad& p)
         : processor (pr), pad (p)
     {
+        addAndMakeVisible (name);
+        
         addAndMakeVisible (coin);
         addAndMakeVisible (laser);
         addAndMakeVisible (explosion);
@@ -166,6 +168,22 @@ public:
         addAndMakeVisible (blip);
         addAndMakeVisible (random);
         addAndMakeVisible (mutate);
+        
+        name.setText (pad.name, dontSendNotification);
+        name.applyColourToAllText (Colours::white);
+        name.onTextChange = [this]
+        {
+            pad.name = name.getText();
+        };
+        
+        listener.onValueTreePropertyChanged = [this] (ValueTree&, const Identifier& i)
+        {
+            printf ("%s\n", i.toString().toRawUTF8());
+            
+            if (i.toString() == String ("name") + String (pad.index))
+                if (pad.name != name.getText())
+                    name.setText (pad.name, dontSendNotification);
+        };
 
         coin.onClick = [this]
         {
@@ -270,7 +288,16 @@ public:
 private:
     void resized() override
     {
-        auto rc1 = getLocalBounds();
+        auto r = getLocalBounds();
+        
+        // top
+        {
+            auto rc = r.removeFromTop (30);
+            name.setBounds (rc.withSizeKeepingCentre (150, 20));
+        }
+        
+        // faders
+        auto rc1 = r;
         auto rc2 = rc1.removeFromRight (rc1.getWidth() / 2);
 
         int i = 0;
@@ -283,30 +310,36 @@ private:
             i++;
         }
         
-        auto rc = getLocalBounds().withTrimmedBottom (4).removeFromBottom (20);
-        int w = (rc.getWidth() - 7 * 4) / 9;
-        
-        coin.setBounds (rc.removeFromLeft (w));
-        rc.removeFromLeft (4);
-        laser.setBounds (rc.removeFromLeft (w));
-        rc.removeFromLeft (4);
-        explosion.setBounds (rc.removeFromLeft (w));
-        rc.removeFromLeft (4);
-        powerup.setBounds (rc.removeFromLeft (w));
-        rc.removeFromLeft (4);
-        hit.setBounds (rc.removeFromLeft (w));
-        rc.removeFromLeft (4);
-        jump.setBounds (rc.removeFromLeft (w));
-        rc.removeFromLeft (4);
-        blip.setBounds (rc.removeFromLeft (w));
-        rc.removeFromLeft (4);
-        random.setBounds (rc.removeFromLeft (w));
-        rc.removeFromLeft (4);
-        mutate.setBounds (rc.removeFromLeft (w));
+        // bottom
+        {
+            auto rc = getLocalBounds().withTrimmedBottom (4).removeFromBottom (20);
+            int w = (rc.getWidth() - 7 * 4) / 9;
+            
+            coin.setBounds (rc.removeFromLeft (w));
+            rc.removeFromLeft (4);
+            laser.setBounds (rc.removeFromLeft (w));
+            rc.removeFromLeft (4);
+            explosion.setBounds (rc.removeFromLeft (w));
+            rc.removeFromLeft (4);
+            powerup.setBounds (rc.removeFromLeft (w));
+            rc.removeFromLeft (4);
+            hit.setBounds (rc.removeFromLeft (w));
+            rc.removeFromLeft (4);
+            jump.setBounds (rc.removeFromLeft (w));
+            rc.removeFromLeft (4);
+            blip.setBounds (rc.removeFromLeft (w));
+            rc.removeFromLeft (4);
+            random.setBounds (rc.removeFromLeft (w));
+            rc.removeFromLeft (4);
+            mutate.setBounds (rc.removeFromLeft (w));
+        }
     }
 
     SFXAudioProcessor& processor;
     Pad& pad;
+    gin::LambdaValueTreeListener listener {processor.state};
+    
+    TextEditor name;
     OwnedArray<gin::ParamComponent> controls;
     OwnedArray<LockComponent> locks;
 

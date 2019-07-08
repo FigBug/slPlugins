@@ -15,9 +15,12 @@
 class Pad
 {
 public:
-    Pad (int n)
-        : note (n)
+    Pad (ValueTree& state, int i, int n)
+        : index (i)
     {
+        name.referTo (state, String::formatted ("name%d", index), nullptr);
+        note.referTo (state, String::formatted ("note%d", index), nullptr);
+
         switch (rand() % 7)
         {
             case 0:
@@ -71,8 +74,9 @@ public:
         }
     }
 
-    String name;
-    int note = 0;
+    int index = 0;
+    CachedValue<String> name;
+    CachedValue<int> note;
     SfxrParams params;
 
     Array<gin::Parameter*> pluginParams, pluginLockParams;

@@ -29,7 +29,7 @@ SFXAudioProcessor::SFXAudioProcessor()
     // Add pads
     for (int i = 0; i < 16; i++)
     {
-        auto p = new Pad (notes[i]);
+        auto p = new Pad (state, i, notes[i]);
         pads.add (p);
         p->name = uniqueName (p->name);
     }
@@ -113,8 +113,8 @@ void SFXAudioProcessor::updateState()
     {
         auto p = pads[i];
         
-        state.setProperty ("name" + String (i), p->name, nullptr);
-        state.setProperty ("note" + String (i), p->note, nullptr);
+        state.setProperty ("name" + String (i), p->name.get(), nullptr);
+        state.setProperty ("note" + String (i), p->note.get(), nullptr);
     }
 }
 
