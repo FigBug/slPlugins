@@ -564,6 +564,9 @@
     <ClCompile Include="..\..\..\..\module\gin\modules\gin_dsp\dsp\oscillators.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="..\..\..\..\module\gin\modules\gin_dsp\dsp\resamplingfifo.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="..\..\..\..\module\gin\modules\gin_dsp\gin_dsp.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
@@ -2655,6 +2658,7 @@
     <ClInclude Include="..\..\..\..\module\gin\modules\gin_dsp\dsp\audiofunctions.h"/>
     <ClInclude Include="..\..\..\..\module\gin\modules\gin_dsp\dsp\audioutil.h"/>
     <ClInclude Include="..\..\..\..\module\gin\modules\gin_dsp\dsp\oscillators.h"/>
+    <ClInclude Include="..\..\..\..\module\gin\modules\gin_dsp\dsp\resamplingfifo.h"/>
     <ClInclude Include="..\..\..\..\module\gin\modules\gin_dsp\gin_dsp.h"/>
     <ClInclude Include="..\..\..\..\module\gin\modules\gin_plugin\components\plugincomponents.h"/>
     <ClInclude Include="..\..\..\..\module\gin\modules\gin_plugin\components\pluginlookandfeel.h"/>
