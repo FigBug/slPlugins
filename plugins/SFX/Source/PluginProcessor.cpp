@@ -14,6 +14,25 @@
 
 using namespace gin;
 
+static String waveTextFunc (const Parameter&, float v)
+{
+    switch (int (v))
+    {
+        case 0: return "Square";
+        case 1: return "Saw";
+        case 2: return "Sine";
+        case 3: return "Noise";
+        case 4: return "Triangle";
+        case 5: return "Pink";
+        case 6: return "Tan";
+        case 7: return "Whistle";
+        case 8: return "Breaker";
+        default:
+            jassertfalse;
+            return {};
+    }
+}
+
 //==============================================================================
 SFXAudioProcessor::SFXAudioProcessor()
 {
@@ -50,7 +69,9 @@ SFXAudioProcessor::SFXAudioProcessor()
                                                p.getMin (id),
                                                p.getMax (id),
                                                0.0f,
-                                               p.getDefault (id)));
+                                               p.getDefault (id),
+                                               1.0f,
+                                               id == "waveType" ? waveTextFunc : nullptr));
         }
         
         for (auto id : ids)

@@ -178,8 +178,6 @@ public:
         
         listener.onValueTreePropertyChanged = [this] (ValueTree&, const Identifier& i)
         {
-            printf ("%s\n", i.toString().toRawUTF8());
-            
             if (i.toString() == String ("name") + String (pad.index))
                 if (pad.name != name.getText())
                     name.setText (pad.name, dontSendNotification);
@@ -269,7 +267,12 @@ public:
         int i = 0;
         for (auto pp : pad.pluginParams)
         {
-            auto pc = new gin::HorizontalFader (pp, false);
+            gin::ParamComponent* pc = nullptr;
+            if (pp->getUid().startsWith ("wave"))
+                pc = new gin::Select (pp);
+            else
+                pc = new gin::HorizontalFader (pp, false);
+            
             pc->setTooltip (pad.params.getDescription (pad.params.getParams()[i]));
             addAndMakeVisible (pc);
             controls.add (pc);
