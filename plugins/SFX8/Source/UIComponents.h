@@ -336,7 +336,7 @@ public:
             else
                 pc = new gin::HorizontalFader (pp, false);
             
-            pc->setTooltip (pad.params.getDescription (pad.params.getParams()[i]));
+            pc->setTooltip (pad.params.getDescription (pad.params.getParams()[size_t (i)]));
             addAndMakeVisible (pc);
             controls.add (pc);
 
@@ -528,7 +528,7 @@ public:
         };
     }
 
-    ~ParamComponent()
+    ~ParamComponent() override
     {
         processor.onCurrentPageChanged = nullptr;
     }

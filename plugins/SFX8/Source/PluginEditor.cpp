@@ -16,7 +16,7 @@ using namespace gin;
 
 //==============================================================================
 SFXAudioProcessorEditor::SFXAudioProcessorEditor (SFXAudioProcessor& p)
-    : GinAudioProcessorEditor (p), processor (p)
+    : GinAudioProcessorEditor (p), sfxProcessor (p)
 {
     additionalProgramming = "Thomas Vian";
 
@@ -34,13 +34,13 @@ SFXAudioProcessorEditor::SFXAudioProcessorEditor (SFXAudioProcessor& p)
 
         pc->onDown = [this, i] ()
         {
-            processor.midiNoteOn (processor.getPads()[i]->note);
+            sfxProcessor.midiNoteOn (sfxProcessor.getPads()[i]->note);
             params.setPage (i);
         };
 
         pc->onUp = [this, i] ()
         {
-            processor.midiNoteOff (processor.getPads()[i]->note);
+            sfxProcessor.midiNoteOff (sfxProcessor.getPads()[i]->note);
         };
     }
 }

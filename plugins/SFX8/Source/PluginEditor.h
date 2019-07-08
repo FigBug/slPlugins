@@ -21,7 +21,7 @@ class SFXAudioProcessorEditor : public gin::GinAudioProcessorEditor
 {
 public:
     SFXAudioProcessorEditor (SFXAudioProcessor&);
-    ~SFXAudioProcessorEditor();
+    ~SFXAudioProcessorEditor() override;
 
     //==============================================================================
     void resized() override;
@@ -29,10 +29,10 @@ public:
     void refresh();
 
 private:    
-    SFXAudioProcessor& processor;
+    SFXAudioProcessor& sfxProcessor;
 
-    PadGridComponent padGrid {processor};
-    ParamComponent params {processor};
+    PadGridComponent padGrid {sfxProcessor};
+    ParamComponent params {sfxProcessor};
     Image logo;
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (SFXAudioProcessorEditor)

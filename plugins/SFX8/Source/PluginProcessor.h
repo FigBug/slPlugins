@@ -24,7 +24,7 @@ class SFXAudioProcessor : public gin::GinProcessor,
 public:
     //==============================================================================
     SFXAudioProcessor();
-    ~SFXAudioProcessor();
+    ~SFXAudioProcessor() override;
 
     //==============================================================================
     void prepareToPlay (double sampleRate, int samplesPerBlock) override;

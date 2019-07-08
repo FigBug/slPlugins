@@ -28,8 +28,8 @@ void Voice::noteStarted()
 
 void Voice::renderNextBlock (AudioBuffer<float>& outputBuffer, int startSample, int numSamples)
 {
-    float* work = (float*) alloca (numSamples * sizeof (float));
-    memset (work, 0, numSamples * sizeof (float));
+    float* work = (float*) alloca (size_t (numSamples) * sizeof (float));
+    memset (work, 0, size_t (numSamples) * sizeof (float));
     
     if (sfxr.synthWave (work, 0, numSamples))
         clearCurrentNote();
