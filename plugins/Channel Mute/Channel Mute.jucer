@@ -11,7 +11,7 @@
               pluginAAXCategory="2" jucerVersion="5.4.3" companyName="SocaLabs"
               companyWebsite="www.socalabs.com" companyEmail="info@socalabs.com"
               displaySplashScreen="0" reportAppUsage="0" splashScreenColour="Dark"
-              buildStandalone="0" enableIAA="0" cppLanguageStandard="14" companyCopyright="SocaLabs"
+              buildStandalone="0" enableIAA="0" cppLanguageStandard="17" companyCopyright="SocaLabs"
               pluginFormats="buildVST,buildAU" pluginAUMainType="'aufx'" pluginVSTCategory="kPlugCategEffect"
               pluginRTASDisableBypass="0" pluginRTASDisableMultiMono="0" pluginAAXDisableBypass="0"
               pluginAAXDisableMultiMono="0">

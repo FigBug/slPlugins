@@ -892,6 +892,9 @@
     <ClCompile Include="..\..\..\..\module\gin\modules\gin_dsp\dsp\oscillators.cpp">
       <Filter>JUCE Modules\gin_dsp\dsp</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\..\module\gin\modules\gin_dsp\dsp\resamplingfifo.cpp">
+      <Filter>JUCE Modules\gin_dsp\dsp</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\..\..\module\gin\modules\gin_dsp\gin_dsp.cpp">
       <Filter>JUCE Modules\gin_dsp</Filter>
     </ClCompile>
@@ -3484,6 +3487,9 @@
       <Filter>JUCE Modules\gin_dsp\dsp</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\module\gin\modules\gin_dsp\dsp\oscillators.h">
+      <Filter>JUCE Modules\gin_dsp\dsp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\module\gin\modules\gin_dsp\dsp\resamplingfifo.h">
       <Filter>JUCE Modules\gin_dsp\dsp</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\module\gin\modules\gin_dsp\gin_dsp.h">

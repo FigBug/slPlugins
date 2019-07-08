@@ -9,7 +9,7 @@
               aaxIdentifier="com.socalabs.Maths" pluginAAXCategory="2" jucerVersion="5.4.3"
               companyName="SocaLabs" companyWebsite="www.socalabs.com" companyEmail="info@socalabs.com"
               displaySplashScreen="0" reportAppUsage="0" splashScreenColour="Dark"
-              cppLanguageStandard="14" companyCopyright="SocaLabs" pluginAUMainType="'aufx'"
+              cppLanguageStandard="17" companyCopyright="SocaLabs" pluginAUMainType="'aufx'"
               pluginVSTCategory="kPlugCategEffect" pluginRTASDisableBypass="0"
               pluginRTASDisableMultiMono="0" pluginAAXDisableBypass="0" pluginAAXDisableMultiMono="0"
               pluginFormats="buildVST,buildAU" buildVST="1" buildVST3="0" buildAU="1"
