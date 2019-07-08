@@ -61,6 +61,10 @@ if %errorlevel% neq 0 exit /b %errorlevel%
 "C:\Program Files (x86)\Microsoft Visual Studio\2017\BuildTools\MSBuild\15.0\Bin\MSBuild.exe" "..\plugins\AddInvert\Builds\VisualStudio2017\Add and Invert.sln" /p:VisualStudioVersion=15.0 /m /p:Configuration=Release64 /p:Platform=x64
 if %errorlevel% neq 0 exit /b %errorlevel%
 
+"C:\Program Files (x86)\Microsoft Visual Studio\2017\BuildTools\MSBuild\15.0\Bin\MSBuild.exe" "..\plugins\AddInvert\Builds\VisualStudio2017\SFX8.sln" /p:VisualStudioVersion=15.0 /m /p:Configuration=Release /p:PlatformTarget=x86
+if %errorlevel% neq 0 exit /b %errorlevel%
+"C:\Program Files (x86)\Microsoft Visual Studio\2017\BuildTools\MSBuild\15.0\Bin\MSBuild.exe" "..\plugins\AddInvert\Builds\VisualStudio2017\SFX8.sln" /p:VisualStudioVersion=15.0 /m /p:Configuration=Release64 /p:Platform=x64
+if %errorlevel% neq 0 exit /b %errorlevel%
 
 copy "C:\Program Files\VSTPlugins\PAPU_64b.dll" bin
 copy "C:\Program Files\VSTPlugins\RP2A03_64b.dll" bin
@@ -74,6 +78,7 @@ copy "C:\Program Files\VSTPlugins\ChannelMute_64b.dll" bin
 copy "C:\Program Files\VSTPlugins\Maths_64b.dll" bin
 copy "C:\Program Files\VSTPlugins\ABTester_64b.dll" bin
 copy "C:\Program Files\VSTPlugins\AddInvert_64b.dll" bin
+copy "C:\Program Files\VSTPlugins\SFX8_64b.dll" bin
 
 copy "C:\Program Files (x86)\VSTPlugins\PAPU_32b.dll" bin
 copy "C:\Program Files (x86)\VSTPlugins\RP2A03_32b.dll" bin
@@ -87,6 +92,7 @@ copy "C:\Program Files (x86)\VSTPlugins\ChannelMute_32b.dll" bin
 copy "C:\Program Files (x86)\VSTPlugins\Maths_32b.dll" bin
 copy "C:\Program Files (x86)\VSTPlugins\ABTester_32b.dll" bin
 copy "C:\Program Files (x86)\VSTPlugins\AddInvert_32b.dll" bin
+copy "C:\Program Files (x86)\VSTPlugins\SFX8_32b.dll" bin
 
 cd bin
 zip PAPU_Win.zip PAPU_32b.dll PAPU_64b.dll
@@ -101,5 +107,6 @@ zip ChannelMute_Win.zip ChannelMute_32b.dll ChannelMute_64b.dll
 zip Maths_Win.zip Maths_32b.dll Maths_64b.dll
 zip ABTester_Win.zip ABTester_32b.dll ABTester_64b.dll
 zip AddInvert_Win.zip AddInvert_32b.dll AddInvert_64b.dll
+zip SFX8_Win.zip SFX8_32b.dll SFX8_64b.dll
 zip All_Win.zip *.dll
 cd ..

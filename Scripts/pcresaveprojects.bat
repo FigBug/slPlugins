@@ -11,4 +11,5 @@ c:\JUCE\Projucer.exe --resave "..\plugins\Channel Mute\Channel Mute.jucer"
 c:\JUCE\Projucer.exe --resave "..\plugins\Maths\Maths.jucer"
 c:\JUCE\Projucer.exe --resave "..\plugins\AB Tester\AB Tester.jucer"
 c:\JUCE\Projucer.exe --resave "..\plugins\AddInvert\AddInvert.jucer"
+c:\JUCE\Projucer.exe --resave "..\plugins\AddInvert\SFX8.jucer"
 

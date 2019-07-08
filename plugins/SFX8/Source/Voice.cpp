@@ -16,6 +16,7 @@ void Voice::noteStarted()
     if (auto p = synth.getPadForNote (currentlyPlayingNote.initialNote))
     {
         p->fromPluginParams();
+		sfxr.setSampleRate (44100.0f);
         sfxr.setParams (p->params);
         sfxr.reset (true);
     }
@@ -27,10 +28,10 @@ void Voice::noteStarted()
 
 void Voice::renderNextBlock (AudioBuffer<float>& outputBuffer, int startSample, int numSamples)
 {
-    float work[numSamples];
+    float* work = (float*) alloca (numSamples);
     memset (work, 0, sizeof (work));
     
-    if (sfxr.synthWave (work, 0, numSamples, getSampleRate()))
+    if (sfxr.synthWave (work, 0, numSamples))
         clearCurrentNote();
     
     for (int ch = 0; ch < outputBuffer.getNumChannels(); ch++)

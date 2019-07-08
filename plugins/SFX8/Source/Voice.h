@@ -18,8 +18,7 @@ class Voice : public MPESynthesiserVoice
 public:
     Voice (SFXAudioProcessor& s)
         : synth (s)
-    {
-        
+    {     
     }
     
     void noteStarted() override;
@@ -39,5 +38,5 @@ public:
     
 private:
     SFXAudioProcessor& synth;
-    SfxrSynth sfxr;
+	SfxrSynth sfxr {44100.0f};
 };
