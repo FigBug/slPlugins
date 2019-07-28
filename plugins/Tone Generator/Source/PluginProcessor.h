@@ -34,7 +34,7 @@ class slToneAudioProcessor : public gin::GinProcessor
 public:
     //==============================================================================
     slToneAudioProcessor();
-    ~slToneAudioProcessor();
+    ~slToneAudioProcessor() override;
 
     //==============================================================================
     void prepareToPlay (double sampleRate, int samplesPerBlock) override;

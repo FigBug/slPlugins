@@ -185,13 +185,13 @@ void slToneAudioProcessor::processBlock (AudioSampleBuffer& buffer, MidiBuffer&)
     sawDown.setFrequency (freq);
     square.setFrequency (freq);
 
-    enableVal.setValue (getParameter (PARAM_ENABLE)->getUserValue());
-    sineVal.setValue (Decibels::decibelsToGain (getParameter (PARAM_SINE_LEVEL)->getUserValue()));
-    triangleVal.setValue (Decibels::decibelsToGain (getParameter (PARAM_TRI_LEVEL)->getUserValue()));
-    sawUpVal.setValue (Decibels::decibelsToGain (getParameter (PARAM_SAW_UP_LEVEL)->getUserValue()));
-    sawDownVal.setValue (Decibels::decibelsToGain (getParameter (PARAM_SAW_DN_LEVEL)->getUserValue()));
-    squareVal.setValue (Decibels::decibelsToGain (getParameter (PARAM_SQUARE_LEVEL)->getUserValue()));
-    noiseVal.setValue (Decibels::decibelsToGain (getParameter (PARAM_NOISE_LEVEL)->getUserValue()));
+    enableVal.setTargetValue (getParameter (PARAM_ENABLE)->getUserValue());
+    sineVal.setTargetValue (Decibels::decibelsToGain (getParameter (PARAM_SINE_LEVEL)->getUserValue()));
+    triangleVal.setTargetValue (Decibels::decibelsToGain (getParameter (PARAM_TRI_LEVEL)->getUserValue()));
+    sawUpVal.setTargetValue (Decibels::decibelsToGain (getParameter (PARAM_SAW_UP_LEVEL)->getUserValue()));
+    sawDownVal.setTargetValue (Decibels::decibelsToGain (getParameter (PARAM_SAW_DN_LEVEL)->getUserValue()));
+    squareVal.setTargetValue (Decibels::decibelsToGain (getParameter (PARAM_SQUARE_LEVEL)->getUserValue()));
+    noiseVal.setTargetValue (Decibels::decibelsToGain (getParameter (PARAM_NOISE_LEVEL)->getUserValue()));
     
     if (sineVal.isSmoothing() || sineVal.getTargetValue() > 0)
     {

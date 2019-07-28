@@ -20,7 +20,7 @@ class slToneAudioProcessorEditor  : public gin::GinAudioProcessorEditor
 {
 public:
     slToneAudioProcessorEditor (slToneAudioProcessor&);
-    ~slToneAudioProcessorEditor();
+    ~slToneAudioProcessorEditor() override;
 
     //==============================================================================
     void resized() override;
@@ -28,7 +28,7 @@ public:
     drow::TriggeredScope scope;
 
 private:
-    slToneAudioProcessor& processor;
+    slToneAudioProcessor& toneProcessor;
     
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (slToneAudioProcessorEditor)
 };

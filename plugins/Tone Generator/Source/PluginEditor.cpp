@@ -15,11 +15,11 @@ using namespace gin;
 
 //==============================================================================
 slToneAudioProcessorEditor::slToneAudioProcessorEditor (slToneAudioProcessor& p)
-    : GinAudioProcessorEditor (p), processor (p)
+    : GinAudioProcessorEditor (p), toneProcessor (p)
 {
     addAndMakeVisible (&scope);
     
-    for (Parameter* pp : p.getPluginParameters())
+    for (auto pp : p.getPluginParameters())
     {
         ParamComponent* pc;
         

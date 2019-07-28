@@ -21,7 +21,7 @@ class MathsAudioProcessorEditor : public gin::GinAudioProcessorEditor,
 {
 public:
     MathsAudioProcessorEditor (MathsAudioProcessor&);
-    ~MathsAudioProcessorEditor();
+    ~MathsAudioProcessorEditor() override;
 
     //==============================================================================
     void resized() override;
@@ -32,7 +32,7 @@ private:
     void textEditorEscapeKeyPressed (TextEditor&) override;
     void textEditorFocusLost (TextEditor&) override;
     
-    MathsAudioProcessor& processor;
+    MathsAudioProcessor& mathsProcessor;
     TextEditor l, r;
     Label lLabel { "", "L out:" };
     Label rLabel { "", "R out:" };

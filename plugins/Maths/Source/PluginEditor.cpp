@@ -15,7 +15,7 @@ using namespace gin;
 
 //==============================================================================
 MathsAudioProcessorEditor::MathsAudioProcessorEditor (MathsAudioProcessor& p)
-    : GinAudioProcessorEditor (p), processor (p)
+    : GinAudioProcessorEditor (p), mathsProcessor (p)
 {
     addAndMakeVisible (l);
     addAndMakeVisible (r);
@@ -57,8 +57,8 @@ MathsAudioProcessorEditor::~MathsAudioProcessorEditor()
 //==============================================================================
 void MathsAudioProcessorEditor::refresh()
 {
-    l.setText (processor.lEquation, dontSendNotification);
-    r.setText (processor.rEquation, dontSendNotification);
+    l.setText (mathsProcessor.lEquation, dontSendNotification);
+    r.setText (mathsProcessor.rEquation, dontSendNotification);
 }
 
 void MathsAudioProcessorEditor::resized()
@@ -86,22 +86,22 @@ void MathsAudioProcessorEditor::textEditorReturnKeyPressed (TextEditor& ed)
 {
     if (&ed == &l)
     {
-        processor.lEquation = ed.getText();
-        processor.setupParsers();
+        mathsProcessor.lEquation = ed.getText();
+        mathsProcessor.setupParsers();
     }
     else if (&ed == &r)
     {
-        processor.rEquation = ed.getText();
-        processor.setupParsers();
+        mathsProcessor.rEquation = ed.getText();
+        mathsProcessor.setupParsers();
     }
 }
 
 void MathsAudioProcessorEditor::textEditorEscapeKeyPressed (TextEditor& ed)
 {
     if (&ed == &l)
-        l.setText (processor.lEquation, dontSendNotification);
+        l.setText (mathsProcessor.lEquation, dontSendNotification);
     else if (&ed == &r)
-        r.setText (processor.rEquation, dontSendNotification);
+        r.setText (mathsProcessor.rEquation, dontSendNotification);
 }
 
 void MathsAudioProcessorEditor::textEditorFocusLost (TextEditor& ed)

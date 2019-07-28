@@ -49,8 +49,11 @@ void MathsAudioProcessor::updateState()
 }
 
 //==============================================================================
-void MathsAudioProcessor::prepareToPlay (double sampleRate, int samplesPerBlock)
+void MathsAudioProcessor::prepareToPlay (double sampleRate, int)
 {
+    if (lParser != nullptr) lParser->setSampleRate (sampleRate);
+    if (rParser != nullptr) rParser->setSampleRate (sampleRate);
+
     sr = sampleRate;
     c = -1;
     s = 0;
@@ -64,16 +67,24 @@ void MathsAudioProcessor::prepareToPlay (double sampleRate, int samplesPerBlock)
 
 void MathsAudioProcessor::setupParsers()
 {
-    auto newL = std::make_unique<EquationParser>();
-    auto newR = std::make_unique<EquationParser>();
-
+    auto csr = getSampleRate();
+    if (csr == 0) csr = 44100.0;
+    
+    auto newL = std::make_unique<AudioEquationParser>();
+    auto newR = std::make_unique<AudioEquationParser>();
+    
+    newL->setSampleRate (csr);
+    newL->addConstants();
+    newL->addEffectFilterFunctions();
     newL->setEquation (lEquation);
-    newR->setEquation (rEquation);
-    
     setupVars (*newL);
-    setupVars (*newR);
-    
     newL->evaluate();
+
+    newR->setSampleRate (csr);
+    newR->addConstants();
+    newR->addEffectFilterFunctions();
+    newR->setEquation (rEquation);
+    setupVars (*newR);
     newR->evaluate();
 
     {
@@ -147,8 +158,8 @@ void MathsAudioProcessor::processBlock (AudioSampleBuffer& buffer, MidiBuffer&)
             r2 = jlimit (-1.0, 1.0, r2);
         }
         
-        lData[i] = l2;
-        rData[i] = r2;
+        lData[i] = float (l2);
+        rData[i] = float (r2);
         
         if (c != -1) c = 1 / sr;
         t += 1 / sr;
