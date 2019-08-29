@@ -56,10 +56,10 @@ void Oscillator::setFormula (String formula)
     p->addVariable ("res", &res);
     
     for (int i = 0; i <= 127; i++)
-        p->addVariable (String::formatted ( "cc%d", i), controllers[i].getValuePtr());
+        p->addVariable (String::formatted ("cc%d", i), controllers[i].getValuePtr());
     
     addOscillatorFunctions (*p);
-    addFilterFunctions (*p);
+    addSynthFilterFunctions (*p);
 
     p->evaluate();
     

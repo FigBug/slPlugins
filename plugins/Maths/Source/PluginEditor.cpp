@@ -21,6 +21,8 @@ MathsAudioProcessorEditor::MathsAudioProcessorEditor (MathsAudioProcessor& p)
     addAndMakeVisible (r);
     addAndMakeVisible (lLabel);
     addAndMakeVisible (rLabel);
+    addAndMakeVisible (lError);
+    addAndMakeVisible (rError);
 
     l.addListener (this);
     r.addListener (this);
@@ -28,6 +30,9 @@ MathsAudioProcessorEditor::MathsAudioProcessorEditor (MathsAudioProcessor& p)
     l.setText (p.lEquation, dontSendNotification);
     r.setText (p.rEquation, dontSendNotification);
     
+    lError.setJustificationType (Justification::centred);
+    rError.setJustificationType (Justification::centred);
+
     int count = 0;
     for (Parameter* pp : p.getPluginParameters())
     {
@@ -48,6 +53,7 @@ MathsAudioProcessorEditor::MathsAudioProcessorEditor (MathsAudioProcessor& p)
     }
     
     setGridSize (9, 1);
+    setSize (getWidth(), getHeight() + 20);
 }
 
 MathsAudioProcessorEditor::~MathsAudioProcessorEditor()
@@ -59,6 +65,9 @@ void MathsAudioProcessorEditor::refresh()
 {
     l.setText (mathsProcessor.lEquation, dontSendNotification);
     r.setText (mathsProcessor.rEquation, dontSendNotification);
+    
+    lError.setText (mathsProcessor.lError, dontSendNotification);
+    rError.setText (mathsProcessor.rError, dontSendNotification);
 }
 
 void MathsAudioProcessorEditor::resized()
@@ -80,6 +89,10 @@ void MathsAudioProcessorEditor::resized()
 
     l.setBounds (rc.removeFromTop (25));
     r.setBounds (rc.removeFromBottom (25));
+    
+    auto rcError = getLocalBounds().removeFromBottom (20);
+    lError.setBounds (rcError.removeFromLeft (rcError.getWidth() / 2).reduced (4));
+    rError.setBounds (rcError.reduced (4));
 }
 
 void MathsAudioProcessorEditor::textEditorReturnKeyPressed (TextEditor& ed)
@@ -88,11 +101,13 @@ void MathsAudioProcessorEditor::textEditorReturnKeyPressed (TextEditor& ed)
     {
         mathsProcessor.lEquation = ed.getText();
         mathsProcessor.setupParsers();
+        refresh();
     }
     else if (&ed == &r)
     {
         mathsProcessor.rEquation = ed.getText();
         mathsProcessor.setupParsers();
+        refresh();
     }
 }
 

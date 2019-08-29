@@ -63,6 +63,11 @@ void MathsAudioProcessor::prepareToPlay (double sampleRate, int)
     p2Val.reset (sampleRate, 0.1);
     p3Val.reset (sampleRate, 0.1);
     p4Val.reset (sampleRate, 0.1);
+    
+    memset (li, 0, sizeof (li));
+    memset (ri, 0, sizeof (ri));
+    memset (lo, 0, sizeof (lo));
+    memset (ro, 0, sizeof (ro));
 }
 
 void MathsAudioProcessor::setupParsers()
@@ -79,6 +84,17 @@ void MathsAudioProcessor::setupParsers()
     newL->setEquation (lEquation);
     setupVars (*newL);
     newL->evaluate();
+    
+    if (newL->hasError())
+    {
+        lError = newL->getError();
+        DBG(lError);
+        newL = nullptr;
+    }
+    else
+    {
+        lError = {};
+    }
 
     newR->setSampleRate (csr);
     newR->addConstants();
@@ -86,6 +102,17 @@ void MathsAudioProcessor::setupParsers()
     newR->setEquation (rEquation);
     setupVars (*newR);
     newR->evaluate();
+    
+    if (newR->hasError())
+    {
+        rError = newR->getError();
+        DBG(rError);
+        newR = nullptr;
+    }
+    else
+    {
+        rError = {};
+    }
 
     {
         ScopedLock sl (lock);
@@ -107,6 +134,14 @@ void MathsAudioProcessor::setupVars (gin::EquationParser& p)
     p.addVariable ("s", &s);
     p.addVariable ("c", &c);
     p.addVariable ("sr", &sr);
+    
+    for (int i = 0; i < 256; i++)
+    {
+        p.addVariable (String::formatted ("li%d", i), &li[i]);
+        p.addVariable (String::formatted ("ri%d", i), &ri[i]);
+        p.addVariable (String::formatted ("lo%d", i), &lo[i]);
+        p.addVariable (String::formatted ("ro%d", i), &ro[i]);
+    }
 }
 
 void MathsAudioProcessor::releaseResources()
@@ -141,13 +176,23 @@ void MathsAudioProcessor::processBlock (AudioSampleBuffer& buffer, MidiBuffer&)
         l = lData[i];
         r = rData[i];
         
+        memmove (li + 1, li, (size_t) (numElementsInArray (li) - 1) * sizeof (double));
+        memmove (ri + 1, ri, (size_t) (numElementsInArray (ri) - 1) * sizeof (double));
+        memmove (lo + 1, lo, (size_t) (numElementsInArray (lo) - 1) * sizeof (double));
+        memmove (ro + 1, ro, (size_t) (numElementsInArray (ro) - 1) * sizeof (double));
+        
+        li[0] = l;
+        ri[0] = r;
+        lo[0] = 0;
+        ro[0] = 0;
+
         p1 = p1Val.getNextValue();
         p2 = p2Val.getNextValue();
         p3 = p3Val.getNextValue();
         p4 = p4Val.getNextValue();
 
-        double l2 = lParser->evaluate();
-        double r2 = rParser->evaluate();
+        double l2 = (lParser != nullptr) ? lParser->evaluate() : 0.0;
+        double r2 = (rParser != nullptr) ? rParser->evaluate() : 0.0;
         
         if (std::isnan (l2) || std::isinf (l2)) l2 = 0.0f;
         if (std::isnan (r2) || std::isinf (r2)) r2 = 0.0f;
@@ -160,6 +205,9 @@ void MathsAudioProcessor::processBlock (AudioSampleBuffer& buffer, MidiBuffer&)
         
         lData[i] = float (l2);
         rData[i] = float (r2);
+        
+        lo[0] = l2;
+        ro[0] = r2;
         
         if (c != -1) c = 1 / sr;
         t += 1 / sr;

@@ -36,6 +36,7 @@ private:
     TextEditor l, r;
     Label lLabel { "", "L out:" };
     Label rLabel { "", "R out:" };
+    Label lError, rError;
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MathsAudioProcessorEditor)
 };
