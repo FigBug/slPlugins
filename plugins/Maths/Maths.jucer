@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<JUCERPROJECT id="JPnRUR" name="Maths" projectType="audioplug" version="1.0.2"
+<JUCERPROJECT id="JPnRUR" name="Maths" projectType="audioplug" version="1.0.3"
               bundleIdentifier="com.socalabs.Maths" includeBinaryInAppConfig="1"
               pluginName="Maths" pluginDesc="Maths" pluginManufacturer="SocaLabs"
               pluginManufacturerCode="Soca" pluginCode="MAth" pluginChannelConfigs="{2,2}"
               pluginIsSynth="0" pluginWantsMidiIn="0" pluginProducesMidiOut="0"
               pluginIsMidiEffectPlugin="0" pluginEditorRequiresKeys="0" pluginAUExportPrefix="MathsAU"
-              aaxIdentifier="com.socalabs.Maths" pluginAAXCategory="2" jucerVersion="5.4.3"
+              aaxIdentifier="com.socalabs.Maths" pluginAAXCategory="2" jucerVersion="5.4.4"
               companyName="SocaLabs" companyWebsite="www.socalabs.com" companyEmail="info@socalabs.com"
               displaySplashScreen="0" reportAppUsage="0" splashScreenColour="Dark"
               cppLanguageStandard="17" companyCopyright="SocaLabs" pluginAUMainType="'aufx'"

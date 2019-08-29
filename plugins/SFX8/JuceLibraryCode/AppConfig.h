@@ -16,10 +16,6 @@
 //==============================================================================
 // [BEGIN_USER_CODE_SECTION]
 
-#include "../../../module/bfxr/PinkNumber.h"
-#include "../../../module/bfxr/SfxrParams.h"
-#include "../../../module/bfxr/SfxrSynth.h"
-
 // [END_USER_CODE_SECTION]
 
 /*

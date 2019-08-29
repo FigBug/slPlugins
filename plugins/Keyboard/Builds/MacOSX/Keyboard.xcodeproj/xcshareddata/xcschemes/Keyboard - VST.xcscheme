@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "1020"
+   LastUpgradeVersion = "1030"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "25220F44A4E6E1F934B7C1EF"
-               BuildableName = "SFX8.vst"
-               BlueprintName = "SFX8 - VST"
-               ReferencedContainer = "container:SFX8.xcodeproj">
+               BuildableName = "Keyboard.vst"
+               BlueprintName = "Keyboard - VST"
+               ReferencedContainer = "container:Keyboard.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -44,16 +44,16 @@
       allowLocationSimulation = "YES">
       <PathRunnable
          runnableDebuggingMode = "0"
-         BundleIdentifier = "com.roli.pluginhost"
-         FilePath = "/Applications/Plugin Host.app">
+         BundleIdentifier = "com.tracktion.Waveform"
+         FilePath = "/Volumes/Lolrus/dev.github/waveform10/waveform/waveform10/Builds/MacOSX/build/Debug/Waveform 10 (64-bit).app">
       </PathRunnable>
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "25220F44A4E6E1F934B7C1EF"
-            BuildableName = "SFX8.vst"
-            BlueprintName = "SFX8 - VST"
-            ReferencedContainer = "container:SFX8.xcodeproj">
+            BuildableName = "Keyboard.vst"
+            BlueprintName = "Keyboard - VST"
+            ReferencedContainer = "container:Keyboard.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -69,9 +69,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "25220F44A4E6E1F934B7C1EF"
-            BuildableName = "SFX8.vst"
-            BlueprintName = "SFX8 - VST"
-            ReferencedContainer = "container:SFX8.xcodeproj">
+            BuildableName = "Keyboard.vst"
+            BlueprintName = "Keyboard - VST"
+            ReferencedContainer = "container:Keyboard.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </ProfileAction>
