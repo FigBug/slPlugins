@@ -87,6 +87,7 @@ void MathsAudioProcessor::setupParsers()
     {
         newP->setSampleRate (csr);
         newP->addConstants();
+        newP->addUtilities();
         newP->addEffectFilterFunctions();
         newP->setEquation (eq);
         setupVars (*newP);

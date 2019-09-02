@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<JUCERPROJECT id="JPnRUR" name="Maths" projectType="audioplug" version="1.0.3"
+<JUCERPROJECT id="JPnRUR" name="Maths" projectType="audioplug" version="1.0.4"
               bundleIdentifier="com.socalabs.Maths" includeBinaryInAppConfig="1"
               pluginName="Maths" pluginDesc="Maths" pluginManufacturer="SocaLabs"
               pluginManufacturerCode="Soca" pluginCode="MAth" pluginChannelConfigs="{2,2}"
