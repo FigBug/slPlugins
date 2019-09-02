@@ -35,7 +35,9 @@ void MathsAudioProcessor::stateUpdated()
 {
     lEquation = state.hasProperty ("l") ? state.getProperty ("l") : "(l + r) / 2";
     rEquation = state.hasProperty ("r") ? state.getProperty ("r") : "(l + r) / 2";
-   
+    aEquation = state.hasProperty ("a") ? state.getProperty ("a") : "l";
+    bEquation = state.hasProperty ("b") ? state.getProperty ("b") : "r";
+
     setupParsers();
     
     if (editor != nullptr)
@@ -46,6 +48,8 @@ void MathsAudioProcessor::updateState()
 {
     state.setProperty ("l", lEquation, nullptr);
     state.setProperty ("r", rEquation, nullptr);
+    state.setProperty ("a", aEquation, nullptr);
+    state.setProperty ("b", bEquation, nullptr);
 }
 
 //==============================================================================
@@ -53,6 +57,8 @@ void MathsAudioProcessor::prepareToPlay (double sampleRate, int)
 {
     if (lParser != nullptr) lParser->setSampleRate (sampleRate);
     if (rParser != nullptr) rParser->setSampleRate (sampleRate);
+    if (aParser != nullptr) aParser->setSampleRate (sampleRate);
+    if (bParser != nullptr) bParser->setSampleRate (sampleRate);
 
     sr = sampleRate;
     c = -1;
@@ -68,6 +74,8 @@ void MathsAudioProcessor::prepareToPlay (double sampleRate, int)
     memset (ri, 0, sizeof (ri));
     memset (lo, 0, sizeof (lo));
     memset (ro, 0, sizeof (ro));
+    memset (ao, 0, sizeof (ao));
+    memset (bo, 0, sizeof (bo));
 }
 
 void MathsAudioProcessor::setupParsers()
@@ -75,50 +83,45 @@ void MathsAudioProcessor::setupParsers()
     auto csr = getSampleRate();
     if (csr == 0) csr = 44100.0;
     
+    auto setup = [&] (std::unique_ptr<AudioEquationParser>& newP, const String& eq) -> String
+    {
+        newP->setSampleRate (csr);
+        newP->addConstants();
+        newP->addEffectFilterFunctions();
+        newP->setEquation (eq);
+        setupVars (*newP);
+        newP->evaluate();
+        
+        if (newP->hasError())
+        {
+            String err = newP->getError();
+            DBG(lError);
+            newP = nullptr;
+            return err;
+        }
+        else
+        {
+            return {};
+        }
+    };
+    
     auto newL = std::make_unique<AudioEquationParser>();
     auto newR = std::make_unique<AudioEquationParser>();
-    
-    newL->setSampleRate (csr);
-    newL->addConstants();
-    newL->addEffectFilterFunctions();
-    newL->setEquation (lEquation);
-    setupVars (*newL);
-    newL->evaluate();
-    
-    if (newL->hasError())
-    {
-        lError = newL->getError();
-        DBG(lError);
-        newL = nullptr;
-    }
-    else
-    {
-        lError = {};
-    }
+    auto newA = std::make_unique<AudioEquationParser>();
+    auto newB = std::make_unique<AudioEquationParser>();
 
-    newR->setSampleRate (csr);
-    newR->addConstants();
-    newR->addEffectFilterFunctions();
-    newR->setEquation (rEquation);
-    setupVars (*newR);
-    newR->evaluate();
-    
-    if (newR->hasError())
-    {
-        rError = newR->getError();
-        DBG(rError);
-        newR = nullptr;
-    }
-    else
-    {
-        rError = {};
-    }
+    lError = setup (newL, lEquation);
+    rError = setup (newR, rEquation);
+    aError = setup (newA, aEquation);
+    bError = setup (newB, bEquation);
 
     {
         ScopedLock sl (lock);
         
         std::swap (lParser, newL);
         std::swap (rParser, newR);
+        std::swap (aParser, newA);
+        std::swap (bParser, newB);
     }
 }
 
@@ -134,13 +137,17 @@ void MathsAudioProcessor::setupVars (gin::EquationParser& p)
     p.addVariable ("s", &s);
     p.addVariable ("c", &c);
     p.addVariable ("sr", &sr);
-    
+    p.addVariable ("a", &a);
+    p.addVariable ("b", &b);
+
     for (int i = 0; i < 256; i++)
     {
         p.addVariable (String::formatted ("li%d", i), &li[i]);
         p.addVariable (String::formatted ("ri%d", i), &ri[i]);
         p.addVariable (String::formatted ("lo%d", i), &lo[i]);
         p.addVariable (String::formatted ("ro%d", i), &ro[i]);
+        p.addVariable (String::formatted ("ao%d", i), &lo[i]);
+        p.addVariable (String::formatted ("bo%d", i), &ro[i]);
     }
 }
 
@@ -180,7 +187,9 @@ void MathsAudioProcessor::processBlock (AudioSampleBuffer& buffer, MidiBuffer&)
         memmove (ri + 1, ri, (size_t) (numElementsInArray (ri) - 1) * sizeof (double));
         memmove (lo + 1, lo, (size_t) (numElementsInArray (lo) - 1) * sizeof (double));
         memmove (ro + 1, ro, (size_t) (numElementsInArray (ro) - 1) * sizeof (double));
-        
+        memmove (ao + 1, ao, (size_t) (numElementsInArray (ao) - 1) * sizeof (double));
+        memmove (bo + 1, bo, (size_t) (numElementsInArray (bo) - 1) * sizeof (double));
+
         li[0] = l;
         ri[0] = r;
         lo[0] = 0;
@@ -191,11 +200,21 @@ void MathsAudioProcessor::processBlock (AudioSampleBuffer& buffer, MidiBuffer&)
         p3 = p3Val.getNextValue();
         p4 = p4Val.getNextValue();
 
-        double l2 = (lParser != nullptr) ? lParser->evaluate() : 0.0;
-        double r2 = (rParser != nullptr) ? rParser->evaluate() : 0.0;
+        a = (aParser != nullptr) ? aParser->evaluate() : 0.0;
+        if (std::isnan (a) || std::isinf (a)) a = 0.0f;
+        ao[0] = a;
         
+        b = (bParser != nullptr) ? bParser->evaluate() : 0.0;
+        if (std::isnan (b) || std::isinf (b)) b = 0.0f;
+        bo[0] = b;
+
+        double l2 = (lParser != nullptr) ? lParser->evaluate() : 0.0;
         if (std::isnan (l2) || std::isinf (l2)) l2 = 0.0f;
+        lo[0] = l2;
+
+        double r2 = (rParser != nullptr) ? rParser->evaluate() : 0.0;
         if (std::isnan (r2) || std::isinf (r2)) r2 = 0.0f;
+        ro[0] = r2;
         
         if (parameterIntValue (PARAM_LIMITER) != 0)
         {
@@ -205,9 +224,6 @@ void MathsAudioProcessor::processBlock (AudioSampleBuffer& buffer, MidiBuffer&)
         
         lData[i] = float (l2);
         rData[i] = float (r2);
-        
-        lo[0] = l2;
-        ro[0] = r2;
         
         if (c != -1) c = 1 / sr;
         t += 1 / sr;

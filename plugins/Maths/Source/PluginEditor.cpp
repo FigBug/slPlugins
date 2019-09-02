@@ -17,21 +17,34 @@ using namespace gin;
 MathsAudioProcessorEditor::MathsAudioProcessorEditor (MathsAudioProcessor& p)
     : GinAudioProcessorEditor (p), mathsProcessor (p)
 {
+    Font f (Font::getDefaultMonospacedFontName(), 12, Font::plain);
+    
+    l.setFont (f);
+    r.setFont (f);
+    a.setFont (f);
+    b.setFont (f);
+
     addAndMakeVisible (l);
     addAndMakeVisible (r);
+    addAndMakeVisible (a);
+    addAndMakeVisible (b);
     addAndMakeVisible (lLabel);
     addAndMakeVisible (rLabel);
-    addAndMakeVisible (lError);
-    addAndMakeVisible (rError);
+    addAndMakeVisible (aLabel);
+    addAndMakeVisible (bLabel);
+    addAndMakeVisible (errors);
 
     l.addListener (this);
     r.addListener (this);
-    
+    a.addListener (this);
+    b.addListener (this);
+
     l.setText (p.lEquation, dontSendNotification);
     r.setText (p.rEquation, dontSendNotification);
-    
-    lError.setJustificationType (Justification::centred);
-    rError.setJustificationType (Justification::centred);
+    a.setText (p.aEquation, dontSendNotification);
+    b.setText (p.bEquation, dontSendNotification);
+
+    errors.setJustificationType (Justification::centred);
 
     int count = 0;
     for (Parameter* pp : p.getPluginParameters())
@@ -65,9 +78,22 @@ void MathsAudioProcessorEditor::refresh()
 {
     l.setText (mathsProcessor.lEquation, dontSendNotification);
     r.setText (mathsProcessor.rEquation, dontSendNotification);
+    a.setText (mathsProcessor.aEquation, dontSendNotification);
+    b.setText (mathsProcessor.bEquation, dontSendNotification);
+
+    String err;
+    auto doErr = [&] (String title, String msg)
+    {
+        if (msg.isNotEmpty())
+            err += title + " " + msg + " ";
+    };
     
-    lError.setText (mathsProcessor.lError, dontSendNotification);
-    rError.setText (mathsProcessor.rError, dontSendNotification);
+    doErr ("L:", mathsProcessor.lError);
+    doErr ("R:", mathsProcessor.rError);
+    doErr ("A:", mathsProcessor.aError);
+    doErr ("B:", mathsProcessor.bError);
+
+    errors.setText (err, dontSendNotification);
 }
 
 void MathsAudioProcessorEditor::resized()
@@ -81,18 +107,22 @@ void MathsAudioProcessorEditor::resized()
     componentForId (PARAM_LIMITER)->setBounds (getGridArea (8, 0));
     
     auto rc = getGridArea (0, 0, 4, 1);
-    rc = rc.withSizeKeepingCentre(rc.getWidth() - 4, 54);
+    rc = rc.withSizeKeepingCentre (rc.getWidth() - 4, rc.getHeight());
     
+    int h = rc.getHeight() / 4;
     auto rcLabels = rc.removeFromLeft (50);
-    lLabel.setBounds (rcLabels.removeFromTop (25));
-    rLabel.setBounds (rcLabels.removeFromBottom (25));
+    aLabel.setBounds (rcLabels.removeFromTop (h));
+    bLabel.setBounds (rcLabels.removeFromTop (h));
+    lLabel.setBounds (rcLabels.removeFromTop (h));
+    rLabel.setBounds (rcLabels.removeFromTop (h));
 
-    l.setBounds (rc.removeFromTop (25));
-    r.setBounds (rc.removeFromBottom (25));
-    
+    a.setBounds (rc.removeFromTop (h).reduced (0, 2));
+    b.setBounds (rc.removeFromTop (h).reduced (0, 2));
+    l.setBounds (rc.removeFromTop (h).reduced (0, 2));
+    r.setBounds (rc.removeFromTop (h).reduced (0, 2));
+
     auto rcError = getLocalBounds().removeFromBottom (20);
-    lError.setBounds (rcError.removeFromLeft (rcError.getWidth() / 2).reduced (4));
-    rError.setBounds (rcError.reduced (4));
+    errors.setBounds (rcError.reduced (4));
 }
 
 void MathsAudioProcessorEditor::textEditorReturnKeyPressed (TextEditor& ed)
@@ -109,6 +139,18 @@ void MathsAudioProcessorEditor::textEditorReturnKeyPressed (TextEditor& ed)
         mathsProcessor.setupParsers();
         refresh();
     }
+    else if (&ed == &a)
+    {
+        mathsProcessor.aEquation = ed.getText();
+        mathsProcessor.setupParsers();
+        refresh();
+    }
+    else if (&ed == &b)
+    {
+        mathsProcessor.bEquation = ed.getText();
+        mathsProcessor.setupParsers();
+        refresh();
+    }
 }
 
 void MathsAudioProcessorEditor::textEditorEscapeKeyPressed (TextEditor& ed)
@@ -117,6 +159,10 @@ void MathsAudioProcessorEditor::textEditorEscapeKeyPressed (TextEditor& ed)
         l.setText (mathsProcessor.lEquation, dontSendNotification);
     else if (&ed == &r)
         r.setText (mathsProcessor.rEquation, dontSendNotification);
+    else if (&ed == &r)
+        a.setText (mathsProcessor.aEquation, dontSendNotification);
+    else if (&ed == &r)
+        b.setText (mathsProcessor.bEquation, dontSendNotification);
 }
 
 void MathsAudioProcessorEditor::textEditorFocusLost (TextEditor& ed)
