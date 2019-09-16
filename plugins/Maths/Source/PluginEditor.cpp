@@ -65,7 +65,7 @@ MathsAudioProcessorEditor::MathsAudioProcessorEditor (MathsAudioProcessor& p)
         count++;
     }
     
-    setGridSize (9, 1);
+    setGridSize (9, 2);
     setSize (getWidth(), getHeight() + 20);
 }
 
@@ -100,13 +100,13 @@ void MathsAudioProcessorEditor::resized()
 {
     GinAudioProcessorEditor::resized();
     
-    componentForId (PARAM_P1)->setBounds (getGridArea (4, 0));
-    componentForId (PARAM_P2)->setBounds (getGridArea (5, 0));
-    componentForId (PARAM_P3)->setBounds (getGridArea (6, 0));
-    componentForId (PARAM_P4)->setBounds (getGridArea (7, 0));
-    componentForId (PARAM_LIMITER)->setBounds (getGridArea (8, 0));
+    componentForId (PARAM_P1)->setBounds (getGridArea (0, 1));
+    componentForId (PARAM_P2)->setBounds (getGridArea (1, 1));
+    componentForId (PARAM_P3)->setBounds (getGridArea (2, 1));
+    componentForId (PARAM_P4)->setBounds (getGridArea (3, 1));
+    componentForId (PARAM_LIMITER)->setBounds (getGridArea (8, 1));
     
-    auto rc = getGridArea (0, 0, 4, 1);
+    auto rc = getGridArea (0, 0, 9, 1);
     rc = rc.withSizeKeepingCentre (rc.getWidth() - 4, rc.getHeight());
     
     int h = rc.getHeight() / 4;
