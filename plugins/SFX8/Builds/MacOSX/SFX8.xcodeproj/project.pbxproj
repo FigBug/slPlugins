@@ -1100,6 +1100,7 @@
 				GENERATE_PKGINFO_FILE = YES;
 				HEADER_SEARCH_PATHS = (
 					"../../../../module/juce/modules/juce_audio_processors/format_types/VST3_SDK",
+					"../../../../module/plugin_sdk/vstsdk2.4",
 					"../../JuceLibraryCode",
 					"../../../../module/dRowAudio/module",
 					"../../../../module/gin/modules",
@@ -1124,7 +1125,7 @@
 		CC8F8EB75AC785967CAC4F2C = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "c++17";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_LINK_OBJC_RUNTIME = NO;
@@ -1157,6 +1158,7 @@
 				GENERATE_PKGINFO_FILE = YES;
 				HEADER_SEARCH_PATHS = (
 					"../../../../module/juce/modules/juce_audio_processors/format_types/VST3_SDK",
+					"../../../../module/plugin_sdk/vstsdk2.4",
 					"../../JuceLibraryCode",
 					"../../../../module/dRowAudio/module",
 					"../../../../module/gin/modules",
@@ -1212,6 +1214,7 @@
 				GENERATE_PKGINFO_FILE = YES;
 				HEADER_SEARCH_PATHS = (
 					"../../../../module/juce/modules/juce_audio_processors/format_types/VST3_SDK",
+					"../../../../module/plugin_sdk/vstsdk2.4",
 					"../../JuceLibraryCode",
 					"../../../../module/dRowAudio/module",
 					"../../../../module/gin/modules",
@@ -1237,7 +1240,7 @@
 		AC986E6D4155C97AEA4645B3 = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "c++17";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_LINK_OBJC_RUNTIME = NO;
@@ -1270,6 +1273,7 @@
 				GENERATE_PKGINFO_FILE = YES;
 				HEADER_SEARCH_PATHS = (
 					"../../../../module/juce/modules/juce_audio_processors/format_types/VST3_SDK",
+					"../../../../module/plugin_sdk/vstsdk2.4",
 					"../../JuceLibraryCode",
 					"../../../../module/dRowAudio/module",
 					"../../../../module/gin/modules",
@@ -1323,6 +1327,7 @@
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				HEADER_SEARCH_PATHS = (
 					"../../../../module/juce/modules/juce_audio_processors/format_types/VST3_SDK",
+					"../../../../module/plugin_sdk/vstsdk2.4",
 					"../../JuceLibraryCode",
 					"../../../../module/dRowAudio/module",
 					"../../../../module/gin/modules",
@@ -1344,7 +1349,7 @@
 		E7AC4DE066524AD3F52D0A55 = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "c++17";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_LINK_OBJC_RUNTIME = NO;
@@ -1374,6 +1379,7 @@
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				HEADER_SEARCH_PATHS = (
 					"../../../../module/juce/modules/juce_audio_processors/format_types/VST3_SDK",
+					"../../../../module/plugin_sdk/vstsdk2.4",
 					"../../JuceLibraryCode",
 					"../../../../module/dRowAudio/module",
 					"../../../../module/gin/modules",
@@ -1424,6 +1430,7 @@
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				HEADER_SEARCH_PATHS = (
 					"../../../../module/juce/modules/juce_audio_processors/format_types/VST3_SDK",
+					"../../../../module/plugin_sdk/vstsdk2.4",
 					"../../JuceLibraryCode",
 					"../../../../module/dRowAudio/module",
 					"../../../../module/gin/modules",
@@ -1444,7 +1451,7 @@
 		4D1EEADA9F327CFB40AF9B88 = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "c++17";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_LINK_OBJC_RUNTIME = NO;
@@ -1475,6 +1482,7 @@
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				HEADER_SEARCH_PATHS = (
 					"../../../../module/juce/modules/juce_audio_processors/format_types/VST3_SDK",
+					"../../../../module/plugin_sdk/vstsdk2.4",
 					"../../JuceLibraryCode",
 					"../../../../module/dRowAudio/module",
 					"../../../../module/gin/modules",

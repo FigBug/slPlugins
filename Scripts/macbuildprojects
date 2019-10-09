@@ -1,3 +1,9 @@
+DEV_APP_ID="Developer ID Application: Roland Rabien (3FS7DJDG38)"
+DEV_INST_ID="Developer ID Installer: Roland Rabien (3FS7DJDG38)"
+
+PASSWORD="wtow-zpjo-nftf-tpzc"
+USERNAME="itunes@rabien.com"
+
 rm -R bin
 mkdir bin
 
@@ -94,6 +100,17 @@ cp -R ~/Library/Audio/Plug-Ins/Components/Maths.component bin
 cp -R ~/Library/Audio/Plug-Ins/Components/ABTester.component bin
 cp -R ~/Library/Audio/Plug-Ins/Components/AddInvert.component bin
 cp -R ~/Library/Audio/Plug-Ins/Components/SFX8.component bin
+
+cd bin/VST
+for filename in ./*.vst; do
+  codesign --force -s "$DEV_APP_ID" -v "$filename" --deep --strict --options=runtime
+  spctl -vvv --assess --type exec "$filename"
+  codesign -dvv "$filename"
+  codesign -vvv --deep --strict "$filename"
+ 
+  notarize "$filename" "$USERNAME" "$PASSWORD"
+done
+cd ../..
 
 cd bin
 zip -r PAPU_Mac.zip PAPU.vst PAPU.component

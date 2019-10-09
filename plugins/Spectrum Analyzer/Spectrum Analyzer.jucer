@@ -26,14 +26,14 @@
     </GROUP>
   </MAINGROUP>
   <EXPORTFORMATS>
-    <XCODE_MAC targetFolder="Builds/MacOSX" hardenedRuntime="1">
+    <XCODE_MAC targetFolder="Builds/MacOSX" hardenedRuntime="1" vstLegacyFolder="../../module/plugin_sdk/vstsdk2.4">
       <CONFIGURATIONS>
         <CONFIGURATION name="Debug" isDebug="1" optimisation="1" targetName="SpectrumAnalyzer"
                        cppLanguageStandard="c++14" osxCompatibility="10.9 SDK" headerPath="../../../../module/slCommon"
                        enablePluginBinaryCopyStep="1" recommendedWarnings="LLVM"/>
         <CONFIGURATION name="Release" isDebug="0" optimisation="3" targetName="SpectrumAnalyzer"
                        cppLanguageStandard="c++14" osxCompatibility="10.9 SDK" enablePluginBinaryCopyStep="1"
-                       headerPath="../../../../module/slCommon" osxArchitecture="64BitUniversal"
+                       headerPath="../../../../module/slCommon" osxArchitecture="64BitIntel"
                        recommendedWarnings="LLVM" linkTimeOptimisation="0"/>
       </CONFIGURATIONS>
       <MODULEPATHS>
@@ -59,7 +59,8 @@
         <MODULEPATH id="gin_dsp" path="../../module/gin/modules"/>
       </MODULEPATHS>
     </XCODE_MAC>
-    <VS2017 targetFolder="Builds/VisualStudio2017" toolset="v141_xp" windowsTargetPlatformVersion="8.1">
+    <VS2017 targetFolder="Builds/VisualStudio2017" toolset="v141_xp" windowsTargetPlatformVersion="8.1"
+            vstLegacyFolder="../../module/plugin_sdk/vstsdk2.4">
       <CONFIGURATIONS>
         <CONFIGURATION name="Debug" winWarningLevel="4" generateManifest="1" winArchitecture="Win32"
                        isDebug="1" optimisation="1" targetName="SpectrumAnalyzer_32b"

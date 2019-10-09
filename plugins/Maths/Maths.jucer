@@ -35,7 +35,7 @@
                        recommendedWarnings="LLVM"/>
         <CONFIGURATION name="Release" isDebug="0" optimisation="3" targetName="Maths"
                        cppLanguageStandard="c++14" osxCompatibility="10.9 SDK" enablePluginBinaryCopyStep="1"
-                       osxArchitecture="64BitUniversal" recommendedWarnings="LLVM" linkTimeOptimisation="0"/>
+                       osxArchitecture="64BitIntel" recommendedWarnings="LLVM" linkTimeOptimisation="0"/>
       </CONFIGURATIONS>
       <MODULEPATHS>
         <MODULEPATH id="juce_core" path="../../module/juce/modules"/>
