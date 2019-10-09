@@ -101,16 +101,20 @@ cp -R ~/Library/Audio/Plug-Ins/Components/ABTester.component bin
 cp -R ~/Library/Audio/Plug-Ins/Components/AddInvert.component bin
 cp -R ~/Library/Audio/Plug-Ins/Components/SFX8.component bin
 
-cd bin/VST
+cd bin
 for filename in ./*.vst; do
   codesign --force -s "$DEV_APP_ID" -v "$filename" --deep --strict --options=runtime
   spctl -vvv --assess --type exec "$filename"
   codesign -dvv "$filename"
   codesign -vvv --deep --strict "$filename"
- 
-  notarize "$filename" "$USERNAME" "$PASSWORD"
 done
-cd ../..
+for filename in ./*.component; do
+  codesign --force -s "$DEV_APP_ID" -v "$filename" --deep --strict --options=runtime
+  spctl -vvv --assess --type exec "$filename"
+  codesign -dvv "$filename"
+  codesign -vvv --deep --strict "$filename"
+done
+cd ..
 
 cd bin
 zip -r PAPU_Mac.zip PAPU.vst PAPU.component
