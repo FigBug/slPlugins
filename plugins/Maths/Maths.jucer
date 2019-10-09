@@ -6,7 +6,7 @@
               pluginManufacturerCode="Soca" pluginCode="MAth" pluginChannelConfigs="{2,2}"
               pluginIsSynth="0" pluginWantsMidiIn="0" pluginProducesMidiOut="0"
               pluginIsMidiEffectPlugin="0" pluginEditorRequiresKeys="0" pluginAUExportPrefix="MathsAU"
-              aaxIdentifier="com.socalabs.Maths" pluginAAXCategory="2" jucerVersion="5.4.3"
+              aaxIdentifier="com.socalabs.Maths" pluginAAXCategory="2" jucerVersion="5.4.4"
               companyName="SocaLabs" companyWebsite="www.socalabs.com" companyEmail="info@socalabs.com"
               displaySplashScreen="0" reportAppUsage="0" splashScreenColour="Dark"
               cppLanguageStandard="17" companyCopyright="SocaLabs" pluginAUMainType="'aufx'"
@@ -27,14 +27,15 @@
     </GROUP>
   </MAINGROUP>
   <EXPORTFORMATS>
-    <XCODE_MAC targetFolder="Builds/MacOSX" vstLegacyFolder="../../module/plugin_sdk/vstsdk2.4">
+    <XCODE_MAC targetFolder="Builds/MacOSX" vstLegacyFolder="../../module/plugin_sdk/vstsdk2.4"
+               hardenedRuntime="1">
       <CONFIGURATIONS>
         <CONFIGURATION name="Debug" isDebug="1" optimisation="1" targetName="Maths"
                        cppLanguageStandard="c++14" osxCompatibility="10.9 SDK" enablePluginBinaryCopyStep="1"
                        recommendedWarnings="LLVM"/>
         <CONFIGURATION name="Release" isDebug="0" optimisation="3" targetName="Maths"
                        cppLanguageStandard="c++14" osxCompatibility="10.9 SDK" enablePluginBinaryCopyStep="1"
-                       osxArchitecture="64BitUniversal" recommendedWarnings="LLVM"/>
+                       osxArchitecture="64BitUniversal" recommendedWarnings="LLVM" linkTimeOptimisation="0"/>
       </CONFIGURATIONS>
       <MODULEPATHS>
         <MODULEPATH id="juce_core" path="../../module/juce/modules"/>

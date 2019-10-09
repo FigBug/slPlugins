@@ -906,7 +906,6 @@
 				GENERATE_PKGINFO_FILE = YES;
 				HEADER_SEARCH_PATHS = (
 					"../../../../module/juce/modules/juce_audio_processors/format_types/VST3_SDK",
-					"/Users/rrabien/SDKs/vstsdk2.4",
 					"../../JuceLibraryCode",
 					"../../../../module/dRowAudio/module",
 					"../../../../module/gin/modules",
@@ -963,7 +962,6 @@
 				GENERATE_PKGINFO_FILE = YES;
 				HEADER_SEARCH_PATHS = (
 					"../../../../module/juce/modules/juce_audio_processors/format_types/VST3_SDK",
-					"/Users/rrabien/SDKs/vstsdk2.4",
 					"../../JuceLibraryCode",
 					"../../../../module/dRowAudio/module",
 					"../../../../module/gin/modules",
@@ -976,7 +974,6 @@
 				INFOPLIST_PREPROCESS = NO;
 				INSTALL_PATH = "$(HOME)/Library/Audio/Plug-Ins/VST/";
 				LIBRARY_STYLE = Bundle;
-				LLVM_LTO = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				OTHER_CPLUSPLUSFLAGS = "-Wall -Wshadow-all -Wshorten-64-to-32 -Wstrict-aliasing -Wuninitialized -Wunused-parameter -Wconversion -Wsign-compare -Wint-conversion -Wconditional-uninitialized -Woverloaded-virtual -Wreorder -Wconstant-conversion -Wsign-conversion -Wunused-private-field -Wbool-conversion -Wextra-semi -Wunreachable-code -Wzero-as-null-pointer-constant -Wcast-align -Winconsistent-missing-destructor-override -Wshift-sign-overflow -Wnullable-to-nonnull-conversion -Wno-missing-field-initializers -Wno-ignored-qualifiers";
 				OTHER_LDFLAGS = "-bundle -lToneGenerator";
@@ -1019,7 +1016,6 @@
 				GENERATE_PKGINFO_FILE = YES;
 				HEADER_SEARCH_PATHS = (
 					"../../../../module/juce/modules/juce_audio_processors/format_types/VST3_SDK",
-					"/Users/rrabien/SDKs/vstsdk2.4",
 					"../../JuceLibraryCode",
 					"../../../../module/dRowAudio/module",
 					"../../../../module/gin/modules",
@@ -1077,7 +1073,6 @@
 				GENERATE_PKGINFO_FILE = YES;
 				HEADER_SEARCH_PATHS = (
 					"../../../../module/juce/modules/juce_audio_processors/format_types/VST3_SDK",
-					"/Users/rrabien/SDKs/vstsdk2.4",
 					"../../JuceLibraryCode",
 					"../../../../module/dRowAudio/module",
 					"../../../../module/gin/modules",
@@ -1090,7 +1085,6 @@
 				INFOPLIST_PREPROCESS = NO;
 				INSTALL_PATH = "$(HOME)/Library/Audio/Plug-Ins/Components/";
 				LIBRARY_STYLE = Bundle;
-				LLVM_LTO = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				OTHER_CPLUSPLUSFLAGS = "-Wall -Wshadow-all -Wshorten-64-to-32 -Wstrict-aliasing -Wuninitialized -Wunused-parameter -Wconversion -Wsign-compare -Wint-conversion -Wconditional-uninitialized -Woverloaded-virtual -Wreorder -Wconstant-conversion -Wsign-conversion -Wunused-private-field -Wbool-conversion -Wextra-semi -Wunreachable-code -Wzero-as-null-pointer-constant -Wcast-align -Winconsistent-missing-destructor-override -Wshift-sign-overflow -Wnullable-to-nonnull-conversion -Wno-missing-field-initializers -Wno-ignored-qualifiers";
 				OTHER_LDFLAGS = "-bundle -lToneGenerator";
@@ -1132,7 +1126,6 @@
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				HEADER_SEARCH_PATHS = (
 					"../../../../module/juce/modules/juce_audio_processors/format_types/VST3_SDK",
-					"/Users/rrabien/SDKs/vstsdk2.4",
 					"../../JuceLibraryCode",
 					"../../../../module/dRowAudio/module",
 					"../../../../module/gin/modules",
@@ -1183,7 +1176,6 @@
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				HEADER_SEARCH_PATHS = (
 					"../../../../module/juce/modules/juce_audio_processors/format_types/VST3_SDK",
-					"/Users/rrabien/SDKs/vstsdk2.4",
 					"../../JuceLibraryCode",
 					"../../../../module/dRowAudio/module",
 					"../../../../module/gin/modules",
@@ -1193,7 +1185,6 @@
 					"$(inherited)",
 				);
 				INSTALL_PATH = "@executable_path/../Frameworks";
-				LLVM_LTO = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				OTHER_CPLUSPLUSFLAGS = "-Wall -Wshadow-all -Wshorten-64-to-32 -Wstrict-aliasing -Wuninitialized -Wunused-parameter -Wconversion -Wsign-compare -Wint-conversion -Wconditional-uninitialized -Woverloaded-virtual -Wreorder -Wconstant-conversion -Wsign-conversion -Wunused-private-field -Wbool-conversion -Wextra-semi -Wunreachable-code -Wzero-as-null-pointer-constant -Wcast-align -Winconsistent-missing-destructor-override -Wshift-sign-overflow -Wnullable-to-nonnull-conversion -Wno-missing-field-initializers -Wno-ignored-qualifiers";
 				PRODUCT_BUNDLE_IDENTIFIER = com.socalabs.ToneGenerator;
