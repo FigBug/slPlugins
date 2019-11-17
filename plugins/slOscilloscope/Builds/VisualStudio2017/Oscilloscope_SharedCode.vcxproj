@@ -483,6 +483,9 @@
     <ClCompile Include="..\..\..\..\module\gin\modules\gin\3rdparty\muParser\muParserTokenReader.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="..\..\..\..\module\gin\modules\gin\components\componentviewer.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="..\..\..\..\module\gin\modules\gin\components\mapviewer.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
@@ -502,6 +505,9 @@
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\..\..\..\module\gin\modules\gin\images\imageeffects_stackblur.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\module\gin\modules\gin\images\imageutilities.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\..\..\..\module\gin\modules\gin\utilities\asyncutilities.cpp">
@@ -531,7 +537,13 @@
     <ClCompile Include="..\..\..\..\module\gin\modules\gin\utilities\linearregression.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="..\..\..\..\module\gin\modules\gin\utilities\messagepack.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="..\..\..\..\module\gin\modules\gin\utilities\openstreetmaps.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\module\gin\modules\gin\utilities\plist.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\..\..\..\module\gin\modules\gin\utilities\sharedmemory.cpp">
@@ -550,6 +562,9 @@
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\..\..\..\module\gin\modules\gin\utilities\valuetreeobject.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\module\gin\modules\gin\utilities\valuetreeutilities.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\..\..\..\module\gin\modules\gin\gin.cpp">
@@ -2644,12 +2659,14 @@
     <ClInclude Include="..\..\..\..\module\gin\modules\gin\3rdparty\muParser\muParserTemplateMagic.h"/>
     <ClInclude Include="..\..\..\..\module\gin\modules\gin\3rdparty\muParser\muParserToken.h"/>
     <ClInclude Include="..\..\..\..\module\gin\modules\gin\3rdparty\muParser\muParserTokenReader.h"/>
+    <ClInclude Include="..\..\..\..\module\gin\modules\gin\components\componentviewer.h"/>
     <ClInclude Include="..\..\..\..\module\gin\modules\gin\components\mapviewer.h"/>
     <ClInclude Include="..\..\..\..\module\gin\modules\gin\components\propertycomponents.h"/>
     <ClInclude Include="..\..\..\..\module\gin\modules\gin\components\singlelinetexteditor.h"/>
     <ClInclude Include="..\..\..\..\module\gin\modules\gin\geometry\geometry.h"/>
     <ClInclude Include="..\..\..\..\module\gin\modules\gin\images\bmpimageformat.h"/>
     <ClInclude Include="..\..\..\..\module\gin\modules\gin\images\imageeffects.h"/>
+    <ClInclude Include="..\..\..\..\module\gin\modules\gin\images\imageutilities.h"/>
     <ClInclude Include="..\..\..\..\module\gin\modules\gin\utilities\asyncutilities.h"/>
     <ClInclude Include="..\..\..\..\module\gin\modules\gin\utilities\downloadmanager.h"/>
     <ClInclude Include="..\..\..\..\module\gin\modules\gin\utilities\elevatedfilecopy.h"/>
@@ -2659,13 +2676,16 @@
     <ClInclude Include="..\..\..\..\module\gin\modules\gin\utilities\integrator.h"/>
     <ClInclude Include="..\..\..\..\module\gin\modules\gin\utilities\leastsquaresregression.h"/>
     <ClInclude Include="..\..\..\..\module\gin\modules\gin\utilities\linearregression.h"/>
+    <ClInclude Include="..\..\..\..\module\gin\modules\gin\utilities\messagepack.h"/>
     <ClInclude Include="..\..\..\..\module\gin\modules\gin\utilities\openstreetmaps.h"/>
+    <ClInclude Include="..\..\..\..\module\gin\modules\gin\utilities\plist.h"/>
     <ClInclude Include="..\..\..\..\module\gin\modules\gin\utilities\sharedmemory.h"/>
     <ClInclude Include="..\..\..\..\module\gin\modules\gin\utilities\spline.h"/>
     <ClInclude Include="..\..\..\..\module\gin\modules\gin\utilities\systemsemaphore.h"/>
     <ClInclude Include="..\..\..\..\module\gin\modules\gin\utilities\threading.h"/>
     <ClInclude Include="..\..\..\..\module\gin\modules\gin\utilities\util.h"/>
     <ClInclude Include="..\..\..\..\module\gin\modules\gin\utilities\valuetreeobject.h"/>
+    <ClInclude Include="..\..\..\..\module\gin\modules\gin\utilities\valuetreeutilities.h"/>
     <ClInclude Include="..\..\..\..\module\gin\modules\gin\gin.h"/>
     <ClInclude Include="..\..\..\..\module\gin\modules\gin_dsp\dsp\adsr.h"/>
     <ClInclude Include="..\..\..\..\module\gin\modules\gin_dsp\dsp\analogadsr.h"/>
