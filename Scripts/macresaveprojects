@@ -1,14 +1,19 @@
-/Applications/JUCE/Projucer.app/Contents/MacOS/Projucer --resave ../../PAPU/plugin/PAPU.jucer
-/Applications/JUCE/Projucer.app/Contents/MacOS/Projucer --resave ../../RP2A03/plugin/RP2A03.jucer
-/Applications/JUCE/Projucer.app/Contents/MacOS/Projucer --resave ../../SID/plugin/SID.jucer
-/Applications/JUCE/Projucer.app/Contents/MacOS/Projucer --resave ../../SN76489/plugin/SN76489.jucer
-/Applications/JUCE/Projucer.app/Contents/MacOS/Projucer --resave ../../Voc/plugin/Voc.jucer
+#/Applications/JUCE/Projucer.app/Contents/MacOS/Projucer --resave ../../PAPU/plugin/PAPU.jucer
+#/Applications/JUCE/Projucer.app/Contents/MacOS/Projucer --resave ../../RP2A03/plugin/RP2A03.jucer
+#/Applications/JUCE/Projucer.app/Contents/MacOS/Projucer --resave ../../SID/plugin/SID.jucer
+#/Applications/JUCE/Projucer.app/Contents/MacOS/Projucer --resave ../../SN76489/plugin/SN76489.jucer
+#/Applications/JUCE/Projucer.app/Contents/MacOS/Projucer --resave ../../Voc/plugin/Voc.jucer
 
-/Applications/JUCE/Projucer.app/Contents/MacOS/Projucer --resave "../plugins/slOscilloscope/slOscilloscope.jucer"
-/Applications/JUCE/Projucer.app/Contents/MacOS/Projucer --resave "../plugins/Spectrum Analyzer/Spectrum Analyzer.jucer"
-/Applications/JUCE/Projucer.app/Contents/MacOS/Projucer --resave "../plugins/Tone Generator/Tone Generator.jucer"
-/Applications/JUCE/Projucer.app/Contents/MacOS/Projucer --resave "../plugins/Channel Mute/Channel Mute.jucer"
-/Applications/JUCE/Projucer.app/Contents/MacOS/Projucer --resave "../plugins/Maths/Maths.jucer"
-/Applications/JUCE/Projucer.app/Contents/MacOS/Projucer --resave "../plugins/AB\ Tester/AB\ Tester.jucer"
-/Applications/JUCE/Projucer.app/Contents/MacOS/Projucer --resave "../plugins/AddInvert/AddInvert.jucer"
-/Applications/JUCE/Projucer.app/Contents/MacOS/Projucer --resave "../plugins/SFX8/SFX8.jucer"
+ROOT=$(cd "$(dirname "$0")/.."; pwd)
+echo ROOT: "$ROOT"
+cd "$ROOT/module/juce/extras/Projucer/Builds/MacOSX/"
+xcodebuild -configuration Release || exit 1
+
+./build/Release/Projucer.app/Contents/MacOS/Projucer --resave "$ROOT/plugins/slOscilloscope/slOscilloscope.jucer"
+./build/Release/Projucer.app/Contents/MacOS/Projucer --resave "$ROOT/plugins/Spectrum Analyzer/Spectrum Analyzer.jucer"
+./build/Release/Projucer.app/Contents/MacOS/Projucer --resave "$ROOT/plugins/Tone Generator/Tone Generator.jucer"
+./build/Release/Projucer.app/Contents/MacOS/Projucer --resave "$ROOT/plugins/Channel Mute/Channel Mute.jucer"
+./build/Release/Projucer.app/Contents/MacOS/Projucer --resave "$ROOT/plugins/Maths/Maths.jucer"
+./build/Release/Projucer.app/Contents/MacOS/Projucer --resave "$ROOT/plugins/AB\ Tester/AB\ Tester.jucer"
+./build/Release/Projucer.app/Contents/MacOS/Projucer --resave "$ROOT/plugins/AddInvert/AddInvert.jucer"
+./build/Release/Projucer.app/Contents/MacOS/Projucer --resave "$ROOT/plugins/SFX8/SFX8.jucer"
