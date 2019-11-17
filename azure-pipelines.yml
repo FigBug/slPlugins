@@ -3,6 +3,9 @@ jobs:
   pool:
     vmImage: 'macOS-10.14'
   steps:
+  - checkout: self
+      submodules: true
+      persistCredentials: true
   - script: Scripts/macci
     displayName: 'macOS Build'
   - task: PublishPipelineArtifact@0
