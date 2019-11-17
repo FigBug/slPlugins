@@ -1,2 +1,5 @@
+ROOT=$(cd "$(dirname "$0")/.."; pwd)
+echo ROOT: "$ROOT"
+
 ./macresaveprojects
 ./macbuildprojects
