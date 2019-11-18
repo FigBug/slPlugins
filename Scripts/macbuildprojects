@@ -50,11 +50,6 @@ xcodebuild -configuration Release || exit 1
 popd
 
 pwd
-cp -R ~/Library/Audio/Plug-Ins/VST/PAPU.vst bin
-cp -R ~/Library/Audio/Plug-Ins/VST/RP2A03.vst bin
-cp -R ~/Library/Audio/Plug-Ins/VST/SID.vst bin
-cp -R ~/Library/Audio/Plug-Ins/VST/SN76489.vst bin
-cp -R ~/Library/Audio/Plug-Ins/VST/Voc.vst bin
 cp -R ~/Library/Audio/Plug-Ins/VST/Oscilloscope.vst bin
 cp -R ~/Library/Audio/Plug-Ins/VST/SpectrumAnalyzer.vst bin
 cp -R ~/Library/Audio/Plug-Ins/VST/ToneGenerator.vst bin
@@ -64,11 +59,6 @@ cp -R ~/Library/Audio/Plug-Ins/VST/ABTester.vst bin
 cp -R ~/Library/Audio/Plug-Ins/VST/AddInvert.vst bin
 cp -R ~/Library/Audio/Plug-Ins/VST/SFX8.vst bin
 
-cp -R ~/Library/Audio/Plug-Ins/Components/PAPU.component bin
-cp -R ~/Library/Audio/Plug-Ins/Components/RP2A03.component bin
-cp -R ~/Library/Audio/Plug-Ins/Components/SID.component bin
-cp -R ~/Library/Audio/Plug-Ins/Components/SN76489.component bin
-cp -R ~/Library/Audio/Plug-Ins/Components/Voc.component bin
 cp -R ~/Library/Audio/Plug-Ins/Components/Oscilloscope.component bin
 cp -R ~/Library/Audio/Plug-Ins/Components/SpectrumAnalyzer.component bin
 cp -R ~/Library/Audio/Plug-Ins/Components/ToneGenerator.component bin
@@ -80,25 +70,14 @@ cp -R ~/Library/Audio/Plug-Ins/Components/SFX8.component bin
 
 cd bin
 for filename in ./*.vst; do
-  codesign --force -s "$DEV_APP_ID" -v "$filename" --deep --strict --options=runtime
-  spctl -vvv --assess --type exec "$filename"
-  codesign -dvv "$filename"
-  codesign -vvv --deep --strict "$filename"
+  codesign -s "$DEV_APP_ID" -v "$filename"
 done
 for filename in ./*.component; do
-  codesign --force -s "$DEV_APP_ID" -v "$filename" --deep --strict --options=runtime
-  spctl -vvv --assess --type exec "$filename"
-  codesign -dvv "$filename"
-  codesign -vvv --deep --strict "$filename"
+  codesign -s "$DEV_APP_ID" -v "$filename" 
 done
 cd ..
 
 cd bin
-#zip -r PAPU_Mac.zip PAPU.vst PAPU.component
-#zip -r RP2A03_Mac.zip RP2A03.vst RP2A03.component
-#zip -r SID_Mac.zip SID.vst SID.component
-#zip -r SN76489_Mac.zip SN76489.vst SN76489.component
-#zip -r Voc_Mac.zip Voc.vst Voc.component
 zip -r Oscilloscope_Mac.zip Oscilloscope.vst Oscilloscope.component
 zip -r SpectrumAnalyzer_Mac.zip SpectrumAnalyzer.vst SpectrumAnalyzer.component
 zip -r ToneGenerator_Mac.zip ToneGenerator.vst ToneGenerator.component
