@@ -6,8 +6,8 @@ jobs:
   - task: InstallSSHKey@0
     inputs:
       knownHostsEntry: 'github.com,192.30.252.130 ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAq2A7hRGmdnm9tUDbO9IDSwBK6TbQa+PXYPCPy6rbTrTtw7PHkccKrpp0yVhp5HdEIcKr6pLlVDBfOLX9QUsyCOV0wzfjIJNlGEYsdlLJizHhbn2mUjvSAHQqZETYP81eFzLQNnPHt4EVVUh7VfDESU84KezmD5QlWpXLmvU31/yMf+Se8xhHTvKSCZIFImWwoG6mbUoWf9nzpIoaSjB+weqqUUmpaaasXVal72J+UX2B+2RPW3RcT0eOzQgqlJL3RKrTJvdsjE3JEAvGq3lGHSZXy28G3skua2SmVi/w4yCE6gbODqnTWlg7+wC604ydGXA8VJiS5ap43JXiUFFAaQ=='
-      sshPublicKey: 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDP3hzDoNuWicsnQxkXByej5PRwnL4x9OSu+AwfGDitHkYrKGFm6NAvwvPm7ZwucWI7RdA6RHxFWXbCR0LI/o/TO5skrf+TObV7oduaEngFsnSEsX04g9lQLlu563Q6N/biwCg1SiefH+JgKoLSStZ/SsiD43iLMkk737bU8l4xk1gXHyfCTfTIAQ2GFuFgapVnb7GNbJ2DpVEcl9M/qbkLgjHWuP1Q716rGwy8gQQ88hApuXTrgR4XWVnjgG64jpEDfmUUvlGZ8PseIsmgitx6e5KKCPP4W6F54EJZR3Dx5J2lf443OUpKU96JX2CdkAitQbq7bmYP6SZbYXoUEizL FigBug@github.com'
-      sshKeySecureFile: 'github_rsa'
+      sshPublicKey: 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDI0VqriIHvLkS9KhRSbEWXW5K19RTfGFbZe9sS4HPGf1fcnOzZkO8+m2MOWKrOXRq1bvax8PL/2M8LbrhmMndmAlDtSbsu8HfWRN9JvQqPgxb3kOyeJw84NMoxZeem/wcycd0tN2Qd9KLK1W28Vnz++3LXh8UdpvYIM77GfG3bIDI2I7H2JNsoNtQxhM1jI8/nllFUYsrHVF2zYklZsqzf8IoX4SYYJ9EBSsZ+aYxUeD43P4bz5HxrXQnR0KI8bC9U1LLZSm8CzsnFsg9GP51hJVvcDGfl7H2wFJC3AYsByJ4IZpvAUeKcWUu++HywGb+lzs66hnNPE8DEKf14weAh rrabien@Rolands-Mac-Pro.local'
+      sshKeySecureFile: 'id_rsa'
   - checkout: self
     submodules: true
     persistCredentials: true
