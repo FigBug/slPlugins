@@ -3,16 +3,6 @@ jobs:
   pool:
     vmImage: 'macOS-10.14'
   steps:
-  - task: DownloadSecureFile@1
-    name: application_p12
-    displayName: 'Download Application.p12'
-    inputs:
-      secureFile: 'Application.p12'
-  - task: DownloadSecureFile@1
-    name: installer_p12
-    displayName: 'Download Installer.p12'
-    inputs:
-      secureFile: 'Installer.p12'
   - task: InstallAppleCertificate@2
     inputs:
       certSecureFile: 'Application.p12'
