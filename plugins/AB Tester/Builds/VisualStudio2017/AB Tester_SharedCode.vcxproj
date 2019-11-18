@@ -95,7 +95,7 @@
     <ClCompile>
       <Optimization>Disabled</Optimization>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
-      <AdditionalIncludeDirectories>C:\SDKs\VST_SDK\VST3_SDK;..\..\..\..\module\plugin_sdk\vstsdk2.4;..\..\JuceLibraryCode;..\..\..\..\module\dRowAudio\module;..\..\..\..\module\gin\modules;..\..\..\..\module\juce\modules;../../../../module/slCommon;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\..\..\module\juce\modules\juce_audio_processors\format_types\VST3_SDK;..\..\..\..\module\plugin_sdk\vstsdk2.4;..\..\JuceLibraryCode;..\..\..\..\module\dRowAudio\module;..\..\..\..\module\gin\modules;..\..\..\..\module\juce\modules;../../../../module/slCommon;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;WIN32;_WINDOWS;DEBUG;_DEBUG;JUCER_VS2017_78A5024=1;JUCE_APP_VERSION=1.0.0;JUCE_APP_VERSION_HEX=0x10000;JucePlugin_Build_VST=1;JucePlugin_Build_VST3=0;JucePlugin_Build_AU=0;JucePlugin_Build_AUv3=0;JucePlugin_Build_RTAS=0;JucePlugin_Build_AAX=0;JucePlugin_Build_Standalone=0;JucePlugin_Build_Unity=0;JUCE_SHARED_CODE=1;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
@@ -142,7 +142,7 @@
     </Midl>
     <ClCompile>
       <Optimization>Full</Optimization>
-      <AdditionalIncludeDirectories>C:\SDKs\VST_SDK\VST3_SDK;..\..\..\..\module\plugin_sdk\vstsdk2.4;..\..\JuceLibraryCode;..\..\..\..\module\dRowAudio\module;..\..\..\..\module\gin\modules;..\..\..\..\module\juce\modules;../../../../module/slCommon;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\..\..\module\juce\modules\juce_audio_processors\format_types\VST3_SDK;..\..\..\..\module\plugin_sdk\vstsdk2.4;..\..\JuceLibraryCode;..\..\..\..\module\dRowAudio\module;..\..\..\..\module\gin\modules;..\..\..\..\module\juce\modules;../../../../module/slCommon;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;WIN32;_WINDOWS;NDEBUG;JUCER_VS2017_78A5024=1;JUCE_APP_VERSION=1.0.0;JUCE_APP_VERSION_HEX=0x10000;JucePlugin_Build_VST=1;JucePlugin_Build_VST3=0;JucePlugin_Build_AU=0;JucePlugin_Build_AUv3=0;JucePlugin_Build_RTAS=0;JucePlugin_Build_AAX=0;JucePlugin_Build_Standalone=0;JucePlugin_Build_Unity=0;JUCE_SHARED_CODE=1;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
@@ -192,7 +192,7 @@
     <ClCompile>
       <Optimization>Disabled</Optimization>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
-      <AdditionalIncludeDirectories>C:\SDKs\VST_SDK\VST3_SDK;..\..\..\..\module\plugin_sdk\vstsdk2.4;..\..\JuceLibraryCode;..\..\..\..\module\dRowAudio\module;..\..\..\..\module\gin\modules;..\..\..\..\module\juce\modules;../../../../module/slCommon;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\..\..\module\juce\modules\juce_audio_processors\format_types\VST3_SDK;..\..\..\..\module\plugin_sdk\vstsdk2.4;..\..\JuceLibraryCode;..\..\..\..\module\dRowAudio\module;..\..\..\..\module\gin\modules;..\..\..\..\module\juce\modules;../../../../module/slCommon;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;WIN32;_WINDOWS;DEBUG;_DEBUG;JUCER_VS2017_78A5024=1;JUCE_APP_VERSION=1.0.0;JUCE_APP_VERSION_HEX=0x10000;JucePlugin_Build_VST=1;JucePlugin_Build_VST3=0;JucePlugin_Build_AU=0;JucePlugin_Build_AUv3=0;JucePlugin_Build_RTAS=0;JucePlugin_Build_AAX=0;JucePlugin_Build_Standalone=0;JucePlugin_Build_Unity=0;JUCE_SHARED_CODE=1;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
@@ -235,7 +235,7 @@
     </Midl>
     <ClCompile>
       <Optimization>Full</Optimization>
-      <AdditionalIncludeDirectories>C:\SDKs\VST_SDK\VST3_SDK;..\..\..\..\module\plugin_sdk\vstsdk2.4;..\..\JuceLibraryCode;..\..\..\..\module\dRowAudio\module;..\..\..\..\module\gin\modules;..\..\..\..\module\juce\modules;../../../../module/slCommon;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\..\..\module\juce\modules\juce_audio_processors\format_types\VST3_SDK;..\..\..\..\module\plugin_sdk\vstsdk2.4;..\..\JuceLibraryCode;..\..\..\..\module\dRowAudio\module;..\..\..\..\module\gin\modules;..\..\..\..\module\juce\modules;../../../../module/slCommon;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;WIN32;_WINDOWS;NDEBUG;JUCER_VS2017_78A5024=1;JUCE_APP_VERSION=1.0.0;JUCE_APP_VERSION_HEX=0x10000;JucePlugin_Build_VST=1;JucePlugin_Build_VST3=0;JucePlugin_Build_AU=0;JucePlugin_Build_AUv3=0;JucePlugin_Build_RTAS=0;JucePlugin_Build_AAX=0;JucePlugin_Build_Standalone=0;JucePlugin_Build_Unity=0;JUCE_SHARED_CODE=1;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
@@ -483,6 +483,9 @@
     <ClCompile Include="..\..\..\..\module\gin\modules\gin\3rdparty\muParser\muParserTokenReader.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="..\..\..\..\module\gin\modules\gin\components\componentviewer.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="..\..\..\..\module\gin\modules\gin\components\mapviewer.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
@@ -502,6 +505,9 @@
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\..\..\..\module\gin\modules\gin\images\imageeffects_stackblur.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\module\gin\modules\gin\images\imageutilities.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\..\..\..\module\gin\modules\gin\utilities\asyncutilities.cpp">
@@ -531,7 +537,13 @@
     <ClCompile Include="..\..\..\..\module\gin\modules\gin\utilities\linearregression.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="..\..\..\..\module\gin\modules\gin\utilities\messagepack.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="..\..\..\..\module\gin\modules\gin\utilities\openstreetmaps.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\module\gin\modules\gin\utilities\plist.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\..\..\..\module\gin\modules\gin\utilities\sharedmemory.cpp">
@@ -550,6 +562,9 @@
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\..\..\..\module\gin\modules\gin\utilities\valuetreeobject.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\module\gin\modules\gin\utilities\valuetreeutilities.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\..\..\..\module\gin\modules\gin\gin.cpp">
@@ -2644,12 +2659,14 @@
     <ClInclude Include="..\..\..\..\module\gin\modules\gin\3rdparty\muParser\muParserTemplateMagic.h"/>
     <ClInclude Include="..\..\..\..\module\gin\modules\gin\3rdparty\muParser\muParserToken.h"/>
     <ClInclude Include="..\..\..\..\module\gin\modules\gin\3rdparty\muParser\muParserTokenReader.h"/>
+    <ClInclude Include="..\..\..\..\module\gin\modules\gin\components\componentviewer.h"/>
     <ClInclude Include="..\..\..\..\module\gin\modules\gin\components\mapviewer.h"/>
     <ClInclude Include="..\..\..\..\module\gin\modules\gin\components\propertycomponents.h"/>
     <ClInclude Include="..\..\..\..\module\gin\modules\gin\components\singlelinetexteditor.h"/>
     <ClInclude Include="..\..\..\..\module\gin\modules\gin\geometry\geometry.h"/>
     <ClInclude Include="..\..\..\..\module\gin\modules\gin\images\bmpimageformat.h"/>
     <ClInclude Include="..\..\..\..\module\gin\modules\gin\images\imageeffects.h"/>
+    <ClInclude Include="..\..\..\..\module\gin\modules\gin\images\imageutilities.h"/>
     <ClInclude Include="..\..\..\..\module\gin\modules\gin\utilities\asyncutilities.h"/>
     <ClInclude Include="..\..\..\..\module\gin\modules\gin\utilities\downloadmanager.h"/>
     <ClInclude Include="..\..\..\..\module\gin\modules\gin\utilities\elevatedfilecopy.h"/>
@@ -2659,13 +2676,16 @@
     <ClInclude Include="..\..\..\..\module\gin\modules\gin\utilities\integrator.h"/>
     <ClInclude Include="..\..\..\..\module\gin\modules\gin\utilities\leastsquaresregression.h"/>
     <ClInclude Include="..\..\..\..\module\gin\modules\gin\utilities\linearregression.h"/>
+    <ClInclude Include="..\..\..\..\module\gin\modules\gin\utilities\messagepack.h"/>
     <ClInclude Include="..\..\..\..\module\gin\modules\gin\utilities\openstreetmaps.h"/>
+    <ClInclude Include="..\..\..\..\module\gin\modules\gin\utilities\plist.h"/>
     <ClInclude Include="..\..\..\..\module\gin\modules\gin\utilities\sharedmemory.h"/>
     <ClInclude Include="..\..\..\..\module\gin\modules\gin\utilities\spline.h"/>
     <ClInclude Include="..\..\..\..\module\gin\modules\gin\utilities\systemsemaphore.h"/>
     <ClInclude Include="..\..\..\..\module\gin\modules\gin\utilities\threading.h"/>
     <ClInclude Include="..\..\..\..\module\gin\modules\gin\utilities\util.h"/>
     <ClInclude Include="..\..\..\..\module\gin\modules\gin\utilities\valuetreeobject.h"/>
+    <ClInclude Include="..\..\..\..\module\gin\modules\gin\utilities\valuetreeutilities.h"/>
     <ClInclude Include="..\..\..\..\module\gin\modules\gin\gin.h"/>
     <ClInclude Include="..\..\..\..\module\gin\modules\gin_dsp\dsp\adsr.h"/>
     <ClInclude Include="..\..\..\..\module\gin\modules\gin_dsp\dsp\analogadsr.h"/>

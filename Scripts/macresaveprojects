@@ -14,6 +14,6 @@ xcodebuild -configuration Release || exit 1
 ./build/Release/Projucer.app/Contents/MacOS/Projucer --resave "$ROOT/plugins/Tone Generator/Tone Generator.jucer"
 ./build/Release/Projucer.app/Contents/MacOS/Projucer --resave "$ROOT/plugins/Channel Mute/Channel Mute.jucer"
 ./build/Release/Projucer.app/Contents/MacOS/Projucer --resave "$ROOT/plugins/Maths/Maths.jucer"
-./build/Release/Projucer.app/Contents/MacOS/Projucer --resave "$ROOT/plugins/AB\ Tester/AB\ Tester.jucer"
+./build/Release/Projucer.app/Contents/MacOS/Projucer --resave "$ROOT/plugins/AB Tester/AB Tester.jucer"
 ./build/Release/Projucer.app/Contents/MacOS/Projucer --resave "$ROOT/plugins/AddInvert/AddInvert.jucer"
 ./build/Release/Projucer.app/Contents/MacOS/Projucer --resave "$ROOT/plugins/SFX8/SFX8.jucer"

@@ -787,6 +787,9 @@
     <ClCompile Include="..\..\..\..\module\gin\modules\gin\3rdparty\muParser\muParserTokenReader.cpp">
       <Filter>JUCE Modules\gin\3rdparty\muParser</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\..\module\gin\modules\gin\components\componentviewer.cpp">
+      <Filter>JUCE Modules\gin\components</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\..\..\module\gin\modules\gin\components\mapviewer.cpp">
       <Filter>JUCE Modules\gin\components</Filter>
     </ClCompile>
@@ -806,6 +809,9 @@
       <Filter>JUCE Modules\gin\images</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\module\gin\modules\gin\images\imageeffects_stackblur.cpp">
+      <Filter>JUCE Modules\gin\images</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\module\gin\modules\gin\images\imageutilities.cpp">
       <Filter>JUCE Modules\gin\images</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\module\gin\modules\gin\utilities\asyncutilities.cpp">
@@ -835,7 +841,13 @@
     <ClCompile Include="..\..\..\..\module\gin\modules\gin\utilities\linearregression.cpp">
       <Filter>JUCE Modules\gin\utilities</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\..\module\gin\modules\gin\utilities\messagepack.cpp">
+      <Filter>JUCE Modules\gin\utilities</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\..\..\module\gin\modules\gin\utilities\openstreetmaps.cpp">
+      <Filter>JUCE Modules\gin\utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\module\gin\modules\gin\utilities\plist.cpp">
       <Filter>JUCE Modules\gin\utilities</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\module\gin\modules\gin\utilities\sharedmemory.cpp">
@@ -854,6 +866,9 @@
       <Filter>JUCE Modules\gin\utilities</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\module\gin\modules\gin\utilities\valuetreeobject.cpp">
+      <Filter>JUCE Modules\gin\utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\module\gin\modules\gin\utilities\valuetreeutilities.cpp">
       <Filter>JUCE Modules\gin\utilities</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\module\gin\modules\gin\gin.cpp">
@@ -3378,6 +3393,9 @@
     <ClInclude Include="..\..\..\..\module\gin\modules\gin\3rdparty\muParser\muParserTokenReader.h">
       <Filter>JUCE Modules\gin\3rdparty\muParser</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\..\module\gin\modules\gin\components\componentviewer.h">
+      <Filter>JUCE Modules\gin\components</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\..\..\module\gin\modules\gin\components\mapviewer.h">
       <Filter>JUCE Modules\gin\components</Filter>
     </ClInclude>
@@ -3394,6 +3412,9 @@
       <Filter>JUCE Modules\gin\images</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\module\gin\modules\gin\images\imageeffects.h">
+      <Filter>JUCE Modules\gin\images</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\module\gin\modules\gin\images\imageutilities.h">
       <Filter>JUCE Modules\gin\images</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\module\gin\modules\gin\utilities\asyncutilities.h">
@@ -3423,7 +3444,13 @@
     <ClInclude Include="..\..\..\..\module\gin\modules\gin\utilities\linearregression.h">
       <Filter>JUCE Modules\gin\utilities</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\..\module\gin\modules\gin\utilities\messagepack.h">
+      <Filter>JUCE Modules\gin\utilities</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\..\..\module\gin\modules\gin\utilities\openstreetmaps.h">
+      <Filter>JUCE Modules\gin\utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\module\gin\modules\gin\utilities\plist.h">
       <Filter>JUCE Modules\gin\utilities</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\module\gin\modules\gin\utilities\sharedmemory.h">
@@ -3442,6 +3469,9 @@
       <Filter>JUCE Modules\gin\utilities</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\module\gin\modules\gin\utilities\valuetreeobject.h">
+      <Filter>JUCE Modules\gin\utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\module\gin\modules\gin\utilities\valuetreeutilities.h">
       <Filter>JUCE Modules\gin\utilities</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\module\gin\modules\gin\gin.h">
