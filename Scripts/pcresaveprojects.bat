@@ -1,15 +1,18 @@
-c:\JUCE\Projucer.exe --resave ..\..\PAPU\plugin\PAPU.jucer
-c:\JUCE\Projucer.exe --resave ..\..\RP2A03\plugin\RP2A03.jucer
-c:\JUCE\Projucer.exe --resave ..\..\SID\plugin\SID.jucer
-c:\JUCE\Projucer.exe --resave ..\..\SN76489\plugin\SN76489.jucer
-c:\JUCE\Projucer.exe --resave ..\..\Voc\plugin\Voc.jucer
+set MSBUILD_EXE=C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\MSBuild\15.0\Bin\MSBuild.exe
 
-c:\JUCE\Projucer.exe --resave "..\plugins\slOscilloscope\slOscilloscope.jucer"
-c:\JUCE\Projucer.exe --resave "..\plugins\Spectrum Analyzer\Spectrum Analyzer.jucer"
-c:\JUCE\Projucer.exe --resave "..\plugins\Tone Generator\Tone Generator.jucer"
-c:\JUCE\Projucer.exe --resave "..\plugins\Channel Mute\Channel Mute.jucer"
-c:\JUCE\Projucer.exe --resave "..\plugins\Maths\Maths.jucer"
-c:\JUCE\Projucer.exe --resave "..\plugins\AB Tester\AB Tester.jucer"
-c:\JUCE\Projucer.exe --resave "..\plugins\AddInvert\AddInvert.jucer"
-c:\JUCE\Projucer.exe --resave "..\plugins\AddInvert\SFX8.jucer"
+set ROOT=%cd%
 
+cd "%ROOT%\modules\juce\extras\Projucer\Builds\VisualStudio2017\"
+"%MSBUILD_EXE%" Projucer.sln /p:VisualStudioVersion=15.0 /m /t:Build /p:Configuration=Release /p:Platform=x64 /p:PreferredToolArchitecture=x64 
+if %errorlevel% neq 0 exit /b %errorlevel%
+
+.\x64\Release\App\Projucer.exe --resave "%ROOT%\plugins\slOscilloscope\slOscilloscope.jucer"
+.\x64\Release\App\Projucer.exe --resave "%ROOT%\plugins\Spectrum Analyzer\Spectrum Analyzer.jucer"
+.\x64\Release\App\Projucer.exe --resave "%ROOT%\plugins\Tone Generator\Tone Generator.jucer"
+.\x64\Release\App\Projucer.exe --resave "%ROOT%\plugins\Channel Mute\Channel Mute.jucer"
+.\x64\Release\App\Projucer.exe --resave "%ROOT%\plugins\Maths\Maths.jucer"
+.\x64\Release\App\Projucer.exe --resave "%ROOT%\plugins\AB Tester\AB Tester.jucer"
+.\x64\Release\App\Projucer.exe --resave "%ROOT%\plugins\AddInvert\AddInvert.jucer"
+.\x64\Release\App\Projucer.exe --resave "%ROOT%\plugins\SFX8\SFX8.jucer"
+
+cd "%ROOT%"
