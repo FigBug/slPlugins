@@ -5,14 +5,6 @@
 	};
 	objectVersion = 46;
 	objects = {
-		C39E4113DA3FF2E66BD5FD6A = {
-			isa = PBXBuildFile;
-			fileRef = E9A43D0E971690239E9BB476;
-		};
-		C7335AAE44CABC59DEBA190F = {
-			isa = PBXBuildFile;
-			fileRef = 92625EFC69DCF497950C9A68;
-		};
 		1D2448AC4B35AB74AEDB81DD = {
 			isa = PBXBuildFile;
 			fileRef = CF9B5A5D772344D721D1545C;
@@ -33,10 +25,6 @@
 			isa = PBXBuildFile;
 			fileRef = 7E9AB01F85E5898801F7F704;
 		};
-		293E0182749725EEEBC159A4 = {
-			isa = PBXBuildFile;
-			fileRef = AC70AF7F64524C07C51C8CA6;
-		};
 		2F6A75C81AB532FC7AC3371B = {
 			isa = PBXBuildFile;
 			fileRef = D1297ACFB69317BBD7A14EBE;
@@ -44,14 +32,6 @@
 		BFCAA30350B43AC50CC584DC = {
 			isa = PBXBuildFile;
 			fileRef = 65CB07BC8F3C1D151305E8FA;
-		};
-		6C68B809161522A024E479D5 = {
-			isa = PBXBuildFile;
-			fileRef = 2208CEE55D6DE1BC20E346D0;
-		};
-		8E847BE7BE2C6155D01B35CF = {
-			isa = PBXBuildFile;
-			fileRef = 36E20C50B600CB2668791F62;
 		};
 		5CA7B4F78B57BD44CA647DE4 = {
 			isa = PBXBuildFile;
@@ -61,6 +41,14 @@
 			isa = PBXBuildFile;
 			fileRef = DA5E32C265362C4550D96538;
 		};
+		2D649D49F0FD93ADD6854219 = {
+			isa = PBXBuildFile;
+			fileRef = A1D35AEF28863FDC01BDBCB1;
+		};
+		628D979038CC3A4BAEAAF8F1 = {
+			isa = PBXBuildFile;
+			fileRef = 1ED6DB21E13DBE581B0BD320;
+		};
 		01046F09E3D53C237FF2286F = {
 			isa = PBXBuildFile;
 			fileRef = FFC48252D6BE8541F5B580AA;
@@ -69,33 +57,37 @@
 			isa = PBXBuildFile;
 			fileRef = 96054A44A99C7EDC7FDB7579;
 		};
-		CAF973797906797CBCD2CC59 = {
+		8A5C2EAF9F7969A2403C9818 = {
 			isa = PBXBuildFile;
-			fileRef = 5E97800FC099791FEB67B8F9;
+			fileRef = 4374C8E5983B7143811439C3;
 		};
-		DE0D3BEEB9176892749DAED8 = {
+		05D38F40F757D85DE39F7025 = {
 			isa = PBXBuildFile;
-			fileRef = E944181ACF039ED10E04D35F;
+			fileRef = 95D9DFF1F45084DAEAF5B446;
 		};
-		1DC9F03D6663EC43A52459CB = {
+		443CC1CB217F96C458C41980 = {
 			isa = PBXBuildFile;
-			fileRef = F2904C1737CF71E7FCE07E19;
+			fileRef = D85F0E7CA6A9245DFDD717F0;
+		};
+		A897922B16FC355F9B7CD78B = {
+			isa = PBXBuildFile;
+			fileRef = EA04FD756E5903FB66FC6925;
 		};
 		02F619E5DC3368C805843916 = {
 			isa = PBXBuildFile;
 			fileRef = 80497775F66555BDF96EDCED;
 		};
-		664F8726B57D87F1F1DAE416 = {
+		B44FCB3035A87BE9AD1DAB0C = {
 			isa = PBXBuildFile;
-			fileRef = 523DCB9F7A4C3EB6E345025E;
+			fileRef = CCC530ECFB30B3373E46CDA8;
 		};
-		0B645CD7811466B187A3651D = {
+		8993D6D89D3B161426188281 = {
 			isa = PBXBuildFile;
-			fileRef = 800E65D578464DBAEDDC2532;
+			fileRef = 1F26F72F53031CC520788FBE;
 		};
-		50419D2621AB9CC3EDB940D3 = {
+		99D20A219BAACDF7B63BB577 = {
 			isa = PBXBuildFile;
-			fileRef = 4DAF6BB6F03770A913F64CE3;
+			fileRef = 24B93B1766FAE1C637359654;
 		};
 		20B97B16625E63DB807435DB = {
 			isa = PBXBuildFile;
@@ -157,18 +149,6 @@
 			isa = PBXBuildFile;
 			fileRef = E89A292DF093C6DFE03C356E;
 		};
-		D5AAAABBF84A2A770241782E = {
-			isa = PBXBuildFile;
-			fileRef = 811826A1EAFAED9FC5740E32;
-		};
-		07A6D26F06A48597455B0749 = {
-			isa = PBXBuildFile;
-			fileRef = AA9E7BFAC784BD79BF42C676;
-		};
-		E8484EFD29475C1F2157CAB6 = {
-			isa = PBXBuildFile;
-			fileRef = 4431DADE9D9A4FCBBB59C1C4;
-		};
 		0DD7EA872D63F502ADD01B19 = {
 			isa = PBXBuildFile;
 			fileRef = 39734F777BFBAA18607EC272;
@@ -184,10 +164,6 @@
 		EE83E5F12AA829A380DD602E = {
 			isa = PBXBuildFile;
 			fileRef = DEF22E3B3A29FB8E73D3D1CE;
-		};
-		54DA41EBF22558B6A3B8A306 = {
-			isa = PBXBuildFile;
-			fileRef = 3E09ACE0EA85DC5E42165244;
 		};
 		6558C0BCE4A679FCF8DDB1FC = {
 			isa = PBXBuildFile;
@@ -265,41 +241,6 @@
 			path = "../../../../module/juce/modules/juce_opengl";
 			sourceTree = "SOURCE_ROOT";
 		};
-		1391C466687FD881B559A1EA = {
-			isa = PBXFileReference;
-			lastKnownFileType = sourcecode.cpp.objcpp;
-			name = "include_juce_gui_basics.mm";
-			path = "../../JuceLibraryCode/include_juce_gui_basics.mm";
-			sourceTree = "SOURCE_ROOT";
-		};
-		17281307532D2AB41D16CCD7 = {
-			isa = PBXFileReference;
-			lastKnownFileType = file;
-			name = "juce_graphics";
-			path = "../../../../module/juce/modules/juce_graphics";
-			sourceTree = "SOURCE_ROOT";
-		};
-		2208CEE55D6DE1BC20E346D0 = {
-			isa = PBXFileReference;
-			lastKnownFileType = wrapper.framework;
-			name = Carbon.framework;
-			path = System/Library/Frameworks/Carbon.framework;
-			sourceTree = SDKROOT;
-		};
-		E9A43D0E971690239E9BB476 = {
-			isa = PBXFileReference;
-			explicitFileType = wrapper.cfbundle;
-			includeInIndex = 0;
-			path = SFX8.vst;
-			sourceTree = "BUILT_PRODUCTS_DIR";
-		};
-		92625EFC69DCF497950C9A68 = {
-			isa = PBXFileReference;
-			explicitFileType = wrapper.cfbundle;
-			includeInIndex = 0;
-			path = SFX8.component;
-			sourceTree = "BUILT_PRODUCTS_DIR";
-		};
 		CF9B5A5D772344D721D1545C = {
 			isa = PBXFileReference;
 			explicitFileType = "wrapper.app-extension";
@@ -313,6 +254,13 @@
 			includeInIndex = 0;
 			path = SFX8.app;
 			sourceTree = "BUILT_PRODUCTS_DIR";
+		};
+		1391C466687FD881B559A1EA = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.objcpp;
+			name = "include_juce_gui_basics.mm";
+			path = "../../JuceLibraryCode/include_juce_gui_basics.mm";
+			sourceTree = "SOURCE_ROOT";
 		};
 		13A5BC81ECA4319407BC2DDF = {
 			isa = PBXFileReference;
@@ -328,11 +276,39 @@
 			path = "../../JuceLibraryCode/include_juce_opengl.mm";
 			sourceTree = "SOURCE_ROOT";
 		};
+		17281307532D2AB41D16CCD7 = {
+			isa = PBXFileReference;
+			lastKnownFileType = file;
+			name = "juce_graphics";
+			path = "../../../../module/juce/modules/juce_graphics";
+			sourceTree = "SOURCE_ROOT";
+		};
 		1B1FCAEE9895469FB3DBA9A1 = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.cpp.objcpp;
 			name = "include_juce_gui_extra.mm";
 			path = "../../JuceLibraryCode/include_juce_gui_extra.mm";
+			sourceTree = "SOURCE_ROOT";
+		};
+		1ED6DB21E13DBE581B0BD320 = {
+			isa = PBXFileReference;
+			lastKnownFileType = wrapper.framework;
+			name = CoreImage.framework;
+			path = System/Library/Frameworks/CoreImage.framework;
+			sourceTree = SDKROOT;
+		};
+		1F26F72F53031CC520788FBE = {
+			isa = PBXFileReference;
+			lastKnownFileType = folder.assetcatalog;
+			name = Images.xcassets;
+			path = SFX8/Images.xcassets;
+			sourceTree = "SOURCE_ROOT";
+		};
+		24B93B1766FAE1C637359654 = {
+			isa = PBXFileReference;
+			lastKnownFileType = file.storyboard;
+			name = LaunchScreen.storyboard;
+			path = LaunchScreen.storyboard;
 			sourceTree = "SOURCE_ROOT";
 		};
 		26CCB6800EFF727BE3C5F298 = {
@@ -363,13 +339,6 @@
 			path = "../../JuceLibraryCode/include_juce_video.mm";
 			sourceTree = "SOURCE_ROOT";
 		};
-		36E20C50B600CB2668791F62 = {
-			isa = PBXFileReference;
-			lastKnownFileType = wrapper.framework;
-			name = Cocoa.framework;
-			path = System/Library/Frameworks/Cocoa.framework;
-			sourceTree = SDKROOT;
-		};
 		39734F777BFBAA18607EC272 = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.cpp.objcpp;
@@ -391,13 +360,6 @@
 			path = ../../JuceLibraryCode/BinaryData.h;
 			sourceTree = "SOURCE_ROOT";
 		};
-		3E09ACE0EA85DC5E42165244 = {
-			isa = PBXFileReference;
-			lastKnownFileType = sourcecode.cpp.cpp;
-			name = "include_juce_audio_plugin_client_VST2.cpp";
-			path = "../../JuceLibraryCode/include_juce_audio_plugin_client_VST2.cpp";
-			sourceTree = "SOURCE_ROOT";
-		};
 		430CA86014B143DF1F760A75 = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
@@ -412,12 +374,12 @@
 			path = "../../../../module/juce/modules/juce_events";
 			sourceTree = "SOURCE_ROOT";
 		};
-		4431DADE9D9A4FCBBB59C1C4 = {
+		4374C8E5983B7143811439C3 = {
 			isa = PBXFileReference;
-			lastKnownFileType = sourcecode.cpp.objcpp;
-			name = "include_juce_audio_plugin_client_AU_2.mm";
-			path = "../../JuceLibraryCode/include_juce_audio_plugin_client_AU_2.mm";
-			sourceTree = "SOURCE_ROOT";
+			lastKnownFileType = wrapper.framework;
+			name = CoreText.framework;
+			path = System/Library/Frameworks/CoreText.framework;
+			sourceTree = SDKROOT;
 		};
 		4A6AB11ED572EF14F6348EBB = {
 			isa = PBXFileReference;
@@ -425,20 +387,6 @@
 			name = "juce_core";
 			path = "../../../../module/juce/modules/juce_core";
 			sourceTree = "SOURCE_ROOT";
-		};
-		4DAF6BB6F03770A913F64CE3 = {
-			isa = PBXFileReference;
-			lastKnownFileType = file.nib;
-			name = RecentFilesMenuTemplate.nib;
-			path = RecentFilesMenuTemplate.nib;
-			sourceTree = "SOURCE_ROOT";
-		};
-		523DCB9F7A4C3EB6E345025E = {
-			isa = PBXFileReference;
-			lastKnownFileType = wrapper.framework;
-			name = Security.framework;
-			path = System/Library/Frameworks/Security.framework;
-			sourceTree = SDKROOT;
 		};
 		53D9EE7F648CD1E2BD17FECF = {
 			isa = PBXFileReference;
@@ -454,13 +402,6 @@
 			path = ../../../../module/gin/modules/gin;
 			sourceTree = "SOURCE_ROOT";
 		};
-		5E97800FC099791FEB67B8F9 = {
-			isa = PBXFileReference;
-			lastKnownFileType = wrapper.framework;
-			name = DiscRecording.framework;
-			path = System/Library/Frameworks/DiscRecording.framework;
-			sourceTree = SDKROOT;
-		};
 		5F3EED6E2D54C304F7CD046B = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.cpp.cpp;
@@ -473,13 +414,6 @@
 			lastKnownFileType = file;
 			name = "juce_audio_plugin_client";
 			path = "../../../../module/juce/modules/juce_audio_plugin_client";
-			sourceTree = "SOURCE_ROOT";
-		};
-		63C92CE44F93D171DE34C092 = {
-			isa = PBXFileReference;
-			lastKnownFileType = text.plist.xml;
-			name = "Info-VST.plist";
-			path = "Info-VST.plist";
 			sourceTree = "SOURCE_ROOT";
 		};
 		6482109E88556CB004DB1D50 = {
@@ -552,26 +486,12 @@
 			path = ../../Source/Voice.h;
 			sourceTree = "SOURCE_ROOT";
 		};
-		800E65D578464DBAEDDC2532 = {
-			isa = PBXFileReference;
-			lastKnownFileType = wrapper.framework;
-			name = WebKit.framework;
-			path = System/Library/Frameworks/WebKit.framework;
-			sourceTree = SDKROOT;
-		};
 		80497775F66555BDF96EDCED = {
 			isa = PBXFileReference;
 			lastKnownFileType = wrapper.framework;
 			name = QuartzCore.framework;
 			path = System/Library/Frameworks/QuartzCore.framework;
 			sourceTree = SDKROOT;
-		};
-		811826A1EAFAED9FC5740E32 = {
-			isa = PBXFileReference;
-			lastKnownFileType = file.r;
-			name = "include_juce_audio_plugin_client_AU.r";
-			path = "../../JuceLibraryCode/include_juce_audio_plugin_client_AU.r";
-			sourceTree = "SOURCE_ROOT";
 		};
 		81DFD81086B5C0322B7971DD = {
 			isa = PBXFileReference;
@@ -636,6 +556,13 @@
 			path = "../../../../module/juce/modules/juce_video";
 			sourceTree = "SOURCE_ROOT";
 		};
+		95D9DFF1F45084DAEAF5B446 = {
+			isa = PBXFileReference;
+			lastKnownFileType = wrapper.framework;
+			name = Foundation.framework;
+			path = System/Library/Frameworks/Foundation.framework;
+			sourceTree = SDKROOT;
+		};
 		96054A44A99C7EDC7FDB7579 = {
 			isa = PBXFileReference;
 			lastKnownFileType = wrapper.framework;
@@ -664,12 +591,12 @@
 			path = ../../Source/Pad.h;
 			sourceTree = "SOURCE_ROOT";
 		};
-		A159E801AEC848FB892557C2 = {
+		A1D35AEF28863FDC01BDBCB1 = {
 			isa = PBXFileReference;
-			lastKnownFileType = text.plist.xml;
-			name = "Info-AU.plist";
-			path = "Info-AU.plist";
-			sourceTree = "SOURCE_ROOT";
+			lastKnownFileType = wrapper.framework;
+			name = CoreGraphics.framework;
+			path = System/Library/Frameworks/CoreGraphics.framework;
+			sourceTree = SDKROOT;
 		};
 		A28D0627618C8F3B96510E22 = {
 			isa = PBXFileReference;
@@ -685,26 +612,12 @@
 			path = "../../JuceLibraryCode/include_juce_graphics.mm";
 			sourceTree = "SOURCE_ROOT";
 		};
-		AA9E7BFAC784BD79BF42C676 = {
-			isa = PBXFileReference;
-			lastKnownFileType = sourcecode.cpp.objcpp;
-			name = "include_juce_audio_plugin_client_AU_1.mm";
-			path = "../../JuceLibraryCode/include_juce_audio_plugin_client_AU_1.mm";
-			sourceTree = "SOURCE_ROOT";
-		};
 		AB3173F77427D58C5740EBE0 = {
 			isa = PBXFileReference;
 			lastKnownFileType = file;
 			name = "juce_gui_basics";
 			path = "../../../../module/juce/modules/juce_gui_basics";
 			sourceTree = "SOURCE_ROOT";
-		};
-		AC70AF7F64524C07C51C8CA6 = {
-			isa = PBXFileReference;
-			lastKnownFileType = wrapper.framework;
-			name = AudioUnit.framework;
-			path = System/Library/Frameworks/AudioUnit.framework;
-			sourceTree = SDKROOT;
 		};
 		AFDF4A9946D5BB8BF3DF4D44 = {
 			isa = PBXFileReference;
@@ -762,6 +675,13 @@
 			path = ../../Source/UIComponents.cpp;
 			sourceTree = "SOURCE_ROOT";
 		};
+		CCC530ECFB30B3373E46CDA8 = {
+			isa = PBXFileReference;
+			lastKnownFileType = wrapper.framework;
+			name = UIKit.framework;
+			path = System/Library/Frameworks/UIKit.framework;
+			sourceTree = SDKROOT;
+		};
 		CFF87B47ACE4001BB8CA4DDF = {
 			isa = PBXFileReference;
 			lastKnownFileType = text.plist.xml;
@@ -789,6 +709,13 @@
 			name = "include_juce_audio_basics.mm";
 			path = "../../JuceLibraryCode/include_juce_audio_basics.mm";
 			sourceTree = "SOURCE_ROOT";
+		};
+		D85F0E7CA6A9245DFDD717F0 = {
+			isa = PBXFileReference;
+			lastKnownFileType = wrapper.framework;
+			name = MobileCoreServices.framework;
+			path = System/Library/Frameworks/MobileCoreServices.framework;
+			sourceTree = SDKROOT;
 		};
 		DA5E32C265362C4550D96538 = {
 			isa = PBXFileReference;
@@ -846,11 +773,11 @@
 			path = "../../JuceLibraryCode/include_juce_audio_formats.mm";
 			sourceTree = "SOURCE_ROOT";
 		};
-		E944181ACF039ED10E04D35F = {
+		EA04FD756E5903FB66FC6925 = {
 			isa = PBXFileReference;
 			lastKnownFileType = wrapper.framework;
-			name = IOKit.framework;
-			path = System/Library/Frameworks/IOKit.framework;
+			name = OpenGLES.framework;
+			path = System/Library/Frameworks/OpenGLES.framework;
 			sourceTree = SDKROOT;
 		};
 		EA9844791546DBA77D2E3B9E = {
@@ -866,13 +793,6 @@
 			name = "juce_audio_devices";
 			path = "../../../../module/juce/modules/juce_audio_devices";
 			sourceTree = "SOURCE_ROOT";
-		};
-		F2904C1737CF71E7FCE07E19 = {
-			isa = PBXFileReference;
-			lastKnownFileType = wrapper.framework;
-			name = OpenGL.framework;
-			path = System/Library/Frameworks/OpenGL.framework;
-			sourceTree = SDKROOT;
 		};
 		F3753FF318424297AFACE318 = {
 			isa = PBXFileReference;
@@ -997,14 +917,10 @@
 				D8292D3DE6FFAE5002B9985B,
 				34B7A8E3C5B15E9274C2686B,
 				E89A292DF093C6DFE03C356E,
-				811826A1EAFAED9FC5740E32,
-				AA9E7BFAC784BD79BF42C676,
-				4431DADE9D9A4FCBBB59C1C4,
 				39734F777BFBAA18607EC272,
 				C4E4C481B7207E3BA1716C5F,
 				A28D0627618C8F3B96510E22,
 				DEF22E3B3A29FB8E73D3D1CE,
-				3E09ACE0EA85DC5E42165244,
 				3A01A9623731DF7015765E88,
 				0418A35BE8912CE7106191F6,
 				BE7CE14AD04C4CA3D284CF3A,
@@ -1025,11 +941,10 @@
 		6DF33CF824DCA38759A55898 = {
 			isa = PBXGroup;
 			children = (
-				63C92CE44F93D171DE34C092,
-				A159E801AEC848FB892557C2,
 				B47C345697CF73C898FC08CC,
 				CFF87B47ACE4001BB8CA4DDF,
-				4DAF6BB6F03770A913F64CE3,
+				1F26F72F53031CC520788FBE,
+				24B93B1766FAE1C637359654,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -1039,21 +954,20 @@
 			children = (
 				F3753FF318424297AFACE318,
 				7E9AB01F85E5898801F7F704,
-				AC70AF7F64524C07C51C8CA6,
 				D1297ACFB69317BBD7A14EBE,
 				65CB07BC8F3C1D151305E8FA,
-				2208CEE55D6DE1BC20E346D0,
-				36E20C50B600CB2668791F62,
 				64B699EEFEE6E3D92D5AEDEC,
 				DA5E32C265362C4550D96538,
+				A1D35AEF28863FDC01BDBCB1,
+				1ED6DB21E13DBE581B0BD320,
 				FFC48252D6BE8541F5B580AA,
 				96054A44A99C7EDC7FDB7579,
-				5E97800FC099791FEB67B8F9,
-				E944181ACF039ED10E04D35F,
-				F2904C1737CF71E7FCE07E19,
+				4374C8E5983B7143811439C3,
+				95D9DFF1F45084DAEAF5B446,
+				D85F0E7CA6A9245DFDD717F0,
+				EA04FD756E5903FB66FC6925,
 				80497775F66555BDF96EDCED,
-				523DCB9F7A4C3EB6E345025E,
-				800E65D578464DBAEDDC2532,
+				CCC530ECFB30B3373E46CDA8,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1061,8 +975,6 @@
 		35354FC1D94850F32EF8D52E = {
 			isa = PBXGroup;
 			children = (
-				E9A43D0E971690239E9BB476,
-				92625EFC69DCF497950C9A68,
 				CF9B5A5D772344D721D1545C,
 				0C801074BF2F760364C39C91,
 				13A5BC81ECA4319407BC2DDF,
@@ -1086,98 +998,67 @@
 		A69CE3AB3CBE0A1E88CCC423 = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_CXX_LANGUAGE_STANDARD = "c++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_LINK_OBJC_RUNTIME = NO;
+				COMBINE_HIDPI_IMAGES = YES;
+				CONFIGURATION_BUILD_DIR = "$(PROJECT_DIR)/build/$(CONFIGURATION)";
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"_DEBUG=1",
+					"DEBUG=1",
+					"JUCER_XCODE_IPHONE_5BC26AE3=1",
+					"JUCE_APP_VERSION=1.0.0",
+					"JUCE_APP_VERSION_HEX=0x10000",
+					"JucePlugin_Build_VST=0",
+					"JucePlugin_Build_VST3=0",
+					"JucePlugin_Build_AU=0",
+					"JucePlugin_Build_AUv3=0",
+					"JucePlugin_Build_RTAS=0",
+					"JucePlugin_Build_AAX=0",
+					"JucePlugin_Build_Standalone=0",
+					"JucePlugin_Build_Unity=0",
+				);
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				HEADER_SEARCH_PATHS = (
+					"../../JuceLibraryCode",
+					"../../../../module/dRowAudio/module",
+					"../../../../module/gin/modules",
+					"../../../../module/juce/modules",
+					"../../../../module/juce/modules/juce_audio_plugin_client",
+					"$(inherited)",
+				);
+				OTHER_LDFLAGS = "-lSFX8";
+				PRODUCT_BUNDLE_IDENTIFIER = com.socalabs.SFX8;
+				PRODUCT_NAME = "SFX8";
+				USE_HEADERMAP = NO;
 			};
 			name = Debug;
 		};
 		5514BF06B026C6C614FA129C = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
-			};
-			name = Release;
-		};
-		4CE75EF5312C37FBBFE0F862 = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_CXX_LANGUAGE_STANDARD = "c++17";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_LINK_OBJC_RUNTIME = NO;
-				CODE_SIGN_ENTITLEMENTS = "SFX8.entitlements";
-				CODE_SIGN_IDENTITY = "";
-				COMBINE_HIDPI_IMAGES = YES;
-				CONFIGURATION_BUILD_DIR = "$(PROJECT_DIR)/build/$(CONFIGURATION)";
-				COPY_PHASE_STRIP = NO;
-				DEPLOYMENT_LOCATION = YES;
-				DSTROOT = /;
-				ENABLE_HARDENED_RUNTIME = YES;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"_DEBUG=1",
-					"DEBUG=1",
-					"JUCER_XCODE_MAC_F6D2F4CF=1",
-					"JUCE_APP_VERSION=1.0.0",
-					"JUCE_APP_VERSION_HEX=0x10000",
-					"JucePlugin_Build_VST=1",
-					"JucePlugin_Build_VST3=0",
-					"JucePlugin_Build_AU=0",
-					"JucePlugin_Build_AUv3=0",
-					"JucePlugin_Build_RTAS=0",
-					"JucePlugin_Build_AAX=0",
-					"JucePlugin_Build_Standalone=0",
-					"JucePlugin_Build_Unity=0",
-				);
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
-				GENERATE_PKGINFO_FILE = YES;
-				HEADER_SEARCH_PATHS = (
-					"../../../../module/juce/modules/juce_audio_processors/format_types/VST3_SDK",
-					"../../../../module/plugin_sdk/vstsdk2.4",
-					"../../JuceLibraryCode",
-					"../../../../module/dRowAudio/module",
-					"../../../../module/gin/modules",
-					"../../../../module/juce/modules",
-					"../../../../module/juce/modules/juce_audio_plugin_client",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = Info-VST.plist;
-				INFOPLIST_PREPROCESS = NO;
-				INSTALL_PATH = "$(HOME)/Library/Audio/Plug-Ins/VST/";
-				LIBRARY_STYLE = Bundle;
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
-				OTHER_CPLUSPLUSFLAGS = "-Wall -Wshadow-all -Wshorten-64-to-32 -Wstrict-aliasing -Wuninitialized -Wunused-parameter -Wconversion -Wsign-compare -Wint-conversion -Wconditional-uninitialized -Woverloaded-virtual -Wreorder -Wconstant-conversion -Wsign-conversion -Wunused-private-field -Wbool-conversion -Wextra-semi -Wunreachable-code -Wzero-as-null-pointer-constant -Wcast-align -Winconsistent-missing-destructor-override -Wshift-sign-overflow -Wnullable-to-nonnull-conversion -Wno-missing-field-initializers -Wno-ignored-qualifiers";
-				OTHER_LDFLAGS = "-bundle -lSFX8";
-				PRODUCT_BUNDLE_IDENTIFIER = com.socalabs.SFX8;
-				PRODUCT_NAME = "SFX8";
-				USE_HEADERMAP = NO;
-				WRAPPER_EXTENSION = vst;
-			};
-			name = Debug;
-		};
-		CC8F8EB75AC785967CAC4F2C = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
-				CLANG_CXX_LANGUAGE_STANDARD = "c++17";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_LINK_OBJC_RUNTIME = NO;
-				CODE_SIGN_ENTITLEMENTS = "SFX8.entitlements";
-				CODE_SIGN_IDENTITY = "";
 				COMBINE_HIDPI_IMAGES = YES;
 				CONFIGURATION_BUILD_DIR = "$(PROJECT_DIR)/build/$(CONFIGURATION)";
 				DEAD_CODE_STRIPPING = YES;
-				DEPLOYMENT_LOCATION = YES;
-				DSTROOT = /;
-				ENABLE_HARDENED_RUNTIME = YES;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_OPTIMIZATION_LEVEL = 3;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"_NDEBUG=1",
 					"NDEBUG=1",
-					"JUCER_XCODE_MAC_F6D2F4CF=1",
+					"JUCER_XCODE_IPHONE_5BC26AE3=1",
 					"JUCE_APP_VERSION=1.0.0",
 					"JUCE_APP_VERSION_HEX=0x10000",
-					"JucePlugin_Build_VST=1",
+					"JucePlugin_Build_VST=0",
 					"JucePlugin_Build_VST3=0",
 					"JucePlugin_Build_AU=0",
 					"JucePlugin_Build_AUv3=0",
@@ -1188,10 +1069,7 @@
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
-				GENERATE_PKGINFO_FILE = YES;
 				HEADER_SEARCH_PATHS = (
-					"../../../../module/juce/modules/juce_audio_processors/format_types/VST3_SDK",
-					"../../../../module/plugin_sdk/vstsdk2.4",
 					"../../JuceLibraryCode",
 					"../../../../module/dRowAudio/module",
 					"../../../../module/gin/modules",
@@ -1199,157 +1077,31 @@
 					"../../../../module/juce/modules/juce_audio_plugin_client",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = Info-VST.plist;
-				INFOPLIST_PREPROCESS = NO;
-				INSTALL_PATH = "$(HOME)/Library/Audio/Plug-Ins/VST/";
-				LIBRARY_STYLE = Bundle;
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
-				OTHER_CPLUSPLUSFLAGS = "-Wall -Wshadow-all -Wshorten-64-to-32 -Wstrict-aliasing -Wuninitialized -Wunused-parameter -Wconversion -Wsign-compare -Wint-conversion -Wconditional-uninitialized -Woverloaded-virtual -Wreorder -Wconstant-conversion -Wsign-conversion -Wunused-private-field -Wbool-conversion -Wextra-semi -Wunreachable-code -Wzero-as-null-pointer-constant -Wcast-align -Winconsistent-missing-destructor-override -Wshift-sign-overflow -Wnullable-to-nonnull-conversion -Wno-missing-field-initializers -Wno-ignored-qualifiers";
-				OTHER_LDFLAGS = "-bundle -lSFX8";
+				LLVM_LTO = YES;
+				OTHER_LDFLAGS = "-lSFX8";
 				PRODUCT_BUNDLE_IDENTIFIER = com.socalabs.SFX8;
 				PRODUCT_NAME = "SFX8";
 				USE_HEADERMAP = NO;
-				WRAPPER_EXTENSION = vst;
-			};
-			name = Release;
-		};
-		8EDE0D161EF4499CCF2BF175 = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_CXX_LANGUAGE_STANDARD = "c++17";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_LINK_OBJC_RUNTIME = NO;
-				CODE_SIGN_ENTITLEMENTS = "SFX8.entitlements";
-				CODE_SIGN_IDENTITY = "";
-				COMBINE_HIDPI_IMAGES = YES;
-				CONFIGURATION_BUILD_DIR = "$(PROJECT_DIR)/build/$(CONFIGURATION)";
-				COPY_PHASE_STRIP = NO;
-				DEPLOYMENT_LOCATION = YES;
-				DSTROOT = /;
-				ENABLE_HARDENED_RUNTIME = YES;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"_DEBUG=1",
-					"DEBUG=1",
-					"JUCER_XCODE_MAC_F6D2F4CF=1",
-					"JUCE_APP_VERSION=1.0.0",
-					"JUCE_APP_VERSION_HEX=0x10000",
-					"JucePlugin_Build_VST=0",
-					"JucePlugin_Build_VST3=0",
-					"JucePlugin_Build_AU=1",
-					"JucePlugin_Build_AUv3=0",
-					"JucePlugin_Build_RTAS=0",
-					"JucePlugin_Build_AAX=0",
-					"JucePlugin_Build_Standalone=0",
-					"JucePlugin_Build_Unity=0",
-				);
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
-				GENERATE_PKGINFO_FILE = YES;
-				HEADER_SEARCH_PATHS = (
-					"../../../../module/juce/modules/juce_audio_processors/format_types/VST3_SDK",
-					"../../../../module/plugin_sdk/vstsdk2.4",
-					"../../JuceLibraryCode",
-					"../../../../module/dRowAudio/module",
-					"../../../../module/gin/modules",
-					"../../../../module/juce/modules",
-					"../../../../module/juce/modules/juce_audio_plugin_client",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = Info-AU.plist;
-				INFOPLIST_PREPROCESS = NO;
-				INSTALL_PATH = "$(HOME)/Library/Audio/Plug-Ins/Components/";
-				LIBRARY_STYLE = Bundle;
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
-				OTHER_CPLUSPLUSFLAGS = "-Wall -Wshadow-all -Wshorten-64-to-32 -Wstrict-aliasing -Wuninitialized -Wunused-parameter -Wconversion -Wsign-compare -Wint-conversion -Wconditional-uninitialized -Woverloaded-virtual -Wreorder -Wconstant-conversion -Wsign-conversion -Wunused-private-field -Wbool-conversion -Wextra-semi -Wunreachable-code -Wzero-as-null-pointer-constant -Wcast-align -Winconsistent-missing-destructor-override -Wshift-sign-overflow -Wnullable-to-nonnull-conversion -Wno-missing-field-initializers -Wno-ignored-qualifiers";
-				OTHER_LDFLAGS = "-bundle -lSFX8";
-				OTHER_REZFLAGS = "-d ppc_$ppc -d i386_$i386 -d ppc64_$ppc64 -d x86_64_$x86_64 -I /System/Library/Frameworks/CoreServices.framework/Frameworks/CarbonCore.framework/Versions/A/Headers -I \"$(DEVELOPER_DIR)/Extras/CoreAudio/AudioUnits/AUPublic/AUBase\" -I \"$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks/AudioUnit.framework/Headers\"";
-				PRODUCT_BUNDLE_IDENTIFIER = com.socalabs.SFX8;
-				PRODUCT_NAME = "SFX8";
-				USE_HEADERMAP = NO;
-				WRAPPER_EXTENSION = component;
-			};
-			name = Debug;
-		};
-		AC986E6D4155C97AEA4645B3 = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
-				CLANG_CXX_LANGUAGE_STANDARD = "c++17";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_LINK_OBJC_RUNTIME = NO;
-				CODE_SIGN_ENTITLEMENTS = "SFX8.entitlements";
-				CODE_SIGN_IDENTITY = "";
-				COMBINE_HIDPI_IMAGES = YES;
-				CONFIGURATION_BUILD_DIR = "$(PROJECT_DIR)/build/$(CONFIGURATION)";
-				DEAD_CODE_STRIPPING = YES;
-				DEPLOYMENT_LOCATION = YES;
-				DSTROOT = /;
-				ENABLE_HARDENED_RUNTIME = YES;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
-				GCC_OPTIMIZATION_LEVEL = 3;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"_NDEBUG=1",
-					"NDEBUG=1",
-					"JUCER_XCODE_MAC_F6D2F4CF=1",
-					"JUCE_APP_VERSION=1.0.0",
-					"JUCE_APP_VERSION_HEX=0x10000",
-					"JucePlugin_Build_VST=0",
-					"JucePlugin_Build_VST3=0",
-					"JucePlugin_Build_AU=1",
-					"JucePlugin_Build_AUv3=0",
-					"JucePlugin_Build_RTAS=0",
-					"JucePlugin_Build_AAX=0",
-					"JucePlugin_Build_Standalone=0",
-					"JucePlugin_Build_Unity=0",
-				);
-				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
-				GENERATE_PKGINFO_FILE = YES;
-				HEADER_SEARCH_PATHS = (
-					"../../../../module/juce/modules/juce_audio_processors/format_types/VST3_SDK",
-					"../../../../module/plugin_sdk/vstsdk2.4",
-					"../../JuceLibraryCode",
-					"../../../../module/dRowAudio/module",
-					"../../../../module/gin/modules",
-					"../../../../module/juce/modules",
-					"../../../../module/juce/modules/juce_audio_plugin_client",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = Info-AU.plist;
-				INFOPLIST_PREPROCESS = NO;
-				INSTALL_PATH = "$(HOME)/Library/Audio/Plug-Ins/Components/";
-				LIBRARY_STYLE = Bundle;
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
-				OTHER_CPLUSPLUSFLAGS = "-Wall -Wshadow-all -Wshorten-64-to-32 -Wstrict-aliasing -Wuninitialized -Wunused-parameter -Wconversion -Wsign-compare -Wint-conversion -Wconditional-uninitialized -Woverloaded-virtual -Wreorder -Wconstant-conversion -Wsign-conversion -Wunused-private-field -Wbool-conversion -Wextra-semi -Wunreachable-code -Wzero-as-null-pointer-constant -Wcast-align -Winconsistent-missing-destructor-override -Wshift-sign-overflow -Wnullable-to-nonnull-conversion -Wno-missing-field-initializers -Wno-ignored-qualifiers";
-				OTHER_LDFLAGS = "-bundle -lSFX8";
-				OTHER_REZFLAGS = "-d ppc_$ppc -d i386_$i386 -d ppc64_$ppc64 -d x86_64_$x86_64 -I /System/Library/Frameworks/CoreServices.framework/Frameworks/CarbonCore.framework/Versions/A/Headers -I \"$(DEVELOPER_DIR)/Extras/CoreAudio/AudioUnits/AUPublic/AUBase\" -I \"$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks/AudioUnit.framework/Headers\"";
-				PRODUCT_BUNDLE_IDENTIFIER = com.socalabs.SFX8;
-				PRODUCT_NAME = "SFX8";
-				USE_HEADERMAP = NO;
-				WRAPPER_EXTENSION = component;
 			};
 			name = Release;
 		};
 		CA37A1878541967CB39C7761 = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_CXX_LANGUAGE_STANDARD = "c++17";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_LINK_OBJC_RUNTIME = NO;
-				CODE_SIGN_ENTITLEMENTS = "SFX8.entitlements";
-				CODE_SIGN_IDENTITY = "";
 				COMBINE_HIDPI_IMAGES = YES;
 				CONFIGURATION_BUILD_DIR = "$(PROJECT_DIR)/build/$(CONFIGURATION)";
 				COPY_PHASE_STRIP = NO;
-				ENABLE_HARDENED_RUNTIME = YES;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"_DEBUG=1",
 					"DEBUG=1",
-					"JUCER_XCODE_MAC_F6D2F4CF=1",
+					"JUCER_XCODE_IPHONE_5BC26AE3=1",
 					"JUCE_APP_VERSION=1.0.0",
 					"JUCE_APP_VERSION_HEX=0x10000",
 					"JucePlugin_Build_VST=0",
@@ -1363,8 +1115,6 @@
 				);
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				HEADER_SEARCH_PATHS = (
-					"../../../../module/juce/modules/juce_audio_processors/format_types/VST3_SDK",
-					"../../../../module/plugin_sdk/vstsdk2.4",
 					"../../JuceLibraryCode",
 					"../../../../module/dRowAudio/module",
 					"../../../../module/gin/modules",
@@ -1374,8 +1124,6 @@
 				);
 				INFOPLIST_FILE = Info-AUv3_AppExtension.plist;
 				INFOPLIST_PREPROCESS = NO;
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
-				OTHER_CPLUSPLUSFLAGS = "-Wall -Wshadow-all -Wshorten-64-to-32 -Wstrict-aliasing -Wuninitialized -Wunused-parameter -Wconversion -Wsign-compare -Wint-conversion -Wconditional-uninitialized -Woverloaded-virtual -Wreorder -Wconstant-conversion -Wsign-conversion -Wunused-private-field -Wbool-conversion -Wextra-semi -Wunreachable-code -Wzero-as-null-pointer-constant -Wcast-align -Winconsistent-missing-destructor-override -Wshift-sign-overflow -Wnullable-to-nonnull-conversion -Wno-missing-field-initializers -Wno-ignored-qualifiers";
 				OTHER_LDFLAGS = "-lSFX8";
 				PRODUCT_BUNDLE_IDENTIFIER = com.socalabs.SFX8.SFX8AUv3;
 				PRODUCT_NAME = "SFX8";
@@ -1386,22 +1134,20 @@
 		8B6E6CF680120680FB919874 = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_CXX_LANGUAGE_STANDARD = "c++17";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_LINK_OBJC_RUNTIME = NO;
-				CODE_SIGN_ENTITLEMENTS = "SFX8.entitlements";
-				CODE_SIGN_IDENTITY = "";
 				COMBINE_HIDPI_IMAGES = YES;
 				CONFIGURATION_BUILD_DIR = "$(PROJECT_DIR)/build/$(CONFIGURATION)";
 				DEAD_CODE_STRIPPING = YES;
-				ENABLE_HARDENED_RUNTIME = YES;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_OPTIMIZATION_LEVEL = 3;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"_NDEBUG=1",
 					"NDEBUG=1",
-					"JUCER_XCODE_MAC_F6D2F4CF=1",
+					"JUCER_XCODE_IPHONE_5BC26AE3=1",
 					"JUCE_APP_VERSION=1.0.0",
 					"JUCE_APP_VERSION_HEX=0x10000",
 					"JucePlugin_Build_VST=0",
@@ -1416,8 +1162,6 @@
 				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				HEADER_SEARCH_PATHS = (
-					"../../../../module/juce/modules/juce_audio_processors/format_types/VST3_SDK",
-					"../../../../module/plugin_sdk/vstsdk2.4",
 					"../../JuceLibraryCode",
 					"../../../../module/dRowAudio/module",
 					"../../../../module/gin/modules",
@@ -1427,8 +1171,7 @@
 				);
 				INFOPLIST_FILE = Info-AUv3_AppExtension.plist;
 				INFOPLIST_PREPROCESS = NO;
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
-				OTHER_CPLUSPLUSFLAGS = "-Wall -Wshadow-all -Wshorten-64-to-32 -Wstrict-aliasing -Wuninitialized -Wunused-parameter -Wconversion -Wsign-compare -Wint-conversion -Wconditional-uninitialized -Woverloaded-virtual -Wreorder -Wconstant-conversion -Wsign-conversion -Wunused-private-field -Wbool-conversion -Wextra-semi -Wunreachable-code -Wzero-as-null-pointer-constant -Wcast-align -Winconsistent-missing-destructor-override -Wshift-sign-overflow -Wnullable-to-nonnull-conversion -Wno-missing-field-initializers -Wno-ignored-qualifiers";
+				LLVM_LTO = YES;
 				OTHER_LDFLAGS = "-lSFX8";
 				PRODUCT_BUNDLE_IDENTIFIER = com.socalabs.SFX8.SFX8AUv3;
 				PRODUCT_NAME = "SFX8";
@@ -1439,21 +1182,20 @@
 		FDD1C6912B4A2650F55AB328 = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_CXX_LANGUAGE_STANDARD = "c++17";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_LINK_OBJC_RUNTIME = NO;
-				CODE_SIGN_ENTITLEMENTS = "SFX8.entitlements";
-				CODE_SIGN_IDENTITY = "";
 				COMBINE_HIDPI_IMAGES = YES;
 				CONFIGURATION_BUILD_DIR = "$(PROJECT_DIR)/build/$(CONFIGURATION)";
 				COPY_PHASE_STRIP = NO;
-				ENABLE_HARDENED_RUNTIME = YES;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"_DEBUG=1",
 					"DEBUG=1",
-					"JUCER_XCODE_MAC_F6D2F4CF=1",
+					"JUCER_XCODE_IPHONE_5BC26AE3=1",
 					"JUCE_APP_VERSION=1.0.0",
 					"JUCE_APP_VERSION_HEX=0x10000",
 					"JucePlugin_Build_VST=0",
@@ -1467,8 +1209,6 @@
 				);
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				HEADER_SEARCH_PATHS = (
-					"../../../../module/juce/modules/juce_audio_processors/format_types/VST3_SDK",
-					"../../../../module/plugin_sdk/vstsdk2.4",
 					"../../JuceLibraryCode",
 					"../../../../module/dRowAudio/module",
 					"../../../../module/gin/modules",
@@ -1478,8 +1218,6 @@
 				);
 				INFOPLIST_FILE = Info-Standalone_Plugin.plist;
 				INFOPLIST_PREPROCESS = NO;
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
-				OTHER_CPLUSPLUSFLAGS = "-Wall -Wshadow-all -Wshorten-64-to-32 -Wstrict-aliasing -Wuninitialized -Wunused-parameter -Wconversion -Wsign-compare -Wint-conversion -Wconditional-uninitialized -Woverloaded-virtual -Wreorder -Wconstant-conversion -Wsign-conversion -Wunused-private-field -Wbool-conversion -Wextra-semi -Wunreachable-code -Wzero-as-null-pointer-constant -Wcast-align -Winconsistent-missing-destructor-override -Wshift-sign-overflow -Wnullable-to-nonnull-conversion -Wno-missing-field-initializers -Wno-ignored-qualifiers";
 				OTHER_LDFLAGS = "-lSFX8";
 				PRODUCT_BUNDLE_IDENTIFIER = com.socalabs.SFX8;
 				PRODUCT_NAME = "SFX8";
@@ -1490,22 +1228,20 @@
 		E7AC4DE066524AD3F52D0A55 = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_CXX_LANGUAGE_STANDARD = "c++17";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_LINK_OBJC_RUNTIME = NO;
-				CODE_SIGN_ENTITLEMENTS = "SFX8.entitlements";
-				CODE_SIGN_IDENTITY = "";
 				COMBINE_HIDPI_IMAGES = YES;
 				CONFIGURATION_BUILD_DIR = "$(PROJECT_DIR)/build/$(CONFIGURATION)";
 				DEAD_CODE_STRIPPING = YES;
-				ENABLE_HARDENED_RUNTIME = YES;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_OPTIMIZATION_LEVEL = 3;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"_NDEBUG=1",
 					"NDEBUG=1",
-					"JUCER_XCODE_MAC_F6D2F4CF=1",
+					"JUCER_XCODE_IPHONE_5BC26AE3=1",
 					"JUCE_APP_VERSION=1.0.0",
 					"JUCE_APP_VERSION_HEX=0x10000",
 					"JucePlugin_Build_VST=0",
@@ -1520,8 +1256,6 @@
 				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				HEADER_SEARCH_PATHS = (
-					"../../../../module/juce/modules/juce_audio_processors/format_types/VST3_SDK",
-					"../../../../module/plugin_sdk/vstsdk2.4",
 					"../../JuceLibraryCode",
 					"../../../../module/dRowAudio/module",
 					"../../../../module/gin/modules",
@@ -1531,8 +1265,7 @@
 				);
 				INFOPLIST_FILE = Info-Standalone_Plugin.plist;
 				INFOPLIST_PREPROCESS = NO;
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
-				OTHER_CPLUSPLUSFLAGS = "-Wall -Wshadow-all -Wshorten-64-to-32 -Wstrict-aliasing -Wuninitialized -Wunused-parameter -Wconversion -Wsign-compare -Wint-conversion -Wconditional-uninitialized -Woverloaded-virtual -Wreorder -Wconstant-conversion -Wsign-conversion -Wunused-private-field -Wbool-conversion -Wextra-semi -Wunreachable-code -Wzero-as-null-pointer-constant -Wcast-align -Winconsistent-missing-destructor-override -Wshift-sign-overflow -Wnullable-to-nonnull-conversion -Wno-missing-field-initializers -Wno-ignored-qualifiers";
+				LLVM_LTO = YES;
 				OTHER_LDFLAGS = "-lSFX8";
 				PRODUCT_BUNDLE_IDENTIFIER = com.socalabs.SFX8;
 				PRODUCT_NAME = "SFX8";
@@ -1543,26 +1276,25 @@
 		E627043B9D9567C36A0D39D0 = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_CXX_LANGUAGE_STANDARD = "c++17";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_LINK_OBJC_RUNTIME = NO;
-				CODE_SIGN_ENTITLEMENTS = "SFX8.entitlements";
-				CODE_SIGN_IDENTITY = "";
 				COMBINE_HIDPI_IMAGES = YES;
 				CONFIGURATION_BUILD_DIR = "$(PROJECT_DIR)/build/$(CONFIGURATION)";
 				COPY_PHASE_STRIP = NO;
-				ENABLE_HARDENED_RUNTIME = YES;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"_DEBUG=1",
 					"DEBUG=1",
-					"JUCER_XCODE_MAC_F6D2F4CF=1",
+					"JUCER_XCODE_IPHONE_5BC26AE3=1",
 					"JUCE_APP_VERSION=1.0.0",
 					"JUCE_APP_VERSION_HEX=0x10000",
-					"JucePlugin_Build_VST=1",
+					"JucePlugin_Build_VST=0",
 					"JucePlugin_Build_VST3=0",
-					"JucePlugin_Build_AU=1",
+					"JucePlugin_Build_AU=0",
 					"JucePlugin_Build_AUv3=1",
 					"JucePlugin_Build_RTAS=0",
 					"JucePlugin_Build_AAX=0",
@@ -1572,8 +1304,6 @@
 				);
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				HEADER_SEARCH_PATHS = (
-					"../../../../module/juce/modules/juce_audio_processors/format_types/VST3_SDK",
-					"../../../../module/plugin_sdk/vstsdk2.4",
 					"../../JuceLibraryCode",
 					"../../../../module/dRowAudio/module",
 					"../../../../module/gin/modules",
@@ -1581,9 +1311,7 @@
 					"../../../../module/juce/modules/juce_audio_plugin_client",
 					"$(inherited)",
 				);
-				INSTALL_PATH = "@executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
-				OTHER_CPLUSPLUSFLAGS = "-Wall -Wshadow-all -Wshorten-64-to-32 -Wstrict-aliasing -Wuninitialized -Wunused-parameter -Wconversion -Wsign-compare -Wint-conversion -Wconditional-uninitialized -Woverloaded-virtual -Wreorder -Wconstant-conversion -Wsign-conversion -Wunused-private-field -Wbool-conversion -Wextra-semi -Wunreachable-code -Wzero-as-null-pointer-constant -Wcast-align -Winconsistent-missing-destructor-override -Wshift-sign-overflow -Wnullable-to-nonnull-conversion -Wno-missing-field-initializers -Wno-ignored-qualifiers";
+				INSTALL_PATH = "@executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.socalabs.SFX8;
 				PRODUCT_NAME = "SFX8";
 				SKIP_INSTALL = YES;
@@ -1594,27 +1322,25 @@
 		4D1EEADA9F327CFB40AF9B88 = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_CXX_LANGUAGE_STANDARD = "c++17";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_LINK_OBJC_RUNTIME = NO;
-				CODE_SIGN_ENTITLEMENTS = "SFX8.entitlements";
-				CODE_SIGN_IDENTITY = "";
 				COMBINE_HIDPI_IMAGES = YES;
 				CONFIGURATION_BUILD_DIR = "$(PROJECT_DIR)/build/$(CONFIGURATION)";
 				DEAD_CODE_STRIPPING = YES;
-				ENABLE_HARDENED_RUNTIME = YES;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_OPTIMIZATION_LEVEL = 3;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"_NDEBUG=1",
 					"NDEBUG=1",
-					"JUCER_XCODE_MAC_F6D2F4CF=1",
+					"JUCER_XCODE_IPHONE_5BC26AE3=1",
 					"JUCE_APP_VERSION=1.0.0",
 					"JUCE_APP_VERSION_HEX=0x10000",
-					"JucePlugin_Build_VST=1",
+					"JucePlugin_Build_VST=0",
 					"JucePlugin_Build_VST3=0",
-					"JucePlugin_Build_AU=1",
+					"JucePlugin_Build_AU=0",
 					"JucePlugin_Build_AUv3=1",
 					"JucePlugin_Build_RTAS=0",
 					"JucePlugin_Build_AAX=0",
@@ -1625,8 +1351,6 @@
 				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				HEADER_SEARCH_PATHS = (
-					"../../../../module/juce/modules/juce_audio_processors/format_types/VST3_SDK",
-					"../../../../module/plugin_sdk/vstsdk2.4",
 					"../../JuceLibraryCode",
 					"../../../../module/dRowAudio/module",
 					"../../../../module/gin/modules",
@@ -1634,9 +1358,8 @@
 					"../../../../module/juce/modules/juce_audio_plugin_client",
 					"$(inherited)",
 				);
-				INSTALL_PATH = "@executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
-				OTHER_CPLUSPLUSFLAGS = "-Wall -Wshadow-all -Wshorten-64-to-32 -Wstrict-aliasing -Wuninitialized -Wunused-parameter -Wconversion -Wsign-compare -Wint-conversion -Wconditional-uninitialized -Woverloaded-virtual -Wreorder -Wconstant-conversion -Wsign-conversion -Wunused-private-field -Wbool-conversion -Wextra-semi -Wunreachable-code -Wzero-as-null-pointer-constant -Wcast-align -Winconsistent-missing-destructor-override -Wshift-sign-overflow -Wnullable-to-nonnull-conversion -Wno-missing-field-initializers -Wno-ignored-qualifiers";
+				INSTALL_PATH = "@executable_path/Frameworks";
+				LLVM_LTO = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.socalabs.SFX8;
 				PRODUCT_NAME = "SFX8";
 				SKIP_INSTALL = YES;
@@ -1647,6 +1370,7 @@
 		B4C59F0AA5F921AA5388998C = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
@@ -1666,7 +1390,6 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "";
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -1684,8 +1407,11 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "SFX8";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WARNING_CFLAGS = "-Wreorder";
 				ZERO_LINK = NO;
 			};
@@ -1694,6 +1420,7 @@
 		F25B0316F861DF42E2CECAC8 = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
@@ -1713,7 +1440,6 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "";
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = c11;
@@ -1730,19 +1456,14 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				PRODUCT_NAME = "SFX8";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WARNING_CFLAGS = "-Wreorder";
 				ZERO_LINK = NO;
 			};
 			name = Release;
-		};
-		55AFB2DBBD885AE334F03391 = {
-			isa = PBXTargetDependency;
-			target = 25220F44A4E6E1F934B7C1EF;
-		};
-		DF9DFADE3D712D676D113B71 = {
-			isa = PBXTargetDependency;
-			target = F70B106B45672147D9958AC7;
 		};
 		EA0A98184725FBEF68C16F9F = {
 			isa = PBXTargetDependency;
@@ -1780,155 +1501,12 @@
 			buildPhases = ( );
 			buildRules = ( );
 			dependencies = (
-				55AFB2DBBD885AE334F03391,
-				DF9DFADE3D712D676D113B71,
 				EA0A98184725FBEF68C16F9F,
 				BAE968240B268809BB18C2BB,
 				9A5C921A1F8BE3F11C253D24,
 			);
 			name = "SFX8 - All";
 			productName = SFX8;
-		};
-		ECEB1EF9564061F291582FDD = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				4CE75EF5312C37FBBFE0F862,
-				CC8F8EB75AC785967CAC4F2C,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Debug;
-		};
-		0941441315B0A1DA68F95BA2 = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				50419D2621AB9CC3EDB940D3,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		4F2F3C964F648E0515ED6168 = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				54DA41EBF22558B6A3B8A306,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		D4F4828EFD20B0AA6E121B47 = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				0C7B19E7CE84C270616C100D,
-				E260D8EBB6132F491C3CF05E,
-				2F6A75C81AB532FC7AC3371B,
-				BFCAA30350B43AC50CC584DC,
-				6C68B809161522A024E479D5,
-				8E847BE7BE2C6155D01B35CF,
-				5CA7B4F78B57BD44CA647DE4,
-				F0C7D668F7EC55BAD46506FB,
-				01046F09E3D53C237FF2286F,
-				D60953D40178A1D6B92A2C3C,
-				CAF973797906797CBCD2CC59,
-				DE0D3BEEB9176892749DAED8,
-				1DC9F03D6663EC43A52459CB,
-				02F619E5DC3368C805843916,
-				664F8726B57D87F1F1DAE416,
-				0B645CD7811466B187A3651D,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		25220F44A4E6E1F934B7C1EF = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = ECEB1EF9564061F291582FDD;
-			buildPhases = (
-				0941441315B0A1DA68F95BA2,
-				4F2F3C964F648E0515ED6168,
-				D4F4828EFD20B0AA6E121B47,
-			);
-			buildRules = ( );
-			dependencies = (
-				9A5C921A1F8BE3F11C253D24,
-			);
-			name = "SFX8 - VST";
-			productName = SFX8;
-			productReference = E9A43D0E971690239E9BB476;
-			productType = "com.apple.product-type.bundle";
-		};
-		AFA49AB1DEFD776487731D86 = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				8EDE0D161EF4499CCF2BF175,
-				AC986E6D4155C97AEA4645B3,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Debug;
-		};
-		BC0D098CA30376289074433A = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				50419D2621AB9CC3EDB940D3,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		9E56617D4C710E32F0F4BD80 = {
-			isa = PBXRezBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				D5AAAABBF84A2A770241782E,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		CC56CF24D5B483674F80EF0D = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				07A6D26F06A48597455B0749,
-				E8484EFD29475C1F2157CAB6,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		19F319875850E817CAD3E0BE = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				0C7B19E7CE84C270616C100D,
-				E260D8EBB6132F491C3CF05E,
-				293E0182749725EEEBC159A4,
-				2F6A75C81AB532FC7AC3371B,
-				BFCAA30350B43AC50CC584DC,
-				6C68B809161522A024E479D5,
-				8E847BE7BE2C6155D01B35CF,
-				5CA7B4F78B57BD44CA647DE4,
-				F0C7D668F7EC55BAD46506FB,
-				01046F09E3D53C237FF2286F,
-				D60953D40178A1D6B92A2C3C,
-				CAF973797906797CBCD2CC59,
-				DE0D3BEEB9176892749DAED8,
-				1DC9F03D6663EC43A52459CB,
-				02F619E5DC3368C805843916,
-				664F8726B57D87F1F1DAE416,
-				0B645CD7811466B187A3651D,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		F70B106B45672147D9958AC7 = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = AFA49AB1DEFD776487731D86;
-			buildPhases = (
-				BC0D098CA30376289074433A,
-				9E56617D4C710E32F0F4BD80,
-				CC56CF24D5B483674F80EF0D,
-				19F319875850E817CAD3E0BE,
-			);
-			buildRules = ( );
-			dependencies = (
-				9A5C921A1F8BE3F11C253D24,
-			);
-			name = "SFX8 - AU";
-			productName = SFX8;
-			productReference = 92625EFC69DCF497950C9A68;
-			productType = "com.apple.product-type.bundle";
 		};
 		3B6D8F857B79F3F6D52E4509 = {
 			isa = XCConfigurationList;
@@ -1943,7 +1521,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				50419D2621AB9CC3EDB940D3,
+				8993D6D89D3B161426188281,
+				99D20A219BAACDF7B63BB577,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1961,21 +1540,20 @@
 			files = (
 				0C7B19E7CE84C270616C100D,
 				E260D8EBB6132F491C3CF05E,
-				293E0182749725EEEBC159A4,
 				2F6A75C81AB532FC7AC3371B,
 				BFCAA30350B43AC50CC584DC,
-				6C68B809161522A024E479D5,
-				8E847BE7BE2C6155D01B35CF,
 				5CA7B4F78B57BD44CA647DE4,
 				F0C7D668F7EC55BAD46506FB,
+				2D649D49F0FD93ADD6854219,
+				628D979038CC3A4BAEAAF8F1,
 				01046F09E3D53C237FF2286F,
 				D60953D40178A1D6B92A2C3C,
-				CAF973797906797CBCD2CC59,
-				DE0D3BEEB9176892749DAED8,
-				1DC9F03D6663EC43A52459CB,
+				8A5C2EAF9F7969A2403C9818,
+				05D38F40F757D85DE39F7025,
+				443CC1CB217F96C458C41980,
+				A897922B16FC355F9B7CD78B,
 				02F619E5DC3368C805843916,
-				664F8726B57D87F1F1DAE416,
-				0B645CD7811466B187A3651D,
+				B44FCB3035A87BE9AD1DAB0C,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2009,7 +1587,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				50419D2621AB9CC3EDB940D3,
+				8993D6D89D3B161426188281,
+				99D20A219BAACDF7B63BB577,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2029,18 +1608,18 @@
 				E260D8EBB6132F491C3CF05E,
 				2F6A75C81AB532FC7AC3371B,
 				BFCAA30350B43AC50CC584DC,
-				6C68B809161522A024E479D5,
-				8E847BE7BE2C6155D01B35CF,
 				5CA7B4F78B57BD44CA647DE4,
 				F0C7D668F7EC55BAD46506FB,
+				2D649D49F0FD93ADD6854219,
+				628D979038CC3A4BAEAAF8F1,
 				01046F09E3D53C237FF2286F,
 				D60953D40178A1D6B92A2C3C,
-				CAF973797906797CBCD2CC59,
-				DE0D3BEEB9176892749DAED8,
-				1DC9F03D6663EC43A52459CB,
+				8A5C2EAF9F7969A2403C9818,
+				05D38F40F757D85DE39F7025,
+				443CC1CB217F96C458C41980,
+				A897922B16FC355F9B7CD78B,
 				02F619E5DC3368C805843916,
-				664F8726B57D87F1F1DAE416,
-				0B645CD7811466B187A3651D,
+				B44FCB3035A87BE9AD1DAB0C,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2135,13 +1714,13 @@
 		0624B96834EA097F877B7528 = {
 			isa = PBXProject;
 			buildConfigurationList = 56AC8981D9C3FF0BC8F17CFD;
-			attributes = { LastUpgradeCheck = 1100; ORGANIZATIONNAME = "SocaLabs"; TargetAttributes = { 0E3A0B52C561ECE6208D0D38 = { SystemCapabilities = {com.apple.ApplicationGroups.iOS = { enabled = 0; }; com.apple.InAppPurchase = { enabled = 0; }; com.apple.InterAppAudio = { enabled = 0; }; com.apple.Push = { enabled = 0; }; com.apple.Sandbox = { enabled = 0; }; com.apple.HardenedRuntime = { enabled = 1; }; }; };25220F44A4E6E1F934B7C1EF = { SystemCapabilities = {com.apple.ApplicationGroups.iOS = { enabled = 0; }; com.apple.InAppPurchase = { enabled = 0; }; com.apple.InterAppAudio = { enabled = 0; }; com.apple.Push = { enabled = 0; }; com.apple.Sandbox = { enabled = 0; }; com.apple.HardenedRuntime = { enabled = 1; }; }; };F70B106B45672147D9958AC7 = { SystemCapabilities = {com.apple.ApplicationGroups.iOS = { enabled = 0; }; com.apple.InAppPurchase = { enabled = 0; }; com.apple.InterAppAudio = { enabled = 0; }; com.apple.Push = { enabled = 0; }; com.apple.Sandbox = { enabled = 0; }; com.apple.HardenedRuntime = { enabled = 1; }; }; };065AA39B6217BDDF418A6457 = { SystemCapabilities = {com.apple.ApplicationGroups.iOS = { enabled = 0; }; com.apple.InAppPurchase = { enabled = 0; }; com.apple.InterAppAudio = { enabled = 0; }; com.apple.Push = { enabled = 0; }; com.apple.Sandbox = { enabled = 1; }; com.apple.HardenedRuntime = { enabled = 1; }; }; };CF1C0925D6542E5D309B15D0 = { SystemCapabilities = {com.apple.ApplicationGroups.iOS = { enabled = 0; }; com.apple.InAppPurchase = { enabled = 0; }; com.apple.InterAppAudio = { enabled = 0; }; com.apple.Push = { enabled = 0; }; com.apple.Sandbox = { enabled = 0; }; com.apple.HardenedRuntime = { enabled = 1; }; }; };5E278CB1AD4A3EF88176784B = { SystemCapabilities = {com.apple.ApplicationGroups.iOS = { enabled = 0; }; com.apple.InAppPurchase = { enabled = 0; }; com.apple.InterAppAudio = { enabled = 0; }; com.apple.Push = { enabled = 0; }; com.apple.Sandbox = { enabled = 0; }; com.apple.HardenedRuntime = { enabled = 1; }; }; }; }; };
+			attributes = { LastUpgradeCheck = 1100; ORGANIZATIONNAME = "SocaLabs"; TargetAttributes = { 0E3A0B52C561ECE6208D0D38 = { SystemCapabilities = {com.apple.ApplicationGroups.iOS = { enabled = 0; }; com.apple.InAppPurchase = { enabled = 0; }; com.apple.InterAppAudio = { enabled = 0; }; com.apple.Push = { enabled = 0; }; com.apple.Sandbox = { enabled = 0; }; com.apple.HardenedRuntime = { enabled = 0; }; }; };065AA39B6217BDDF418A6457 = { SystemCapabilities = {com.apple.ApplicationGroups.iOS = { enabled = 0; }; com.apple.InAppPurchase = { enabled = 0; }; com.apple.InterAppAudio = { enabled = 0; }; com.apple.Push = { enabled = 0; }; com.apple.Sandbox = { enabled = 1; }; com.apple.HardenedRuntime = { enabled = 0; }; }; };CF1C0925D6542E5D309B15D0 = { SystemCapabilities = {com.apple.ApplicationGroups.iOS = { enabled = 0; }; com.apple.InAppPurchase = { enabled = 0; }; com.apple.InterAppAudio = { enabled = 0; }; com.apple.Push = { enabled = 0; }; com.apple.Sandbox = { enabled = 0; }; com.apple.HardenedRuntime = { enabled = 0; }; }; };5E278CB1AD4A3EF88176784B = { SystemCapabilities = {com.apple.ApplicationGroups.iOS = { enabled = 0; }; com.apple.InAppPurchase = { enabled = 0; }; com.apple.InterAppAudio = { enabled = 0; }; com.apple.Push = { enabled = 0; }; com.apple.Sandbox = { enabled = 0; }; com.apple.HardenedRuntime = { enabled = 0; }; }; }; }; };
 			compatibilityVersion = "Xcode 3.2";
 			hasScannedForEncodings = 0;
 			mainGroup = BB64C93FB2BCA9DA1D3B3A3B;
 			projectDirPath = "";
 			projectRoot = "";
-			targets = (0E3A0B52C561ECE6208D0D38, 25220F44A4E6E1F934B7C1EF, F70B106B45672147D9958AC7, 065AA39B6217BDDF418A6457, CF1C0925D6542E5D309B15D0, 5E278CB1AD4A3EF88176784B);
+			targets = (0E3A0B52C561ECE6208D0D38, 065AA39B6217BDDF418A6457, CF1C0925D6542E5D309B15D0, 5E278CB1AD4A3EF88176784B);
 			knownRegions = (en, Base);
 		};
 	};
