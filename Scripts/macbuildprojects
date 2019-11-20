@@ -1,10 +1,3 @@
-#pAVuCweV
-DEV_APP_ID="Developer ID Application: Roland Rabien (3FS7DJDG38)"
-DEV_INST_ID="Developer ID Installer: Roland Rabien (3FS7DJDG38)"
-
-PASSWORD="wtow-zpjo-nftf-tpzc"
-USERNAME="itunes@rabien.com"
-
 rm -Rf bin
 mkdir bin
 mkdir bin/mac
@@ -86,6 +79,5 @@ zip -r Maths_Mac.zip Maths.vst Maths.component
 zip -r ABTester_Mac.zip ABTester.vst ABTester.component
 zip -r AddInvert_Mac.zip AddInvert.vst AddInvert.component
 zip -r SFX8_Mac.zip SFX8.vst SFX8.component
-zip -r All_Mac.zip *.vst *.component
 cp *.zip mac
 cd ..
