@@ -67,4 +67,17 @@ copy "%ROOT%\plugin\AB Tester\Builds\VisualStudio2017\Win32\Release\VST\ABTester
 copy "%ROOT%\plugin\AddInvert\Builds\VisualStudio2017\Win32\Release\VST\AddInvert_32b.dll" bin
 copy "%ROOT%\plugin\SFX8\Builds\VisualStudio2017\Win32\Release\VST\SFX8_32b.dll" bin
 
-
+cd bin
+7z a PAPU_Win.zip PAPU_32b.dll PAPU_64b.dll
+7z a RP2A03_Win.zip RP2A03_32b.dll RP2A03_64b.dll
+7z a SID_Win.zip SID_32b.dll SID_64b.dll
+7z a SN76489_Win.zip SN76489_32b.dll SN76489_64b.dll
+7z a Voc_Win.zip Voc_32b.dll Voc_64b.dll
+7z a Oscilloscope_Win.zip Oscilloscope_32b.dll Oscilloscope_64b.dll
+7z a SpectrumAnalyzer_Win.zip SpectrumAnalyzer_32b.dll SpectrumAnalyzer_64b.dll
+7z a ToneGenerator_Win.zip ToneGenerator_32b.dll ToneGenerator_64b.dll
+7z a ChannelMute_Win.zip ChannelMute_32b.dll ChannelMute_64b.dll
+7z a Maths_Win.zip Maths_32b.dll Maths_64b.dll
+7z a ABTester_Win.zip ABTester_32b.dll ABTester_64b.dll
+7z a AddInvert_Win.zip AddInvert_32b.dll AddInvert_64b.dll
+7z a SFX8_Win.zip SFX8_32b.dll SFX8_64b.dll
