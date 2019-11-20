@@ -7,7 +7,6 @@ cd "%ROOT%"
 cd Scripts
 mkdir bin
 mkdir bin\win
-mkdir bin\zip
 
 "%MSBUILD_EXE%" "%ROOT%\plugins\slOscilloscope\Builds\VisualStudio2017\Oscilloscope.sln" /p:VisualStudioVersion=15.0 /m /p:Configuration=Release /p:PlatformTarget=x86
 if %errorlevel% neq 0 exit /b %errorlevel%
@@ -81,3 +80,5 @@ cd bin
 7z a ABTester_Win.zip ABTester_32b.dll ABTester_64b.dll
 7z a AddInvert_Win.zip AddInvert_32b.dll AddInvert_64b.dll
 7z a SFX8_Win.zip SFX8_32b.dll SFX8_64b.dll
+
+move *.zip win
