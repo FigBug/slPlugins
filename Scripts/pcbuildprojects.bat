@@ -9,44 +9,44 @@ mkdir bin
 mkdir bin\win
 mkdir bin\zip
 
-"MSBUILD_EXE" "%ROOT%\plugins\slOscilloscope\Builds\VisualStudio2017\Oscilloscope.sln" /p:VisualStudioVersion=15.0 /m /p:Configuration=Release /p:PlatformTarget=x86
+"%MSBUILD_EXE%" "%ROOT%\plugins\slOscilloscope\Builds\VisualStudio2017\Oscilloscope.sln" /p:VisualStudioVersion=15.0 /m /p:Configuration=Release /p:PlatformTarget=x86
 if %errorlevel% neq 0 exit /b %errorlevel%
-"MSBUILD_EXE" "%ROOT%\plugins\slOscilloscope\Builds\VisualStudio2017\Oscilloscope.sln" /p:VisualStudioVersion=15.0 /m /p:Configuration=Release64 /p:Platform=x64
-if %errorlevel% neq 0 exit /b %errorlevel%
-
-"MSBUILD_EXE" "%ROOT%\plugins\Spectrum Analyzer\Builds\VisualStudio2017\Spectrum Analyzer.sln" /p:VisualStudioVersion=15.0 /m /p:Configuration=Release /p:PlatformTarget=x86
-if %errorlevel% neq 0 exit /b %errorlevel%
-"MSBUILD_EXE" "%ROOT%\plugins\Spectrum Analyzer\Builds\VisualStudio2017\Spectrum Analyzer.sln" /p:VisualStudioVersion=15.0 /m /p:Configuration=Release64 /p:Platform=x64
+"%MSBUILD_EXE%" "%ROOT%\plugins\slOscilloscope\Builds\VisualStudio2017\Oscilloscope.sln" /p:VisualStudioVersion=15.0 /m /p:Configuration=Release64 /p:Platform=x64
 if %errorlevel% neq 0 exit /b %errorlevel%
 
-"MSBUILD_EXE" "%ROOT%\plugins\Tone Generator\Builds\VisualStudio2017\Tone Generator.sln" /p:VisualStudioVersion=15.0 /m /p:Configuration=Release /p:PlatformTarget=x86
+"%MSBUILD_EXE%" "%ROOT%\plugins\Spectrum Analyzer\Builds\VisualStudio2017\Spectrum Analyzer.sln" /p:VisualStudioVersion=15.0 /m /p:Configuration=Release /p:PlatformTarget=x86
 if %errorlevel% neq 0 exit /b %errorlevel%
-"MSBUILD_EXE" "%ROOT%\plugins\Tone Generator\Builds\VisualStudio2017\Tone Generator.sln" /p:VisualStudioVersion=15.0 /m /p:Configuration=Release64 /p:Platform=x64
-if %errorlevel% neq 0 exit /b %errorlevel%
-
-"MSBUILD_EXE" "%ROOT%\plugins\Channel Mute\Builds\VisualStudio2017\Channel Mute.sln" /p:VisualStudioVersion=15.0 /m /p:Configuration=Release /p:PlatformTarget=x86
-if %errorlevel% neq 0 exit /b %errorlevel%
-"MSBUILD_EXE" "%ROOT%\plugins\Channel Mute\Builds\VisualStudio2017\Channel Mute.sln" /p:VisualStudioVersion=15.0 /m /p:Configuration=Release64 /p:Platform=x64
+"%MSBUILD_EXE%" "%ROOT%\plugins\Spectrum Analyzer\Builds\VisualStudio2017\Spectrum Analyzer.sln" /p:VisualStudioVersion=15.0 /m /p:Configuration=Release64 /p:Platform=x64
 if %errorlevel% neq 0 exit /b %errorlevel%
 
-"MSBUILD_EXE" "%ROOT%\plugins\Maths\Builds\VisualStudio2017\Maths.sln" /p:VisualStudioVersion=15.0 /m /p:Configuration=Release /p:PlatformTarget=x86
+"%MSBUILD_EXE%" "%ROOT%\plugins\Tone Generator\Builds\VisualStudio2017\Tone Generator.sln" /p:VisualStudioVersion=15.0 /m /p:Configuration=Release /p:PlatformTarget=x86
 if %errorlevel% neq 0 exit /b %errorlevel%
-"MSBUILD_EXE" "%ROOT%\plugins\Maths\Builds\VisualStudio2017\Maths.sln" /p:VisualStudioVersion=15.0 /m /p:Configuration=Release64 /p:Platform=x64
-if %errorlevel% neq 0 exit /b %errorlevel%
-
-"MSBUILD_EXE" "%ROOT%\plugins\AB Tester\Builds\VisualStudio2017\AB Tester.sln" /p:VisualStudioVersion=15.0 /m /p:Configuration=Release /p:PlatformTarget=x86
-if %errorlevel% neq 0 exit /b %errorlevel%
-"MSBUILD_EXE" "%ROOT%\plugins\AB Tester\Builds\VisualStudio2017\AB Tester.sln" /p:VisualStudioVersion=15.0 /m /p:Configuration=Release64 /p:Platform=x64
+"%MSBUILD_EXE%" "%ROOT%\plugins\Tone Generator\Builds\VisualStudio2017\Tone Generator.sln" /p:VisualStudioVersion=15.0 /m /p:Configuration=Release64 /p:Platform=x64
 if %errorlevel% neq 0 exit /b %errorlevel%
 
-"MSBUILD_EXE" "%ROOT%\plugins\AddInvert\Builds\VisualStudio2017\Add and Invert.sln" /p:VisualStudioVersion=15.0 /m /p:Configuration=Release /p:PlatformTarget=x86
+"%MSBUILD_EXE%" "%ROOT%\plugins\Channel Mute\Builds\VisualStudio2017\Channel Mute.sln" /p:VisualStudioVersion=15.0 /m /p:Configuration=Release /p:PlatformTarget=x86
 if %errorlevel% neq 0 exit /b %errorlevel%
-"MSBUILD_EXE" "%ROOT%\plugins\AddInvert\Builds\VisualStudio2017\Add and Invert.sln" /p:VisualStudioVersion=15.0 /m /p:Configuration=Release64 /p:Platform=x64
+"%MSBUILD_EXE%" "%ROOT%\plugins\Channel Mute\Builds\VisualStudio2017\Channel Mute.sln" /p:VisualStudioVersion=15.0 /m /p:Configuration=Release64 /p:Platform=x64
 if %errorlevel% neq 0 exit /b %errorlevel%
 
-"MSBUILD_EXE" "%ROOT%\plugins\SFX8\Builds\VisualStudio2017\SFX8.sln" /p:VisualStudioVersion=15.0 /m /p:Configuration=Release /p:PlatformTarget=x86
+"%MSBUILD_EXE%" "%ROOT%\plugins\Maths\Builds\VisualStudio2017\Maths.sln" /p:VisualStudioVersion=15.0 /m /p:Configuration=Release /p:PlatformTarget=x86
 if %errorlevel% neq 0 exit /b %errorlevel%
-"MSBUILD_EXE" "%ROOT%\plugins\SFX8\Builds\VisualStudio2017\SFX8.sln" /p:VisualStudioVersion=15.0 /m /p:Configuration=Release64 /p:Platform=x64
+"%MSBUILD_EXE%" "%ROOT%\plugins\Maths\Builds\VisualStudio2017\Maths.sln" /p:VisualStudioVersion=15.0 /m /p:Configuration=Release64 /p:Platform=x64
+if %errorlevel% neq 0 exit /b %errorlevel%
+
+"%MSBUILD_EXE%" "%ROOT%\plugins\AB Tester\Builds\VisualStudio2017\AB Tester.sln" /p:VisualStudioVersion=15.0 /m /p:Configuration=Release /p:PlatformTarget=x86
+if %errorlevel% neq 0 exit /b %errorlevel%
+"%MSBUILD_EXE%" "%ROOT%\plugins\AB Tester\Builds\VisualStudio2017\AB Tester.sln" /p:VisualStudioVersion=15.0 /m /p:Configuration=Release64 /p:Platform=x64
+if %errorlevel% neq 0 exit /b %errorlevel%
+
+"%MSBUILD_EXE%" "%ROOT%\plugins\AddInvert\Builds\VisualStudio2017\Add and Invert.sln" /p:VisualStudioVersion=15.0 /m /p:Configuration=Release /p:PlatformTarget=x86
+if %errorlevel% neq 0 exit /b %errorlevel%
+"%MSBUILD_EXE%" "%ROOT%\plugins\AddInvert\Builds\VisualStudio2017\Add and Invert.sln" /p:VisualStudioVersion=15.0 /m /p:Configuration=Release64 /p:Platform=x64
+if %errorlevel% neq 0 exit /b %errorlevel%
+
+"%MSBUILD_EXE%" "%ROOT%\plugins\SFX8\Builds\VisualStudio2017\SFX8.sln" /p:VisualStudioVersion=15.0 /m /p:Configuration=Release /p:PlatformTarget=x86
+if %errorlevel% neq 0 exit /b %errorlevel%
+"%MSBUILD_EXE%" "%ROOT%\plugins\SFX8\Builds\VisualStudio2017\SFX8.sln" /p:VisualStudioVersion=15.0 /m /p:Configuration=Release64 /p:Platform=x64
 if %errorlevel% neq 0 exit /b %errorlevel%
 
 copy "%ROOT%\plugins\slOscilloscope\Builds\VisualStudio2017\x64\Release64\VST\Oscilloscope_64b.dll" bin
