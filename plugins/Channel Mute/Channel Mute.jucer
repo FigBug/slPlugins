@@ -70,7 +70,7 @@
                        isDebug="0" optimisation="3" targetName="ChannelMute_32b" headerPath="../../../../module/slCommon"
                        postbuildCommand="copy /Y &quot;$(OutDir)\$(TargetFileName)&quot; &quot;C:\Program Files (x86)\VSTPlugins&quot;"
                        debugInformationFormat="ProgramDatabase" enablePluginBinaryCopyStep="0"
-                       linkTimeOptimisation="1"/>
+                       linkTimeOptimisation="0"/>
         <CONFIGURATION name="Debug64" winWarningLevel="4" generateManifest="1" winArchitecture="x64"
                        isDebug="1" optimisation="1" targetName="ChannelMute_64b" headerPath="../../../../module/slCommon"
                        postbuildCommand="copy /Y &quot;$(OutDir)\$(TargetFileName)&quot; &quot;C:\Program Files\VSTPlugins&quot;"
@@ -79,7 +79,7 @@
                        isDebug="0" optimisation="3" targetName="ChannelMute_64b" headerPath="../../../../module/slCommon"
                        postbuildCommand="copy /Y &quot;$(OutDir)\$(TargetFileName)&quot; &quot;C:\Program Files\VSTPlugins&quot;"
                        debugInformationFormat="ProgramDatabase" enablePluginBinaryCopyStep="0"
-                       linkTimeOptimisation="1"/>
+                       linkTimeOptimisation="0"/>
       </CONFIGURATIONS>
       <MODULEPATHS>
         <MODULEPATH id="juce_core" path="../../module/juce/modules"/>
