@@ -2,7 +2,7 @@ set MSBUILD_EXE=C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\M
 
 set ROOT=%cd%
 
-cd "%ROOT%\modules\juce\extras\Projucer\Builds\VisualStudio2017\"
+cd "%ROOT%\module\juce\extras\Projucer\Builds\VisualStudio2017\"
 "%MSBUILD_EXE%" Projucer.sln /p:VisualStudioVersion=15.0 /m /t:Build /p:Configuration=Release /p:Platform=x64 /p:PreferredToolArchitecture=x64 
 if %errorlevel% neq 0 exit /b %errorlevel%
 
