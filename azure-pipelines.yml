@@ -27,6 +27,17 @@ jobs:
     inputs:
       artifactName: 'macOS'
       targetPath: 'Scripts/bin/mac'
+  - task: FtpUpload@2
+    inputs:
+      credentialsOption: 'serviceEndpoint'
+      serverEndpoint: 'ftp_figbug_com'
+      rootDirectory: 'Scripts/bin/mac'
+      filePatterns: '**'
+      remoteDirectory: '/home/socalabs/www/files'
+      clean: false
+      cleanContents: false
+      preservePaths: false
+      trustSSL: false        
 - job: windows
   pool:
     vmImage: 'vs2017-win2016'
@@ -45,3 +56,14 @@ jobs:
     inputs:
       artifactName: 'Windows'
       targetPath: 'Scripts/bin/win'
+  - task: FtpUpload@2
+    inputs:
+      credentialsOption: 'serviceEndpoint'
+      serverEndpoint: 'ftp_figbug_com'
+      rootDirectory: 'Scripts/bin/win'
+      filePatterns: '**'
+      remoteDirectory: '/home/socalabs/www/files'
+      clean: false
+      cleanContents: false
+      preservePaths: false
+      trustSSL: false            
