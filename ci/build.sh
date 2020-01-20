@@ -82,7 +82,7 @@ cat pluginlist.txt | while read PLUGIN; do
 
     cd "$ROOT/ci/bin"
     codesign -s "$DEV_APP_ID" -v "$PLUGIN.vst" --options=runtime
-    codesign -s "$DEV_APP_ID" -v "$$PLUGIN.component" --options=runtime
+    codesign -s "$DEV_APP_ID" -v "$PLUGIN.component" --options=runtime
 
     # Notarize
     cd "$ROOT/ci/bin"
