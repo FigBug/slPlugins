@@ -1,4 +1,5 @@
 #!/bin/bash -e
+set -x
 
 # mac specific stuff
 if [ $OS = "mac" ]; then
@@ -140,6 +141,7 @@ if [ $OS = "mac" ]; then
   curl -F "files=@All_Mac.zip" "https://socalabs.com/files/set.php?key=$APIKEY"
 else
   cd "$ROOT/ci/bin"
+              https://socalabs.com/files/get.php?id=SID_Win.zip
   curl -s -S "https://socalabs.com/files/get.php?id=SID_Win.zip" -o "$ROOT/ci/bin/SID_Win.zip"  
   curl -s -S "https://socalabs.com/files/get.php?id=PAPU_Win.zip" -o "$ROOT/ci/bin/PAPU_Win.zip"  
   curl -s -S "https://socalabs.com/files/get.php?id=Voc_Win.zip" -o "$ROOT/ci/bin/Voc_Win.zip"  
