@@ -12,9 +12,9 @@
 
 #include "../JuceLibraryCode/JuceHeader.h"
 
-#include "../../../module/bfxr/PinkNumber.h"
-#include "../../../module/bfxr/SfxrParams.h"
-#include "../../../module/bfxr/SfxrSynth.h"
+#include "../../../modules/bfxr/PinkNumber.h"
+#include "../../../modules/bfxr/SfxrParams.h"
+#include "../../../modules/bfxr/SfxrSynth.h"
 
 class Pad
 {
