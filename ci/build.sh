@@ -62,7 +62,7 @@ if [ $OS = "mac" ]; then
 fi
 
 cd "$ROOT/ci"
-cat pluginnames.txt | while read PLUGIN; do
+cat pluginlist.txt | while read PLUGIN; do
   # Resave jucer file
   if [ "$OS" = "mac" ]; then
     "$ROOT/ci/bin/Projucer.app/Contents/MacOS/Projucer" --resave "$ROOT/plugins/$PLUGIN/$PLUGIN.jucer"
