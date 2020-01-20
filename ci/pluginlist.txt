@@ -1,0 +1,8 @@
+Oscilloscope
+SpectrumAnalyzer
+ToneGenerator
+ChannelMute
+Maths
+ABTester
+AddInvert
+SFX8

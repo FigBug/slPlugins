@@ -1,6 +1,0 @@
-ROOT=$(cd "$(dirname "$0")/.."; pwd)
-echo ROOT: "$ROOT"
-cd "$ROOT/scripts"
-
-./macresaveprojects
-./macbuildprojects

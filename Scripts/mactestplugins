@@ -1,1 +1,0 @@
- /usr/local/bin/pluginval.app/Contents/MacOS/pluginval --validate ./bin/*.vst --strictness-level 10
