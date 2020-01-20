@@ -119,3 +119,40 @@ cat pluginlist.txt | while read PLUGIN; do
     curl -F "files=@${PLUGIN}_Win.zip" "https://socalabs.com/files/set.php?key=$APIKEY"
   fi
 done
+
+# Make All.zip
+if [ $OS = "mac" ]; then
+  cd "$ROOT/ci/bin"
+  curl -s -S "https://socalabs.com/files/get.php?id=SID_Mac.zip" -o "$ROOT/ci/bin/SID_Mac.zip"  
+  curl -s -S "https://socalabs.com/files/get.php?id=PAPU_Mac.zip" -o "$ROOT/ci/bin/PAPU_Mac.zip"  
+  curl -s -S "https://socalabs.com/files/get.php?id=Voc_Mac.zip" -o "$ROOT/ci/bin/Voc_Mac.zip"  
+  curl -s -S "https://socalabs.com/files/get.php?id=SN76489_Mac.zip" -o "$ROOT/ci/bin/SN76489_Mac.zip"  
+  curl -s -S "https://socalabs.com/files/get.php?id=RP2A03_Mac.zip" -o "$ROOT/ci/bin/RP2A03_Mac.zip"  
+
+  unzip SID_Mac.zip
+  unzip PAPU_Mac.zip
+  unzip Voc_Mac.zip
+  unzip SN76489_Mac.zip
+  unzip RP2A03_Mac.zip
+
+  zip -r All_Mac.zip *.vst *.component
+
+  curl -F "files=@All_Mac.zip" "https://socalabs.com/files/set.php?key=$APIKEY"
+else
+  cd "$ROOT/ci/bin"
+  curl -s -S "https://socalabs.com/files/get.php?id=SID_Win.zip" -o "$ROOT/ci/bin/SID_Win.zip"  
+  curl -s -S "https://socalabs.com/files/get.php?id=PAPU_Win.zip" -o "$ROOT/ci/bin/PAPU_Win.zip"  
+  curl -s -S "https://socalabs.com/files/get.php?id=Voc_Win.zip" -o "$ROOT/ci/bin/Voc_Win.zip"  
+  curl -s -S "https://socalabs.com/files/get.php?id=SN76489_Win.zip" -o "$ROOT/ci/bin/SN76489_Win.zip"  
+  curl -s -S "https://socalabs.com/files/get.php?id=RP2A03_Win.zip" -o "$ROOT/ci/bin/RP2A03_Win.zip"  
+
+  unzip SID_Win.zip
+  unzip PAPU_Win.zip
+  unzip Voc_Win.zip
+  unzip SN76489_Win.zip
+  unzip RP2A03_Win.zip
+
+  7z a All_Win.zip *.dll
+
+  curl -F "files=@All_Win.zip" "https://socalabs.com/files/set.php?key=$APIKEY"
+fi
