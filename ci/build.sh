@@ -1,5 +1,4 @@
 #!/bin/bash -e
-set -x
 
 # mac specific stuff
 if [ $OS = "mac" ]; then
