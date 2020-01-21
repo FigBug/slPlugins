@@ -16,3 +16,6 @@
 [submodule "module/Q"]
 	path = modules/Q
 	url = https://github.com/cycfi/Q.git
+[submodule "modules/infra"]
+	path = modules/infra
+	url = https://github.com/cycfi/infra.git

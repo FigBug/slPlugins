@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <JUCERPROJECT id="JPnRUR" name="PitchTrack" projectType="audioplug" version="1.0.0"
-              bundleIdentifier="com.socalabs.slPitchTrack" includeBinaryInAppConfig="1"
+              bundleIdentifier="com.socalabs.PitchTrack" includeBinaryInAppConfig="1"
               buildVST="1" buildVST3="0" buildAU="1" buildAUv3="0" buildRTAS="0"
-              buildAAX="0" pluginName="slPitchTrack" pluginDesc="slPitchTrack"
+              buildAAX="0" pluginName="PitchTrack" pluginDesc="PitchTrack"
               pluginManufacturer="SocaLabs" pluginManufacturerCode="Soca" pluginCode="SLpt"
               pluginChannelConfigs="{1,1},{2,2}" pluginIsSynth="0" pluginWantsMidiIn="0"
               pluginProducesMidiOut="0" pluginIsMidiEffectPlugin="0" pluginEditorRequiresKeys="0"
-              pluginAUExportPrefix="slPitchTrackAU" pluginRTASCategory="" aaxIdentifier="com.socalabs.slPitchTrack"
+              pluginAUExportPrefix="PitchTrackAU" pluginRTASCategory="" aaxIdentifier="com.socalabs.PitchTrack"
               pluginAAXCategory="2" jucerVersion="5.4.5" companyName="SocaLabs"
               companyWebsite="www.socalabs.com" companyEmail="info@socalabs.com"
-              pluginFormats="buildVST,buildAU">
+              pluginFormats="buildVST,buildAU" cppLanguageStandard="17" reportAppUsage="0">
   <MAINGROUP id="dPRjsF" name="PitchTrack">
     <GROUP id="{EE796482-0D02-0052-80F4-B1FE6CE0D41A}" name="Source">
       <GROUP id="{6F2315D7-3D20-892D-4519-7653440048F1}" name="3rdParty"/>
@@ -24,68 +24,68 @@
     </GROUP>
   </MAINGROUP>
   <EXPORTFORMATS>
-    <XCODE_MAC targetFolder="Builds/MacOSX" vstLegacyFolder="../../module/plugin_sdk/vstsdk2.4">
+    <XCODE_MAC targetFolder="Builds/MacOSX" vstLegacyFolder="../../modules/plugin_sdk/vstsdk2.4">
       <CONFIGURATIONS>
         <CONFIGURATION name="Debug" isDebug="1" optimisation="1" targetName="PitchTrack"
-                       osxCompatibility="10.9 SDK"/>
+                       osxCompatibility="10.9 SDK" headerPath="../../../../modules/Q/q_lib/include&#10;../../../../modules/infra/include"/>
         <CONFIGURATION name="Release" isDebug="0" optimisation="3" targetName="PitchTrack"
-                       osxCompatibility="10.9 SDK"/>
+                       osxCompatibility="10.9 SDK" headerPath="../../../../modules/Q/q_lib/include&#10;../../../../modules/infra/include"/>
       </CONFIGURATIONS>
       <MODULEPATHS>
-        <MODULEPATH id="juce_core" path="../../../JUCE/modules"/>
-        <MODULEPATH id="juce_events" path="../../../JUCE/modules"/>
-        <MODULEPATH id="juce_graphics" path="../../../JUCE/modules"/>
-        <MODULEPATH id="juce_data_structures" path="../../../JUCE/modules"/>
-        <MODULEPATH id="juce_gui_basics" path="../../../JUCE/modules"/>
-        <MODULEPATH id="juce_gui_extra" path="../../../JUCE/modules"/>
-        <MODULEPATH id="juce_cryptography" path="../../../JUCE/modules"/>
-        <MODULEPATH id="juce_video" path="../../../JUCE/modules"/>
-        <MODULEPATH id="juce_opengl" path="../../../JUCE/modules"/>
-        <MODULEPATH id="juce_audio_basics" path="../../../JUCE/modules"/>
-        <MODULEPATH id="juce_audio_devices" path="../../../JUCE/modules"/>
-        <MODULEPATH id="juce_audio_formats" path="../../../JUCE/modules"/>
-        <MODULEPATH id="juce_audio_processors" path="../../../JUCE/modules"/>
-        <MODULEPATH id="juce_audio_plugin_client" path="../../../JUCE/modules"/>
-        <MODULEPATH id="gin_plugin" path="../../module/gin/modules"/>
-        <MODULEPATH id="gin" path="../../module/gin/modules"/>
-        <MODULEPATH id="gin_dsp" path="../../module/gin/modules"/>
-        <MODULEPATH id="juce_audio_utils" path="../../../JUCE/modules"/>
-        <MODULEPATH id="juce_dsp" path="../../../JUCE/modules"/>
+        <MODULEPATH id="juce_core" path="../../modules/juce/modules"/>
+        <MODULEPATH id="juce_events" path="../../modules/juce/modules"/>
+        <MODULEPATH id="juce_graphics" path="../../modules/juce/modules"/>
+        <MODULEPATH id="juce_data_structures" path="../../modules/juce/modules"/>
+        <MODULEPATH id="juce_gui_basics" path="../../modules/juce/modules"/>
+        <MODULEPATH id="juce_gui_extra" path="../../modules/juce/modules"/>
+        <MODULEPATH id="juce_cryptography" path="../../modules/juce/modules"/>
+        <MODULEPATH id="juce_video" path="../../modules/juce/modules"/>
+        <MODULEPATH id="juce_opengl" path="../../modules/juce/modules"/>
+        <MODULEPATH id="juce_audio_basics" path="../../modules/juce/modules"/>
+        <MODULEPATH id="juce_audio_devices" path="../../modules/juce/modules"/>
+        <MODULEPATH id="juce_audio_formats" path="../../modules/juce/modules"/>
+        <MODULEPATH id="juce_audio_processors" path="../../modules/juce/modules"/>
+        <MODULEPATH id="juce_audio_plugin_client" path="../../modules/juce/modules"/>
+        <MODULEPATH id="gin_plugin" path="../../modules/gin/modules"/>
+        <MODULEPATH id="gin" path="../../modules/gin/modules"/>
+        <MODULEPATH id="gin_dsp" path="../../modules/gin/modules"/>
+        <MODULEPATH id="juce_audio_utils" path="../../modules/juce/modules"/>
+        <MODULEPATH id="juce_dsp" path="../../modules/juce/modules"/>
       </MODULEPATHS>
     </XCODE_MAC>
-    <VS2017 targetFolder="Builds/VisualStudio2017" toolset="v141_xp" vstLegacyFolder="../../module/plugin_sdk/vstsdk2.4">
+    <VS2019 targetFolder="Builds/VisualStudio2019" toolset="v142" vstLegacyFolder="../../modules/plugin_sdk/vstsdk2.4">
       <CONFIGURATIONS>
         <CONFIGURATION isDebug="1" name="Debug" targetName="PitchTrack_32b" winArchitecture="Win32"
-                       useRuntimeLibDLL="0"/>
+                       useRuntimeLibDLL="0" headerPath="../../../../modules/Q/q_lib/include&#10;../../../../modules/infra/include"/>
         <CONFIGURATION isDebug="0" name="Release" targetName="PitchTrack_32b" winArchitecture="Win32"
-                       useRuntimeLibDLL="0"/>
+                       useRuntimeLibDLL="0" headerPath="../../../../modules/Q/q_lib/include&#10;../../../../modules/infra/include"/>
         <CONFIGURATION isDebug="1" name="Debug64" targetName="PitchTrack_64b" winArchitecture="x64"
-                       useRuntimeLibDLL="0"/>
+                       useRuntimeLibDLL="0" headerPath="../../../../modules/Q/q_lib/include&#10;../../../../modules/infra/include"/>
         <CONFIGURATION isDebug="0" name="Release64" targetName="PitchTrack_64b" winArchitecture="x64"
-                       useRuntimeLibDLL="0"/>
+                       useRuntimeLibDLL="0" headerPath="../../../../modules/Q/q_lib/include&#10;../../../../modules/infra/include"/>
       </CONFIGURATIONS>
       <MODULEPATHS>
-        <MODULEPATH id="juce_video"/>
-        <MODULEPATH id="juce_opengl"/>
-        <MODULEPATH id="juce_gui_extra"/>
-        <MODULEPATH id="juce_gui_basics"/>
-        <MODULEPATH id="juce_graphics"/>
-        <MODULEPATH id="juce_events"/>
-        <MODULEPATH id="juce_dsp"/>
-        <MODULEPATH id="juce_data_structures"/>
-        <MODULEPATH id="juce_cryptography"/>
-        <MODULEPATH id="juce_core"/>
-        <MODULEPATH id="juce_audio_utils"/>
-        <MODULEPATH id="juce_audio_processors"/>
-        <MODULEPATH id="juce_audio_plugin_client"/>
-        <MODULEPATH id="juce_audio_formats"/>
-        <MODULEPATH id="juce_audio_devices"/>
-        <MODULEPATH id="juce_audio_basics"/>
-        <MODULEPATH id="gin_plugin"/>
-        <MODULEPATH id="gin_dsp"/>
-        <MODULEPATH id="gin"/>
+        <MODULEPATH id="juce_video" path="../../modules/juce/modules"/>
+        <MODULEPATH id="juce_opengl" path="../../modules/juce/modules"/>
+        <MODULEPATH id="juce_gui_extra" path="../../modules/juce/modules"/>
+        <MODULEPATH id="juce_gui_basics" path="../../modules/juce/modules"/>
+        <MODULEPATH id="juce_graphics" path="../../modules/juce/modules"/>
+        <MODULEPATH id="juce_events" path="../../modules/juce/modules"/>
+        <MODULEPATH id="juce_dsp" path="../../modules/juce/modules"/>
+        <MODULEPATH id="juce_data_structures" path="../../modules/juce/modules"/>
+        <MODULEPATH id="juce_cryptography" path="../../modules/juce/modules"/>
+        <MODULEPATH id="juce_core" path="../../modules/juce/modules"/>
+        <MODULEPATH id="juce_audio_utils" path="../../modules/juce/modules"/>
+        <MODULEPATH id="juce_audio_processors" path="../../modules/juce/modules"/>
+        <MODULEPATH id="juce_audio_plugin_client" path="../../modules/juce/modules"/>
+        <MODULEPATH id="juce_audio_formats" path="../../modules/juce/modules"/>
+        <MODULEPATH id="juce_audio_devices" path="../../modules/juce/modules"/>
+        <MODULEPATH id="juce_audio_basics" path="../../modules/juce/modules"/>
+        <MODULEPATH id="gin_plugin" path="../../modules/gin/modules"/>
+        <MODULEPATH id="gin_dsp" path="../../modules/gin/modules"/>
+        <MODULEPATH id="gin" path="../../modules/gin/modules"/>
       </MODULEPATHS>
-    </VS2017>
+    </VS2019>
   </EXPORTFORMATS>
   <MODULES>
     <MODULE id="gin" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
