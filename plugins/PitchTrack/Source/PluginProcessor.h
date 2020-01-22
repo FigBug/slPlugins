@@ -12,7 +12,8 @@
 
 #include "../JuceLibraryCode/JuceHeader.h"
 
-#include "q/pitch/pitch_detector.hpp"
+#include <q/support/literals.hpp>
+#include <q/pitch/pitch_detector.hpp>
 
 using namespace gin;
 //==============================================================================
