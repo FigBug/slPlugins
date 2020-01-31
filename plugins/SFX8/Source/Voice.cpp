@@ -16,7 +16,7 @@ void Voice::noteStarted()
     if (auto p = synth.getPadForNote (currentlyPlayingNote.initialNote))
     {
         if (resamplingFifo != nullptr)
-            resamplingFifo->flushBuffers();
+            resamplingFifo->reset();
 
         p->fromPluginParams();
 		sfxr.setSampleRate (44100.0f);
@@ -44,7 +44,7 @@ void Voice::renderNextBlock (AudioBuffer<float>& outputBuffer, int startSample, 
     }
     else
     {
-        float* work = (float*) alloca (size_t (numSamples) * sizeof (float));
+        auto work = (float*) alloca (size_t (numSamples) * sizeof (float));
         while (resamplingFifo->samplesReady() < numSamples)
         {
             memset (work, 0, size_t (numSamples) * sizeof (float));
