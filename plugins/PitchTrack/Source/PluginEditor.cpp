@@ -49,5 +49,7 @@ void PitchTrackAudioProcessorEditor::timerCallback()
     {
         lastPitch = processor.getPitch();
         pitch.setText (String::formatted ("%.1f Hz", lastPitch), dontSendNotification);
+        
+        DBG(lastPitch);
     }
 }

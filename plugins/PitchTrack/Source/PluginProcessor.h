@@ -12,8 +12,18 @@
 
 #include "../JuceLibraryCode/JuceHeader.h"
 
+#if __clang__
+ #pragma clang diagnostic push
+ #pragma clang diagnostic ignored "-Wdefaulted-function-deleted"
+#endif
+
 #include <q/support/literals.hpp>
+#include <q/support/notes.hpp>
 #include <q/pitch/pitch_detector.hpp>
+
+#if __clang__
+ #pragma clang diagnostic pop
+#endif
 
 using namespace gin;
 //==============================================================================
@@ -39,15 +49,12 @@ public:
     //==============================================================================
     
     LevelTracker& getOutputLevel() { return outputLevel; }
-    float getPitch() { return pitch; }
+    float getPitch();
 
 private:
     LevelTracker outputLevel {48.0};
-    
-    AudioSampleBuffer scratch;
 
-    float pitch = 0;
-    double sampleRate = 0;
+    std::unique_ptr<cycfi::q::pitch_detector> detector;
         
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (PitchTrackAudioProcessor)

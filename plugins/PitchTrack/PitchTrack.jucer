@@ -13,7 +13,12 @@
               pluginFormats="buildVST,buildAU" cppLanguageStandard="17" reportAppUsage="0">
   <MAINGROUP id="dPRjsF" name="PitchTrack">
     <GROUP id="{EE796482-0D02-0052-80F4-B1FE6CE0D41A}" name="Source">
-      <GROUP id="{6F2315D7-3D20-892D-4519-7653440048F1}" name="3rdParty"/>
+      <GROUP id="{6F2315D7-3D20-892D-4519-7653440048F1}" name="3rdParty">
+        <FILE id="wSuYRq" name="period_detector.hpp" compile="0" resource="0"
+              file="../../modules/Q/q_lib/include/q/pitch/period_detector.hpp"/>
+        <FILE id="Xdv212" name="pitch_detector.hpp" compile="0" resource="0"
+              file="../../modules/Q/q_lib/include/q/pitch/pitch_detector.hpp"/>
+      </GROUP>
       <FILE id="iEbZ9q" name="PluginProcessor.cpp" compile="1" resource="0"
             file="Source/PluginProcessor.cpp"/>
       <FILE id="XzLyGB" name="PluginProcessor.h" compile="0" resource="0"
