@@ -8,7 +8,7 @@
               pluginChannelConfigs="{4,2}" pluginIsSynth="0" pluginWantsMidiIn="0"
               pluginProducesMidiOut="0" pluginIsMidiEffectPlugin="0" pluginEditorRequiresKeys="0"
               pluginAUExportPrefix="AddInvertAU" aaxIdentifier="com.socalabs.AddInvert"
-              pluginAAXCategory="2" jucerVersion="5.4.5" companyName="SocaLabs"
+              pluginAAXCategory="2" jucerVersion="5.4.6" companyName="SocaLabs"
               companyWebsite="www.socalabs.com" companyEmail="info@socalabs.com"
               displaySplashScreen="0" reportAppUsage="0" splashScreenColour="Dark"
               buildStandalone="0" enableIAA="0" cppLanguageStandard="17" companyCopyright="SocaLabs"
@@ -65,21 +65,23 @@
         <CONFIGURATION name="Debug" winWarningLevel="4" generateManifest="1" winArchitecture="Win32"
                        isDebug="1" optimisation="1" targetName="AddInvert_32b" headerPath="../../../../modules/slCommon"
                        postbuildCommand="copy /Y &quot;$(OutDir)\$(TargetFileName)&quot; &quot;C:\Program Files (x86)\VSTPlugins&quot;"
-                       debugInformationFormat="ProgramDatabase" enablePluginBinaryCopyStep="0"/>
+                       debugInformationFormat="ProgramDatabase" enablePluginBinaryCopyStep="0"
+                       useRuntimeLibDLL="0"/>
         <CONFIGURATION name="Release" winWarningLevel="4" generateManifest="1" winArchitecture="Win32"
                        isDebug="0" optimisation="3" targetName="AddInvert_32b" headerPath="../../../../modules/slCommon"
                        postbuildCommand="copy /Y &quot;$(OutDir)\$(TargetFileName)&quot; &quot;C:\Program Files (x86)\VSTPlugins&quot;"
                        debugInformationFormat="ProgramDatabase" enablePluginBinaryCopyStep="0"
-                       linkTimeOptimisation="0"/>
+                       linkTimeOptimisation="0" useRuntimeLibDLL="0"/>
         <CONFIGURATION name="Debug64" winWarningLevel="4" generateManifest="1" winArchitecture="x64"
                        isDebug="1" optimisation="1" targetName="AddInvert_64b" headerPath="../../../../modules/slCommon"
                        postbuildCommand="copy /Y &quot;$(OutDir)\$(TargetFileName)&quot; &quot;C:\Program Files\VSTPlugins&quot;"
-                       debugInformationFormat="ProgramDatabase" enablePluginBinaryCopyStep="0"/>
+                       debugInformationFormat="ProgramDatabase" enablePluginBinaryCopyStep="0"
+                       useRuntimeLibDLL="0"/>
         <CONFIGURATION name="Release64" winWarningLevel="4" generateManifest="1" winArchitecture="x64"
                        isDebug="0" optimisation="3" targetName="AddInvert_64b" headerPath="../../../../modules/slCommon"
                        postbuildCommand="copy /Y &quot;$(OutDir)\$(TargetFileName)&quot; &quot;C:\Program Files\VSTPlugins&quot;"
                        debugInformationFormat="ProgramDatabase" enablePluginBinaryCopyStep="0"
-                       linkTimeOptimisation="0"/>
+                       linkTimeOptimisation="0" useRuntimeLibDLL="0"/>
       </CONFIGURATIONS>
       <MODULEPATHS>
         <MODULEPATH id="juce_core" path="../../modules/juce/modules"/>
