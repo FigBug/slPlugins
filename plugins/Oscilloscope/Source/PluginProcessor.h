@@ -33,7 +33,7 @@ class PluginProcessor : public gin::GinProcessor
 public:
     //==============================================================================
     PluginProcessor();
-    ~PluginProcessor();
+    ~PluginProcessor() override;
 
     //==============================================================================
     void prepareToPlay (double sampleRate, int samplesPerBlock) override;
@@ -45,10 +45,8 @@ public:
     AudioProcessorEditor* createEditor() override;
     bool hasEditor() const override;
 
-    //==============================================================================
-    
-    CriticalSection lock;
-    PluginEditor* editor = nullptr;
+    //==============================================================================    
+    gin::AudioFifo fifo;
 
 private:    
     //==============================================================================

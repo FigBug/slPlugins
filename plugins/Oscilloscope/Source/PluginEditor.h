@@ -21,20 +21,20 @@ class PluginEditor  : public gin::GinAudioProcessorEditor,
 {
 public:
     PluginEditor (PluginProcessor&);
-    ~PluginEditor();
+    ~PluginEditor() override;
 
     //==============================================================================
     void resized() override;
     Rectangle<int> getGridArea (int x, int y, int w = 1, int h = 1) override;
-
-    drow::TriggeredScope scope;
 
 private:
     CriticalSection lock;
     void updateScope();
     void parameterChanged (gin::Parameter*) override { updateScope(); }
     
-    PluginProcessor& processor;
-    
+    PluginProcessor& proc;
+
+    gin::TriggeredScope scope { proc.fifo };
+
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (PluginEditor)
 };

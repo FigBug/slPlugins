@@ -56,6 +56,8 @@ String tlTextFunction (const Parameter&, float v)
 //==============================================================================
 PluginProcessor::PluginProcessor()
 {
+    fifo.setSize (2, 44100);
+    
     addPluginParameter (new Parameter (PARAM_SAMPLES_PER_PIXEL,       "Samp/px",       "", "",     1.0f,   48.0f,  1.0f,    1.0f, 1.0f, intTextFunction));
     addPluginParameter (new Parameter (PARAM_VERTICAL_ZOOM,           "Zoom",          "", "",     0.1f,   100.0f, 0.0f,    1.0f, 0.3f));
     addPluginParameter (new Parameter (PARAM_VERTICAL_OFFSET_L,       "Offset L",      "", "",     -2.0f,  2.0f,   0.0f,    0.0f, 1.0f));
@@ -81,9 +83,8 @@ void PluginProcessor::releaseResources()
 
 void PluginProcessor::processBlock (AudioSampleBuffer& buffer, MidiBuffer&)
 {
-    ScopedLock sl (lock);
-    if (editor)
-        editor->scope.addSamples (buffer);
+    if (fifo.getFreeSpace() >= buffer.getNumSamples())
+        fifo.write (buffer);
 }
 
 //==============================================================================
@@ -94,8 +95,7 @@ bool PluginProcessor::hasEditor() const
 
 AudioProcessorEditor* PluginProcessor::createEditor()
 {
-    editor = new PluginEditor (*this);
-    return editor;
+    return new PluginEditor (*this);
 }
 
 //==============================================================================

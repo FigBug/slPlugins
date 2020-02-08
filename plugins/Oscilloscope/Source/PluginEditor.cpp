@@ -15,7 +15,7 @@ using namespace gin;
 
 //==============================================================================
 PluginEditor::PluginEditor (PluginProcessor& p)
-    : GinAudioProcessorEditor (p), processor (p)
+    : GinAudioProcessorEditor (p), proc (p)
 {
     addAndMakeVisible (&scope);
     
@@ -42,7 +42,7 @@ PluginEditor::PluginEditor (PluginProcessor& p)
     
     scope.setNumChannels (p.getTotalNumInputChannels());
     
-    for (auto pp : processor.getPluginParameters())
+    for (auto pp : proc.getPluginParameters())
         pp->addListener (this);
     
     updateScope();
@@ -50,11 +50,8 @@ PluginEditor::PluginEditor (PluginProcessor& p)
 
 PluginEditor::~PluginEditor()
 {
-    for (auto pp : processor.getPluginParameters())
+    for (auto pp : proc.getPluginParameters())
         pp->removeListener (this);
-    
-    ScopedLock sl (processor.lock);
-    processor.editor = nullptr;
 }
 
 //==============================================================================
@@ -83,12 +80,12 @@ void PluginEditor::resized()
 void PluginEditor::updateScope()
 {
     scope.setDrawTriggerPos (true);
-    scope.setNumSamplesPerPixel (processor.parameterIntValue (PARAM_SAMPLES_PER_PIXEL));
-    scope.setVerticalZoomFactor (processor.parameterValue (PARAM_VERTICAL_ZOOM));
-    scope.setVerticalZoomOffset (processor.parameterValue (PARAM_VERTICAL_OFFSET_L), 0);
-    scope.setVerticalZoomOffset (processor.parameterValue (PARAM_VERTICAL_OFFSET_R), 1);
-    scope.setTriggerChannel (processor.parameterIntValue (PARAM_TRIGGER_CHANNEL));
-    scope.setTriggerMode ((drow::TriggeredScope::TriggerMode)processor.parameterIntValue (PARAM_TRIGGER_MODE));
-    scope.setTriggerLevel (processor.parameterValue (PARAM_TRIGGER_LEVEL));
-    scope.setTriggerPos (processor.parameterValue (PARAM_TRIGGER_POS));
+    scope.setNumSamplesPerPixel (proc.parameterIntValue (PARAM_SAMPLES_PER_PIXEL));
+    scope.setVerticalZoomFactor (proc.parameterValue (PARAM_VERTICAL_ZOOM));
+    scope.setVerticalZoomOffset (proc.parameterValue (PARAM_VERTICAL_OFFSET_L), 0);
+    scope.setVerticalZoomOffset (proc.parameterValue (PARAM_VERTICAL_OFFSET_R), 1);
+    scope.setTriggerChannel (proc.parameterIntValue (PARAM_TRIGGER_CHANNEL));
+    scope.setTriggerMode ((gin::TriggeredScope::TriggerMode)proc.parameterIntValue (PARAM_TRIGGER_MODE));
+    scope.setTriggerLevel (proc.parameterValue (PARAM_TRIGGER_LEVEL));
+    scope.setTriggerPos (proc.parameterValue (PARAM_TRIGGER_POS));
 }
