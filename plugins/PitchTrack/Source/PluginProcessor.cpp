@@ -28,7 +28,7 @@ PitchTrackAudioProcessor::~PitchTrackAudioProcessor()
 }
 
 //==============================================================================
-void PitchTrackAudioProcessor::prepareToPlay (double sampleRate_, int samplesPerBlock)
+void PitchTrackAudioProcessor::prepareToPlay (double sampleRate_, int)
 {
     detector = std::make_unique<pitch_detector> (low_e, high_e * 6, sampleRate_, -45_dB);
 }

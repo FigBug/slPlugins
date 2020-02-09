@@ -14,7 +14,18 @@
 
 #if __clang__
  #pragma clang diagnostic push
+ #pragma clang diagnostic ignored "-Wimplicit-float-conversion"
  #pragma clang diagnostic ignored "-Wdefaulted-function-deleted"
+ #pragma clang diagnostic ignored "-Wfloat-conversion"
+ #pragma clang diagnostic ignored "-Wshift-sign-overflow"
+ #pragma clang diagnostic ignored "-Wshadow-field-in-constructor"
+ #pragma clang diagnostic ignored "-Wshadow"
+ #pragma clang diagnostic ignored "-Wc++98-compat-extra-semi"
+ #pragma clang diagnostic ignored "-Wsign-conversion"
+ #pragma clang diagnostic ignored "-Wextra-semi"
+ #pragma clang diagnostic ignored "-Wshorten-64-to-32"
+ #pragma clang diagnostic ignored "-Wsign-compare"
+ #pragma clang diagnostic ignored "-Wimplicit-int-conversion"
 #endif
 
 #include <q/support/literals.hpp>
@@ -34,7 +45,7 @@ class PitchTrackAudioProcessor : public GinProcessor
 public:
     //==============================================================================
     PitchTrackAudioProcessor();
-    ~PitchTrackAudioProcessor();
+    ~PitchTrackAudioProcessor() override;
 
     //==============================================================================
     void prepareToPlay (double sampleRate, int samplesPerBlock) override;

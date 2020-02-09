@@ -8,7 +8,7 @@
               pluginChannelConfigs="{1,1},{2,2}" pluginIsSynth="0" pluginWantsMidiIn="0"
               pluginProducesMidiOut="0" pluginIsMidiEffectPlugin="0" pluginEditorRequiresKeys="0"
               pluginAUExportPrefix="PitchTrackAU" pluginRTASCategory="" aaxIdentifier="com.socalabs.PitchTrack"
-              pluginAAXCategory="2" jucerVersion="5.4.5" companyName="SocaLabs"
+              pluginAAXCategory="2" jucerVersion="5.4.6" companyName="SocaLabs"
               companyWebsite="www.socalabs.com" companyEmail="info@socalabs.com"
               pluginFormats="buildVST,buildAU" cppLanguageStandard="17" reportAppUsage="0">
   <MAINGROUP id="dPRjsF" name="PitchTrack">
@@ -32,9 +32,11 @@
     <XCODE_MAC targetFolder="Builds/MacOSX" vstLegacyFolder="../../modules/plugin_sdk/vstsdk2.4">
       <CONFIGURATIONS>
         <CONFIGURATION name="Debug" isDebug="1" optimisation="1" targetName="PitchTrack"
-                       osxCompatibility="10.9 SDK" headerPath="../../../../modules/Q/q_lib/include&#10;../../../../modules/infra/include"/>
+                       osxCompatibility="10.9 SDK" headerPath="../../../../modules/Q/q_lib/include&#10;../../../../modules/infra/include"
+                       recommendedWarnings="LLVM"/>
         <CONFIGURATION name="Release" isDebug="0" optimisation="3" targetName="PitchTrack"
-                       osxCompatibility="10.9 SDK" headerPath="../../../../modules/Q/q_lib/include&#10;../../../../modules/infra/include"/>
+                       osxCompatibility="10.9 SDK" headerPath="../../../../modules/Q/q_lib/include&#10;../../../../modules/infra/include"
+                       recommendedWarnings="LLVM"/>
       </CONFIGURATIONS>
       <MODULEPATHS>
         <MODULEPATH id="juce_core" path="../../modules/juce/modules"/>

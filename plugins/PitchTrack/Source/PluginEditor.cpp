@@ -13,7 +13,7 @@
 
 //==============================================================================
 PitchTrackAudioProcessorEditor::PitchTrackAudioProcessorEditor (PitchTrackAudioProcessor& p)
-    : GinAudioProcessorEditor (p), processor (p), meter (p.getOutputLevel())
+    : GinAudioProcessorEditor (p), proc (p), meter (p.getOutputLevel())
 {
     addAndMakeVisible (&meter);
     addAndMakeVisible (&pitch);
@@ -45,9 +45,9 @@ void PitchTrackAudioProcessorEditor::resized()
 
 void PitchTrackAudioProcessorEditor::timerCallback()
 {
-    if (processor.getPitch() != lastPitch)
+    if (proc.getPitch() != lastPitch)
     {
-        lastPitch = processor.getPitch();
+        lastPitch = proc.getPitch();
         pitch.setText (String::formatted ("%.1f Hz", lastPitch), dontSendNotification);
         
         DBG(lastPitch);

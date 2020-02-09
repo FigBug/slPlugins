@@ -22,7 +22,7 @@ class PitchTrackAudioProcessorEditor : public GinAudioProcessorEditor,
 {
 public:
     PitchTrackAudioProcessorEditor (PitchTrackAudioProcessor&);
-    ~PitchTrackAudioProcessorEditor();
+    ~PitchTrackAudioProcessorEditor() override;
 
     //==============================================================================
     void resized() override;
@@ -30,7 +30,7 @@ public:
     void timerCallback() override;
 
 private:
-    PitchTrackAudioProcessor& processor;
+    PitchTrackAudioProcessor& proc;
     
     float lastPitch = -1;
     Label pitch;
