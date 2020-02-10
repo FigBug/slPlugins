@@ -27,7 +27,7 @@ class PluginProcessor : public gin::GinProcessor
 public:
     //==============================================================================
     PluginProcessor();
-    ~PluginProcessor();
+    ~PluginProcessor() override;
 
     //==============================================================================
     void prepareToPlay (double sampleRate, int samplesPerBlock) override;
@@ -40,11 +40,9 @@ public:
     bool hasEditor() const override;
 
     //==============================================================================
+    gin::AudioFifo fifo;
     
-    CriticalSection lock;
-    PluginEditor* editor = nullptr;
-
-private:    
+private:
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (PluginProcessor)
 };

@@ -16,19 +16,17 @@
 //==============================================================================
 /**
 */
-class slToneAudioProcessorEditor  : public gin::GinAudioProcessorEditor
+class PluginEditor  : public gin::GinAudioProcessorEditor
 {
 public:
-    slToneAudioProcessorEditor (slToneAudioProcessor&);
-    ~slToneAudioProcessorEditor() override;
+    PluginEditor (PluginProcessor&);
+    ~PluginEditor() override;
 
     //==============================================================================
     void resized() override;
 
 private:
-    slToneAudioProcessor& toneProcessor;
-    
-    gin::TriggeredScope scope {toneProcessor.fifo};
-    
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (slToneAudioProcessorEditor)
+    PluginProcessor& proc;
+
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (PluginEditor)
 };

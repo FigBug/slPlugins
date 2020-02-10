@@ -15,7 +15,7 @@ using namespace gin;
 
 //==============================================================================
 PluginEditor::PluginEditor (PluginProcessor& p)
-    : GinAudioProcessorEditor (p), processor (p)
+    : GinAudioProcessorEditor (p), proc (p)
 {
     addAndMakeVisible (&scopeL);
     addAndMakeVisible (&scopeR);
@@ -50,7 +50,7 @@ PluginEditor::PluginEditor (PluginProcessor& p)
     setGridSize (7, 4);
     makeResizable (getWidth(), getHeight(), 2000, 1500);
     
-    for (auto pp : processor.getPluginParameters())
+    for (auto pp : proc.getPluginParameters())
         pp->addListener (this);
     
     updateScope();
@@ -58,11 +58,11 @@ PluginEditor::PluginEditor (PluginProcessor& p)
 
 PluginEditor::~PluginEditor()
 {
-    for (auto pp : processor.getPluginParameters())
+    for (auto pp : proc.getPluginParameters())
         pp->removeListener (this);
     
-    ScopedLock sl (processor.lock);
-    processor.editor = nullptr;
+    ScopedLock sl (proc.lock);
+    proc.editor = nullptr;
 }
 
 //==============================================================================
@@ -99,7 +99,7 @@ void PluginEditor::resized()
 
 void PluginEditor::updateScope()
 {
-    int mode = processor.parameterIntValue (PARAM_MODE);
+    int mode = proc.parameterIntValue (PARAM_MODE);
     
     scopeL.setVisible (mode == 0);
     scopeR.setVisible (mode == 0);
@@ -107,7 +107,7 @@ void PluginEditor::updateScope()
     sonogramL.setVisible (mode == 1);
     sonogramR.setVisible (mode == 1);
     
-    bool log = processor.parameterIntValue (PARAM_LOG) != 0;
+    bool log = proc.parameterIntValue (PARAM_LOG) != 0;
     
     scopeL.setLogFrequencyDisplay (log);
     scopeR.setLogFrequencyDisplay (log);

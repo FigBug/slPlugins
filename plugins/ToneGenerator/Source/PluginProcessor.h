@@ -47,7 +47,8 @@ public:
     bool hasEditor() const override;
 
     //==============================================================================
-    
+    gin::AudioFifo fifo {1, 44100};
+
 private:
     bool bandLimited = true;
     
@@ -67,9 +68,7 @@ private:
     LinearSmoothedValue<float> sawDownVal;
     LinearSmoothedValue<float> squareVal;
     LinearSmoothedValue<float> noiseVal;
-    
-    AudioSampleBuffer scratch;
-    
+            
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (slToneAudioProcessor)
 };

@@ -21,7 +21,7 @@ class PluginEditor  : public gin::GinAudioProcessorEditor,
 {
 public:
     PluginEditor (PluginProcessor&);
-    ~PluginEditor();
+    ~PluginEditor() override;
 
     //==============================================================================
     void resized() override;
@@ -38,7 +38,7 @@ private:
     void updateScope();
     void parameterChanged (gin::Parameter*) override { updateScope(); }
     
-    PluginProcessor& processor;
+    PluginProcessor& proc;
     
     TimeSliceThread thread { "timeSlice" };
     

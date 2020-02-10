@@ -42,8 +42,9 @@ PluginProcessor::~PluginProcessor()
 }
 
 //==============================================================================
-void PluginProcessor::prepareToPlay (double, int)
+void PluginProcessor::prepareToPlay (double sampleRate, int)
 {
+    fifo.setSize (2, int (sampleRate));
 }
 
 void PluginProcessor::releaseResources()
@@ -52,19 +53,8 @@ void PluginProcessor::releaseResources()
 
 void PluginProcessor::processBlock (AudioSampleBuffer& buffer, MidiBuffer&)
 {
-    ScopedLock sl (lock);
-    if (editor != nullptr)
-    {
-        const int num = buffer.getNumSamples();
-        editor->scopeL.copySamples (buffer.getReadPointer (0), num);
-        editor->sonogramL.copySamples (buffer.getReadPointer (0), num);
-        
-        if (getTotalNumInputChannels() > 1)
-        {
-            editor->scopeR.copySamples (buffer.getReadPointer (1), num);
-            editor->sonogramR.copySamples (buffer.getReadPointer (1), num);
-        }
-    }
+    if (fifo.getFreeSpace() >= buffer.getNumSamples())
+        fifo.write (buffer);
 }
 
 //==============================================================================
@@ -75,8 +65,7 @@ bool PluginProcessor::hasEditor() const
 
 AudioProcessorEditor* PluginProcessor::createEditor()
 {
-    editor = new PluginEditor (*this);
-    return editor;
+    return new PluginEditor (*this);
 }
 
 //==============================================================================

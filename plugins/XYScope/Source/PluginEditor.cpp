@@ -15,7 +15,7 @@ using namespace gin;
 
 //==============================================================================
 PluginEditor::PluginEditor (PluginProcessor& p)
-    : GinAudioProcessorEditor (p), processor (p)
+    : GinAudioProcessorEditor (p), proc (p)
 {
     addAndMakeVisible (&scope);
     
@@ -37,7 +37,7 @@ PluginEditor::PluginEditor (PluginProcessor& p)
     setGridSize (7, 4);
     makeResizable (getWidth(), getHeight(), 2000, 1500);
     
-    for (auto pp : processor.getPluginParameters())
+    for (auto pp : proc.getPluginParameters())
         pp->addListener (this);
     
     updateScope();
@@ -45,11 +45,8 @@ PluginEditor::PluginEditor (PluginProcessor& p)
 
 PluginEditor::~PluginEditor()
 {
-    for (auto pp : processor.getPluginParameters())
+    for (auto pp : proc.getPluginParameters())
         pp->removeListener (this);
-    
-    ScopedLock sl (processor.lock);
-    processor.editor = nullptr;
 }
 
 //==============================================================================

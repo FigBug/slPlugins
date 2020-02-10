@@ -149,8 +149,6 @@ slToneAudioProcessor::~slToneAudioProcessor()
 //==============================================================================
 void slToneAudioProcessor::prepareToPlay (double sampleRate, int samplesPerBlock)
 {
-    scratch.setSize (1, samplesPerBlock);
-    
     sine.prepare ({ sampleRate, uint32 (samplesPerBlock), 1});
     triangle.prepare ({ sampleRate, uint32 (samplesPerBlock), 1});
     sawUp.prepare ({ sampleRate, uint32 (samplesPerBlock), 1});
@@ -174,7 +172,7 @@ void slToneAudioProcessor::releaseResources()
 void slToneAudioProcessor::processBlock (AudioSampleBuffer& buffer, MidiBuffer&)
 {
     int numSamples = buffer.getNumSamples();
-    scratch.setSize (1, numSamples, false, false, true);
+    ScratchBuffer scratch (1, numSamples);
     
     bandLimited = parameterIntValue (PARAM_BANDLIMIT) != 0;
     float freq = getParameter (PARAM_FREQ)->getUserValue();
@@ -255,8 +253,8 @@ void slToneAudioProcessor::processBlock (AudioSampleBuffer& buffer, MidiBuffer&)
     
     applyGain (buffer, enableVal);
     
-    if (editor)
-        editor->scope.addSamples (buffer.getReadPointer (0), buffer.getNumSamples());
+    if (fifo.getFreeSpace() >= numSamples)
+        fifo.writeMono (buffer.getReadPointer (0), numSamples);
 }
 
 //==============================================================================
@@ -267,8 +265,7 @@ bool slToneAudioProcessor::hasEditor() const
 
 AudioProcessorEditor* slToneAudioProcessor::createEditor()
 {
-    editor = new slToneAudioProcessorEditor (*this);
-    return editor;
+    return new slToneAudioProcessorEditor (*this);
 }
 
 //==============================================================================

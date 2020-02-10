@@ -15,26 +15,18 @@
 using namespace gin;
 
 //==============================================================================
-String onOffTextFunction (const slParameter& p, float v)
+String onOffTextFunction (const Parameter&, float v)
 {
     return v > 0.0f ? "On" : "Off";
-}
-
-String modeTextFunction (const slParameter& p, float v)
-{
-    switch (int (v))
-    {
-        case 0:  return "Spectroscope";
-        case 1:  return "Sonogram";
-        default: return "";
-    }
 }
 
 //==============================================================================
 PluginProcessor::PluginProcessor()
 {
-    addPluginParameter (new slParameter (PARAM_MODE,       "Mode",       "", "",     0.0f,   1.0f,  1.0f,    0.0f, 1.0f, modeTextFunction));
-    addPluginParameter (new slParameter (PARAM_LOG,        "Log",        "", "",     0.0f,   1.0f,  1.0f,    0.0f, 1.0f, onOffTextFunction));
+    addPluginParameter (new Parameter (PARAM_GAIN_L,   "Left",         "", "dB", -100.0f,     100.0f, 0.0f, 0.0f, 5.f));
+    addPluginParameter (new Parameter (PARAM_GAIN_S,   "Both",         "", "dB", -100.0f,     100.0f, 0.0f, 0.0f, 5.f));
+    addPluginParameter (new Parameter (PARAM_GAIN_R,   "Right",        "", "dB", -100.0f,     100.0f, 0.0f, 0.0f, 5.f));
+    addPluginParameter (new Parameter (PARAM_CLIP,     "Clip",         "", "",      0.0f,       1.0f, 1.0f, 1.0f, 1.f, onOffTextFunction));
 }
 
 PluginProcessor::~PluginProcessor()
@@ -42,8 +34,11 @@ PluginProcessor::~PluginProcessor()
 }
 
 //==============================================================================
-void PluginProcessor::prepareToPlay (double sampleRate, int samplesPerBlock)
+void PluginProcessor::prepareToPlay (double sampleRate, int)
 {
+    lVal.reset (sampleRate, 0.05);
+    rVal.reset (sampleRate, 0.05);
+    sVal.reset (sampleRate, 0.05);
 }
 
 void PluginProcessor::releaseResources()
@@ -52,19 +47,17 @@ void PluginProcessor::releaseResources()
 
 void PluginProcessor::processBlock (AudioSampleBuffer& buffer, MidiBuffer&)
 {
-    ScopedLock sl (lock);
-    if (editor != nullptr)
-    {
-        const int num = buffer.getNumSamples();
-        editor->scopeL.copySamples (buffer.getReadPointer (0), num);
-        editor->sonogramL.copySamples (buffer.getReadPointer (0), num);
-        
-        if (getTotalNumInputChannels() > 1)
-        {
-            editor->scopeR.copySamples (buffer.getReadPointer (1), num);
-            editor->sonogramR.copySamples (buffer.getReadPointer (1), num);
-        }
-    }
+    lVal.setTargetValue (Decibels::decibelsToGain (getParameter (PARAM_GAIN_L)->getUserValue()));
+    rVal.setTargetValue (Decibels::decibelsToGain (getParameter (PARAM_GAIN_R)->getUserValue()));
+    sVal.setTargetValue (Decibels::decibelsToGain (getParameter (PARAM_GAIN_S)->getUserValue()));
+    
+    applyGain (buffer, 0, lVal);
+    applyGain (buffer, 1, rVal);
+    
+    applyGain (buffer, sVal);
+    
+    if (getParameter (PARAM_CLIP)->getUserValue() != 0.0f)
+        clip (buffer, -1.0f, 1.0f);
 }
 
 //==============================================================================
@@ -75,8 +68,7 @@ bool PluginProcessor::hasEditor() const
 
 AudioProcessorEditor* PluginProcessor::createEditor()
 {
-    editor = new PluginEditor (*this);
-    return editor;
+    return new PluginEditor (*this);
 }
 
 //==============================================================================

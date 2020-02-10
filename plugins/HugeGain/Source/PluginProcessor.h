@@ -16,8 +16,10 @@ using namespace juce::dsp;
 
 class PluginEditor;
 
-#define PARAM_MODE     "mode"
-#define PARAM_LOG      "log"
+#define PARAM_GAIN_L     "gain_l"
+#define PARAM_GAIN_R     "gain_r"
+#define PARAM_GAIN_S     "gain_s"
+#define PARAM_CLIP       "clip"
 
 //==============================================================================
 /**
@@ -39,12 +41,11 @@ public:
     AudioProcessorEditor* createEditor() override;
     bool hasEditor() const override;
 
-    //==============================================================================
-    
-    CriticalSection lock;
-    PluginEditor* editor = nullptr;
-
-private:    
+    //==============================================================================    
+private:
+    LinearSmoothedValue<float> lVal;
+    LinearSmoothedValue<float> sVal;
+    LinearSmoothedValue<float> rVal;
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (PluginProcessor)
 };
