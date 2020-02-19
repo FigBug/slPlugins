@@ -52,20 +52,19 @@ String tlTextFunction (const Parameter&, float v)
     return String (v, 2);
 }
 
-
 //==============================================================================
 PluginProcessor::PluginProcessor()
 {
     fifo.setSize (2, 44100);
     
-    addPluginParameter (new Parameter (PARAM_SAMPLES_PER_PIXEL,       "Samp/px",       "", "",     1.0f,   48.0f,  1.0f,    1.0f, 1.0f, intTextFunction));
-    addPluginParameter (new Parameter (PARAM_VERTICAL_ZOOM,           "Zoom",          "", "",     0.1f,   100.0f, 0.0f,    1.0f, 0.3f));
-    addPluginParameter (new Parameter (PARAM_VERTICAL_OFFSET_L,       "Offset L",      "", "",     -2.0f,  2.0f,   0.0f,    0.0f, 1.0f));
-    addPluginParameter (new Parameter (PARAM_VERTICAL_OFFSET_R,       "Offset R",      "", "",     -2.0f,  2.0f,   0.0f,    0.0f, 1.0f));
-    addPluginParameter (new Parameter (PARAM_TRIGGER_CHANNEL,         "Trigger Chan",  "", "",     -1.0f,  1.0f,   1.0f,    0.0f, 1.0f, chanTextFunction));
-    addPluginParameter (new Parameter (PARAM_TRIGGER_MODE,            "Trigger Mode",  "", "",     0.0f,   2.0f,   1.0f,    1.0f, 1.0f, modeTextFunction));
-    addPluginParameter (new Parameter (PARAM_TRIGGER_LEVEL,           "Trigger Level", "", "",     -1.0f,  1.0f,   0.0f,    0.0f, 1.0f, tlTextFunction));
-    addPluginParameter (new Parameter (PARAM_TRIGGER_POS,             "Trigger Pos",   "", "",      0.0f,  1.0f,   0.0f,    0.0f, 1.0f, tlTextFunction));
+	addExtParam (PARAM_SAMPLES_PER_PIXEL, "Samp/px",       "", "", {1.0f,   48.0f,  1.0f, 1.0f}, 1.0f, 0.0f, intTextFunction);
+	addExtParam (PARAM_VERTICAL_ZOOM,     "Zoom",          "", "", {0.1f,   100.0f, 0.0f, 0.3f}, 1.0f, 0.0f);
+	addExtParam (PARAM_VERTICAL_OFFSET_L, "Offset L",      "", "", {-2.0f,  2.0f,   0.0f, 1.0f}, 0.0f, 0.0f);
+	addExtParam (PARAM_VERTICAL_OFFSET_R, "Offset R",      "", "", {-2.0f,  2.0f,   0.0f, 1.0f}, 0.0f, 0.0f);
+	addExtParam (PARAM_TRIGGER_CHANNEL,   "Trigger Chan",  "", "", {-1.0f,  1.0f,   1.0f, 1.0f}, 0.0f, 0.0f, chanTextFunction);
+	addExtParam (PARAM_TRIGGER_MODE,      "Trigger Mode",  "", "", {0.0f,   2.0f,   1.0f, 1.0f}, 1.0f, 0.0f, modeTextFunction);
+	addExtParam (PARAM_TRIGGER_LEVEL,     "Trigger Level", "", "", {-1.0f,  1.0f,   0.0f, 1.0f}, 0.0f, 0.0f, tlTextFunction);
+	addExtParam (PARAM_TRIGGER_POS,       "Trigger Pos",   "", "", { 0.0f,  1.0f,   0.0f, 1.0f}, 0.0f, 0.0f, tlTextFunction);
 }
 
 PluginProcessor::~PluginProcessor()
