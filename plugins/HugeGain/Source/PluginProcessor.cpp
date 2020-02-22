@@ -23,10 +23,14 @@ String onOffTextFunction (const Parameter&, float v)
 //==============================================================================
 PluginProcessor::PluginProcessor()
 {
-    addPluginParameter (new Parameter (PARAM_GAIN_L,   "Left",         "", "dB", -100.0f,     100.0f, 0.0f, 0.0f, 5.f));
-    addPluginParameter (new Parameter (PARAM_GAIN_S,   "Both",         "", "dB", -100.0f,     100.0f, 0.0f, 0.0f, 5.f));
-    addPluginParameter (new Parameter (PARAM_GAIN_R,   "Right",        "", "dB", -100.0f,     100.0f, 0.0f, 0.0f, 5.f));
-    addPluginParameter (new Parameter (PARAM_CLIP,     "Clip",         "", "",      0.0f,       1.0f, 1.0f, 1.0f, 1.f, onOffTextFunction));
+    gainl = addExtParam (PARAM_GAIN_L, "Left",  "", "dB", {-100.0f, 100.0f, 0.0f, 5.0f}, 0.0f, 0.1f);
+    gains = addExtParam (PARAM_GAIN_S, "Both",  "", "dB", {-100.0f, 100.0f, 0.0f, 5.0f}, 0.0f, 0.1f);
+    gainr = addExtParam (PARAM_GAIN_R, "Right", "", "dB", {-100.0f, 100.0f, 0.0f, 5.0f}, 0.0f, 0.1f);
+    clipp  = addExtParam (PARAM_CLIP,  "Clip",  "", "",   {   0.0f,   1.0f, 1.0f, 1.0f}, 1.0f, 0.1f, onOffTextFunction);
+    
+    gainl->conversionFunction  = [] (float in) { return Decibels::decibelsToGain (in); };
+    gains->conversionFunction  = [] (float in) { return Decibels::decibelsToGain (in); };
+    gainr->conversionFunction  = [] (float in) { return Decibels::decibelsToGain (in); };
 }
 
 PluginProcessor::~PluginProcessor()
@@ -34,11 +38,9 @@ PluginProcessor::~PluginProcessor()
 }
 
 //==============================================================================
-void PluginProcessor::prepareToPlay (double sampleRate, int)
+void PluginProcessor::prepareToPlay (double sampleRate, int samplesPerBlock)
 {
-    lVal.reset (sampleRate, 0.05);
-    rVal.reset (sampleRate, 0.05);
-    sVal.reset (sampleRate, 0.05);
+    GinProcessor::prepareToPlay (sampleRate, samplesPerBlock);
 }
 
 void PluginProcessor::releaseResources()
@@ -47,14 +49,29 @@ void PluginProcessor::releaseResources()
 
 void PluginProcessor::processBlock (AudioSampleBuffer& buffer, MidiBuffer&)
 {
-    lVal.setTargetValue (Decibels::decibelsToGain (getParameter (PARAM_GAIN_L)->getUserValue()));
-    rVal.setTargetValue (Decibels::decibelsToGain (getParameter (PARAM_GAIN_R)->getUserValue()));
-    sVal.setTargetValue (Decibels::decibelsToGain (getParameter (PARAM_GAIN_S)->getUserValue()));
-    
-    applyGain (buffer, 0, lVal);
-    applyGain (buffer, 1, rVal);
-    
-    applyGain (buffer, sVal);
+    int numSamples = buffer.getNumSamples();
+
+    if (isSmoothing())
+    {
+        int pos = 0;
+        
+        while (pos < numSamples)
+        {
+            auto workBuffer = sliceBuffer (buffer, pos, 1);
+
+            workBuffer.applyGain (0, 0, 1, gainl->getProcValueSmoothed (1));
+            workBuffer.applyGain (1, 0, 1, gainr->getProcValueSmoothed (1));
+            workBuffer.applyGain (gains->getProcValueSmoothed (1));
+            
+            pos++;
+        }
+    }
+    else
+    {
+        buffer.applyGain (0, 0, numSamples, gainl->getProcValue());
+        buffer.applyGain (1, 0, numSamples, gainr->getProcValue());
+        buffer.applyGain (gains->getProcValue());
+    }
     
     if (getParameter (PARAM_CLIP)->getUserValue() != 0.0f)
         clip (buffer, -1.0f, 1.0f);

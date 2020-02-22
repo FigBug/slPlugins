@@ -36,7 +36,7 @@ DelayAudioProcessor::DelayAudioProcessor()
     cf    = addExtParam ("cf",    "Crossfeed", "", "dB", {-100.0f,   0.0f, 0.0f, 5.0f}, -100.0f, 0.1f);
     mix   = addExtParam ("mix",   "Mix",       "", "%",  {   0.0f, 100.0f, 0.0f, 1.0f},    0.0f, 0.1f);
     
-    delay = addIntParam ("delay", "Delay",     "", "",   {   0.0f,   5.0f, 0.0f, 1.0f},    1.0f, 0.2f);
+    delay = addIntParam ("delay", "Delay",     "", "",   {   0.0f,   5.0f, 0.0f, 1.0f},    1.0f, 5.2f);
     
     fb->conversionFunction  = [] (float in) { return Decibels::decibelsToGain (in); };
     cf->conversionFunction  = [] (float in) { return Decibels::decibelsToGain (in); };
@@ -85,21 +85,19 @@ void DelayAudioProcessor::processBlock (AudioSampleBuffer& buffer, MidiBuffer&)
     
     if (isSmoothing())
     {
-        int todo = buffer.getNumSamples();
         int pos = 0;
+        int numSamples = buffer.getNumSamples();
         
-        while (todo > 0)
+        while (pos < numSamples)
         {
-            int sz = std::min (1, todo);
-            auto workBuffer = sliceBuffer (buffer, pos, sz);
+            auto workBuffer = sliceBuffer (buffer, pos, 1);
             
-            stereoDelay.setParams (delay->getProcValueSmoothed (sz), mix->getProcValueSmoothed (sz),
-                                   fb->getProcValueSmoothed (sz), cf->getProcValueSmoothed (sz));
+            stereoDelay.setParams (delay->getProcValueSmoothed (1), mix->getProcValueSmoothed (1),
+                                   fb->getProcValueSmoothed (1), cf->getProcValueSmoothed (1));
             
             stereoDelay.process (workBuffer);
             
-            pos += sz;
-            todo -= sz;
+            pos++;
         }
     }
     else

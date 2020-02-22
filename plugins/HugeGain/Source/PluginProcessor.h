@@ -43,9 +43,7 @@ public:
 
     //==============================================================================    
 private:
-    LinearSmoothedValue<float> lVal;
-    LinearSmoothedValue<float> sVal;
-    LinearSmoothedValue<float> rVal;
+    gin::Parameter::Ptr gainl, gainr, gains, clipp;
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (PluginProcessor)
 };
