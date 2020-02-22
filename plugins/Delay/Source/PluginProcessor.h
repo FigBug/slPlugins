@@ -17,12 +17,12 @@ using namespace juce::dsp;
 //==============================================================================
 /**
 */
-class EchoAudioProcessor : public gin::GinProcessor
+class DelayAudioProcessor : public gin::GinProcessor
 {
 public:
     //==============================================================================
-    EchoAudioProcessor();
-    ~EchoAudioProcessor() override;
+    DelayAudioProcessor();
+    ~DelayAudioProcessor() override;
 
     //==============================================================================
     void prepareToPlay (double sampleRate, int samplesPerBlock) override;
@@ -40,9 +40,10 @@ public:
     gin::Parameter::Ptr sync, time, beat, fb, cf, mix, delay;
 
 private:
+    void updateInternalParams();
     
     gin::StereoDelay stereoDelay;
     
     //==============================================================================
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (EchoAudioProcessor)
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (DelayAudioProcessor)
 };

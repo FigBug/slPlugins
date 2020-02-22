@@ -14,48 +14,75 @@
 
 using namespace gin;
 
-//==============================================================================
-EchoAudioProcessor::EchoAudioProcessor()
+String enableTextFunction (const Parameter&, float v)
 {
-    sync  = addExtParam ("sync",  "Sync",      "", "",   {   0.0f,   1.0f, 1.0f, 1.0f},    0.0f, 0.0f);
+    return v > 0.0f ? "On" : "Off";
+}
+
+String durationTextFunction (const Parameter&, float v)
+{
+    return NoteDuration::getNoteDurations()[size_t (v)].getName();
+}
+
+//==============================================================================
+DelayAudioProcessor::DelayAudioProcessor()
+{
+    float mxd = float (NoteDuration::getNoteDurations().size()) - 1.0f;
+    
+    sync  = addExtParam ("sync",  "Sync",      "", "",   {   0.0f,   1.0f, 1.0f, 1.0f},    0.0f, 0.0f, enableTextFunction);
     time  = addExtParam ("time",  "Delay",     "", "",   {   0.0f,   5.0f, 0.0f, 1.0f},    1.0f, 0.0f);
-    beat  = addExtParam ("beat",  "Delay",     "", "",   {   0.0f,  10.0f, 0.0f, 1.0f},    0.0f, 0.0f);
+    beat  = addExtParam ("beat",  "Delay",     "", "",   {   0.0f,    mxd, 1.0f, 1.0f},   13.0f, 0.0f, durationTextFunction);
     fb    = addExtParam ("fb",    "Feedback",  "", "dB", {-100.0f,   0.0f, 0.0f, 5.0f},  -10.0f, 0.1f);
     cf    = addExtParam ("cf",    "Crossfeed", "", "dB", {-100.0f,   0.0f, 0.0f, 5.0f}, -100.0f, 0.1f);
     mix   = addExtParam ("mix",   "Mix",       "", "%",  {   0.0f, 100.0f, 0.0f, 1.0f},    0.0f, 0.1f);
     
-    delay = addIntParam ("delay", "Delay",     "", "",   {   0.0f,   5.0f, 0.0f, 1.0f},    1.0f, 0.1f);
+    delay = addIntParam ("delay", "Delay",     "", "",   {   0.0f,   5.0f, 0.0f, 1.0f},    1.0f, 0.2f);
     
     fb->conversionFunction  = [] (float in) { return Decibels::decibelsToGain (in); };
     cf->conversionFunction  = [] (float in) { return Decibels::decibelsToGain (in); };
     mix->conversionFunction = [] (float in) { return in / 100.0f; };
 }
 
-EchoAudioProcessor::~EchoAudioProcessor()
+DelayAudioProcessor::~DelayAudioProcessor()
 {
 }
 
 //==============================================================================
-void EchoAudioProcessor::prepareToPlay (double sampleRate, int samplesPerBlock)
+void DelayAudioProcessor::prepareToPlay (double sampleRate, int samplesPerBlock)
 {
     GinProcessor::prepareToPlay (sampleRate, samplesPerBlock);
     
     stereoDelay.setSampleRate (sampleRate);
 }
 
-void EchoAudioProcessor::reset()
+void DelayAudioProcessor::reset()
 {
     GinProcessor::reset();
     
     stereoDelay.clear();
 }
 
-void EchoAudioProcessor::releaseResources()
+void DelayAudioProcessor::releaseResources()
 {
 }
 
-void EchoAudioProcessor::processBlock (AudioSampleBuffer& buffer, MidiBuffer&)
+void DelayAudioProcessor::updateInternalParams()
 {
+    if (sync->isOn())
+    {
+        auto& duration = NoteDuration::getNoteDurations()[(size_t)beat->getUserValueInt()];
+        delay->setUserValue (duration.toSeconds (getPlayHead()));
+    }
+    else
+    {
+        delay->setUserValue (time->getUserValue());
+    }
+}
+
+void DelayAudioProcessor::processBlock (AudioSampleBuffer& buffer, MidiBuffer&)
+{
+    updateInternalParams();
+    
     if (isSmoothing())
     {
         int todo = buffer.getNumSamples();
@@ -63,18 +90,21 @@ void EchoAudioProcessor::processBlock (AudioSampleBuffer& buffer, MidiBuffer&)
         
         while (todo > 0)
         {
-            int sz = std::min (8, todo);
+            int sz = std::min (1, todo);
             auto workBuffer = sliceBuffer (buffer, pos, sz);
             
-            stereoDelay.setParams (time->getProcValueSmoothed (sz), mix->getProcValueSmoothed (sz),
+            stereoDelay.setParams (delay->getProcValueSmoothed (sz), mix->getProcValueSmoothed (sz),
                                    fb->getProcValueSmoothed (sz), cf->getProcValueSmoothed (sz));
             
             stereoDelay.process (workBuffer);
+            
+            pos += sz;
+            todo -= sz;
         }
     }
     else
     {
-        stereoDelay.setParams (time->getProcValue(), mix->getProcValue(),
+        stereoDelay.setParams (delay->getProcValue(), mix->getProcValue(),
                                fb->getProcValue(), cf->getProcValue());
         
         stereoDelay.process (buffer);
@@ -82,19 +112,19 @@ void EchoAudioProcessor::processBlock (AudioSampleBuffer& buffer, MidiBuffer&)
 }
 
 //==============================================================================
-bool EchoAudioProcessor::hasEditor() const
+bool DelayAudioProcessor::hasEditor() const
 {
     return true;
 }
 
-AudioProcessorEditor* EchoAudioProcessor::createEditor()
+AudioProcessorEditor* DelayAudioProcessor::createEditor()
 {
-    return new EchoAudioProcessorEditor (*this);
+    return new DelayAudioProcessorEditor (*this);
 }
 
 //==============================================================================
 // This creates new instances of the plugin..
 AudioProcessor* JUCE_CALLTYPE createPluginFilter()
 {
-    return new EchoAudioProcessor();
+    return new DelayAudioProcessor();
 }

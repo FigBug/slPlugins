@@ -16,12 +16,12 @@
 //==============================================================================
 /**
 */
-class EchoAudioProcessorEditor : public gin::GinAudioProcessorEditor,
-                                 private gin::Parameter::Listener
+class DelayAudioProcessorEditor : public gin::GinAudioProcessorEditor,
+                                  private gin::Parameter::Listener
 {
 public:
-    EchoAudioProcessorEditor (EchoAudioProcessor&);
-    ~EchoAudioProcessorEditor() override;
+    DelayAudioProcessorEditor (DelayAudioProcessor&);
+    ~DelayAudioProcessorEditor() override;
 
     //==============================================================================
     void resized() override;
@@ -29,7 +29,7 @@ public:
 private:
     void parameterChanged (gin::Parameter* param) override;
     
-    EchoAudioProcessor& proc;
+    DelayAudioProcessor& proc;
     
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (EchoAudioProcessorEditor)
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (DelayAudioProcessorEditor)
 };

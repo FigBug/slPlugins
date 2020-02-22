@@ -14,14 +14,16 @@
 using namespace gin;
 
 //==============================================================================
-EchoAudioProcessorEditor::EchoAudioProcessorEditor (EchoAudioProcessor& p)
+DelayAudioProcessorEditor::DelayAudioProcessorEditor (DelayAudioProcessor& p)
     : GinAudioProcessorEditor (p), proc (p)
 {
     for (auto pp : p.getPluginParameters())
     {
         ParamComponent* pc;
         
-        if (pp->isOnOff())
+        if (pp == proc.beat)
+            pc = new Select (pp);
+        else if (pp->isOnOff())
             pc = new Switch (pp);
         else
             pc = new Knob (pp);
@@ -37,13 +39,13 @@ EchoAudioProcessorEditor::EchoAudioProcessorEditor (EchoAudioProcessor& p)
     parameterChanged (proc.sync);
 }
 
-EchoAudioProcessorEditor::~EchoAudioProcessorEditor()
+DelayAudioProcessorEditor::~DelayAudioProcessorEditor()
 {
     proc.sync->removeListener (this);
 }
 
 //==============================================================================
-void EchoAudioProcessorEditor::resized()
+void DelayAudioProcessorEditor::resized()
 {
     GinAudioProcessorEditor::resized();
 
@@ -55,7 +57,7 @@ void EchoAudioProcessorEditor::resized()
     componentForParam (*proc.mix)->setBounds (getGridArea (4, 0));
 }
 
-void EchoAudioProcessorEditor::parameterChanged (Parameter* param)
+void DelayAudioProcessorEditor::parameterChanged (Parameter* param)
 {
     if (param == proc.sync)
     {
