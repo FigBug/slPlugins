@@ -117,11 +117,11 @@ cat pluginlist.txt | while read PLUGIN; do
     if [ -f "$ROOT/plugins/$PLUGIN/Builds/VisualStudio2019/x64/Release64/VST/${PLUGIN}_64.dll" ]; then
       cp "$ROOT/plugins/$PLUGIN/Builds/VisualStudio2019/x64/Release64/VST/${PLUGIN}_64.dll" .
     fi
-    if [ -f "$ROOT/plugins/$PLUGIN/Builds/VisualStudio2019/x64/Release64/VST/${PLUGIN}_32.dll" ]; then
+    if [ -f "$ROOT/plugins/$PLUGIN/Builds/VisualStudio2019/Win32/Release/VST/${PLUGIN}_32.dll" ]; then
       cp "$ROOT/plugins/$PLUGIN/Builds/VisualStudio2019/Win32/Release/VST/${PLUGIN}_32.dll" .
     fi
 
-    7z a ${PLUGIN}_Win.zip ${PLUGIN}*.dll
+    7z a ${PLUGIN}_Win.zip *.dll
 
     curl -F "files=@${PLUGIN}_Win.zip" "https://socalabs.com/files/set.php?key=$APIKEY"
   fi
