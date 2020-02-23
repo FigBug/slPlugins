@@ -62,30 +62,27 @@ SFXAudioProcessor::SFXAudioProcessor()
         {
             String uniqueId = String (id.c_str()) + String (i + 1);
 
-            addPluginParameter (new Parameter (uniqueId,
-                                               String (p.getName (id).c_str()) + " " + String (i + 1),
-                                               p.getName (id),
-                                               "",
-                                               p.getMin (id),
-                                               p.getMax (id),
-                                               0.0f,
-                                               p.getDefault (id),
-                                               1.0f,
-                                               id == "waveType" ? waveTextFunc : nullptr));
+            addExtParam (uniqueId,
+                         String (p.getName (id).c_str()) + " " + String (i + 1),
+                         p.getName (id),
+                         "",
+                         { p.getMin (id), p.getMax (id), 0.0f, 1.0f },
+                         p.getDefault (id),
+                         0.0f,
+                         id == "waveType" ? waveTextFunc : nullptr);
         }
         
         for (auto id : ids)
         {
             String uniqueId = String (id.c_str()) + String (i + 1) + "l";
             
-            addPluginParameter (new Parameter (uniqueId,
-                                               String (p.getName (id).c_str()) + " " + String (i + 1) + " Lock",
-                                               p.getName (id) + " Lock",
-                                               "",
-                                               0.0f,
-                                               1.0f,
-                                               1.0f,
-                                               0.0f));
+            addExtParam (uniqueId,
+                         String (p.getName (id).c_str()) + " " + String (i + 1) + " Lock",
+                         p.getName (id) + " Lock",
+                         "",
+                         { 0.0f, 1.0f, 1.0f, 1.0f },
+                         0.0f,
+                         0.0f);
         }
     }
 

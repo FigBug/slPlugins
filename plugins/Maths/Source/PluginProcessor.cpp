@@ -17,11 +17,11 @@ using namespace gin;
 //==============================================================================
 MathsAudioProcessor::MathsAudioProcessor()
 {
-    addPluginParameter (new Parameter (PARAM_P1,       "p1 (0..1)",       "", "",     0.0f,   1.0f,  0.0f,    1.0f));
-    addPluginParameter (new Parameter (PARAM_P2,       "p2 (0..1)",       "", "",     0.0f,   1.0f,  0.0f,    1.0f));
-    addPluginParameter (new Parameter (PARAM_P3,       "p3 (-1..1)",      "", "",     -1.0f,  1.0f,  0.0f,    1.0f));
-    addPluginParameter (new Parameter (PARAM_P4,       "p4 (-1..1)",      "", "",     -1.0f,  1.0f,  0.0f,    1.0f));
-    addPluginParameter (new Parameter (PARAM_LIMITER,  "Limiter",         "", "",      0.0f,  1.0f,  1.0f,    1.0f,    1.0f,    [] (const Parameter&, float v) { return v > 0.5 ? "On" : "Off"; }));
+    addExtParam (PARAM_P1,      "p1 (0..1)",  "", "", {0.0f,  1.0f, 0.0f, 1.0f}, 1.0f, 0.0f);
+    addExtParam (PARAM_P2,      "p2 (0..1)",  "", "", {0.0f,  1.0f, 0.0f, 1.0f}, 1.0f, 0.0f);
+    addExtParam (PARAM_P3,      "p3 (-1..1)", "", "", {-1.0f, 1.0f, 0.0f, 1.0f}, 1.0f, 0.0f);
+    addExtParam (PARAM_P4,      "p4 (-1..1)", "", "", {-1.0f, 1.0f, 0.0f, 1.0f}, 1.0f, 0.0f);
+    addExtParam (PARAM_LIMITER, "Limiter",    "", "", { 0.0f, 1.0f, 1.0f, 1.0f}, 1.0f, 0.0f, [] (const Parameter&, float v) { return v > 0.5 ? "On" : "Off"; });
 
     setupParsers();
 }

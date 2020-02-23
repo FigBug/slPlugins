@@ -51,7 +51,7 @@ void AddInvertAudioProcessor::processBlock (AudioSampleBuffer& buffer, MidiBuffe
     FloatVectorOperations::addWithMultiply (aL, bL, -1.0f, numSamples);
     FloatVectorOperations::addWithMultiply (aR, bR, -1.0f, numSamples);
     
-    if (editor)
+    if (editor != nullptr)
     {
         AudioSampleBuffer outputBuffer (buffer.getArrayOfWritePointers(), 2, numSamples);        
         editor->scope.addSamples (outputBuffer);

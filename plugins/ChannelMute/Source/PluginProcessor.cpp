@@ -29,10 +29,10 @@ inline bool oddEven (int x)
 ChannelMuteAudioProcessor::ChannelMuteAudioProcessor()
 {
     //==============================================================================
-    addPluginParameter (new Parameter (PARAM_MUTE_L,    "Mute L",       "", "",     0.0f,      1.0f, 1.0f,    0.0f, 1.0f, onOffTextFunction));
-    addPluginParameter (new Parameter (PARAM_LEVEL_L,   "Level L",      "", "dB", -100.0f,     6.0f, 0.0f,    0.0f, 5.f));
-    addPluginParameter (new Parameter (PARAM_MUTE_R,    "Mute R",       "", "",     0.0f,      1.0f, 1.0f,    0.0f, 1.0f, onOffTextFunction));
-    addPluginParameter (new Parameter (PARAM_LEVEL_R,   "Level R",      "", "dB", -100.0f,     6.0f, 0.0f,    0.0f, 5.f));
+    addExtParam (PARAM_MUTE_L,    "Mute L",       "", "",   {  0.0f,  1.0f, 1.0f, 1.0f}, 0.0f, 0.0f, onOffTextFunction);
+    addExtParam (PARAM_LEVEL_L,   "Level L",      "", "dB", {-100.0f, 6.0f, 0.0f, 5.0f}, 0.0f, 0.0f);
+    addExtParam (PARAM_MUTE_R,    "Mute R",       "", "",   {  0.0f,  1.0f, 1.0f, 1.0f}, 0.0f, 0.0f, onOffTextFunction);
+    addExtParam (PARAM_LEVEL_R,   "Level R",      "", "dB", {-100.0f, 6.0f, 0.0f, 5.0f}, 0.0f, 0.0f);
 }
 
 ChannelMuteAudioProcessor::~ChannelMuteAudioProcessor()

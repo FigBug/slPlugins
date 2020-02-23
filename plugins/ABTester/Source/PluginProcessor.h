@@ -27,7 +27,7 @@ class ABTesterAudioProcessor : public gin::GinProcessor
 public:
     //==============================================================================
     ABTesterAudioProcessor();
-    ~ABTesterAudioProcessor();
+    ~ABTesterAudioProcessor() override;
 
     //==============================================================================
     void prepareToPlay (double sampleRate, int samplesPerBlock) override;

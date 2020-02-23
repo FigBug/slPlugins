@@ -29,7 +29,7 @@ class ChannelMuteAudioProcessor : public gin::GinProcessor
 public:
     //==============================================================================
     ChannelMuteAudioProcessor();
-    ~ChannelMuteAudioProcessor();
+    ~ChannelMuteAudioProcessor() override;
 
     //==============================================================================
     void prepareToPlay (double sampleRate, int samplesPerBlock) override;

@@ -20,7 +20,7 @@ class ABTesterAudioProcessorEditor  : public gin::GinAudioProcessorEditor
 {
 public:
     ABTesterAudioProcessorEditor (ABTesterAudioProcessor&);
-    ~ABTesterAudioProcessorEditor();
+    ~ABTesterAudioProcessorEditor() override;
 
     //==============================================================================
     void resized() override;

@@ -24,8 +24,8 @@ String abTextFunction (const Parameter&, float v)
 ABTesterAudioProcessor::ABTesterAudioProcessor()
 {
     //==============================================================================
-    addPluginParameter (new Parameter (PARAM_AB,    "A / B",        "", "",     0.0f,     1.0f, 1.0f,    0.0f, 1.0f, abTextFunction));
-    addPluginParameter (new Parameter (PARAM_LEVEL, "Level",      "", "dB",  -100.0f,     6.0f, 0.0f,    0.0f, 5.f));
+    addExtParam (PARAM_AB,    "A / B", "", "",    { 0.0f,   1.0f, 1.0f, 1.0f}, 0.0f, 0.0f, abTextFunction);
+    addExtParam (PARAM_LEVEL, "Level", "", "dB",  {-100.0f, 6.0f, 0.0f, 5.0f}, 0.0f, 0.0f);
 }
 
 ABTesterAudioProcessor::~ABTesterAudioProcessor()

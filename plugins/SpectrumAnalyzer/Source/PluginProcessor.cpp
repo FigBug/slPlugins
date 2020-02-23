@@ -33,8 +33,8 @@ String modeTextFunction (const Parameter&, float v)
 //==============================================================================
 PluginProcessor::PluginProcessor()
 {
-    addPluginParameter (new Parameter (PARAM_MODE,       "Mode",       "", "",     0.0f,   1.0f,  1.0f,    0.0f, 1.0f, modeTextFunction));
-    addPluginParameter (new Parameter (PARAM_LOG,        "Log",        "", "",     0.0f,   1.0f,  1.0f,    0.0f, 1.0f, onOffTextFunction));
+    addExtParam (PARAM_MODE, "Mode", "", "", {0.0f, 1.0f, 1.0f, 1.0f}, 0.0f, 0.0f, modeTextFunction);
+    addExtParam (PARAM_LOG,  "Log",  "", "", {0.0f, 1.0f, 1.0f, 1.0f}, 0.0f, 0.0f, onOffTextFunction);
 }
 
 PluginProcessor::~PluginProcessor()

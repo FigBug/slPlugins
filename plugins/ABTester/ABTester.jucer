@@ -7,7 +7,7 @@
               pluginManufacturerCode="Soca" pluginCode="ABts" pluginChannelConfigs="{4,2}"
               pluginIsSynth="0" pluginWantsMidiIn="0" pluginProducesMidiOut="0"
               pluginIsMidiEffectPlugin="0" pluginEditorRequiresKeys="0" pluginAUExportPrefix="ABTesterAU"
-              aaxIdentifier="com.socalabs.ABTester" pluginAAXCategory="2" jucerVersion="5.4.6"
+              aaxIdentifier="com.socalabs.ABTester" pluginAAXCategory="2" jucerVersion="5.4.7"
               companyName="SocaLabs" companyWebsite="www.socalabs.com" companyEmail="info@socalabs.com"
               displaySplashScreen="0" reportAppUsage="0" splashScreenColour="Dark"
               buildStandalone="0" enableIAA="0" cppLanguageStandard="17" companyCopyright="SocaLabs"
