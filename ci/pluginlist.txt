@@ -1,10 +1,10 @@
-Oscilloscope
-SpectrumAnalyzer
-ToneGenerator
-ChannelMute
-Maths
 ABTester
 AddInvert
-SFX8
-HugeGain
+ChannelMute
 Delay
+HugeGain
+Maths
+Oscilloscope
+SFX8
+SpectrumAnalyzer
+ToneGenerator
