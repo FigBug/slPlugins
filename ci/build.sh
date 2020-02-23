@@ -111,8 +111,15 @@ cat pluginlist.txt | while read PLUGIN; do
 
     cd "$ROOT/ci/bin"
 
-    cp "$ROOT/plugins/$PLUGIN/Builds/VisualStudio2019/x64/Release64/VST/${PLUGIN}*.dll" .
-    cp "$ROOT/plugins/$PLUGIN/Builds/VisualStudio2019/Win32/Release/VST/${PLUGIN}*.dll" .
+    if [ -f "$ROOT/plugins/$PLUGIN/Builds/VisualStudio2019/x64/Release64/VST/${PLUGIN}.dll" ]; then
+      cp "$ROOT/plugins/$PLUGIN/Builds/VisualStudio2019/x64/Release64/VST/${PLUGIN}.dll" .
+    fi
+    if [ -f "$ROOT/plugins/$PLUGIN/Builds/VisualStudio2019/x64/Release64/VST/${PLUGIN}_64.dll" ]; then
+      cp "$ROOT/plugins/$PLUGIN/Builds/VisualStudio2019/x64/Release64/VST/${PLUGIN}_64.dll" .
+    fi
+    if [ -f "$ROOT/plugins/$PLUGIN/Builds/VisualStudio2019/x64/Release64/VST/${PLUGIN}_32.dll" ]; then
+      cp "$ROOT/plugins/$PLUGIN/Builds/VisualStudio2019/Win32/Release/VST/${PLUGIN}_32.dll" .
+    fi
 
     7z a ${PLUGIN}_Win.zip ${PLUGIN}*.dll
 
