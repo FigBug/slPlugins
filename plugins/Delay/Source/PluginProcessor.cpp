@@ -30,13 +30,13 @@ DelayAudioProcessor::DelayAudioProcessor()
     float mxd = float (NoteDuration::getNoteDurations().size()) - 1.0f;
     
     sync  = addExtParam ("sync",  "Sync",      "", "",   {   0.0f,   1.0f, 1.0f, 1.0f},    0.0f, 0.0f, enableTextFunction);
-    time  = addExtParam ("time",  "Delay",     "", "",   {   0.0f,   5.0f, 0.0f, 1.0f},    1.0f, 0.0f);
+    time  = addExtParam ("time",  "Delay",     "", "",   {   0.0f, 120.0f, 0.0f, 0.3f},    1.0f, 0.0f);
     beat  = addExtParam ("beat",  "Delay",     "", "",   {   0.0f,    mxd, 1.0f, 1.0f},   13.0f, 0.0f, durationTextFunction);
     fb    = addExtParam ("fb",    "Feedback",  "", "dB", {-100.0f,   0.0f, 0.0f, 5.0f},  -10.0f, 0.1f);
     cf    = addExtParam ("cf",    "Crossfeed", "", "dB", {-100.0f,   0.0f, 0.0f, 5.0f}, -100.0f, 0.1f);
     mix   = addExtParam ("mix",   "Mix",       "", "%",  {   0.0f, 100.0f, 0.0f, 1.0f},    0.0f, 0.1f);
     
-    delay = addIntParam ("delay", "Delay",     "", "",   {   0.0f,   5.0f, 0.0f, 1.0f},    1.0f, 5.2f);
+    delay = addIntParam ("delay", "Delay",     "", "",   {   0.0f, 120.0f, 0.0f, 1.0f},    1.0f, {0.2f, SmoothingType::eased});
     
     fb->conversionFunction  = [] (float in) { return Decibels::decibelsToGain (in); };
     cf->conversionFunction  = [] (float in) { return Decibels::decibelsToGain (in); };
@@ -82,18 +82,18 @@ void DelayAudioProcessor::updateInternalParams()
 void DelayAudioProcessor::processBlock (AudioSampleBuffer& buffer, MidiBuffer&)
 {
     updateInternalParams();
-    
+
+    int numSamples = buffer.getNumSamples();
     if (isSmoothing())
     {
         int pos = 0;
-        int numSamples = buffer.getNumSamples();
         
         while (pos < numSamples)
         {
             auto workBuffer = sliceBuffer (buffer, pos, 1);
             
-            stereoDelay.setParams (delay->getProcValueSmoothed (1), mix->getProcValueSmoothed (1),
-                                   fb->getProcValueSmoothed (1), cf->getProcValueSmoothed (1));
+            stereoDelay.setParams (delay->getProcValue (1), mix->getProcValue (1),
+                                   fb->getProcValue (1), cf->getProcValue (1));
             
             stereoDelay.process (workBuffer);
             
@@ -102,8 +102,8 @@ void DelayAudioProcessor::processBlock (AudioSampleBuffer& buffer, MidiBuffer&)
     }
     else
     {
-        stereoDelay.setParams (delay->getProcValue(), mix->getProcValue(),
-                               fb->getProcValue(), cf->getProcValue());
+        stereoDelay.setParams (delay->getProcValue (numSamples), mix->getProcValue (numSamples),
+                               fb->getProcValue (numSamples), cf->getProcValue (numSamples));
         
         stereoDelay.process (buffer);
     }

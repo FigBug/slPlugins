@@ -59,21 +59,21 @@ void PluginProcessor::processBlock (AudioSampleBuffer& buffer, MidiBuffer&)
         {
             auto workBuffer = sliceBuffer (buffer, pos, 1);
 
-            workBuffer.applyGain (0, 0, 1, gainl->getProcValueSmoothed (1));
-            workBuffer.applyGain (1, 0, 1, gainr->getProcValueSmoothed (1));
-            workBuffer.applyGain (gains->getProcValueSmoothed (1));
+            workBuffer.applyGain (0, 0, 1, gainl->getProcValue (1));
+            workBuffer.applyGain (1, 0, 1, gainr->getProcValue (1));
+            workBuffer.applyGain (gains->getProcValue (1));
             
             pos++;
         }
     }
     else
     {
-        buffer.applyGain (0, 0, numSamples, gainl->getProcValue());
-        buffer.applyGain (1, 0, numSamples, gainr->getProcValue());
-        buffer.applyGain (gains->getProcValue());
+        buffer.applyGain (0, 0, numSamples, gainl->getProcValue (numSamples));
+        buffer.applyGain (1, 0, numSamples, gainr->getProcValue (numSamples));
+        buffer.applyGain (gains->getProcValue (numSamples));
     }
     
-    if (getParameter (PARAM_CLIP)->getUserValue() != 0.0f)
+    if (clipp->getUserValue() != 0.0f)
         clip (buffer, -1.0f, 1.0f);
 }
 
