@@ -6,3 +6,5 @@ Maths
 ABTester
 AddInvert
 SFX8
+HugeGain
+Delay
