@@ -31,8 +31,7 @@
                        recommendedWarnings="LLVM"/>
         <CONFIGURATION name="Release" isDebug="0" optimisation="3" targetName="HugeGain"
                        cppLanguageStandard="c++14" osxCompatibility="10.9 SDK" enablePluginBinaryCopyStep="1"
-                       headerPath="../../../../module/slCommon" linkTimeOptimisation="0"
-                       recommendedWarnings="LLVM"/>
+                       linkTimeOptimisation="0" recommendedWarnings="LLVM"/>
       </CONFIGURATIONS>
       <MODULEPATHS>
         <MODULEPATH id="juce_core" path="../../modules/juce/modules"/>
@@ -57,14 +56,13 @@
         <MODULEPATH id="gin_plugin" path="../../modules/gin/modules"/>
       </MODULEPATHS>
     </XCODE_MAC>
-    <VS2019 targetFolder="Builds/VisualStudio2017" toolset="v141_xp" windowsTargetPlatformVersion="8.1"
-            vstLegacyFolder="../../modules/plugin_sdk/vstsdk2.4">
+    <VS2019 targetFolder="Builds/VisualStudio2019" toolset="v142" vstLegacyFolder="../../modules/plugin_sdk/vstsdk2.4">
       <CONFIGURATIONS>
-        <CONFIGURATION name="Debug" winWarningLevel="4" generateManifest="1" winArchitecture="32-bit"
+        <CONFIGURATION name="Debug" winWarningLevel="4" generateManifest="1" winArchitecture="Win32"
                        isDebug="1" optimisation="1" targetName="HugeGain_32b" postbuildCommand="copy /Y &quot;$(OutDir)\$(TargetFileName)&quot; &quot;C:\Program Files (x86)\VSTPlugins&quot;"
                        debugInformationFormat="ProgramDatabase" enablePluginBinaryCopyStep="0"
                        useRuntimeLibDLL="0"/>
-        <CONFIGURATION name="Release" winWarningLevel="4" generateManifest="1" winArchitecture="32-bit"
+        <CONFIGURATION name="Release" winWarningLevel="4" generateManifest="1" winArchitecture="Win32"
                        isDebug="0" optimisation="3" targetName="HugeGain_32b" postbuildCommand="copy /Y &quot;$(OutDir)\$(TargetFileName)&quot; &quot;C:\Program Files (x86)\VSTPlugins&quot;"
                        debugInformationFormat="ProgramDatabase" enablePluginBinaryCopyStep="0"
                        linkTimeOptimisation="0" useRuntimeLibDLL="0"/>
