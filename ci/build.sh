@@ -109,18 +109,28 @@ cat pluginlist.txt | while read PLUGIN; do
     "$MSBUILD_EXE" "$PLUGIN.sln" "//p:VisualStudioVersion=16.0" "//m" "//t:Build" "//p:Configuration=Release64" "//p:Platform=x64" "//p:PreferredToolArchitecture=x64"
     "$MSBUILD_EXE" "$PLUGIN.sln" "//p:VisualStudioVersion=16.0" "//m" "//t:Build" "//p:Configuration=Release" "//p:PlatformTarget=x86" "//p:PreferredToolArchitecture=x64"
 
+    cd "$ROOT/plugins/$PLUGIN/Builds/VisualStudio2019/x64/Release64/VST/"
+    pwd
+    ls -l
+
+    cd "$ROOT/plugins/$PLUGIN/Builds/VisualStudio2019/Win32/Release/VST/
+    pwd
+    ls -l
+
     cd "$ROOT/ci/bin"
 
     if [ -f "$ROOT/plugins/$PLUGIN/Builds/VisualStudio2019/x64/Release64/VST/${PLUGIN}.dll" ]; then
+      echo "Copy new name 64 bit vst"
       cp "$ROOT/plugins/$PLUGIN/Builds/VisualStudio2019/x64/Release64/VST/${PLUGIN}.dll" .
-    fi
-    if [ -f "$ROOT/plugins/$PLUGIN/Builds/VisualStudio2019/x64/Release64/VST/${PLUGIN}_64.dll" ]; then
+    else
+      echo "Copy old name 64 bit vst"
       cp "$ROOT/plugins/$PLUGIN/Builds/VisualStudio2019/x64/Release64/VST/${PLUGIN}_64.dll" .
     fi
-    if [ -f "$ROOT/plugins/$PLUGIN/Builds/VisualStudio2019/Win32/Release/VST/${PLUGIN}_32.dll" ]; then
-      cp "$ROOT/plugins/$PLUGIN/Builds/VisualStudio2019/Win32/Release/VST/${PLUGIN}_32.dll" .
-    fi
 
+    cp "$ROOT/plugins/$PLUGIN/Builds/VisualStudio2019/Win32/Release/VST/${PLUGIN}_32.dll" .
+
+    pwd
+    ls -l
     7z a ${PLUGIN}_Win.zip *.dll
 
     curl -F "files=@${PLUGIN}_Win.zip" "https://socalabs.com/files/set.php?key=$APIKEY"
