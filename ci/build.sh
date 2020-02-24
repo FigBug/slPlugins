@@ -124,10 +124,10 @@ cat pluginlist.txt | while read PLUGIN; do
       cp "$ROOT/plugins/$PLUGIN/Builds/VisualStudio2019/x64/Release64/VST/${PLUGIN}.dll" .
     else
       echo "Copy old name 64 bit vst"
-      cp "$ROOT/plugins/$PLUGIN/Builds/VisualStudio2019/x64/Release64/VST/${PLUGIN}_64.dll" .
+      cp "$ROOT/plugins/$PLUGIN/Builds/VisualStudio2019/x64/Release64/VST/${PLUGIN}_64b.dll" .
     fi
 
-    cp "$ROOT/plugins/$PLUGIN/Builds/VisualStudio2019/Win32/Release/VST/${PLUGIN}_32.dll" .
+    cp "$ROOT/plugins/$PLUGIN/Builds/VisualStudio2019/Win32/Release/VST/${PLUGIN}_32b.dll" .
 
     pwd
     ls -l
