@@ -60,6 +60,6 @@ void SampleDelayAudioProcessorEditor::parameterChanged (Parameter* param)
     {
         bool samples = proc.mode->getUserValueInt() == 0;
         componentForParam (*proc.samples)->setVisible (samples);
-        componentForParam (*proc.samples)->setVisible (! samples);
+        componentForParam (*proc.time)->setVisible (! samples);
     }
 }

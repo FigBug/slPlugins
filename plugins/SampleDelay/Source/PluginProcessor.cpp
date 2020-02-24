@@ -19,17 +19,14 @@ String enableTextFunction (const Parameter&, float v)
     return v == 0.0f ? "Samples" : "Time";
 }
 
-String durationTextFunction (const Parameter&, float v)
-{
-    return NoteDuration::getNoteDurations()[size_t (v)].getName();
-}
-
 //==============================================================================
 SampleDelayAudioProcessor::SampleDelayAudioProcessor()
 {
     mode    = addExtParam ("mode",    "Mode",    "", "",   {   0.0f,     1.0f, 1.0f, 1.0f},    0.0f, 0.0f, enableTextFunction);
-    time    = addExtParam ("time",    "Time",    "", "ms", {   0.0f,   250.0f, 0.0f, 1.0f},    1.0f, {0.2f, SmoothingType::eased});
-    samples = addExtParam ("samples", "Samples", "", "",   {   0.0f, 10000.0f, 1.0f, 1.0f},   50.0f, {0.2f, SmoothingType::eased}, durationTextFunction);    
+    time    = addExtParam ("time",    "Time",    "", "ms", {   0.0f,  1000.0f, 0.0f, 1.0f},    1.0f, {0.2f, SmoothingType::eased});
+    samples = addExtParam ("samples", "Samples", "", "",   {   0.0f, 44100.0f, 1.0f, 1.0f},   50.0f, {0.2f, SmoothingType::eased});
+    
+    time->conversionFunction = [] (float in) { return in / 1000.0f; };
 }
 
 SampleDelayAudioProcessor::~SampleDelayAudioProcessor()
@@ -40,6 +37,11 @@ SampleDelayAudioProcessor::~SampleDelayAudioProcessor()
 void SampleDelayAudioProcessor::prepareToPlay (double sampleRate, int samplesPerBlock)
 {
     GinProcessor::prepareToPlay (sampleRate, samplesPerBlock);
+    
+    int ch = getTotalNumInputChannels();
+    double sr = getSampleRate();
+     
+    delayLine.setSize (ch, std::max (1.1, sr / 44100.0 + 0.1), sr);
 }
 
 void SampleDelayAudioProcessor::reset()
@@ -54,7 +56,7 @@ void SampleDelayAudioProcessor::numChannelsChanged ()
     int ch = getTotalNumInputChannels();
     double sr = getSampleRate();
     
-    delayLine.setSize (ch, std::max (1.0, sr / 10000.0 + 0.1), sr);
+    delayLine.setSize (ch, std::max (1.1, sr / 44100.0 + 0.1), sr);
 }
 
 void SampleDelayAudioProcessor::releaseResources()
@@ -71,18 +73,32 @@ void SampleDelayAudioProcessor::processBlock (AudioSampleBuffer& buffer, MidiBuf
     for (int s = 0; s < numSamples; s++)
     {
         auto sampPos = samples->getProcValue (1);
-        auto timePos = samples->getProcValue (1);
+        auto timePos = time->getProcValue (1);
         
         for (int c = 0; c < ch; c++)
         {
             if (mode->getUserValueInt() == 0)
-                *scratch.getWritePointer (ch, s) = delayLine.readSample (ch, timePos);
+            {
+                if (sampPos == 0)
+                    *scratch.getWritePointer (c, s) = *buffer.getReadPointer (c, s);
+                else
+                    *scratch.getWritePointer (c, s) = delayLine.readSample (c, int (sampPos));
+            }
             else
-                *scratch.getWritePointer (ch, s) = delayLine.readLinear (ch, sampPos);
+            {
+                if (timePos == 0)
+                    *scratch.getWritePointer (c, s) = *buffer.getReadPointer (c, s);
+                else
+                    *scratch.getWritePointer (c, s) = delayLine.readLinear (c, timePos);
+            }
         
-            delayLine.write (ch, *buffer.getReadPointer (ch, s));
+            delayLine.write (c, *buffer.getReadPointer (c, s));
         }
+        delayLine.writeFinished();
     }
+    
+    for (int c = 0; c < ch; c++)
+        buffer.copyFrom (c, 0, scratch, c, 0, numSamples);
 }
 
 //==============================================================================

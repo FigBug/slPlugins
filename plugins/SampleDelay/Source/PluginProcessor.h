@@ -42,7 +42,7 @@ public:
 private:
     void numChannelsChanged () override;
     
-    gin::DelayLine delayLine { 2, 20000 };
+    gin::DelayLine delayLine { 2, 2 };
     
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (SampleDelayAudioProcessor)
