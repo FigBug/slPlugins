@@ -1,10 +1,12 @@
 ABTester
 AddInvert
 ChannelMute
+CompensatedDelay
 Delay
 HugeGain
 Maths
 Oscilloscope
 SFX8
+SampleDelay
 SpectrumAnalyzer
 ToneGenerator
