@@ -16,7 +16,7 @@ using namespace gin;
 
 String enableTextFunction (const Parameter&, float v)
 {
-    return v > 0.0f ? "On" : "Off";
+    return v == 0.0f ? "Samples" : "Time";
 }
 
 String durationTextFunction (const Parameter&, float v)
@@ -25,104 +25,80 @@ String durationTextFunction (const Parameter&, float v)
 }
 
 //==============================================================================
-DelayAudioProcessor::DelayAudioProcessor()
+SampleDelayAudioProcessor::SampleDelayAudioProcessor()
 {
-    float mxd = float (NoteDuration::getNoteDurations().size()) - 1.0f;
-    
-    sync  = addExtParam ("sync",  "Sync",      "", "",   {   0.0f,   1.0f, 1.0f, 1.0f},    0.0f, 0.0f, enableTextFunction);
-    time  = addExtParam ("time",  "Delay",     "", "",   {   0.0f, 120.0f, 0.0f, 0.3f},    1.0f, 0.0f);
-    beat  = addExtParam ("beat",  "Delay",     "", "",   {   0.0f,    mxd, 1.0f, 1.0f},   13.0f, 0.0f, durationTextFunction);
-    fb    = addExtParam ("fb",    "Feedback",  "", "dB", {-100.0f,   0.0f, 0.0f, 5.0f},  -10.0f, 0.1f);
-    cf    = addExtParam ("cf",    "Crossfeed", "", "dB", {-100.0f,   0.0f, 0.0f, 5.0f}, -100.0f, 0.1f);
-    mix   = addExtParam ("mix",   "Mix",       "", "%",  {   0.0f, 100.0f, 0.0f, 1.0f},    0.0f, 0.1f);
-    
-    delay = addIntParam ("delay", "Delay",     "", "",   {   0.0f, 120.0f, 0.0f, 1.0f},    1.0f, {0.2f, SmoothingType::eased});
-    
-    fb->conversionFunction  = [] (float in) { return Decibels::decibelsToGain (in); };
-    cf->conversionFunction  = [] (float in) { return Decibels::decibelsToGain (in); };
-    mix->conversionFunction = [] (float in) { return in / 100.0f; };
+    mode    = addExtParam ("mode",    "Mode",    "", "",   {   0.0f,     1.0f, 1.0f, 1.0f},    0.0f, 0.0f, enableTextFunction);
+    time    = addExtParam ("time",    "Time",    "", "ms", {   0.0f,   250.0f, 0.0f, 1.0f},    1.0f, {0.2f, SmoothingType::eased});
+    samples = addExtParam ("samples", "Samples", "", "",   {   0.0f, 10000.0f, 1.0f, 1.0f},   50.0f, {0.2f, SmoothingType::eased}, durationTextFunction);    
 }
 
-DelayAudioProcessor::~DelayAudioProcessor()
+SampleDelayAudioProcessor::~SampleDelayAudioProcessor()
 {
 }
 
 //==============================================================================
-void DelayAudioProcessor::prepareToPlay (double sampleRate, int samplesPerBlock)
+void SampleDelayAudioProcessor::prepareToPlay (double sampleRate, int samplesPerBlock)
 {
     GinProcessor::prepareToPlay (sampleRate, samplesPerBlock);
-    
-    stereoDelay.setSampleRate (sampleRate);
 }
 
-void DelayAudioProcessor::reset()
+void SampleDelayAudioProcessor::reset()
 {
     GinProcessor::reset();
     
-    stereoDelay.clear();
+    delayLine.clear();
 }
 
-void DelayAudioProcessor::releaseResources()
+void SampleDelayAudioProcessor::numChannelsChanged ()
+{
+    int ch = getTotalNumInputChannels();
+    double sr = getSampleRate();
+    
+    delayLine.setSize (ch, std::max (1.0, sr / 10000.0 + 0.1), sr);
+}
+
+void SampleDelayAudioProcessor::releaseResources()
 {
 }
 
-void DelayAudioProcessor::updateInternalParams()
+void SampleDelayAudioProcessor::processBlock (AudioSampleBuffer& buffer, MidiBuffer&)
 {
-    if (sync->isOn())
-    {
-        auto& duration = NoteDuration::getNoteDurations()[(size_t)beat->getUserValueInt()];
-        delay->setUserValue (duration.toSeconds (getPlayHead()));
-    }
-    else
-    {
-        delay->setUserValue (time->getUserValue());
-    }
-}
-
-void DelayAudioProcessor::processBlock (AudioSampleBuffer& buffer, MidiBuffer&)
-{
-    updateInternalParams();
-
     int numSamples = buffer.getNumSamples();
-    if (isSmoothing())
+    int ch = buffer.getNumChannels();
+    
+    ScratchBuffer scratch (ch, numSamples);
+    
+    for (int s = 0; s < numSamples; s++)
     {
-        int pos = 0;
+        auto sampPos = samples->getProcValue (1);
+        auto timePos = samples->getProcValue (1);
         
-        while (pos < numSamples)
+        for (int c = 0; c < ch; c++)
         {
-            auto workBuffer = sliceBuffer (buffer, pos, 1);
-            
-            stereoDelay.setParams (delay->getProcValue (1), mix->getProcValue (1),
-                                   fb->getProcValue (1), cf->getProcValue (1));
-            
-            stereoDelay.process (workBuffer);
-            
-            pos++;
-        }
-    }
-    else
-    {
-        stereoDelay.setParams (delay->getProcValue (numSamples), mix->getProcValue (numSamples),
-                               fb->getProcValue (numSamples), cf->getProcValue (numSamples));
+            if (mode->getUserValueInt() == 0)
+                *scratch.getWritePointer (ch, s) = delayLine.readSample (ch, timePos);
+            else
+                *scratch.getWritePointer (ch, s) = delayLine.readLinear (ch, sampPos);
         
-        stereoDelay.process (buffer);
+            delayLine.write (ch, *buffer.getReadPointer (ch, s));
+        }
     }
 }
 
 //==============================================================================
-bool DelayAudioProcessor::hasEditor() const
+bool SampleDelayAudioProcessor::hasEditor() const
 {
     return true;
 }
 
-AudioProcessorEditor* DelayAudioProcessor::createEditor()
+AudioProcessorEditor* SampleDelayAudioProcessor::createEditor()
 {
-    return new DelayAudioProcessorEditor (*this);
+    return new SampleDelayAudioProcessorEditor (*this);
 }
 
 //==============================================================================
 // This creates new instances of the plugin..
 AudioProcessor* JUCE_CALLTYPE createPluginFilter()
 {
-    return new DelayAudioProcessor();
+    return new SampleDelayAudioProcessor();
 }

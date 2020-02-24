@@ -131,7 +131,7 @@ cat pluginlist.txt | while read PLUGIN; do
 
     pwd
     ls -l
-    7z a ${PLUGIN}_Win.zip *.dll
+    7z a ${PLUGIN}_Win.zip ${PLUGIN}*.dll
 
     curl -F "files=@${PLUGIN}_Win.zip" "https://socalabs.com/files/set.php?key=$APIKEY"
   fi

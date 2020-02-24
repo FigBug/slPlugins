@@ -14,14 +14,14 @@
 using namespace gin;
 
 //==============================================================================
-DelayAudioProcessorEditor::DelayAudioProcessorEditor (DelayAudioProcessor& p)
+SampleDelayAudioProcessorEditor::SampleDelayAudioProcessorEditor (SampleDelayAudioProcessor& p)
     : GinAudioProcessorEditor (p), proc (p)
 {
     for (auto pp : p.getPluginParameters())
     {
         ParamComponent* pc;
         
-        if (pp == proc.beat)
+        if (pp == proc.mode)
             pc = new Select (pp);
         else if (pp->isOnOff())
             pc = new Switch (pp);
@@ -32,37 +32,34 @@ DelayAudioProcessorEditor::DelayAudioProcessorEditor (DelayAudioProcessor& p)
         controls.add (pc);
     }
     
-    setGridSize (5, 1);
+    setGridSize (4, 1);
     
-    proc.sync->addListener (this);
+    proc.mode->addListener (this);
     
-    parameterChanged (proc.sync);
+    parameterChanged (proc.mode);
 }
 
-DelayAudioProcessorEditor::~DelayAudioProcessorEditor()
+SampleDelayAudioProcessorEditor::~SampleDelayAudioProcessorEditor()
 {
-    proc.sync->removeListener (this);
+    proc.mode->removeListener (this);
 }
 
 //==============================================================================
-void DelayAudioProcessorEditor::resized()
+void SampleDelayAudioProcessorEditor::resized()
 {
     GinAudioProcessorEditor::resized();
 
-    componentForParam (*proc.sync)->setBounds (getGridArea (0, 0));
-    componentForParam (*proc.time)->setBounds (getGridArea (1, 0));
-    componentForParam (*proc.beat)->setBounds (getGridArea (1, 0));
-    componentForParam (*proc.fb)->setBounds (getGridArea (2, 0));
-    componentForParam (*proc.cf)->setBounds (getGridArea (3, 0));
-    componentForParam (*proc.mix)->setBounds (getGridArea (4, 0));
+    componentForParam (*proc.mode)->setBounds (getGridArea (1, 0));
+    componentForParam (*proc.time)->setBounds (getGridArea (2, 0));
+    componentForParam (*proc.samples)->setBounds (getGridArea (2, 0));
 }
 
-void DelayAudioProcessorEditor::parameterChanged (Parameter* param)
+void SampleDelayAudioProcessorEditor::parameterChanged (Parameter* param)
 {
-    if (param == proc.sync)
+    if (param == proc.mode)
     {
-        bool on = proc.sync->isOn();
-        componentForParam (*proc.beat)->setVisible (on);
-        componentForParam (*proc.time)->setVisible (! on);
+        bool samples = proc.mode->getUserValueInt() == 0;
+        componentForParam (*proc.samples)->setVisible (samples);
+        componentForParam (*proc.samples)->setVisible (! samples);
     }
 }
