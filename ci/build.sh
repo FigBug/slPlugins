@@ -113,7 +113,7 @@ cat pluginlist.txt | while read PLUGIN; do
     pwd
     ls -l
 
-    cd "$ROOT/plugins/$PLUGIN/Builds/VisualStudio2019/Win32/Release/VST/
+    cd "$ROOT/plugins/$PLUGIN/Builds/VisualStudio2019/Win32/Release/VST/"
     pwd
     ls -l
 
