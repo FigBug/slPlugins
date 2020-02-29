@@ -81,8 +81,8 @@ cat pluginlist.txt | while read PLUGIN; do
     cp -R ~/Library/Audio/Plug-Ins/Components/$PLUGIN.component "$ROOT/ci/bin"
 
     cd "$ROOT/ci/bin"
-    codesign -s "$DEV_APP_ID" -v "$PLUGIN.vst" --options=runtime
-    codesign -s "$DEV_APP_ID" -v "$PLUGIN.component" --options=runtime
+    codesign -s "$DEV_APP_ID" -v "$PLUGIN.vst" --options=runtime --timestamp
+    codesign -s "$DEV_APP_ID" -v "$PLUGIN.component" --options=runtime --timestamp
 
     # Notarize
     cd "$ROOT/ci/bin"
