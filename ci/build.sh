@@ -145,12 +145,14 @@ if [ $OS = "mac" ]; then
   curl -s -S "https://socalabs.com/files/get.php?id=Voc_Mac.zip" -o "$ROOT/ci/bin/Voc_Mac.zip"  
   curl -s -S "https://socalabs.com/files/get.php?id=SN76489_Mac.zip" -o "$ROOT/ci/bin/SN76489_Mac.zip"  
   curl -s -S "https://socalabs.com/files/get.php?id=RP2A03_Mac.zip" -o "$ROOT/ci/bin/RP2A03_Mac.zip"  
+  curl -s -S "https://socalabs.com/files/get.php?id=Mverb2020_Mac.zip" -o "$ROOT/ci/bin/Mverb2020_Mac.zip"  
 
   unzip SID_Mac.zip
   unzip PAPU_Mac.zip
   unzip Voc_Mac.zip
   unzip SN76489_Mac.zip
   unzip RP2A03_Mac.zip
+  unzip Mverb2020_Mac.zip
 
   zip -r All_Mac.zip *.vst *.component
 
@@ -162,12 +164,14 @@ else
   curl -s -S "https://socalabs.com/files/get.php?id=Voc_Win.zip" -o "$ROOT/ci/bin/Voc_Win.zip"  
   curl -s -S "https://socalabs.com/files/get.php?id=SN76489_Win.zip" -o "$ROOT/ci/bin/SN76489_Win.zip"  
   curl -s -S "https://socalabs.com/files/get.php?id=RP2A03_Win.zip" -o "$ROOT/ci/bin/RP2A03_Win.zip"  
+  curl -s -S "https://socalabs.com/files/get.php?id=Mverb2020_Win.zip" -o "$ROOT/ci/bin/Mverb2020_Win.zip"  
 
   unzip SID_Win.zip
   unzip PAPU_Win.zip
   unzip Voc_Win.zip
   unzip SN76489_Win.zip
   unzip RP2A03_Win.zip
+  unzip Mverb2020_Win.zip
 
   7z a All_Win.zip *.dll
 
