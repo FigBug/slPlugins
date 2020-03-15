@@ -17,7 +17,7 @@ using namespace gin;
 //==============================================================================
 CompressorAudioProcessor::CompressorAudioProcessor()
 {
-    fifo.setSize (2, 44100);
+    fifo.setSize (3, 44100);
     
     attack    = addExtParam ("attack",    "Attack",    "", "ms",   { 1.0f,   200.0f, 0.0f, 0.4f},    1.0f, 0.1f);
     release   = addExtParam ("release",   "Release",   "", "ms",   { 1.0f,  2000.0f, 0.0f, 0.4f},    5.0f, 0.1f);
@@ -44,6 +44,7 @@ void CompressorAudioProcessor::prepareToPlay (double sampleRate, int samplesPerB
 
     compressor.setSampleRate (sampleRate);
     compressor.reset();
+    compressor.setNumChannels (getTotalNumInputChannels());
 }
 
 void CompressorAudioProcessor::reset()
@@ -51,6 +52,11 @@ void CompressorAudioProcessor::reset()
     GinProcessor::reset();
     
     compressor.reset();
+}
+
+void CompressorAudioProcessor::numChannelsChanged()
+{
+    compressor.setNumChannels (getTotalNumInputChannels());
 }
 
 void CompressorAudioProcessor::releaseResources()
@@ -61,9 +67,12 @@ void CompressorAudioProcessor::processBlock (AudioSampleBuffer& buffer, MidiBuff
 {
     int numSamples = buffer.getNumSamples();
 
-    ScratchBuffer fifoData (buffer);
-    FloatVectorOperations::add (fifoData.getWritePointer (0), fifoData.getReadPointer (0), numSamples);
+    ScratchBuffer fifoData (3, numSamples);
+    FloatVectorOperations::copy (fifoData.getWritePointer (0), buffer.getReadPointer (0), numSamples);
+    FloatVectorOperations::add (fifoData.getWritePointer (0), buffer.getReadPointer (1), numSamples);
     FloatVectorOperations::multiply (fifoData.getWritePointer (0), 0.5, numSamples);
+    
+    ScratchBuffer envData (1, numSamples);
         
     if (isSmoothing())
     {
@@ -71,6 +80,7 @@ void CompressorAudioProcessor::processBlock (AudioSampleBuffer& buffer, MidiBuff
         while (pos < numSamples)
         {
             auto workBuffer = sliceBuffer (buffer, pos, 1);
+            auto envWorkBuffer = sliceBuffer (envData, pos, 1);
             
             compressor.setInputGain (input->getProcValue (1));
             compressor.setOutputGain (output->getProcValue (1));
@@ -80,7 +90,7 @@ void CompressorAudioProcessor::processBlock (AudioSampleBuffer& buffer, MidiBuff
                                   ratio->getProcValue (1),
                                   knee->getProcValue (1));
             
-            compressor.process (workBuffer);
+            compressor.process (workBuffer, &envWorkBuffer);
             
             pos++;
         }
@@ -96,12 +106,14 @@ void CompressorAudioProcessor::processBlock (AudioSampleBuffer& buffer, MidiBuff
                               ratio->getProcValue (numSamples),
                               knee->getProcValue (numSamples));
 
-        compressor.process (buffer);
+        compressor.process (buffer, &envData);
     }
     
     FloatVectorOperations::copy (fifoData.getWritePointer (1), buffer.getReadPointer (0), numSamples);
     FloatVectorOperations::add (fifoData.getWritePointer (1), buffer.getReadPointer (1), numSamples);
     FloatVectorOperations::multiply (fifoData.getWritePointer (1), 0.5, numSamples);
+    
+    FloatVectorOperations::copy (fifoData.getWritePointer (2), envData.getReadPointer (0), numSamples);
     
     if (fifo.getFreeSpace() >= numSamples)
         fifo.write (fifoData);

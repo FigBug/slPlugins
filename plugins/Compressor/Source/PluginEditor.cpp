@@ -37,10 +37,19 @@ CompressorAudioProcessorEditor::CompressorAudioProcessorEditor (CompressorAudioP
     reductionMeter.setTopDown (true);
 
     addAndMakeVisible (scope);
-    scope.setNumChannels (2);
+    scope.setNumChannels (3);
+    scope.setTriggerMode (TriggeredScope::None);
     scope.setNumSamplesPerPixel (256);
-    scope.setColour (TriggeredScope::traceColourId + 0, Colours::lightgrey);
-    scope.setColour (TriggeredScope::traceColourId + 1, Colours::white);
+    scope.setVerticalZoomFactor (2.0);
+    scope.setVerticalZoomOffset (-0.5, 0);
+    scope.setVerticalZoomOffset (-0.5, 1);
+    scope.setVerticalZoomOffset (-0.5, 2);
+    scope.setColour (TriggeredScope::traceColourId + 0, Colours::transparentBlack);
+    scope.setColour (TriggeredScope::envelopeColourId + 0, Colours::orange);
+    scope.setColour (TriggeredScope::traceColourId + 1, Colours::transparentBlack);
+    scope.setColour (TriggeredScope::envelopeColourId + 1, Colours::white);
+    scope.setColour (TriggeredScope::traceColourId + 2, Colours::red);
+    scope.setColour (TriggeredScope::envelopeColourId + 2, Colours::transparentBlack);
 
     setGridSize (7, 3);
 }

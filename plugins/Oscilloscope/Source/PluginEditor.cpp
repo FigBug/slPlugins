@@ -19,9 +19,14 @@ PluginEditor::PluginEditor (PluginProcessor& p)
 {
     addAndMakeVisible (&scope);
     
-    scope.setColour (drow::TriggeredScope::traceColourId + 0, Colours::white.overlaidWith (Colours::blue.withAlpha (0.3f)));
-    scope.setColour (drow::TriggeredScope::traceColourId + 1, Colours::white.overlaidWith (Colours::yellow.withAlpha (0.3f)));
+    auto c1 = Colours::white.overlaidWith (Colours::blue.withAlpha (0.3f));
+    auto c2 = Colours::white.overlaidWith (Colours::yellow.withAlpha (0.3f));
     
+    scope.setColour (gin::TriggeredScope::traceColourId + 0, c1);
+    scope.setColour (gin::TriggeredScope::traceColourId + 1, c2);
+    scope.setColour (gin::TriggeredScope::envelopeColourId + 0, c1);
+    scope.setColour (gin::TriggeredScope::envelopeColourId + 1, c2);
+
     for (Parameter* pp : p.getPluginParameters())
     {
         ParamComponent* pc;

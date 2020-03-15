@@ -27,6 +27,7 @@ public:
     //==============================================================================
     void prepareToPlay (double sampleRate, int samplesPerBlock) override;
     void reset() override;
+    void numChannelsChanged() override;
     
     void releaseResources() override;
 
