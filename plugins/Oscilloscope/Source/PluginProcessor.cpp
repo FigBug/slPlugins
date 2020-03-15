@@ -83,7 +83,20 @@ void PluginProcessor::releaseResources()
 void PluginProcessor::processBlock (AudioSampleBuffer& buffer, MidiBuffer&)
 {
     if (fifo.getFreeSpace() >= buffer.getNumSamples())
-        fifo.write (buffer);
+    {
+        const auto numSamples = buffer.getNumChannels();
+        if (numSamples == 2)
+        {
+            fifo.write (buffer);
+        }
+        else
+        {
+            ScratchBuffer stereoBuffer (2, numSamples);
+            
+            stereoBuffer.copyFrom (0, 0, buffer, 0, 0, numSamples);
+            fifo.write (stereoBuffer);
+        }
+    }
 }
 
 //==============================================================================
