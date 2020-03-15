@@ -37,10 +37,10 @@ public:
     bool hasEditor() const override;
 
     //==============================================================================
-    gin::Parameter::Ptr attack, hold, release, ratio, threshold, knee, input, output;
+    gin::Parameter::Ptr attack, release, ratio, threshold, knee, input, output;
 
-private:
     gin::Dynamics compressor;
+    gin::AudioFifo fifo;
     
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (CompressorAudioProcessor)

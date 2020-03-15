@@ -29,8 +29,20 @@ CompressorAudioProcessorEditor::CompressorAudioProcessorEditor (CompressorAudioP
         addAndMakeVisible (pc);
         controls.add (pc);
     }
-    
-    setGridSize (8, 1);
+
+    addAndMakeVisible (meter);
+    addAndMakeVisible (inputMeter);
+    addAndMakeVisible (outputMeter);
+    addAndMakeVisible (reductionMeter);
+    reductionMeter.setTopDown (true);
+
+    addAndMakeVisible (scope);
+    scope.setNumChannels (2);
+    scope.setNumSamplesPerPixel (256);
+    scope.setColour (TriggeredScope::traceColourId + 0, Colours::lightgrey);
+    scope.setColour (TriggeredScope::traceColourId + 1, Colours::white);
+
+    setGridSize (7, 3);
 }
 
 CompressorAudioProcessorEditor::~CompressorAudioProcessorEditor()
@@ -44,10 +56,25 @@ void CompressorAudioProcessorEditor::resized()
 
     componentForParam (*proc.input)->setBounds (getGridArea (0, 0));
     componentForParam (*proc.attack)->setBounds (getGridArea (1, 0));
-    componentForParam (*proc.hold)->setBounds (getGridArea (2, 0));
-    componentForParam (*proc.release)->setBounds (getGridArea (3, 0));
-    componentForParam (*proc.ratio)->setBounds (getGridArea (4, 0));
-    componentForParam (*proc.threshold)->setBounds (getGridArea (5, 0));
-    componentForParam (*proc.knee)->setBounds (getGridArea (6, 0));
-    componentForParam (*proc.output)->setBounds (getGridArea (7, 0));
+    componentForParam (*proc.release)->setBounds (getGridArea (2, 0));
+    componentForParam (*proc.ratio)->setBounds (getGridArea (3, 0));
+    componentForParam (*proc.threshold)->setBounds (getGridArea (4, 0));
+    componentForParam (*proc.knee)->setBounds (getGridArea (5, 0));
+    componentForParam (*proc.output)->setBounds (getGridArea (6, 0));
+    
+    auto rc = getGridArea (0, 1, 7, 2);
+    
+    inputMeter.setBounds (rc.removeFromLeft (16));
+    rc.removeFromLeft (4);
+    
+    meter.setBounds (rc.removeFromLeft (rc.getHeight()));
+    rc.removeFromLeft (4);
+
+    reductionMeter.setBounds (rc.removeFromLeft (16));
+    rc.removeFromLeft (4);
+    
+    outputMeter.setBounds (rc.removeFromLeft (16));
+    rc.removeFromLeft (4);
+    
+    scope.setBounds (rc);
 }

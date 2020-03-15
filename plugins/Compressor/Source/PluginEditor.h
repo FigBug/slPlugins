@@ -28,5 +28,12 @@ public:
 private:
     CompressorAudioProcessor& proc;
     
+    gin::DynamicsMeter meter {proc.compressor};
+    gin::TriggeredScope scope {proc.fifo};
+    
+    gin::LevelMeter inputMeter {proc.compressor.getInputTracker()};
+    gin::LevelMeter outputMeter {proc.compressor.getOutputTracker()};
+    gin::LevelMeter reductionMeter {proc.compressor.getReductionTracker(), {-30, 0}};
+
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (CompressorAudioProcessorEditor)
 };
