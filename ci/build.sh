@@ -154,7 +154,11 @@ if [ $OS = "mac" ]; then
   unzip RP2A03_Mac.zip
   unzip Mverb2020_Mac.zip
 
-  zip -r All_Mac.zip *.vst *.component
+  mkdir VST
+  mkdir AU
+  mv *.vst VST
+  mv *.component AU
+  zip -r All_Mac.zip AU VST
 
   curl -F "files=@All_Mac.zip" "https://socalabs.com/files/set.php?key=$APIKEY"
 else

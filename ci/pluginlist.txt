@@ -2,6 +2,7 @@ ABTester
 AddInvert
 ChannelMute
 CompensatedDelay
+Compressor
 Delay
 HugeGain
 Maths
