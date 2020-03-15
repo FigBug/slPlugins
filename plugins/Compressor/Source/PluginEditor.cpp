@@ -52,13 +52,23 @@ CompressorAudioProcessorEditor::CompressorAudioProcessorEditor (CompressorAudioP
     scope.setColour (TriggeredScope::envelopeColourId + 2, Colours::transparentBlack);
 
     setGridSize (7, 3);
+
+	for (auto pp : proc.getPluginParameters())
+        pp->addListener (this);
 }
 
 CompressorAudioProcessorEditor::~CompressorAudioProcessorEditor()
 {
+    for (auto p : proc.getPluginParameters())
+        p->removeListener (this);
 }
 
 //==============================================================================
+void CompressorAudioProcessorEditor::parameterChanged (Parameter*)
+{
+    meter.repaint();
+}
+
 void CompressorAudioProcessorEditor::resized()
 {
     GinAudioProcessorEditor::resized();

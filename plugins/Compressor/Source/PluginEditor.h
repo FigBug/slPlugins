@@ -16,7 +16,8 @@
 //==============================================================================
 /**
 */
-class CompressorAudioProcessorEditor : public gin::GinAudioProcessorEditor
+class CompressorAudioProcessorEditor : public gin::GinAudioProcessorEditor,
+                                       private gin::Parameter::Listener
 {
 public:
     CompressorAudioProcessorEditor (CompressorAudioProcessor&);
@@ -24,6 +25,7 @@ public:
 
     //==============================================================================
     void resized() override;
+    void parameterChanged (gin::Parameter* param) override;
 
 private:
     CompressorAudioProcessor& proc;

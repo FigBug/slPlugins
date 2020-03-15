@@ -31,6 +31,13 @@ CompressorAudioProcessor::CompressorAudioProcessor()
     release->conversionFunction = [] (float in) { return in / 1000.0; };
     input->conversionFunction   = [] (float in) { return Decibels::decibelsToGain (in); };
     output->conversionFunction  = [] (float in) { return Decibels::decibelsToGain (in); };
+
+    for (int i = 0; i < BinaryData::namedResourceListSize; i++)
+    {
+        int sz = 0;
+        if (auto data = BinaryData::getNamedResource (BinaryData::namedResourceList[i], sz))
+            extractProgram (BinaryData::originalFilenames[i], MemoryBlock (data, size_t (sz)));
+    }
 }
 
 CompressorAudioProcessor::~CompressorAudioProcessor()
