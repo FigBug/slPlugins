@@ -16,26 +16,18 @@
 //==============================================================================
 /**
 */
-class MathsAudioProcessorEditor : public gin::GinAudioProcessorEditor,
-                                  private TextEditor::Listener
+class WaveLooperAudioProcessorEditor : public gin::GinAudioProcessorEditor
 {
 public:
-    MathsAudioProcessorEditor (MathsAudioProcessor&);
-    ~MathsAudioProcessorEditor();
+    WaveLooperAudioProcessorEditor (WaveLooperAudioProcessor&);
+    ~WaveLooperAudioProcessorEditor();
 
     //==============================================================================
     void resized() override;
     void refresh();
 
-private:
-    void textEditorReturnKeyPressed (TextEditor&) override;
-    void textEditorEscapeKeyPressed (TextEditor&) override;
-    void textEditorFocusLost (TextEditor&) override;
-    
-    MathsAudioProcessor& processor;
-    TextEditor l, r;
-    Label lLabel { "", "L out:" };
-    Label rLabel { "", "R out:" };
+private:    
+    WaveLooperAudioProcessor& proc;
 
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MathsAudioProcessorEditor)
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (WaveLooperAudioProcessorEditor)
 };
