@@ -15,7 +15,7 @@ using namespace gin;
 
 //==============================================================================
 CompressorAudioProcessorEditor::CompressorAudioProcessorEditor (CompressorAudioProcessor& p)
-    : GinAudioProcessorEditor (p), proc (p)
+    : GinAudioProcessorEditor (p, 60, 100), proc (p)
 {
     for (auto pp : p.getPluginParameters())
     {
