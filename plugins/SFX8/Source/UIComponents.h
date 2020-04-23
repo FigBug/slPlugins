@@ -475,7 +475,7 @@ private:
             
             if (auto os = fc.getResult().createOutputStream())
             {
-				std::unique_ptr<AudioFormatWriter> writer (WavAudioFormat().createWriterFor (os, 44100, 1, 16, {}, 0));
+				std::unique_ptr<AudioFormatWriter> writer (WavAudioFormat().createWriterFor (os.release(), 44100, 1, 16, {}, 0));
                 
                 if (writer != nullptr)
                 {
