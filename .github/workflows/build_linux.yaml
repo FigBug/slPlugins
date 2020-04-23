@@ -1,4 +1,4 @@
-name: Build macOS
+name: Build Linux
 on:
   push:
     branches:
