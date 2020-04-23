@@ -27,6 +27,8 @@ ROOT=$(cd "$(dirname "$0")/.."; pwd)
 cd "$ROOT"
 echo "$ROOT"
 
+BRANCH=$(git branch | sed -n -e 's/^\* \(.*\)/\1/p')
+
 cd "$ROOT/ci"
 rm -Rf bin
 mkdir bin
@@ -68,6 +70,8 @@ cat pluginlist.txt | while read PLUGIN; do
   # Resave jucer file
   if [ "$OS" = "mac" ]; then
     "$ROOT/ci/bin/Projucer.app/Contents/MacOS/Projucer" --resave "$ROOT/plugins/$PLUGIN/$PLUGIN.jucer"
+  elif [ "$OS" = "linux" ]; then
+    "$ROOT/ci/bin/Projucer" --resave "$ROOT/plugins/$PLUGIN/$PLUGIN.jucer"
   else
     "$ROOT/ci/bin/Projucer.exe" --resave "$ROOT/plugins/$PLUGIN/$PLUGIN.jucer"
   fi
@@ -95,7 +99,27 @@ cat pluginlist.txt | while read PLUGIN; do
     xcrun stapler staple $PLUGIN.component
     zip -r ${PLUGIN}_Mac.zip $PLUGIN.vst $PLUGIN.component
 
-    curl -F "files=@${PLUGIN}_Mac.zip" "https://socalabs.com/files/set.php?key=$APIKEY"
+    if [ $BRANCH = "release" ]; then
+      curl -F "files=@${PLUGIN}_Mac.zip" "https://socalabs.com/files/set.php?key=$APIKEY"
+    fi
+  fi
+
+  # Build linux version
+  if [ "$OS" = "linux" ]; then
+    cd "$ROOT/plugins/$PLUGIN/Builds/LinuxMakefile"
+    make CONFIG=Release
+
+    cp ./build/$PLUGIN.so "$ROOT/ci/bin"
+
+    cd "$ROOT/ci/bin"
+
+    # Upload
+    cd "$ROOT/ci/bin"
+    zip -r ${PLUGIN}_Linux.zip $PLUGIN.so
+
+    if [ $BRANCH = "release" ]; then
+      curl -F "files=@${PLUGIN}_Mac.zip" "https://socalabs.com/files/set.php?key=$APIKEY"
+    fi
   fi
 
   # Build Win version
@@ -132,8 +156,9 @@ cat pluginlist.txt | while read PLUGIN; do
     pwd
     ls -l
     7z a ${PLUGIN}_Win.zip ${PLUGIN}*.dll
-
-    curl -F "files=@${PLUGIN}_Win.zip" "https://socalabs.com/files/set.php?key=$APIKEY"
+    if [ $BRANCH = "release" ]; then
+      curl -F "files=@${PLUGIN}_Win.zip" "https://socalabs.com/files/set.php?key=$APIKEY"
+    fi
   fi
 done
 
@@ -160,7 +185,30 @@ if [ $OS = "mac" ]; then
   mv *.component AU
   zip -r All_Mac.zip AU VST
 
-  curl -F "files=@All_Mac.zip" "https://socalabs.com/files/set.php?key=$APIKEY"
+  if [ $BRANCH = "release" ]; then
+    curl -F "files=@All_Mac.zip" "https://socalabs.com/files/set.php?key=$APIKEY"
+  fi
+elif [ $OS = "linux" ]; then
+  cd "$ROOT/ci/bin"
+  curl -s -S "https://socalabs.com/files/get.php?id=SID_Linux.zip" -o "$ROOT/ci/bin/SID_Linux.zip"  
+  curl -s -S "https://socalabs.com/files/get.php?id=PAPU_Linux.zip" -o "$ROOT/ci/bin/PAPU_Linux.zip"  
+  curl -s -S "https://socalabs.com/files/get.php?id=Voc_Linux.zip" -o "$ROOT/ci/bin/Voc_Linux.zip"  
+  curl -s -S "https://socalabs.com/files/get.php?id=SN76489_Linux.zip" -o "$ROOT/ci/bin/SN76489_Linux.zip"  
+  curl -s -S "https://socalabs.com/files/get.php?id=RP2A03_Linux.zip" -o "$ROOT/ci/bin/RP2A03_Linux.zip"  
+  curl -s -S "https://socalabs.com/files/get.php?id=Mverb2020_Linux.zip" -o "$ROOT/ci/bin/Mverb2020_Linux.zip"  
+
+  unzip SID_Linux.zip
+  unzip PAPU_Linux.zip
+  unzip Voc_Linux.zip
+  unzip SN76489_Linux.zip
+  unzip RP2A03_Linux.zip
+  unzip Mverb2020_Linux.zip
+
+  zip -r All_Linux.zip *.so
+
+  if [ $BRANCH = "release" ]; then
+    curl -F "files=@All_Linux.zip" "https://socalabs.com/files/set.php?key=$APIKEY"  
+  fi
 else
   cd "$ROOT/ci/bin"
   curl -s -S "https://socalabs.com/files/get.php?id=SID_Win.zip" -o "$ROOT/ci/bin/SID_Win.zip"  
@@ -179,5 +227,7 @@ else
 
   7z a All_Win.zip *.dll
 
-  curl -F "files=@All_Win.zip" "https://socalabs.com/files/set.php?key=$APIKEY"
+  if [ $BRANCH = "release" ]; then
+    curl -F "files=@All_Win.zip" "https://socalabs.com/files/set.php?key=$APIKEY"
+  fi
 fi
