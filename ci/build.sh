@@ -1,5 +1,17 @@
 #!/bin/bash -e
 
+# linux specific stiff
+if [ $OS = "linux" ]; then
+  export GDK_BACKEND=x11
+
+  sudo apt-get update
+  sudo apt-get install clang git ladspa-sdk freeglut3-dev g++ libasound2-dev libcurl4-openssl-dev libfreetype6-dev libjack-jackd2-dev libx11-dev libxcomposite-dev libxcursor-dev libxinerama-dev libxrandr-dev mesa-common-dev webkit2gtk-4.0 juce-tools xvfb
+
+  Xvfb :99 &
+  export DISPLAY=:99
+  sleep 5
+fi
+
 # mac specific stuff
 if [ $OS = "mac" ]; then
   # Create a temp keychain
