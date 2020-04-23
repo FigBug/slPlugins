@@ -51,7 +51,7 @@ CompressorAudioProcessorEditor::CompressorAudioProcessorEditor (CompressorAudioP
     scope.setColour (TriggeredScope::traceColourId + 2, Colours::red);
     scope.setColour (TriggeredScope::envelopeColourId + 2, Colours::transparentBlack);
 
-    setGridSize (7, 3);
+    setGridSize (7, 2);
 
 	for (auto pp : proc.getPluginParameters())
         pp->addListener (this);
@@ -81,7 +81,7 @@ void CompressorAudioProcessorEditor::resized()
     componentForParam (*proc.knee)->setBounds (getGridArea (5, 0));
     componentForParam (*proc.output)->setBounds (getGridArea (6, 0));
     
-    auto rc = getGridArea (0, 1, 7, 2);
+    auto rc = getGridArea (0, 1, 7, 1);
     
     inputMeter.setBounds (rc.removeFromLeft (16));
     rc.removeFromLeft (4);
