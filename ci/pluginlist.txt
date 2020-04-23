@@ -5,6 +5,7 @@ CompensatedDelay
 Compressor
 Delay
 HugeGain
+Limiter
 Maths
 Oscilloscope
 SFX8
