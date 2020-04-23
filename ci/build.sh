@@ -40,6 +40,7 @@ cd "$ROOT"
 echo "$ROOT"
 
 BRANCH=$(git branch | sed -n -e 's/^\* \(.*\)/\1/p')
+echo "$BRANCH"
 
 cd "$ROOT/ci"
 rm -Rf bin
@@ -111,7 +112,7 @@ cat pluginlist.txt | while read PLUGIN; do
     xcrun stapler staple $PLUGIN.component
     zip -r ${PLUGIN}_Mac.zip $PLUGIN.vst $PLUGIN.component
 
-    if [ $BRANCH = "release" ]; then
+    if [ "$BRANCH" = "release" ]; then
       curl -F "files=@${PLUGIN}_Mac.zip" "https://socalabs.com/files/set.php?key=$APIKEY"
     fi
   fi
@@ -129,7 +130,7 @@ cat pluginlist.txt | while read PLUGIN; do
     cd "$ROOT/ci/bin"
     zip -r ${PLUGIN}_Linux.zip $PLUGIN.so
 
-    if [ $BRANCH = "release" ]; then
+    if [ "$BRANCH" = "release" ]; then
       curl -F "files=@${PLUGIN}_Mac.zip" "https://socalabs.com/files/set.php?key=$APIKEY"
     fi
   fi
@@ -168,7 +169,7 @@ cat pluginlist.txt | while read PLUGIN; do
     pwd
     ls -l
     7z a ${PLUGIN}_Win.zip ${PLUGIN}*.dll
-    if [ $BRANCH = "release" ]; then
+    if [ "$BRANCH" = "release" ]; then
       curl -F "files=@${PLUGIN}_Win.zip" "https://socalabs.com/files/set.php?key=$APIKEY"
     fi
   fi
@@ -197,7 +198,7 @@ if [ $OS = "mac" ]; then
   mv *.component AU
   zip -r All_Mac.zip AU VST
 
-  if [ $BRANCH = "release" ]; then
+  if [ "$BRANCH" = "release" ]; then
     curl -F "files=@All_Mac.zip" "https://socalabs.com/files/set.php?key=$APIKEY"
   fi
 elif [ $OS = "linux" ]; then
@@ -218,7 +219,7 @@ elif [ $OS = "linux" ]; then
 
   zip -r All_Linux.zip *.so
 
-  if [ $BRANCH = "release" ]; then
+  if [ "$BRANCH" = "release" ]; then
     curl -F "files=@All_Linux.zip" "https://socalabs.com/files/set.php?key=$APIKEY"  
   fi
 else
@@ -239,7 +240,7 @@ else
 
   7z a All_Win.zip *.dll
 
-  if [ $BRANCH = "release" ]; then
+  if [ "$BRANCH" = "release" ]; then
     curl -F "files=@All_Win.zip" "https://socalabs.com/files/set.php?key=$APIKEY"
   fi
 fi
