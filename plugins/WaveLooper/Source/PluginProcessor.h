@@ -20,9 +20,18 @@ public:
     //==============================================================================
     AudioProcessorEditor* createEditor() override;
     bool hasEditor() const override;
+    
+    void setFile (const File& f);
 
 private:
+    void stateUpdated() override;
+    void updateState() override;
+
     //==============================================================================
+    std::unique_ptr<gin::Sample> sample;
+    gin::SampleOscillator oscillator;
+    
+    bool playing = false;
 
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (WaveLooperAudioProcessor)

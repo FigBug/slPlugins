@@ -14,6 +14,8 @@ WaveLooperAudioProcessorEditor::WaveLooperAudioProcessorEditor (WaveLooperAudioP
         controls.add (pc);
     }
     
+    addAndMakeVisible (thumbnail);
+    
     setGridSize (8, 1);
 }
 
@@ -29,4 +31,6 @@ void WaveLooperAudioProcessorEditor::refresh()
 void WaveLooperAudioProcessorEditor::resized()
 {
     GinAudioProcessorEditor::resized();
+    
+    thumbnail.setBounds (getGridArea (0, 0, 8, 1));
 }
