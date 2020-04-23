@@ -127,7 +127,7 @@
         <MODULEPATH id="gin" path="../../modules/gin/modules"/>
         <MODULEPATH id="gin_dsp" path="../../modules/gin/modules"/>
         <MODULEPATH id="juce_dsp" path="../../modules/juce/modules"/>
-        <MODULEPATH id="dRowAudio"/>
+        <MODULEPATH id="dRowAudio" path="../../modules/dRowAudio/module"/>
       </MODULEPATHS>
     </LINUX_MAKE>
   </EXPORTFORMATS>
