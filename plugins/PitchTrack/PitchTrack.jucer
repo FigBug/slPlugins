@@ -8,7 +8,7 @@
               pluginChannelConfigs="{1,1},{2,2}" pluginIsSynth="0" pluginWantsMidiIn="0"
               pluginProducesMidiOut="0" pluginIsMidiEffectPlugin="0" pluginEditorRequiresKeys="0"
               pluginAUExportPrefix="PitchTrackAU" pluginRTASCategory="" aaxIdentifier="com.socalabs.PitchTrack"
-              pluginAAXCategory="2" jucerVersion="5.4.6" companyName="SocaLabs"
+              pluginAAXCategory="2" jucerVersion="5.4.7" companyName="SocaLabs"
               companyWebsite="www.socalabs.com" companyEmail="info@socalabs.com"
               pluginFormats="buildVST,buildAU" cppLanguageStandard="17" reportAppUsage="0">
   <MAINGROUP id="dPRjsF" name="PitchTrack">
@@ -46,7 +46,6 @@
         <MODULEPATH id="juce_gui_basics" path="../../modules/juce/modules"/>
         <MODULEPATH id="juce_gui_extra" path="../../modules/juce/modules"/>
         <MODULEPATH id="juce_cryptography" path="../../modules/juce/modules"/>
-        <MODULEPATH id="juce_video" path="../../modules/juce/modules"/>
         <MODULEPATH id="juce_opengl" path="../../modules/juce/modules"/>
         <MODULEPATH id="juce_audio_basics" path="../../modules/juce/modules"/>
         <MODULEPATH id="juce_audio_devices" path="../../modules/juce/modules"/>
@@ -72,7 +71,6 @@
                        useRuntimeLibDLL="0" headerPath="../../../../modules/Q/q_lib/include&#10;../../../../modules/infra/include"/>
       </CONFIGURATIONS>
       <MODULEPATHS>
-        <MODULEPATH id="juce_video" path="../../modules/juce/modules"/>
         <MODULEPATH id="juce_opengl" path="../../modules/juce/modules"/>
         <MODULEPATH id="juce_gui_extra" path="../../modules/juce/modules"/>
         <MODULEPATH id="juce_gui_basics" path="../../modules/juce/modules"/>
@@ -93,7 +91,7 @@
         <MODULEPATH id="gin" path="../../modules/gin/modules"/>
       </MODULEPATHS>
     </VS2019>
-        <LINUX_MAKE targetFolder="Builds/LinuxMakefile" vstLegacyFolder="../../modules/plugin_sdk/vstsdk2.4"
+    <LINUX_MAKE targetFolder="Builds/LinuxMakefile" vstLegacyFolder="../../modules/plugin_sdk/vstsdk2.4"
                 extraCompilerFlags="-fvisibility=hidden" extraLinkerFlags="-fdata-sections -ffunction-sections -Wl,--gc-sections -Wl,-O1 -Wl,--as-needed -Wl,--strip-all">
       <CONFIGURATIONS>
         <CONFIGURATION isDebug="1" name="Debug" libraryPath="/usr/X11R6/lib/"/>
@@ -140,7 +138,6 @@
     <MODULE id="juce_gui_basics" showAllCode="1" useLocalCopy="0"/>
     <MODULE id="juce_gui_extra" showAllCode="1" useLocalCopy="0"/>
     <MODULE id="juce_opengl" showAllCode="1" useLocalCopy="0"/>
-    <MODULE id="juce_video" showAllCode="1" useLocalCopy="0"/>
   </MODULES>
   <JUCEOPTIONS JUCE_QUICKTIME="disabled"/>
   <LIVE_SETTINGS>
