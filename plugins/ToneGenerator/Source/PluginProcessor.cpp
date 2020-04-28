@@ -133,7 +133,7 @@ slToneAudioProcessor::slToneAudioProcessor()
     
     addExtParam (PARAM_ENABLE,       "Enable",       "", "",   {  0.0f,      1.0f, 1.0f, 1.0f},    1.0f, 0.0f, onOffTextFunction);
     addExtParam (PARAM_BANDLIMIT,    "Bandlimit",    "", "",   {  0.0f,      1.0f, 1.0f, 1.0f},    1.0f, 0.0f, onOffTextFunction);
-    addExtParam (PARAM_FREQ,         "Frequency",    "", "Hz", {  30.0f, 10000.0f, 0.0f, 0.3f}, 1000.0f, 0.0f);
+    addExtParam (PARAM_FREQ,         "Frequency",    "", "Hz", {  30.0f, 20000.0f, 0.0f, 0.3f}, 1000.0f, 0.0f);
     addExtParam (PARAM_SINE_LEVEL,   "Sine",         "", "dB", {-100.0f,     6.0f, 0.0f, 5.0f}, -100.0f, 0.0f);
     addExtParam (PARAM_TRI_LEVEL,    "Triangle",     "", "dB", {-100.0f,     6.0f, 0.0f, 5.0f}, -100.0f, 0.0f);
     addExtParam (PARAM_SAW_UP_LEVEL, "Saw Up",       "", "dB", {-100.0f,     6.0f, 0.0f, 5.0f}, -100.0f, 0.0f);
