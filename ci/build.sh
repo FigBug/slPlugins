@@ -131,7 +131,7 @@ cat pluginlist.txt | while read PLUGIN; do
     zip -r ${PLUGIN}_Linux.zip $PLUGIN.so
 
     if [ "$BRANCH" = "release" ]; then
-      curl -F "files=@${PLUGIN}_Mac.zip" "https://socalabs.com/files/set.php?key=$APIKEY"
+      curl -F "files=@${PLUGIN}_Linux.zip" "https://socalabs.com/files/set.php?key=$APIKEY"
     fi
   fi
 
