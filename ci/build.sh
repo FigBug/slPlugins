@@ -39,7 +39,7 @@ ROOT=$(cd "$(dirname "$0")/.."; pwd)
 cd "$ROOT"
 echo "$ROOT"
 
-BRANCH=$(git branch | sed -n -e 's/^\* \(.*\)/\1/p')
+BRANCH=${GITHUB_REF##*/}
 echo "$BRANCH"
 
 cd "$ROOT/ci"
