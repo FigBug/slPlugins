@@ -72,6 +72,11 @@ PluginProcessor::~PluginProcessor()
 }
 
 //==============================================================================
+void PluginProcessor::numChannelsChanged()
+{
+    fifo.setSize (getTotalNumInputChannels(), 44100);
+}
+
 void PluginProcessor::prepareToPlay (double, int)
 {
 }
