@@ -16,7 +16,7 @@
 //==============================================================================
 /**
 */
-class PluginEditor  : public gin::GinAudioProcessorEditor,
+class PluginEditor  : public gin::ProcessorEditor,
                       private gin::Parameter::Listener
 {
 public:
@@ -32,9 +32,9 @@ private:
     void updateScope();
     void parameterChanged (gin::Parameter*) override { updateScope(); }
     
-    PluginProcessor& proc;
+    PluginProcessor& scopeProc;
 
-    gin::TriggeredScope scope { proc.fifo };
+    gin::TriggeredScope scope { scopeProc.fifo };
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (PluginEditor)
 };

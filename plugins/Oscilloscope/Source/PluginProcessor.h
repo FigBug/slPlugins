@@ -22,13 +22,15 @@ class PluginEditor;
 #define PARAM_VERTICAL_OFFSET_R     "offset_r"
 #define PARAM_TRIGGER_CHANNEL       "trigger_chan"
 #define PARAM_TRIGGER_MODE          "trigger_mode"
+#define PARAM_TRIGGER_RUN           "trigger_run"
+#define PARAM_TRIGGER_RESET         "trigger_reset"
 #define PARAM_TRIGGER_LEVEL         "trigger_level"
 #define PARAM_TRIGGER_POS           "trigger_pos"
 
 //==============================================================================
 /**
 */
-class PluginProcessor : public gin::GinProcessor
+class PluginProcessor : public gin::Processor
 {
 public:
     //==============================================================================

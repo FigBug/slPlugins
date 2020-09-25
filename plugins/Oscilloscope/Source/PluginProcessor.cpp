@@ -52,6 +52,21 @@ String tlTextFunction (const Parameter&, float v)
     return String (v, 2);
 }
 
+String runTextFunction (const Parameter&, float v)
+{
+	switch (int (v))
+	{
+		case 0:  return "Normal";
+		case 1:  return "Single";
+		default: return "";
+	}
+}
+
+String resetTextFunction (const Parameter&, float)
+{
+	return "Reset";
+}
+
 //==============================================================================
 PluginProcessor::PluginProcessor()
 {
@@ -65,6 +80,8 @@ PluginProcessor::PluginProcessor()
 	addExtParam (PARAM_TRIGGER_MODE,      "Trigger Mode",  "", "", {0.0f,   2.0f,   1.0f, 1.0f}, 1.0f, 0.0f, modeTextFunction);
 	addExtParam (PARAM_TRIGGER_LEVEL,     "Trigger Level", "", "", {-1.0f,  1.0f,   0.0f, 1.0f}, 0.0f, 0.0f, tlTextFunction);
 	addExtParam (PARAM_TRIGGER_POS,       "Trigger Pos",   "", "", { 0.0f,  1.0f,   0.0f, 1.0f}, 0.0f, 0.0f, tlTextFunction);
+	addExtParam (PARAM_TRIGGER_RUN,       "Trigger Run",   "", "", { 0.0f,  1.0f,   1.0f, 1.0f}, 0.0f, 0.0f, runTextFunction);
+	addExtParam (PARAM_TRIGGER_RESET,     "Trigger Reset", "", "", { 0.0f,  1.0f,   1.0f, 1.0f}, 0.0f, 0.0f, resetTextFunction);
 }
 
 PluginProcessor::~PluginProcessor()

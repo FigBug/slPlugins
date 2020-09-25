@@ -8,12 +8,12 @@
               pluginChannelConfigs="{1,1}, {2,2}" pluginIsSynth="0" pluginWantsMidiIn="0"
               pluginProducesMidiOut="0" pluginIsMidiEffectPlugin="0" pluginEditorRequiresKeys="0"
               pluginAUExportPrefix="slOscilloscopeAU" aaxIdentifier="com.socalabs.slOscilloscope"
-              pluginAAXCategory="2" jucerVersion="5.4.7" companyName="SocaLabs"
-              companyWebsite="www.socalabs.com" companyEmail="info@socalabs.com"
-              displaySplashScreen="0" reportAppUsage="0" splashScreenColour="Dark"
-              buildStandalone="1" enableIAA="0" cppLanguageStandard="17" companyCopyright="SocaLabs"
-              pluginFormats="buildAU,buildStandalone,buildVST" pluginVSTCategory="kPlugCategEffect"
-              pluginVST3Category="Fx" pluginRTASCategory="0" pluginAUMainType="'aufx'">
+              pluginAAXCategory="2" companyName="SocaLabs" companyWebsite="www.socalabs.com"
+              companyEmail="info@socalabs.com" displaySplashScreen="0" reportAppUsage="0"
+              splashScreenColour="Dark" buildStandalone="1" enableIAA="0" cppLanguageStandard="17"
+              companyCopyright="SocaLabs" pluginFormats="buildAU,buildStandalone,buildVST"
+              pluginVSTCategory="kPlugCategEffect" pluginVST3Category="Fx"
+              pluginRTASCategory="0" pluginAUMainType="'aufx'" jucerFormatVersion="1">
   <MAINGROUP id="dPRjsF" name="Oscilloscope">
     <GROUP id="{EE796482-0D02-0052-80F4-B1FE6CE0D41A}" name="Source">
       <FILE id="iEbZ9q" name="PluginProcessor.cpp" compile="1" resource="0"
