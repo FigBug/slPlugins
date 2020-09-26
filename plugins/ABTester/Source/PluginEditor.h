@@ -10,13 +10,13 @@
 
 #pragma once
 
-#include "../JuceLibraryCode/JuceHeader.h"
+#include <JuceHeader.h>
 #include "PluginProcessor.h"
 
 //==============================================================================
 /**
 */
-class ABTesterAudioProcessorEditor  : public gin::GinAudioProcessorEditor
+class ABTesterAudioProcessorEditor  : public gin::ProcessorEditor
 {
 public:
     ABTesterAudioProcessorEditor (ABTesterAudioProcessor&);
@@ -26,7 +26,7 @@ public:
     void resized() override;
 
 private:
-    ABTesterAudioProcessor& processor;
+    ABTesterAudioProcessor& abProcessor;
     
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (ABTesterAudioProcessorEditor)
 };

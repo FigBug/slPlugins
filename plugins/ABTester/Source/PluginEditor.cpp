@@ -15,9 +15,9 @@ using namespace gin;
 
 //==============================================================================
 ABTesterAudioProcessorEditor::ABTesterAudioProcessorEditor (ABTesterAudioProcessor& p)
-    : GinAudioProcessorEditor (p), processor (p)
+    : gin::ProcessorEditor (p), abProcessor (p)
 {
-    for (Parameter* pp : p.getPluginParameters())
+    for (auto pp : p.getPluginParameters())
     {
         ParamComponent* pc;
         
@@ -40,7 +40,7 @@ ABTesterAudioProcessorEditor::~ABTesterAudioProcessorEditor()
 //==============================================================================
 void ABTesterAudioProcessorEditor::resized()
 {
-    GinAudioProcessorEditor::resized();
+    gin::ProcessorEditor::resized();
 
     componentForId (PARAM_AB)->setBounds (getGridArea (1, 0));
     componentForId (PARAM_LEVEL)->setBounds (getGridArea (2, 0));

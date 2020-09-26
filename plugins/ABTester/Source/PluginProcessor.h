@@ -10,7 +10,7 @@
 
 #pragma once
 
-#include "../JuceLibraryCode/JuceHeader.h"
+#include <JuceHeader.h>
 
 using namespace juce::dsp;
 
@@ -22,7 +22,7 @@ class ABTesterAudioProcessorEditor;
 //==============================================================================
 /**
 */
-class ABTesterAudioProcessor : public gin::GinProcessor
+class ABTesterAudioProcessor : public gin::Processor
 {
 public:
     //==============================================================================

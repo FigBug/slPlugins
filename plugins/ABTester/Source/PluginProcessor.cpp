@@ -33,7 +33,7 @@ ABTesterAudioProcessor::~ABTesterAudioProcessor()
 }
 
 //==============================================================================
-void ABTesterAudioProcessor::prepareToPlay (double sampleRate, int samplesPerBlock)
+void ABTesterAudioProcessor::prepareToPlay (double sampleRate, int)
 {
     aVal.reset (sampleRate, 0.05);
     bVal.reset (sampleRate, 0.05);
@@ -45,8 +45,8 @@ void ABTesterAudioProcessor::releaseResources()
 
 void ABTesterAudioProcessor::processBlock (AudioSampleBuffer& buffer, MidiBuffer&)
 {
-    aVal.setValue (parameterIntValue (PARAM_AB) == 0 ? Decibels::decibelsToGain (parameterValue (PARAM_LEVEL)) : 0);
-    bVal.setValue (parameterIntValue (PARAM_AB) == 1 ? Decibels::decibelsToGain (parameterValue (PARAM_LEVEL)) : 0);
+    aVal.setTargetValue (parameterIntValue (PARAM_AB) == 0 ? Decibels::decibelsToGain (parameterValue (PARAM_LEVEL)) : 0);
+    bVal.setTargetValue (parameterIntValue (PARAM_AB) == 1 ? Decibels::decibelsToGain (parameterValue (PARAM_LEVEL)) : 0);
 
     const int numSamples = buffer.getNumSamples();
     
