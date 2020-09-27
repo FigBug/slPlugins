@@ -15,7 +15,7 @@ using namespace gin;
 
 //==============================================================================
 PluginEditor::PluginEditor (PluginProcessor& p)
-    : GinAudioProcessorEditor (p), proc (p)
+    : ProcessorEditor (p), proc (p)
 {
     addAndMakeVisible (&scopeL);
     addAndMakeVisible (&scopeR);
@@ -32,7 +32,7 @@ PluginEditor::PluginEditor (PluginProcessor& p)
     scopeL.setColour (drow::Spectroscope::traceColourId, Colours::white.overlaidWith (Colours::blue.withAlpha (0.3f)));
     scopeR.setColour (drow::Spectroscope::traceColourId, Colours::white.overlaidWith (Colours::yellow.withAlpha (0.3f)));
     
-    for (Parameter* pp : p.getPluginParameters())
+    for (auto pp : p.getPluginParameters())
     {
         ParamComponent* pc;
         
@@ -74,7 +74,7 @@ Rectangle<int> PluginEditor::getGridArea (int x, int y, int w, int h)
 
 void PluginEditor::resized()
 {
-    GinAudioProcessorEditor::resized();
+    gin::ProcessorEditor::resized();
 
     auto rc = Rectangle<int> (inset, headerHeight + inset, getWidth() - cx - 2 * inset, getHeight() - headerHeight - 2 * inset);
     

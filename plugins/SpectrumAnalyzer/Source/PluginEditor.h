@@ -16,7 +16,7 @@
 //==============================================================================
 /**
 */
-class PluginEditor  : public gin::GinAudioProcessorEditor,
+class PluginEditor  : public gin::ProcessorEditor,
                       private gin::Parameter::Listener
 {
 public:
