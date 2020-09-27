@@ -166,7 +166,7 @@ void SFXAudioProcessor::releaseResources()
 void SFXAudioProcessor::trackMidi (MidiBuffer& midi, int numSamples)
 {
     // fade out old messages
-    double t = numSamples / gin::GinProcessor::getSampleRate() * 1000;
+    double t = numSamples / gin::Processor::getSampleRate() * 1000;
     for (auto& c : midiCnt)
         c = jmax (0, int (c - t));
 

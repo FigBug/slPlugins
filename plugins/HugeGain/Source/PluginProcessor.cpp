@@ -40,7 +40,7 @@ PluginProcessor::~PluginProcessor()
 //==============================================================================
 void PluginProcessor::prepareToPlay (double sampleRate, int samplesPerBlock)
 {
-    GinProcessor::prepareToPlay (sampleRate, samplesPerBlock);
+    gin::Processor::prepareToPlay (sampleRate, samplesPerBlock);
 }
 
 void PluginProcessor::releaseResources()

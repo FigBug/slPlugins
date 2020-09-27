@@ -15,7 +15,7 @@ using namespace gin;
 
 //==============================================================================
 PluginEditor::PluginEditor (PluginProcessor& p)
-    : GinAudioProcessorEditor (p), proc (p)
+    : gin::ProcessorEditor (p), proc (p)
 {
     for (auto pp : p.getPluginParameters())
     {
@@ -40,7 +40,7 @@ PluginEditor::~PluginEditor()
 //==============================================================================
 void PluginEditor::resized()
 {
-    GinAudioProcessorEditor::resized();
+    gin::ProcessorEditor::resized();
     
     componentForId (PARAM_GAIN_L)->setBounds (getGridArea (0, 0));
     componentForId (PARAM_GAIN_S)->setBounds (getGridArea (1, 0));

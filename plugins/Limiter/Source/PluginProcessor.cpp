@@ -45,7 +45,7 @@ LimiterAudioProcessor::~LimiterAudioProcessor()
 //==============================================================================
 void LimiterAudioProcessor::prepareToPlay (double sampleRate, int samplesPerBlock)
 {
-    GinProcessor::prepareToPlay (sampleRate, samplesPerBlock);
+    gin::Processor::prepareToPlay (sampleRate, samplesPerBlock);
 
     limiter.setSampleRate (sampleRate);
     limiter.reset();
@@ -55,7 +55,7 @@ void LimiterAudioProcessor::prepareToPlay (double sampleRate, int samplesPerBloc
 
 void LimiterAudioProcessor::reset()
 {
-    GinProcessor::reset();
+    gin::Processor::reset();
     
     limiter.reset();
 }

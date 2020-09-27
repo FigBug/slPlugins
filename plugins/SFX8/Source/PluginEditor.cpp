@@ -16,7 +16,7 @@ using namespace gin;
 
 //==============================================================================
 SFXAudioProcessorEditor::SFXAudioProcessorEditor (SFXAudioProcessor& p)
-    : GinAudioProcessorEditor (p), sfxProcessor (p)
+    : gin::ProcessorEditor (p), sfxProcessor (p)
 {
     additionalProgramming = "Thomas Vian";
 
@@ -56,7 +56,7 @@ void SFXAudioProcessorEditor::refresh()
 
 void SFXAudioProcessorEditor::resized()
 {
-    GinAudioProcessorEditor::resized();
+    gin::ProcessorEditor::resized();
 
     auto rc = getFullGridArea();
 
@@ -66,7 +66,7 @@ void SFXAudioProcessorEditor::resized()
 
 void SFXAudioProcessorEditor::paint (Graphics& g)
 {
-    GinAudioProcessorEditor::paint (g);
+    gin::ProcessorEditor::paint (g);
 
     g.drawImageAt (logo, getWidth() / 2 - logo.getWidth() / 2, 0);
 }

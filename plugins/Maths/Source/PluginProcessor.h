@@ -22,7 +22,7 @@ class MathsAudioProcessorEditor;
 #define PARAM_P4        "p4"
 #define PARAM_LIMITER   "limiter"
 
-class MathsAudioProcessor : public gin::GinProcessor
+class MathsAudioProcessor : public gin::Processor
 {
 public:
     //==============================================================================

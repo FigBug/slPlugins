@@ -10,13 +10,13 @@
 
 #pragma once
 
-#include "../JuceLibraryCode/JuceHeader.h"
+#include <JuceHeader.h>
 #include "PluginProcessor.h"
 
 //==============================================================================
 /**
 */
-class MathsAudioProcessorEditor : public gin::GinAudioProcessorEditor,
+class MathsAudioProcessorEditor : public gin::ProcessorEditor,
                                   private TextEditor::Listener
 {
 public:

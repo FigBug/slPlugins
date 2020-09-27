@@ -24,7 +24,7 @@ class PluginEditor;
 //==============================================================================
 /**
 */
-class PluginProcessor : public gin::GinProcessor
+class PluginProcessor : public gin::Processor
 {
 public:
     //==============================================================================

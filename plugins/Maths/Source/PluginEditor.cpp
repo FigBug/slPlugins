@@ -15,7 +15,7 @@ using namespace gin;
 
 //==============================================================================
 MathsAudioProcessorEditor::MathsAudioProcessorEditor (MathsAudioProcessor& p)
-    : GinAudioProcessorEditor (p), mathsProcessor (p)
+    : gin::ProcessorEditor (p), mathsProcessor (p)
 {
     Font f (Font::getDefaultMonospacedFontName(), 12, Font::plain);
     
@@ -98,7 +98,7 @@ void MathsAudioProcessorEditor::refresh()
 
 void MathsAudioProcessorEditor::resized()
 {
-    GinAudioProcessorEditor::resized();
+    gin::ProcessorEditor::resized();
     
     componentForId (PARAM_P1)->setBounds (getGridArea (0, 1));
     componentForId (PARAM_P2)->setBounds (getGridArea (1, 1));

@@ -18,7 +18,7 @@ using namespace juce::dsp;
 
 class SFXAudioProcessorEditor;
 //==============================================================================
-class SFXAudioProcessor : public gin::GinProcessor,
+class SFXAudioProcessor : public gin::Processor,
                           private MPESynthesiser
 {
 public:

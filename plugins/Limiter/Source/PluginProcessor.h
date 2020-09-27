@@ -17,7 +17,7 @@ using namespace juce::dsp;
 //==============================================================================
 /**
 */
-class LimiterAudioProcessor : public gin::GinProcessor
+class LimiterAudioProcessor : public gin::Processor
 {
 public:
     //==============================================================================

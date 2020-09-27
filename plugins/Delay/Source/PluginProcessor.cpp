@@ -50,16 +50,16 @@ DelayAudioProcessor::~DelayAudioProcessor()
 //==============================================================================
 void DelayAudioProcessor::prepareToPlay (double sampleRate, int samplesPerBlock)
 {
-    GinProcessor::prepareToPlay (sampleRate, samplesPerBlock);
+    gin::Processor::prepareToPlay (sampleRate, samplesPerBlock);
     
     stereoDelay.setSampleRate (sampleRate);
 }
 
 void DelayAudioProcessor::reset()
 {
-    GinProcessor::reset();
+    gin::Processor::reset();
     
-    stereoDelay.clear();
+    stereoDelay.reset();
 }
 
 void DelayAudioProcessor::releaseResources()

@@ -15,7 +15,7 @@ using namespace gin;
 
 //==============================================================================
 slToneAudioProcessorEditor::slToneAudioProcessorEditor (slToneAudioProcessor& p)
-    : GinAudioProcessorEditor (p), toneProcessor (p)
+    : gin::ProcessorEditor (p), toneProcessor (p)
 {
     addAndMakeVisible (&scope);
     
@@ -45,7 +45,7 @@ slToneAudioProcessorEditor::~slToneAudioProcessorEditor()
 //==============================================================================
 void slToneAudioProcessorEditor::resized()
 {
-    GinAudioProcessorEditor::resized();
+    gin::ProcessorEditor::resized();
 
     componentForId (PARAM_ENABLE)->setBounds (getGridArea (0, 0));
     componentForId (PARAM_BANDLIMIT)->setBounds (getGridArea (0, 1));

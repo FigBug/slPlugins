@@ -10,14 +10,14 @@
 
 #pragma once
 
-#include "../JuceLibraryCode/JuceHeader.h"
+#include <JuceHeader.h>
 #include "PluginProcessor.h"
 #include "UIComponents.h"
 
 //==============================================================================
 /**
 */
-class SFXAudioProcessorEditor : public gin::GinAudioProcessorEditor
+class SFXAudioProcessorEditor : public gin::ProcessorEditor
 {
 public:
     SFXAudioProcessorEditor (SFXAudioProcessor&);

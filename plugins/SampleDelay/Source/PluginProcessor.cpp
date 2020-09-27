@@ -36,7 +36,7 @@ SampleDelayAudioProcessor::~SampleDelayAudioProcessor()
 //==============================================================================
 void SampleDelayAudioProcessor::prepareToPlay (double sampleRate, int samplesPerBlock)
 {
-    GinProcessor::prepareToPlay (sampleRate, samplesPerBlock);
+    gin::Processor::prepareToPlay (sampleRate, samplesPerBlock);
     
     int ch = getTotalNumInputChannels();
     double sr = getSampleRate();
@@ -46,7 +46,7 @@ void SampleDelayAudioProcessor::prepareToPlay (double sampleRate, int samplesPer
 
 void SampleDelayAudioProcessor::reset()
 {
-    GinProcessor::reset();
+    gin::Processor::reset();
     
     delayLine.clear();
 }

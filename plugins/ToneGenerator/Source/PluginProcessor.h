@@ -29,7 +29,7 @@ class slToneAudioProcessorEditor;
 //==============================================================================
 /**
 */
-class slToneAudioProcessor : public gin::GinProcessor
+class slToneAudioProcessor : public gin::Processor
 {
 public:
     //==============================================================================
