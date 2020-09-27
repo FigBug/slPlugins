@@ -15,9 +15,9 @@ using namespace gin;
 
 //==============================================================================
 ChannelMuteAudioProcessorEditor::ChannelMuteAudioProcessorEditor (ChannelMuteAudioProcessor& p)
-    : GinAudioProcessorEditor (p), processor (p)
+    : gin::ProcessorEditor (p), cmProcessor (p)
 {
-    for (Parameter* pp : p.getPluginParameters())
+    for (auto pp : p.getPluginParameters())
     {
         ParamComponent* pc;
         
@@ -40,7 +40,7 @@ ChannelMuteAudioProcessorEditor::~ChannelMuteAudioProcessorEditor()
 //==============================================================================
 void ChannelMuteAudioProcessorEditor::resized()
 {
-    GinAudioProcessorEditor::resized();
+    gin::ProcessorEditor::resized();
 
     componentForId (PARAM_MUTE_L)->setBounds (getGridArea (0, 0));
     componentForId (PARAM_LEVEL_L)->setBounds (getGridArea (1, 0));

@@ -16,7 +16,7 @@
 //==============================================================================
 /**
 */
-class CompensatedDelayAudioProcessorEditor : public gin::GinAudioProcessorEditor,
+class CompensatedDelayAudioProcessorEditor : public gin::ProcessorEditor,
                                              private gin::Parameter::Listener
 {
 public:

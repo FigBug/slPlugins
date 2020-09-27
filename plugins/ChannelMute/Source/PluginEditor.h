@@ -10,23 +10,23 @@
 
 #pragma once
 
-#include "../JuceLibraryCode/JuceHeader.h"
+#include <JuceHeader.h>
 #include "PluginProcessor.h"
 
 //==============================================================================
 /**
 */
-class ChannelMuteAudioProcessorEditor  : public gin::GinAudioProcessorEditor
+class ChannelMuteAudioProcessorEditor  : public gin::ProcessorEditor
 {
 public:
     ChannelMuteAudioProcessorEditor (ChannelMuteAudioProcessor&);
-    ~ChannelMuteAudioProcessorEditor();
+    ~ChannelMuteAudioProcessorEditor() override;
 
     //==============================================================================
     void resized() override;
 
 private:
-    ChannelMuteAudioProcessor& processor;
+    ChannelMuteAudioProcessor& cmProcessor;
     
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (ChannelMuteAudioProcessorEditor)
 };

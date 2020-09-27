@@ -16,7 +16,7 @@
 //==============================================================================
 /**
 */
-class CompressorAudioProcessorEditor : public gin::GinAudioProcessorEditor,
+class CompressorAudioProcessorEditor : public gin::ProcessorEditor,
                                        private gin::Parameter::Listener
 {
 public:

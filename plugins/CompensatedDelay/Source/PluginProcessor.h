@@ -17,7 +17,7 @@ using namespace juce::dsp;
 //==============================================================================
 /**
 */
-class CompensatedDelayAudioProcessor : public gin::GinProcessor,
+class CompensatedDelayAudioProcessor : public gin::Processor,
                                        private gin::Parameter::Listener
 {
 public:

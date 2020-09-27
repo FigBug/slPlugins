@@ -47,7 +47,7 @@ CompressorAudioProcessor::~CompressorAudioProcessor()
 //==============================================================================
 void CompressorAudioProcessor::prepareToPlay (double sampleRate, int samplesPerBlock)
 {
-    GinProcessor::prepareToPlay (sampleRate, samplesPerBlock);
+    gin::Processor::prepareToPlay (sampleRate, samplesPerBlock);
 
     compressor.setSampleRate (sampleRate);
     compressor.reset();

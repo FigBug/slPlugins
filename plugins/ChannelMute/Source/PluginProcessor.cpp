@@ -40,7 +40,7 @@ ChannelMuteAudioProcessor::~ChannelMuteAudioProcessor()
 }
 
 //==============================================================================
-void ChannelMuteAudioProcessor::prepareToPlay (double sampleRate, int samplesPerBlock)
+void ChannelMuteAudioProcessor::prepareToPlay (double sampleRate, int)
 {
     lVal.reset (sampleRate, 0.05);
     rVal.reset (sampleRate, 0.05);
@@ -52,8 +52,8 @@ void ChannelMuteAudioProcessor::releaseResources()
 
 void ChannelMuteAudioProcessor::processBlock (AudioSampleBuffer& buffer, MidiBuffer&)
 {
-    lVal.setValue (parameterIntValue (PARAM_MUTE_L) ? 0.0f : Decibels::decibelsToGain (parameterValue (PARAM_LEVEL_L)));
-    rVal.setValue (parameterIntValue (PARAM_MUTE_R) ? 0.0f : Decibels::decibelsToGain (parameterValue (PARAM_LEVEL_R)));
+    lVal.setTargetValue (parameterIntValue (PARAM_MUTE_L) ? 0.0f : Decibels::decibelsToGain (parameterValue (PARAM_LEVEL_L)));
+    rVal.setTargetValue (parameterIntValue (PARAM_MUTE_R) ? 0.0f : Decibels::decibelsToGain (parameterValue (PARAM_LEVEL_R)));
 
     applyGain (buffer, 0, lVal);
     applyGain (buffer, 1, rVal);

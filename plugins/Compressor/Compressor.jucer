@@ -8,13 +8,13 @@
               pluginChannelConfigs="{1,1},{2,2}" pluginIsSynth="0" pluginWantsMidiIn="0"
               pluginProducesMidiOut="0" pluginIsMidiEffectPlugin="0" pluginEditorRequiresKeys="0"
               pluginAUExportPrefix="CompressorAU" aaxIdentifier="com.socalabs.Compressor"
-              pluginAAXCategory="2" jucerVersion="5.4.7" companyName="SocaLabs"
-              companyWebsite="www.socalabs.com" companyEmail="info@socalabs.com"
-              displaySplashScreen="0" reportAppUsage="0" splashScreenColour="Dark"
-              buildStandalone="0" enableIAA="0" cppLanguageStandard="17" companyCopyright="SocaLabs"
-              pluginFormats="buildVST,buildAU" pluginAUMainType="'aufx'" pluginVSTCategory="kPlugCategEffect"
+              pluginAAXCategory="2" companyName="SocaLabs" companyWebsite="www.socalabs.com"
+              companyEmail="info@socalabs.com" displaySplashScreen="0" reportAppUsage="0"
+              splashScreenColour="Dark" buildStandalone="0" enableIAA="0" cppLanguageStandard="17"
+              companyCopyright="SocaLabs" pluginFormats="buildVST,buildAU"
+              pluginAUMainType="'aufx'" pluginVSTCategory="kPlugCategEffect"
               pluginRTASDisableBypass="0" pluginRTASDisableMultiMono="0" pluginAAXDisableBypass="0"
-              pluginAAXDisableMultiMono="0">
+              pluginAAXDisableMultiMono="0" jucerFormatVersion="1">
   <MAINGROUP id="dPRjsF" name="Compressor">
     <GROUP id="{B033904A-A7D7-B03A-462B-D6E9AEFDB9C1}" name="Resources">
       <FILE id="eCS0o1" name="Acoustic Guitar.xml" compile="0" resource="1"

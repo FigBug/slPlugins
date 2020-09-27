@@ -15,7 +15,7 @@ using namespace gin;
 
 //==============================================================================
 CompressorAudioProcessorEditor::CompressorAudioProcessorEditor (CompressorAudioProcessor& p)
-    : GinAudioProcessorEditor (p, 60, 100), proc (p)
+    : gin::ProcessorEditor (p, 60, 100), proc (p)
 {
     for (auto pp : p.getPluginParameters())
     {
@@ -71,7 +71,7 @@ void CompressorAudioProcessorEditor::parameterChanged (Parameter*)
 
 void CompressorAudioProcessorEditor::resized()
 {
-    GinAudioProcessorEditor::resized();
+    gin::ProcessorEditor::resized();
 
     componentForParam (*proc.input)->setBounds (getGridArea (0, 0));
     componentForParam (*proc.attack)->setBounds (getGridArea (1, 0));

@@ -15,7 +15,7 @@ using namespace gin;
 
 //==============================================================================
 CompensatedDelayAudioProcessorEditor::CompensatedDelayAudioProcessorEditor (CompensatedDelayAudioProcessor& p)
-    : GinAudioProcessorEditor (p), proc (p)
+    : gin::ProcessorEditor (p), proc (p)
 {
     for (auto pp : p.getPluginParameters())
     {
@@ -47,7 +47,7 @@ CompensatedDelayAudioProcessorEditor::~CompensatedDelayAudioProcessorEditor()
 //==============================================================================
 void CompensatedDelayAudioProcessorEditor::resized()
 {
-    GinAudioProcessorEditor::resized();
+    gin::ProcessorEditor::resized();
 
     componentForParam (*proc.mode)->setBounds (getGridArea (1, 0));
     componentForParam (*proc.time)->setBounds (getGridArea (2, 0));

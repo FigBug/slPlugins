@@ -24,7 +24,7 @@ class ChannelMuteAudioProcessorEditor;
 //==============================================================================
 /**
 */
-class ChannelMuteAudioProcessor : public gin::GinProcessor
+class ChannelMuteAudioProcessor : public gin::Processor
 {
 public:
     //==============================================================================

@@ -53,7 +53,7 @@ void CompensatedDelayAudioProcessor::updateLatency()
 //==============================================================================
 void CompensatedDelayAudioProcessor::prepareToPlay (double sampleRate, int samplesPerBlock)
 {
-    GinProcessor::prepareToPlay (sampleRate, samplesPerBlock);
+    gin::Processor::prepareToPlay (sampleRate, samplesPerBlock);
     
     int ch = getTotalNumInputChannels();
     double sr = getSampleRate();
@@ -65,7 +65,7 @@ void CompensatedDelayAudioProcessor::prepareToPlay (double sampleRate, int sampl
 
 void CompensatedDelayAudioProcessor::reset()
 {
-    GinProcessor::reset();
+    gin::Processor::reset();
     
     delayLine.clear();
 }
