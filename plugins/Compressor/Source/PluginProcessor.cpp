@@ -56,7 +56,7 @@ void CompressorAudioProcessor::prepareToPlay (double sampleRate, int samplesPerB
 
 void CompressorAudioProcessor::reset()
 {
-    GinProcessor::reset();
+    gin::Processor::reset();
     
     compressor.reset();
 }
