@@ -31,7 +31,7 @@ AddInvertAudioProcessor::~AddInvertAudioProcessor()
 }
 
 //==============================================================================
-void AddInvertAudioProcessor::prepareToPlay (double sampleRate, int samplesPerBlock)
+void AddInvertAudioProcessor::prepareToPlay (double, int)
 {
 }
 
@@ -67,7 +67,7 @@ bool AddInvertAudioProcessor::hasEditor() const
 AudioProcessorEditor* AddInvertAudioProcessor::createEditor()
 {
     editor = new AddInvertAudioProcessorEditor (*this);
-    return editor;
+    return editor.getComponent();
 }
 
 //==============================================================================

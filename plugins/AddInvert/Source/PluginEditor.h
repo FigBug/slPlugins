@@ -10,17 +10,17 @@
 
 #pragma once
 
-#include "../JuceLibraryCode/JuceHeader.h"
+#include <JuceHeader.h>
 #include "PluginProcessor.h"
 
 //==============================================================================
 /**
 */
-class AddInvertAudioProcessorEditor  : public gin::GinAudioProcessorEditor
+class AddInvertAudioProcessorEditor  : public gin::ProcessorEditor
 {
 public:
     AddInvertAudioProcessorEditor (AddInvertAudioProcessor&);
-    ~AddInvertAudioProcessorEditor();
+    ~AddInvertAudioProcessorEditor() override;
 
     //==============================================================================
     void resized() override;
@@ -28,7 +28,7 @@ public:
     drow::TriggeredScope scope;
 
 private:
-    AddInvertAudioProcessor& processor;
+    AddInvertAudioProcessor& aiProcessor;
     
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (AddInvertAudioProcessorEditor)
 };

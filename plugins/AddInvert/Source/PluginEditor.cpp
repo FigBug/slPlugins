@@ -15,7 +15,7 @@ using namespace gin;
 
 //==============================================================================
 AddInvertAudioProcessorEditor::AddInvertAudioProcessorEditor (AddInvertAudioProcessor& p)
-    : GinAudioProcessorEditor (p), processor (p)
+    : gin::ProcessorEditor (p), aiProcessor (p)
 {
     addAndMakeVisible (&scope);
     
@@ -33,7 +33,7 @@ AddInvertAudioProcessorEditor::~AddInvertAudioProcessorEditor()
 //==============================================================================
 void AddInvertAudioProcessorEditor::resized()
 {
-    GinAudioProcessorEditor::resized();
+    gin::ProcessorEditor::resized();
 
     scope.setBounds (getGridArea (0, 0, 4, 2));
 }

@@ -18,12 +18,12 @@ class AddInvertAudioProcessorEditor;
 //==============================================================================
 /**
 */
-class AddInvertAudioProcessor : public gin::GinProcessor
+class AddInvertAudioProcessor : public gin::Processor
 {
 public:
     //==============================================================================
     AddInvertAudioProcessor();
-    ~AddInvertAudioProcessor();
+    ~AddInvertAudioProcessor() override;
 
     //==============================================================================
     void prepareToPlay (double sampleRate, int samplesPerBlock) override;
