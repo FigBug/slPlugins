@@ -51,7 +51,7 @@ LimiterAudioProcessorEditor::LimiterAudioProcessorEditor (LimiterAudioProcessor&
     scope.setColour (TriggeredScope::traceColourId + 2, Colours::red);
     scope.setColour (TriggeredScope::envelopeColourId + 2, Colours::transparentBlack);
 
-    setGridSize (5, 3);
+    setGridSize (7, 2);
 
 	for (auto pp : limProc.getPluginParameters())
         pp->addListener (this);
@@ -74,12 +74,12 @@ void LimiterAudioProcessorEditor::resized()
     gin::ProcessorEditor::resized();
 
     componentForParam (*limProc.input)->setBounds (getGridArea (0, 0));
-    componentForParam (*limProc.attack)->setBounds (getGridArea (1, 0));
-    componentForParam (*limProc.release)->setBounds (getGridArea (2, 0));
+    componentForParam (*limProc.attack)->setBounds (getGridArea (2, 0));
+    componentForParam (*limProc.release)->setBounds (getGridArea (3, 0));
     componentForParam (*limProc.threshold)->setBounds (getGridArea (4, 0));
     componentForParam (*limProc.output)->setBounds (getGridArea (6, 0));
     
-    auto rc = getGridArea (0, 1, 7, 2);
+    auto rc = getGridArea (0, 1, 7, 1);
     
     inputMeter.setBounds (rc.removeFromLeft (16));
     rc.removeFromLeft (4);

@@ -19,23 +19,16 @@ LimiterAudioProcessor::LimiterAudioProcessor()
 {
     fifo.setSize (3, 44100);
     
-    attack    = addExtParam ("attack",    "Attack",    "", "ms",   { 0.0f,     5.0f, 0.0f, 1.0f},    0.0f, 0.1f);
-    release   = addExtParam ("release",   "Release",   "", "ms",   { 1.0f,   500.0f, 0.0f, 0.3f},    5.0f, 0.1f);
-    threshold = addExtParam ("threshold", "Threshold", "", "",     { -60.0f,   0.0f, 0.0f, 1.0f},  -30.0f, 0.1f);
-    input     = addExtParam ("input",     "Input",     "", "",     { -30.0f,  30.0f, 0.0f, 1.0f},    0.0f, 0.1f);
-    output    = addExtParam ("output",    "Output",    "", "",     { -30.0f,  30.0f, 0.0f, 1.0f},    0.0f, 0.1f);
+    attack    = addExtParam ("attack",    "Attack",    "", "ms",    { 0.0f,     5.0f, 0.0f, 1.0f},    0.0f, 0.1f);
+    release   = addExtParam ("release",   "Release",   "", "ms",  	{ 1.0f,   500.0f, 0.0f, 0.3f},    5.0f, 0.1f);
+    threshold = addExtParam ("threshold", "Threshold", "", "dB",    { -60.0f,   0.0f, 0.0f, 1.0f},  -30.0f, 0.1f);
+    input     = addExtParam ("input",     "Input",     "", "dB",    { -30.0f,  30.0f, 0.0f, 1.0f},    0.0f, 0.1f);
+    output    = addExtParam ("output",    "Output",    "", "dB",    { -30.0f,  30.0f, 0.0f, 1.0f},    0.0f, 0.1f);
     
     attack->conversionFunction  = [] (float in) { return in / 1000.0; };
     release->conversionFunction = [] (float in) { return in / 1000.0; };
     input->conversionFunction   = [] (float in) { return Decibels::decibelsToGain (in); };
     output->conversionFunction  = [] (float in) { return Decibels::decibelsToGain (in); };
-
-    for (int i = 0; i < BinaryData::namedResourceListSize; i++)
-    {
-        int sz = 0;
-        if (auto data = BinaryData::getNamedResource (BinaryData::namedResourceList[i], sz))
-            extractProgram (BinaryData::originalFilenames[i], MemoryBlock (data, size_t (sz)));
-    }
 }
 
 LimiterAudioProcessor::~LimiterAudioProcessor()

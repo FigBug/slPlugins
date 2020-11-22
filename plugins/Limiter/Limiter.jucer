@@ -15,16 +15,7 @@
               pluginRTASDisableBypass="0" pluginRTASDisableMultiMono="0" pluginAAXDisableBypass="0"
               pluginAAXDisableMultiMono="0" jucerFormatVersion="1">
   <MAINGROUP id="dPRjsF" name="Limiter">
-    <GROUP id="{B033904A-A7D7-B03A-462B-D6E9AEFDB9C1}" name="Resources">
-      <FILE id="eCS0o1" name="Acoustic Guitar.xml" compile="0" resource="1"
-            file="Resources/Acoustic Guitar.xml"/>
-      <FILE id="nNwt6H" name="Bass Guitar.xml" compile="0" resource="1" file="Resources/Bass Guitar.xml"/>
-      <FILE id="DHMzjh" name="Electric Guitar.xml" compile="0" resource="1"
-            file="Resources/Electric Guitar.xml"/>
-      <FILE id="FxAGOw" name="Kick Snare.xml" compile="0" resource="1" file="Resources/Kick Snare.xml"/>
-      <FILE id="dgAbR5" name="Mix.xml" compile="0" resource="1" file="Resources/Mix.xml"/>
-      <FILE id="SBBDlv" name="Vocals.xml" compile="0" resource="1" file="Resources/Vocals.xml"/>
-    </GROUP>
+    <GROUP id="{B033904A-A7D7-B03A-462B-D6E9AEFDB9C1}" name="Resources"/>
     <GROUP id="{EE796482-0D02-0052-80F4-B1FE6CE0D41A}" name="Source">
       <FILE id="iEbZ9q" name="PluginProcessor.cpp" compile="1" resource="0"
             file="Source/PluginProcessor.cpp"/>
