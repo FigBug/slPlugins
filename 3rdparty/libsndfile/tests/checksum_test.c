@@ -27,37 +27,37 @@
 
 #include "utils.h"
 
-#define	SAMPLE_RATE	8000
+#define SAMPLE_RATE 8000
 
 typedef struct
-{	int	enc_fmt ;
+{   int enc_fmt ;
 
-	const char * enc_name ;
-	const char * dec_name ;
+    const char * enc_name ;
+    const char * dec_name ;
 
-	uint64_t	enc_cksum ;
-	uint64_t	dec_cksum ;
+    uint64_t    enc_cksum ;
+    uint64_t    dec_cksum ;
 } CHECKSUM ;
 
 static CHECKSUM
 checksum_orig [] =
 {
-	{	SF_FORMAT_RAW | SF_FORMAT_ULAW,
-		"checksum.ulaw", "cksum_ulaw.pcm16",
-		0xbd99d34ccbe2fLL, 0xda82168ed82e9LL
-		},
-	{	SF_FORMAT_RAW | SF_FORMAT_ALAW,
-		"checksum.alaw", "cksum_alaw.pcm16",
-		0x0004afddc0fcf4bdLL, 0x2e7320230b88LL
-		},
-	{	SF_FORMAT_RAW | SF_FORMAT_GSM610,
-		"checksum.gsm", "cksum_gsm.pcm16",
-		0xa06a3faaaf684LL, 0x2d7ff668efeb9LL
-		},
-	{	SF_FORMAT_RAW | SF_FORMAT_VOX_ADPCM,
-		"checksum.vox", "cksum_vox.pcm16",
-		0x7c9d7afdb96a1LL, 0xe540df74a4b14LL
-		},
+    {   SF_FORMAT_RAW | SF_FORMAT_ULAW,
+        "checksum.ulaw", "cksum_ulaw.pcm16",
+        0xbd99d34ccbe2fLL, 0xda82168ed82e9LL
+        },
+    {   SF_FORMAT_RAW | SF_FORMAT_ALAW,
+        "checksum.alaw", "cksum_alaw.pcm16",
+        0x0004afddc0fcf4bdLL, 0x2e7320230b88LL
+        },
+    {   SF_FORMAT_RAW | SF_FORMAT_GSM610,
+        "checksum.gsm", "cksum_gsm.pcm16",
+        0xa06a3faaaf684LL, 0x2d7ff668efeb9LL
+        },
+    {   SF_FORMAT_RAW | SF_FORMAT_VOX_ADPCM,
+        "checksum.vox", "cksum_vox.pcm16",
+        0x7c9d7afdb96a1LL, 0xe540df74a4b14LL
+        },
 } ;
 
 static void checksum_test (const CHECKSUM * cksum) ;
@@ -67,14 +67,14 @@ static short data [1 << 14] ;
 
 int
 main (void)
-{	unsigned k ;
+{   unsigned k ;
 
-	gen_windowed_sine_float (orig, ARRAY_LEN (orig), 0.9) ;
+    gen_windowed_sine_float (orig, ARRAY_LEN (orig), 0.9) ;
 
-	for (k = 0 ; k < ARRAY_LEN (checksum_orig) ; k++)
-		checksum_test (&checksum_orig [k]) ;
+    for (k = 0 ; k < ARRAY_LEN (checksum_orig) ; k++)
+        checksum_test (&checksum_orig [k]) ;
 
-	return 0 ;
+    return 0 ;
 } /* main */
 
 /*==============================================================================
@@ -82,47 +82,46 @@ main (void)
 
 static void
 checksum_test (const CHECKSUM * cksum)
-{	SNDFILE * file ;
-	SF_INFO info ;
+{   SNDFILE * file ;
+    SF_INFO info ;
 
-	print_test_name (__func__, cksum->enc_name) ;
+    print_test_name (__func__, cksum->enc_name) ;
 
-	info.format = cksum->enc_fmt ;
-	info.channels = 1 ;
-	info.samplerate	= SAMPLE_RATE ;
+    info.format = cksum->enc_fmt ;
+    info.channels = 1 ;
+    info.samplerate = SAMPLE_RATE ;
 
-	file = test_open_file_or_die (cksum->enc_name, SFM_WRITE, &info, 0, __LINE__) ;
-	test_write_float_or_die (file, 0, orig, ARRAY_LEN (orig), __LINE__) ;
-	sf_close (file) ;
+    file = test_open_file_or_die (cksum->enc_name, SFM_WRITE, &info, 0, __LINE__) ;
+    test_write_float_or_die (file, 0, orig, ARRAY_LEN (orig), __LINE__) ;
+    sf_close (file) ;
 
-	check_file_hash_or_die (cksum->enc_name, cksum->enc_cksum, __LINE__) ;
-	puts ("ok") ;
+    check_file_hash_or_die (cksum->enc_name, cksum->enc_cksum, __LINE__) ;
+    puts ("ok") ;
 
-	/*------------------------------------------------------------------------*/
+    /*------------------------------------------------------------------------*/
 
-	print_test_name (__func__, cksum->dec_name) ;
+    print_test_name (__func__, cksum->dec_name) ;
 
-	info.format = cksum->enc_fmt ;
-	info.channels = 1 ;
-	info.samplerate	= SAMPLE_RATE ;
+    info.format = cksum->enc_fmt ;
+    info.channels = 1 ;
+    info.samplerate = SAMPLE_RATE ;
 
-	file = test_open_file_or_die (cksum->enc_name, SFM_READ, &info, 0, __LINE__) ;
-	test_read_short_or_die (file, 0, data, ARRAY_LEN (data), __LINE__) ;
-	sf_close (file) ;
+    file = test_open_file_or_die (cksum->enc_name, SFM_READ, &info, 0, __LINE__) ;
+    test_read_short_or_die (file, 0, data, ARRAY_LEN (data), __LINE__) ;
+    sf_close (file) ;
 
-	info.format = SF_ENDIAN_LITTLE | SF_FORMAT_RAW | SF_FORMAT_PCM_16 ;
-	info.channels = 1 ;
-	info.samplerate	= SAMPLE_RATE ;
+    info.format = SF_ENDIAN_LITTLE | SF_FORMAT_RAW | SF_FORMAT_PCM_16 ;
+    info.channels = 1 ;
+    info.samplerate = SAMPLE_RATE ;
 
-	file = test_open_file_or_die (cksum->dec_name, SFM_WRITE, &info, 0, __LINE__) ;
-	test_write_short_or_die (file, 0, data, ARRAY_LEN (data), __LINE__) ;
-	sf_close (file) ;
+    file = test_open_file_or_die (cksum->dec_name, SFM_WRITE, &info, 0, __LINE__) ;
+    test_write_short_or_die (file, 0, data, ARRAY_LEN (data), __LINE__) ;
+    sf_close (file) ;
 
-	check_file_hash_or_die (cksum->dec_name, cksum->dec_cksum, __LINE__) ;
+    check_file_hash_or_die (cksum->dec_name, cksum->dec_cksum, __LINE__) ;
 
-	remove (cksum->enc_name) ;
-	remove (cksum->dec_name) ;
+    remove (cksum->enc_name) ;
+    remove (cksum->dec_name) ;
 
-	puts ("ok") ;
+    puts ("ok") ;
 } /* checksum_test */
-

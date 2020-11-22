@@ -20,12 +20,12 @@ GateAudioProcessorEditor::GateAudioProcessorEditor (GateAudioProcessor& p)
     for (auto pp : p.getPluginParameters())
     {
         ParamComponent* pc;
-        
+
         if (pp->isOnOff())
             pc = new Switch (pp);
         else
             pc = new Knob (pp);
-        
+
         addAndMakeVisible (pc);
         controls.add (pc);
     }
@@ -53,7 +53,7 @@ GateAudioProcessorEditor::GateAudioProcessorEditor (GateAudioProcessor& p)
 
     setGridSize (7, 2);
 
-	for (auto pp : proc.getPluginParameters())
+    for (auto pp : proc.getPluginParameters())
         pp->addListener (this);
 }
 
@@ -78,20 +78,20 @@ void GateAudioProcessorEditor::resized()
     componentForParam (*proc.release)->setBounds (getGridArea (3, 0));
     componentForParam (*proc.threshold)->setBounds (getGridArea (4, 0));
     componentForParam (*proc.output)->setBounds (getGridArea (6, 0));
-    
+
     auto rc = getGridArea (0, 1, 7, 1);
-    
+
     inputMeter.setBounds (rc.removeFromLeft (16));
     rc.removeFromLeft (4);
-    
+
     meter.setBounds (rc.removeFromLeft (rc.getHeight()));
     rc.removeFromLeft (4);
 
     reductionMeter.setBounds (rc.removeFromLeft (16));
     rc.removeFromLeft (4);
-    
+
     outputMeter.setBounds (rc.removeFromLeft (16));
     rc.removeFromLeft (4);
-    
+
     scope.setBounds (rc);
 }

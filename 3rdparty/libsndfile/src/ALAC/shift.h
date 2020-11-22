@@ -17,7 +17,7 @@
 */
 
 #if __GNUC__
-#define ALWAYS_INLINE		__attribute__ ((always_inline))
+#define ALWAYS_INLINE       __attribute__ ((always_inline))
 #else
 #define ALWAYS_INLINE
 #endif
@@ -25,5 +25,5 @@
 
 static inline int32_t ALWAYS_INLINE
 arith_shift_left (int32_t x, int shift)
-{	return (int32_t) (((uint32_t) x) << shift) ;
+{   return (int32_t) (((uint32_t) x) << shift) ;
 } /* arith_shift_left */

@@ -16,42 +16,42 @@
 ** Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
 */
 
-#include	"sfconfig.h"
+#include    "sfconfig.h"
 
-#include	<stdio.h>
-#include	<fcntl.h>
-#include	<string.h>
-#include	<ctype.h>
+#include    <stdio.h>
+#include    <fcntl.h>
+#include    <string.h>
+#include    <ctype.h>
 
-#include	"sndfile.h"
-#include	"sfendian.h"
-#include	"common.h"
+#include    "sndfile.h"
+#include    "sfendian.h"
+#include    "common.h"
 
 int
 id3_skip (SF_PRIVATE * psf)
-{	unsigned char	buf [10] ;
+{   unsigned char   buf [10] ;
 
-	memset (buf, 0, sizeof (buf)) ;
-	psf_binheader_readf (psf, "pb", 0, buf, 10) ;
+    memset (buf, 0, sizeof (buf)) ;
+    psf_binheader_readf (psf, "pb", 0, buf, 10) ;
 
-	if (buf [0] == 'I' && buf [1] == 'D' && buf [2] == '3')
-	{	int	offset = buf [6] & 0x7f ;
-		offset = (offset << 7) | (buf [7] & 0x7f) ;
-		offset = (offset << 7) | (buf [8] & 0x7f) ;
-		offset = (offset << 7) | (buf [9] & 0x7f) ;
+    if (buf [0] == 'I' && buf [1] == 'D' && buf [2] == '3')
+    {   int offset = buf [6] & 0x7f ;
+        offset = (offset << 7) | (buf [7] & 0x7f) ;
+        offset = (offset << 7) | (buf [8] & 0x7f) ;
+        offset = (offset << 7) | (buf [9] & 0x7f) ;
 
-		psf_log_printf (psf, "ID3 length : %d\n--------------------\n", offset) ;
+        psf_log_printf (psf, "ID3 length : %d\n--------------------\n", offset) ;
 
-		/* Never want to jump backwards in a file. */
-		if (offset < 0)
-			return 0 ;
+        /* Never want to jump backwards in a file. */
+        if (offset < 0)
+            return 0 ;
 
-		/* Calculate new file offset and position ourselves there. */
-		psf->fileoffset += offset + 10 ;
-		psf_binheader_readf (psf, "p", psf->fileoffset) ;
+        /* Calculate new file offset and position ourselves there. */
+        psf->fileoffset += offset + 10 ;
+        psf_binheader_readf (psf, "p", psf->fileoffset) ;
 
-		return 1 ;
-		} ;
+        return 1 ;
+        } ;
 
-	return 0 ;
+    return 0 ;
 } /* id3_skip */

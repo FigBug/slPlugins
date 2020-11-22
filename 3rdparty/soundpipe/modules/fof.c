@@ -1,9 +1,9 @@
 /*
  * fof
- * 
+ *
  * This code has been extracted from the Csound opcode "fof".
  * It has been modified to work as a Soundpipe module.
- * 
+ *
  * Original Author(s): J Michael Clarke
  * Year: 1995
  * Location: Opcodes/ugens7.c
@@ -18,7 +18,7 @@
 #define PFRAC1(x)   ((SPFLOAT)((x) & ftp1->lomask) * ftp1->lodiv)
 
 #ifndef M_PI
-#define M_PI		3.14159265358979323846
+#define M_PI        3.14159265358979323846
 #endif
 
 #define MPIDSR -M_PI/sp->sr
@@ -128,7 +128,7 @@ int sp_fof_init(sp_data *sp, sp_fof *p, sp_ftbl *sine, sp_ftbl *win, int iolaps,
     sp_fof_overlap *ovp, *nxtovp;
     int32_t olaps;
 
-    if (p->iphs == 0.0) p->fundphs = SP_FT_MAXLEN;                  
+    if (p->iphs == 0.0) p->fundphs = SP_FT_MAXLEN;
     else p->fundphs = (int32_t)(p->iphs * SP_FT_MAXLEN) & SP_FT_PHMASK;
 
     olaps = (int32_t)p->iolaps;
@@ -199,7 +199,7 @@ int sp_fof_compute(sp_data *sp, sp_fof *p, SPFLOAT *in, SPFLOAT *out)
         result = v1 + (*ftab - v1) * fract;
         if (p->foftype) {
             if (p->fmtmod)
-            ovp->formphs += form_inc;           
+            ovp->formphs += form_inc;
             else ovp->formphs += ovp->forminc;
         }
         else {

@@ -20,7 +20,7 @@
  */
 
 /*
-	File:		alac_codec.h
+    File:       alac_codec.h
 */
 
 #ifndef ALAC_CODEC_H
@@ -30,75 +30,75 @@
 
 #include "ALACAudioTypes.h"
 
-#define		ALAC_FRAME_LENGTH	4096
+#define     ALAC_FRAME_LENGTH   4096
 
 struct BitBuffer ;
 
 typedef struct alac_decoder_s
 {
-	// decoding parameters (public for use in the analyzer)
-	ALACSpecificConfig		mConfig ;
+    // decoding parameters (public for use in the analyzer)
+    ALACSpecificConfig      mConfig ;
 
-	uint16_t				mActiveElements ;
+    uint16_t                mActiveElements ;
 
-	// decoding buffers
-	int32_t				mMixBufferU [ALAC_FRAME_LENGTH] ;
-	int32_t				mMixBufferV [ALAC_FRAME_LENGTH] ;
-	union
-	{
-		int32_t			mPredictor [ALAC_FRAME_LENGTH] ;
-		uint16_t		mShiftBuffer [ALAC_FRAME_LENGTH] ;
-	} ;
-	uint32_t			mNumChannels ;
+    // decoding buffers
+    int32_t             mMixBufferU [ALAC_FRAME_LENGTH] ;
+    int32_t             mMixBufferV [ALAC_FRAME_LENGTH] ;
+    union
+    {
+        int32_t         mPredictor [ALAC_FRAME_LENGTH] ;
+        uint16_t        mShiftBuffer [ALAC_FRAME_LENGTH] ;
+    } ;
+    uint32_t            mNumChannels ;
 } ALAC_DECODER ;
 
 typedef struct alac_encoder_s
 {
-	// ALAC encoder parameters
-	int16_t			mBitDepth ;
+    // ALAC encoder parameters
+    int16_t         mBitDepth ;
 
-	// encoding state
-	int16_t			mLastMixRes [kALACMaxChannels] ;
+    // encoding state
+    int16_t         mLastMixRes [kALACMaxChannels] ;
 
-	int32_t			mFastMode ;
+    int32_t         mFastMode ;
 
-	// encoding buffers
-	int32_t			mMixBufferU [ALAC_FRAME_LENGTH] ;
-	int32_t			mMixBufferV [ALAC_FRAME_LENGTH] ;
-	int32_t			mPredictorU [ALAC_FRAME_LENGTH] ;
-	int32_t			mPredictorV [ALAC_FRAME_LENGTH] ;
-	uint16_t		mShiftBufferUV [2 * ALAC_FRAME_LENGTH] ;
-	uint8_t			mWorkBuffer [4 * ALAC_FRAME_LENGTH] ;
+    // encoding buffers
+    int32_t         mMixBufferU [ALAC_FRAME_LENGTH] ;
+    int32_t         mMixBufferV [ALAC_FRAME_LENGTH] ;
+    int32_t         mPredictorU [ALAC_FRAME_LENGTH] ;
+    int32_t         mPredictorV [ALAC_FRAME_LENGTH] ;
+    uint16_t        mShiftBufferUV [2 * ALAC_FRAME_LENGTH] ;
+    uint8_t         mWorkBuffer [4 * ALAC_FRAME_LENGTH] ;
 
-	// per-channel coefficients buffers
-	int16_t			mCoefsU [kALACMaxChannels][kALACMaxSearches][kALACMaxCoefs] ;
-	int16_t			mCoefsV [kALACMaxChannels][kALACMaxSearches][kALACMaxCoefs] ;
+    // per-channel coefficients buffers
+    int16_t         mCoefsU [kALACMaxChannels][kALACMaxSearches][kALACMaxCoefs] ;
+    int16_t         mCoefsV [kALACMaxChannels][kALACMaxSearches][kALACMaxCoefs] ;
 
-	// encoding statistics
-	uint32_t		mTotalBytesGenerated ;
-	uint32_t		mAvgBitRate ;
-	uint32_t		mMaxFrameBytes ;
-	uint32_t		mFrameSize ;
-	uint32_t		mMaxOutputBytes ;
-	uint32_t		mNumChannels ;
-	uint32_t		mOutputSampleRate ;
+    // encoding statistics
+    uint32_t        mTotalBytesGenerated ;
+    uint32_t        mAvgBitRate ;
+    uint32_t        mMaxFrameBytes ;
+    uint32_t        mFrameSize ;
+    uint32_t        mMaxOutputBytes ;
+    uint32_t        mNumChannels ;
+    uint32_t        mOutputSampleRate ;
 } ALAC_ENCODER ;
 
 
-int32_t	alac_decoder_init (ALAC_DECODER *p, void * inMagicCookie, uint32_t inMagicCookieSize) ;
+int32_t alac_decoder_init (ALAC_DECODER *p, void * inMagicCookie, uint32_t inMagicCookieSize) ;
 int32_t alac_encoder_init (ALAC_ENCODER *p, uint32_t samplerate, uint32_t channels, uint32_t format_flags, uint32_t frameSize) ;
 
-int32_t	alac_decode (ALAC_DECODER *, struct BitBuffer * bits, int32_t * sampleBuffer,
-					uint32_t numSamples, uint32_t * outNumSamples) ;
+int32_t alac_decode (ALAC_DECODER *, struct BitBuffer * bits, int32_t * sampleBuffer,
+                    uint32_t numSamples, uint32_t * outNumSamples) ;
 
-int32_t	alac_encode (ALAC_ENCODER *p, uint32_t numSamples,
-					const int32_t * theReadBuffer, unsigned char * theWriteBuffer,
-					uint32_t * ioNumBytes) ;
+int32_t alac_encode (ALAC_ENCODER *p, uint32_t numSamples,
+                    const int32_t * theReadBuffer, unsigned char * theWriteBuffer,
+                    uint32_t * ioNumBytes) ;
 
 void alac_set_fastmode (ALAC_ENCODER * p, int32_t fast) ;
 
 uint32_t alac_get_magic_cookie_size (uint32_t inNumChannels) ;
-void	alac_get_magic_cookie (ALAC_ENCODER *p, void * config, uint32_t * ioSize) ;
-void	alac_get_source_format (ALAC_ENCODER *p, const AudioFormatDescription * source, AudioFormatDescription * output) ;
+void    alac_get_magic_cookie (ALAC_ENCODER *p, void * config, uint32_t * ioSize) ;
+void    alac_get_source_format (ALAC_ENCODER *p, const AudioFormatDescription * source, AudioFormatDescription * output) ;
 
 #endif

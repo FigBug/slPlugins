@@ -17,8 +17,8 @@
 */
 
 /*
-**	This needs to be a separate file so that we don't have to include
-**	<windows.h> elsewhere (too many symbol clashes).
+**  This needs to be a separate file so that we don't have to include
+**  <windows.h> elsewhere (too many symbol clashes).
 */
 
 
@@ -37,57 +37,57 @@ static void copy_filename (SF_PRIVATE * psf, LPCWSTR wpath) ;
 
 SNDFILE*
 sf_wchar_open (LPCWSTR wpath, int mode, SF_INFO *sfinfo)
-{	SF_PRIVATE 	*psf ;
-	char utf8name [512] ;
+{   SF_PRIVATE  *psf ;
+    char utf8name [512] ;
 
-	if ((psf = calloc (1, sizeof (SF_PRIVATE))) == NULL)
-	{	sf_errno = SFE_MALLOC_FAILED ;
-		return	NULL ;
-		} ;
+    if ((psf = calloc (1, sizeof (SF_PRIVATE))) == NULL)
+    {   sf_errno = SFE_MALLOC_FAILED ;
+        return  NULL ;
+        } ;
 
-	memset (psf, 0, sizeof (SF_PRIVATE)) ;
-	psf_init_files (psf) ;
+    memset (psf, 0, sizeof (SF_PRIVATE)) ;
+    psf_init_files (psf) ;
 
-	if (WideCharToMultiByte (CP_UTF8, 0, wpath, -1, utf8name, sizeof (utf8name), NULL, NULL) == 0)
-		psf->file.path.wc [0] = 0 ;
+    if (WideCharToMultiByte (CP_UTF8, 0, wpath, -1, utf8name, sizeof (utf8name), NULL, NULL) == 0)
+        psf->file.path.wc [0] = 0 ;
 
-	psf_log_printf (psf, "File : '%s' (utf-8 converted from ucs-2)\n", utf8name) ;
+    psf_log_printf (psf, "File : '%s' (utf-8 converted from ucs-2)\n", utf8name) ;
 
-	copy_filename (psf, wpath) ;
-	psf->file.use_wchar = SF_TRUE ;
-	psf->file.mode = mode ;
+    copy_filename (psf, wpath) ;
+    psf->file.use_wchar = SF_TRUE ;
+    psf->file.mode = mode ;
 
-	psf->error = psf_fopen (psf) ;
+    psf->error = psf_fopen (psf) ;
 
-	return psf_open_file (psf, sfinfo) ;
+    return psf_open_file (psf, sfinfo) ;
 } /* sf_wchar_open */
 
 
 static void
 copy_filename (SF_PRIVATE *psf, LPCWSTR wpath)
-{	const wchar_t *cwcptr ;
-	wchar_t *wcptr ;
+{   const wchar_t *cwcptr ;
+    wchar_t *wcptr ;
 
-	wcsncpy (psf->file.path.wc, wpath, ARRAY_LEN (psf->file.path.wc)) ;
-	psf->file.path.wc [ARRAY_LEN (psf->file.path.wc) - 1] = 0 ;
-	if ((cwcptr = wcsrchr (wpath, '/')) || (cwcptr = wcsrchr (wpath, '\\')))
-		cwcptr ++ ;
-	else
-		cwcptr = wpath ;
+    wcsncpy (psf->file.path.wc, wpath, ARRAY_LEN (psf->file.path.wc)) ;
+    psf->file.path.wc [ARRAY_LEN (psf->file.path.wc) - 1] = 0 ;
+    if ((cwcptr = wcsrchr (wpath, '/')) || (cwcptr = wcsrchr (wpath, '\\')))
+        cwcptr ++ ;
+    else
+        cwcptr = wpath ;
 
-	wcsncpy (psf->file.name.wc, cwcptr, ARRAY_LEN (psf->file.name.wc)) ;
-	psf->file.name.wc [ARRAY_LEN (psf->file.name.wc) - 1] = 0 ;
+    wcsncpy (psf->file.name.wc, cwcptr, ARRAY_LEN (psf->file.name.wc)) ;
+    psf->file.name.wc [ARRAY_LEN (psf->file.name.wc) - 1] = 0 ;
 
-	/* Now grab the directory. */
-	wcsncpy (psf->file.dir.wc, wpath, ARRAY_LEN (psf->file.dir.wc)) ;
-	psf->file.dir.wc [ARRAY_LEN (psf->file.dir.wc) - 1] = 0 ;
+    /* Now grab the directory. */
+    wcsncpy (psf->file.dir.wc, wpath, ARRAY_LEN (psf->file.dir.wc)) ;
+    psf->file.dir.wc [ARRAY_LEN (psf->file.dir.wc) - 1] = 0 ;
 
-	if ((wcptr = wcsrchr (psf->file.dir.wc, '/')) || (wcptr = wcsrchr (psf->file.dir.wc, '\\')))
-		wcptr [1] = 0 ;
-	else
-		psf->file.dir.wc [0] = 0 ;
+    if ((wcptr = wcsrchr (psf->file.dir.wc, '/')) || (wcptr = wcsrchr (psf->file.dir.wc, '\\')))
+        wcptr [1] = 0 ;
+    else
+        psf->file.dir.wc [0] = 0 ;
 
-	return ;
+    return ;
 } /* copy_filename */
 
 #endif

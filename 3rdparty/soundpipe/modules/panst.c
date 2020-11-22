@@ -3,7 +3,7 @@
 #include "soundpipe.h"
 
 #ifndef M_PI
-#define M_PI		3.14159265358979323846
+#define M_PI        3.14159265358979323846
 #endif
 
 #define SQRT2 1.41421356237309504880

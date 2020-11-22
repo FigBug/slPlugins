@@ -33,19 +33,19 @@ sfwrite (filename, data_out, srate_out, fmt_out) ;
 [ data_in, srate_in, fmt_in ] = sfread (filename) ;
 
 if (srate_in != srate_out)
-	error ("\n\nSample rate mismatch : %d -> %d.\n\n", srate_out, srate_in) ;
-	endif
+    error ("\n\nSample rate mismatch : %d -> %d.\n\n", srate_out, srate_in) ;
+    endif
 
 # Octave strcmp return 1 for the same.
 if (strcmp (fmt_in, fmt_out) != 1)
-	error ("\n\nFormat error : '%s' -> '%s'.\n\n", fmt_out, fmt_in) ;
-	endif
+    error ("\n\nFormat error : '%s' -> '%s'.\n\n", fmt_out, fmt_in) ;
+    endif
 
 err = max (abs (data_out - data_in)) ;
 
 if (err > 1e-7)
-	error ("err : %g\n", err) ;
-	endif
+    error ("err : %g\n", err) ;
+    endif
 
 printf ("ok") ;
 

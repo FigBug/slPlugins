@@ -26,40 +26,39 @@
 
 #include <sndfile.h>
 
-#define	BUFFER_SIZE		(1024)
+#define BUFFER_SIZE     (1024)
 
 
 static short buffer [BUFFER_SIZE] ;
 
 int
 main (int argc, char *argv [])
-{	SNDFILE	*file ;
-	SF_INFO sfinfo ;
-	int		k, count, max = 0, total = 0 ;
+{   SNDFILE *file ;
+    SF_INFO sfinfo ;
+    int     k, count, max = 0, total = 0 ;
 
-	if (argc < 2)
-	{	printf ("Expecting input file name.\n") ;
-		return 0 ;
-		} ;
+    if (argc < 2)
+    {   printf ("Expecting input file name.\n") ;
+        return 0 ;
+        } ;
 
-	if (! (file = sf_open (argv [1], SFM_READ, &sfinfo)))
-	{	printf ("sf_open_read failed with error : ") ;
-		puts (sf_strerror (NULL)) ;
-		exit (1) ;
-		} ;
+    if (! (file = sf_open (argv [1], SFM_READ, &sfinfo)))
+    {   printf ("sf_open_read failed with error : ") ;
+        puts (sf_strerror (NULL)) ;
+        exit (1) ;
+        } ;
 
-	while ((count = sf_read_short (file, buffer, BUFFER_SIZE)))
-	{	for (k = 0 ; k < count ; k++)
-			if (abs (buffer [k]) > max)
-				max = abs (buffer [k]) ;
-		total += count ;
-		} ;
+    while ((count = sf_read_short (file, buffer, BUFFER_SIZE)))
+    {   for (k = 0 ; k < count ; k++)
+            if (abs (buffer [k]) > max)
+                max = abs (buffer [k]) ;
+        total += count ;
+        } ;
 
-	printf ("Total         : %d\n", total) ;
-	printf ("Maximun value : %d\n", max) ;
+    printf ("Total         : %d\n", total) ;
+    printf ("Maximun value : %d\n", max) ;
 
-	sf_close (file) ;
+    sf_close (file) ;
 
-	return 0 ;
+    return 0 ;
 } /* main */
-

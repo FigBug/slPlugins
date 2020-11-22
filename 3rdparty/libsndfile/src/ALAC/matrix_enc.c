@@ -20,11 +20,11 @@
  */
 
 /*
-	File:		matrix_enc.c
+    File:       matrix_enc.c
 
-	Contains:	ALAC mixing/matrixing encode routines.
+    Contains:   ALAC mixing/matrixing encode routines.
 
-	Copyright:	(c) 2004-2011 Apple, Inc.
+    Copyright:  (c) 2004-2011 Apple, Inc.
 */
 
 #include "matrixlib.h"
@@ -50,36 +50,36 @@
 void
 mix16 (const int32_t * in, uint32_t stride, int32_t * u, int32_t * v, int32_t numSamples, int32_t mixbits, int32_t mixres)
 {
-	int32_t		j ;
+    int32_t     j ;
 
-	if (mixres != 0)
-	{
-		int32_t		mod = 1 << mixbits ;
-		int32_t		m2 ;
+    if (mixres != 0)
+    {
+        int32_t     mod = 1 << mixbits ;
+        int32_t     m2 ;
 
-		/* matrixed stereo */
-		m2 = mod - mixres ;
-		for (j = 0 ; j < numSamples ; j++)
-		{
-			int32_t		l, r ;
+        /* matrixed stereo */
+        m2 = mod - mixres ;
+        for (j = 0 ; j < numSamples ; j++)
+        {
+            int32_t     l, r ;
 
-			l = in [0] >> 16 ;
-			r = in [1] >> 16 ;
-			in += stride ;
-			u [j] = (mixres * l + m2 * r) >> mixbits ;
-			v [j] = l - r ;
-		}
-	}
-	else
-	{
-		/* Conventional separated stereo. */
-		for (j = 0 ; j < numSamples ; j++)
-		{
-			u [j] = in [0] >> 16 ;
-			v [j] = in [1] >> 16 ;
-			in += stride ;
-		}
-	}
+            l = in [0] >> 16 ;
+            r = in [1] >> 16 ;
+            in += stride ;
+            u [j] = (mixres * l + m2 * r) >> mixbits ;
+            v [j] = l - r ;
+        }
+    }
+    else
+    {
+        /* Conventional separated stereo. */
+        for (j = 0 ; j < numSamples ; j++)
+        {
+            u [j] = in [0] >> 16 ;
+            v [j] = in [1] >> 16 ;
+            in += stride ;
+        }
+    }
 }
 
 // 20-bit routines
@@ -88,35 +88,35 @@ mix16 (const int32_t * in, uint32_t stride, int32_t * u, int32_t * v, int32_t nu
 void
 mix20 (const int32_t * in, uint32_t stride, int32_t * u, int32_t * v, int32_t numSamples, int32_t mixbits, int32_t mixres)
 {
-	int32_t		l, r ;
-	int32_t		j ;
+    int32_t     l, r ;
+    int32_t     j ;
 
-	if (mixres != 0)
-	{
-		/* matrixed stereo */
-		int32_t		mod = 1 << mixbits ;
-		int32_t		m2 = mod - mixres ;
+    if (mixres != 0)
+    {
+        /* matrixed stereo */
+        int32_t     mod = 1 << mixbits ;
+        int32_t     m2 = mod - mixres ;
 
-		for (j = 0 ; j < numSamples ; j++)
-		{
-			l = in [0] >> 12 ;
-			r = in [1] >> 12 ;
-			in += stride ;
+        for (j = 0 ; j < numSamples ; j++)
+        {
+            l = in [0] >> 12 ;
+            r = in [1] >> 12 ;
+            in += stride ;
 
-			u [j] = (mixres * l + m2 * r) >> mixbits ;
-			v [j] = l - r ;
-		}
-	}
-	else
-	{
-		/* Conventional separated stereo. */
-		for (j = 0 ; j < numSamples ; j++)
-		{
-			u [j] = in [0] >> 12 ;
-			v [j] = in [1] >> 12 ;
-			in += stride ;
-		}
-	}
+            u [j] = (mixres * l + m2 * r) >> mixbits ;
+            v [j] = l - r ;
+        }
+    }
+    else
+    {
+        /* Conventional separated stereo. */
+        for (j = 0 ; j < numSamples ; j++)
+        {
+            u [j] = in [0] >> 12 ;
+            v [j] = in [1] >> 12 ;
+            in += stride ;
+        }
+    }
 }
 
 // 24-bit routines
@@ -124,81 +124,81 @@ mix20 (const int32_t * in, uint32_t stride, int32_t * u, int32_t * v, int32_t nu
 
 void
 mix24 (const int32_t * in, uint32_t stride, int32_t * u, int32_t * v, int32_t numSamples,
-			int32_t mixbits, int32_t mixres, uint16_t * shiftUV, int32_t bytesShifted)
+            int32_t mixbits, int32_t mixres, uint16_t * shiftUV, int32_t bytesShifted)
 {
-	int32_t		l, r ;
-	int32_t		shift = bytesShifted * 8 ;
-	uint32_t	mask = (1ul << shift) - 1 ;
-	int32_t		j, k ;
+    int32_t     l, r ;
+    int32_t     shift = bytesShifted * 8 ;
+    uint32_t    mask = (1ul << shift) - 1 ;
+    int32_t     j, k ;
 
-	if (mixres != 0)
-	{
-		/* matrixed stereo */
-		int32_t		mod = 1 << mixbits ;
-		int32_t		m2 = mod - mixres ;
+    if (mixres != 0)
+    {
+        /* matrixed stereo */
+        int32_t     mod = 1 << mixbits ;
+        int32_t     m2 = mod - mixres ;
 
-		if (bytesShifted != 0)
-		{
-			for (j = 0, k = 0 ; j < numSamples ; j++, k += 2)
-			{
-				l = in [0] >> 8 ;
-				r = in [1] >> 8 ;
-				in += stride ;
+        if (bytesShifted != 0)
+        {
+            for (j = 0, k = 0 ; j < numSamples ; j++, k += 2)
+            {
+                l = in [0] >> 8 ;
+                r = in [1] >> 8 ;
+                in += stride ;
 
-				shiftUV [k + 0] = (uint16_t) (l & mask) ;
-				shiftUV [k + 1] = (uint16_t) (r & mask) ;
+                shiftUV [k + 0] = (uint16_t) (l & mask) ;
+                shiftUV [k + 1] = (uint16_t) (r & mask) ;
 
-				l >>= shift ;
-				r >>= shift ;
+                l >>= shift ;
+                r >>= shift ;
 
-				u [j] = (mixres * l + m2 * r) >> mixbits ;
-				v [j] = l - r ;
-			}
-		}
-		else
-		{
-			for (j = 0 ; j < numSamples ; j++)
-			{
-				l = in [0] >> 8 ;
-				r = in [1] >> 8 ;
-				in += stride ;
+                u [j] = (mixres * l + m2 * r) >> mixbits ;
+                v [j] = l - r ;
+            }
+        }
+        else
+        {
+            for (j = 0 ; j < numSamples ; j++)
+            {
+                l = in [0] >> 8 ;
+                r = in [1] >> 8 ;
+                in += stride ;
 
-				u [j] = (mixres * l + m2 * r) >> mixbits ;
-				v [j] = l - r ;
-			}
-		}
-	}
-	else
-	{
-		/* Conventional separated stereo. */
-		if (bytesShifted != 0)
-		{
-			for (j = 0, k = 0 ; j < numSamples ; j++, k += 2)
-			{
-				l = in [0] >> 8 ;
-				r = in [1] >> 8 ;
-				in += stride ;
+                u [j] = (mixres * l + m2 * r) >> mixbits ;
+                v [j] = l - r ;
+            }
+        }
+    }
+    else
+    {
+        /* Conventional separated stereo. */
+        if (bytesShifted != 0)
+        {
+            for (j = 0, k = 0 ; j < numSamples ; j++, k += 2)
+            {
+                l = in [0] >> 8 ;
+                r = in [1] >> 8 ;
+                in += stride ;
 
-				shiftUV [k + 0] = (uint16_t) (l & mask) ;
-				shiftUV [k + 1] = (uint16_t) (r & mask) ;
+                shiftUV [k + 0] = (uint16_t) (l & mask) ;
+                shiftUV [k + 1] = (uint16_t) (r & mask) ;
 
-				l >>= shift ;
-				r >>= shift ;
+                l >>= shift ;
+                r >>= shift ;
 
-				u [j] = l ;
-				v [j] = r ;
-			}
-		}
-		else
-		{
-			for (j = 0 ; j < numSamples ; j++)
-			{
-				l = in [0] >> 8 ;
-				r = in [1] >> 8 ;
-				in += stride ;
-			}
-		}
-	}
+                u [j] = l ;
+                v [j] = r ;
+            }
+        }
+        else
+        {
+            for (j = 0 ; j < numSamples ; j++)
+            {
+                l = in [0] >> 8 ;
+                r = in [1] >> 8 ;
+                in += stride ;
+            }
+        }
+    }
 }
 
 // 32-bit routines
@@ -208,68 +208,68 @@ mix24 (const int32_t * in, uint32_t stride, int32_t * u, int32_t * v, int32_t nu
 
 void
 mix32 (const int32_t * in, uint32_t stride, int32_t * u, int32_t * v, int32_t numSamples,
-			int32_t mixbits, int32_t mixres, uint16_t * shiftUV, int32_t bytesShifted)
+            int32_t mixbits, int32_t mixres, uint16_t * shiftUV, int32_t bytesShifted)
 {
-	int32_t		shift = bytesShifted * 8 ;
-	uint32_t	mask = (1ul << shift) - 1 ;
-	int32_t		l, r ;
-	int32_t		j, k ;
+    int32_t     shift = bytesShifted * 8 ;
+    uint32_t    mask = (1ul << shift) - 1 ;
+    int32_t     l, r ;
+    int32_t     j, k ;
 
-	if (mixres != 0)
-	{
-		int32_t		mod = 1 << mixbits ;
-		int32_t		m2 ;
+    if (mixres != 0)
+    {
+        int32_t     mod = 1 << mixbits ;
+        int32_t     m2 ;
 
-		//Assert (bytesShifted != 0) ;
+        //Assert (bytesShifted != 0) ;
 
-		/* matrixed stereo with shift */
-		m2 = mod - mixres ;
-		for (j = 0, k = 0 ; j < numSamples ; j++, k += 2)
-		{
-			l = in [0] ;
-			r = in [1] ;
-			in += stride ;
+        /* matrixed stereo with shift */
+        m2 = mod - mixres ;
+        for (j = 0, k = 0 ; j < numSamples ; j++, k += 2)
+        {
+            l = in [0] ;
+            r = in [1] ;
+            in += stride ;
 
-			shiftUV [k + 0] = (uint16_t) (l & mask) ;
-			shiftUV [k + 1] = (uint16_t) (r & mask) ;
+            shiftUV [k + 0] = (uint16_t) (l & mask) ;
+            shiftUV [k + 1] = (uint16_t) (r & mask) ;
 
-			l >>= shift ;
-			r >>= shift ;
+            l >>= shift ;
+            r >>= shift ;
 
-			u [j] = (mixres * l + m2 * r) >> mixbits ;
-			v [j] = l - r ;
-		}
-	}
-	else
-	{
-		if (bytesShifted == 0)
-		{
-			/* de-interleaving w/o shift */
-			for (j = 0 ; j < numSamples ; j++)
-			{
-				u [j] = in [0] ;
-				v [j] = in [1] ;
-				in += stride ;
-			}
-		}
-		else
-		{
-			/* de-interleaving with shift */
-			for (j = 0, k = 0 ; j < numSamples ; j++, k += 2)
-			{
-				l = in [0] ;
-				r = in [1] ;
-				in += stride ;
+            u [j] = (mixres * l + m2 * r) >> mixbits ;
+            v [j] = l - r ;
+        }
+    }
+    else
+    {
+        if (bytesShifted == 0)
+        {
+            /* de-interleaving w/o shift */
+            for (j = 0 ; j < numSamples ; j++)
+            {
+                u [j] = in [0] ;
+                v [j] = in [1] ;
+                in += stride ;
+            }
+        }
+        else
+        {
+            /* de-interleaving with shift */
+            for (j = 0, k = 0 ; j < numSamples ; j++, k += 2)
+            {
+                l = in [0] ;
+                r = in [1] ;
+                in += stride ;
 
-				shiftUV [k + 0] = (uint16_t) (l & mask) ;
-				shiftUV [k + 1] = (uint16_t) (r & mask) ;
+                shiftUV [k + 0] = (uint16_t) (l & mask) ;
+                shiftUV [k + 1] = (uint16_t) (r & mask) ;
 
-				l >>= shift ;
-				r >>= shift ;
+                l >>= shift ;
+                r >>= shift ;
 
-				u [j] = l ;
-				v [j] = r ;
-			}
-		}
-	}
+                u [j] = l ;
+                v [j] = r ;
+            }
+        }
+    }
 }

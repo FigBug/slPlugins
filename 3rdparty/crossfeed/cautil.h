@@ -36,27 +36,27 @@ extern "C" {
 #endif
 
 struct PlayerEvent {
-	struct Player *player;
-	enum {
-		PLAYER_RENDER = 'rndr',
-		PLAYER_DONE = 'done'
-	} type;
-	float *left, *right;
-	unsigned int size;
+    struct Player *player;
+    enum {
+        PLAYER_RENDER = 'rndr',
+        PLAYER_DONE = 'done'
+    } type;
+    float *left, *right;
+    unsigned int size;
 };
 
 typedef void (*PlayerEventHandler)(struct PlayerEvent *);
 
 struct Player {
-	AUGraph graph;
-	AUNode outputNode;
-	AUNode fileNode;
-	AudioUnit fileAU;
-	AudioFileID audioFile;
-	uintptr_t samples;
-	int samplerate;
-	int playing;
-	PlayerEventHandler handleEvent;
+    AUGraph graph;
+    AUNode outputNode;
+    AUNode fileNode;
+    AudioUnit fileAU;
+    AudioFileID audioFile;
+    uintptr_t samples;
+    int samplerate;
+    int playing;
+    PlayerEventHandler handleEvent;
 };
 
 

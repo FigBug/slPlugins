@@ -15,13 +15,13 @@
 #include "soundpipe.h"
 
 #ifndef M_PI
-#define M_PI		3.14159265358979323846
+#define M_PI        3.14159265358979323846
 #endif
 
 #define SPFLOAT2LONG(x) lrintf(x)
 
 
-/* John ffitch tanh function to speed up inner loop */ 
+/* John ffitch tanh function to speed up inner loop */
 
 static double my_tanh(double x)
 {

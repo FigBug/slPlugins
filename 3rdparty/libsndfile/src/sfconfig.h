@@ -17,16 +17,16 @@
 */
 
 /*
-**	Autoconf leaves many config parameters undefined.
-**	Here we change then from being undefined to defining them to 0.
-**	This allows things like:
+**  Autoconf leaves many config parameters undefined.
+**  Here we change then from being undefined to defining them to 0.
+**  This allows things like:
 **
-**		#if HAVE_CONFIG_PARAM
+**      #if HAVE_CONFIG_PARAM
 **
-**	and
+**  and
 **
-**		if (HAVE_CONFIG_PARAM)
-**			do_something () ;
+**      if (HAVE_CONFIG_PARAM)
+**          do_something () ;
 */
 
 #ifndef SFCONFIG_H
@@ -46,7 +46,7 @@
 #endif
 
 #ifndef HAVE_DECL_S_IRGRP
-#define	HAVE_DECL_S_IRGRP 0
+#define HAVE_DECL_S_IRGRP 0
 #endif
 
 #ifndef HAVE_ENDIAN_H
@@ -106,14 +106,14 @@
 #endif
 
 #ifndef HAVE_WAITPID
-#define	HAVE_WAITPID 0
+#define HAVE_WAITPID 0
 #endif
 
 #ifndef HAVE_X86INTRIN_H
 #define HAVE_X86INTRIN_H 0
 #endif
 
-#define CPU_IS_X86		(defined __i486__ || defined __i586__ || defined __i686__ || defined __x86_64__)
-#define CPU_IS_X86_64	(defined __x86_64__)
+#define CPU_IS_X86      (defined __i486__ || defined __i586__ || defined __i686__ || defined __x86_64__)
+#define CPU_IS_X86_64   (defined __x86_64__)
 
 #endif

@@ -25,7 +25,7 @@
 #define DELAYPOS_MASK   0x0FFFFFFF
 
 #ifndef M_PI
-#define M_PI		3.14159265358979323846	/* pi */
+#define M_PI        3.14159265358979323846  /* pi */
 #endif
 
 /* reverbParams[n][0] = delay time (in seconds)                     */

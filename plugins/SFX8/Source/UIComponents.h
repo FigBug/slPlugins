@@ -59,16 +59,16 @@ public:
 
         path.loadPathFromData (pathData, sizeof (pathData));
     }
-    
+
 private:
     void paint (Graphics& g) override
     {
         auto rc = getLocalBounds().toFloat();
-        
+
         g.setColour (Colours::white);
         g.fillPath (path, path.getTransformToScaleToFit (rc.reduced (2), true));
     }
-    
+
     Path path;
 };
 
@@ -125,7 +125,7 @@ private:
             g.setColour (Colours::white.withAlpha (0.2f));
             g.fillRect (rc);
         }
-        
+
         if (bright)
         {
             g.setColour (Colours::white.withAlpha (0.3f));
@@ -134,9 +134,9 @@ private:
 
         g.setColour (Colours::white);
         g.drawRect (rc);
-        
+
         rc = rc.reduced (2);
-        
+
         g.drawText (pad.name, rc, Justification::centredBottom);
     }
 
@@ -160,7 +160,7 @@ public:
             addAndMakeVisible (pc);
             pads.add (pc);
         }
-        
+
         listener.onValueTreePropertyChanged = [this] (const ValueTree&, const Identifier& i)
         {
             if (i.toString().startsWith ("name"))
@@ -214,7 +214,7 @@ public:
         addAndMakeVisible (blip);
         addAndMakeVisible (random);
         addAndMakeVisible (mutate);
-        
+
         name.setText (pad.name, dontSendNotification);
         name.applyColourToAllText (Colours::white);
         name.onTextChange = [this]
@@ -228,7 +228,7 @@ public:
         {
             pad.note = jlimit (0, 127, note.getText().getIntValue());
         };
-        
+
         listener.onValueTreePropertyChanged = [this] (const ValueTree&, const Identifier& i)
         {
             if (i.toString() == String ("name") + String (pad.index))
@@ -335,7 +335,7 @@ public:
                 pc = new gin::Select (pp);
             else
                 pc = new gin::HorizontalFader (pp, false);
-            
+
             pc->setTooltip (pad.params.getDescription (pad.params.getParams()[size_t (i)]));
             addAndMakeVisible (pc);
             controls.add (pc);
@@ -355,7 +355,7 @@ private:
     void resized() override
     {
         auto r = getLocalBounds();
-        
+
         // top
         {
             auto rc = r.removeFromTop (30);
@@ -364,7 +364,7 @@ private:
             note.setBounds (rc.removeFromRight (40).reduced (0, 5));
             r.removeFromTop (10);
         }
-        
+
         // faders
         auto rc1 = r;
         auto rc2 = rc1.removeFromRight (rc1.getWidth() / 2);
@@ -378,12 +378,12 @@ private:
 
             i++;
         }
-        
+
         // bottom
         {
             auto rc = getLocalBounds().withTrimmedBottom (4).removeFromBottom (20);
             int w = (rc.getWidth() - 7 * 4) / 9;
-            
+
             coin.setBounds (rc.removeFromLeft (w));
             rc.removeFromLeft (4);
             laser.setBounds (rc.removeFromLeft (w));
@@ -403,11 +403,11 @@ private:
             mutate.setBounds (rc.removeFromLeft (w));
         }
     }
-    
+
     void showMenu()
     {
         PopupMenu m;
-        
+
         m.addItem (PopupMenu::Item ("MIDI Learn").setTicked (processor.getMidiLearn()).setAction ([this] { toggleMidiLearn(); }));
         m.addSeparator();
         m.addItem (PopupMenu::Item ("Import Sound...").setAction ([this] { importSound(); }));
@@ -416,12 +416,12 @@ private:
 
         m.showMenuAsync ({}, {});
     }
-    
+
     void toggleMidiLearn()
     {
         processor.setMidiLearn (! processor.getMidiLearn());
     }
-    
+
     void importSound()
     {
         FileChooser fc ("Load", {}, "*.sfx8sound");
@@ -439,27 +439,27 @@ private:
                         pad.params.setParam (uid.toRawUTF8(), (float) nv.value);
                 }
             }
-            
+
             pad.toPluginParams();
         }
     }
-    
+
     void exportSound()
     {
         FileChooser fc ("Save", {}, "*.sfx8sound");
         if (fc.browseForFileToSave (true))
         {
             auto obj = new DynamicObject();
-            
+
             for (auto pid : pad.params.getParams())
                 obj->setProperty (String (pid.c_str()), pad.params.getParam (pid));
             obj->setProperty ("name", pad.name.get());
-            
+
             auto text = JSON::toString (var (obj));
             fc.getResult().replaceWithText (text);
         }
     }
-    
+
     void exportWav()
     {
         FileChooser fc ("Save", {}, "*.wav");
@@ -472,11 +472,11 @@ private:
 
             AudioSampleBuffer buffer (1, 128);
             buffer.clear();
-            
+
             if (auto os = fc.getResult().createOutputStream())
             {
-				std::unique_ptr<AudioFormatWriter> writer (WavAudioFormat().createWriterFor (os.release(), 44100, 1, 16, {}, 0));
-                
+                std::unique_ptr<AudioFormatWriter> writer (WavAudioFormat().createWriterFor (os.release(), 44100, 1, 16, {}, 0));
+
                 if (writer != nullptr)
                 {
                     while (! sfxr.synthWave (buffer.getWritePointer (0), 0, 128))
@@ -492,7 +492,7 @@ private:
     SFXAudioProcessor& processor;
     Pad& pad;
     gin::AsyncLambdaValueTreeListener listener {processor.state};
-    
+
     MenuButton menu;
     TextEditor name, note;
     OwnedArray<gin::ParamComponent> controls;
@@ -539,7 +539,7 @@ public:
             p->setVisible (false);
 
         pages[num]->setVisible (true);
-        
+
         processor.setCurrentPad (num);
     }
 
@@ -553,4 +553,3 @@ private:
     SFXAudioProcessor& processor;
     OwnedArray<ParamPageComponent> pages;
 };
-

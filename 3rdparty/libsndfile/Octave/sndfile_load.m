@@ -25,8 +25,8 @@
 function [data fs] = sndfile_load (filename)
 
 if (nargin != 1),
-	error ("Need an input filename") ;
-	endif
+    error ("Need an input filename") ;
+    endif
 
 samplerate = -1 ;
 samplingrate = -1 ;
@@ -36,17 +36,17 @@ wavedata = -1 ;
 eval (sprintf ('load -f %s', filename)) ;
 
 if (samplerate > 0),
-	fs = samplerate ;
+    fs = samplerate ;
 elseif (samplingrate > 0),
-	fs = samplingrate ;
+    fs = samplingrate ;
 else
-	error ("Not able to find sample rate.") ;
-	endif
+    error ("Not able to find sample rate.") ;
+    endif
 
 if (max (size (wavedata)) > 1),
-	data = wavedata ;
+    data = wavedata ;
 else
-	error ("Not able to find waveform data.") ;
-	endif
+    error ("Not able to find waveform data.") ;
+    endif
 
 endfunction

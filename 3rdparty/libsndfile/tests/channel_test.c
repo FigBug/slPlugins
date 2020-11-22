@@ -35,102 +35,102 @@
 
 #include "utils.h"
 
-#define	BUFFER_LEN		(1 << 10)
-#define LOG_BUFFER_SIZE	1024
+#define BUFFER_LEN      (1 << 10)
+#define LOG_BUFFER_SIZE 1024
 
-static	void	channel_test			(void) ;
-static	double	max_diff		(const float *a, const float *b, unsigned int len, unsigned int * position) ;
+static  void    channel_test            (void) ;
+static  double  max_diff        (const float *a, const float *b, unsigned int len, unsigned int * position) ;
 
 int
 main (void) // int argc, char *argv [])
-{	channel_test () ;
-	return 0 ;
+{   channel_test () ;
+    return 0 ;
 } /* main */
 
 /*============================================================================================
-**	Here are the test functions.
+**  Here are the test functions.
 */
 
 static void
 channel_test (void)
-{	static float	float_data [1024] ;
-	static float	read_float [1024] ;
-	static int		read_int [1024] ;
-	static short	read_short [1024] ;
-	unsigned int	ch, k, position = 0 ;
+{   static float    float_data [1024] ;
+    static float    read_float [1024] ;
+    static int      read_int [1024] ;
+    static short    read_short [1024] ;
+    unsigned int    ch, k, position = 0 ;
 
-	gen_windowed_sine_float (float_data, ARRAY_LEN (float_data), 0.9) ;
+    gen_windowed_sine_float (float_data, ARRAY_LEN (float_data), 0.9) ;
 
-	for (ch = 1 ; ch <= 8 ; ch++)
-	{	SNDFILE	*file ;
-		SF_INFO	wsfinfo, rsfinfo ;
-		sf_count_t wframes = ARRAY_LEN (float_data) / ch ;
-		double	maxdiff ;
-		char	filename [256] ;
+    for (ch = 1 ; ch <= 8 ; ch++)
+    {   SNDFILE *file ;
+        SF_INFO wsfinfo, rsfinfo ;
+        sf_count_t wframes = ARRAY_LEN (float_data) / ch ;
+        double  maxdiff ;
+        char    filename [256] ;
 
-		snprintf (filename, sizeof (filename), "chan_%d.wav", ch) ;
-		print_test_name (__func__, filename) ;
+        snprintf (filename, sizeof (filename), "chan_%d.wav", ch) ;
+        print_test_name (__func__, filename) ;
 
-		sf_info_setup (&wsfinfo, SF_FORMAT_WAV | SF_FORMAT_FLOAT, 48000, ch) ;
-		sf_info_clear (&rsfinfo) ;
+        sf_info_setup (&wsfinfo, SF_FORMAT_WAV | SF_FORMAT_FLOAT, 48000, ch) ;
+        sf_info_clear (&rsfinfo) ;
 
-		/* Write the test file. */
-		file = test_open_file_or_die (filename, SFM_WRITE, &wsfinfo, SF_FALSE, __LINE__) ;
-		test_writef_float_or_die (file, 0, float_data, wframes, __LINE__) ;
-		sf_close (file) ;
+        /* Write the test file. */
+        file = test_open_file_or_die (filename, SFM_WRITE, &wsfinfo, SF_FALSE, __LINE__) ;
+        test_writef_float_or_die (file, 0, float_data, wframes, __LINE__) ;
+        sf_close (file) ;
 
-		/* Read it as float and test. */
-		file = test_open_file_or_die (filename, SFM_READ, &rsfinfo, SF_FALSE, __LINE__) ;
-		exit_if_true (rsfinfo.frames == 0,
-				"\n\nLine %d : Frames in file %" PRId64 ".\n\n", __LINE__, rsfinfo.frames) ;
-		exit_if_true (wframes != rsfinfo.frames,
-				"\n\nLine %d : Wrote %" PRId64 ", read %" PRId64 " frames.\n\n", __LINE__, wframes, rsfinfo.frames) ;
+        /* Read it as float and test. */
+        file = test_open_file_or_die (filename, SFM_READ, &rsfinfo, SF_FALSE, __LINE__) ;
+        exit_if_true (rsfinfo.frames == 0,
+                "\n\nLine %d : Frames in file %" PRId64 ".\n\n", __LINE__, rsfinfo.frames) ;
+        exit_if_true (wframes != rsfinfo.frames,
+                "\n\nLine %d : Wrote %" PRId64 ", read %" PRId64 " frames.\n\n", __LINE__, wframes, rsfinfo.frames) ;
 
-		sf_command (file, SFC_SET_SCALE_FLOAT_INT_READ, NULL, SF_TRUE) ;
+        sf_command (file, SFC_SET_SCALE_FLOAT_INT_READ, NULL, SF_TRUE) ;
 
-		test_readf_float_or_die (file, 0, read_float, rsfinfo.frames, __LINE__) ;
-		compare_float_or_die (float_data, read_float, ch * rsfinfo.frames, __LINE__) ;
+        test_readf_float_or_die (file, 0, read_float, rsfinfo.frames, __LINE__) ;
+        compare_float_or_die (float_data, read_float, ch * rsfinfo.frames, __LINE__) ;
 
-		/* Read it as short and test. */
-		test_seek_or_die (file, 0, SEEK_SET, 0, ch, __LINE__) ;
-		test_readf_short_or_die (file, 0, read_short, rsfinfo.frames, __LINE__) ;
+        /* Read it as short and test. */
+        test_seek_or_die (file, 0, SEEK_SET, 0, ch, __LINE__) ;
+        test_readf_short_or_die (file, 0, read_short, rsfinfo.frames, __LINE__) ;
 
-		for (k = 0 ; k < ARRAY_LEN (read_float) ; k++)
-			read_float [k] = read_short [k] * (0.9 / 0x8000) ;
+        for (k = 0 ; k < ARRAY_LEN (read_float) ; k++)
+            read_float [k] = read_short [k] * (0.9 / 0x8000) ;
 
-		maxdiff = max_diff (float_data, read_float, ch * rsfinfo.frames, &position) ;
-		exit_if_true (maxdiff > 0.5, "\n\nLine %d : Max diff is %f at index %u\n\n", __LINE__, maxdiff, position) ;
+        maxdiff = max_diff (float_data, read_float, ch * rsfinfo.frames, &position) ;
+        exit_if_true (maxdiff > 0.5, "\n\nLine %d : Max diff is %f at index %u\n\n", __LINE__, maxdiff, position) ;
 
-		/* Read it as int and test. */
-		test_seek_or_die (file, 0, SEEK_SET, 0, ch, __LINE__) ;
-		test_readf_int_or_die (file, 0, read_int, rsfinfo.frames, __LINE__) ;
+        /* Read it as int and test. */
+        test_seek_or_die (file, 0, SEEK_SET, 0, ch, __LINE__) ;
+        test_readf_int_or_die (file, 0, read_int, rsfinfo.frames, __LINE__) ;
 
-		for (k = 0 ; k < ARRAY_LEN (read_float) ; k++)
-			read_float [k] = read_int [k] * (0.9 / 0x80000000) ;
+        for (k = 0 ; k < ARRAY_LEN (read_float) ; k++)
+            read_float [k] = read_int [k] * (0.9 / 0x80000000) ;
 
-		maxdiff = max_diff (float_data, read_float, ch * rsfinfo.frames, &position) ;
-		exit_if_true (maxdiff > 0.5, "\n\nLine %d : Max diff is %f at index %u\n\n", __LINE__, maxdiff, position) ;
+        maxdiff = max_diff (float_data, read_float, ch * rsfinfo.frames, &position) ;
+        exit_if_true (maxdiff > 0.5, "\n\nLine %d : Max diff is %f at index %u\n\n", __LINE__, maxdiff, position) ;
 
-		sf_close (file) ;
-		unlink (filename) ;
-		printf ("ok\n") ;
-		} ;
+        sf_close (file) ;
+        unlink (filename) ;
+        printf ("ok\n") ;
+        } ;
 
-	return ;
+    return ;
 } /* channel_test */
 
 static double
 max_diff (const float *a, const float *b, unsigned int len, unsigned int * position)
-{	double mdiff = 0.0, diff ;
-	unsigned int k ;
+{   double mdiff = 0.0, diff ;
+    unsigned int k ;
 
-	for (k = 0 ; k < len ; k++)
-	{	diff = fabs (a [k] - b [k]) ;
-		if (diff > mdiff)
-		{ 	mdiff = diff ;
-			*position = k ;
-			} ;
-		} ;
+    for (k = 0 ; k < len ; k++)
+    {   diff = fabs (a [k] - b [k]) ;
+        if (diff > mdiff)
+        {   mdiff = diff ;
+            *position = k ;
+            } ;
+        } ;
 
-	return mdiff ;
+    return mdiff ;
 } /* max_diff */

@@ -35,13 +35,13 @@ extern "C" {
 #endif
 
 typedef struct crossfeed_s {
-	float mid[25];
-	float side[25];
-	const float *filter;
-	unsigned char delay;
-	unsigned char len;
-	unsigned char pos;
-	unsigned char bypass;
+    float mid[25];
+    float side[25];
+    const float *filter;
+    unsigned char delay;
+    unsigned char len;
+    unsigned char pos;
+    unsigned char bypass;
 } crossfeed_t;
 
 int crossfeed_init(crossfeed_t *filter, int samplerate);

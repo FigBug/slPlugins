@@ -19,7 +19,7 @@
  */
 
 /*
-	File:		alac_decoder.h
+    File:       alac_decoder.h
 */
 
 #ifndef ALAC_DECODER_H
@@ -31,31 +31,31 @@
 
 typedef enum
 {
-	false = 0,
-	ALAC_TRUE = 1
+    false = 0,
+    ALAC_TRUE = 1
 } bool ;
 
 struct BitBuffer ;
 
 typedef struct alac_decoder
 {
-		// decoding parameters (public for use in the analyzer)
-		ALACSpecificConfig		mConfig ;
+        // decoding parameters (public for use in the analyzer)
+        ALACSpecificConfig      mConfig ;
 
-		uint16_t					mActiveElements ;
+        uint16_t                    mActiveElements ;
 
-		// decoding buffers
-		int32_t *				mMixBufferU ;
-		int32_t *				mMixBufferV ;
-		int32_t *				mPredictor ;
-		uint16_t *				mShiftBuffer ;	// note: this points to mPredictor's memory but different
-												//		 variable for clarity and type difference
+        // decoding buffers
+        int32_t *               mMixBufferU ;
+        int32_t *               mMixBufferV ;
+        int32_t *               mPredictor ;
+        uint16_t *              mShiftBuffer ;  // note: this points to mPredictor's memory but different
+                                                //       variable for clarity and type difference
 } alac_decoder ;
 
 alac_decoder * alac_decoder_new (void) ;
 void alac_decoder_delete (alac_decoder *) ;
 
-int32_t	alac_init (alac_decoder *p, void * inMagicCookie, uint32_t inMagicCookieSize) ;
-int32_t	alac_decode (alac_decoder *, struct BitBuffer * bits, uint8_t * sampleBuffer, uint32_t numSamples, uint32_t numChannels, uint32_t * outNumSamples) ;
+int32_t alac_init (alac_decoder *p, void * inMagicCookie, uint32_t inMagicCookieSize) ;
+int32_t alac_decode (alac_decoder *, struct BitBuffer * bits, uint8_t * sampleBuffer, uint32_t numSamples, uint32_t numChannels, uint32_t * outNumSamples) ;
 
-#endif	/* ALAC_DECODER_H */
+#endif  /* ALAC_DECODER_H */

@@ -26,22 +26,22 @@
 function sndfile_save (filename, data, fs)
 
 if nargin != 3,
-	error ("Need three input arguments: filename, data and fs.") ;
-	endif
+    error ("Need three input arguments: filename, data and fs.") ;
+    endif
 
 if (! isstr (filename)),
-	error ("First parameter 'filename' is must be a string.") ;
-	endif
+    error ("First parameter 'filename' is must be a string.") ;
+    endif
 
 if (max (size (fs)) > 1),
-	error ("Second parameter 'fs' must be a single value, not an array or matrix.") ;
-	endif
+    error ("Second parameter 'fs' must be a single value, not an array or matrix.") ;
+    endif
 
 [nr nc] = size (data) ;
 
 if (nr > nc),
-	data = data' ;
-	endif
+    data = data' ;
+    endif
 
 samplerate = fs ;
 wavedata = data ;

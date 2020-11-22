@@ -17,13 +17,13 @@
 */
 
 typedef struct
-{	/* The tag in the AIFF or CAF file. */
-	int channel_layout_tag ;
+{   /* The tag in the AIFF or CAF file. */
+    int channel_layout_tag ;
 
-	/* The equivalent array of SF_CHANNEL_MAP_* entries. */
-	const int * channel_map ;
+    /* The equivalent array of SF_CHANNEL_MAP_* entries. */
+    const int * channel_map ;
 
-	const char * name ;
+    const char * name ;
 } AIFF_CAF_CHANNEL_MAP ;
 
 

@@ -19,11 +19,11 @@
  */
 
 /*
-	File:		dplib.h
+    File:       dplib.h
 
-	Contains:	Dynamic Predictor routines
+    Contains:   Dynamic Predictor routines
 
-	Copyright:	Copyright (C) 2001-2011 Apple, Inc.
+    Copyright:  Copyright (C) 2001-2011 Apple, Inc.
 */
 
 #ifndef __DPLIB_H__
@@ -37,7 +37,7 @@ extern "C" {
 
 // defines
 
-#define DENSHIFT_MAX	15
+#define DENSHIFT_MAX    15
 #define DENSHIFT_DEFAULT 9
 #define AINIT 38
 #define BINIT (-29)
@@ -58,4 +58,4 @@ void unpc_block (const int32_t * pc, int32_t * out, int32_t num, int16_t * coefs
 }
 #endif
 
-#endif	/* __DPLIB_H__ */
+#endif  /* __DPLIB_H__ */

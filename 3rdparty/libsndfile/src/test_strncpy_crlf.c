@@ -27,33 +27,33 @@
 
 void
 test_psf_strlcpy_crlf (void)
-{	const char *src = "a\nb\nc\n" ;
-	char *dest ;
-	int dest_len ;
+{   const char *src = "a\nb\nc\n" ;
+    char *dest ;
+    int dest_len ;
 
-	print_test_name ("Testing psf_strlcpy_crlf") ;
+    print_test_name ("Testing psf_strlcpy_crlf") ;
 
-	for (dest_len = 3 ; dest_len < 30 ; dest_len++)
-	{	dest = calloc (1, dest_len + 1) ;
-		if (dest == NULL)
-		{	printf ("\n\nLine %d: calloc failed!\n\n", __LINE__) ;
-			exit (1) ;
-			} ;
+    for (dest_len = 3 ; dest_len < 30 ; dest_len++)
+    {   dest = calloc (1, dest_len + 1) ;
+        if (dest == NULL)
+        {   printf ("\n\nLine %d: calloc failed!\n\n", __LINE__) ;
+            exit (1) ;
+            } ;
 
-		/* This value needs to be a in the [0, 127] range to avoid tripping up
-		** compiles like Sun Studio 12.*
-		*/
-		dest [dest_len] = '\x5a' ;
+        /* This value needs to be a in the [0, 127] range to avoid tripping up
+        ** compiles like Sun Studio 12.*
+        */
+        dest [dest_len] = '\x5a' ;
 
-		psf_strlcpy_crlf (dest, src, dest_len, sizeof (*src)) ;
+        psf_strlcpy_crlf (dest, src, dest_len, sizeof (*src)) ;
 
-		if (dest [dest_len] != '\x5a')
-		{	printf ("\n\nLine %d: buffer overrun for dest_len == %d\n\n", __LINE__, dest_len) ;
-			exit (1) ;
-			} ;
+        if (dest [dest_len] != '\x5a')
+        {   printf ("\n\nLine %d: buffer overrun for dest_len == %d\n\n", __LINE__, dest_len) ;
+            exit (1) ;
+            } ;
 
-		free (dest) ;
-		} ;
+        free (dest) ;
+        } ;
 
-	puts ("ok") ;
+    puts ("ok") ;
 } /* test_psf_strlcpy_crlf */

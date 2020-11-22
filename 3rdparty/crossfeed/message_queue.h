@@ -42,25 +42,25 @@
  * This structure is passed to all message_queue API calls
  */
 struct message_queue {
-	unsigned int message_size;
-	unsigned int max_depth;
-	void *memory;
-	void **freelist;
-	void **queue_data;
-	struct {
-		sem_t *sem;
-		unsigned int blocked_readers;
-		int free_blocks;
-		unsigned int allocpos __attribute__((aligned(CACHE_LINE_SIZE)));
-		unsigned int freepos __attribute__((aligned(CACHE_LINE_SIZE)));
-	} allocator __attribute__((aligned(CACHE_LINE_SIZE)));
-	struct {
-		sem_t *sem;
-		unsigned int blocked_readers;
-		int entries;
-		unsigned int readpos __attribute__((aligned(CACHE_LINE_SIZE)));
-		unsigned int writepos __attribute__((aligned(CACHE_LINE_SIZE)));
-	} queue __attribute__((aligned(CACHE_LINE_SIZE)));
+    unsigned int message_size;
+    unsigned int max_depth;
+    void *memory;
+    void **freelist;
+    void **queue_data;
+    struct {
+        sem_t *sem;
+        unsigned int blocked_readers;
+        int free_blocks;
+        unsigned int allocpos __attribute__((aligned(CACHE_LINE_SIZE)));
+        unsigned int freepos __attribute__((aligned(CACHE_LINE_SIZE)));
+    } allocator __attribute__((aligned(CACHE_LINE_SIZE)));
+    struct {
+        sem_t *sem;
+        unsigned int blocked_readers;
+        int entries;
+        unsigned int readpos __attribute__((aligned(CACHE_LINE_SIZE)));
+        unsigned int writepos __attribute__((aligned(CACHE_LINE_SIZE)));
+    } queue __attribute__((aligned(CACHE_LINE_SIZE)));
 };
 
 #ifdef __cplusplus

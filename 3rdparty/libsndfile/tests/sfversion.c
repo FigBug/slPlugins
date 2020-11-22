@@ -23,24 +23,23 @@
 
 #include <sndfile.h>
 
-#define	BUFFER_SIZE	(256)
+#define BUFFER_SIZE (256)
 
 
 int
 main (void)
-{	static char	strbuffer [BUFFER_SIZE] ;
-	const char * ver ;
+{   static char strbuffer [BUFFER_SIZE] ;
+    const char * ver ;
 
-	sf_command (NULL, SFC_GET_LIB_VERSION, strbuffer, sizeof (strbuffer)) ;
-	ver = sf_version_string () ;
+    sf_command (NULL, SFC_GET_LIB_VERSION, strbuffer, sizeof (strbuffer)) ;
+    ver = sf_version_string () ;
 
-	if (strcmp (ver, strbuffer) != 0)
-	{	printf ("Version mismatch : '%s' != '%s'\n\n", ver, strbuffer) ;
-		exit (1) ;
-		} ;
+    if (strcmp (ver, strbuffer) != 0)
+    {   printf ("Version mismatch : '%s' != '%s'\n\n", ver, strbuffer) ;
+        exit (1) ;
+        } ;
 
-	printf ("%s", strbuffer) ;
+    printf ("%s", strbuffer) ;
 
-	return 0 ;
+    return 0 ;
 } /* main */
-

@@ -46,12 +46,12 @@
 
 #include "common.h"
 
-#define BUFFER_LEN		(1 << 14)
+#define BUFFER_LEN      (1 << 14)
 
 
-typedef	struct
-{	char	*infilename, *outfilename ;
-	SF_INFO	infileinfo, outfileinfo ;
+typedef struct
+{   char    *infilename, *outfilename ;
+    SF_INFO infileinfo, outfileinfo ;
 } OptionData ;
 
 const char * program_name (const char * argv0) ;
@@ -61,122 +61,121 @@ static void add_instrument_data (SNDFILE *outfile, const SF_INFO * in_info) ;
 static void
 usage_exit (const char *progname)
 {
-	printf ("\nUsage : %s <input file> <output file>\n", progname) ;
-	puts ("") ;
-	exit (1) ;
+    printf ("\nUsage : %s <input file> <output file>\n", progname) ;
+    puts ("") ;
+    exit (1) ;
 } /* usage_exit */
 
 int
 main (int argc, char * argv [])
-{	const char	*progname, *infilename, *outfilename ;
-	SNDFILE		*infile = NULL, *outfile = NULL ;
-	SF_INFO		in_sfinfo, out_sfinfo ;
+{   const char  *progname, *infilename, *outfilename ;
+    SNDFILE     *infile = NULL, *outfile = NULL ;
+    SF_INFO     in_sfinfo, out_sfinfo ;
 
-	progname = program_name (argv [0]) ;
+    progname = program_name (argv [0]) ;
 
-	if (argc < 3 || argc > 5)
-		usage_exit (progname) ;
+    if (argc < 3 || argc > 5)
+        usage_exit (progname) ;
 
-	infilename = argv [argc-2] ;
-	outfilename = argv [argc-1] ;
+    infilename = argv [argc-2] ;
+    outfilename = argv [argc-1] ;
 
-	if (strcmp (infilename, outfilename) == 0)
-	{	printf ("Error : Input and output filenames are the same.\n\n") ;
-		usage_exit (progname) ;
-		} ;
+    if (strcmp (infilename, outfilename) == 0)
+    {   printf ("Error : Input and output filenames are the same.\n\n") ;
+        usage_exit (progname) ;
+        } ;
 
-	if (strlen (infilename) > 1 && infilename [0] == '-')
-	{	printf ("Error : Input filename (%s) looks like an option.\n\n", infilename) ;
-		usage_exit (progname) ;
-		} ;
+    if (strlen (infilename) > 1 && infilename [0] == '-')
+    {   printf ("Error : Input filename (%s) looks like an option.\n\n", infilename) ;
+        usage_exit (progname) ;
+        } ;
 
-	if (outfilename [0] == '-')
-	{	printf ("Error : Output filename (%s) looks like an option.\n\n", outfilename) ;
-		usage_exit (progname) ;
-		} ;
+    if (outfilename [0] == '-')
+    {   printf ("Error : Output filename (%s) looks like an option.\n\n", outfilename) ;
+        usage_exit (progname) ;
+        } ;
 
-	memset (&in_sfinfo, 0, sizeof (in_sfinfo)) ;
+    memset (&in_sfinfo, 0, sizeof (in_sfinfo)) ;
 
-	if ((infile = sf_open (infilename, SFM_READ, &in_sfinfo)) == NULL)
-	{	printf ("Not able to open input file %s.\n", infilename) ;
-		puts (sf_strerror (NULL)) ;
-		return 1 ;
-		} ;
+    if ((infile = sf_open (infilename, SFM_READ, &in_sfinfo)) == NULL)
+    {   printf ("Not able to open input file %s.\n", infilename) ;
+        puts (sf_strerror (NULL)) ;
+        return 1 ;
+        } ;
 
-	memcpy (&out_sfinfo, &in_sfinfo, sizeof (out_sfinfo)) ;
-	/* Open the output file. */
-	if ((outfile = sf_open (outfilename, SFM_WRITE, &out_sfinfo)) == NULL)
-	{	printf ("Not able to open output file %s : %s\n", outfilename, sf_strerror (NULL)) ;
-		return 1 ;
-		} ;
+    memcpy (&out_sfinfo, &in_sfinfo, sizeof (out_sfinfo)) ;
+    /* Open the output file. */
+    if ((outfile = sf_open (outfilename, SFM_WRITE, &out_sfinfo)) == NULL)
+    {   printf ("Not able to open output file %s : %s\n", outfilename, sf_strerror (NULL)) ;
+        return 1 ;
+        } ;
 
-	/* Add the loop data */
-	add_instrument_data (outfile, &in_sfinfo) ;
+    /* Add the loop data */
+    add_instrument_data (outfile, &in_sfinfo) ;
 
-	/* Copy the audio data */
-	sfe_copy_data_int (outfile, infile, in_sfinfo.channels) ;
+    /* Copy the audio data */
+    sfe_copy_data_int (outfile, infile, in_sfinfo.channels) ;
 
-	sf_close (infile) ;
-	sf_close (outfile) ;
+    sf_close (infile) ;
+    sf_close (outfile) ;
 
-	return 0 ;
+    return 0 ;
 } /* main */
 
 const char *
 program_name (const char * argv0)
-{	const char * tmp ;
+{   const char * tmp ;
 
-	tmp = strrchr (argv0, '/') ;
-	argv0 = tmp ? tmp + 1 : argv0 ;
+    tmp = strrchr (argv0, '/') ;
+    argv0 = tmp ? tmp + 1 : argv0 ;
 
-	/* Remove leading libtool name mangling. */
-	if (strstr (argv0, "lt-") == argv0)
-		return argv0 + 3 ;
+    /* Remove leading libtool name mangling. */
+    if (strstr (argv0, "lt-") == argv0)
+        return argv0 + 3 ;
 
-	return argv0 ;
+    return argv0 ;
 } /* program_name */
 
 static void
 sfe_copy_data_int (SNDFILE *outfile, SNDFILE *infile, int channels)
-{	static int	data [BUFFER_LEN] ;
-	int		frames, readcount ;
+{   static int  data [BUFFER_LEN] ;
+    int     frames, readcount ;
 
-	frames = BUFFER_LEN / channels ;
-	readcount = frames ;
+    frames = BUFFER_LEN / channels ;
+    readcount = frames ;
 
-	while (readcount > 0)
-	{	readcount = sf_readf_int (infile, data, frames) ;
-		sf_writef_int (outfile, data, readcount) ;
-		} ;
+    while (readcount > 0)
+    {   readcount = sf_readf_int (infile, data, frames) ;
+        sf_writef_int (outfile, data, readcount) ;
+        } ;
 
-	return ;
+    return ;
 } /* sfe_copy_data_int */
 
 static void
 add_instrument_data (SNDFILE *file, const SF_INFO *info)
-{	SF_INSTRUMENT instr ;
+{   SF_INSTRUMENT instr ;
 
-	memset (&instr, 0, sizeof (instr)) ;
+    memset (&instr, 0, sizeof (instr)) ;
 
-	instr.gain = 1 ;
-	instr.basenote = 0 ;
-	instr.detune = 0 ;
-	instr.velocity_lo = 0 ;
-	instr.velocity_hi = 0 ;
-	instr.key_lo = 0 ;
-	instr.key_hi = 0 ;
-	instr.loop_count = 1 ;
+    instr.gain = 1 ;
+    instr.basenote = 0 ;
+    instr.detune = 0 ;
+    instr.velocity_lo = 0 ;
+    instr.velocity_hi = 0 ;
+    instr.key_lo = 0 ;
+    instr.key_hi = 0 ;
+    instr.loop_count = 1 ;
 
-	instr.loops [0].mode = SF_LOOP_FORWARD ;
-	instr.loops [0].start = 0 ;
-	instr.loops [0].end = info->frames ;
-	instr.loops [0].count = 0 ;
+    instr.loops [0].mode = SF_LOOP_FORWARD ;
+    instr.loops [0].start = 0 ;
+    instr.loops [0].end = info->frames ;
+    instr.loops [0].count = 0 ;
 
-	if (sf_command (file, SFC_SET_INSTRUMENT, &instr, sizeof (instr)) == SF_FALSE)
-	{	printf ("\n\nLine %d : sf_command (SFC_SET_INSTRUMENT) failed.\n\n", __LINE__) ;
-		exit (1) ;
-		} ;
+    if (sf_command (file, SFC_SET_INSTRUMENT, &instr, sizeof (instr)) == SF_FALSE)
+    {   printf ("\n\nLine %d : sf_command (SFC_SET_INSTRUMENT) failed.\n\n", __LINE__) ;
+        exit (1) ;
+        } ;
 
-	return ;
+    return ;
 } /* add_instrument_data */
-

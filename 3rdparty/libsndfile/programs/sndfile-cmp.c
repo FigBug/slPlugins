@@ -50,106 +50,106 @@ static char * filename1 = NULL, * filename2 = NULL ;
 
 static int
 comparison_error (const char * what, sf_count_t frame_offset)
-{	char buffer [128] ;
+{   char buffer [128] ;
 
-	if (frame_offset >= 0)
-		snprintf (buffer, sizeof (buffer), " (at frame offset %" PRId64 ")", frame_offset) ;
-	else
-		buffer [0] = 0 ;
+    if (frame_offset >= 0)
+        snprintf (buffer, sizeof (buffer), " (at frame offset %" PRId64 ")", frame_offset) ;
+    else
+        buffer [0] = 0 ;
 
-	printf ("%s: %s of files %s and %s differ%s.\n", progname, what, filename1, filename2, buffer) ;
-	return 1 ;
+    printf ("%s: %s of files %s and %s differ%s.\n", progname, what, filename1, filename2, buffer) ;
+    return 1 ;
 } /* comparison_error */
 
 static int
 compare (void)
 {
-	double buf1 [BUFLEN], buf2 [BUFLEN] ;
-	SF_INFO sfinfo1, sfinfo2 ;
-	SNDFILE * sf1 = NULL, * sf2 = NULL ;
-	sf_count_t items, i, nread1, nread2, offset = 0 ;
-	int retval = 0 ;
+    double buf1 [BUFLEN], buf2 [BUFLEN] ;
+    SF_INFO sfinfo1, sfinfo2 ;
+    SNDFILE * sf1 = NULL, * sf2 = NULL ;
+    sf_count_t items, i, nread1, nread2, offset = 0 ;
+    int retval = 0 ;
 
-	memset (&sfinfo1, 0, sizeof (SF_INFO)) ;
-	sf1 = sf_open (filename1, SFM_READ, &sfinfo1) ;
-	if (sf1 == NULL)
-	{	printf ("Error opening %s.\n", filename1) ;
-		retval = 1 ;
-		goto out ;
-		} ;
+    memset (&sfinfo1, 0, sizeof (SF_INFO)) ;
+    sf1 = sf_open (filename1, SFM_READ, &sfinfo1) ;
+    if (sf1 == NULL)
+    {   printf ("Error opening %s.\n", filename1) ;
+        retval = 1 ;
+        goto out ;
+        } ;
 
-	memset (&sfinfo2, 0, sizeof (SF_INFO)) ;
-	sf2 = sf_open (filename2, SFM_READ, &sfinfo2) ;
-	if (sf2 == NULL)
-	{	printf ("Error opening %s.\n", filename2) ;
-		retval = 1 ;
-		goto out ;
-		} ;
+    memset (&sfinfo2, 0, sizeof (SF_INFO)) ;
+    sf2 = sf_open (filename2, SFM_READ, &sfinfo2) ;
+    if (sf2 == NULL)
+    {   printf ("Error opening %s.\n", filename2) ;
+        retval = 1 ;
+        goto out ;
+        } ;
 
-	if (sfinfo1.samplerate != sfinfo2.samplerate)
-	{	retval = comparison_error ("Samplerates", -1) ;
-		goto out ;
-		} ;
+    if (sfinfo1.samplerate != sfinfo2.samplerate)
+    {   retval = comparison_error ("Samplerates", -1) ;
+        goto out ;
+        } ;
 
-	if (sfinfo1.channels != sfinfo2.channels)
-	{	retval = comparison_error ("Number of channels", -1) ;
-		goto out ;
-		} ;
+    if (sfinfo1.channels != sfinfo2.channels)
+    {   retval = comparison_error ("Number of channels", -1) ;
+        goto out ;
+        } ;
 
-	/* Calculate the framecount that will fit in our data buffers */
-	items = BUFLEN / sfinfo1.channels ;
+    /* Calculate the framecount that will fit in our data buffers */
+    items = BUFLEN / sfinfo1.channels ;
 
-	while ((nread1 = sf_readf_double (sf1, buf1, items)) > 0)
-	{	nread2 = sf_readf_double (sf2, buf2, nread1) ;
-		if (nread2 != nread1)
-		{	retval = comparison_error ("PCM data lengths", -1) ;
-			goto out ;
-			} ;
-		for (i = 0 ; i < nread1 * sfinfo1.channels ; i++)
-		{	if (buf1 [i] != buf2 [i])
-			{	retval = comparison_error ("PCM data", offset + i / sfinfo1.channels) ;
-				goto out ;
-				} ;
-			} ;
-		offset += nread1 ;
-		} ;
+    while ((nread1 = sf_readf_double (sf1, buf1, items)) > 0)
+    {   nread2 = sf_readf_double (sf2, buf2, nread1) ;
+        if (nread2 != nread1)
+        {   retval = comparison_error ("PCM data lengths", -1) ;
+            goto out ;
+            } ;
+        for (i = 0 ; i < nread1 * sfinfo1.channels ; i++)
+        {   if (buf1 [i] != buf2 [i])
+            {   retval = comparison_error ("PCM data", offset + i / sfinfo1.channels) ;
+                goto out ;
+                } ;
+            } ;
+        offset += nread1 ;
+        } ;
 
-	if ((nread2 = sf_readf_double (sf2, buf2, items)) != 0)
-	{	retval = comparison_error ("PCM data lengths", -1) ;
-		goto out ;
-		} ;
+    if ((nread2 = sf_readf_double (sf2, buf2, items)) != 0)
+    {   retval = comparison_error ("PCM data lengths", -1) ;
+        goto out ;
+        } ;
 
 out :
-	sf_close (sf1) ;
-	sf_close (sf2) ;
+    sf_close (sf1) ;
+    sf_close (sf2) ;
 
-	return retval ;
+    return retval ;
 } /* compare */
 
 static void
 usage_exit (void)
 {
-	printf ("Usage : %s <filename> <filename>\n", progname) ;
-	printf ("	Compare the PCM data of two sound files.\n\n") ;
-	printf ("Using %s.\n\n", sf_version_string ()) ;
-	exit (1) ;
+    printf ("Usage : %s <filename> <filename>\n", progname) ;
+    printf ("   Compare the PCM data of two sound files.\n\n") ;
+    printf ("Using %s.\n\n", sf_version_string ()) ;
+    exit (1) ;
 } /* usage_exit */
 
 int
 main (int argc, char *argv [])
 {
-	progname = program_name (argv [0]) ;
+    progname = program_name (argv [0]) ;
 
-	if (argc != 3)
-		usage_exit () ;
+    if (argc != 3)
+        usage_exit () ;
 
-	filename1 = argv [argc - 2] ;
-	filename2 = argv [argc - 1] ;
+    filename1 = argv [argc - 2] ;
+    filename2 = argv [argc - 1] ;
 
-	if (strcmp (filename1, filename2) == 0)
-	{	printf ("Error : Input filenames are the same.\n\n") ;
-		usage_exit () ;
-		} ;
+    if (strcmp (filename1, filename2) == 0)
+    {   printf ("Error : Input filenames are the same.\n\n") ;
+        usage_exit () ;
+        } ;
 
-	return compare () ;
+    return compare () ;
 } /* main */

@@ -17,7 +17,7 @@
 /**
 */
 class GateAudioProcessorEditor : public gin::ProcessorEditor,
-							     private gin::Parameter::Listener
+                                 private gin::Parameter::Listener
 {
 public:
     GateAudioProcessorEditor (GateAudioProcessor&);
@@ -29,10 +29,10 @@ public:
 
 private:
     GateAudioProcessor& proc;
-    
+
     gin::DynamicsMeter meter {proc.gate};
     gin::TriggeredScope scope {proc.fifo};
-    
+
     gin::LevelMeter inputMeter {proc.gate.getInputTracker()};
     gin::LevelMeter outputMeter {proc.gate.getOutputTracker()};
     gin::LevelMeter reductionMeter {proc.gate.getReductionTracker(), {-30, 0}};

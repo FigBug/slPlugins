@@ -18,13 +18,13 @@ using namespace gin;
 GateAudioProcessor::GateAudioProcessor()
 {
     fifo.setSize (3, 44100);
-    
+
     attack    = addExtParam ("attack",    "Attack",    "", "ms",    { 0.0f,     5.0f, 0.0f, 1.0f},    0.0f, 0.1f);
-    release   = addExtParam ("release",   "Release",   "", "ms",  	{ 1.0f,   500.0f, 0.0f, 0.3f},    5.0f, 0.1f);
+    release   = addExtParam ("release",   "Release",   "", "ms",    { 1.0f,   500.0f, 0.0f, 0.3f},    5.0f, 0.1f);
     threshold = addExtParam ("threshold", "Threshold", "", "dB",    { -60.0f,   0.0f, 0.0f, 1.0f},  -30.0f, 0.1f);
     input     = addExtParam ("input",     "Input",     "", "dB",    { -30.0f,  30.0f, 0.0f, 1.0f},    0.0f, 0.1f);
     output    = addExtParam ("output",    "Output",    "", "dB",    { -30.0f,  30.0f, 0.0f, 1.0f},    0.0f, 0.1f);
-    
+
     attack->conversionFunction  = [] (float in) { return in / 1000.0; };
     release->conversionFunction = [] (float in) { return in / 1000.0; };
     input->conversionFunction   = [] (float in) { return Decibels::decibelsToGain (in); };
@@ -49,7 +49,7 @@ void GateAudioProcessor::prepareToPlay (double sampleRate, int samplesPerBlock)
 void GateAudioProcessor::reset()
 {
     gin::Processor::reset();
-    
+
     gate.reset();
 }
 
@@ -77,9 +77,9 @@ void GateAudioProcessor::processBlock (AudioSampleBuffer& buffer, MidiBuffer&)
     {
         FloatVectorOperations::copy (fifoData.getWritePointer (0), buffer.getReadPointer (0), numSamples);
     }
-    
+
     ScratchBuffer envData (1, numSamples);
-        
+
     if (isSmoothing())
     {
         int pos = 0;
@@ -87,7 +87,7 @@ void GateAudioProcessor::processBlock (AudioSampleBuffer& buffer, MidiBuffer&)
         {
             auto workBuffer = sliceBuffer (buffer, pos, 1);
             auto envWorkBuffer = sliceBuffer (envData, pos, 1);
-            
+
             gate.setInputGain (input->getProcValue (1));
             gate.setOutputGain (output->getProcValue (1));
             gate.setParams (attack->getProcValue (1),
@@ -95,9 +95,9 @@ void GateAudioProcessor::processBlock (AudioSampleBuffer& buffer, MidiBuffer&)
                                threshold->getProcValue (1),
                                1000,
                                0);
-            
+
             gate.process (workBuffer, &envWorkBuffer);
-            
+
             pos++;
         }
 
@@ -114,7 +114,7 @@ void GateAudioProcessor::processBlock (AudioSampleBuffer& buffer, MidiBuffer&)
 
         gate.process (buffer, &envData);
     }
-    
+
     if (getTotalNumInputChannels() == 2)
     {
         FloatVectorOperations::copy (fifoData.getWritePointer (1), buffer.getReadPointer (0), numSamples);
@@ -125,9 +125,9 @@ void GateAudioProcessor::processBlock (AudioSampleBuffer& buffer, MidiBuffer&)
     {
         FloatVectorOperations::copy (fifoData.getWritePointer (1), buffer.getReadPointer (0), numSamples);
     }
-    
+
     FloatVectorOperations::copy (fifoData.getWritePointer (2), envData.getReadPointer (0), numSamples);
-    
+
     if (fifo.getFreeSpace() >= numSamples)
         fifo.write (fifoData);
 }

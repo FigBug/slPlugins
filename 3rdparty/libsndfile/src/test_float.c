@@ -30,75 +30,74 @@
 
 void
 test_float_convert (void)
-{	static float data [] =
-	{	0.0, 1.0, -1.0, 1.0 * M_PI, -1.0 * M_PI,
-		1e9, -1e9, 1e-9, -1e-9, 1e-10, -1e-10,
-		1e-19, -1e-19, 1e19, -1e19, 1e-20, -1e-20,
-		} ;
+{   static float data [] =
+    {   0.0, 1.0, -1.0, 1.0 * M_PI, -1.0 * M_PI,
+        1e9, -1e9, 1e-9, -1e-9, 1e-10, -1e-10,
+        1e-19, -1e-19, 1e19, -1e19, 1e-20, -1e-20,
+        } ;
 
-	int k ;
+    int k ;
 
-	print_test_name (__func__) ;
+    print_test_name (__func__) ;
 
-	for (k = 0 ; k < ARRAY_LEN (data) ; k++)
-	{	unsigned char bytes [4] ;
-		float test ;
+    for (k = 0 ; k < ARRAY_LEN (data) ; k++)
+    {   unsigned char bytes [4] ;
+        float test ;
 
-		float32_le_write (data [k], bytes) ;
-		test = float32_le_read (bytes) ;
+        float32_le_write (data [k], bytes) ;
+        test = float32_le_read (bytes) ;
 
-		if (fabs (data [k] - test) > 1e-20)
-		{	printf ("\n\nLine %d : Test %d, little endian error %.15g -> %.15g.\n\n", __LINE__, k, data [k], test) ;
-			exit (1) ;
-			} ;
+        if (fabs (data [k] - test) > 1e-20)
+        {   printf ("\n\nLine %d : Test %d, little endian error %.15g -> %.15g.\n\n", __LINE__, k, data [k], test) ;
+            exit (1) ;
+            } ;
 
-		float32_be_write (data [k], bytes) ;
-		test = float32_be_read (bytes) ;
+        float32_be_write (data [k], bytes) ;
+        test = float32_be_read (bytes) ;
 
-		if (fabs (data [k] - test) > 1e-20)
-		{	printf ("\n\nLine %d : Test %d, big endian error %.15g -> %.15g.\n\n", __LINE__, k, data [k], test) ;
-			exit (1) ;
-			} ;
+        if (fabs (data [k] - test) > 1e-20)
+        {   printf ("\n\nLine %d : Test %d, big endian error %.15g -> %.15g.\n\n", __LINE__, k, data [k], test) ;
+            exit (1) ;
+            } ;
 
-		} ;
+        } ;
 
-	puts ("ok") ;
+    puts ("ok") ;
 } /* test_float_convert */
 
 void
 test_double_convert (void)
-{	static double data [] =
-	{	0.0, 1.0, -1.0, 1.0 * M_PI, -1.0 * M_PI,
-		1e9, -1e9, 1e-9, -1e-9, 1e-10, -1e-10,
-		1e-19, -1e-19, 1e19, -1e19, 1e-20, -1e-20,
-		} ;
+{   static double data [] =
+    {   0.0, 1.0, -1.0, 1.0 * M_PI, -1.0 * M_PI,
+        1e9, -1e9, 1e-9, -1e-9, 1e-10, -1e-10,
+        1e-19, -1e-19, 1e19, -1e19, 1e-20, -1e-20,
+        } ;
 
-	int k ;
+    int k ;
 
-	print_test_name (__func__) ;
+    print_test_name (__func__) ;
 
-	for (k = 0 ; k < ARRAY_LEN (data) ; k++)
-	{	unsigned char bytes [8] ;
-		double test ;
+    for (k = 0 ; k < ARRAY_LEN (data) ; k++)
+    {   unsigned char bytes [8] ;
+        double test ;
 
-		double64_le_write (data [k], bytes) ;
-		test = double64_le_read (bytes) ;
+        double64_le_write (data [k], bytes) ;
+        test = double64_le_read (bytes) ;
 
-		if (fabs (data [k] - test) > 1e-20)
-		{	printf ("\n\nLine %d : Test %d, little endian error %.15g -> %.15g.\n\n", __LINE__, k, data [k], test) ;
-			exit (1) ;
-			} ;
+        if (fabs (data [k] - test) > 1e-20)
+        {   printf ("\n\nLine %d : Test %d, little endian error %.15g -> %.15g.\n\n", __LINE__, k, data [k], test) ;
+            exit (1) ;
+            } ;
 
-		double64_be_write (data [k], bytes) ;
-		test = double64_be_read (bytes) ;
+        double64_be_write (data [k], bytes) ;
+        test = double64_be_read (bytes) ;
 
-		if (fabs (data [k] - test) > 1e-20)
-		{	printf ("\n\nLine %d : Test %d, big endian error %.15g -> %.15g.\n\n", __LINE__, k, data [k], test) ;
-			exit (1) ;
-			} ;
+        if (fabs (data [k] - test) > 1e-20)
+        {   printf ("\n\nLine %d : Test %d, big endian error %.15g -> %.15g.\n\n", __LINE__, k, data [k], test) ;
+            exit (1) ;
+            } ;
 
-		} ;
+        } ;
 
-	puts ("ok") ;
+    puts ("ok") ;
 } /* test_double_convert */
-

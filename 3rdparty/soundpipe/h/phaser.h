@@ -17,5 +17,5 @@ typedef struct {
 int sp_phaser_create(sp_phaser **p);
 int sp_phaser_destroy(sp_phaser **p);
 int sp_phaser_init(sp_data *sp, sp_phaser *p);
-int sp_phaser_compute(sp_data *sp, sp_phaser *p, 
-	SPFLOAT *in1, SPFLOAT *in2, SPFLOAT *out1, SPFLOAT *out2);
+int sp_phaser_compute(sp_data *sp, sp_phaser *p,
+    SPFLOAT *in1, SPFLOAT *in2, SPFLOAT *out1, SPFLOAT *out2);

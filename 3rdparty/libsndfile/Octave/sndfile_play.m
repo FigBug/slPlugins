@@ -26,18 +26,18 @@
 function sndfile_play (data, fs)
 
 if nargin != 2,
-	error ("Need two input arguments: data and fs.") ;
-	endif
+    error ("Need two input arguments: data and fs.") ;
+    endif
 
 if (max (size (fs)) > 1),
-	error ("Second parameter fs must be a single value.") ;
-	endif
+    error ("Second parameter fs must be a single value.") ;
+    endif
 
 [nr nc] = size (data) ;
 
 if (nr > nc),
-	data = data' ;
-	endif
+    data = data' ;
+    endif
 
 samplerate = fs ;
 wavedata = data ;
@@ -53,7 +53,7 @@ cmd = sprintf ("sndfile-play %s", filename) ;
 [output, status] = system (cmd) ;
 
 if (status),
-	disp (outout) ;
-	endif
+    disp (outout) ;
+    endif
 
 endfunction

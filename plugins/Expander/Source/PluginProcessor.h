@@ -21,14 +21,14 @@ class ExpanderAudioProcessor : public gin::Processor
 {
 public:
     //==============================================================================
-	ExpanderAudioProcessor();
+    ExpanderAudioProcessor();
     ~ExpanderAudioProcessor() override;
 
     //==============================================================================
     void prepareToPlay (double sampleRate, int samplesPerBlock) override;
     void reset() override;
     void numChannelsChanged() override;
-    
+
     void releaseResources() override;
 
     void processBlock (AudioSampleBuffer&, MidiBuffer&) override;
@@ -42,7 +42,7 @@ public:
 
     gin::Dynamics expander;
     gin::AudioFifo fifo;
-    
+
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (ExpanderAudioProcessor)
 };

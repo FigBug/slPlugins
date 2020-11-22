@@ -1,9 +1,9 @@
 /*
  * Foo
- * 
+ *
  * This is a dummy module. It doesn't do much.
  * Feel free to use this as a boilerplate template.
- * 
+ *
  */
 
 #include <stdlib.h>
@@ -14,7 +14,7 @@
 #define PFRAC1(x)   ((SPFLOAT)((x) & ftp1->lomask) * ftp1->lodiv)
 
 #ifndef M_PI
-#define M_PI		3.14159265358979323846
+#define M_PI        3.14159265358979323846
 #endif
 
 #define MPIDSR -M_PI/sp->sr

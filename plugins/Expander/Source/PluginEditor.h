@@ -20,7 +20,7 @@ class ExpanderAudioProcessorEditor : public gin::ProcessorEditor,
                                      private gin::Parameter::Listener
 {
 public:
-	ExpanderAudioProcessorEditor (ExpanderAudioProcessor&);
+    ExpanderAudioProcessorEditor (ExpanderAudioProcessor&);
     ~ExpanderAudioProcessorEditor() override;
 
     //==============================================================================
@@ -28,11 +28,11 @@ public:
     void parameterChanged (gin::Parameter* param) override;
 
 private:
-	ExpanderAudioProcessor& proc;
-    
+    ExpanderAudioProcessor& proc;
+
     gin::DynamicsMeter meter {proc.expander};
     gin::TriggeredScope scope {proc.fifo};
-    
+
     gin::LevelMeter inputMeter {proc.expander.getInputTracker()};
     gin::LevelMeter outputMeter {proc.expander.getOutputTracker()};
     gin::LevelMeter reductionMeter {proc.expander.getReductionTracker(), {-30, 0}};

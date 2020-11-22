@@ -5,7 +5,7 @@
 #include "soundpipe.h"
 
 #ifndef M_PI
-#define M_PI		3.14159265358979323846	/* pi */
+#define M_PI        3.14159265358979323846  /* pi */
 #endif
 
 #define tpd360  0.0174532925199433
@@ -58,7 +58,7 @@ int sp_gen_vals(sp_data *sp, sp_ftbl *ft, const char *string)
     int size = strlen(string);
     char *str = malloc(sizeof(char) * size + 1);
     strcpy(str, string);
-    char *out; 
+    char *out;
     char *ptr = str;
     int j = 0;
     while(size > 0) {
@@ -70,8 +70,8 @@ int sp_gen_vals(sp_data *sp, sp_ftbl *ft, const char *string)
         ft->tbl[j] = atof(out);
         j++;
     }
-   
-    free(ptr); 
+
+    free(ptr);
     return SP_OK;
 }
 
@@ -328,7 +328,7 @@ int sp_gen_composite(sp_data *sp, sp_ftbl *ft, const char *argstring)
 {
     SPFLOAT phs, inc, amp, dc, tpdlen = 2 * M_PI/ (SPFLOAT) ft->size;
     int i, n;
-    
+
     sp_ftbl *args;
     sp_ftbl_create(sp, &args, 1);
     sp_gen_vals(sp, args, argstring);

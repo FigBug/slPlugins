@@ -55,24 +55,24 @@ int sp_peaklim_compute(sp_data *sp, sp_peaklim *p, SPFLOAT *in, SPFLOAT *out)
 
     if(p->patk != p->atk) {
         p->patk = p->atk;
-		p->a1_a = exp( -1.0 / ( p->rel * sp->sr ) );
-		p->b0_a = 1 - p->a1_a;
+        p->a1_a = exp( -1.0 / ( p->rel * sp->sr ) );
+        p->b0_a = 1 - p->a1_a;
     }
 
     if(p->prel != p->rel) {
         p->prel = p->rel;
-		p->a1_r = exp( -1.0 / ( p->rel * sp->sr ) );
-		p->b0_r = 1 - p->a1_r;
+        p->a1_r = exp( -1.0 / ( p->rel * sp->sr ) );
+        p->b0_r = 1 - p->a1_r;
     }
 
-    
+
     if ( fabs(*in) > p->level)
         p->level += p->b0_a * ( fabs(*in) - p->level);
     else
         p->level += p->b0_r * ( fabs(*in) - p->level);
 
     db_gain = min(0.0, dB(dB2lin(p->thresh)/p->level));
-    gain = dB2lin(db_gain);		
+    gain = dB2lin(db_gain);
 
     *out = *in * gain;
 

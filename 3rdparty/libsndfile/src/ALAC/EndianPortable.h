@@ -30,10 +30,10 @@
 
 #include "sfendian.h"
 
-#define Swap16NtoB(x)	H2BE_16 (x)
-#define Swap16BtoN(x)	BE2H_16 (x)
+#define Swap16NtoB(x)   H2BE_16 (x)
+#define Swap16BtoN(x)   BE2H_16 (x)
 
-#define Swap32NtoB(x)	H2BE_32 (x)
-#define Swap32BtoN(x)	BE2H_32 (x)
+#define Swap32NtoB(x)   H2BE_32 (x)
+#define Swap32BtoN(x)   BE2H_32 (x)
 
 #endif

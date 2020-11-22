@@ -31,31 +31,31 @@
 */
 
 
-#define	ARRAY_LEN(x)	((int) (sizeof (x) / sizeof (x [0])))
-#define	MAX(a, b)		((a) > (b) ? (a) : (b))
+#define ARRAY_LEN(x)    ((int) (sizeof (x) / sizeof (x [0])))
+#define MAX(a, b)       ((a) > (b) ? (a) : (b))
 
 typedef struct
-{	const char * title ;
-	const char * copyright ;
-	const char * artist ;
-	const char * comment ;
-	const char * date ;
-	const char * album ;
-	const char * license ;
+{   const char * title ;
+    const char * copyright ;
+    const char * artist ;
+    const char * comment ;
+    const char * date ;
+    const char * album ;
+    const char * license ;
 
 
-	/* Stuff to go in the 'bext' chunk of WAV files. */
-	int has_bext_fields ;
-	int coding_hist_append ;
+    /* Stuff to go in the 'bext' chunk of WAV files. */
+    int has_bext_fields ;
+    int coding_hist_append ;
 
-	const char * description ;
-	const char * originator ;
-	const char * originator_reference ;
-	const char * origination_date ;
-	const char * origination_time ;
-	const char * umid ;
-	const char * coding_history ;
-	const char * time_ref ;
+    const char * description ;
+    const char * originator ;
+    const char * originator_reference ;
+    const char * origination_date ;
+    const char * origination_time ;
+    const char * umid ;
+    const char * coding_history ;
+    const char * time_ref ;
 } METADATA_INFO ;
 
 typedef SF_BROADCAST_INFO_VAR (2048) SF_BROADCAST_INFO_2K ;
@@ -75,4 +75,3 @@ const char * program_name (const char * argv0) ;
 const char * sfe_endian_name (int format) ;
 const char * sfe_container_name (int format) ;
 const char * sfe_codec_name (int format) ;
-

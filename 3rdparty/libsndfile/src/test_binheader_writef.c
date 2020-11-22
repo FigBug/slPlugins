@@ -30,28 +30,27 @@
 
 void
 test_binheader_writef (void)
-{	char buffer [18] ;
-	SF_PRIVATE	sf_private, *psf ;
-	int			k, errors = 0 ;
+{   char buffer [18] ;
+    SF_PRIVATE  sf_private, *psf ;
+    int         k, errors = 0 ;
 
-	print_test_name ("Testing binheader_writef") ;
+    print_test_name ("Testing binheader_writef") ;
 
-	psf = &sf_private ;
-	for (k = 0 ; errors == 0 && k < 10 ; k++)
-	{	psf_strlcpy (buffer, sizeof (buffer), "abcdefghijklmnop") ;
-		buffer [k] = 0 ;
+    psf = &sf_private ;
+    for (k = 0 ; errors == 0 && k < 10 ; k++)
+    {   psf_strlcpy (buffer, sizeof (buffer), "abcdefghijklmnop") ;
+        buffer [k] = 0 ;
 
-		psf_binheader_writef (psf, "Ep", buffer) ;
+        psf_binheader_writef (psf, "Ep", buffer) ;
 
-		if ((psf->headindex & 1) != 0)
-			errors = 1 ;
-		} ;
+        if ((psf->headindex & 1) != 0)
+            errors = 1 ;
+        } ;
 
-	if (errors)
-	{	puts ("\nExiting due to errors.\n") ;
-		exit (1) ;
-		} ;
+    if (errors)
+    {   puts ("\nExiting due to errors.\n") ;
+        exit (1) ;
+        } ;
 
-	puts ("ok") ;
+    puts ("ok") ;
 } /* test_log_printf */
-

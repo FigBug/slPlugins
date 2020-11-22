@@ -19,7 +19,7 @@ void Voice::noteStarted()
             resamplingFifo->reset();
 
         p->fromPluginParams();
-		sfxr.setSampleRate (44100.0f);
+        sfxr.setSampleRate (44100.0f);
         sfxr.setParams (p->params);
         sfxr.reset (true);
     }

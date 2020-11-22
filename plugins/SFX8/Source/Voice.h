@@ -22,7 +22,7 @@ class Voice : public MPESynthesiserVoice
 public:
     Voice (SFXAudioProcessor& s)
         : synth (s)
-    {     
+    {
     }
 
     void setCurrentSampleRate (double newRate) override
@@ -34,25 +34,25 @@ public:
         else
             resamplingFifo = nullptr;
     }
-    
+
     void noteStarted() override;
-    
+
     void noteStopped (bool allowTailOff) override
     {
         if (! allowTailOff)
             clearCurrentNote();
     }
-    
+
     void renderNextBlock (AudioBuffer<float>& outputBuffer, int startSample, int numSamples) override;
-    
+
     void notePressureChanged() override     {}
     void notePitchbendChanged() override    {}
     void noteTimbreChanged() override       {}
     void noteKeyStateChanged() override     {}
-    
+
 private:
     SFXAudioProcessor& synth;
-	SfxrSynth sfxr {44100.0f};
+    SfxrSynth sfxr {44100.0f};
 
     std::unique_ptr<gin::ResamplingFifo> resamplingFifo;
 };

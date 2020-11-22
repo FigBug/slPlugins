@@ -54,34 +54,34 @@ String tlTextFunction (const Parameter&, float v)
 
 String runTextFunction (const Parameter&, float v)
 {
-	switch (int (v))
-	{
-		case 0:  return "Normal";
-		case 1:  return "Single";
-		default: return "";
-	}
+    switch (int (v))
+    {
+        case 0:  return "Normal";
+        case 1:  return "Single";
+        default: return "";
+    }
 }
 
 String resetTextFunction (const Parameter&, float)
 {
-	return "Reset";
+    return "Reset";
 }
 
 //==============================================================================
 PluginProcessor::PluginProcessor()
 {
     fifo.setSize (2, 44100);
-    
-	addExtParam (PARAM_SAMPLES_PER_PIXEL, "Samp/px",       "", "", {1.0f,   48.0f,  1.0f, 1.0f}, 1.0f, 0.0f, intTextFunction);
-	addExtParam (PARAM_VERTICAL_ZOOM,     "Zoom",          "", "", {0.1f,   100.0f, 0.0f, 0.3f}, 1.0f, 0.0f);
-	addExtParam (PARAM_VERTICAL_OFFSET_L, "Offset L",      "", "", {-2.0f,  2.0f,   0.0f, 1.0f}, 0.0f, 0.0f);
-	addExtParam (PARAM_VERTICAL_OFFSET_R, "Offset R",      "", "", {-2.0f,  2.0f,   0.0f, 1.0f}, 0.0f, 0.0f);
-	addExtParam (PARAM_TRIGGER_CHANNEL,   "Trigger Chan",  "", "", {-1.0f,  1.0f,   1.0f, 1.0f}, 0.0f, 0.0f, chanTextFunction);
-	addExtParam (PARAM_TRIGGER_MODE,      "Trigger Mode",  "", "", {0.0f,   2.0f,   1.0f, 1.0f}, 1.0f, 0.0f, modeTextFunction);
-	addExtParam (PARAM_TRIGGER_LEVEL,     "Trigger Level", "", "", {-1.0f,  1.0f,   0.0f, 1.0f}, 0.0f, 0.0f, tlTextFunction);
-	addExtParam (PARAM_TRIGGER_POS,       "Trigger Pos",   "", "", { 0.0f,  1.0f,   0.0f, 1.0f}, 0.0f, 0.0f, tlTextFunction);
-	addExtParam (PARAM_TRIGGER_RUN,       "Trigger Run",   "", "", { 0.0f,  1.0f,   1.0f, 1.0f}, 0.0f, 0.0f, runTextFunction);
-	addExtParam (PARAM_TRIGGER_RESET,     "Trigger Reset", "", "", { 0.0f,  1.0f,   1.0f, 1.0f}, 0.0f, 0.0f, resetTextFunction);
+
+    addExtParam (PARAM_SAMPLES_PER_PIXEL, "Samp/px",       "", "", {1.0f,   48.0f,  1.0f, 1.0f}, 1.0f, 0.0f, intTextFunction);
+    addExtParam (PARAM_VERTICAL_ZOOM,     "Zoom",          "", "", {0.1f,   100.0f, 0.0f, 0.3f}, 1.0f, 0.0f);
+    addExtParam (PARAM_VERTICAL_OFFSET_L, "Offset L",      "", "", {-2.0f,  2.0f,   0.0f, 1.0f}, 0.0f, 0.0f);
+    addExtParam (PARAM_VERTICAL_OFFSET_R, "Offset R",      "", "", {-2.0f,  2.0f,   0.0f, 1.0f}, 0.0f, 0.0f);
+    addExtParam (PARAM_TRIGGER_CHANNEL,   "Trigger Chan",  "", "", {-1.0f,  1.0f,   1.0f, 1.0f}, 0.0f, 0.0f, chanTextFunction);
+    addExtParam (PARAM_TRIGGER_MODE,      "Trigger Mode",  "", "", {0.0f,   2.0f,   1.0f, 1.0f}, 1.0f, 0.0f, modeTextFunction);
+    addExtParam (PARAM_TRIGGER_LEVEL,     "Trigger Level", "", "", {-1.0f,  1.0f,   0.0f, 1.0f}, 0.0f, 0.0f, tlTextFunction);
+    addExtParam (PARAM_TRIGGER_POS,       "Trigger Pos",   "", "", { 0.0f,  1.0f,   0.0f, 1.0f}, 0.0f, 0.0f, tlTextFunction);
+    addExtParam (PARAM_TRIGGER_RUN,       "Trigger Run",   "", "", { 0.0f,  1.0f,   1.0f, 1.0f}, 0.0f, 0.0f, runTextFunction);
+    addExtParam (PARAM_TRIGGER_RESET,     "Trigger Reset", "", "", { 0.0f,  1.0f,   1.0f, 1.0f}, 0.0f, 0.0f, resetTextFunction);
 }
 
 PluginProcessor::~PluginProcessor()
@@ -116,7 +116,7 @@ void PluginProcessor::processBlock (AudioSampleBuffer& buffer, MidiBuffer&)
             const auto numSamples = buffer.getNumSamples();
             ScratchBuffer stereoBuffer (2, numSamples);
             stereoBuffer.clear();
-            
+
             stereoBuffer.copyFrom (0, 0, buffer, 0, 0, numSamples);
             fifo.write (stereoBuffer);
         }

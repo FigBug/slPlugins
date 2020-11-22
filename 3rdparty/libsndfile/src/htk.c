@@ -16,127 +16,127 @@
 ** Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
 */
 
-#include	"sfconfig.h"
+#include    "sfconfig.h"
 
-#include	<stdio.h>
-#include	<fcntl.h>
-#include	<string.h>
-#include	<ctype.h>
+#include    <stdio.h>
+#include    <fcntl.h>
+#include    <string.h>
+#include    <ctype.h>
 
-#include	"sndfile.h"
-#include	"sfendian.h"
-#include	"common.h"
+#include    "sndfile.h"
+#include    "sfendian.h"
+#include    "common.h"
 
 /*------------------------------------------------------------------------------
 ** Macros to handle big/little endian issues.
 */
 
-#define	SFE_HTK_BAD_FILE_LEN 	1666
-#define	SFE_HTK_NOT_WAVEFORM	1667
+#define SFE_HTK_BAD_FILE_LEN    1666
+#define SFE_HTK_NOT_WAVEFORM    1667
 
 /*------------------------------------------------------------------------------
 ** Private static functions.
 */
 
-static	int		htk_close		(SF_PRIVATE *psf) ;
+static  int     htk_close       (SF_PRIVATE *psf) ;
 
-static int		htk_write_header (SF_PRIVATE *psf, int calc_length) ;
-static int		htk_read_header (SF_PRIVATE *psf) ;
+static int      htk_write_header (SF_PRIVATE *psf, int calc_length) ;
+static int      htk_read_header (SF_PRIVATE *psf) ;
 
 /*------------------------------------------------------------------------------
 ** Public function.
 */
 
 int
-htk_open	(SF_PRIVATE *psf)
-{	int		subformat ;
-	int		error = 0 ;
+htk_open    (SF_PRIVATE *psf)
+{   int     subformat ;
+    int     error = 0 ;
 
-	if (psf->is_pipe)
-		return SFE_HTK_NO_PIPE ;
+    if (psf->is_pipe)
+        return SFE_HTK_NO_PIPE ;
 
-	if (psf->file.mode == SFM_READ || (psf->file.mode == SFM_RDWR && psf->filelength > 0))
-	{	if ((error = htk_read_header (psf)))
-			return error ;
-		} ;
+    if (psf->file.mode == SFM_READ || (psf->file.mode == SFM_RDWR && psf->filelength > 0))
+    {   if ((error = htk_read_header (psf)))
+            return error ;
+        } ;
 
-	subformat = SF_CODEC (psf->sf.format) ;
+    subformat = SF_CODEC (psf->sf.format) ;
 
-	if (psf->file.mode == SFM_WRITE || psf->file.mode == SFM_RDWR)
-	{	if ((SF_CONTAINER (psf->sf.format)) != SF_FORMAT_HTK)
-			return	SFE_BAD_OPEN_FORMAT ;
+    if (psf->file.mode == SFM_WRITE || psf->file.mode == SFM_RDWR)
+    {   if ((SF_CONTAINER (psf->sf.format)) != SF_FORMAT_HTK)
+            return  SFE_BAD_OPEN_FORMAT ;
 
-		psf->endian = SF_ENDIAN_BIG ;
+        psf->endian = SF_ENDIAN_BIG ;
 
-		if (htk_write_header (psf, SF_FALSE))
-			return psf->error ;
+        if (htk_write_header (psf, SF_FALSE))
+            return psf->error ;
 
-		psf->write_header = htk_write_header ;
-		} ;
+        psf->write_header = htk_write_header ;
+        } ;
 
-	psf->container_close = htk_close ;
+    psf->container_close = htk_close ;
 
-	psf->blockwidth = psf->bytewidth * psf->sf.channels ;
+    psf->blockwidth = psf->bytewidth * psf->sf.channels ;
 
-	switch (subformat)
-	{	case SF_FORMAT_PCM_16 :	/* 16-bit linear PCM. */
-				error = pcm_init (psf) ;
-				break ;
+    switch (subformat)
+    {   case SF_FORMAT_PCM_16 : /* 16-bit linear PCM. */
+                error = pcm_init (psf) ;
+                break ;
 
-		default : break ;
-		} ;
+        default : break ;
+        } ;
 
-	return error ;
+    return error ;
 } /* htk_open */
 
 /*------------------------------------------------------------------------------
 */
 
 static int
-htk_close	(SF_PRIVATE *psf)
+htk_close   (SF_PRIVATE *psf)
 {
-	if (psf->file.mode == SFM_WRITE || psf->file.mode == SFM_RDWR)
-		htk_write_header (psf, SF_TRUE) ;
+    if (psf->file.mode == SFM_WRITE || psf->file.mode == SFM_RDWR)
+        htk_write_header (psf, SF_TRUE) ;
 
-	return 0 ;
+    return 0 ;
 } /* htk_close */
 
 static int
 htk_write_header (SF_PRIVATE *psf, int calc_length)
-{	sf_count_t	current ;
-	int			sample_count, sample_period ;
+{   sf_count_t  current ;
+    int         sample_count, sample_period ;
 
-	current = psf_ftell (psf) ;
+    current = psf_ftell (psf) ;
 
-	if (calc_length)
-		psf->filelength = psf_get_filelen (psf) ;
+    if (calc_length)
+        psf->filelength = psf_get_filelen (psf) ;
 
-	/* Reset the current header length to zero. */
-	psf->header [0] = 0 ;
-	psf->headindex = 0 ;
-	psf_fseek (psf, 0, SEEK_SET) ;
+    /* Reset the current header length to zero. */
+    psf->header [0] = 0 ;
+    psf->headindex = 0 ;
+    psf_fseek (psf, 0, SEEK_SET) ;
 
-	if (psf->filelength > 12)
-		sample_count = (psf->filelength - 12) / 2 ;
-	else
-		sample_count = 0 ;
+    if (psf->filelength > 12)
+        sample_count = (psf->filelength - 12) / 2 ;
+    else
+        sample_count = 0 ;
 
-	sample_period = 10000000 / psf->sf.samplerate ;
+    sample_period = 10000000 / psf->sf.samplerate ;
 
-	psf_binheader_writef (psf, "E444", sample_count, sample_period, 0x20000) ;
+    psf_binheader_writef (psf, "E444", sample_count, sample_period, 0x20000) ;
 
-	/* Header construction complete so write it out. */
-	psf_fwrite (psf->header, psf->headindex, 1, psf) ;
+    /* Header construction complete so write it out. */
+    psf_fwrite (psf->header, psf->headindex, 1, psf) ;
 
-	if (psf->error)
-		return psf->error ;
+    if (psf->error)
+        return psf->error ;
 
-	psf->dataoffset = psf->headindex ;
+    psf->dataoffset = psf->headindex ;
 
-	if (current > 0)
-		psf_fseek (psf, current, SEEK_SET) ;
+    if (current > 0)
+        psf_fseek (psf, current, SEEK_SET) ;
 
-	return psf->error ;
+    return psf->error ;
 } /* htk_write_header */
 
 /*
@@ -184,43 +184,42 @@ htk_write_header (SF_PRIVATE *psf, int calc_length)
 
 static int
 htk_read_header (SF_PRIVATE *psf)
-{	int		sample_count, sample_period, marker ;
+{   int     sample_count, sample_period, marker ;
 
-	psf_binheader_readf (psf, "pE444", 0, &sample_count, &sample_period, &marker) ;
+    psf_binheader_readf (psf, "pE444", 0, &sample_count, &sample_period, &marker) ;
 
-	if (2 * sample_count + 12 != psf->filelength)
-		return SFE_HTK_BAD_FILE_LEN ;
+    if (2 * sample_count + 12 != psf->filelength)
+        return SFE_HTK_BAD_FILE_LEN ;
 
-	if (marker != 0x20000)
-		return SFE_HTK_NOT_WAVEFORM ;
+    if (marker != 0x20000)
+        return SFE_HTK_NOT_WAVEFORM ;
 
-	psf->sf.channels = 1 ;
+    psf->sf.channels = 1 ;
 
-	if (sample_period > 0)
-	{	psf->sf.samplerate = 10000000 / sample_period ;
-		psf_log_printf (psf, "HTK Waveform file\n  Sample Count  : %d\n  Sample Period : %d => %d Hz\n",
-					sample_count, sample_period, psf->sf.samplerate) ;
-		}
-	else
-	{	psf->sf.samplerate = 16000 ;
-		psf_log_printf (psf, "HTK Waveform file\n  Sample Count  : %d\n  Sample Period : %d (should be > 0) => Guessed sample rate %d Hz\n",
-					sample_count, sample_period, psf->sf.samplerate) ;
-		} ;
+    if (sample_period > 0)
+    {   psf->sf.samplerate = 10000000 / sample_period ;
+        psf_log_printf (psf, "HTK Waveform file\n  Sample Count  : %d\n  Sample Period : %d => %d Hz\n",
+                    sample_count, sample_period, psf->sf.samplerate) ;
+        }
+    else
+    {   psf->sf.samplerate = 16000 ;
+        psf_log_printf (psf, "HTK Waveform file\n  Sample Count  : %d\n  Sample Period : %d (should be > 0) => Guessed sample rate %d Hz\n",
+                    sample_count, sample_period, psf->sf.samplerate) ;
+        } ;
 
-	psf->sf.format = SF_FORMAT_HTK | SF_FORMAT_PCM_16 ;
-	psf->bytewidth = 2 ;
+    psf->sf.format = SF_FORMAT_HTK | SF_FORMAT_PCM_16 ;
+    psf->bytewidth = 2 ;
 
-	/* HTK always has a 12 byte header. */
-	psf->dataoffset = 12 ;
-	psf->endian = SF_ENDIAN_BIG ;
+    /* HTK always has a 12 byte header. */
+    psf->dataoffset = 12 ;
+    psf->endian = SF_ENDIAN_BIG ;
 
-	psf->datalength = psf->filelength - psf->dataoffset ;
+    psf->datalength = psf->filelength - psf->dataoffset ;
 
-	psf->blockwidth = psf->sf.channels * psf->bytewidth ;
+    psf->blockwidth = psf->sf.channels * psf->bytewidth ;
 
-	if (! psf->sf.frames && psf->blockwidth)
-		psf->sf.frames = (psf->filelength - psf->dataoffset) / psf->blockwidth ;
+    if (! psf->sf.frames && psf->blockwidth)
+        psf->sf.frames = (psf->filelength - psf->dataoffset) / psf->blockwidth ;
 
-	return 0 ;
+    return 0 ;
 } /* htk_read_header */
-

@@ -20,35 +20,35 @@
 /* ADPCM: IMA, OKI <==> 16-bit PCM. */
 
 
-#define		IMA_OKI_ADPCM_CODE_LEN	256
-#define		IMA_OKI_ADPCM_PCM_LEN	(IMA_OKI_ADPCM_CODE_LEN *2)
+#define     IMA_OKI_ADPCM_CODE_LEN  256
+#define     IMA_OKI_ADPCM_PCM_LEN   (IMA_OKI_ADPCM_CODE_LEN *2)
 
 typedef struct
 {
-	/* private: */
-	int mask ;
-	int last_output ;
-	int step_index ;
-	int max_step_index ;
-	int const * steps ;
+    /* private: */
+    int mask ;
+    int last_output ;
+    int step_index ;
+    int max_step_index ;
+    int const * steps ;
 
-	/* public: */
-	int errors ;
-	int	code_count, pcm_count ;
+    /* public: */
+    int errors ;
+    int code_count, pcm_count ;
 
-	unsigned char	codes [IMA_OKI_ADPCM_CODE_LEN] ;
-	short 			pcm [IMA_OKI_ADPCM_PCM_LEN] ;
+    unsigned char   codes [IMA_OKI_ADPCM_CODE_LEN] ;
+    short           pcm [IMA_OKI_ADPCM_PCM_LEN] ;
 } IMA_OKI_ADPCM ;
 
 typedef enum
-{	IMA_OKI_ADPCM_TYPE_IMA,
-	IMA_OKI_ADPCM_TYPE_OKI
+{   IMA_OKI_ADPCM_TYPE_IMA,
+    IMA_OKI_ADPCM_TYPE_OKI
 } IMA_OKI_ADPCM_TYPE ;
 
-void ima_oki_adpcm_init		(IMA_OKI_ADPCM * state, IMA_OKI_ADPCM_TYPE type) ;
+void ima_oki_adpcm_init     (IMA_OKI_ADPCM * state, IMA_OKI_ADPCM_TYPE type) ;
 
-int	adpcm_decode	(IMA_OKI_ADPCM * state, int /* 0..15 */ code) ;
-int	adpcm_encode	(IMA_OKI_ADPCM * state, int /* -32768..32767 */ sample) ;
+int adpcm_decode    (IMA_OKI_ADPCM * state, int /* 0..15 */ code) ;
+int adpcm_encode    (IMA_OKI_ADPCM * state, int /* -32768..32767 */ sample) ;
 
-void	ima_oki_adpcm_decode_block	(IMA_OKI_ADPCM * state) ;
-void	ima_oki_adpcm_encode_block	(IMA_OKI_ADPCM * state) ;
+void    ima_oki_adpcm_decode_block  (IMA_OKI_ADPCM * state) ;
+void    ima_oki_adpcm_encode_block  (IMA_OKI_ADPCM * state) ;

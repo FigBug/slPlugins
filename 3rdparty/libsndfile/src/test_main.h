@@ -18,8 +18,8 @@
 
 static inline void
 print_test_name (const char * name)
-{	printf ("    %-40s : ", name) ;
-	fflush (stdout) ;
+{   printf ("    %-40s : ", name) ;
+    fflush (stdout) ;
 } /* print_test_name */
 
 

@@ -21,100 +21,100 @@
 float fmodf(float dummy0, float dummy1);
 
 static float faustpower2_f(float value) {
-	return (value * value);
+    return (value * value);
 
 }
 
 typedef struct {
 
-	float fRec0[2];
-	float fVec0[2];
-	float fVec1[2];
-	int fSamplingFreq;
-	int iConst0;
-	FAUSTFLOAT fHslider0;
-	FAUSTFLOAT fHslider1;
-	float fConst1;
-	float fConst2;
+    float fRec0[2];
+    float fVec0[2];
+    float fVec1[2];
+    int fSamplingFreq;
+    int iConst0;
+    FAUSTFLOAT fHslider0;
+    FAUSTFLOAT fHslider1;
+    float fConst1;
+    float fConst2;
 } blsaw;
 
 blsaw* newblsaw() {
-	blsaw* dsp = (blsaw*)malloc(sizeof(blsaw));
-	return dsp;
+    blsaw* dsp = (blsaw*)malloc(sizeof(blsaw));
+    return dsp;
 }
 
 void deleteblsaw(blsaw* dsp) {
-	free(dsp);
+    free(dsp);
 }
 
 void instanceInitblsaw(blsaw* dsp, int samplingFreq) {
-	dsp->fSamplingFreq = samplingFreq;
-	dsp->iConst0 = min(192000, max(1, dsp->fSamplingFreq));
-	dsp->fHslider0 = (FAUSTFLOAT)1.;
-	dsp->fHslider1 = (FAUSTFLOAT)440.;
-	dsp->fConst1 = (float)dsp->iConst0;
-	dsp->fConst2 = (2.f / dsp->fConst1);
-	/* C99 loop */
-	{
-		int i0;
-		for (i0 = 0; (i0 < 2); i0 = (i0 + 1)) {
-			dsp->fRec0[i0] = 0.f;
+    dsp->fSamplingFreq = samplingFreq;
+    dsp->iConst0 = min(192000, max(1, dsp->fSamplingFreq));
+    dsp->fHslider0 = (FAUSTFLOAT)1.;
+    dsp->fHslider1 = (FAUSTFLOAT)440.;
+    dsp->fConst1 = (float)dsp->iConst0;
+    dsp->fConst2 = (2.f / dsp->fConst1);
+    /* C99 loop */
+    {
+        int i0;
+        for (i0 = 0; (i0 < 2); i0 = (i0 + 1)) {
+            dsp->fRec0[i0] = 0.f;
 
-		}
+        }
 
-	}
-	/* C99 loop */
-	{
-		int i1;
-		for (i1 = 0; (i1 < 2); i1 = (i1 + 1)) {
-			dsp->fVec0[i1] = 0.f;
+    }
+    /* C99 loop */
+    {
+        int i1;
+        for (i1 = 0; (i1 < 2); i1 = (i1 + 1)) {
+            dsp->fVec0[i1] = 0.f;
 
-		}
+        }
 
-	}
-	/* C99 loop */
-	{
-		int i2;
-		for (i2 = 0; (i2 < 2); i2 = (i2 + 1)) {
-			dsp->fVec1[i2] = 0.f;
+    }
+    /* C99 loop */
+    {
+        int i2;
+        for (i2 = 0; (i2 < 2); i2 = (i2 + 1)) {
+            dsp->fVec1[i2] = 0.f;
 
-		}
+        }
 
-	}
+    }
 
 }
 
 void initblsaw(blsaw* dsp, int samplingFreq) {
-	instanceInitblsaw(dsp, samplingFreq);
+    instanceInitblsaw(dsp, samplingFreq);
 }
 
 void buildUserInterfaceblsaw(blsaw* dsp, UIGlue* interface) {
-	interface->addHorizontalSlider(interface->uiInterface, "freq", &dsp->fHslider1, 440.f, 0.f, 20000.f, 0.0001f);
-	interface->addHorizontalSlider(interface->uiInterface, "amp", &dsp->fHslider0, 1.f, 0.f, 1.f, 0.0001f);
+    interface->addHorizontalSlider(interface->uiInterface, "freq", &dsp->fHslider1, 440.f, 0.f, 20000.f, 0.0001f);
+    interface->addHorizontalSlider(interface->uiInterface, "amp", &dsp->fHslider0, 1.f, 0.f, 1.f, 0.0001f);
 }
 
 void computeblsaw(blsaw* dsp, int count, FAUSTFLOAT** inputs, FAUSTFLOAT** outputs) {
-	FAUSTFLOAT* output0 = outputs[0];
-	float fSlow0 = (float)dsp->fHslider1;
-	float fSlow1 = ((float)dsp->iConst0 * ((float)dsp->fHslider0 / fSlow0));
-	float fSlow2 = (dsp->fConst2 * fSlow0);
-	float fSlow3 = (dsp->fConst1 / fSlow0);
-	/* C99 loop */
-	{
-		int i;
-		for (i = 0; (i < count); i = (i + 1)) {
-			dsp->fRec0[0] = fmodf((1.f + dsp->fRec0[1]), fSlow3);
-			float fTemp0 = faustpower2_f(((fSlow2 * dsp->fRec0[0]) - 1.f));
-			dsp->fVec0[0] = fTemp0;
-			dsp->fVec1[0] = 0.25f;
-			output0[i] = (FAUSTFLOAT)(fSlow1 * ((fTemp0 - dsp->fVec0[1]) * dsp->fVec1[1]));
-			dsp->fRec0[1] = dsp->fRec0[0];
-			dsp->fVec0[1] = dsp->fVec0[0];
-			dsp->fVec1[1] = dsp->fVec1[0];
+    FAUSTFLOAT* output0 = outputs[0];
+    float fSlow0 = (float)dsp->fHslider1;
+    float fSlow1 = ((float)dsp->iConst0 * ((float)dsp->fHslider0 / fSlow0));
+    float fSlow2 = (dsp->fConst2 * fSlow0);
+    float fSlow3 = (dsp->fConst1 / fSlow0);
+    /* C99 loop */
+    {
+        int i;
+        for (i = 0; (i < count); i = (i + 1)) {
+            dsp->fRec0[0] = fmodf((1.f + dsp->fRec0[1]), fSlow3);
+            float fTemp0 = faustpower2_f(((fSlow2 * dsp->fRec0[0]) - 1.f));
+            dsp->fVec0[0] = fTemp0;
+            dsp->fVec1[0] = 0.25f;
+            output0[i] = (FAUSTFLOAT)(fSlow1 * ((fTemp0 - dsp->fVec0[1]) * dsp->fVec1[1]));
+            dsp->fRec0[1] = dsp->fRec0[0];
+            dsp->fVec0[1] = dsp->fVec0[0];
+            dsp->fVec1[1] = dsp->fVec1[0];
 
-		}
+        }
 
-	}
+    }
 
 }
 

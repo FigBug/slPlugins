@@ -16,69 +16,67 @@
 ** Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
 */
 
-#include	<cstdio>
-#include	<cstring>
+#include    <cstdio>
+#include    <cstring>
 
-#include	<sndfile.hh>
+#include    <sndfile.hh>
 
-#define		BUFFER_LEN		1024
+#define     BUFFER_LEN      1024
 
 static void
 create_file (const char * fname, int format)
-{	static short buffer [BUFFER_LEN] ;
+{   static short buffer [BUFFER_LEN] ;
 
-	SndfileHandle file ;
-	int channels = 2 ;
-	int srate = 48000 ;
+    SndfileHandle file ;
+    int channels = 2 ;
+    int srate = 48000 ;
 
-	printf ("Creating file named '%s'\n", fname) ;
+    printf ("Creating file named '%s'\n", fname) ;
 
-	file = SndfileHandle (fname, SFM_WRITE, format, channels, srate) ;
+    file = SndfileHandle (fname, SFM_WRITE, format, channels, srate) ;
 
-	memset (buffer, 0, sizeof (buffer)) ;
+    memset (buffer, 0, sizeof (buffer)) ;
 
-	file.write (buffer, BUFFER_LEN) ;
+    file.write (buffer, BUFFER_LEN) ;
 
-	puts ("") ;
-	/*
-	**	The SndfileHandle object will automatically close the file and
-	**	release all allocated memory when the object goes out of scope.
-	**	This is the Resource Acquisition Is Initailization idom.
-	**	See : http://en.wikipedia.org/wiki/Resource_Acquisition_Is_Initialization
-	*/
+    puts ("") ;
+    /*
+    **  The SndfileHandle object will automatically close the file and
+    **  release all allocated memory when the object goes out of scope.
+    **  This is the Resource Acquisition Is Initailization idom.
+    **  See : http://en.wikipedia.org/wiki/Resource_Acquisition_Is_Initialization
+    */
 } /* create_file */
 
 static void
 read_file (const char * fname)
-{	static short buffer [BUFFER_LEN] ;
+{   static short buffer [BUFFER_LEN] ;
 
-	SndfileHandle file ;
+    SndfileHandle file ;
 
-	file = SndfileHandle (fname) ;
+    file = SndfileHandle (fname) ;
 
-	printf ("Opened file '%s'\n", fname) ;
-	printf ("    Sample rate : %d\n", file.samplerate ()) ;
-	printf ("    Channels    : %d\n", file.channels ()) ;
+    printf ("Opened file '%s'\n", fname) ;
+    printf ("    Sample rate : %d\n", file.samplerate ()) ;
+    printf ("    Channels    : %d\n", file.channels ()) ;
 
-	file.read (buffer, BUFFER_LEN) ;
+    file.read (buffer, BUFFER_LEN) ;
 
-	puts ("") ;
+    puts ("") ;
 
-	/* RAII takes care of destroying SndfileHandle object. */
+    /* RAII takes care of destroying SndfileHandle object. */
 } /* read_file */
 
 int
 main (void)
-{	const char * fname = "test.wav" ;
+{   const char * fname = "test.wav" ;
 
-	puts ("\nSimple example showing usage of the C++ SndfileHandle object.\n") ;
+    puts ("\nSimple example showing usage of the C++ SndfileHandle object.\n") ;
 
-	create_file (fname, SF_FORMAT_WAV | SF_FORMAT_PCM_16) ;
+    create_file (fname, SF_FORMAT_WAV | SF_FORMAT_PCM_16) ;
 
-	read_file (fname) ;
+    read_file (fname) ;
 
-	puts ("Done.\n") ;
-	return 0 ;
+    puts ("Done.\n") ;
+    return 0 ;
 } /* main */
-
-

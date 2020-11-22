@@ -29,22 +29,21 @@
 int
 main (void)
 {
-	test_conversions () ;
-	test_endswap () ;
-	test_float_convert () ;
-	test_double_convert () ;
+    test_conversions () ;
+    test_endswap () ;
+    test_float_convert () ;
+    test_double_convert () ;
 
-	test_log_printf () ;
-	test_binheader_writef () ;
-	test_file_io () ;
+    test_log_printf () ;
+    test_binheader_writef () ;
+    test_file_io () ;
 
-	test_audio_detect () ;
-	test_ima_oki_adpcm () ;
+    test_audio_detect () ;
+    test_ima_oki_adpcm () ;
 
-	test_psf_strlcpy_crlf () ;
-	test_broadcast_var () ;
-	test_cart_var () ;
+    test_psf_strlcpy_crlf () ;
+    test_broadcast_var () ;
+    test_cart_var () ;
 
-	return 0 ;
+    return 0 ;
 } /* main */
-
