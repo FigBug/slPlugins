@@ -74,9 +74,16 @@ void LimiterAudioProcessor::processBlock (AudioSampleBuffer& buffer, MidiBuffer&
     int numSamples = buffer.getNumSamples();
 
     ScratchBuffer fifoData (3, numSamples);
-    FloatVectorOperations::copy (fifoData.getWritePointer (0), buffer.getReadPointer (0), numSamples);
-    FloatVectorOperations::add (fifoData.getWritePointer (0), buffer.getReadPointer (1), numSamples);
-    FloatVectorOperations::multiply (fifoData.getWritePointer (0), 0.5, numSamples);
+    if (getTotalNumInputChannels() == 2)
+    {
+        FloatVectorOperations::copy (fifoData.getWritePointer (0), buffer.getReadPointer (0), numSamples);
+        FloatVectorOperations::add (fifoData.getWritePointer (0), buffer.getReadPointer (1), numSamples);
+        FloatVectorOperations::multiply (fifoData.getWritePointer (0), 0.5, numSamples);
+    }
+    else
+    {
+        FloatVectorOperations::copy (fifoData.getWritePointer (0), buffer.getReadPointer (0), numSamples);
+    }
     
     ScratchBuffer envData (1, numSamples);
         
@@ -115,9 +122,16 @@ void LimiterAudioProcessor::processBlock (AudioSampleBuffer& buffer, MidiBuffer&
         limiter.process (buffer, &envData);
     }
     
-    FloatVectorOperations::copy (fifoData.getWritePointer (1), buffer.getReadPointer (0), numSamples);
-    FloatVectorOperations::add (fifoData.getWritePointer (1), buffer.getReadPointer (1), numSamples);
-    FloatVectorOperations::multiply (fifoData.getWritePointer (1), 0.5, numSamples);
+    if (getTotalNumInputChannels() == 2)
+    {
+        FloatVectorOperations::copy (fifoData.getWritePointer (1), buffer.getReadPointer (0), numSamples);
+        FloatVectorOperations::add (fifoData.getWritePointer (1), buffer.getReadPointer (1), numSamples);
+        FloatVectorOperations::multiply (fifoData.getWritePointer (1), 0.5, numSamples);
+    }
+    else
+    {
+        FloatVectorOperations::copy (fifoData.getWritePointer (1), buffer.getReadPointer (0), numSamples);
+    }
     
     FloatVectorOperations::copy (fifoData.getWritePointer (2), envData.getReadPointer (0), numSamples);
     

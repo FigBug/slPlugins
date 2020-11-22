@@ -15,7 +15,7 @@ using namespace gin;
 
 //==============================================================================
 LimiterAudioProcessorEditor::LimiterAudioProcessorEditor (LimiterAudioProcessor& p)
-    : gin::ProcessorEditor (p, 60, 100), proc (p)
+    : gin::ProcessorEditor (p, 60, 100), limProc (p)
 {
     for (auto pp : p.getPluginParameters())
     {
@@ -53,13 +53,13 @@ LimiterAudioProcessorEditor::LimiterAudioProcessorEditor (LimiterAudioProcessor&
 
     setGridSize (5, 3);
 
-	for (auto pp : proc.getPluginParameters())
+	for (auto pp : limProc.getPluginParameters())
         pp->addListener (this);
 }
 
 LimiterAudioProcessorEditor::~LimiterAudioProcessorEditor()
 {
-    for (auto p : proc.getPluginParameters())
+    for (auto p : limProc.getPluginParameters())
         p->removeListener (this);
 }
 
@@ -73,11 +73,11 @@ void LimiterAudioProcessorEditor::resized()
 {
     gin::ProcessorEditor::resized();
 
-    componentForParam (*proc.input)->setBounds (getGridArea (0, 0));
-    componentForParam (*proc.attack)->setBounds (getGridArea (1, 0));
-    componentForParam (*proc.release)->setBounds (getGridArea (2, 0));
-    componentForParam (*proc.threshold)->setBounds (getGridArea (4, 0));
-    componentForParam (*proc.output)->setBounds (getGridArea (6, 0));
+    componentForParam (*limProc.input)->setBounds (getGridArea (0, 0));
+    componentForParam (*limProc.attack)->setBounds (getGridArea (1, 0));
+    componentForParam (*limProc.release)->setBounds (getGridArea (2, 0));
+    componentForParam (*limProc.threshold)->setBounds (getGridArea (4, 0));
+    componentForParam (*limProc.output)->setBounds (getGridArea (6, 0));
     
     auto rc = getGridArea (0, 1, 7, 2);
     

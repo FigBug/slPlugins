@@ -28,14 +28,14 @@ public:
     void parameterChanged (gin::Parameter* param) override;
 
 private:
-    LimiterAudioProcessor& proc;
+    LimiterAudioProcessor& limProc;
     
-    gin::DynamicsMeter meter {proc.limiter};
-    gin::TriggeredScope scope {proc.fifo};
+    gin::DynamicsMeter meter {limProc.limiter};
+    gin::TriggeredScope scope {limProc.fifo};
     
-    gin::LevelMeter inputMeter {proc.limiter.getInputTracker()};
-    gin::LevelMeter outputMeter {proc.limiter.getOutputTracker()};
-    gin::LevelMeter reductionMeter {proc.limiter.getReductionTracker(), {-30, 0}};
+    gin::LevelMeter inputMeter {limProc.limiter.getInputTracker()};
+    gin::LevelMeter outputMeter {limProc.limiter.getOutputTracker()};
+    gin::LevelMeter reductionMeter {limProc.limiter.getReductionTracker(), {-30, 0}};
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (LimiterAudioProcessorEditor)
 };
