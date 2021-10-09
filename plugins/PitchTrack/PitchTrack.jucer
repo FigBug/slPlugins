@@ -8,9 +8,10 @@
               pluginChannelConfigs="{1,1},{2,2}" pluginIsSynth="0" pluginWantsMidiIn="0"
               pluginProducesMidiOut="0" pluginIsMidiEffectPlugin="0" pluginEditorRequiresKeys="0"
               pluginAUExportPrefix="PitchTrackAU" pluginRTASCategory="" aaxIdentifier="com.socalabs.PitchTrack"
-              pluginAAXCategory="2" jucerVersion="5.4.7" companyName="SocaLabs"
-              companyWebsite="www.socalabs.com" companyEmail="info@socalabs.com"
-              pluginFormats="buildVST,buildAU" cppLanguageStandard="17" reportAppUsage="0">
+              pluginAAXCategory="2" companyName="SocaLabs" companyWebsite="www.socalabs.com"
+              companyEmail="info@socalabs.com" pluginFormats="buildVST,buildAU"
+              cppLanguageStandard="17" reportAppUsage="0" defines="JUCE_MODAL_LOOPS_PERMITTED=1"
+              jucerFormatVersion="1">
   <MAINGROUP id="dPRjsF" name="PitchTrack">
     <GROUP id="{EE796482-0D02-0052-80F4-B1FE6CE0D41A}" name="Source">
       <GROUP id="{6F2315D7-3D20-892D-4519-7653440048F1}" name="3rdParty">
@@ -33,10 +34,10 @@
       <CONFIGURATIONS>
         <CONFIGURATION name="Debug" isDebug="1" optimisation="1" targetName="PitchTrack"
                        osxCompatibility="10.9 SDK" headerPath="../../../../modules/Q/q_lib/include&#10;../../../../modules/infra/include"
-                       recommendedWarnings="LLVM"/>
+                       recommendedWarnings="LLVM" macOSDeploymentTarget="10.9"/>
         <CONFIGURATION name="Release" isDebug="0" optimisation="3" targetName="PitchTrack"
                        osxCompatibility="10.9 SDK" headerPath="../../../../modules/Q/q_lib/include&#10;../../../../modules/infra/include"
-                       recommendedWarnings="LLVM"/>
+                       recommendedWarnings="LLVM" macOSDeploymentTarget="10.9"/>
       </CONFIGURATIONS>
       <MODULEPATHS>
         <MODULEPATH id="juce_core" path="../../modules/juce/modules"/>
@@ -57,6 +58,7 @@
         <MODULEPATH id="gin_dsp" path="../../modules/gin/modules"/>
         <MODULEPATH id="juce_audio_utils" path="../../modules/juce/modules"/>
         <MODULEPATH id="juce_dsp" path="../../modules/juce/modules"/>
+        <MODULEPATH id="gin_gui" path="../../modules/gin/modules"/>
       </MODULEPATHS>
     </XCODE_MAC>
     <VS2019 targetFolder="Builds/VisualStudio2019" toolset="v142" vstLegacyFolder="../../modules/plugin_sdk/vstsdk2.4">
@@ -89,6 +91,7 @@
         <MODULEPATH id="gin_plugin" path="../../modules/gin/modules"/>
         <MODULEPATH id="gin_dsp" path="../../modules/gin/modules"/>
         <MODULEPATH id="gin" path="../../modules/gin/modules"/>
+        <MODULEPATH id="gin_gui" path="../../modules/gin/modules"/>
       </MODULEPATHS>
     </VS2019>
     <LINUX_MAKE targetFolder="Builds/LinuxMakefile" vstLegacyFolder="../../modules/plugin_sdk/vstsdk2.4"
@@ -116,12 +119,14 @@
         <MODULEPATH id="gin" path="../../modules/gin/modules"/>
         <MODULEPATH id="gin_dsp" path="../../modules/gin/modules"/>
         <MODULEPATH id="juce_dsp" path="../../modules/juce/modules"/>
+        <MODULEPATH id="gin_gui" path="../../modules/gin/modules"/>
       </MODULEPATHS>
     </LINUX_MAKE>
   </EXPORTFORMATS>
   <MODULES>
     <MODULE id="gin" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
     <MODULE id="gin_dsp" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
+    <MODULE id="gin_gui" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
     <MODULE id="gin_plugin" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
     <MODULE id="juce_audio_basics" showAllCode="1" useLocalCopy="0"/>
     <MODULE id="juce_audio_devices" showAllCode="1" useLocalCopy="0"/>

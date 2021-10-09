@@ -12,7 +12,7 @@
               displaySplashScreen="0" reportAppUsage="0" splashScreenColour="Dark"
               buildStandalone="0" enableIAA="0" cppLanguageStandard="latest"
               companyCopyright="SocaLabs" pluginFormats="buildVST,buildAU"
-              jucerFormatVersion="1">
+              jucerFormatVersion="1" defines="JUCE_MODAL_LOOPS_PERMITTED=1">
   <MAINGROUP id="dPRjsF" name="HugeGain">
     <GROUP id="{EE796482-0D02-0052-80F4-B1FE6CE0D41A}" name="Source">
       <FILE id="iEbZ9q" name="PluginProcessor.cpp" compile="1" resource="0"
@@ -29,10 +29,10 @@
       <CONFIGURATIONS>
         <CONFIGURATION name="Debug" isDebug="1" optimisation="1" targetName="HugeGain"
                        cppLanguageStandard="c++14" osxCompatibility="10.9 SDK" enablePluginBinaryCopyStep="1"
-                       recommendedWarnings="LLVM"/>
+                       recommendedWarnings="LLVM" macOSDeploymentTarget="10.9"/>
         <CONFIGURATION name="Release" isDebug="0" optimisation="3" targetName="HugeGain"
                        cppLanguageStandard="c++14" osxCompatibility="10.9 SDK" enablePluginBinaryCopyStep="1"
-                       linkTimeOptimisation="0" recommendedWarnings="LLVM"/>
+                       linkTimeOptimisation="0" recommendedWarnings="LLVM" macOSDeploymentTarget="10.9"/>
       </CONFIGURATIONS>
       <MODULEPATHS>
         <MODULEPATH id="juce_core" path="../../modules/juce/modules"/>
@@ -54,6 +54,7 @@
         <MODULEPATH id="gin" path="../../modules/gin/modules"/>
         <MODULEPATH id="gin_dsp" path="../../modules/gin/modules"/>
         <MODULEPATH id="gin_plugin" path="../../modules/gin/modules"/>
+        <MODULEPATH id="gin_gui" path="../../modules/gin/modules"/>
       </MODULEPATHS>
     </XCODE_MAC>
     <VS2019 targetFolder="Builds/VisualStudio2019" toolset="v142" vstLegacyFolder="../../modules/plugin_sdk/vstsdk2.4">
@@ -95,6 +96,7 @@
         <MODULEPATH id="gin" path="../../modules/gin/modules"/>
         <MODULEPATH id="gin_dsp" path="../../modules/gin/modules"/>
         <MODULEPATH id="gin_plugin" path="../../modules/gin/modules"/>
+        <MODULEPATH id="gin_gui" path="../../modules/gin/modules"/>
       </MODULEPATHS>
     </VS2019>
     <LINUX_MAKE targetFolder="Builds/LinuxMakefile" vstLegacyFolder="../../modules/plugin_sdk/vstsdk2.4"
@@ -123,6 +125,7 @@
         <MODULEPATH id="gin_dsp" path="../../modules/gin/modules"/>
         <MODULEPATH id="juce_dsp" path="../../modules/juce/modules"/>
         <MODULEPATH id="dRowAudio" path="../../modules/dRowAudio/module"/>
+        <MODULEPATH id="gin_gui" path="../../modules/gin/modules"/>
       </MODULEPATHS>
     </LINUX_MAKE>
   </EXPORTFORMATS>
@@ -130,6 +133,7 @@
     <MODULE id="dRowAudio" showAllCode="1" useLocalCopy="0"/>
     <MODULE id="gin" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
     <MODULE id="gin_dsp" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
+    <MODULE id="gin_gui" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
     <MODULE id="gin_plugin" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
     <MODULE id="juce_audio_basics" showAllCode="1" useLocalCopy="0"/>
     <MODULE id="juce_audio_devices" showAllCode="1" useLocalCopy="0"/>
