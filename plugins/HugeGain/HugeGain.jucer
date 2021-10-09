@@ -10,9 +10,8 @@
               aaxIdentifier="com.socalabs.slHugeGain" pluginAAXCategory="2"
               companyName="SocaLabs" companyWebsite="www.socalabs.com" companyEmail="info@socalabs.com"
               displaySplashScreen="0" reportAppUsage="0" splashScreenColour="Dark"
-              buildStandalone="0" enableIAA="0" cppLanguageStandard="latest"
-              companyCopyright="SocaLabs" pluginFormats="buildVST,buildAU"
-              jucerFormatVersion="1" defines="JUCE_MODAL_LOOPS_PERMITTED=1">
+              buildStandalone="0" enableIAA="0" cppLanguageStandard="17" companyCopyright="SocaLabs"
+              pluginFormats="buildVST,buildAU" jucerFormatVersion="1" defines="JUCE_MODAL_LOOPS_PERMITTED=1">
   <MAINGROUP id="dPRjsF" name="HugeGain">
     <GROUP id="{EE796482-0D02-0052-80F4-B1FE6CE0D41A}" name="Source">
       <FILE id="iEbZ9q" name="PluginProcessor.cpp" compile="1" resource="0"
