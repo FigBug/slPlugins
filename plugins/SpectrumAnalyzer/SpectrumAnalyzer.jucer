@@ -30,11 +30,11 @@
       <CONFIGURATIONS>
         <CONFIGURATION name="Debug" isDebug="1" optimisation="1" targetName="SpectrumAnalyzer"
                        cppLanguageStandard="c++14" osxCompatibility="10.9 SDK" headerPath="../../../../modules/slCommon"
-                       enablePluginBinaryCopyStep="1" recommendedWarnings="LLVM"/>
+                       enablePluginBinaryCopyStep="1" recommendedWarnings="LLVM" macOSDeploymentTarget="10.9"/>
         <CONFIGURATION name="Release" isDebug="0" optimisation="3" targetName="SpectrumAnalyzer"
                        cppLanguageStandard="c++14" osxCompatibility="10.9 SDK" enablePluginBinaryCopyStep="1"
                        headerPath="../../../../modules/slCommon" osxArchitecture="64BitIntel"
-                       recommendedWarnings="LLVM" linkTimeOptimisation="0"/>
+                       recommendedWarnings="LLVM" linkTimeOptimisation="0" macOSDeploymentTarget="10.9"/>
       </CONFIGURATIONS>
       <MODULEPATHS>
         <MODULEPATH id="juce_core" path="../../modules/juce/modules"/>

@@ -2,7 +2,7 @@
 
 <JUCERPROJECT id="JPnRUR" name="Gate" projectType="audioplug" version="1.0.0"
               bundleIdentifier="com.socalabs.Gate" includeBinaryInAppConfig="1"
-              buildVST="1" buildVST3="0" buildAU="1" buildAUv3="0" buildRTAS="0"
+              buildVST="1" buildVST3="1" buildAU="1" buildAUv3="0" buildRTAS="0"
               buildAAX="0" pluginName="Gate" pluginDesc="Gate" pluginManufacturer="SocaLabs"
               pluginManufacturerCode="Soca" pluginCode="SLgt" pluginChannelConfigs="{2,2},{1,1}"
               pluginIsSynth="0" pluginWantsMidiIn="0" pluginProducesMidiOut="0"
@@ -10,10 +10,11 @@
               aaxIdentifier="com.socalabs.Gate" pluginAAXCategory="2" companyName="SocaLabs"
               companyWebsite="www.socalabs.com" companyEmail="info@socalabs.com"
               displaySplashScreen="0" reportAppUsage="0" splashScreenColour="Dark"
-              buildStandalone="0" enableIAA="0" cppLanguageStandard="17" companyCopyright="SocaLabs"
-              pluginFormats="buildVST,buildAU" pluginAUMainType="'aufx'" pluginVSTCategory="kPlugCategEffect"
-              pluginRTASDisableBypass="0" pluginRTASDisableMultiMono="0" pluginAAXDisableBypass="0"
-              pluginAAXDisableMultiMono="0" jucerFormatVersion="1">
+              buildStandalone="1" enableIAA="0" cppLanguageStandard="17" companyCopyright="SocaLabs"
+              pluginFormats="buildAU,buildStandalone,buildVST,buildVST3" pluginAUMainType="'aufx'"
+              pluginVSTCategory="kPlugCategEffect" pluginRTASDisableBypass="0"
+              pluginRTASDisableMultiMono="0" pluginAAXDisableBypass="0" pluginAAXDisableMultiMono="0"
+              jucerFormatVersion="1">
   <MAINGROUP id="dPRjsF" name="Gate">
     <GROUP id="{B033904A-A7D7-B03A-462B-D6E9AEFDB9C1}" name="Resources"/>
     <GROUP id="{EE796482-0D02-0052-80F4-B1FE6CE0D41A}" name="Source">
@@ -30,9 +31,8 @@
     <XCODE_MAC targetFolder="Builds/MacOSX" hardenedRuntime="1" vstLegacyFolder="../../modules/plugin_sdk/vstsdk2.4"
                extraDefs="JUCE_COREGRAPHICS_DRAW_ASYNC=1">
       <CONFIGURATIONS>
-        <CONFIGURATION name="Debug" isDebug="1" optimisation="1" targetName="Gate"
-                       cppLanguageStandard="c++14" osxCompatibility="10.9 SDK" enablePluginBinaryCopyStep="1"
-                       recommendedWarnings="LLVM"/>
+        <CONFIGURATION name="Debug" isDebug="1" optimisation="1" targetName="Gate" cppLanguageStandard="c++14"
+                       osxCompatibility="10.9 SDK" enablePluginBinaryCopyStep="1" recommendedWarnings="LLVM"/>
         <CONFIGURATION name="Release" isDebug="0" optimisation="3" targetName="Gate"
                        cppLanguageStandard="c++14" osxCompatibility="10.9 SDK" enablePluginBinaryCopyStep="1"
                        osxArchitecture="64BitIntel" recommendedWarnings="LLVM" linkTimeOptimisation="0"/>
