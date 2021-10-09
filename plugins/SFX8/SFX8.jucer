@@ -49,12 +49,12 @@
     <XCODE_MAC targetFolder="Builds/MacOSX" hardenedRuntime="1" vstLegacyFolder="../../modules/plugin_sdk/vstsdk2.4">
       <CONFIGURATIONS>
         <CONFIGURATION name="Debug" isDebug="1" optimisation="1" targetName="SFX8" cppLanguageStandard="c++14"
-                       osxCompatibility="10.9 SDK" enablePluginBinaryCopyStep="1" recommendedWarnings="LLVM"
-                       macOSDeploymentTarget="10.9"/>
+                       osxCompatibility="10.11 SDK" enablePluginBinaryCopyStep="1" recommendedWarnings="LLVM"
+                       macOSDeploymentTarget="10.11"/>
         <CONFIGURATION name="Release" isDebug="0" optimisation="3" targetName="SFX8"
-                       cppLanguageStandard="c++14" osxCompatibility="10.9 SDK" enablePluginBinaryCopyStep="1"
+                       cppLanguageStandard="c++14" osxCompatibility="10.11 SDK" enablePluginBinaryCopyStep="1"
                        osxArchitecture="64BitIntel" recommendedWarnings="LLVM" linkTimeOptimisation="0"
-                       macOSDeploymentTarget="10.9"/>
+                       macOSDeploymentTarget="10.11"/>
       </CONFIGURATIONS>
       <MODULEPATHS>
         <MODULEPATH id="juce_core" path="../../modules/juce/modules"/>
