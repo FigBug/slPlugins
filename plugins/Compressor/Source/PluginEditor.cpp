@@ -11,20 +11,18 @@
 #include "PluginProcessor.h"
 #include "PluginEditor.h"
 
-using namespace gin;
-
 //==============================================================================
 CompressorAudioProcessorEditor::CompressorAudioProcessorEditor (CompressorAudioProcessor& p)
     : gin::ProcessorEditor (p, 60, 100), proc (p)
 {
     for (auto pp : p.getPluginParameters())
     {
-        ParamComponent* pc;
+        gin::ParamComponent* pc;
 
         if (pp->isOnOff())
-            pc = new Switch (pp);
+            pc = new gin::Switch (pp);
         else
-            pc = new Knob (pp);
+            pc = new gin::Knob (pp);
 
         addAndMakeVisible (pc);
         controls.add (pc);
@@ -38,18 +36,18 @@ CompressorAudioProcessorEditor::CompressorAudioProcessorEditor (CompressorAudioP
 
     addAndMakeVisible (scope);
     scope.setNumChannels (3);
-    scope.setTriggerMode (TriggeredScope::None);
+    scope.setTriggerMode (gin::TriggeredScope::None);
     scope.setNumSamplesPerPixel (256);
     scope.setVerticalZoomFactor (2.0);
     scope.setVerticalZoomOffset (-0.5, 0);
     scope.setVerticalZoomOffset (-0.5, 1);
     scope.setVerticalZoomOffset (-0.5, 2);
-    scope.setColour (TriggeredScope::traceColourId + 0, Colours::transparentBlack);
-    scope.setColour (TriggeredScope::envelopeColourId + 0, Colours::orange);
-    scope.setColour (TriggeredScope::traceColourId + 1, Colours::transparentBlack);
-    scope.setColour (TriggeredScope::envelopeColourId + 1, Colours::white);
-    scope.setColour (TriggeredScope::traceColourId + 2, Colours::red);
-    scope.setColour (TriggeredScope::envelopeColourId + 2, Colours::transparentBlack);
+    scope.setColour (gin::TriggeredScope::traceColourId + 0, juce::Colours::transparentBlack);
+    scope.setColour (gin::TriggeredScope::envelopeColourId + 0, juce::Colours::orange);
+    scope.setColour (gin::TriggeredScope::traceColourId + 1, juce::Colours::transparentBlack);
+    scope.setColour (gin::TriggeredScope::envelopeColourId + 1, juce::Colours::white);
+    scope.setColour (gin::TriggeredScope::traceColourId + 2, juce::Colours::red);
+    scope.setColour (gin::TriggeredScope::envelopeColourId + 2, juce::Colours::transparentBlack);
 
     setGridSize (7, 2);
 
@@ -64,7 +62,7 @@ CompressorAudioProcessorEditor::~CompressorAudioProcessorEditor()
 }
 
 //==============================================================================
-void CompressorAudioProcessorEditor::parameterChanged (Parameter*)
+void CompressorAudioProcessorEditor::parameterChanged (gin::Parameter*)
 {
     meter.repaint();
 }
