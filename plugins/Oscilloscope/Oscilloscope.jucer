@@ -5,7 +5,7 @@
               buildVST="1" buildVST3="1" buildAU="1" buildAUv3="0" buildRTAS="0"
               buildAAX="0" pluginName="Oscilloscope" pluginDesc="Oscilloscope"
               pluginManufacturer="SocaLabs" pluginManufacturerCode="Soca" pluginCode="Oscl"
-              pluginChannelConfigs="{1,1}, {2,2}" pluginIsSynth="0" pluginWantsMidiIn="0"
+              pluginChannelConfigs="{2,2},{1,1}" pluginIsSynth="0" pluginWantsMidiIn="0"
               pluginProducesMidiOut="0" pluginIsMidiEffectPlugin="0" pluginEditorRequiresKeys="0"
               pluginAUExportPrefix="slOscilloscopeAU" aaxIdentifier="com.socalabs.slOscilloscope"
               pluginAAXCategory="2" companyName="SocaLabs" companyWebsite="www.socalabs.com"
@@ -14,7 +14,7 @@
               companyCopyright="SocaLabs" pluginFormats="buildAU,buildStandalone,buildVST,buildVST3"
               pluginVSTCategory="kPlugCategEffect" pluginVST3Category="Fx"
               pluginRTASCategory="0" pluginAUMainType="'aufx'" jucerFormatVersion="1"
-              defines="JUCE_MODAL_LOOPS_PERMITTED=1">
+              defines="JUCE_MODAL_LOOPS_PERMITTED=1" useAppConfig="0" addUsingNamespaceToJuceHeader="0">
   <MAINGROUP id="dPRjsF" name="Oscilloscope">
     <GROUP id="{EE796482-0D02-0052-80F4-B1FE6CE0D41A}" name="Source">
       <FILE id="iEbZ9q" name="PluginProcessor.cpp" compile="1" resource="0"
