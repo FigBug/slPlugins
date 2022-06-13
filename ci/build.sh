@@ -207,7 +207,12 @@ elif [ $OS = "linux" ]; then
   unzip RP2A03_Linux.zip
   unzip Mverb2020_Linux.zip
 
-  zip -r All_Linux.zip *.so *.vst3
+  mkdir VST
+  mkdir VST3
+  mv *.so VST
+  mv *.vst3 VS_WHERE
+
+  zip -r All_Linux.zip VST VST3
 
   if [ "$BRANCH" = "release" ]; then
     curl -F "files=@All_Linux.zip" "https://socalabs.com/files/set.php?key=$APIKEY"  
@@ -228,7 +233,7 @@ else
   unzip RP2A03_Win.zip
   unzip Mverb2020_Win.zip
 
-  7z a All_Win.zip *.dll
+  7z a All_Win.zip VST VST_32 VST3 VST3_32
 
   if [ "$BRANCH" = "release" ]; then
     curl -F "files=@All_Win.zip" "https://socalabs.com/files/set.php?key=$APIKEY"
