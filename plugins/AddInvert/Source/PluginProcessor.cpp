@@ -11,7 +11,6 @@ juce::String abTextFunction (const gin::Parameter&, float v)
 //==============================================================================
 AddInvertAudioProcessor::AddInvertAudioProcessor()
 {
-    //==============================================================================
 }
 
 AddInvertAudioProcessor::~AddInvertAudioProcessor()
@@ -29,15 +28,16 @@ void AddInvertAudioProcessor::releaseResources()
 
 void AddInvertAudioProcessor::processBlock (juce::AudioSampleBuffer& buffer, juce::MidiBuffer&)
 {
+    const int numChans = buffer.getNumChannels();
     const int numSamples = buffer.getNumSamples();
     
-    float* aL = buffer.getWritePointer (0);
-    float* aR = buffer.getWritePointer (1);
-    float* bL = buffer.getWritePointer (2);
-    float* bR = buffer.getWritePointer (3);
+    float* aL = (numChans >= 1) ? buffer.getWritePointer (0) : nullptr;
+    float* aR = (numChans >= 2) ? buffer.getWritePointer (1) : nullptr;
+    float* bL = (numChans >= 3) ? buffer.getWritePointer (2) : nullptr;
+    float* bR = (numChans >= 4) ? buffer.getWritePointer (3) : nullptr;
 
-    juce::FloatVectorOperations::addWithMultiply (aL, bL, -1.0f, numSamples);
-    juce::FloatVectorOperations::addWithMultiply (aR, bR, -1.0f, numSamples);
+    if (aL && bL) juce::FloatVectorOperations::addWithMultiply (aL, bL, -1.0f, numSamples);
+    if (bL && bR) juce::FloatVectorOperations::addWithMultiply (aR, bR, -1.0f, numSamples);
     
     if (editor != nullptr)
     {
