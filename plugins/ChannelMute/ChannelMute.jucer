@@ -2,7 +2,7 @@
 
 <JUCERPROJECT id="JPnRUR" name="ChannelMute" projectType="audioplug" version="1.0.0"
               bundleIdentifier="com.socalabs.ChannelMute" includeBinaryInAppConfig="1"
-              buildVST="1" buildVST3="0" buildAU="1" buildAUv3="0" buildRTAS="0"
+              buildVST="1" buildVST3="1" buildAU="1" buildAUv3="0" buildRTAS="0"
               buildAAX="0" pluginName="ChannelMute" pluginDesc="ChannelMute"
               pluginManufacturer="SocaLabs" pluginManufacturerCode="Soca" pluginCode="CMut"
               pluginChannelConfigs="{2,2}" pluginIsSynth="0" pluginWantsMidiIn="0"
@@ -10,8 +10,8 @@
               pluginAUExportPrefix="ChannelMuteAU" aaxIdentifier="com.socalabs.ChannelMute"
               pluginAAXCategory="2" companyName="SocaLabs" companyWebsite="www.socalabs.com"
               companyEmail="info@socalabs.com" displaySplashScreen="0" reportAppUsage="0"
-              splashScreenColour="Dark" buildStandalone="0" enableIAA="0" cppLanguageStandard="17"
-              companyCopyright="SocaLabs" pluginFormats="buildVST,buildAU"
+              splashScreenColour="Dark" buildStandalone="1" enableIAA="0" cppLanguageStandard="17"
+              companyCopyright="SocaLabs" pluginFormats="buildAU,buildStandalone,buildVST,buildVST3"
               pluginAUMainType="'aufx'" pluginVSTCategory="kPlugCategEffect"
               pluginRTASDisableBypass="0" pluginRTASDisableMultiMono="0" pluginAAXDisableBypass="0"
               pluginAAXDisableMultiMono="0" jucerFormatVersion="1" defines="JUCE_MODAL_LOOPS_PERMITTED=1">

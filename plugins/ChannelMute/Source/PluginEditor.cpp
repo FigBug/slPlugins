@@ -30,7 +30,7 @@ ChannelMuteAudioProcessorEditor::ChannelMuteAudioProcessorEditor (ChannelMuteAud
         controls.add (pc);
     }
     
-    setGridSize (4, 1);
+    setGridSize (6, 1);
 }
 
 ChannelMuteAudioProcessorEditor::~ChannelMuteAudioProcessorEditor()
@@ -42,8 +42,8 @@ void ChannelMuteAudioProcessorEditor::resized()
 {
     gin::ProcessorEditor::resized();
 
-    componentForId (PARAM_MUTE_L)->setBounds (getGridArea (0, 0));
-    componentForId (PARAM_LEVEL_L)->setBounds (getGridArea (1, 0));
-    componentForId (PARAM_MUTE_R)->setBounds (getGridArea (2, 0));
-    componentForId (PARAM_LEVEL_R)->setBounds (getGridArea (3, 0));
+    componentForId (PARAM_MUTE_L)->setBounds (getGridArea (1, 0));
+    componentForId (PARAM_LEVEL_L)->setBounds (getGridArea (2, 0));
+    componentForId (PARAM_MUTE_R)->setBounds (getGridArea (3, 0));
+    componentForId (PARAM_LEVEL_R)->setBounds (getGridArea (4, 0));
 }

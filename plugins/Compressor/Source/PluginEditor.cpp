@@ -13,7 +13,7 @@
 
 //==============================================================================
 CompressorAudioProcessorEditor::CompressorAudioProcessorEditor (CompressorAudioProcessor& p)
-    : gin::ProcessorEditor (p, 60, 100), proc (p)
+    : gin::ProcessorEditor (p), proc (p)
 {
     for (auto pp : p.getPluginParameters())
     {
