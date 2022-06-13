@@ -61,14 +61,14 @@
         <MODULEPATH id="gin_gui" path="../../modules/gin/modules"/>
       </MODULEPATHS>
     </XCODE_MAC>
-    <VS2022 targetFolder="Builds/VisualStudio2022" toolset="v142" vstLegacyFolder="../../modules/plugin_sdk/vstsdk2.4">
+    <VS2022 targetFolder="Builds/VisualStudio2022" vstLegacyFolder="../../modules/plugin_sdk/vstsdk2.4">
       <CONFIGURATIONS>
         <CONFIGURATION name="Debug" winWarningLevel="4" generateManifest="1" winArchitecture="Win32"
-                       isDebug="1" optimisation="1" targetName="SampleDelay_32b" postbuildCommand="copy /Y &quot;$(OutDir)\$(TargetFileName)&quot; &quot;C:\Program Files (x86)\VSTPlugins&quot;"
+                       isDebug="1" optimisation="1" targetName="SampleDelay" postbuildCommand="copy /Y &quot;$(OutDir)\$(TargetFileName)&quot; &quot;C:\Program Files (x86)\VSTPlugins&quot;"
                        debugInformationFormat="ProgramDatabase" enablePluginBinaryCopyStep="0"
                        useRuntimeLibDLL="0" vstBinaryLocation="c:\program files\vstplugins"/>
         <CONFIGURATION name="Release" winWarningLevel="4" generateManifest="1" winArchitecture="Win32"
-                       isDebug="0" optimisation="3" targetName="SampleDelay_32b" postbuildCommand="copy /Y &quot;$(OutDir)\$(TargetFileName)&quot; &quot;C:\Program Files (x86)\VSTPlugins&quot;"
+                       isDebug="0" optimisation="3" targetName="SampleDelay" postbuildCommand="copy /Y &quot;$(OutDir)\$(TargetFileName)&quot; &quot;C:\Program Files (x86)\VSTPlugins&quot;"
                        debugInformationFormat="ProgramDatabase" enablePluginBinaryCopyStep="0"
                        linkTimeOptimisation="0" useRuntimeLibDLL="0"/>
         <CONFIGURATION name="Debug64" winWarningLevel="4" generateManifest="1" winArchitecture="x64"

@@ -89,20 +89,23 @@ cat pluginlist.txt | while read PLUGIN; do
     xcodebuild -configuration Release || exit 1
 
     cp -R ~/Library/Audio/Plug-Ins/VST/$PLUGIN.vst "$ROOT/ci/bin"
+    cp -R ~/Library/Audio/Plug-Ins/VST3/$PLUGIN.vst3 "$ROOT/ci/bin"
     cp -R ~/Library/Audio/Plug-Ins/Components/$PLUGIN.component "$ROOT/ci/bin"
 
     cd "$ROOT/ci/bin"
     codesign -s "$DEV_APP_ID" -v "$PLUGIN.vst" --options=runtime --timestamp --force
+    codesign -s "$DEV_APP_ID" -v "$PLUGIN.vst3" --options=runtime --timestamp --force
     codesign -s "$DEV_APP_ID" -v "$PLUGIN.component" --options=runtime --timestamp --force
 
     # Notarize
     cd "$ROOT/ci/bin"
-    zip -r ${PLUGIN}_Mac.zip $PLUGIN.vst $PLUGIN.component
+    zip -r ${PLUGIN}_Mac.zip $PLUGIN.vst  $PLUGIN.vst3 $PLUGIN.component
 
     "$ROOT/ci/bin/notarize" -ns ${PLUGIN}_Mac.zip $APPLE_USER $APPLE_PASS com.figbug.$PLUGIN.vst
 
     rm ${PLUGIN}_Mac.zip
     xcrun stapler staple $PLUGIN.vst
+    xcrun stapler staple $PLUGIN.vst3
     xcrun stapler staple $PLUGIN.component
     zip -r ${PLUGIN}_Mac.zip $PLUGIN.vst $PLUGIN.component
 
@@ -117,12 +120,13 @@ cat pluginlist.txt | while read PLUGIN; do
     make CONFIG=Release
 
     cp ./build/$PLUGIN.so "$ROOT/ci/bin"
+    cp ./build/$PLUGIN.vst3 "$ROOT/ci/bin"
 
     cd "$ROOT/ci/bin"
 
     # Upload
     cd "$ROOT/ci/bin"
-    zip -r ${PLUGIN}_Linux.zip $PLUGIN.so
+    zip -r ${PLUGIN}_Linux.zip $PLUGIN.so $PLUGIN.vst3
 
     if [ "$BRANCH" = "release" ]; then
       curl -F "files=@${PLUGIN}_Linux.zip" "https://socalabs.com/files/set.php?key=$APIKEY"
@@ -140,29 +144,20 @@ cat pluginlist.txt | while read PLUGIN; do
     "$MSBUILD_EXE" "$PLUGIN.sln" "//p:VisualStudioVersion=16.0" "//m" "//t:Build" "//p:Configuration=Release64" "//p:Platform=x64" "//p:PreferredToolArchitecture=x64"
     "$MSBUILD_EXE" "$PLUGIN.sln" "//p:VisualStudioVersion=16.0" "//m" "//t:Build" "//p:Configuration=Release" "//p:PlatformTarget=x86" "//p:PreferredToolArchitecture=x64"
 
-    cd "$ROOT/plugins/$PLUGIN/Builds/VisualStudio2022/x64/Release64/VST/"
-    pwd
-    ls -l
-
-    cd "$ROOT/plugins/$PLUGIN/Builds/VisualStudio2022/Win32/Release/VST/"
-    pwd
-    ls -l
-
     cd "$ROOT/ci/bin"
+    mkdir VST
+    mkdir VST_32
+    mkdir VST3
+    mkdir VST3_32
 
-    if [ -f "$ROOT/plugins/$PLUGIN/Builds/VisualStudio2022/x64/Release64/VST/${PLUGIN}.dll" ]; then
-      echo "Copy new name 64 bit vst"
-      cp "$ROOT/plugins/$PLUGIN/Builds/VisualStudio2022/x64/Release64/VST/${PLUGIN}.dll" .
-    else
-      echo "Copy old name 64 bit vst"
-      cp "$ROOT/plugins/$PLUGIN/Builds/VisualStudio2022/x64/Release64/VST/${PLUGIN}_64b.dll" .
-    fi
-
-    cp "$ROOT/plugins/$PLUGIN/Builds/VisualStudio2022/Win32/Release/VST/${PLUGIN}_32b.dll" .
+    cp "$ROOT/plugins/$PLUGIN/Builds/VisualStudio2022/x64/Release64/VST/${PLUGIN}.dll" VST
+    cp "$ROOT/plugins/$PLUGIN/Builds/VisualStudio2022/x64/Release64/VST3/${PLUGIN}.vst3" VST3
+    cp "$ROOT/plugins/$PLUGIN/Builds/VisualStudio2022/Win32/Release/VST/${PLUGIN}.dll" VST
+    cp "$ROOT/plugins/$PLUGIN/Builds/VisualStudio2022/Win32/Release/VST3/${PLUGIN}.vst3" VST3
 
     pwd
     ls -l
-    7z a ${PLUGIN}_Win.zip ${PLUGIN}*.dll
+    7z a ${PLUGIN}_Win.zip VST VST_32 VST3 VST3_32
     if [ "$BRANCH" = "release" ]; then
       curl -F "files=@${PLUGIN}_Win.zip" "https://socalabs.com/files/set.php?key=$APIKEY"
     fi
@@ -187,10 +182,12 @@ if [ $OS = "mac" ]; then
   unzip Mverb2020_Mac.zip
 
   mkdir VST
+  mkdir VST3
   mkdir AU
   mv *.vst VST
+  mv *.vst3 VST3
   mv *.component AU
-  zip -r All_Mac.zip AU VST
+  zip -r All_Mac.zip AU VST VST3
 
   if [ "$BRANCH" = "release" ]; then
     curl -F "files=@All_Mac.zip" "https://socalabs.com/files/set.php?key=$APIKEY"
