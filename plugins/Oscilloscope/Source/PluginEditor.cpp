@@ -10,6 +10,8 @@ PluginEditor::PluginEditor (PluginProcessor& p)
     auto c1 = juce::Colours::white.overlaidWith (juce::Colours::blue.withAlpha (0.3f));
     auto c2 = juce::Colours::white.overlaidWith (juce::Colours::yellow.withAlpha (0.3f));
 
+    scope.setColour (gin::TriggeredScope::lineColourId, findColour (gin::PluginLookAndFeel::grey45ColourId));
+
     scope.setColour (gin::TriggeredScope::traceColourId + 0, c1);
     scope.setColour (gin::TriggeredScope::traceColourId + 1, c2);
     scope.setColour (gin::TriggeredScope::envelopeColourId + 0, c1);
@@ -58,7 +60,7 @@ void PluginEditor::resized()
 {
     gin::ProcessorEditor::resized();
 
-    scope.setBounds (inset, headerHeight + inset, getWidth() - 3 * cx - inset, getHeight() - headerHeight - 2 * inset);
+    scope.setBounds (inset, headerHeight + inset, getWidth() - 3 * cx - inset - 10, getHeight() - headerHeight - 2 * inset);
 
     componentForId (PARAM_SAMPLES_PER_PIXEL)->setBounds (getGridArea (0, 0));
     componentForId (PARAM_VERTICAL_ZOOM)->setBounds (getGridArea (0, 1));

@@ -30,7 +30,7 @@ PluginEditor::PluginEditor (PluginProcessor& p)
         controls.add (pc);
     }
     
-    setGridSize (4, 1);
+    setGridSize (6, 1);
 }
 
 PluginEditor::~PluginEditor()
@@ -42,8 +42,8 @@ void PluginEditor::resized()
 {
     gin::ProcessorEditor::resized();
     
-    componentForId (PARAM_GAIN_L)->setBounds (getGridArea (0, 0));
-    componentForId (PARAM_GAIN_S)->setBounds (getGridArea (1, 0));
-    componentForId (PARAM_GAIN_R)->setBounds (getGridArea (2, 0));
-    componentForId (PARAM_CLIP)->setBounds (getGridArea (3, 0));
+    componentForId (PARAM_GAIN_L)->setBounds (getGridArea (1, 0));
+    componentForId (PARAM_GAIN_S)->setBounds (getGridArea (2, 0));
+    componentForId (PARAM_GAIN_R)->setBounds (getGridArea (3, 0));
+    componentForId (PARAM_CLIP)->setBounds (getGridArea (4, 0));
 }

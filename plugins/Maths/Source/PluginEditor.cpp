@@ -16,6 +16,10 @@ MathsAudioProcessorEditor::MathsAudioProcessorEditor (MathsAudioProcessor& p)
     addAndMakeVisible (r);
     addAndMakeVisible (a);
     addAndMakeVisible (b);
+    l.setJustification (juce::Justification::centredLeft);
+    r.setJustification (juce::Justification::centredLeft);
+    a.setJustification (juce::Justification::centredLeft);
+    b.setJustification (juce::Justification::centredLeft);
     addAndMakeVisible (lLabel);
     addAndMakeVisible (rLabel);
     addAndMakeVisible (aLabel);
@@ -53,7 +57,7 @@ MathsAudioProcessorEditor::MathsAudioProcessorEditor (MathsAudioProcessor& p)
         count++;
     }
     
-    setGridSize (9, 2);
+    setGridSize (9, 3);
     setSize (getWidth(), getHeight() + 20);
 }
 
@@ -88,13 +92,13 @@ void MathsAudioProcessorEditor::resized()
 {
     gin::ProcessorEditor::resized();
     
-    componentForId (PARAM_P1)->setBounds (getGridArea (0, 1));
-    componentForId (PARAM_P2)->setBounds (getGridArea (1, 1));
-    componentForId (PARAM_P3)->setBounds (getGridArea (2, 1));
-    componentForId (PARAM_P4)->setBounds (getGridArea (3, 1));
-    componentForId (PARAM_LIMITER)->setBounds (getGridArea (8, 1));
+    componentForId (PARAM_P1)->setBounds (getGridArea (0, 2));
+    componentForId (PARAM_P2)->setBounds (getGridArea (1, 2));
+    componentForId (PARAM_P3)->setBounds (getGridArea (2, 2));
+    componentForId (PARAM_P4)->setBounds (getGridArea (3, 2));
+    componentForId (PARAM_LIMITER)->setBounds (getGridArea (8, 2));
     
-    auto rc = getGridArea (0, 0, 9, 1);
+    auto rc = getGridArea (0, 0, 9, 2);
     rc = rc.withSizeKeepingCentre (rc.getWidth() - 4, rc.getHeight());
     
     int h = rc.getHeight() / 4;

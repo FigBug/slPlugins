@@ -11,11 +11,12 @@
               displaySplashScreen="0" reportAppUsage="0" splashScreenColour="Dark"
               cppLanguageStandard="17" companyCopyright="SocaLabs" pluginRTASDisableBypass="0"
               pluginRTASDisableMultiMono="0" pluginAAXDisableBypass="0" pluginAAXDisableMultiMono="0"
-              pluginFormats="buildAU,buildAUv3,buildStandalone,buildVST" buildVST="1"
-              buildVST3="0" buildAU="1" buildAUv3="1" buildRTAS="0" buildAAX="0"
-              buildStandalone="1" enableIAA="0" pluginCharacteristicsValue="pluginIsSynth,pluginWantsMidiIn"
+              pluginFormats="buildAU,buildAUv3,buildStandalone,buildVST,buildVST3"
+              buildVST="1" buildVST3="1" buildAU="1" buildAUv3="1" buildRTAS="0"
+              buildAAX="0" buildStandalone="1" enableIAA="0" pluginCharacteristicsValue="pluginIsSynth,pluginWantsMidiIn"
               pluginAUMainType="'aumu'" pluginVST3Category="Instrument" pluginVSTCategory="kPlugCategSynth"
-              jucerFormatVersion="1" defines="JUCE_MODAL_LOOPS_PERMITTED=1">
+              jucerFormatVersion="1" defines="JUCE_MODAL_LOOPS_PERMITTED=1"
+              addUsingNamespaceToJuceHeader="0">
   <MAINGROUP id="dPRjsF" name="SFX8">
     <GROUP id="{EE796482-0D02-0052-80F4-B1FE6CE0D41A}" name="Source">
       <GROUP id="{DA748B7D-42D5-4A16-B897-0DD85D003309}" name="bfxr">

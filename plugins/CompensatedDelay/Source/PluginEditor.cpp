@@ -32,7 +32,7 @@ CompensatedDelayAudioProcessorEditor::CompensatedDelayAudioProcessorEditor (Comp
         controls.add (pc);
     }
     
-    setGridSize (4, 1);
+    setGridSize (6, 1);
     
     proc.mode->addListener (this);
     
@@ -49,9 +49,9 @@ void CompensatedDelayAudioProcessorEditor::resized()
 {
     gin::ProcessorEditor::resized();
 
-    componentForParam (*proc.mode)->setBounds (getGridArea (1, 0));
-    componentForParam (*proc.time)->setBounds (getGridArea (2, 0));
-    componentForParam (*proc.samples)->setBounds (getGridArea (2, 0));
+    componentForParam (*proc.mode)->setBounds (getGridArea (2, 0));
+    componentForParam (*proc.time)->setBounds (getGridArea (3, 0));
+    componentForParam (*proc.samples)->setBounds (getGridArea (3, 0));
 }
 
 void CompensatedDelayAudioProcessorEditor::parameterChanged (Parameter* param)
