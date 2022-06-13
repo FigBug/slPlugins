@@ -20,12 +20,12 @@ SFXAudioProcessorEditor::SFXAudioProcessorEditor (SFXAudioProcessor& p)
 {
     additionalProgramming = "Thomas Vian";
 
-    logo = ImageFileFormat::loadFrom (BinaryData::logo_png, BinaryData::logo_pngSize);
+    logo = juce::ImageFileFormat::loadFrom (BinaryData::logo_png, BinaryData::logo_pngSize);
 
     addAndMakeVisible (padGrid);
     addAndMakeVisible (params);
 
-    setGridSize (10, 4);
+    setGridSize (16, 6);
 
     auto& padComponents = padGrid.getPads();
     for (int i = 0; i < padComponents.size(); i++)
@@ -64,7 +64,7 @@ void SFXAudioProcessorEditor::resized()
     params.setBounds (rc);
 }
 
-void SFXAudioProcessorEditor::paint (Graphics& g)
+void SFXAudioProcessorEditor::paint (juce::Graphics& g)
 {
     gin::ProcessorEditor::paint (g);
 

@@ -19,7 +19,7 @@ using namespace juce::dsp;
 class SFXAudioProcessorEditor;
 //==============================================================================
 class SFXAudioProcessor : public gin::Processor,
-                          private MPESynthesiser
+                          private juce::MPESynthesiser
 {
 public:
     //==============================================================================
@@ -30,14 +30,14 @@ public:
     void prepareToPlay (double sampleRate, int samplesPerBlock) override;
     void releaseResources() override;
 
-    void processBlock (AudioSampleBuffer&, MidiBuffer&) override;
+    void processBlock (juce::AudioSampleBuffer&, juce::MidiBuffer&) override;
 
     //==============================================================================
     void stateUpdated() override;
     void updateState() override;
 
     //==============================================================================
-    AudioProcessorEditor* createEditor() override;
+    juce::AudioProcessorEditor* createEditor() override;
     bool hasEditor() const override;
     
     Pad* getPadForNote (int note)
@@ -49,15 +49,15 @@ public:
         return nullptr;
     }
 
-    Pad* getPad (int idx)               { return pads[idx]; }
-    const OwnedArray<Pad>& getPads()    { return pads;      }
+    Pad* getPad (int idx)                   { return pads[idx]; }
+    const juce::OwnedArray<Pad>& getPads()  { return pads;      }
     
-    String uniqueName (String prefix);
+    juce::String uniqueName (juce::String prefix);
 
-    bool getMidiLearn()                 { return midiLearn; }
-    void setMidiLearn (bool m)          { midiLearn = m;    }
-    void setCurrentPad (int c)          { currentPad = c;   }
-    int getCurrentPad()                 { return currentPad;}
+    bool getMidiLearn()                     { return midiLearn; }
+    void setMidiLearn (bool m)              { midiLearn = m;    }
+    void setCurrentPad (int c)              { currentPad = c;   }
+    int getCurrentPad()                     { return currentPad;}
     
     //==============================================================================
     void midiNoteOn (int note, int velocity = 128);
@@ -70,15 +70,15 @@ public:
     std::function<void ()> onCurrentPageChanged;
 
 private:
-    void trackMidi (MidiBuffer& midi, int numSamples);
+    void trackMidi (juce::MidiBuffer& midi, int numSamples);
     //==============================================================================
     
-    CriticalSection lock;    
-    Component::SafePointer<SFXAudioProcessorEditor> editor;
+    juce::CriticalSection lock;
+    juce::Component::SafePointer<SFXAudioProcessorEditor> editor;
     
-    OwnedArray<Pad> pads;
+    juce::OwnedArray<Pad> pads;
 
-    MidiBuffer userMidi;
+    juce::MidiBuffer userMidi;
     bool midiLearn = false;
     int currentPad = 0;
 

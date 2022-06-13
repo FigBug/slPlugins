@@ -28,10 +28,21 @@ PluginEditor::PluginEditor (PluginProcessor& p)
     thread.addTimeSliceClient (&sonogramL);
     thread.addTimeSliceClient (&sonogramR);
     thread.startThread();
-    
+
+    scopeL.setColour (drow::Spectroscope::lineColourId, findColour (gin::PluginLookAndFeel::grey45ColourId));
+    scopeL.setColour (drow::Spectroscope::backgroundColourId, juce::Colours::transparentBlack);
     scopeL.setColour (drow::Spectroscope::traceColourId, Colours::white.overlaidWith (Colours::blue.withAlpha (0.3f)));
+    scopeR.setColour (drow::Spectroscope::lineColourId, findColour (gin::PluginLookAndFeel::grey45ColourId));
+    scopeR.setColour (drow::Spectroscope::backgroundColourId, juce::Colours::transparentBlack);
     scopeR.setColour (drow::Spectroscope::traceColourId, Colours::white.overlaidWith (Colours::yellow.withAlpha (0.3f)));
-    
+
+    sonogramL.setColour (drow::Sonogram::lineColourId, findColour (gin::PluginLookAndFeel::grey45ColourId));
+    sonogramL.setColour (drow::Sonogram::backgroundColourId, juce::Colours::black);
+    sonogramL.setColour (drow::Sonogram::traceColourId, Colours::white);
+    sonogramR.setColour (drow::Sonogram::lineColourId, findColour (gin::PluginLookAndFeel::grey45ColourId));
+    sonogramR.setColour (drow::Sonogram::backgroundColourId, juce::Colours::black);
+    sonogramR.setColour (drow::Sonogram::traceColourId, Colours::white);
+
     for (auto pp : p.getPluginParameters())
     {
         ParamComponent* pc;
@@ -76,7 +87,7 @@ void PluginEditor::resized()
 {
     gin::ProcessorEditor::resized();
 
-    auto rc = Rectangle<int> (inset, headerHeight + inset, getWidth() - cx - 2 * inset, getHeight() - headerHeight - 2 * inset);
+    auto rc = Rectangle<int> (inset, headerHeight + inset, getWidth() - cx - 2 * inset - 10, getHeight() - headerHeight - 2 * inset);
     
     scopeL.setBounds (rc);
     scopeR.setBounds (rc);

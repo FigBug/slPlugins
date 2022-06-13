@@ -29,7 +29,7 @@ void Voice::noteStarted()
     }
 }
 
-void Voice::renderNextBlock (AudioBuffer<float>& outputBuffer, int startSample, int numSamples)
+void Voice::renderNextBlock (juce::AudioBuffer<float>& outputBuffer, int startSample, int numSamples)
 {
     if (currentSampleRate == 44100.0)
     {
@@ -40,7 +40,7 @@ void Voice::renderNextBlock (AudioBuffer<float>& outputBuffer, int startSample, 
             clearCurrentNote();
 
         for (int ch = 0; ch < outputBuffer.getNumChannels(); ch++)
-            FloatVectorOperations::add (outputBuffer.getWritePointer (ch, startSample), work, numSamples);
+            juce::FloatVectorOperations::add (outputBuffer.getWritePointer (ch, startSample), work, numSamples);
     }
     else
     {
@@ -53,7 +53,7 @@ void Voice::renderNextBlock (AudioBuffer<float>& outputBuffer, int startSample, 
                 clearCurrentNote();
 
             float* rawData[] = { work, nullptr };
-            AudioSampleBuffer temp (rawData, 1, numSamples);
+            juce::AudioSampleBuffer temp (rawData, 1, numSamples);
 
             resamplingFifo->pushAudioBuffer (temp);
         }
@@ -61,12 +61,12 @@ void Voice::renderNextBlock (AudioBuffer<float>& outputBuffer, int startSample, 
         {
             memset (work, 0, size_t (numSamples) * sizeof (float));
             float* rawData[] = { work, nullptr };
-            AudioSampleBuffer temp (rawData, 1, numSamples);
+            juce::AudioSampleBuffer temp (rawData, 1, numSamples);
 
             resamplingFifo->popAudioBuffer (temp);
 
             for (int ch = 0; ch < outputBuffer.getNumChannels(); ch++)
-                FloatVectorOperations::add (outputBuffer.getWritePointer (ch, startSample), work, numSamples);
+                juce::FloatVectorOperations::add (outputBuffer.getWritePointer (ch, startSample), work, numSamples);
         }
     }
 }

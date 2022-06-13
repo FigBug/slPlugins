@@ -14,7 +14,7 @@
 
 using namespace gin;
 
-static String waveTextFunc (const Parameter&, float v)
+static juce::String waveTextFunc (const Parameter&, float v)
 {
     switch (int (v))
     {
@@ -60,10 +60,10 @@ SFXAudioProcessor::SFXAudioProcessor()
         auto ids = p.getParams();
         for (auto id : ids)
         {
-            String uniqueId = String (id.c_str()) + String (i + 1);
+            juce::String uniqueId = juce::String (id.c_str()) + juce::String (i + 1);
 
             addExtParam (uniqueId,
-                         String (p.getName (id).c_str()) + " " + String (i + 1),
+                         juce::String (p.getName (id).c_str()) + " " + juce::String (i + 1),
                          p.getName (id),
                          "",
                          { p.getMin (id), p.getMax (id), 0.0f, 1.0f },
@@ -74,10 +74,10 @@ SFXAudioProcessor::SFXAudioProcessor()
         
         for (auto id : ids)
         {
-            String uniqueId = String (id.c_str()) + String (i + 1) + "l";
+            juce::String uniqueId = juce::String (id.c_str()) + juce::String (i + 1) + "l";
             
             addExtParam (uniqueId,
-                         String (p.getName (id).c_str()) + " " + String (i + 1) + " Lock",
+                         juce::String (p.getName (id).c_str()) + " " + juce::String (i + 1) + " Lock",
                          p.getName (id) + " Lock",
                          "",
                          { 0.0f, 1.0f, 1.0f, 1.0f },
@@ -115,8 +115,8 @@ void SFXAudioProcessor::stateUpdated()
     {
         auto p = pads[i];
         
-        auto nameKey = "name" + String (i);
-        auto noteKey = "note" + String (i);
+        auto nameKey = "name" + juce::String (i);
+        auto noteKey = "note" + juce::String (i);
         
         if (state.hasProperty (nameKey))
             p->name = state.getProperty (nameKey);
@@ -131,26 +131,26 @@ void SFXAudioProcessor::updateState()
     {
         auto p = pads[i];
         
-        state.setProperty ("name" + String (i), p->name.get(), nullptr);
-        state.setProperty ("note" + String (i), p->note.get(), nullptr);
+        state.setProperty ("name" + juce::String (i), p->name.get(), nullptr);
+        state.setProperty ("note" + juce::String (i), p->note.get(), nullptr);
     }
 }
 
 //==============================================================================
 void SFXAudioProcessor::midiNoteOn (int note, int velocity)
 {
-    ScopedLock sl (lock);
+    juce::ScopedLock sl (lock);
 
     if (! midiLearn && note > 0)
-        userMidi.addEvent (MidiMessage::noteOn (1, note, uint8 (velocity)), 0);
+        userMidi.addEvent (juce::MidiMessage::noteOn (1, note, juce::uint8 (velocity)), 0);
 }
 
 void SFXAudioProcessor::midiNoteOff (int note, int velocity)
 {
-    ScopedLock sl (lock);
+    juce::ScopedLock sl (lock);
 
     if (! midiLearn && note > 0)
-        userMidi.addEvent (MidiMessage::noteOff (1, note, uint8 (velocity)), 0);
+        userMidi.addEvent (juce::MidiMessage::noteOff (1, note, juce::uint8 (velocity)), 0);
 }
 
 //==============================================================================
@@ -163,17 +163,17 @@ void SFXAudioProcessor::releaseResources()
 {
 }
 
-void SFXAudioProcessor::trackMidi (MidiBuffer& midi, int numSamples)
+void SFXAudioProcessor::trackMidi (juce::MidiBuffer& midi, int numSamples)
 {
     // fade out old messages
     double t = numSamples / gin::Processor::getSampleRate() * 1000;
     for (auto& c : midiCnt)
-        c = jmax (0, int (c - t));
+        c = juce::jmax (0, int (c - t));
 
     // track new messages
     int pos = 0;
-    MidiMessage msg;
-    auto itr = MidiBuffer::Iterator (midi);
+    juce::MidiMessage msg;
+    auto itr = juce::MidiBuffer::Iterator (midi);
 
     while (itr.getNextEvent (msg, pos))
     {
@@ -185,7 +185,7 @@ void SFXAudioProcessor::trackMidi (MidiBuffer& midi, int numSamples)
             
             if (midiLearn)
             {
-                MessageManager::getInstance()->callAsync ([this, n]
+                juce::MessageManager::getInstance()->callAsync ([this, n]
                                                           {
                                                               for (auto p : pads)
                                                                   if (p->note == n)
@@ -224,10 +224,10 @@ void SFXAudioProcessor::trackMidi (MidiBuffer& midi, int numSamples)
     }
 }
 
-void SFXAudioProcessor::processBlock (AudioSampleBuffer& buffer, MidiBuffer& midi)
+void SFXAudioProcessor::processBlock (juce::AudioSampleBuffer& buffer, juce::MidiBuffer& midi)
 {
-    ScopedLock sl (lock);
-    ScopedNoDenormals noDenormals;
+    juce::ScopedLock sl (lock);
+    juce::ScopedNoDenormals noDenormals;
 
     if (userMidi.getNumEvents() > 0)
     {
@@ -244,12 +244,12 @@ void SFXAudioProcessor::processBlock (AudioSampleBuffer& buffer, MidiBuffer& mid
     }
 }
 
-String SFXAudioProcessor::uniqueName (String prefix)
+juce::String SFXAudioProcessor::uniqueName (juce::String prefix)
 {
     int count = state.getProperty ("count" + prefix, 1);
     state.setProperty ("count" + prefix, count + 1, nullptr);
     
-    return prefix + " " + String (count);
+    return prefix + " " + juce::String (count);
 }
 
 //==============================================================================
@@ -258,7 +258,7 @@ bool SFXAudioProcessor::hasEditor() const
     return true;
 }
 
-AudioProcessorEditor* SFXAudioProcessor::createEditor()
+juce::AudioProcessorEditor* SFXAudioProcessor::createEditor()
 {
     editor = new SFXAudioProcessorEditor (*this);
     return editor;
@@ -266,7 +266,7 @@ AudioProcessorEditor* SFXAudioProcessor::createEditor()
 
 //==============================================================================
 // This creates new instances of the plugin..
-AudioProcessor* JUCE_CALLTYPE createPluginFilter()
+juce::AudioProcessor* JUCE_CALLTYPE createPluginFilter()
 {
     return new SFXAudioProcessor();
 }

@@ -25,7 +25,7 @@ public:
 
     //==============================================================================
     void resized() override;
-    void paint (Graphics& g) override;
+    void paint (juce::Graphics& g) override;
     void refresh();
 
 private:    
@@ -33,7 +33,7 @@ private:
 
     PadGridComponent padGrid {sfxProcessor};
     ParamComponent params {sfxProcessor};
-    Image logo;
+    juce::Image logo;
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (SFXAudioProcessorEditor)
 };

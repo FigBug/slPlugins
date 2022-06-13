@@ -19,11 +19,11 @@
 class Pad
 {
 public:
-    Pad (ValueTree& state, int i, int n)
+    Pad (juce::ValueTree& state, int i, int n)
         : index (i)
     {
-        name.referTo (state, String::formatted ("name%d", index), nullptr);
-        note.referTo (state, String::formatted ("note%d", index), nullptr);
+        name.referTo (state, juce::String::formatted ("name%d", index), nullptr);
+        note.referTo (state, juce::String::formatted ("note%d", index), nullptr);
         
         note = n;
 
@@ -81,9 +81,9 @@ public:
     }
 
     int index = 0;
-    CachedValue<String> name;
-    CachedValue<int> note;
+    juce::CachedValue<juce::String> name;
+    juce::CachedValue<int> note;
     SfxrParams params;
 
-    Array<gin::Parameter*> pluginParams, pluginLockParams;
+    juce::Array<gin::Parameter*> pluginParams, pluginLockParams;
 };

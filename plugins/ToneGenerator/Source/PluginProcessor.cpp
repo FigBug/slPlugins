@@ -48,9 +48,9 @@ slToneAudioProcessor::slToneAudioProcessor()
                 sum += std::pow (-1, (k - 1) / 2.0f) / (k * k) * sin (k * in);
                 k += 2;
             }
-            return float (8.0f / (float_Pi * float_Pi) * sum);
+            return float (8.0f / (MathConstants<float>::pi * MathConstants<float>::pi) * sum);
         }
-        return (in < 0 ? in / -float_Pi : in / float_Pi) * 2 - 1;
+        return (in < 0 ? in / -MathConstants<float>::pi : in / MathConstants<float>::pi) * 2 - 1;
     };
     
     auto sawUpFunc = [&] (float in) -> float
@@ -67,9 +67,9 @@ slToneAudioProcessor::slToneAudioProcessor()
                 sum += oddEven (k) * std::sin (k * in) / k;
                 k++;
             }
-            return float (-2.0f / float_Pi * sum);
+            return float (-2.0f / MathConstants<float>::pi * sum);
         }
-        return ((in + float_Pi) / (2 * float_Pi)) * 2 - 1;
+        return ((in + MathConstants<float>::pi) / (2 * MathConstants<float>::pi)) * 2 - 1;
     };
     
     auto sawDownFunc = [&] (float in) -> float
@@ -86,9 +86,9 @@ slToneAudioProcessor::slToneAudioProcessor()
                 sum += oddEven (k) * std::sin (k * in) / k;
                 k++;
             }
-            return float (2.0f / float_Pi * sum);
+            return float (2.0f / MathConstants<float>::pi * sum);
         }
-        return -(((in + float_Pi) / (2 * float_Pi)) * 2 - 1);
+        return -(((in + MathConstants<float>::pi) / (2 * MathConstants<float>::pi)) * 2 - 1);
     };
     
     auto squareFunc = [&] (float in) -> float
@@ -106,7 +106,7 @@ slToneAudioProcessor::slToneAudioProcessor()
                 i++;
             }
             
-            return float (4.0f / float_Pi * sum);
+            return float (4.0f / MathConstants<float>::pi * sum);
         }
         return in < 0 ? -1.0f : 1.0f;
     };

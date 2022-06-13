@@ -17,7 +17,7 @@
 #include "../../../modules/bfxr/SfxrSynth.h"
 
 class SFXAudioProcessor;
-class Voice : public MPESynthesiserVoice
+class Voice : public juce::MPESynthesiserVoice
 {
 public:
     Voice (SFXAudioProcessor& s)
@@ -43,7 +43,7 @@ public:
             clearCurrentNote();
     }
 
-    void renderNextBlock (AudioBuffer<float>& outputBuffer, int startSample, int numSamples) override;
+    void renderNextBlock (juce::AudioBuffer<float>& outputBuffer, int startSample, int numSamples) override;
 
     void notePressureChanged() override     {}
     void notePitchbendChanged() override    {}

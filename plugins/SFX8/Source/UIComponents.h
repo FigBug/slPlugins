@@ -13,6 +13,21 @@
 #include "PluginProcessor.h"
 
 //==============================================================================
+class HSelect : public gin::Select
+{
+public:
+    HSelect (gin::Parameter* p) : gin::Select (p) {}
+
+    void resized() override
+    {
+        juce::Rectangle<int> r = getLocalBounds().reduced (4);
+
+        name.setBounds (r.removeFromLeft (90));
+        comboBox.setBounds (r.reduced (2));
+    }
+};
+//==============================================================================
+
 class LockComponent : public gin::PluginButton
 {
 public:
@@ -31,20 +46,20 @@ public:
     }
 
 private:
-    void paint (Graphics& g) override
+    void paint (juce::Graphics& g) override
     {
         bool on = parameter->getUserValue() > 0.0f;
         auto rc = getLocalBounds().toFloat();
 
-        g.setColour (Colours::white.withAlpha (on ? 0.8f : 0.3f));
+        g.setColour (findColour (gin::PluginLookAndFeel::grey90ColourId).withAlpha (on ? 0.8f : 0.3f));
         g.fillPath (path, path.getTransformToScaleToFit (rc.reduced (2), true));
     }
 
-    Path path;
+    juce::Path path;
 };
 
 //==============================================================================
-class MenuButton : public TextButton
+class MenuButton : public juce::TextButton
 {
 public:
     MenuButton()
@@ -61,20 +76,20 @@ public:
     }
 
 private:
-    void paint (Graphics& g) override
+    void paint (juce::Graphics& g) override
     {
         auto rc = getLocalBounds().toFloat();
 
-        g.setColour (Colours::white);
+        g.setColour (findColour (gin::PluginLookAndFeel::grey90ColourId));
         g.fillPath (path, path.getTransformToScaleToFit (rc.reduced (2), true));
     }
 
-    Path path;
+    juce::Path path;
 };
 
 //==============================================================================
-class PadComponent : public Component,
-                     private Timer
+class PadComponent : public juce::Component,
+private juce::Timer
 {
 public:
     PadComponent (SFXAudioProcessor& pc, Pad& p)
@@ -98,46 +113,46 @@ private:
         }
     }
 
-    void mouseDown (const MouseEvent&) override
+    void mouseDown (const juce::MouseEvent&) override
     {
         if (onDown)
             onDown();
     }
 
-    void mouseUp (const MouseEvent&) override
+    void mouseUp (const juce::MouseEvent&) override
     {
         if (onUp)
             onUp();
     }
 
-    void paint (Graphics& g) override
+    void paint (juce::Graphics& g) override
     {
         auto rc = getLocalBounds().reduced (4);
 
         if (processor.getCurrentPad() == pad.index)
         {
-            g.setColour (Colours::white.withAlpha (0.25f));
+            g.setColour (findColour (gin::PluginLookAndFeel::grey90ColourId).withAlpha (0.25f));
             g.fillRect (rc);
         }
 
         if (isMouseOver())
         {
-            g.setColour (Colours::white.withAlpha (0.2f));
+            g.setColour (findColour (gin::PluginLookAndFeel::grey90ColourId).withAlpha (0.2f));
             g.fillRect (rc);
         }
 
         if (bright)
         {
-            g.setColour (Colours::white.withAlpha (0.3f));
+            g.setColour (findColour (gin::PluginLookAndFeel::grey90ColourId).withAlpha (0.3f));
             g.fillRect (rc);
         }
 
-        g.setColour (Colours::white);
+        g.setColour (findColour (gin::PluginLookAndFeel::grey90ColourId));
         g.drawRect (rc);
 
         rc = rc.reduced (2);
 
-        g.drawText (pad.name, rc, Justification::centredBottom);
+        g.drawText (pad.name, rc, juce::Justification::centredBottom);
     }
 
     SFXAudioProcessor& processor;
@@ -148,7 +163,7 @@ private:
 };
 
 //==============================================================================
-class PadGridComponent : public Component
+class PadGridComponent : public juce::Component
 {
 public:
     PadGridComponent (SFXAudioProcessor& pr)
@@ -161,14 +176,14 @@ public:
             pads.add (pc);
         }
 
-        listener.onValueTreePropertyChanged = [this] (const ValueTree&, const Identifier& i)
+        listener.onValueTreePropertyChanged = [this] (const juce::ValueTree&, const juce::Identifier& i)
         {
             if (i.toString().startsWith ("name"))
                 repaint();
         };
     }
 
-    const OwnedArray<PadComponent>& getPads() { return pads; }
+    const juce::OwnedArray<PadComponent>& getPads() { return pads; }
 
 private:
     void resized() override
@@ -190,12 +205,12 @@ private:
 
     SFXAudioProcessor& processor;
 
-    OwnedArray<PadComponent> pads;
+    juce::OwnedArray<PadComponent> pads;
     gin::AsyncLambdaValueTreeListener listener {processor.state};
 };
 
 //==============================================================================
-class ParamPageComponent : public Component
+class ParamPageComponent : public juce::Component
 {
 public:
     ParamPageComponent (SFXAudioProcessor& pr, Pad& p)
@@ -215,30 +230,28 @@ public:
         addAndMakeVisible (random);
         addAndMakeVisible (mutate);
 
-        name.setText (pad.name, dontSendNotification);
-        name.applyColourToAllText (Colours::white);
+        name.setText (pad.name, juce::dontSendNotification);
         name.onTextChange = [this]
         {
             pad.name = name.getText();
         };
 
-        note.setText (String (pad.note), dontSendNotification);
-        note.applyColourToAllText (Colours::white);
+        note.setText (juce::String (pad.note), juce::dontSendNotification);
         note.onTextChange = [this]
         {
-            pad.note = jlimit (0, 127, note.getText().getIntValue());
+            pad.note = juce::jlimit (0, 127, note.getText().getIntValue());
         };
 
-        listener.onValueTreePropertyChanged = [this] (const ValueTree&, const Identifier& i)
+        listener.onValueTreePropertyChanged = [this] (const juce::ValueTree&, const juce::Identifier& i)
         {
-            if (i.toString() == String ("name") + String (pad.index))
+            if (i.toString() == juce::String ("name") + juce::String (pad.index))
             {
                 if (pad.name != name.getText())
-                    name.setText (pad.name, dontSendNotification);
+                    name.setText (pad.name, juce::dontSendNotification);
             }
-            if (i.toString() == String ("note") + String (pad.index))
+            if (i.toString() == juce::String ("note") + juce::String (pad.index))
             {
-                note.setText (String (pad.note), dontSendNotification);
+                note.setText (juce::String (pad.note), juce::dontSendNotification);
             }
         };
 
@@ -332,7 +345,7 @@ public:
         {
             gin::ParamComponent* pc = nullptr;
             if (pp->getUid().startsWith ("wave"))
-                pc = new gin::Select (pp);
+                pc = new HSelect (pp);
             else
                 pc = new gin::HorizontalFader (pp, false);
 
@@ -352,6 +365,15 @@ public:
     }
 
 private:
+    void parentHierarchyChanged() override
+    {
+        if (getLookAndFeel().isColourSpecified (gin::PluginLookAndFeel::grey90ColourId))
+        {
+            name.applyColourToAllText (findColour (gin::PluginLookAndFeel::grey90ColourId, true));
+            note.applyColourToAllText (findColour (gin::PluginLookAndFeel::grey90ColourId, true));
+        }
+    }
+
     void resized() override
     {
         auto r = getLocalBounds();
@@ -359,7 +381,7 @@ private:
         // top
         {
             auto rc = r.removeFromTop (30);
-            name.setBounds (Rectangle<int> (rc).withSizeKeepingCentre (150, 20));
+            name.setBounds (juce::Rectangle<int> (rc).withSizeKeepingCentre (150, 20));
             menu.setBounds (rc.removeFromLeft (20).reduced (0, 5));
             note.setBounds (rc.removeFromRight (40).reduced (0, 5));
             r.removeFromTop (10);
@@ -368,11 +390,12 @@ private:
         // faders
         auto rc1 = r;
         auto rc2 = rc1.removeFromRight (rc1.getWidth() / 2);
+        auto h = (rc1.getHeight() - 25) / (controls.size() / 2);
 
         int i = 0;
         for (auto c : controls)
         {
-            auto rc = (i < controls.size() / 2) ? rc1.removeFromTop (20) : rc2.removeFromTop (20);
+            auto rc = (i < controls.size() / 2) ? rc1.removeFromTop (h) : rc2.removeFromTop (h);
             locks[i]->setBounds (rc.removeFromLeft (rc.getHeight()));
             c->setBounds (rc);
 
@@ -406,13 +429,14 @@ private:
 
     void showMenu()
     {
-        PopupMenu m;
+        juce::PopupMenu m;
+        m.setLookAndFeel (&getLookAndFeel());
 
-        m.addItem (PopupMenu::Item ("MIDI Learn").setTicked (processor.getMidiLearn()).setAction ([this] { toggleMidiLearn(); }));
+        m.addItem (juce::PopupMenu::Item ("MIDI Learn").setTicked (processor.getMidiLearn()).setAction ([this] { toggleMidiLearn(); }));
         m.addSeparator();
-        m.addItem (PopupMenu::Item ("Import Sound...").setAction ([this] { importSound(); }));
-        m.addItem (PopupMenu::Item ("Export Sound...").setAction ([this] { exportSound(); }));
-        m.addItem (PopupMenu::Item ("Export .WAV...").setAction ([this] { exportWav(); }));
+        m.addItem (juce::PopupMenu::Item ("Import Sound...").setAction ([this] { importSound(); }));
+        m.addItem (juce::PopupMenu::Item ("Export Sound...").setAction ([this] { exportSound(); }));
+        m.addItem (juce::PopupMenu::Item ("Export .WAV...").setAction ([this] { exportWav(); }));
 
         m.showMenuAsync ({}, {});
     }
@@ -424,10 +448,10 @@ private:
 
     void importSound()
     {
-        FileChooser fc ("Load", {}, "*.sfx8sound");
+        juce::FileChooser fc ("Load", {}, "*.sfx8sound");
         if (fc.browseForFileToOpen())
         {
-            auto json = JSON::parse (fc.getResult().loadFileAsString());
+            auto json = juce::JSON::parse (fc.getResult().loadFileAsString());
             if (auto obj = json.getDynamicObject())
             {
                 for (auto nv : obj->getProperties())
@@ -446,23 +470,23 @@ private:
 
     void exportSound()
     {
-        FileChooser fc ("Save", {}, "*.sfx8sound");
+        juce::FileChooser fc ("Save", {}, "*.sfx8sound");
         if (fc.browseForFileToSave (true))
         {
-            auto obj = new DynamicObject();
+            auto obj = new juce::DynamicObject();
 
             for (auto pid : pad.params.getParams())
-                obj->setProperty (String (pid.c_str()), pad.params.getParam (pid));
+                obj->setProperty (juce::String (pid.c_str()), pad.params.getParam (pid));
             obj->setProperty ("name", pad.name.get());
 
-            auto text = JSON::toString (var (obj));
+            auto text = juce::JSON::toString (juce::var (obj));
             fc.getResult().replaceWithText (text);
         }
     }
 
     void exportWav()
     {
-        FileChooser fc ("Save", {}, "*.wav");
+        juce::FileChooser fc ("Save", {}, "*.wav");
         if (fc.browseForFileToSave (true))
         {
             SfxrSynth sfxr (44100.0f);
@@ -470,12 +494,12 @@ private:
             sfxr.setParams (pad.params);
             sfxr.reset (true);
 
-            AudioSampleBuffer buffer (1, 128);
+            juce::AudioSampleBuffer buffer (1, 128);
             buffer.clear();
 
             if (auto os = fc.getResult().createOutputStream())
             {
-                std::unique_ptr<AudioFormatWriter> writer (WavAudioFormat().createWriterFor (os.release(), 44100, 1, 16, {}, 0));
+                std::unique_ptr<juce::AudioFormatWriter> writer (juce::WavAudioFormat().createWriterFor (os.release(), 44100, 1, 16, {}, 0));
 
                 if (writer != nullptr)
                 {
@@ -494,16 +518,16 @@ private:
     gin::AsyncLambdaValueTreeListener listener {processor.state};
 
     MenuButton menu;
-    TextEditor name, note;
-    OwnedArray<gin::ParamComponent> controls;
-    OwnedArray<LockComponent> locks;
+    juce::TextEditor name, note;
+    juce::OwnedArray<gin::ParamComponent> controls;
+    juce::OwnedArray<LockComponent> locks;
 
-    TextButton coin {"Coin"}, laser {"Laser"}, explosion {"Explosion"}, powerup {"Powerup"}, hit {"Hit"},
-               jump {"Jump"}, blip {"Blip"}, random {"Random"}, mutate {"Mutate"};
+    juce::TextButton coin {"Coin"}, laser {"Laser"}, explosion {"Explosion"}, powerup {"Powerup"}, hit {"Hit"},
+                     jump {"Jump"}, blip {"Blip"}, random {"Random"}, mutate {"Mutate"};
 };
 
 //==============================================================================
-class ParamComponent : public Component
+class ParamComponent : public juce::Component
 {
 public:
     ParamComponent (SFXAudioProcessor& pr)
@@ -551,5 +575,5 @@ private:
     }
 
     SFXAudioProcessor& processor;
-    OwnedArray<ParamPageComponent> pages;
+    juce::OwnedArray<ParamPageComponent> pages;
 };
