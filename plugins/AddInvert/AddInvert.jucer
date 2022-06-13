@@ -61,7 +61,7 @@
         <MODULEPATH id="gin_gui" path="../../modules/gin/modules"/>
       </MODULEPATHS>
     </XCODE_MAC>
-    <VS2019 targetFolder="Builds/VisualStudio2019" toolset="v142" vstLegacyFolder="../../modules/plugin_sdk/vstsdk2.4">
+    <VS2022 targetFolder="Builds/VisualStudio2022" toolset="v142" vstLegacyFolder="../../modules/plugin_sdk/vstsdk2.4">
       <CONFIGURATIONS>
         <CONFIGURATION name="Debug" winWarningLevel="4" generateManifest="1" winArchitecture="Win32"
                        isDebug="1" optimisation="1" targetName="AddInvert_32b" headerPath="../../../../modules/slCommon"
@@ -106,7 +106,7 @@
         <MODULEPATH id="gin_dsp" path="../../modules/gin/modules"/>
         <MODULEPATH id="gin_gui" path="../../modules/gin/modules"/>
       </MODULEPATHS>
-    </VS2019>
+    </VS2022>
     <LINUX_MAKE targetFolder="Builds/LinuxMakefile" vstLegacyFolder="../../modules/plugin_sdk/vstsdk2.4"
                 extraCompilerFlags="-fvisibility=hidden" extraLinkerFlags="-fdata-sections -ffunction-sections -Wl,--gc-sections -Wl,-O1 -Wl,--as-needed -Wl,--strip-all">
       <CONFIGURATIONS>
