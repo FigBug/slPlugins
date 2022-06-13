@@ -42,12 +42,23 @@ CompressorAudioProcessorEditor::CompressorAudioProcessorEditor (CompressorAudioP
     scope.setVerticalZoomOffset (-0.5, 0);
     scope.setVerticalZoomOffset (-0.5, 1);
     scope.setVerticalZoomOffset (-0.5, 2);
+    scope.setColour (gin::TriggeredScope::lineColourId, findColour (gin::PluginLookAndFeel::grey45ColourId));
     scope.setColour (gin::TriggeredScope::traceColourId + 0, juce::Colours::transparentBlack);
-    scope.setColour (gin::TriggeredScope::envelopeColourId + 0, juce::Colours::orange);
-    scope.setColour (gin::TriggeredScope::traceColourId + 1, juce::Colours::transparentBlack);
-    scope.setColour (gin::TriggeredScope::envelopeColourId + 1, juce::Colours::white);
-    scope.setColour (gin::TriggeredScope::traceColourId + 2, juce::Colours::red);
+    scope.setColour (gin::TriggeredScope::envelopeColourId + 0, findColour (gin::PluginLookAndFeel::accentColourId).withAlpha (0.3f));
+    scope.setColour (gin::TriggeredScope::traceColourId + 1, findColour (gin::PluginLookAndFeel::whiteColourId).withAlpha (0.7f));
+    scope.setColour (gin::TriggeredScope::envelopeColourId + 1, findColour (gin::PluginLookAndFeel::whiteColourId).withAlpha (0.7f));
+    scope.setColour (gin::TriggeredScope::traceColourId + 2, findColour (gin::PluginLookAndFeel::accentColourId));
     scope.setColour (gin::TriggeredScope::envelopeColourId + 2, juce::Colours::transparentBlack);
+
+    inputMeter.setColour (gin::LevelMeter::lineColourId, findColour (gin::PluginLookAndFeel::grey45ColourId));
+    inputMeter.setColour (gin::LevelMeter::meterColourId, findColour (gin::PluginLookAndFeel::accentColourId).withAlpha (0.3f));
+    outputMeter.setColour (gin::LevelMeter::lineColourId, findColour (gin::PluginLookAndFeel::grey45ColourId));
+    outputMeter.setColour (gin::LevelMeter::meterColourId, findColour (gin::PluginLookAndFeel::accentColourId).withAlpha (0.3f));
+    reductionMeter.setColour (gin::LevelMeter::lineColourId, findColour (gin::PluginLookAndFeel::grey45ColourId));
+    reductionMeter.setColour (gin::LevelMeter::meterColourId, findColour (gin::PluginLookAndFeel::accentColourId).withAlpha (0.3f));
+
+    meter.setColour (gin::DynamicsMeter::lineColourId, findColour (gin::PluginLookAndFeel::grey45ColourId));
+    meter.setColour (gin::DynamicsMeter::meterColourId, findColour (gin::PluginLookAndFeel::accentColourId).withAlpha (0.3f));
 
     setGridSize (7, 2);
 
