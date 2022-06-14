@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<JUCERPROJECT id="JPnRUR" name="HugeGain" projectType="audioplug" version="1.0.0"
+<JUCERPROJECT id="JPnRUR" name="HugeGain" projectType="audioplug" version="1.1.0"
               bundleIdentifier="com.socalabs.HugeGain" includeBinaryInAppConfig="1"
               buildVST="1" buildVST3="1" buildAU="1" buildAUv3="0" buildRTAS="0"
               buildAAX="0" pluginName="HugeGain" pluginDesc="HugeGain" pluginManufacturer="SocaLabs"

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<JUCERPROJECT id="JPnRUR" name="SFX8" projectType="audioplug" version="1.0.0"
+<JUCERPROJECT id="JPnRUR" name="SFX8" projectType="audioplug" version="1.1.0"
               bundleIdentifier="com.socalabs.SFX8" includeBinaryInAppConfig="1"
               pluginName="SFX8" pluginDesc="SFX8" pluginManufacturer="SocaLabs"
               pluginManufacturerCode="Soca" pluginCode="MAth" pluginChannelConfigs="{0,2}"

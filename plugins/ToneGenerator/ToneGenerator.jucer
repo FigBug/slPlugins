@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<JUCERPROJECT id="JPnRUR" name="ToneGenerator" projectType="audioplug" version="1.0.2"
+<JUCERPROJECT id="JPnRUR" name="ToneGenerator" projectType="audioplug" version="1.1.0"
               bundleIdentifier="com.socalabs.ToneGenerator" includeBinaryInAppConfig="1"
               buildVST="1" buildVST3="1" buildAU="1" buildAUv3="0" buildRTAS="0"
               buildAAX="0" pluginName="ToneGenerator" pluginDesc="ToneGenerator"
