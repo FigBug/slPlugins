@@ -30,7 +30,7 @@ ABTesterAudioProcessorEditor::ABTesterAudioProcessorEditor (ABTesterAudioProcess
         controls.add (pc);
     }
     
-    setGridSize (4, 1);
+    setGridSize (6, 1);
 }
 
 ABTesterAudioProcessorEditor::~ABTesterAudioProcessorEditor()
@@ -42,6 +42,6 @@ void ABTesterAudioProcessorEditor::resized()
 {
     gin::ProcessorEditor::resized();
 
-    componentForId (PARAM_AB)->setBounds (getGridArea (1, 0));
-    componentForId (PARAM_LEVEL)->setBounds (getGridArea (2, 0));
+    componentForId (PARAM_AB)->setBounds (getGridArea (2, 0));
+    componentForId (PARAM_LEVEL)->setBounds (getGridArea (3, 0));
 }
