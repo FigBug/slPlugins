@@ -36,7 +36,7 @@ SampleDelayAudioProcessorEditor::SampleDelayAudioProcessorEditor (SampleDelayAud
     
     proc.mode->addListener (this);
     
-    parameterChanged (proc.mode);
+    valueUpdated (proc.mode);
 }
 
 SampleDelayAudioProcessorEditor::~SampleDelayAudioProcessorEditor()
@@ -54,7 +54,7 @@ void SampleDelayAudioProcessorEditor::resized()
     componentForParam (*proc.samples)->setBounds (getGridArea (3, 0));
 }
 
-void SampleDelayAudioProcessorEditor::parameterChanged (Parameter* param)
+void SampleDelayAudioProcessorEditor::valueUpdated (Parameter* param)
 {
     if (param == proc.mode)
     {
