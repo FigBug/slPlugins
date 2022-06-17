@@ -7,7 +7,7 @@
 /**
 */
 class PluginEditor  : public gin::ProcessorEditor,
-                      private gin::Parameter::Listener
+                      private gin::Parameter::ParameterListener
 {
 public:
     PluginEditor (PluginProcessor&);
