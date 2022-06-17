@@ -49,25 +49,33 @@ void ABTesterAudioProcessor::processBlock (AudioSampleBuffer& buffer, MidiBuffer
     bVal.setTargetValue (parameterIntValue (PARAM_AB) == 1 ? Decibels::decibelsToGain (parameterValue (PARAM_LEVEL)) : 0);
 
     const int numSamples = buffer.getNumSamples();
-    
-    float* aL = buffer.getWritePointer (0);
-    float* aR = buffer.getWritePointer (1);
-    float* bL = buffer.getWritePointer (2);
-    float* bR = buffer.getWritePointer (3);
+    const int numChannels = buffer.getNumChannels();
 
-    // Apply A gain
-    for (int s = 0; s < numSamples; s++)
+    if (numChannels >= 2)
     {
-        float g = aVal.getNextValue();
-        aL[s] *= g;
-        aR[s] *= g;
+        // Apply A gain
+        float* aL = buffer.getWritePointer (0);
+        float* aR = buffer.getWritePointer (1);
+        for (int s = 0; s < numSamples; s++)
+        {
+            float g = aVal.getNextValue();
+            aL[s] *= g;
+            aR[s] *= g;
+        }
     }
-    // Apply B gain
-    for (int s = 0; s < numSamples; s++)
+    if (numChannels >= 4)
     {
-        float g = bVal.getNextValue();
-        aL[s] += bL[s] * g;
-        aR[s] += bR[s] * g;
+        // Apply B gain
+        float* aL = buffer.getWritePointer (0);
+        float* aR = buffer.getWritePointer (1);
+        float* bL = buffer.getWritePointer (2);
+        float* bR = buffer.getWritePointer (3);
+        for (int s = 0; s < numSamples; s++)
+        {
+            float g = bVal.getNextValue();
+            aL[s] += bL[s] * g;
+            aR[s] += bR[s] * g;
+        }
     }
 }
 
