@@ -73,7 +73,7 @@ CompressorAudioProcessorEditor::~CompressorAudioProcessorEditor()
 }
 
 //==============================================================================
-void CompressorAudioProcessorEditor::parameterChanged (gin::Parameter*)
+void CompressorAudioProcessorEditor::valueUpdated (gin::Parameter*)
 {
     meter.repaint();
 }
