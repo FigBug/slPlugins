@@ -36,7 +36,7 @@ DelayAudioProcessorEditor::DelayAudioProcessorEditor (DelayAudioProcessor& p)
     
     proc.sync->addListener (this);
     
-    parameterChanged (proc.sync);
+    valueUpdated (proc.sync);
 }
 
 DelayAudioProcessorEditor::~DelayAudioProcessorEditor()
@@ -57,7 +57,7 @@ void DelayAudioProcessorEditor::resized()
     componentForParam (*proc.mix)->setBounds (getGridArea (4, 0));
 }
 
-void DelayAudioProcessorEditor::parameterChanged (Parameter* param)
+void DelayAudioProcessorEditor::valueUpdated (Parameter* param)
 {
     if (param == proc.sync)
     {
