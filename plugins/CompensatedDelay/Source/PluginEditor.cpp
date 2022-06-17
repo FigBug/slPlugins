@@ -36,7 +36,7 @@ CompensatedDelayAudioProcessorEditor::CompensatedDelayAudioProcessorEditor (Comp
     
     proc.mode->addListener (this);
     
-    parameterChanged (proc.mode);
+    valueUpdated (proc.mode);
 }
 
 CompensatedDelayAudioProcessorEditor::~CompensatedDelayAudioProcessorEditor()
@@ -54,7 +54,7 @@ void CompensatedDelayAudioProcessorEditor::resized()
     componentForParam (*proc.samples)->setBounds (getGridArea (3, 0));
 }
 
-void CompensatedDelayAudioProcessorEditor::parameterChanged (Parameter* param)
+void CompensatedDelayAudioProcessorEditor::valueUpdated (Parameter* param)
 {
     if (param == proc.mode)
     {

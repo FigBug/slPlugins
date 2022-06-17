@@ -7,7 +7,7 @@
 /**
 */
 class LimiterAudioProcessorEditor : public gin::ProcessorEditor,
-                                    private gin::Parameter::Listener
+                                    private gin::Parameter::ParameterListener
 {
 public:
     LimiterAudioProcessorEditor (LimiterAudioProcessor&);
@@ -15,7 +15,7 @@ public:
 
     //==============================================================================
     void resized() override;
-    void parameterChanged (gin::Parameter* param) override;
+    void valueUpdated (gin::Parameter* param) override;
 
 private:
     LimiterAudioProcessor& limProc;

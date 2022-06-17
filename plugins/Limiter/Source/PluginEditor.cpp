@@ -63,7 +63,7 @@ LimiterAudioProcessorEditor::~LimiterAudioProcessorEditor()
 }
 
 //==============================================================================
-void LimiterAudioProcessorEditor::parameterChanged (gin::Parameter*)
+void LimiterAudioProcessorEditor::valueUpdated (gin::Parameter*)
 {
     meter.repaint();
 }

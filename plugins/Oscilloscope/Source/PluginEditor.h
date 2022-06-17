@@ -7,7 +7,7 @@
 /**
 */
 class PluginEditor  : public gin::ProcessorEditor,
-                      private gin::Parameter::Listener
+                      private gin::Parameter::ParameterListener
 {
 public:
     PluginEditor (PluginProcessor&);
@@ -20,7 +20,7 @@ public:
 private:
     juce::CriticalSection lock;
     void updateScope();
-    void parameterChanged (gin::Parameter*) override { updateScope(); }
+    void valueUpdated (gin::Parameter*) override { updateScope(); }
     
     PluginProcessor& scopeProc;
 

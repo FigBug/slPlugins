@@ -18,7 +18,7 @@ using namespace juce::dsp;
 /**
 */
 class CompensatedDelayAudioProcessor : public gin::Processor,
-                                       private gin::Parameter::Listener
+                                       private gin::Parameter::ParameterListener
 {
 public:
     //==============================================================================
@@ -41,7 +41,7 @@ public:
     gin::Parameter::Ptr mode, time, samples;
 
 private:
-    void parameterChanged (gin::Parameter*) override { updateLatency(); }
+    void valueUpdated (gin::Parameter*) override { updateLatency(); }
     void numChannelsChanged () override;
     
     void updateLatency();

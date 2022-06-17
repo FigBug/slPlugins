@@ -17,7 +17,7 @@
 /**
 */
 class SampleDelayAudioProcessorEditor : public gin::ProcessorEditor,
-                                        private gin::Parameter::Listener
+                                        private gin::Parameter::ParameterListener
 {
 public:
     SampleDelayAudioProcessorEditor (SampleDelayAudioProcessor&);
@@ -27,7 +27,7 @@ public:
     void resized() override;
 
 private:
-    void parameterChanged (gin::Parameter* param) override;
+    void valueUpdated (gin::Parameter* param) override;
     
     SampleDelayAudioProcessor& proc;
     
