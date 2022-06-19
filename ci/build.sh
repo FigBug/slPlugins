@@ -158,6 +158,7 @@ cat pluginlist.txt | while read PLUGIN; do
     cp "$ROOT/plugins/$PLUGIN/Builds/VisualStudio2022/Win32/Release/VST3/${PLUGIN}.vst3" VST3_32
 
     cd "$ROOT/ci/zip"
+    rm -Rf VST VST_32 VST3 VST3_32
     mkdir -p VST
     mkdir -p VST_32
     mkdir -p VST3
