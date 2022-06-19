@@ -38,7 +38,9 @@ echo "$BRANCH"
 
 cd "$ROOT/ci"
 rm -Rf bin
+rm -Rf zip
 mkdir bin
+mkdir zip
 
 # Get the hash
 cd "$ROOT/modules/juce"
@@ -99,7 +101,7 @@ cat pluginlist.txt | while read PLUGIN; do
 
     # Notarize
     cd "$ROOT/ci/bin"
-    zip -r ${PLUGIN}_Mac.zip $PLUGIN.vst  $PLUGIN.vst3 $PLUGIN.component
+    zip -r ${PLUGIN}_Mac.zip ${PLUGIN}.vst ${PLUGIN}.vst3 ${PLUGIN}.component
 
     "$ROOT/ci/bin/notarize" -ns ${PLUGIN}_Mac.zip $APPLE_USER $APPLE_PASS com.figbug.$PLUGIN.vst
 
@@ -107,7 +109,7 @@ cat pluginlist.txt | while read PLUGIN; do
     xcrun stapler staple $PLUGIN.vst
     xcrun stapler staple $PLUGIN.vst3
     xcrun stapler staple $PLUGIN.component
-    zip -r ${PLUGIN}_Mac.zip $PLUGIN.vst $PLUGIN.component
+    zip -r ${PLUGIN}_Mac.zip $PLUGIN.vst $PLUGIN.vst3 $PLUGIN.component
 
     if [ "$BRANCH" = "release" ]; then
       curl -F "files=@${PLUGIN}_Mac.zip" "https://socalabs.com/files/set.php?key=$APIKEY"
@@ -155,7 +157,12 @@ cat pluginlist.txt | while read PLUGIN; do
     cp "$ROOT/plugins/$PLUGIN/Builds/VisualStudio2022/Win32/Release/VST/${PLUGIN}.dll" VST_32
     cp "$ROOT/plugins/$PLUGIN/Builds/VisualStudio2022/Win32/Release/VST3/${PLUGIN}.vst3" VST3_32
 
-    pwd
+    cd "$ROOT/ci/zip"
+    mkdir -p VST
+    mkdir -p VST_32
+    mkdir -p VST3
+    mkdir -p VST3_32
+    
     7z a ${PLUGIN}_Win.zip VST VST_32 VST3 VST3_32
     if [ "$BRANCH" = "release" ]; then
       curl -F "files=@${PLUGIN}_Win.zip" "https://socalabs.com/files/set.php?key=$APIKEY"
@@ -172,6 +179,7 @@ if [ $OS = "mac" ]; then
   curl -s -S "https://socalabs.com/files/get.php?id=SN76489_Mac.zip" -o "$ROOT/ci/bin/SN76489_Mac.zip"  
   curl -s -S "https://socalabs.com/files/get.php?id=RP2A03_Mac.zip" -o "$ROOT/ci/bin/RP2A03_Mac.zip"  
   curl -s -S "https://socalabs.com/files/get.php?id=Mverb2020_Mac.zip" -o "$ROOT/ci/bin/Mverb2020_Mac.zip"  
+  curl -s -S "https://socalabs.com/files/get.php?id=Organ_Mac.zip" -o "$ROOT/ci/bin/Organ_Mac.zip"  
 
   unzip SID_Mac.zip
   unzip PAPU_Mac.zip
@@ -179,6 +187,7 @@ if [ $OS = "mac" ]; then
   unzip SN76489_Mac.zip
   unzip RP2A03_Mac.zip
   unzip Mverb2020_Mac.zip
+  unzip Organ_Mac.zip
 
   mkdir VST
   mkdir VST3
@@ -199,6 +208,7 @@ elif [ $OS = "linux" ]; then
   curl -s -S "https://socalabs.com/files/get.php?id=SN76489_Linux.zip" -o "$ROOT/ci/bin/SN76489_Linux.zip"  
   curl -s -S "https://socalabs.com/files/get.php?id=RP2A03_Linux.zip" -o "$ROOT/ci/bin/RP2A03_Linux.zip"  
   curl -s -S "https://socalabs.com/files/get.php?id=Mverb2020_Linux.zip" -o "$ROOT/ci/bin/Mverb2020_Linux.zip"  
+  curl -s -S "https://socalabs.com/files/get.php?id=Organ_Linux.zip" -o "$ROOT/ci/bin/Organ_Linux.zip"  
 
   unzip SID_Linux.zip
   unzip PAPU_Linux.zip
@@ -206,6 +216,7 @@ elif [ $OS = "linux" ]; then
   unzip SN76489_Linux.zip
   unzip RP2A03_Linux.zip
   unzip Mverb2020_Linux.zip
+  unzuo Organ_Linux.zip
 
   mkdir VST
   mkdir VST3
@@ -225,6 +236,7 @@ else
   curl -s -S "https://socalabs.com/files/get.php?id=SN76489_Win.zip" -o "$ROOT/ci/bin/SN76489_Win.zip"  
   curl -s -S "https://socalabs.com/files/get.php?id=RP2A03_Win.zip" -o "$ROOT/ci/bin/RP2A03_Win.zip"  
   curl -s -S "https://socalabs.com/files/get.php?id=Mverb2020_Win.zip" -o "$ROOT/ci/bin/Mverb2020_Win.zip"  
+  curl -s -S "https://socalabs.com/files/get.php?id=Organ_Win.zip" -o "$ROOT/ci/bin/Organ_Win.zip"  
 
   unzip SID_Win.zip
   unzip PAPU_Win.zip
@@ -232,6 +244,7 @@ else
   unzip SN76489_Win.zip
   unzip RP2A03_Win.zip
   unzip Mverb2020_Win.zip
+  unzip Organ_Win.zip
 
   7z a All_Win.zip VST VST_32 VST3 VST3_32
 
