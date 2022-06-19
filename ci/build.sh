@@ -216,7 +216,7 @@ elif [ $OS = "linux" ]; then
   unzip SN76489_Linux.zip
   unzip RP2A03_Linux.zip
   unzip Mverb2020_Linux.zip
-  unzuo Organ_Linux.zip
+  unzip Organ_Linux.zip
 
   mkdir VST
   mkdir VST3
