@@ -162,7 +162,12 @@ cat pluginlist.txt | while read PLUGIN; do
     mkdir -p VST_32
     mkdir -p VST3
     mkdir -p VST3_32
-    
+
+    cp "$ROOT/plugins/$PLUGIN/Builds/VisualStudio2022/x64/Release64/VST/${PLUGIN}.dll" VST
+    cp "$ROOT/plugins/$PLUGIN/Builds/VisualStudio2022/x64/Release64/VST3/${PLUGIN}.vst3" VST3
+    cp "$ROOT/plugins/$PLUGIN/Builds/VisualStudio2022/Win32/Release/VST/${PLUGIN}.dll" VST_32
+    cp "$ROOT/plugins/$PLUGIN/Builds/VisualStudio2022/Win32/Release/VST3/${PLUGIN}.vst3" VST3_32
+
     7z a ${PLUGIN}_Win.zip VST VST_32 VST3 VST3_32
     if [ "$BRANCH" = "release" ]; then
       curl -F "files=@${PLUGIN}_Win.zip" "https://socalabs.com/files/set.php?key=$APIKEY"
