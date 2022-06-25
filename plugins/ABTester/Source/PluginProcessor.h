@@ -33,19 +33,19 @@ public:
     void prepareToPlay (double sampleRate, int samplesPerBlock) override;
     void releaseResources() override;
 
-    void processBlock (AudioSampleBuffer&, MidiBuffer&) override;
+    void processBlock (juce::AudioSampleBuffer&, juce::MidiBuffer&) override;
 
     //==============================================================================
-    AudioProcessorEditor* createEditor() override;
+    juce::AudioProcessorEditor* createEditor() override;
     bool hasEditor() const override;
 
     //==============================================================================
     
 private:
-    Component::SafePointer<ABTesterAudioProcessorEditor> editor;
+    juce::Component::SafePointer<ABTesterAudioProcessorEditor> editor;
 
-    LinearSmoothedValue<float> aVal;
-    LinearSmoothedValue<float> bVal;
+    juce::LinearSmoothedValue<float> aVal;
+    juce::LinearSmoothedValue<float> bVal;
     
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (ABTesterAudioProcessor)

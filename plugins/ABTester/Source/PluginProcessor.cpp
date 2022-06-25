@@ -15,7 +15,7 @@
 using namespace gin;
 
 //==============================================================================
-static String abTextFunction (const Parameter&, float v)
+static juce::String abTextFunction (const Parameter&, float v)
 {
     return v > 0.0f ? "B" : "A";
 }
@@ -43,10 +43,10 @@ void ABTesterAudioProcessor::releaseResources()
 {
 }
 
-void ABTesterAudioProcessor::processBlock (AudioSampleBuffer& buffer, MidiBuffer&)
+void ABTesterAudioProcessor::processBlock (juce::AudioSampleBuffer& buffer, juce::MidiBuffer&)
 {
-    aVal.setTargetValue (parameterIntValue (PARAM_AB) == 0 ? Decibels::decibelsToGain (parameterValue (PARAM_LEVEL)) : 0);
-    bVal.setTargetValue (parameterIntValue (PARAM_AB) == 1 ? Decibels::decibelsToGain (parameterValue (PARAM_LEVEL)) : 0);
+    aVal.setTargetValue (parameterIntValue (PARAM_AB) == 0 ? juce::Decibels::decibelsToGain (parameterValue (PARAM_LEVEL)) : 0);
+    bVal.setTargetValue (parameterIntValue (PARAM_AB) == 1 ? juce::Decibels::decibelsToGain (parameterValue (PARAM_LEVEL)) : 0);
 
     const int numSamples = buffer.getNumSamples();
     const int numChannels = buffer.getNumChannels();
@@ -85,7 +85,7 @@ bool ABTesterAudioProcessor::hasEditor() const
     return true;
 }
 
-AudioProcessorEditor* ABTesterAudioProcessor::createEditor()
+juce::AudioProcessorEditor* ABTesterAudioProcessor::createEditor()
 {
     editor = new ABTesterAudioProcessorEditor (*this);
     return editor;
@@ -93,7 +93,7 @@ AudioProcessorEditor* ABTesterAudioProcessor::createEditor()
 
 //==============================================================================
 // This creates new instances of the plugin..
-AudioProcessor* JUCE_CALLTYPE createPluginFilter()
+juce::AudioProcessor* JUCE_CALLTYPE createPluginFilter()
 {
     return new ABTesterAudioProcessor();
 }
