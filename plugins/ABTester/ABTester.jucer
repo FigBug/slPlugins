@@ -9,12 +9,12 @@
               pluginIsMidiEffectPlugin="0" pluginEditorRequiresKeys="0" pluginAUExportPrefix="ABTesterAU"
               aaxIdentifier="com.socalabs.ABTester" pluginAAXCategory="2" companyName="SocaLabs"
               companyWebsite="www.socalabs.com" companyEmail="info@socalabs.com"
-              displaySplashScreen="0" reportAppUsage="0" splashScreenColour="Dark"
+              displaySplashScreen="1" reportAppUsage="0" splashScreenColour="Dark"
               buildStandalone="1" enableIAA="0" cppLanguageStandard="17" companyCopyright="SocaLabs"
-              pluginFormats="buildAU,buildStandalone,buildVST,buildVST3" pluginAUMainType="'aufx'"
-              pluginVSTCategory="kPlugCategEffect" pluginRTASDisableBypass="0"
-              pluginRTASDisableMultiMono="0" pluginAAXDisableBypass="0" pluginAAXDisableMultiMono="0"
-              jucerFormatVersion="1" defines="JUCE_MODAL_LOOPS_PERMITTED=1">
+              pluginFormats="buildAU,buildLV2,buildStandalone,buildVST,buildVST3"
+              pluginAUMainType="'aufx'" pluginVSTCategory="kPlugCategEffect"
+              pluginRTASDisableBypass="0" pluginRTASDisableMultiMono="0" pluginAAXDisableBypass="0"
+              pluginAAXDisableMultiMono="0" jucerFormatVersion="1" defines="JUCE_MODAL_LOOPS_PERMITTED=1">
   <MAINGROUP id="dPRjsF" name="ABTester">
     <GROUP id="{EE796482-0D02-0052-80F4-B1FE6CE0D41A}" name="Source">
       <FILE id="iEbZ9q" name="PluginProcessor.cpp" compile="1" resource="0"

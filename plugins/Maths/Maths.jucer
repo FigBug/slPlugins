@@ -12,7 +12,7 @@
               cppLanguageStandard="17" companyCopyright="SocaLabs" pluginAUMainType="'aufx'"
               pluginVSTCategory="kPlugCategEffect" pluginRTASDisableBypass="0"
               pluginRTASDisableMultiMono="0" pluginAAXDisableBypass="0" pluginAAXDisableMultiMono="0"
-              pluginFormats="buildAU,buildStandalone,buildVST,buildVST3" buildVST="1"
+              pluginFormats="buildAU,buildLV2,buildStandalone,buildVST,buildVST3" buildVST="1"
               buildVST3="1" buildAU="1" buildAUv3="0" buildRTAS="0" buildAAX="0"
               buildStandalone="1" enableIAA="0" jucerFormatVersion="1" defines="JUCE_MODAL_LOOPS_PERMITTED=1">
   <MAINGROUP id="dPRjsF" name="Maths">

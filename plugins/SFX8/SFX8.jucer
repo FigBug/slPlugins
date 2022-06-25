@@ -11,7 +11,7 @@
               displaySplashScreen="0" reportAppUsage="0" splashScreenColour="Dark"
               cppLanguageStandard="17" companyCopyright="SocaLabs" pluginRTASDisableBypass="0"
               pluginRTASDisableMultiMono="0" pluginAAXDisableBypass="0" pluginAAXDisableMultiMono="0"
-              pluginFormats="buildAU,buildAUv3,buildStandalone,buildVST,buildVST3"
+              pluginFormats="buildAU,buildLV2,buildAUv3,buildStandalone,buildVST,buildVST3"
               buildVST="1" buildVST3="1" buildAU="1" buildAUv3="1" buildRTAS="0"
               buildAAX="0" buildStandalone="1" enableIAA="0" pluginCharacteristicsValue="pluginIsSynth,pluginWantsMidiIn"
               pluginAUMainType="'aumu'" pluginVST3Category="Instrument" pluginVSTCategory="kPlugCategSynth"

@@ -11,7 +11,7 @@
               pluginAAXCategory="2" companyName="SocaLabs" companyWebsite="www.socalabs.com"
               companyEmail="info@socalabs.com" displaySplashScreen="0" reportAppUsage="0"
               splashScreenColour="Dark" buildStandalone="1" enableIAA="0" cppLanguageStandard="17"
-              companyCopyright="SocaLabs" pluginFormats="buildAU,buildStandalone,buildVST,buildVST3"
+              companyCopyright="SocaLabs" pluginFormats="buildAU,buildLV2,buildStandalone,buildVST,buildVST3"
               pluginAUMainType="'aufx'" pluginVSTCategory="kPlugCategEffect"
               pluginRTASDisableBypass="0" pluginRTASDisableMultiMono="0" pluginAAXDisableBypass="0"
               pluginAAXDisableMultiMono="0" jucerFormatVersion="1" defines="JUCE_MODAL_LOOPS_PERMITTED=1">

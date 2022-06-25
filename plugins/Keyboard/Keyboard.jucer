@@ -11,7 +11,7 @@
               companyWebsite="www.socalabs.com" companyEmail="info@socalabs.com"
               displaySplashScreen="0" reportAppUsage="0" splashScreenColour="Dark"
               buildStandalone="0" enableIAA="0" cppLanguageStandard="14" companyCopyright="SocaLabs"
-              pluginFormats="buildVST,buildAU" pluginAUMainType="'aumi'" pluginVSTCategory="kPlugCategAnalysis"
+              pluginFormats="buildVST,buildAU,buildLV2" pluginAUMainType="'aumi'" pluginVSTCategory="kPlugCategAnalysis"
               pluginRTASDisableBypass="0" pluginRTASDisableMultiMono="0" pluginAAXDisableBypass="0"
               pluginAAXDisableMultiMono="0" pluginCharacteristicsValue="pluginIsMidiEffectPlugin,pluginProducesMidiOut,pluginWantsMidiIn"
               defines="JUCE_MODAL_LOOPS_PERMITTED=1" jucerFormatVersion="1">

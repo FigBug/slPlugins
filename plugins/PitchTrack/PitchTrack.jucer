@@ -9,7 +9,7 @@
               pluginProducesMidiOut="0" pluginIsMidiEffectPlugin="0" pluginEditorRequiresKeys="0"
               pluginAUExportPrefix="PitchTrackAU" pluginRTASCategory="" aaxIdentifier="com.socalabs.PitchTrack"
               pluginAAXCategory="2" companyName="SocaLabs" companyWebsite="www.socalabs.com"
-              companyEmail="info@socalabs.com" pluginFormats="buildVST,buildAU"
+              companyEmail="info@socalabs.com" pluginFormats="buildVST,buildAU,buildLV2"
               cppLanguageStandard="17" reportAppUsage="0" defines="JUCE_MODAL_LOOPS_PERMITTED=1"
               jucerFormatVersion="1">
   <MAINGROUP id="dPRjsF" name="PitchTrack">

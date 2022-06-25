@@ -15,7 +15,7 @@
 using namespace gin;
 
 //==============================================================================
-String abTextFunction (const Parameter&, float v)
+static String abTextFunction (const Parameter&, float v)
 {
     return v > 0.0f ? "B" : "A";
 }
