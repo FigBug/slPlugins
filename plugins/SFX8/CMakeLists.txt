@@ -42,6 +42,9 @@ target_compile_definitions(SFX8
     JUCE_USE_CURL=0
     JUCE_WEB_BROWSER=0
     JUCE_MODAL_LOOPS_PERMITTED=1
+    JUCE_JACK=1
+    JUCE_REPORT_APP_USAGE=0
+    JUCE_DISPLAY_SPLASH_SCREEN=0
 )
 
 target_sources(SFX8
@@ -61,7 +64,14 @@ juce_add_binary_data(SFX8_BinaryData
 )
 
 set_target_properties(SFX8_BinaryData PROPERTIES
-    POSITION_INDEPENDENT_CODE TRUE)
+    POSITION_INDEPENDENT_CODE TRUE
+)
+
+set_target_properties(juce_plugin_modules PROPERTIES
+    VISIBILITY_INLINES_HIDDEN TRUE
+    C_VISBILITY_PRESET hidden
+    CXX_VISIBILITY_PRESET hidden
+)
 
 target_link_libraries(SFX8
   PRIVATE
