@@ -1,8 +1,5 @@
 cmake_minimum_required(VERSION 3.15)
 
-project(contrast VERSION 1.1.0)
-
-# ==============================================================================
 add_subdirectory(juce)
 juce_set_vst2_sdk_path(plugin_sdk)
 
