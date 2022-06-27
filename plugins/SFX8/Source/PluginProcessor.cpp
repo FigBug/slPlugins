@@ -12,9 +12,7 @@
 #include "PluginEditor.h"
 #include "Voice.h"
 
-using namespace gin;
-
-static juce::String waveTextFunc (const Parameter&, float v)
+static juce::String waveTextFunc (const gin::Parameter&, float v)
 {
     switch (int (v))
     {
@@ -194,7 +192,7 @@ void SFXAudioProcessor::trackMidi (juce::MidiBuffer& midi, int numSamples)
                                                               if (auto p = pads[currentPad])
                                                                   p->note = n;
 
-                                                              delayedLambda ([this]
+                                                              gin::delayedLambda ([this]
                                                                              {
                                                                                  if (currentPad < 15)
                                                                                  {
@@ -228,6 +226,8 @@ void SFXAudioProcessor::processBlock (juce::AudioSampleBuffer& buffer, juce::Mid
 {
     juce::ScopedLock sl (lock);
     juce::ScopedNoDenormals noDenormals;
+
+	buffer.clear();
 
     if (userMidi.getNumEvents() > 0)
     {
