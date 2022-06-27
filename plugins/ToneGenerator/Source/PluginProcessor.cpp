@@ -12,10 +12,8 @@
 #include "PluginEditor.h"
 #include <random>
 
-using namespace gin;
-
 //==============================================================================
-String onOffTextFunction (const Parameter&, float v)
+static juce::String onOffTextFunction (const gin::Parameter&, float v)
 {
     return v > 0.0f ? "On" : "Off";
 }
@@ -48,9 +46,9 @@ slToneAudioProcessor::slToneAudioProcessor()
                 sum += std::pow (-1, (k - 1) / 2.0f) / (k * k) * sin (k * in);
                 k += 2;
             }
-            return float (8.0f / (MathConstants<float>::pi * MathConstants<float>::pi) * sum);
+            return float (8.0f / (juce::MathConstants<float>::pi * juce::MathConstants<float>::pi) * sum);
         }
-        return (in < 0 ? in / -MathConstants<float>::pi : in / MathConstants<float>::pi) * 2 - 1;
+        return (in < 0 ? in / -juce::MathConstants<float>::pi : in / juce::MathConstants<float>::pi) * 2 - 1;
     };
     
     auto sawUpFunc = [&] (float in) -> float
@@ -67,9 +65,9 @@ slToneAudioProcessor::slToneAudioProcessor()
                 sum += oddEven (k) * std::sin (k * in) / k;
                 k++;
             }
-            return float (-2.0f / MathConstants<float>::pi * sum);
+            return float (-2.0f / juce::MathConstants<float>::pi * sum);
         }
-        return ((in + MathConstants<float>::pi) / (2 * MathConstants<float>::pi)) * 2 - 1;
+        return ((in + juce::MathConstants<float>::pi) / (2 * juce::MathConstants<float>::pi)) * 2 - 1;
     };
     
     auto sawDownFunc = [&] (float in) -> float
@@ -86,9 +84,9 @@ slToneAudioProcessor::slToneAudioProcessor()
                 sum += oddEven (k) * std::sin (k * in) / k;
                 k++;
             }
-            return float (2.0f / MathConstants<float>::pi * sum);
+            return float (2.0f / juce::MathConstants<float>::pi * sum);
         }
-        return -(((in + MathConstants<float>::pi) / (2 * MathConstants<float>::pi)) * 2 - 1);
+        return -(((in + juce::MathConstants<float>::pi) / (2 * juce::MathConstants<float>::pi)) * 2 - 1);
     };
     
     auto squareFunc = [&] (float in) -> float
@@ -106,7 +104,7 @@ slToneAudioProcessor::slToneAudioProcessor()
                 i++;
             }
             
-            return float (4.0f / MathConstants<float>::pi * sum);
+            return float (4.0f / juce::MathConstants<float>::pi * sum);
         }
         return in < 0 ? -1.0f : 1.0f;
     };
@@ -149,12 +147,12 @@ slToneAudioProcessor::~slToneAudioProcessor()
 //==============================================================================
 void slToneAudioProcessor::prepareToPlay (double sampleRate, int samplesPerBlock)
 {
-    sine.prepare ({ sampleRate, uint32 (samplesPerBlock), 1});
-    triangle.prepare ({ sampleRate, uint32 (samplesPerBlock), 1});
-    sawUp.prepare ({ sampleRate, uint32 (samplesPerBlock), 1});
-    sawDown.prepare ({ sampleRate, uint32 (samplesPerBlock), 1});
-    square.prepare ({ sampleRate, uint32 (samplesPerBlock), 1});
-    noise.prepare ({ sampleRate, uint32 (samplesPerBlock), 1});
+    sine.prepare ({ sampleRate, juce::uint32 (samplesPerBlock), 1});
+    triangle.prepare ({ sampleRate, juce::uint32 (samplesPerBlock), 1});
+    sawUp.prepare ({ sampleRate, juce::uint32 (samplesPerBlock), 1});
+    sawDown.prepare ({ sampleRate, juce::uint32 (samplesPerBlock), 1});
+    square.prepare ({ sampleRate, juce::uint32 (samplesPerBlock), 1});
+    noise.prepare ({ sampleRate, juce::uint32 (samplesPerBlock), 1});
     
     enableVal.reset (sampleRate, 0.05);
     sineVal.reset (sampleRate, 0.05);
@@ -169,10 +167,12 @@ void slToneAudioProcessor::releaseResources()
 {
 }
 
-void slToneAudioProcessor::processBlock (AudioSampleBuffer& buffer, MidiBuffer&)
+void slToneAudioProcessor::processBlock (juce::AudioSampleBuffer& buffer, juce::MidiBuffer&)
 {
+    buffer.clear();
+
     int numSamples = buffer.getNumSamples();
-    ScratchBuffer scratch (1, numSamples);
+    gin::ScratchBuffer scratch (1, numSamples);
     
     bandLimited = parameterIntValue (PARAM_BANDLIMIT) != 0;
     float freq = getParameter (PARAM_FREQ)->getUserValue();
@@ -184,12 +184,12 @@ void slToneAudioProcessor::processBlock (AudioSampleBuffer& buffer, MidiBuffer&)
     square.setFrequency (freq);
 
     enableVal.setTargetValue (getParameter (PARAM_ENABLE)->getUserValue());
-    sineVal.setTargetValue (Decibels::decibelsToGain (getParameter (PARAM_SINE_LEVEL)->getUserValue()));
-    triangleVal.setTargetValue (Decibels::decibelsToGain (getParameter (PARAM_TRI_LEVEL)->getUserValue()));
-    sawUpVal.setTargetValue (Decibels::decibelsToGain (getParameter (PARAM_SAW_UP_LEVEL)->getUserValue()));
-    sawDownVal.setTargetValue (Decibels::decibelsToGain (getParameter (PARAM_SAW_DN_LEVEL)->getUserValue()));
-    squareVal.setTargetValue (Decibels::decibelsToGain (getParameter (PARAM_SQUARE_LEVEL)->getUserValue()));
-    noiseVal.setTargetValue (Decibels::decibelsToGain (getParameter (PARAM_NOISE_LEVEL)->getUserValue()));
+    sineVal.setTargetValue (juce::Decibels::decibelsToGain (getParameter (PARAM_SINE_LEVEL)->getUserValue()));
+    triangleVal.setTargetValue (juce::Decibels::decibelsToGain (getParameter (PARAM_TRI_LEVEL)->getUserValue()));
+    sawUpVal.setTargetValue (juce::Decibels::decibelsToGain (getParameter (PARAM_SAW_UP_LEVEL)->getUserValue()));
+    sawDownVal.setTargetValue (juce::Decibels::decibelsToGain (getParameter (PARAM_SAW_DN_LEVEL)->getUserValue()));
+    squareVal.setTargetValue (juce::Decibels::decibelsToGain (getParameter (PARAM_SQUARE_LEVEL)->getUserValue()));
+    noiseVal.setTargetValue (juce::Decibels::decibelsToGain (getParameter (PARAM_NOISE_LEVEL)->getUserValue()));
     
     if (sineVal.isSmoothing() || sineVal.getTargetValue() > 0)
     {
@@ -251,7 +251,7 @@ void slToneAudioProcessor::processBlock (AudioSampleBuffer& buffer, MidiBuffer&)
         buffer.addFrom (0, 0, scratch, 0, 0, numSamples);
     }
     
-    applyGain (buffer, enableVal);
+    gin::applyGain (buffer, enableVal);
     
     if (fifo.getFreeSpace() >= numSamples)
         fifo.writeMono (buffer.getReadPointer (0), numSamples);
@@ -263,14 +263,14 @@ bool slToneAudioProcessor::hasEditor() const
     return true;
 }
 
-AudioProcessorEditor* slToneAudioProcessor::createEditor()
+juce::AudioProcessorEditor* slToneAudioProcessor::createEditor()
 {
     return new slToneAudioProcessorEditor (*this);
 }
 
 //==============================================================================
 // This creates new instances of the plugin..
-AudioProcessor* JUCE_CALLTYPE createPluginFilter()
+juce::AudioProcessor* JUCE_CALLTYPE createPluginFilter()
 {
     return new slToneAudioProcessor();
 }
