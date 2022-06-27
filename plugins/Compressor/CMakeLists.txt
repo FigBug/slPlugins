@@ -63,7 +63,7 @@ set_target_properties(Compressor_BinaryData PROPERTIES
     POSITION_INDEPENDENT_CODE TRUE
 )
 
-set_target_properties(juce_plugin_modules PROPERTIES
+set_target_properties(Compressor_BinaryData PROPERTIES
     VISIBILITY_INLINES_HIDDEN TRUE
     C_VISBILITY_PRESET hidden
     CXX_VISIBILITY_PRESET hidden

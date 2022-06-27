@@ -49,7 +49,7 @@ target_sources(SampleDelay
     "Source/PluginProcessor.cpp"
 )
 
-set_target_properties(juce_plugin_modules PROPERTIES
+set_target_properties(SampleDelay PROPERTIES
     VISIBILITY_INLINES_HIDDEN TRUE
     C_VISBILITY_PRESET hidden
     CXX_VISIBILITY_PRESET hidden
