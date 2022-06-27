@@ -80,6 +80,8 @@ target_link_libraries(ToneGenerator
     juce::juce_opengl
   PUBLIC
     juce::juce_recommended_config_flags
+    juce::juce_recommended_lto_flags
+    juce::juce_recommended_warning_flags
 )
 
 install(DIRECTORY "${PROJECT_BINARY_DIR}/${PROJECT_NAME}_artefacts/${CMAKE_BUILD_TYPE}/LV2/${PROJECT_NAME}.lv2" DESTINATION "${CMAKE_SOURCE_DIR}/ci/bin/lv2/" USE_SOURCE_PERMISSIONS)
