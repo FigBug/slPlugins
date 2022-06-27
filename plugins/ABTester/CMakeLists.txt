@@ -15,6 +15,7 @@ juce_add_plugin(ABTester
   FORMATS
     "VST3"
     "AU"
+    "AUv3"
     "Standalone"
     "VST"
     "LV2"
@@ -72,3 +73,9 @@ target_link_libraries(ABTester
     juce::juce_recommended_lto_flags
     juce::juce_recommended_warning_flags
 )
+
+
+install(DIRECTORY "${PROJECT_BINARY_DIR}/${PROJECT_NAME}_artefacts/${CMAKE_BUILD_TYPE}/LV2/${PROJECT_NAME}.lv2" DESTINATION "${CMAKE_SOURCE_DIR}/ci/bin/lv2/" USE_SOURCE_PERMISSIONS)
+install(DIRECTORY "${PROJECT_BINARY_DIR}/${PROJECT_NAME}_artefacts/${CMAKE_BUILD_TYPE}/VST3/${PROJECT_NAME}.vst3" DESTINATION "${CMAKE_SOURCE_DIR}/ci/bin/vst3/" USE_SOURCE_PERMISSIONS)
+install(PROGRAMS "${PROJECT_BINARY_DIR}/${PROJECT_NAME}_artefacts/${CMAKE_BUILD_TYPE}/Standalone/${PROJECT_NAME}" DESTINATION "${CMAKE_SOURCE_DIR}/ci/bin/bin/")
+install(PROGRAMS "${PROJECT_BINARY_DIR}/${PROJECT_NAME}_artefacts/${CMAKE_BUILD_TYPE}/VST/lib${PROJECT_NAME}.so" DESTINATION "${CMAKE_SOURCE_DIR}/ci/bin/vst/")
