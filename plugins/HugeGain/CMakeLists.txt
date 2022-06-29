@@ -40,6 +40,10 @@ target_compile_definitions(HugeGain
     JUCE_JACK=1
     JUCE_REPORT_APP_USAGE=0
     JUCE_DISPLAY_SPLASH_SCREEN=0
+    
+    JucePlugin_MaxNumInputChannels=2
+    JucePlugin_MaxNumOutputChannels=2
+    JucePlugin_PreferredChannelConfigurations=2,2
 )
 
 target_sources(HugeGain

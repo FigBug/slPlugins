@@ -41,6 +41,10 @@ target_compile_definitions(ABTester
     JUCE_JACK=1
     JUCE_REPORT_APP_USAGE=0
     JUCE_DISPLAY_SPLASH_SCREEN=0
+    
+    JucePlugin_MaxNumInputChannels=4
+    JucePlugin_MaxNumOutputChannels=2
+    JucePlugin_PreferredChannelConfigurations=4,2
 )
 
 target_sources(ABTester
