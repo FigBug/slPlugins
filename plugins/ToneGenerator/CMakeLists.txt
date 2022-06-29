@@ -42,6 +42,10 @@ target_compile_definitions(ToneGenerator
     JUCE_JACK=1
     JUCE_REPORT_APP_USAGE=0
     JUCE_DISPLAY_SPLASH_SCREEN=0
+    
+    JucePlugin_MaxNumInputChannels=0
+    JucePlugin_MaxNumOutputChannels=1
+    JucePlugin_PreferredChannelConfigurations=0,1
 )
 
 target_sources(ToneGenerator
