@@ -40,10 +40,10 @@ public:
     void prepareToPlay (double sampleRate, int samplesPerBlock) override;
     void releaseResources() override;
 
-    void processBlock (AudioSampleBuffer&, MidiBuffer&) override;
+    void processBlock (juce::AudioSampleBuffer&, juce::MidiBuffer&) override;
 
     //==============================================================================
-    AudioProcessorEditor* createEditor() override;
+    juce::AudioProcessorEditor* createEditor() override;
     bool hasEditor() const override;
 
     //==============================================================================
@@ -51,24 +51,24 @@ public:
 
 private:
     bool bandLimited = true;
-    
+
     Oscillator<float> sine;
     Oscillator<float> triangle;
     Oscillator<float> sawUp;
     Oscillator<float> sawDown;
     Oscillator<float> square;
     Oscillator<float> noise;
-    
-    Component::SafePointer<slToneAudioProcessorEditor> editor;
 
-    LinearSmoothedValue<float> enableVal;
-    LinearSmoothedValue<float> sineVal;
-    LinearSmoothedValue<float> triangleVal;
-    LinearSmoothedValue<float> sawUpVal;
-    LinearSmoothedValue<float> sawDownVal;
-    LinearSmoothedValue<float> squareVal;
-    LinearSmoothedValue<float> noiseVal;
-            
+    juce::Component::SafePointer<slToneAudioProcessorEditor> editor;
+
+    juce::LinearSmoothedValue<float> enableVal;
+    juce::LinearSmoothedValue<float> sineVal;
+    juce::LinearSmoothedValue<float> triangleVal;
+    juce::LinearSmoothedValue<float> sawUpVal;
+    juce::LinearSmoothedValue<float> sawDownVal;
+    juce::LinearSmoothedValue<float> squareVal;
+    juce::LinearSmoothedValue<float> noiseVal;
+
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (slToneAudioProcessor)
 };

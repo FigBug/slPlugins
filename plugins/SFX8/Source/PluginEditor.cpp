@@ -12,8 +12,6 @@
 #include "PluginEditor.h"
 #include "BinaryData.h"
 
-using namespace gin;
-
 //==============================================================================
 SFXAudioProcessorEditor::SFXAudioProcessorEditor (SFXAudioProcessor& p)
     : gin::ProcessorEditor (p), sfxProcessor (p)

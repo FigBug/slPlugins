@@ -14,8 +14,6 @@
 
 #include "Pad.h"
 
-using namespace juce::dsp;
-
 class SFXAudioProcessorEditor;
 //==============================================================================
 class SFXAudioProcessor : public gin::Processor,
