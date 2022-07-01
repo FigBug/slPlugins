@@ -230,7 +230,7 @@ elif [ $OS = "linux" ]; then
   mv *.vst3 VST3
   mv *.lv2 LV2
 
-  zip -r All_Linux.zip VST VST3
+  zip -r All_Linux.zip VST VST3 LV2
 
   if [ "$BRANCH" = "release" ]; then
     curl -F "files=@All_Linux.zip" "https://socalabs.com/files/set.php?key=$APIKEY"  
