@@ -8,13 +8,14 @@
               pluginIsMidiEffectPlugin="0" pluginEditorRequiresKeys="0" pluginAUExportPrefix="WaveLooperAU"
               aaxIdentifier="com.socalabs.WaveLooper" pluginAAXCategory="2"
               companyName="SocaLabs" companyWebsite="www.socalabs.com" companyEmail="info@socalabs.com"
-              displaySplashScreen="0" reportAppUsage="0" splashScreenColour="Dark"
+              displaySplashScreen="1" reportAppUsage="0" splashScreenColour="Dark"
               cppLanguageStandard="17" companyCopyright="SocaLabs" pluginAUMainType="'aufx'"
               pluginVSTCategory="kPlugCategEffect" pluginRTASDisableBypass="0"
               pluginRTASDisableMultiMono="0" pluginAAXDisableBypass="0" pluginAAXDisableMultiMono="0"
-              pluginFormats="buildVST,buildAU,buildLV2,buildVST3" buildVST="1" buildVST3="0" buildAU="1"
-              buildAUv3="0" buildRTAS="0" buildAAX="0" buildStandalone="0"
-              enableIAA="0" defines="JUCE_MODAL_LOOPS_PERMITTED=1" jucerFormatVersion="1">
+              pluginFormats="buildVST,buildAU,buildLV2,buildVST3" buildVST="1"
+              buildVST3="0" buildAU="1" buildAUv3="0" buildRTAS="0" buildAAX="0"
+              buildStandalone="0" enableIAA="0" defines="JUCE_MODAL_LOOPS_PERMITTED=1&#10;JUCE_DISPLAY_SPLASH_SCREEN=0"
+              jucerFormatVersion="1" lv2Uri="https://socalabs.com/wavelooper/">
   <MAINGROUP id="dPRjsF" name="WaveLooper">
     <GROUP id="{EE796482-0D02-0052-80F4-B1FE6CE0D41A}" name="Source">
       <FILE id="iEbZ9q" name="PluginProcessor.cpp" compile="1" resource="0"

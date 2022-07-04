@@ -16,7 +16,7 @@
               buildAAX="0" buildStandalone="1" enableIAA="0" pluginCharacteristicsValue="pluginIsSynth,pluginWantsMidiIn"
               pluginAUMainType="'aumu'" pluginVST3Category="Instrument" pluginVSTCategory="kPlugCategSynth"
               jucerFormatVersion="1" defines="JUCE_MODAL_LOOPS_PERMITTED=1&#10;JUCE_DISPLAY_SPLASH_SCREEN=0"
-              addUsingNamespaceToJuceHeader="0" useAppConfig="0">
+              addUsingNamespaceToJuceHeader="0" useAppConfig="0" lv2Uri="https://socalabs.com/sfx8/">
   <MAINGROUP id="dPRjsF" name="SFX8">
     <GROUP id="{EE796482-0D02-0052-80F4-B1FE6CE0D41A}" name="Source">
       <GROUP id="{DA748B7D-42D5-4A16-B897-0DD85D003309}" name="bfxr">

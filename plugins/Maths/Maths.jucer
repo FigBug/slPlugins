@@ -8,13 +8,15 @@
               pluginIsMidiEffectPlugin="0" pluginEditorRequiresKeys="0" pluginAUExportPrefix="MathsAU"
               aaxIdentifier="com.socalabs.Maths" pluginAAXCategory="2" companyName="SocaLabs"
               companyWebsite="www.socalabs.com" companyEmail="info@socalabs.com"
-              displaySplashScreen="0" reportAppUsage="0" splashScreenColour="Dark"
+              displaySplashScreen="1" reportAppUsage="0" splashScreenColour="Dark"
               cppLanguageStandard="17" companyCopyright="SocaLabs" pluginAUMainType="'aufx'"
               pluginVSTCategory="kPlugCategEffect" pluginRTASDisableBypass="0"
               pluginRTASDisableMultiMono="0" pluginAAXDisableBypass="0" pluginAAXDisableMultiMono="0"
-              pluginFormats="buildAU,buildLV2,buildStandalone,buildVST,buildVST3" buildVST="1"
-              buildVST3="1" buildAU="1" buildAUv3="0" buildRTAS="0" buildAAX="0"
-              buildStandalone="1" enableIAA="0" jucerFormatVersion="1" defines="JUCE_MODAL_LOOPS_PERMITTED=1">
+              pluginFormats="buildAU,buildLV2,buildStandalone,buildVST,buildVST3"
+              buildVST="1" buildVST3="1" buildAU="1" buildAUv3="0" buildRTAS="0"
+              buildAAX="0" buildStandalone="1" enableIAA="0" jucerFormatVersion="1"
+              defines="JUCE_MODAL_LOOPS_PERMITTED=1&#10;JUCE_DISPLAY_SPLASH_SCREEN=0"
+              lv2Uri="https://socalabs.com/maths/">
   <MAINGROUP id="dPRjsF" name="Maths">
     <GROUP id="{EE796482-0D02-0052-80F4-B1FE6CE0D41A}" name="Source">
       <FILE id="iEbZ9q" name="PluginProcessor.cpp" compile="1" resource="0"
