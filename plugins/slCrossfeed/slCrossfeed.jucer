@@ -10,7 +10,8 @@
               pluginAUExportPrefix="slCrossfeedAU" pluginRTASCategory="" aaxIdentifier="com.socalabs.slCrossfeed"
               pluginAAXCategory="2" companyName="SocaLabs" companyWebsite="www.socalabs.com"
               companyEmail="info@socalabs.com" pluginFormats="buildVST,buildAU,buildLV2,buildVST3"
-              defines="JUCE_MODAL_LOOPS_PERMITTED=1" jucerFormatVersion="1">
+              defines="JUCE_MODAL_LOOPS_PERMITTED=1&#10;JUCE_DISPLAY_SPLASH_SCREEN=0"
+              jucerFormatVersion="1" displaySplashScreen="1" lv2Uri="https://socalabs.com/crossfeed/">
   <MAINGROUP id="dPRjsF" name="slCrossfeed">
     <GROUP id="{EE796482-0D02-0052-80F4-B1FE6CE0D41A}" name="Source">
       <GROUP id="{6F2315D7-3D20-892D-4519-7653440048F1}" name="3rdParty">

@@ -15,7 +15,7 @@
               pluginAUMainType="'aufx'" pluginVSTCategory="kPlugCategEffect"
               pluginRTASDisableBypass="0" pluginRTASDisableMultiMono="0" pluginAAXDisableBypass="0"
               pluginAAXDisableMultiMono="0" jucerFormatVersion="1" defines="JUCE_MODAL_LOOPS_PERMITTED=1&#10;JUCE_DISPLAY_SPLASH_SCREEN=0"
-              useAppConfig="0" addUsingNamespaceToJuceHeader="0">
+              useAppConfig="0" addUsingNamespaceToJuceHeader="0" lv2Uri="https://socalabs.com/abtester/">
   <MAINGROUP id="dPRjsF" name="ABTester">
     <GROUP id="{EE796482-0D02-0052-80F4-B1FE6CE0D41A}" name="Source">
       <FILE id="iEbZ9q" name="PluginProcessor.cpp" compile="1" resource="0"
