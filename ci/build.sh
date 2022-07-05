@@ -123,6 +123,7 @@ cat pluginlist.txt | while read PLUGIN; do
 
     cp ./build/$PLUGIN.so "$ROOT/ci/bin"
     cp -r ./build/$PLUGIN.vst3 "$ROOT/ci/bin"
+    cp -r ./build/$PLUGIN.lv2 "$ROOT/ci/bin"
 
     cd "$ROOT/ci/bin"
 
