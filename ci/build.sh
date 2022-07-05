@@ -129,7 +129,7 @@ cat pluginlist.txt | while read PLUGIN; do
 
     # Upload
     cd "$ROOT/ci/bin"
-    zip -r ${PLUGIN}_Linux.zip $PLUGIN.so $PLUGIN.vst3
+    zip -r ${PLUGIN}_Linux.zip $PLUGIN.so $PLUGIN.vst3 $PLUGIN.lv2
 
     if [ "$BRANCH" = "release" ]; then
       curl -F "files=@${PLUGIN}_Linux.zip" "https://socalabs.com/files/set.php?key=$APIKEY"
