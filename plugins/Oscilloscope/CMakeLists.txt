@@ -29,7 +29,7 @@ juce_add_plugin(Oscilloscope
   VST3_CATEGORIES
     "Fx"
   VST2_CATEGORY "kPlugCategEffect"
-  LV2URI "https://socalabs.com/Maths/"
+  LV2URI "https://socalabs.com/oscilloscope/"
 )
 
 juce_generate_juce_header(Oscilloscope)
