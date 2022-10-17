@@ -15,7 +15,7 @@
 using namespace gin;
 
 //==============================================================================
-String onOffTextFunction (const Parameter&, float v)
+static String onOffTextFunction (const Parameter&, float v)
 {
     return v > 0.0f ? "On" : "Off";
 }

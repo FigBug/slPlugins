@@ -10,9 +10,7 @@
 
 #pragma once
 
-#include "../JuceLibraryCode/JuceHeader.h"
-
-using namespace juce::dsp;
+#include <JuceHeader.h>
 
 class PluginEditor;
 
