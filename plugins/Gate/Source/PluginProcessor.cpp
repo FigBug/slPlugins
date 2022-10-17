@@ -28,8 +28,8 @@ GateAudioProcessor::GateAudioProcessor()
     attack->conversionFunction  = [] (float in) { return in / 1000.0; };
     hold->conversionFunction    = [] (float in) { return in / 1000.0; };
     release->conversionFunction = [] (float in) { return in / 1000.0; };
-    input->conversionFunction   = [] (float in) { return Decibels::decibelsToGain (in); };
-    output->conversionFunction  = [] (float in) { return Decibels::decibelsToGain (in); };
+    input->conversionFunction   = [] (float in) { return juce::Decibels::decibelsToGain (in); };
+    output->conversionFunction  = [] (float in) { return juce::Decibels::decibelsToGain (in); };
 }
 
 GateAudioProcessor::~GateAudioProcessor()
@@ -63,7 +63,7 @@ void GateAudioProcessor::releaseResources()
 {
 }
 
-void GateAudioProcessor::processBlock (AudioSampleBuffer& buffer, MidiBuffer&)
+void GateAudioProcessor::processBlock (juce::AudioSampleBuffer& buffer, juce::MidiBuffer&)
 {
     int numSamples = buffer.getNumSamples();
 
@@ -120,16 +120,16 @@ void GateAudioProcessor::processBlock (AudioSampleBuffer& buffer, MidiBuffer&)
 
     if (getTotalNumInputChannels() == 2)
     {
-        FloatVectorOperations::copy (fifoData.getWritePointer (1), buffer.getReadPointer (0), numSamples);
-        FloatVectorOperations::add (fifoData.getWritePointer (1), buffer.getReadPointer (1), numSamples);
-        FloatVectorOperations::multiply (fifoData.getWritePointer (1), 0.5, numSamples);
+        juce::FloatVectorOperations::copy (fifoData.getWritePointer (1), buffer.getReadPointer (0), numSamples);
+        juce::FloatVectorOperations::add (fifoData.getWritePointer (1), buffer.getReadPointer (1), numSamples);
+        juce::FloatVectorOperations::multiply (fifoData.getWritePointer (1), 0.5, numSamples);
     }
     else
     {
-        FloatVectorOperations::copy (fifoData.getWritePointer (1), buffer.getReadPointer (0), numSamples);
+        juce::FloatVectorOperations::copy (fifoData.getWritePointer (1), buffer.getReadPointer (0), numSamples);
     }
 
-    FloatVectorOperations::copy (fifoData.getWritePointer (2), envData.getReadPointer (0), numSamples);
+    juce::FloatVectorOperations::copy (fifoData.getWritePointer (2), envData.getReadPointer (0), numSamples);
 
     if (fifo.getFreeSpace() >= numSamples)
         fifo.write (fifoData);
@@ -141,14 +141,14 @@ bool GateAudioProcessor::hasEditor() const
     return true;
 }
 
-AudioProcessorEditor* GateAudioProcessor::createEditor()
+juce::AudioProcessorEditor* GateAudioProcessor::createEditor()
 {
     return new GateAudioProcessorEditor (*this);
 }
 
 //==============================================================================
 // This creates new instances of the plugin..
-AudioProcessor* JUCE_CALLTYPE createPluginFilter()
+juce::AudioProcessor* JUCE_CALLTYPE createPluginFilter()
 {
     return new GateAudioProcessor();
 }

@@ -79,6 +79,7 @@ void LimiterAudioProcessor::processBlock (juce::AudioSampleBuffer& buffer, juce:
             limiter.setInputGain (input->getProcValue (1));
             limiter.setOutputGain (output->getProcValue (1));
             limiter.setParams (attack->getProcValue (1),
+                               0.0f,
                                release->getProcValue (1),
                                threshold->getProcValue (1),
                                1000,
@@ -95,6 +96,7 @@ void LimiterAudioProcessor::processBlock (juce::AudioSampleBuffer& buffer, juce:
         limiter.setInputGain (input->getProcValue (numSamples));
         limiter.setOutputGain (output->getProcValue (numSamples));
         limiter.setParams (attack->getProcValue (numSamples),
+                           0.0f,
                            release->getProcValue (numSamples),
                            threshold->getProcValue (numSamples),
                            1000,

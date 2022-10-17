@@ -10,12 +10,12 @@
               aaxIdentifier="com.socalabs.Gate" pluginAAXCategory="2" companyName="SocaLabs"
               companyWebsite="www.socalabs.com" companyEmail="info@socalabs.com"
               displaySplashScreen="1" reportAppUsage="0" splashScreenColour="Dark"
-              buildStandalone="1" enableIAA="0" cppLanguageStandard="latest"
-              companyCopyright="SocaLabs" pluginFormats="buildAU,buildLV2,buildStandalone,buildVST,buildVST3"
+              buildStandalone="1" enableIAA="0" cppLanguageStandard="17" companyCopyright="SocaLabs"
+              pluginFormats="buildAU,buildLV2,buildStandalone,buildVST,buildVST3"
               pluginAUMainType="'aufx'" pluginVSTCategory="kPlugCategEffect"
               pluginRTASDisableBypass="0" pluginRTASDisableMultiMono="0" pluginAAXDisableBypass="0"
               pluginAAXDisableMultiMono="0" jucerFormatVersion="1" defines="JUCE_MODAL_LOOPS_PERMITTED=1&#10;JUCE_DISPLAY_SPLASH_SCREEN=0"
-              lv2Uri="https://socalabs.com/gate/">
+              lv2Uri="https://socalabs.com/gate/" useAppConfig="0" addUsingNamespaceToJuceHeader="0">
   <MAINGROUP id="dPRjsF" name="Gate">
     <GROUP id="{B033904A-A7D7-B03A-462B-D6E9AEFDB9C1}" name="Resources"/>
     <GROUP id="{EE796482-0D02-0052-80F4-B1FE6CE0D41A}" name="Source">
@@ -66,11 +66,11 @@
     <VS2022 targetFolder="Builds/VisualStudio2022" vstLegacyFolder="../../modules/plugin_sdk/vstsdk2.4">
       <CONFIGURATIONS>
         <CONFIGURATION name="Debug" winWarningLevel="4" generateManifest="1" winArchitecture="Win32"
-                       isDebug="1" optimisation="1" targetName="Gate_32b" postbuildCommand="copy /Y &quot;$(OutDir)\$(TargetFileName)&quot; &quot;C:\Program Files (x86)\VSTPlugins&quot;"
+                       isDebug="1" optimisation="1" targetName="Gate" postbuildCommand="copy /Y &quot;$(OutDir)\$(TargetFileName)&quot; &quot;C:\Program Files (x86)\VSTPlugins&quot;"
                        debugInformationFormat="ProgramDatabase" enablePluginBinaryCopyStep="0"
                        useRuntimeLibDLL="0" vstBinaryLocation="c:\program files\vstplugins"/>
         <CONFIGURATION name="Release" winWarningLevel="4" generateManifest="1" winArchitecture="Win32"
-                       isDebug="0" optimisation="3" targetName="Gate_32b" postbuildCommand="copy /Y &quot;$(OutDir)\$(TargetFileName)&quot; &quot;C:\Program Files (x86)\VSTPlugins&quot;"
+                       isDebug="0" optimisation="3" targetName="Gate" postbuildCommand="copy /Y &quot;$(OutDir)\$(TargetFileName)&quot; &quot;C:\Program Files (x86)\VSTPlugins&quot;"
                        debugInformationFormat="ProgramDatabase" enablePluginBinaryCopyStep="0"
                        linkTimeOptimisation="0" useRuntimeLibDLL="0"/>
         <CONFIGURATION name="Debug64" winWarningLevel="4" generateManifest="1" winArchitecture="x64"
