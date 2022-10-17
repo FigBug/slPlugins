@@ -11,24 +11,24 @@
 #include "PluginProcessor.h"
 #include "PluginEditor.h"
 
-using namespace gin;
-
 //==============================================================================
 GateAudioProcessorEditor::GateAudioProcessorEditor (GateAudioProcessor& p)
-    : gin::ProcessorEditor (p, 60, 100), proc (p)
+    : gin::ProcessorEditor (p), proc (p)
 {
     for (auto pp : p.getPluginParameters())
     {
-        ParamComponent* pc;
+        gin::ParamComponent* pc;
 
         if (pp->isOnOff())
-            pc = new Switch (pp);
+            pc = new gin::Switch (pp);
         else
-            pc = new Knob (pp);
+            pc = new gin::Knob (pp);
 
         addAndMakeVisible (pc);
         controls.add (pc);
     }
+
+    meter.setRange ({-100, 0});
 
     addAndMakeVisible (meter);
     addAndMakeVisible (inputMeter);
@@ -38,18 +38,27 @@ GateAudioProcessorEditor::GateAudioProcessorEditor (GateAudioProcessor& p)
 
     addAndMakeVisible (scope);
     scope.setNumChannels (3);
-    scope.setTriggerMode (TriggeredScope::None);
+    scope.setTriggerMode (gin::TriggeredScope::None);
     scope.setNumSamplesPerPixel (256);
     scope.setVerticalZoomFactor (2.0);
     scope.setVerticalZoomOffset (-0.5, 0);
     scope.setVerticalZoomOffset (-0.5, 1);
     scope.setVerticalZoomOffset (-0.5, 2);
-    scope.setColour (TriggeredScope::traceColourId + 0, Colours::transparentBlack);
-    scope.setColour (TriggeredScope::envelopeColourId + 0, Colours::orange);
-    scope.setColour (TriggeredScope::traceColourId + 1, Colours::transparentBlack);
-    scope.setColour (TriggeredScope::envelopeColourId + 1, Colours::white);
-    scope.setColour (TriggeredScope::traceColourId + 2, Colours::red);
-    scope.setColour (TriggeredScope::envelopeColourId + 2, Colours::transparentBlack);
+    scope.setColour (gin::TriggeredScope::lineColourId, findColour (gin::PluginLookAndFeel::grey45ColourId));
+    scope.setColour (gin::TriggeredScope::traceColourId + 0, juce::Colours::transparentBlack);
+    scope.setColour (gin::TriggeredScope::envelopeColourId + 0, findColour (gin::PluginLookAndFeel::accentColourId).withAlpha (0.3f));
+    scope.setColour (gin::TriggeredScope::traceColourId + 1, findColour (gin::PluginLookAndFeel::whiteColourId).withAlpha (0.7f));
+    scope.setColour (gin::TriggeredScope::envelopeColourId + 1, findColour (gin::PluginLookAndFeel::whiteColourId).withAlpha (0.7f));
+    scope.setColour (gin::TriggeredScope::traceColourId + 2, findColour (gin::PluginLookAndFeel::accentColourId));
+    scope.setColour (gin::TriggeredScope::envelopeColourId + 2, juce::Colours::transparentBlack);
+
+    inputMeter.setColour (gin::LevelMeter::lineColourId, findColour (gin::PluginLookAndFeel::grey45ColourId));
+    inputMeter.setColour (gin::LevelMeter::meterColourId, findColour (gin::PluginLookAndFeel::accentColourId).withAlpha (0.3f));
+    outputMeter.setColour (gin::LevelMeter::lineColourId, findColour (gin::PluginLookAndFeel::grey45ColourId));
+    outputMeter.setColour (gin::LevelMeter::meterColourId, findColour (gin::PluginLookAndFeel::accentColourId).withAlpha (0.3f));
+    reductionMeter.setColour (gin::LevelMeter::lineColourId, findColour (gin::PluginLookAndFeel::grey45ColourId));
+    reductionMeter.setColour (gin::LevelMeter::meterColourId, findColour (gin::PluginLookAndFeel::accentColourId).withAlpha (0.3f));
+
 
     setGridSize (7, 2);
 
@@ -64,7 +73,7 @@ GateAudioProcessorEditor::~GateAudioProcessorEditor()
 }
 
 //==============================================================================
-void GateAudioProcessorEditor::parameterChanged (Parameter*)
+void GateAudioProcessorEditor::valueUpdated (gin::Parameter*)
 {
     meter.repaint();
 }
@@ -74,9 +83,11 @@ void GateAudioProcessorEditor::resized()
     gin::ProcessorEditor::resized();
 
     componentForParam (*proc.input)->setBounds (getGridArea (0, 0));
-    componentForParam (*proc.attack)->setBounds (getGridArea (2, 0));
+    componentForParam (*proc.attack)->setBounds (getGridArea (1, 0));
+    componentForParam (*proc.hold)->setBounds (getGridArea (2, 0));
     componentForParam (*proc.release)->setBounds (getGridArea (3, 0));
     componentForParam (*proc.threshold)->setBounds (getGridArea (4, 0));
+    componentForParam (*proc.knee)->setBounds (getGridArea (5, 0));
     componentForParam (*proc.output)->setBounds (getGridArea (6, 0));
 
     auto rc = getGridArea (0, 1, 7, 1);

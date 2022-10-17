@@ -12,8 +12,6 @@
 
 #include <JuceHeader.h>
 
-using namespace juce::dsp;
-
 //==============================================================================
 /**
 */
@@ -38,7 +36,7 @@ public:
     bool hasEditor() const override;
 
     //==============================================================================
-    gin::Parameter::Ptr attack, release, threshold, input, output;
+    gin::Parameter::Ptr attack, hold, release, threshold, knee, input, output;
 
     gin::Dynamics gate;
     gin::AudioFifo fifo;

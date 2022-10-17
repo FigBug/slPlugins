@@ -4,6 +4,8 @@ ChannelMute
 CompensatedDelay
 Compressor
 Delay
+Expander
+Gate
 HugeGain
 Limiter
 Maths

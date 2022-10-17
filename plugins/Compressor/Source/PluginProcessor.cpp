@@ -87,6 +87,7 @@ void CompressorAudioProcessor::processBlock (juce::AudioSampleBuffer& buffer, ju
             compressor.setInputGain (input->getProcValue (1));
             compressor.setOutputGain (output->getProcValue (1));
             compressor.setParams (attack->getProcValue (1),
+                                  0.0f,
                                   release->getProcValue (1),
                                   threshold->getProcValue (1),
                                   ratio->getProcValue (1),
@@ -103,6 +104,7 @@ void CompressorAudioProcessor::processBlock (juce::AudioSampleBuffer& buffer, ju
         compressor.setInputGain (input->getProcValue (numSamples));
         compressor.setOutputGain (output->getProcValue (numSamples));
         compressor.setParams (attack->getProcValue (numSamples),
+                              0.0f,
                               release->getProcValue (numSamples),
                               threshold->getProcValue (numSamples),
                               ratio->getProcValue (numSamples),
