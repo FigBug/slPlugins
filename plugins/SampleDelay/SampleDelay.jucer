@@ -5,7 +5,7 @@
               buildVST="1" buildVST3="1" buildAU="1" buildAUv3="0" buildRTAS="0"
               buildAAX="0" pluginName="Sample Delay" pluginDesc="Sample Delay"
               pluginManufacturer="SocaLabs" pluginManufacturerCode="Soca" pluginCode="SLsd"
-              pluginChannelConfigs="{1,1},{2,2}" pluginIsSynth="0" pluginWantsMidiIn="0"
+              pluginChannelConfigs="{2,2},{1,1}" pluginIsSynth="0" pluginWantsMidiIn="0"
               pluginProducesMidiOut="0" pluginIsMidiEffectPlugin="0" pluginEditorRequiresKeys="0"
               pluginAUExportPrefix="SampleDelayAU" aaxIdentifier="com.socalabs.SampleDelay"
               pluginAAXCategory="2" companyName="SocaLabs" companyWebsite="www.socalabs.com"
@@ -15,7 +15,7 @@
               pluginAUMainType="'aufx'" pluginVSTCategory="kPlugCategEffect"
               pluginRTASDisableBypass="0" pluginRTASDisableMultiMono="0" pluginAAXDisableBypass="0"
               pluginAAXDisableMultiMono="0" jucerFormatVersion="1" defines="JUCE_MODAL_LOOPS_PERMITTED=1&#10;JUCE_DISPLAY_SPLASH_SCREEN=0"
-              lv2Uri="https://socalabs.com/sampledelay/">
+              lv2Uri="https://socalabs.com/sampledelay/" useAppConfig="0" addUsingNamespaceToJuceHeader="0">
   <MAINGROUP id="dPRjsF" name="SampleDelay">
     <GROUP id="{EE796482-0D02-0052-80F4-B1FE6CE0D41A}" name="Source">
       <FILE id="iEbZ9q" name="PluginProcessor.cpp" compile="1" resource="0"
