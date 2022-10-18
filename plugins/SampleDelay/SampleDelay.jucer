@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<JUCERPROJECT id="JPnRUR" name="SampleDelay" projectType="audioplug" version="1.1.0"
+<JUCERPROJECT id="JPnRUR" name="SampleDelay" projectType="audioplug" version="1.1.1"
               bundleIdentifier="com.socalabs.SampleDelay" includeBinaryInAppConfig="1"
               buildVST="1" buildVST3="1" buildAU="1" buildAUv3="0" buildRTAS="0"
               buildAAX="0" pluginName="Sample Delay" pluginDesc="Sample Delay"
