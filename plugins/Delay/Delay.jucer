@@ -28,7 +28,7 @@
     </GROUP>
   </MAINGROUP>
   <EXPORTFORMATS>
-    <XCODE_MAC targetFolder="Builds/MacOSX" hardenedRuntime="1" vstLegacyFolder="../../modules/plugin_sdk/vstsdk2.4"
+    <XCODE_MAC targetFolder="Builds/MacOSX" vstLegacyFolder="../../modules/plugin_sdk/vstsdk2.4"
                extraDefs="JUCE_COREGRAPHICS_DRAW_ASYNC=1">
       <CONFIGURATIONS>
         <CONFIGURATION name="Debug" isDebug="1" optimisation="1" targetName="Delay"

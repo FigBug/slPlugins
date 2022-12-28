@@ -28,7 +28,7 @@
     </GROUP>
   </MAINGROUP>
   <EXPORTFORMATS>
-    <XCODE_MAC targetFolder="Builds/MacOSX" hardenedRuntime="1" vstLegacyFolder="../../modules/plugin_sdk/vstsdk2.4">
+    <XCODE_MAC targetFolder="Builds/MacOSX" vstLegacyFolder="../../modules/plugin_sdk/vstsdk2.4">
       <CONFIGURATIONS>
         <CONFIGURATION name="Debug" isDebug="1" optimisation="1" targetName="ChannelMute"
                        cppLanguageStandard="c++14" osxCompatibility="10.9 SDK" headerPath="../../../../modules/slCommon"
