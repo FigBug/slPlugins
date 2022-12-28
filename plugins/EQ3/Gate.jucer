@@ -61,6 +61,7 @@
         <MODULEPATH id="gin_plugin" path="../../modules/gin/modules"/>
         <MODULEPATH id="gin_dsp" path="../../modules/gin/modules"/>
         <MODULEPATH id="gin_gui" path="../../modules/gin/modules"/>
+        <MODULEPATH id="gin_graphics" path="../../modules/gin/modules"/>
       </MODULEPATHS>
     </XCODE_MAC>
     <VS2019 targetFolder="Builds/VisualStudio2019" toolset="v142" vstLegacyFolder="../../modules/plugin_sdk/vstsdk2.4">
@@ -101,6 +102,7 @@
         <MODULEPATH id="gin_plugin" path="../../modules/gin/modules"/>
         <MODULEPATH id="gin_dsp" path="../../modules/gin/modules"/>
         <MODULEPATH id="gin_gui" path="../../modules/gin/modules"/>
+        <MODULEPATH id="gin_graphics" path="../../modules/gin/modules"/>
       </MODULEPATHS>
     </VS2019>
     <LINUX_MAKE targetFolder="Builds/LinuxMakefile" vstLegacyFolder="../../modules/plugin_sdk/vstsdk2.4"
@@ -130,6 +132,7 @@
         <MODULEPATH id="juce_dsp" path="../../modules/juce/modules"/>
         <MODULEPATH id="dRowAudio" path="../../modules/dRowAudio/module"/>
         <MODULEPATH id="gin_gui" path="../../modules/gin/modules"/>
+        <MODULEPATH id="gin_graphics" path="../../modules/gin/modules"/>
       </MODULEPATHS>
     </LINUX_MAKE>
   </EXPORTFORMATS>
@@ -137,6 +140,7 @@
     <MODULE id="dRowAudio" showAllCode="1" useLocalCopy="0"/>
     <MODULE id="gin" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
     <MODULE id="gin_dsp" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
+    <MODULE id="gin_graphics" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
     <MODULE id="gin_gui" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
     <MODULE id="gin_plugin" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
     <MODULE id="juce_audio_basics" showAllCode="1" useLocalCopy="0"/>
