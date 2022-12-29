@@ -13,16 +13,16 @@
 
 //==============================================================================
 PitchTrackAudioProcessorEditor::PitchTrackAudioProcessorEditor (PitchTrackAudioProcessor& p)
-    : GinAudioProcessorEditor (p), proc (p), meter (p.getOutputLevel())
+    : gin::ProcessorEditor (p), proc (p)
 {
-    addAndMakeVisible (&meter);
     addAndMakeVisible (&pitch);
-    
-    pitch.setJustificationType (Justification::centred);
+
+    pitch.setFont (50);
+    pitch.setJustificationType (juce::Justification::centred);
     
     startTimerHz (4);
     
-    setSize (600, 150);
+    setGridSize (7, 3);
 }
 
 PitchTrackAudioProcessorEditor::~PitchTrackAudioProcessorEditor()
@@ -30,16 +30,17 @@ PitchTrackAudioProcessorEditor::~PitchTrackAudioProcessorEditor()
 }
 
 //==============================================================================
-void PitchTrackAudioProcessorEditor::paint(Graphics& g)
+void PitchTrackAudioProcessorEditor::paint (juce::Graphics& g)
 {
-    g.fillAll (Colours::white);
+    gin::ProcessorEditor::paint (g);
 }
 
 void PitchTrackAudioProcessorEditor::resized()
 {
-    Rectangle<int> r = getControlsArea();
+    gin::ProcessorEditor::resized();
+
+    auto r = getFullGridArea();
     
-    meter.setBounds (r.removeFromRight (15));
     pitch.setBounds (r);
 }
 
@@ -48,7 +49,7 @@ void PitchTrackAudioProcessorEditor::timerCallback()
     if (proc.getPitch() != lastPitch)
     {
         lastPitch = proc.getPitch();
-        pitch.setText (String::formatted ("%.1f Hz", lastPitch), dontSendNotification);
+        pitch.setText (juce::String::formatted ("%.1f Hz", lastPitch), juce::dontSendNotification);
         
         DBG(lastPitch);
     }
