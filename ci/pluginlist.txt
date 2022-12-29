@@ -10,6 +10,7 @@ HugeGain
 Limiter
 Maths
 Oscilloscope
+PitchTrack
 SFX8
 SampleDelay
 SpectrumAnalyzer

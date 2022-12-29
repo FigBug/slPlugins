@@ -30,6 +30,11 @@
  #pragma clang diagnostic ignored "-Wreorder-ctor"
 #endif
 
+#ifdef _MSC_VER
+ #pragma warning (push)
+ #pragma warning (disable: 4305 4244 4267 4100 4456)
+#endif
+
 #include <q/support/literals.hpp>
 #include <q/support/note_names.hpp>
 #include <q/fx/signal_conditioner.hpp>
@@ -38,6 +43,11 @@
 #if __clang__
  #pragma clang diagnostic pop
 #endif
+
+#ifdef _MSC_VER
+ #pragma warning (pop)
+#endif
+
 
 //==============================================================================
 /**

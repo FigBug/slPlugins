@@ -28,19 +28,20 @@ PitchTrackAudioProcessor::~PitchTrackAudioProcessor()
 }
 
 //==============================================================================
-void PitchTrackAudioProcessor::prepareToPlay (double sampleRate_, int blockSize)
+void PitchTrackAudioProcessor::prepareToPlay (double sampleRate_, int blockSize_)
 {
+    gin::Processor::prepareToPlay (sampleRate_, blockSize_);
+
     freq = 0.0f;
     
-    auto sc_conf = signal_conditioner::config {};
+    auto cfg = signal_conditioner::config();
+    conditioner = std::make_unique<signal_conditioner> (cfg, low_e, high_e, std::uint32_t ( sampleRate_ ) );
+    detector = std::make_unique<pitch_detector> (low_e, high_e, std::uint32_t (sampleRate_), -45_dB);
 
-    conditioner = std::make_unique<signal_conditioner> ( sc_conf, low_e, high_e, uint32_t ( sampleRate_ ) );
-    detector = std::make_unique<pitch_detector> (low_e, high_e, sampleRate_, -45_dB);
+    yin = std::make_unique<adamski::PitchYIN> (int (sampleRate_), 512);
+    mpm = std::make_unique<adamski::PitchMPM> (int (sampleRate_), 512);
 
-    yin = std::make_unique<adamski::PitchYIN> (sampleRate_, 512);
-    mpm = std::make_unique<adamski::PitchMPM> (sampleRate_, 512);
-
-    fifo.setSize (1, std::max (blockSize * 2, 512 * 2));
+    fifo.setSize (1, std::max (blockSize_ * 2, 512 * 2));
 }
 
 void PitchTrackAudioProcessor::releaseResources()
