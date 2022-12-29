@@ -28,7 +28,7 @@ PitchTrackAudioProcessor::~PitchTrackAudioProcessor()
 }
 
 //==============================================================================
-void PitchTrackAudioProcessor::prepareToPlay (double sampleRate_, int)
+void PitchTrackAudioProcessor::prepareToPlay (double sampleRate_, int blockSize)
 {
     freq = 0.0f;
     
@@ -36,6 +36,11 @@ void PitchTrackAudioProcessor::prepareToPlay (double sampleRate_, int)
 
     conditioner = std::make_unique<signal_conditioner> ( sc_conf, low_e, high_e, uint32_t ( sampleRate_ ) );
     detector = std::make_unique<pitch_detector> (low_e, high_e, sampleRate_, -45_dB);
+
+    yin = std::make_unique<adamski::PitchYIN> (sampleRate_, 512);
+    mpm = std::make_unique<adamski::PitchMPM> (sampleRate_, 512);
+
+    fifo.setSize (1, std::max (blockSize * 2, 512 * 2));
 }
 
 void PitchTrackAudioProcessor::releaseResources()
@@ -44,6 +49,9 @@ void PitchTrackAudioProcessor::releaseResources()
 
 void PitchTrackAudioProcessor::processBlock (juce::AudioSampleBuffer& buffer, juce::MidiBuffer&)
 {
+    //
+    // cycfi::q
+    //
     auto& d = *detector;
     auto& c = *conditioner;
 
@@ -70,6 +78,29 @@ void PitchTrackAudioProcessor::processBlock (juce::AudioSampleBuffer& buffer, ju
             if (d (v))
                 freq = detector->get_frequency();
         }
+    }
+    DBG(freq);
+
+    //
+    // adamski
+    //
+    if (buffer.getNumChannels() == 1)
+        fifo.write (buffer);
+    else
+        fifo.write (gin::monoBuffer (buffer));
+
+    while (fifo.getNumReady() >= 512)
+    {
+        gin::ScratchBuffer buf (1, 512);
+        fifo.read (buf);
+
+        auto p1 = yin->getPitchInHz (buf.getReadPointer (0));
+        auto p2 = mpm->getPitch (buf.getReadPointer (0));
+
+        DBG(p1);
+        DBG(p2);
+
+        freq = (p1 + p2) / 2.0f;
     }
 }
 

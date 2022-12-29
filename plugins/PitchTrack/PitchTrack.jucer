@@ -60,6 +60,8 @@
         <MODULEPATH id="juce_dsp" path="../../modules/juce/modules"/>
         <MODULEPATH id="gin_gui" path="../../modules/gin/modules"/>
         <MODULEPATH id="gin_graphics" path="../../modules/gin/modules"/>
+        <MODULEPATH id="pitch_detector" path="../../modules"/>
+        <MODULEPATH id="audio_fft" path="../../modules"/>
       </MODULEPATHS>
     </XCODE_MAC>
     <VS2019 targetFolder="Builds/VisualStudio2019" toolset="v142" vstLegacyFolder="../../modules/plugin_sdk/vstsdk2.4">
@@ -94,6 +96,8 @@
         <MODULEPATH id="gin" path="../../modules/gin/modules"/>
         <MODULEPATH id="gin_gui" path="../../modules/gin/modules"/>
         <MODULEPATH id="gin_graphics" path="../../modules/gin/modules"/>
+        <MODULEPATH id="pitch_detector" path="../../modules"/>
+        <MODULEPATH id="audio_fft" path="../../modules"/>
       </MODULEPATHS>
     </VS2019>
     <LINUX_MAKE targetFolder="Builds/LinuxMakefile" vstLegacyFolder="../../modules/plugin_sdk/vstsdk2.4"
@@ -123,10 +127,13 @@
         <MODULEPATH id="juce_dsp" path="../../modules/juce/modules"/>
         <MODULEPATH id="gin_gui" path="../../modules/gin/modules"/>
         <MODULEPATH id="gin_graphics" path="../../modules/gin/modules"/>
+        <MODULEPATH id="pitch_detector" path="../../modules"/>
+        <MODULEPATH id="audio_fft" path="../../modules"/>
       </MODULEPATHS>
     </LINUX_MAKE>
   </EXPORTFORMATS>
   <MODULES>
+    <MODULE id="audio_fft" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
     <MODULE id="gin" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
     <MODULE id="gin_dsp" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
     <MODULE id="gin_graphics" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
@@ -147,6 +154,7 @@
     <MODULE id="juce_gui_basics" showAllCode="1" useLocalCopy="0"/>
     <MODULE id="juce_gui_extra" showAllCode="1" useLocalCopy="0"/>
     <MODULE id="juce_opengl" showAllCode="1" useLocalCopy="0"/>
+    <MODULE id="pitch_detector" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
   </MODULES>
   <JUCEOPTIONS JUCE_QUICKTIME="disabled"/>
   <LIVE_SETTINGS>

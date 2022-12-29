@@ -70,7 +70,12 @@ private:
     std::unique_ptr<cycfi::q::signal_conditioner> conditioner;
     std::unique_ptr<cycfi::q::pitch_detector> detector;
 
+    std::unique_ptr<adamski::PitchYIN> yin;
+    std::unique_ptr<adamski::PitchMPM> mpm;
+
     float freq = 0.0f;
+
+    gin::AudioFifo fifo;
         
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (PitchTrackAudioProcessor)
