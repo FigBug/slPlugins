@@ -12,10 +12,10 @@ jobs:
       - name: Fix up git URLs
         run: echo -e '[url "https://github.com/"]\n  insteadOf = "git@github.com:"' >> ~/.gitconfig
         shell: bash
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v3
         with:
           token: ${{ secrets.ACCESS_TOKEN }}
-          submodules: true
+          submodules: recursive
       - name: "Run script"
         run: |
           export OS="mac"
