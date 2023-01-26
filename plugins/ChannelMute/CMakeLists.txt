@@ -27,7 +27,7 @@ juce_add_plugin(ChannelMute
   AU_EXPORT_PREFIX "ChannelMuteAU"
   AU_MAIN_TYPE "kAudioUnitType_Effect"
   VST2_CATEGORY "kPlugCategEffect"
-  LV2URI "https://socalabs.com/ChannelMute/"
+  LV2URI "https://socalabs.com/channelmute/"
 )
 
 juce_generate_juce_header(ChannelMute)

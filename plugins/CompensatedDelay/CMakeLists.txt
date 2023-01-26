@@ -27,7 +27,7 @@ juce_add_plugin(CompensatedDelay
   AU_EXPORT_PREFIX "CompensatedDelayAU"
   AU_MAIN_TYPE "kAudioUnitType_Effect"
   VST2_CATEGORY "kPlugCategEffect"
-  LV2URI "https://socalabs.com/CompensatedDelay/"
+  LV2URI "https://socalabs.com/compensatedelay/"
 )
 
 juce_generate_juce_header(CompensatedDelay)

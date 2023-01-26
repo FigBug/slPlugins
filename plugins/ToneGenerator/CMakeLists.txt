@@ -28,7 +28,7 @@ juce_add_plugin(ToneGenerator
   AU_EXPORT_PREFIX "ToneGeneratorAU"
   AU_MAIN_TYPE "kAudioUnitType_Generator"
   VST2_CATEGORY "kPlugCategGenerator"
-  LV2URI "https://socalabs.com/ToneGenerator/"
+  LV2URI "https://socalabs.com/tonegenerator/"
 )
 
 juce_generate_juce_header(ToneGenerator)

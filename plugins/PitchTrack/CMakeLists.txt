@@ -24,7 +24,7 @@ juce_add_plugin(PitchTrack
   PLUGIN_CODE "SLpt"
   AAX_IDENTIFIER "com.socalabs.PitchTrack"
   AU_EXPORT_PREFIX "PitchTrackAU"
-  LV2URI "https://socalabs.com/PitchTrack/"
+  LV2URI "https://socalabs.com/pitchtrack/"
 )
 
 juce_generate_juce_header(PitchTrack)

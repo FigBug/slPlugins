@@ -27,7 +27,7 @@ juce_add_plugin(SampleDelay
   AU_EXPORT_PREFIX "SampleDelayAU"
   AU_MAIN_TYPE "kAudioUnitType_Effect"
   VST2_CATEGORY "kPlugCategEffect"
-  LV2URI "https://socalabs.com/SampleDelay/"
+  LV2URI "https://socalabs.com/sampledelay/"
 )
 
 juce_generate_juce_header(SampleDelay)

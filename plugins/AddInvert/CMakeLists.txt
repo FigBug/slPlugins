@@ -27,7 +27,7 @@ juce_add_plugin(AddInvert
   AU_EXPORT_PREFIX "AddInvertAU"
   AU_MAIN_TYPE "kAudioUnitType_Effect"
   VST2_CATEGORY "kPlugCategEffect"
-  LV2URI "https://socalabs.com/AddInvert/"
+  LV2URI "https://socalabs.com/addinvert/"
 )
 
 juce_generate_juce_header(AddInvert)

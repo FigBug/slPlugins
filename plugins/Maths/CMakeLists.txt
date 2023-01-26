@@ -27,7 +27,7 @@ juce_add_plugin(Maths
   AU_EXPORT_PREFIX "MathsAU"
   AU_MAIN_TYPE "kAudioUnitType_Effect"
   VST2_CATEGORY "kPlugCategEffect"
-  LV2URI "https://socalabs.com/Maths/"
+  LV2URI "https://socalabs.com/maths/"
 )
 
 juce_generate_juce_header(Maths)

@@ -31,7 +31,7 @@ juce_add_plugin(SFX8
   VST3_CATEGORIES
     "Instrument"
   VST2_CATEGORY "kPlugCategSynth"
-  LV2URI "https://socalabs.com/SFX8/"
+  LV2URI "https://socalabs.com/sfx8/"
 )
 
 juce_generate_juce_header(SFX8)

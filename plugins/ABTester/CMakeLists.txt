@@ -27,7 +27,7 @@ juce_add_plugin(ABTester
   AU_EXPORT_PREFIX "ABTesterAU"
   AU_MAIN_TYPE "kAudioUnitType_Effect"
   VST2_CATEGORY "kPlugCategEffect"
-  LV2URI "https://socalabs.com/ABTester/"
+  LV2URI "https://socalabs.com/abtester/"
 )
 
 juce_generate_juce_header(ABTester)

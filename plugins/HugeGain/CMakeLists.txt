@@ -25,7 +25,7 @@ juce_add_plugin(HugeGain
   PLUGIN_CODE "SLhg"
   AAX_IDENTIFIER "com.socalabs.slHugeGain"
   AU_EXPORT_PREFIX "slHugeGainAU"
-  LV2URI "https://socalabs.com/HugeGain/"
+  LV2URI "https://socalabs.com/hugegain/"
 )
 
 juce_generate_juce_header(HugeGain)

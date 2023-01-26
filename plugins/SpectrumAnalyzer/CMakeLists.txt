@@ -27,7 +27,7 @@ juce_add_plugin(SpectrumAnalyzer
   AU_EXPORT_PREFIX "slSpectrumAnalyzerAU"
   AU_MAIN_TYPE "kAudioUnitType_Effect"
   VST2_CATEGORY "kPlugCategEffect"
-  LV2URI "https://socalabs.com/SpectrumAnalyzer/"
+  LV2URI "https://socalabs.com/spectrumanalyzer/"
 )
 
 juce_generate_juce_header(SpectrumAnalyzer)

@@ -27,7 +27,7 @@ juce_add_plugin(Compressor
   AU_EXPORT_PREFIX "CompressorAU"
   AU_MAIN_TYPE "kAudioUnitType_Effect"
   VST2_CATEGORY "kPlugCategEffect"
-  LV2URI "https://socalabs.com/Compressor/"
+  LV2URI "https://socalabs.com/compressor/"
 )
 
 juce_generate_juce_header(Compressor)

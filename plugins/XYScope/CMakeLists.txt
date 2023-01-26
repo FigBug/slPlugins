@@ -25,7 +25,7 @@ juce_add_plugin(XYScope
   PLUGIN_CODE "SLxy"
   AAX_IDENTIFIER "com.socalabs.slXYScope"
   AU_EXPORT_PREFIX "slXYScopeAU"
-  LV2URI "https://socalabs.com/XYScope/"
+  LV2URI "https://socalabs.com/xyscope/"
 )
 
 juce_generate_juce_header(XYScope)
