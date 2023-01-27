@@ -27,7 +27,7 @@ juce_add_plugin(ChannelMute
   AU_EXPORT_PREFIX "ChannelMuteAU"
   AU_MAIN_TYPE "kAudioUnitType_Effect"
   VST2_CATEGORY "kPlugCategEffect"
-  LV2URI "https://socalabs.com/ChannelMute/"
+  LV2URI "https://socalabs.com/channelmute/"
 )
 
 juce_generate_juce_header(ChannelMute)
@@ -64,6 +64,7 @@ target_link_libraries(ChannelMute
     dRowAudio
     gin
     gin_dsp
+    gin_graphics
     gin_gui
     gin_plugin
     juce::juce_audio_basics

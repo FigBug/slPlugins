@@ -31,7 +31,7 @@ juce_add_plugin(SFX8
   VST3_CATEGORIES
     "Instrument"
   VST2_CATEGORY "kPlugCategSynth"
-  LV2URI "https://socalabs.com/SFX8/"
+  LV2URI "https://socalabs.com/sfx8/"
 )
 
 juce_generate_juce_header(SFX8)
@@ -83,6 +83,7 @@ target_link_libraries(SFX8
     dRowAudio
     gin
     gin_dsp
+    gin_graphics
     gin_gui
     gin_plugin
     juce::juce_audio_basics

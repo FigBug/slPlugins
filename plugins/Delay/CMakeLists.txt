@@ -27,7 +27,7 @@ juce_add_plugin(Delay
   AU_EXPORT_PREFIX "DelayAU"
   AU_MAIN_TYPE "kAudioUnitType_Effect"
   VST2_CATEGORY "kPlugCategEffect"
-  LV2URI "https://socalabs.com/Delay/"
+  LV2URI "https://socalabs.com/delay/"
 )
 
 juce_generate_juce_header(Delay)
@@ -64,6 +64,7 @@ target_link_libraries(Delay
     dRowAudio
     gin
     gin_dsp
+    gin_graphics
     gin_gui
     gin_plugin
     juce::juce_audio_basics

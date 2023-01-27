@@ -27,7 +27,7 @@ juce_add_plugin(WaveLooper
   AU_EXPORT_PREFIX "WaveLooperAU"
   AU_MAIN_TYPE "kAudioUnitType_Effect"
   VST2_CATEGORY "kPlugCategEffect"
-  LV2URI "https://socalabs.com/WaveLooper/"
+  LV2URI "https://socalabs.com/wavelooper/"
 )
 
 juce_generate_juce_header(WaveLooper)
@@ -60,6 +60,7 @@ target_link_libraries(WaveLooper
     dRowAudio
     gin
     gin_dsp
+    gin_graphics
     gin_gui
     gin_plugin
     juce::juce_audio_basics

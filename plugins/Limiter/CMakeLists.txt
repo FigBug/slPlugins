@@ -27,7 +27,7 @@ juce_add_plugin(Limiter
   AU_EXPORT_PREFIX "LimiterAU"
   AU_MAIN_TYPE "kAudioUnitType_Effect"
   VST2_CATEGORY "kPlugCategEffect"
-  LV2URI "https://socalabs.com/Limiter/"
+  LV2URI "https://socalabs.com/limiter/"
 )
 
 juce_generate_juce_header(Limiter)
@@ -64,6 +64,7 @@ target_link_libraries(Limiter
     dRowAudio
     gin
     gin_dsp
+    gin_graphics
     gin_gui
     gin_plugin
     juce::juce_audio_basics

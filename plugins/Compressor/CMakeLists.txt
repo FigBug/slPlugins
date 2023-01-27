@@ -27,7 +27,7 @@ juce_add_plugin(Compressor
   AU_EXPORT_PREFIX "CompressorAU"
   AU_MAIN_TYPE "kAudioUnitType_Effect"
   VST2_CATEGORY "kPlugCategEffect"
-  LV2URI "https://socalabs.com/Compressor/"
+  LV2URI "https://socalabs.com/compressor/"
 )
 
 juce_generate_juce_header(Compressor)
@@ -79,6 +79,7 @@ target_link_libraries(Compressor
     dRowAudio
     gin
     gin_dsp
+    gin_graphics
     gin_gui
     gin_plugin
     juce::juce_audio_basics

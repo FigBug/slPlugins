@@ -24,7 +24,7 @@ juce_add_plugin(PitchTrack
   PLUGIN_CODE "SLpt"
   AAX_IDENTIFIER "com.socalabs.PitchTrack"
   AU_EXPORT_PREFIX "PitchTrackAU"
-  LV2URI "https://socalabs.com/PitchTrack/"
+  LV2URI "https://socalabs.com/pitchtrack/"
 )
 
 juce_generate_juce_header(PitchTrack)
@@ -46,6 +46,8 @@ target_sources(PitchTrack
     "Source/PluginProcessor.cpp"
 )
 
+include_directories("${CMAKE_SOURCE_DIR}/modules/Q/infra/include" "${CMAKE_SOURCE_DIR}/modules/Q/q_lib/include")
+
 set_target_properties(PitchTrack PROPERTIES
     VISIBILITY_INLINES_HIDDEN TRUE
     C_VISBILITY_PRESET hidden
@@ -54,8 +56,10 @@ set_target_properties(PitchTrack PROPERTIES
 
 target_link_libraries(PitchTrack
   PRIVATE
+    audio_fft
     gin
     gin_dsp
+    gin_graphics
     gin_gui
     gin_plugin
     juce::juce_audio_basics
@@ -73,6 +77,7 @@ target_link_libraries(PitchTrack
     juce::juce_gui_basics
     juce::juce_gui_extra
     juce::juce_opengl
+    pitch_detector
   PUBLIC
     juce::juce_recommended_config_flags
     juce::juce_recommended_lto_flags

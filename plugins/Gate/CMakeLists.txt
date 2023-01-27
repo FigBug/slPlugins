@@ -27,7 +27,7 @@ juce_add_plugin(Gate
   AU_EXPORT_PREFIX "GateAU"
   AU_MAIN_TYPE "kAudioUnitType_Effect"
   VST2_CATEGORY "kPlugCategEffect"
-  LV2URI "https://socalabs.com/Gate/"
+  LV2URI "https://socalabs.com/gate/"
 )
 
 juce_generate_juce_header(Gate)
@@ -60,6 +60,7 @@ target_link_libraries(Gate
     dRowAudio
     gin
     gin_dsp
+    gin_graphics
     gin_gui
     gin_plugin
     juce::juce_audio_basics

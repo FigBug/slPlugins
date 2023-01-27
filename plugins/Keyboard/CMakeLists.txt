@@ -30,7 +30,7 @@ juce_add_plugin(Keyboard
   AU_EXPORT_PREFIX "KeyboardAU"
   AU_MAIN_TYPE "kAudioUnitType_MIDIProcessor"
   VST2_CATEGORY "kPlugCategAnalysis"
-  LV2URI "https://socalabs.com/Keyboard/"
+  LV2URI "https://socalabs.com/keyboard/"
 )
 
 juce_generate_juce_header(Keyboard)
@@ -63,6 +63,7 @@ target_link_libraries(Keyboard
     dRowAudio
     gin
     gin_dsp
+    gin_graphics
     gin_gui
     gin_plugin
     juce::juce_audio_basics

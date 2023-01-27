@@ -21,6 +21,7 @@ juce_add_plugin(slCrossfeed
   PLUGIN_CODE "Cros"
   AAX_IDENTIFIER "com.socalabs.slCrossfeed"
   AU_EXPORT_PREFIX "slCrossfeedAU"
+  LV2URI "https://socalabs.com/crossfeed/"
 )
 
 juce_generate_juce_header(slCrossfeed)
