@@ -64,6 +64,7 @@ target_link_libraries(ChannelMute
     dRowAudio
     gin
     gin_dsp
+    gin_graphics
     gin_gui
     gin_plugin
     juce::juce_audio_basics

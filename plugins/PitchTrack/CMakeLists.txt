@@ -56,6 +56,7 @@ target_link_libraries(PitchTrack
   PRIVATE
     gin
     gin_dsp
+    gin_graphics
     gin_gui
     gin_plugin
     juce::juce_audio_basics

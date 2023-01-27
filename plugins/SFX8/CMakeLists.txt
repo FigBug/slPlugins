@@ -83,6 +83,7 @@ target_link_libraries(SFX8
     dRowAudio
     gin
     gin_dsp
+    gin_graphics
     gin_gui
     gin_plugin
     juce::juce_audio_basics
