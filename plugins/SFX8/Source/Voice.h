@@ -10,7 +10,7 @@
 
 #pragma once
 
-#include "../JuceLibraryCode/JuceHeader.h"
+#include <JuceHeader.h>
 
 #include "../../../modules/bfxr/PinkNumber.h"
 #include "../../../modules/bfxr/SfxrParams.h"
