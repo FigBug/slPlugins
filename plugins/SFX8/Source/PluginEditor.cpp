@@ -16,8 +16,6 @@
 SFXAudioProcessorEditor::SFXAudioProcessorEditor (SFXAudioProcessor& p)
     : gin::ProcessorEditor (p), sfxProcessor (p)
 {
-    additionalProgramming = "Thomas Vian";
-
     logo = juce::ImageFileFormat::loadFrom (BinaryData::logo_png, BinaryData::logo_pngSize);
 
     addAndMakeVisible (padGrid);
