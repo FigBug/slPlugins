@@ -42,6 +42,7 @@ rm -Rf zip
 mkdir bin
 mkdir zip
 
+cd "$ROOT"
 cmake -Bcmake-build -DCMAKE_BUILD_TYPE=Release
 cmake --build cmake-build/ -j $(nproc)
 make install -C cmake-build/plugins
