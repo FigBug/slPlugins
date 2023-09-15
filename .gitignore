@@ -78,3 +78,4 @@ Win32
 Builds
 JuceLibraryCode
 ci/zip
+cmake-build
