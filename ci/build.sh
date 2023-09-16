@@ -43,9 +43,27 @@ mkdir bin
 mkdir zip
 
 cd "$ROOT"
-cmake -Bcmake-build -DCMAKE_BUILD_TYPE=Release
-cmake --build cmake-build/ -j $(nproc) --config Release
-make install -C cmake-build/plugins
+if [ "$(uname)" == "Darwin" ]; then
+  cmake --preset xcode
+  cmake --build --preset xcode --config Release
+
+  mkdir -p ci/bin/au
+  mkdir -p ci/bin/vst
+  mkdir -p ci/bin/vst3
+elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
+  cmake --preset ninja-gcc
+  cmake --build --preset ninja-gcc --config Release
+
+  mkdir -p ci/bin/lv2
+  mkdir -p ci/bin/vst
+  mkdir -p ci/bin/vst3
+if [ "$(expr substr $(uname -s) 1 10)" == "MINGW64_NT" ]; then
+  cmake --preset vs
+  cmake --build --preset vs --config Release
+
+  mkdir -p ci/bin/vst
+  mkdir -p ci/bin/vst3
+fi
 
 cd "$ROOT/ci"
 cat pluginlist.txt | while read PLUGIN; do
@@ -53,6 +71,11 @@ cat pluginlist.txt | while read PLUGIN; do
 
   # Build mac version
   if [ "$(uname)" == "Darwin" ]; then
+
+    cp -R "$ROOT/Builds/xcode/${PLUGIN}_artefacts/Release/AU/$PLUGIN.component" "$ROOT/ci/bin/au"
+    cp -R "$ROOT/Builds/xcode/${PLUGIN}_artefacts/Release/VST/$PLUGIN.vst" "$ROOT/ci/bin/vst"
+    cp -R "$ROOT/Builds/xcode/${PLUGIN}_artefacts/Release/VST3/$PLUGIN.vst3" "$ROOT/ci/bin/vst3"
+
     cd "$ROOT/ci/bin"
     codesign -s "$DEV_APP_ID" -v "vst/$PLUGIN.vst" --options=runtime --timestamp --force
     codesign -s "$DEV_APP_ID" -v "vst3/$PLUGIN.vst3" --options=runtime --timestamp --force
@@ -79,6 +102,11 @@ cat pluginlist.txt | while read PLUGIN; do
     # Build linux version
     cd "$ROOT/ci/bin"
 
+    cp -R "$ROOT/Builds/ninja-clang/${PLUGIN}_artefacts/Release/LV2/$PLUGIN.lv2" "$ROOT/ci/bin/lv2"
+    cp -R "$ROOT/Builds/ninja-clang/${PLUGIN}_artefacts/Release/VST/lib$PLUGIN.so" "$ROOT/ci/bin/vst/$PLUGIN.so"
+    cp -R "$ROOT/Builds/ninja-clang/${PLUGIN}_artefacts/Release/VST3/$PLUGIN.vst3" "$ROOT/ci/bin/vst3"
+
+
     # Upload
     cd "$ROOT/ci/bin"
     zip -r ${PLUGIN}_Linux.zip vst/$PLUGIN.so vst/$PLUGIN.vst3 vst3/$PLUGIN.lv2
@@ -89,6 +117,9 @@ cat pluginlist.txt | while read PLUGIN; do
   elif [ "$(expr substr $(uname -s) 1 10)" == "MINGW64_NT" ]; then
     # Build Win version
     cd "$ROOT/ci/bin"
+
+    cp -R "$ROOT/Builds/vs/${PLUGIN}_artefacts/Release/VST/$PLUGIN.dll" "$ROOT/ci/bin/vst"
+    cp -R "$ROOT/Builds/vs/${PLUGIN}_artefacts/Release/VST3/$PLUGIN.vst3" "$ROOT/ci/bin/vst3"
 
     7z a ${PLUGIN}_Win.zip vst/$PLUGIN.dll vst/$PLUGIN.vst3 
     if [ "$BRANCH" = "release" ]; then
