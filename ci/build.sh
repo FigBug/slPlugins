@@ -51,8 +51,8 @@ if [ "$(uname)" == "Darwin" ]; then
   mkdir -p ci/bin/vst
   mkdir -p ci/bin/vst3
 elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
-  cmake --preset ninja-gcc
-  cmake --build --preset ninja-gcc --config Release
+  cmake --preset ninja-clang
+  cmake --build --preset ninja-clang --config Release
 
   mkdir -p ci/bin/lv2
   mkdir -p ci/bin/vst
