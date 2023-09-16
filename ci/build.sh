@@ -1,13 +1,9 @@
 #!/bin/bash -e
 
-# linux specific stiff
-if [ $OS = "linux" ]; then
-  sudo apt-get update
-  sudo apt-get install clang git ladspa-sdk freeglut3-dev g++ libasound2-dev libcurl4-openssl-dev libfreetype6-dev libjack-jackd2-dev libx11-dev libxcomposite-dev libxcursor-dev libxinerama-dev libxrandr-dev mesa-common-dev webkit2gtk-4.0 juce-tools xvfb
-fi
+df -h
 
 # mac specific stuff
-if [ $OS = "mac" ]; then
+if [ "$(uname)" == "Darwin" ]; then
   # Create a temp keychain
   if [ -n "$GITHUB_ACTIONS" ]; then
     echo "Create a keychain"
@@ -27,6 +23,10 @@ if [ $OS = "mac" ]; then
   fi
   DEV_APP_ID="Developer ID Application: Roland Rabien (3FS7DJDG38)"
   DEV_INST_ID="Developer ID Installer: Roland Rabien (3FS7DJDG38)"
+elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
+  # linux specific stuff
+  sudo apt-get update
+  sudo apt-get install clang git ladspa-sdk freeglut3-dev g++ libasound2-dev libcurl4-openssl-dev libfreetype6-dev libjack-jackd2-dev libx11-dev libxcomposite-dev libxcursor-dev libxinerama-dev libxrandr-dev mesa-common-dev webkit2gtk-4.0 juce-tools xvfb
 fi
 
 ROOT=$(cd "$(dirname "$0")/.."; pwd)

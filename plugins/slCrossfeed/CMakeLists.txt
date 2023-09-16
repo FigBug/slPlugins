@@ -12,9 +12,11 @@ juce_add_plugin(slCrossfeed
   COMPANY_EMAIL "info@socalabs.com"
 
   FORMATS
-    "AU"
-    "AUv3"
-    "VST"
+  "VST3"
+  "AU"
+  "Standalone"
+  "VST"
+  "LV2"
   PLUGIN_NAME "slCrossfeed"
   DESCRIPTION "slCrossfeed"
   PLUGIN_MANUFACTURER_CODE "Soca"

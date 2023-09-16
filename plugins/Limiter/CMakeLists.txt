@@ -15,7 +15,6 @@ juce_add_plugin(Limiter
   FORMATS
     "VST3"
     "AU"
-    "AUv3"
     "Standalone"
     "VST"
     "LV2"
