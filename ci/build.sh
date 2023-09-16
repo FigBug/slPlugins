@@ -52,58 +52,45 @@ cat pluginlist.txt | while read PLUGIN; do
   PLUGIN=$(echo $PLUGIN|tr -d '\n\r ')
 
   # Build mac version
-  if [ "$OS" = "mac" ]; then
+  if [ "$(uname)" == "Darwin" ]; then
     cd "$ROOT/ci/bin"
-    codesign -s "$DEV_APP_ID" -v "$PLUGIN.vst" --options=runtime --timestamp --force
-    codesign -s "$DEV_APP_ID" -v "$PLUGIN.vst3" --options=runtime --timestamp --force
-    codesign -s "$DEV_APP_ID" -v "$PLUGIN.component" --options=runtime --timestamp --force
+    codesign -s "$DEV_APP_ID" -v "vst/$PLUGIN.vst" --options=runtime --timestamp --force
+    codesign -s "$DEV_APP_ID" -v "vst3/$PLUGIN.vst3" --options=runtime --timestamp --force
+    codesign -s "$DEV_APP_ID" -v "au/$PLUGIN.component" --options=runtime --timestamp --force
 
     # Notarize
     cd "$ROOT/ci/bin"
-    zip -r ${PLUGIN}_Mac.zip ${PLUGIN}.vst ${PLUGIN}.vst3 ${PLUGIN}.component
+    zip -r ${PLUGIN}_Mac.zip vst/${PLUGIN}.vst vst3/${PLUGIN}.vst3 au/${PLUGIN}.component
 
     if [[ -n "$APPLE_USER" ]]; then
       xcrun notarytool submit --verbose --apple-id "$APPLE_USER" --password "$APPLE_PASS" --team-id "3FS7DJDG38" --wait --timeout 30m ${PLUGIN}_Mac.zip
+
+      rm ${PLUGIN}_Mac.zip
+      xcrun stapler staple vst/$PLUGIN.vst
+      xcrun stapler staple vst3/$PLUGIN.vst3
+      xcrun stapler staple au/$PLUGIN.component
+      zip -r ${PLUGIN}_Mac.zip vst/$PLUGIN.vst vst3/$PLUGIN.vst3 au/$PLUGIN.component
     fi
-    rm ${PLUGIN}_Mac.zip
-    xcrun stapler staple $PLUGIN.vst
-    xcrun stapler staple $PLUGIN.vst3
-    xcrun stapler staple $PLUGIN.component
-    zip -r ${PLUGIN}_Mac.zip $PLUGIN.vst $PLUGIN.vst3 $PLUGIN.component
 
     if [ "$BRANCH" = "release" ]; then
       curl -F "files=@${PLUGIN}_Mac.zip" "https://socalabs.com/files/set.php?key=$APIKEY"
     fi
-  fi
-
-  # Build linux version
-  if [ "$OS" = "linux" ]; then
+  elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
+    # Build linux version
     cd "$ROOT/ci/bin"
 
     # Upload
     cd "$ROOT/ci/bin"
-    zip -r ${PLUGIN}_Linux.zip $PLUGIN.so $PLUGIN.vst3 $PLUGIN.lv2
+    zip -r ${PLUGIN}_Linux.zip vst/$PLUGIN.so vst/$PLUGIN.vst3 vst3/$PLUGIN.lv2
 
     if [ "$BRANCH" = "release" ]; then
       curl -F "files=@${PLUGIN}_Linux.zip" "https://socalabs.com/files/set.php?key=$APIKEY"
     fi
-  fi
+  elif [ "$(expr substr $(uname -s) 1 10)" == "MINGW64_NT" ]; then
+    # Build Win version
+    cd "$ROOT/ci/bin"
 
-  # Build Win version
-  if [ "$OS" = "win" ]; then
-    cd "$ROOT/ci/zip"
-    rm -Rf VST VST_32 VST3 VST3_32
-    mkdir -p VST
-    mkdir -p VST_32
-    mkdir -p VST3
-    mkdir -p VST3_32
-
-    cp "$ROOT/plugins/$PLUGIN/Builds/VisualStudio2022/x64/Release64/VST/${PLUGIN}.dll" VST
-    cp "$ROOT/plugins/$PLUGIN/Builds/VisualStudio2022/x64/Release64/VST3/${PLUGIN}.vst3" VST3
-    cp "$ROOT/plugins/$PLUGIN/Builds/VisualStudio2022/Win32/Release/VST/${PLUGIN}.dll" VST_32
-    cp "$ROOT/plugins/$PLUGIN/Builds/VisualStudio2022/Win32/Release/VST3/${PLUGIN}.vst3" VST3_32
-
-    7z a ${PLUGIN}_Win.zip VST VST_32 VST3 VST3_32
+    7z a ${PLUGIN}_Win.zip vst/$PLUGIN.dll vst/$PLUGIN.vst3 
     if [ "$BRANCH" = "release" ]; then
       curl -F "files=@${PLUGIN}_Win.zip" "https://socalabs.com/files/set.php?key=$APIKEY"
     fi
@@ -111,7 +98,7 @@ cat pluginlist.txt | while read PLUGIN; do
 done
 
 # Make All.zip
-if [ $OS = "mac" ]; then
+if [ "$(uname)" == "Darwin" ]; then
   cd "$ROOT/ci/bin"
   curl -s -S "https://socalabs.com/files/get.php?id=SID_Mac.zip" -o "$ROOT/ci/bin/SID_Mac.zip"  
   curl -s -S "https://socalabs.com/files/get.php?id=PAPU_Mac.zip" -o "$ROOT/ci/bin/PAPU_Mac.zip"  
@@ -129,13 +116,13 @@ if [ $OS = "mac" ]; then
   unzip Mverb2020_Mac.zip
   unzip Organ_Mac.zip
 
-  mkdir VST
-  mkdir VST3
-  mkdir AU
-  mv *.vst VST
-  mv *.vst3 VST3
-  mv *.component AU
-  zip -r All_Mac.zip AU VST VST3
+  mkdir -p vst
+  mkdir -p vst3
+  mkdir -p au
+  mv *.vst vst
+  mv *.vst3 vst3
+  mv *.component au
+  zip -r All_Mac.zip au vst vst3
 
   if [ "$BRANCH" = "release" ]; then
     curl -F "files=@All_Mac.zip" "https://socalabs.com/files/set.php?key=$APIKEY"
@@ -158,19 +145,19 @@ elif [ $OS = "linux" ]; then
   unzip Mverb2020_Linux.zip
   unzip Organ_Linux.zip
 
-  mkdir VST
-  mkdir VST3
-  mkdir LV2
-  mv *.so VST
-  mv *.vst3 VST3
-  mv *.lv2 LV2
+  mkdir -p vst
+  mkdir -p vst3
+  mkdir -p lv2
+  mv *.so vst
+  mv *.vst3 vst3
+  mv *.lv2 lv2
 
-  zip -r All_Linux.zip VST VST3 LV2
+  zip -r All_Linux.zip vst vst3 lv2
 
   if [ "$BRANCH" = "release" ]; then
     curl -F "files=@All_Linux.zip" "https://socalabs.com/files/set.php?key=$APIKEY"  
   fi
-else
+elif [ "$(expr substr $(uname -s) 1 10)" == "MINGW64_NT" ]; then
   cd "$ROOT/ci/bin"
   curl -s -S "https://socalabs.com/files/get.php?id=SID_Win.zip" -o "$ROOT/ci/bin/SID_Win.zip"  
   curl -s -S "https://socalabs.com/files/get.php?id=PAPU_Win.zip" -o "$ROOT/ci/bin/PAPU_Win.zip"  
@@ -188,7 +175,10 @@ else
   unzip Mverb2020_Win.zip
   unzip Organ_Win.zip
 
-  7z a All_Win.zip VST VST_32 VST3 VST3_32
+  mkdir -p vst
+  mkdir -p vst3
+
+  7z a All_Win.zip vst vst3
 
   if [ "$BRANCH" = "release" ]; then
     curl -F "files=@All_Win.zip" "https://socalabs.com/files/set.php?key=$APIKEY"
