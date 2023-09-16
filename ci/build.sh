@@ -57,7 +57,7 @@ elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
   mkdir -p ci/bin/lv2
   mkdir -p ci/bin/vst
   mkdir -p ci/bin/vst3
-if [ "$(expr substr $(uname -s) 1 10)" == "MINGW64_NT" ]; then
+elif [ "$(expr substr $(uname -s) 1 10)" == "MINGW64_NT" ]; then
   cmake --preset vs
   cmake --build --preset vs --config Release
 
