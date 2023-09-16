@@ -72,9 +72,9 @@ cat pluginlist.txt | while read PLUGIN; do
   # Build mac version
   if [ "$(uname)" == "Darwin" ]; then
 
-    cp -R "$ROOT/Builds/xcode/${PLUGIN}_artefacts/Release/AU/$PLUGIN.component" "$ROOT/ci/bin/au"
-    cp -R "$ROOT/Builds/xcode/${PLUGIN}_artefacts/Release/VST/$PLUGIN.vst" "$ROOT/ci/bin/vst"
-    cp -R "$ROOT/Builds/xcode/${PLUGIN}_artefacts/Release/VST3/$PLUGIN.vst3" "$ROOT/ci/bin/vst3"
+    cp -R "$ROOT/Builds/xcode/plugins/${PLUGIN}/${PLUGIN}_artefacts/Release/AU/$PLUGIN.component" "$ROOT/ci/bin/au"
+    cp -R "$ROOT/Builds/xcode/plugins/${PLUGIN}/${PLUGIN}_artefacts/Release/VST/$PLUGIN.vst" "$ROOT/ci/bin/vst"
+    cp -R "$ROOT/Builds/xcode/plugins/${PLUGIN}/${PLUGIN}_artefacts/Release/VST3/$PLUGIN.vst3" "$ROOT/ci/bin/vst3"
 
     cd "$ROOT/ci/bin"
     codesign -s "$DEV_APP_ID" -v "vst/$PLUGIN.vst" --options=runtime --timestamp --force
@@ -102,10 +102,9 @@ cat pluginlist.txt | while read PLUGIN; do
     # Build linux version
     cd "$ROOT/ci/bin"
 
-    cp -R "$ROOT/Builds/ninja-clang/${PLUGIN}_artefacts/Release/LV2/$PLUGIN.lv2" "$ROOT/ci/bin/lv2"
-    cp -R "$ROOT/Builds/ninja-clang/${PLUGIN}_artefacts/Release/VST/lib$PLUGIN.so" "$ROOT/ci/bin/vst/$PLUGIN.so"
-    cp -R "$ROOT/Builds/ninja-clang/${PLUGIN}_artefacts/Release/VST3/$PLUGIN.vst3" "$ROOT/ci/bin/vst3"
-
+    cp -R "$ROOT/Builds/ninja-clang/plugins/${PLUGIN}/${PLUGIN}_artefacts/Release/LV2/$PLUGIN.lv2" "$ROOT/ci/bin/lv2"
+    cp -R "$ROOT/Builds/ninja-clang/plugins/${PLUGIN}/${PLUGIN}_artefacts/Release/VST/lib$PLUGIN.so" "$ROOT/ci/bin/vst/$PLUGIN.so"
+    cp -R "$ROOT/Builds/ninja-clang/plugins/${PLUGIN}/${PLUGIN}_artefacts/Release/VST3/$PLUGIN.vst3" "$ROOT/ci/bin/vst3"
 
     # Upload
     cd "$ROOT/ci/bin"
@@ -118,8 +117,8 @@ cat pluginlist.txt | while read PLUGIN; do
     # Build Win version
     cd "$ROOT/ci/bin"
 
-    cp -R "$ROOT/Builds/vs/${PLUGIN}_artefacts/Release/VST/$PLUGIN.dll" "$ROOT/ci/bin/vst"
-    cp -R "$ROOT/Builds/vs/${PLUGIN}_artefacts/Release/VST3/$PLUGIN.vst3" "$ROOT/ci/bin/vst3"
+    cp -R "$ROOT/Builds/vs/plugins/${PLUGIN}/${PLUGIN}_artefacts/Release/VST/$PLUGIN.dll" "$ROOT/ci/bin/vst"
+    cp -R "$ROOT/Builds/vs/plugins/${PLUGIN}/${PLUGIN}_artefacts/Release/VST3/$PLUGIN.vst3" "$ROOT/ci/bin/vst3"
 
     7z a ${PLUGIN}_Win.zip vst/$PLUGIN.dll vst/$PLUGIN.vst3 
     if [ "$BRANCH" = "release" ]; then
