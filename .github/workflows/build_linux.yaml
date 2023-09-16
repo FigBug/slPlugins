@@ -23,3 +23,9 @@ jobs:
         shell: bash
         env:
           APIKEY: ${{ secrets.APIKEY }}
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: Binaries
+          path: ci/bin/*.zip
+          retention-days: 30

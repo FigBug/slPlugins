@@ -27,3 +27,9 @@ jobs:
           APPLE_PASS: ${{ secrets.APPLE_PASS }}
           APPLE_USER: ${{ secrets.APPLE_USER }}
           APIKEY: ${{ secrets.APIKEY }}
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: Binaries
+          path: ci/bin/*.zip
+          retention-days: 30
