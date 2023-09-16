@@ -120,7 +120,7 @@ cat pluginlist.txt | while read PLUGIN; do
     cp -R "$ROOT/Builds/vs/plugins/${PLUGIN}/${PLUGIN}_artefacts/Release/VST/$PLUGIN.dll" "$ROOT/ci/bin/vst"
     cp -R "$ROOT/Builds/vs/plugins/${PLUGIN}/${PLUGIN}_artefacts/Release/VST3/$PLUGIN.vst3" "$ROOT/ci/bin/vst3"
 
-    7z a ${PLUGIN}_Win.zip vst/$PLUGIN.dll vst/$PLUGIN.vst3 
+    7z a ${PLUGIN}_Win.zip vst/$PLUGIN.dll vst3/$PLUGIN.vst3 
     if [ "$BRANCH" = "release" ]; then
       curl -F "files=@${PLUGIN}_Win.zip" "https://socalabs.com/files/set.php?key=$APIKEY"
     fi
