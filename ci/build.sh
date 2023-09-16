@@ -44,7 +44,7 @@ mkdir zip
 
 cd "$ROOT"
 cmake -Bcmake-build -DCMAKE_BUILD_TYPE=Release
-cmake --build cmake-build/ -j $(nproc)
+cmake --build cmake-build/ -j $(nproc) --config Release
 make install -C cmake-build/plugins
 
 cd "$ROOT/ci"
