@@ -33,6 +33,7 @@ static juce::String waveTextFunc (const gin::Parameter&, float v)
 
 //==============================================================================
 SFXAudioProcessor::SFXAudioProcessor()
+    : gin::Processor (false, gin::ProcessorOptions().withAdditionalCredits ({"Thomas Vian"}))
 {
     // Add voices
     for (int i = 0; i < 32; i++)
@@ -100,6 +101,8 @@ SFXAudioProcessor::SFXAudioProcessor()
 
         p->toPluginParams();
     }
+
+    init();
 }
 
 SFXAudioProcessor::~SFXAudioProcessor()

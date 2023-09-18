@@ -14,7 +14,6 @@ juce_add_plugin(PitchTrack
   FORMATS
     "VST3"
     "AU"
-    "AUv3"
     "Standalone"
     "VST"
     "LV2"
@@ -24,7 +23,7 @@ juce_add_plugin(PitchTrack
   PLUGIN_CODE "SLpt"
   AAX_IDENTIFIER "com.socalabs.PitchTrack"
   AU_EXPORT_PREFIX "PitchTrackAU"
-  LV2URI "https://socalabs.com/PitchTrack/"
+  LV2URI "https://socalabs.com/pitchtrack/"
 )
 
 juce_generate_juce_header(PitchTrack)
@@ -46,6 +45,8 @@ target_sources(PitchTrack
     "Source/PluginProcessor.cpp"
 )
 
+include_directories("${CMAKE_SOURCE_DIR}/modules/Q/infra/include" "${CMAKE_SOURCE_DIR}/modules/Q/q_lib/include")
+
 set_target_properties(PitchTrack PROPERTIES
     VISIBILITY_INLINES_HIDDEN TRUE
     C_VISBILITY_PRESET hidden
@@ -54,8 +55,10 @@ set_target_properties(PitchTrack PROPERTIES
 
 target_link_libraries(PitchTrack
   PRIVATE
+    audio_fft
     gin
     gin_dsp
+    gin_graphics
     gin_gui
     gin_plugin
     juce::juce_audio_basics
@@ -73,14 +76,18 @@ target_link_libraries(PitchTrack
     juce::juce_gui_basics
     juce::juce_gui_extra
     juce::juce_opengl
+    pitch_detector
   PUBLIC
     juce::juce_recommended_config_flags
     juce::juce_recommended_lto_flags
     juce::juce_recommended_warning_flags
 )
 
-
-install(DIRECTORY "${PROJECT_BINARY_DIR}/${PROJECT_NAME}_artefacts/${CMAKE_BUILD_TYPE}/LV2/${PROJECT_NAME}.lv2" DESTINATION "${CMAKE_SOURCE_DIR}/ci/bin/lv2/" USE_SOURCE_PERMISSIONS)
-install(DIRECTORY "${PROJECT_BINARY_DIR}/${PROJECT_NAME}_artefacts/${CMAKE_BUILD_TYPE}/VST3/${PROJECT_NAME}.vst3" DESTINATION "${CMAKE_SOURCE_DIR}/ci/bin/vst3/" USE_SOURCE_PERMISSIONS)
-install(PROGRAMS "${PROJECT_BINARY_DIR}/${PROJECT_NAME}_artefacts/${CMAKE_BUILD_TYPE}/Standalone/${PROJECT_NAME}" DESTINATION "${CMAKE_SOURCE_DIR}/ci/bin/bin/")
-install(PROGRAMS "${PROJECT_BINARY_DIR}/${PROJECT_NAME}_artefacts/${CMAKE_BUILD_TYPE}/VST/lib${PROJECT_NAME}.so" DESTINATION "${CMAKE_SOURCE_DIR}/ci/bin/vst/")
+if (APPLE)
+	set_target_properties("juce_vst3_helper" PROPERTIES XCODE_ATTRIBUTE_CLANG_LINK_OBJC_RUNTIME NO)
+  foreach(t ${FORMATS} "Assets" "All" "")
+		set_target_properties(${tgt} PROPERTIES
+			XCODE_ATTRIBUTE_CLANG_LINK_OBJC_RUNTIME NO
+			XCODE_ATTRIBUTE_ONLY_ACTIVE_ARCH[variant=Debug] "YES")
+  endforeach()
+endif()     

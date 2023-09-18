@@ -15,8 +15,8 @@ using namespace cycfi::q;
 using namespace cycfi::q::literals;
 using namespace cycfi::q::notes;
 
-CONSTEXPR frequency low_e          = E[2];
-CONSTEXPR frequency high_e         = E[4];
+constexpr frequency low_e          = E[0];
+constexpr frequency high_e         = E[7];
 
 //==============================================================================
 PitchTrackAudioProcessor::PitchTrackAudioProcessor()
@@ -28,24 +28,43 @@ PitchTrackAudioProcessor::~PitchTrackAudioProcessor()
 }
 
 //==============================================================================
-void PitchTrackAudioProcessor::prepareToPlay (double sampleRate_, int)
+void PitchTrackAudioProcessor::prepareToPlay (double sampleRate_, int blockSize_)
 {
-    detector = std::make_unique<pitch_detector> (low_e, high_e * 6, sampleRate_, -45_dB);
+    gin::Processor::prepareToPlay (sampleRate_, blockSize_);
+
+    freq = 0.0f;
+    
+    auto cfg = signal_conditioner::config();
+    conditioner = std::make_unique<signal_conditioner> (cfg, low_e, high_e, std::uint32_t ( sampleRate_ ) );
+    detector = std::make_unique<pitch_detector> (low_e, high_e, std::uint32_t (sampleRate_), -45_dB);
+
+    yin = std::make_unique<adamski::PitchYIN> (int (sampleRate_), 512);
+    mpm = std::make_unique<adamski::PitchMPM> (int (sampleRate_), 512);
+
+    fifo.setSize (1, std::max (blockSize_ * 2, 512 * 2));
 }
 
 void PitchTrackAudioProcessor::releaseResources()
 {
 }
 
-void PitchTrackAudioProcessor::processBlock (AudioSampleBuffer& buffer, MidiBuffer&)
+void PitchTrackAudioProcessor::processBlock (juce::AudioSampleBuffer& buffer, juce::MidiBuffer&)
 {
+    //
+    // cycfi::q
+    //
+    auto& d = *detector;
+    auto& c = *conditioner;
+
     if (buffer.getNumChannels() == 1)
     {
         auto p = buffer.getReadPointer (0);
         for (int i = 0; i < buffer.getNumSamples(); i++)
         {
-            auto& d = *detector;
-            d (p[i]);
+            auto v = p[i];
+            v = c (v);
+            if (d (v))
+                freq = detector->get_frequency();
         }
     }
     else
@@ -55,17 +74,40 @@ void PitchTrackAudioProcessor::processBlock (AudioSampleBuffer& buffer, MidiBuff
         
         for (int i = 0; i < buffer.getNumSamples(); i++)
         {
-            auto& d = *detector;
-            d ((l[i] + r[i]) / 2);
+            auto v = (l[i] + r[i]) / 2.0f;
+            v = c (v);
+            if (d (v))
+                freq = detector->get_frequency();
         }
+    }
+    DBG(freq);
+
+    //
+    // adamski
+    //
+    if (buffer.getNumChannels() == 1)
+        fifo.write (buffer);
+    else
+        fifo.write (gin::monoBuffer (buffer));
+
+    while (fifo.getNumReady() >= 512)
+    {
+        gin::ScratchBuffer buf (1, 512);
+        fifo.read (buf);
+
+        auto p1 = yin->getPitchInHz (buf.getReadPointer (0));
+        auto p2 = mpm->getPitch (buf.getReadPointer (0));
+
+        DBG(p1);
+        DBG(p2);
+
+        freq = (p1 + p2) / 2.0f;
     }
 }
 
 float PitchTrackAudioProcessor::getPitch()
 {
-    if (detector != nullptr)
-        return detector->get_frequency();
-    return {};
+    return freq;
 }
 
 //==============================================================================
@@ -74,14 +116,14 @@ bool PitchTrackAudioProcessor::hasEditor() const
     return true;
 }
 
-AudioProcessorEditor* PitchTrackAudioProcessor::createEditor()
+juce::AudioProcessorEditor* PitchTrackAudioProcessor::createEditor()
 {
     return new PitchTrackAudioProcessorEditor (*this);
 }
 
 //==============================================================================
 // This creates new instances of the plugin..
-AudioProcessor* JUCE_CALLTYPE createPluginFilter()
+juce::AudioProcessor* JUCE_CALLTYPE createPluginFilter()
 {
     return new PitchTrackAudioProcessor();
 }

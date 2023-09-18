@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.15)
 
 add_subdirectory(juce)
-juce_set_vst2_sdk_path(plugin_sdk)
+juce_set_vst2_sdk_path(plugin_sdk/vstsdk2.4)
 
 juce_add_module(dRowAudio/module/dRowAudio)
 juce_add_module(gin/modules/gin)
@@ -10,3 +10,6 @@ juce_add_module(gin/modules/gin_gui)
 juce_add_module(gin/modules/gin_metadata)
 juce_add_module(gin/modules/gin_network)
 juce_add_module(gin/modules/gin_plugin)
+juce_add_module(gin/modules/gin_graphics)
+juce_add_module(pitch_detector)
+juce_add_module(audio_fft)

@@ -77,3 +77,5 @@ Win32
 .vs
 Builds
 JuceLibraryCode
+ci/zip
+cmake-build

@@ -15,7 +15,6 @@ juce_add_plugin(ABTester
   FORMATS
     "VST3"
     "AU"
-    "AUv3"
     "Standalone"
     "VST"
     "LV2"
@@ -27,7 +26,7 @@ juce_add_plugin(ABTester
   AU_EXPORT_PREFIX "ABTesterAU"
   AU_MAIN_TYPE "kAudioUnitType_Effect"
   VST2_CATEGORY "kPlugCategEffect"
-  LV2URI "https://socalabs.com/ABTester/"
+  LV2URI "https://socalabs.com/abtester/"
 )
 
 juce_generate_juce_header(ABTester)
@@ -64,6 +63,7 @@ target_link_libraries(ABTester
     dRowAudio
     gin
     gin_dsp
+    gin_graphics
     gin_gui
     gin_plugin
     juce::juce_audio_basics
@@ -87,8 +87,11 @@ target_link_libraries(ABTester
     juce::juce_recommended_warning_flags
 )
 
-
-install(DIRECTORY "${PROJECT_BINARY_DIR}/${PROJECT_NAME}_artefacts/${CMAKE_BUILD_TYPE}/LV2/${PROJECT_NAME}.lv2" DESTINATION "${CMAKE_SOURCE_DIR}/ci/bin/lv2/" USE_SOURCE_PERMISSIONS)
-install(DIRECTORY "${PROJECT_BINARY_DIR}/${PROJECT_NAME}_artefacts/${CMAKE_BUILD_TYPE}/VST3/${PROJECT_NAME}.vst3" DESTINATION "${CMAKE_SOURCE_DIR}/ci/bin/vst3/" USE_SOURCE_PERMISSIONS)
-install(PROGRAMS "${PROJECT_BINARY_DIR}/${PROJECT_NAME}_artefacts/${CMAKE_BUILD_TYPE}/Standalone/${PROJECT_NAME}" DESTINATION "${CMAKE_SOURCE_DIR}/ci/bin/bin/")
-install(PROGRAMS "${PROJECT_BINARY_DIR}/${PROJECT_NAME}_artefacts/${CMAKE_BUILD_TYPE}/VST/lib${PROJECT_NAME}.so" DESTINATION "${CMAKE_SOURCE_DIR}/ci/bin/vst/")
+if (APPLE)
+	set_target_properties("juce_vst3_helper" PROPERTIES XCODE_ATTRIBUTE_CLANG_LINK_OBJC_RUNTIME NO)
+  foreach(t ${FORMATS} "Assets" "All" "")
+		set_target_properties(${tgt} PROPERTIES
+			XCODE_ATTRIBUTE_CLANG_LINK_OBJC_RUNTIME NO
+			XCODE_ATTRIBUTE_ONLY_ACTIVE_ARCH[variant=Debug] "YES")
+  endforeach()
+endif()     

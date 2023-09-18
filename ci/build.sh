@@ -1,13 +1,9 @@
 #!/bin/bash -e
 
-# linux specific stiff
-if [ $OS = "linux" ]; then
-  sudo apt-get update
-  sudo apt-get install clang git ladspa-sdk freeglut3-dev g++ libasound2-dev libcurl4-openssl-dev libfreetype6-dev libjack-jackd2-dev libx11-dev libxcomposite-dev libxcursor-dev libxinerama-dev libxrandr-dev mesa-common-dev webkit2gtk-4.0 juce-tools xvfb
-fi
+df -h
 
 # mac specific stuff
-if [ $OS = "mac" ]; then
+if [ "$(uname)" == "Darwin" ]; then
   # Create a temp keychain
   if [ -n "$GITHUB_ACTIONS" ]; then
     echo "Create a keychain"
@@ -27,6 +23,10 @@ if [ $OS = "mac" ]; then
   fi
   DEV_APP_ID="Developer ID Application: Roland Rabien (3FS7DJDG38)"
   DEV_INST_ID="Developer ID Installer: Roland Rabien (3FS7DJDG38)"
+elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
+  # linux specific stuff
+  sudo apt-get update
+  sudo apt-get install clang ninja-build git ladspa-sdk freeglut3-dev g++ libasound2-dev libcurl4-openssl-dev libfreetype6-dev libjack-jackd2-dev libx11-dev libxcomposite-dev libxcursor-dev libxinerama-dev libxrandr-dev mesa-common-dev webkit2gtk-4.0 juce-tools xvfb
 fi
 
 ROOT=$(cd "$(dirname "$0")/.."; pwd)
@@ -42,135 +42,85 @@ rm -Rf zip
 mkdir bin
 mkdir zip
 
-# Get the hash
-cd "$ROOT/modules/juce"
-HASH=`git rev-parse HEAD`
-echo "Hash: $HASH"
+cd "$ROOT"
+if [ "$(uname)" == "Darwin" ]; then
+  cmake --preset xcode
+  cmake --build --preset xcode --config Release
 
-# Get the Projucer
-cd "$ROOT/ci/bin"
-while true
-do
-  PROJUCER_URL=$(curl -s -S "https://projucer.rabien.com/get_projucer.php?hash=$HASH&os=$OS&key=$APIKEY")
-  echo "Response: $PROJUCER_URL"
-  if [[ $PROJUCER_URL == http* ]]; then
-    curl -s -S $PROJUCER_URL -o "$ROOT/ci/bin/Projucer.zip"
-    unzip Projucer.zip
-    break
-  fi
-  sleep 15
-done
+  mkdir -p ci/bin/au
+  mkdir -p ci/bin/vst
+  mkdir -p ci/bin/vst3
+elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
+  cmake --preset ninja-clang
+  cmake --build --preset ninja-clang --config Release
 
-if [ $OS = "mac" ]; then
-  # Build notarize tool
-  cd "$ROOT/modules/gin/tools/notarize"
-  "$ROOT/ci/bin/Projucer.app/Contents/MacOS/Projucer" --set-global-search-path osx defaultJuceModulePath "$ROOT/modules/juce/modules" 
-  "$ROOT/ci/bin/Projucer.app/Contents/MacOS/Projucer" --resave "notarize.jucer"
-  cd Builds/MacOSX
-  xcodebuild -configuration Release || exit 1
-  cd build/Release
-  cp notarize "$ROOT/ci/bin"
+  mkdir -p ci/bin/lv2
+  mkdir -p ci/bin/vst
+  mkdir -p ci/bin/vst3
+elif [ "$(expr substr $(uname -s) 1 10)" == "MINGW64_NT" ]; then
+  cmake --preset vs
+  cmake --build --preset vs --config Release
+
+  mkdir -p ci/bin/vst
+  mkdir -p ci/bin/vst3
 fi
 
 cd "$ROOT/ci"
 cat pluginlist.txt | while read PLUGIN; do
   PLUGIN=$(echo $PLUGIN|tr -d '\n\r ')
 
-  # Resave jucer file
-  if [ "$OS" = "mac" ]; then
-    "$ROOT/ci/bin/Projucer.app/Contents/MacOS/Projucer" --resave "$ROOT/plugins/$PLUGIN/$PLUGIN.jucer"
-  elif [ "$OS" = "linux" ]; then
-    "$ROOT/ci/bin/Projucer" --resave "$ROOT/plugins/$PLUGIN/$PLUGIN.jucer"
-  else
-    "$ROOT/ci/bin/Projucer.exe" --resave "$ROOT/plugins/$PLUGIN/$PLUGIN.jucer"
-  fi
-
   # Build mac version
-  if [ "$OS" = "mac" ]; then
-    cd "$ROOT/plugins/$PLUGIN/Builds/MacOSX"
-    xcodebuild -configuration Release || exit 1
+  if [ "$(uname)" == "Darwin" ]; then
 
-    cp -R ~/Library/Audio/Plug-Ins/VST/$PLUGIN.vst "$ROOT/ci/bin"
-    cp -R ~/Library/Audio/Plug-Ins/VST3/$PLUGIN.vst3 "$ROOT/ci/bin"
-    cp -R ~/Library/Audio/Plug-Ins/Components/$PLUGIN.component "$ROOT/ci/bin"
+    cp -R "$ROOT/Builds/xcode/plugins/${PLUGIN}/${PLUGIN}_artefacts/Release/AU/$PLUGIN.component" "$ROOT/ci/bin/au"
+    cp -R "$ROOT/Builds/xcode/plugins/${PLUGIN}/${PLUGIN}_artefacts/Release/VST/$PLUGIN.vst" "$ROOT/ci/bin/vst"
+    cp -R "$ROOT/Builds/xcode/plugins/${PLUGIN}/${PLUGIN}_artefacts/Release/VST3/$PLUGIN.vst3" "$ROOT/ci/bin/vst3"
 
     cd "$ROOT/ci/bin"
-    codesign -s "$DEV_APP_ID" -v "$PLUGIN.vst" --options=runtime --timestamp --force
-    codesign -s "$DEV_APP_ID" -v "$PLUGIN.vst3" --options=runtime --timestamp --force
-    codesign -s "$DEV_APP_ID" -v "$PLUGIN.component" --options=runtime --timestamp --force
+    codesign -s "$DEV_APP_ID" -v "vst/$PLUGIN.vst" --options=runtime --timestamp --force
+    codesign -s "$DEV_APP_ID" -v "vst3/$PLUGIN.vst3" --options=runtime --timestamp --force
+    codesign -s "$DEV_APP_ID" -v "au/$PLUGIN.component" --options=runtime --timestamp --force
 
     # Notarize
     cd "$ROOT/ci/bin"
-    zip -r ${PLUGIN}_Mac.zip ${PLUGIN}.vst ${PLUGIN}.vst3 ${PLUGIN}.component
+    zip -r ${PLUGIN}_Mac.zip vst/${PLUGIN}.vst vst3/${PLUGIN}.vst3 au/${PLUGIN}.component
 
-    "$ROOT/ci/bin/notarize" -ns ${PLUGIN}_Mac.zip $APPLE_USER $APPLE_PASS com.figbug.$PLUGIN.vst
+    if [[ -n "$APPLE_USER" ]]; then
+      xcrun notarytool submit --verbose --apple-id "$APPLE_USER" --password "$APPLE_PASS" --team-id "3FS7DJDG38" --wait --timeout 30m ${PLUGIN}_Mac.zip
 
-    rm ${PLUGIN}_Mac.zip
-    xcrun stapler staple $PLUGIN.vst
-    xcrun stapler staple $PLUGIN.vst3
-    xcrun stapler staple $PLUGIN.component
-    zip -r ${PLUGIN}_Mac.zip $PLUGIN.vst $PLUGIN.vst3 $PLUGIN.component
+      rm ${PLUGIN}_Mac.zip
+      xcrun stapler staple vst/$PLUGIN.vst
+      xcrun stapler staple vst3/$PLUGIN.vst3
+      xcrun stapler staple au/$PLUGIN.component
+      zip -r ${PLUGIN}_Mac.zip vst/$PLUGIN.vst vst3/$PLUGIN.vst3 au/$PLUGIN.component
+    fi
 
     if [ "$BRANCH" = "release" ]; then
       curl -F "files=@${PLUGIN}_Mac.zip" "https://socalabs.com/files/set.php?key=$APIKEY"
     fi
-  fi
-
-  # Build linux version
-  if [ "$OS" = "linux" ]; then
-    cd "$ROOT/plugins/$PLUGIN/Builds/LinuxMakefile"
-    make CONFIG=Release
-
-    cp ./build/$PLUGIN.so "$ROOT/ci/bin"
-    cp -r ./build/$PLUGIN.vst3 "$ROOT/ci/bin"
-    cp -r ./build/$PLUGIN.lv2 "$ROOT/ci/bin"
-
+  elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
+    # Build linux version
     cd "$ROOT/ci/bin"
+
+    cp -R "$ROOT/Builds/ninja-clang/plugins/${PLUGIN}/${PLUGIN}_artefacts/Release/LV2/$PLUGIN.lv2" "$ROOT/ci/bin/lv2"
+    cp -R "$ROOT/Builds/ninja-clang/plugins/${PLUGIN}/${PLUGIN}_artefacts/Release/VST/lib$PLUGIN.so" "$ROOT/ci/bin/vst/$PLUGIN.so"
+    cp -R "$ROOT/Builds/ninja-clang/plugins/${PLUGIN}/${PLUGIN}_artefacts/Release/VST3/$PLUGIN.vst3" "$ROOT/ci/bin/vst3"
 
     # Upload
     cd "$ROOT/ci/bin"
-    zip -r ${PLUGIN}_Linux.zip $PLUGIN.so $PLUGIN.vst3 $PLUGIN.lv2
+    zip -r ${PLUGIN}_Linux.zip vst/$PLUGIN.so vst3/$PLUGIN.vst3 lv2/$PLUGIN.lv2
 
     if [ "$BRANCH" = "release" ]; then
       curl -F "files=@${PLUGIN}_Linux.zip" "https://socalabs.com/files/set.php?key=$APIKEY"
     fi
-  fi
-
-  # Build Win version
-  if [ "$OS" = "win" ]; then
-    VS_WHERE="C:/Program Files (x86)/Microsoft Visual Studio/Installer/vswhere.exe"
-    
-    MSBUILD_EXE=$("$VS_WHERE" -latest -requires Microsoft.Component.MSBuild -find "MSBuild\**\Bin\MSBuild.exe")
-    echo $MSBUILD_EXE
-
-    cd "$ROOT/plugins/$PLUGIN/Builds/VisualStudio2022"
-    "$MSBUILD_EXE" "$PLUGIN.sln" "//p:VisualStudioVersion=16.0" "//m" "//t:Build" "//p:Configuration=Release64" "//p:Platform=x64" "//p:PreferredToolArchitecture=x64"
-    "$MSBUILD_EXE" "$PLUGIN.sln" "//p:VisualStudioVersion=16.0" "//m" "//t:Build" "//p:Configuration=Release" "//p:PlatformTarget=x86" "//p:PreferredToolArchitecture=x64"
-
+  elif [ "$(expr substr $(uname -s) 1 10)" == "MINGW64_NT" ]; then
+    # Build Win version
     cd "$ROOT/ci/bin"
-    mkdir -p VST
-    mkdir -p VST_32
-    mkdir -p VST3
-    mkdir -p VST3_32
 
-    cp "$ROOT/plugins/$PLUGIN/Builds/VisualStudio2022/x64/Release64/VST/${PLUGIN}.dll" VST
-    cp "$ROOT/plugins/$PLUGIN/Builds/VisualStudio2022/x64/Release64/VST3/${PLUGIN}.vst3" VST3
-    cp "$ROOT/plugins/$PLUGIN/Builds/VisualStudio2022/Win32/Release/VST/${PLUGIN}.dll" VST_32
-    cp "$ROOT/plugins/$PLUGIN/Builds/VisualStudio2022/Win32/Release/VST3/${PLUGIN}.vst3" VST3_32
+    cp -R "$ROOT/Builds/vs/plugins/${PLUGIN}/${PLUGIN}_artefacts/Release/VST/$PLUGIN.dll" "$ROOT/ci/bin/vst"
+    cp -R "$ROOT/Builds/vs/plugins/${PLUGIN}/${PLUGIN}_artefacts/Release/VST3/$PLUGIN.vst3" "$ROOT/ci/bin/vst3"
 
-    cd "$ROOT/ci/zip"
-    rm -Rf VST VST_32 VST3 VST3_32
-    mkdir -p VST
-    mkdir -p VST_32
-    mkdir -p VST3
-    mkdir -p VST3_32
-
-    cp "$ROOT/plugins/$PLUGIN/Builds/VisualStudio2022/x64/Release64/VST/${PLUGIN}.dll" VST
-    cp "$ROOT/plugins/$PLUGIN/Builds/VisualStudio2022/x64/Release64/VST3/${PLUGIN}.vst3" VST3
-    cp "$ROOT/plugins/$PLUGIN/Builds/VisualStudio2022/Win32/Release/VST/${PLUGIN}.dll" VST_32
-    cp "$ROOT/plugins/$PLUGIN/Builds/VisualStudio2022/Win32/Release/VST3/${PLUGIN}.vst3" VST3_32
-
-    7z a ${PLUGIN}_Win.zip VST VST_32 VST3 VST3_32
+    7z a ${PLUGIN}_Win.zip vst/$PLUGIN.dll vst3/$PLUGIN.vst3 
     if [ "$BRANCH" = "release" ]; then
       curl -F "files=@${PLUGIN}_Win.zip" "https://socalabs.com/files/set.php?key=$APIKEY"
     fi
@@ -178,7 +128,7 @@ cat pluginlist.txt | while read PLUGIN; do
 done
 
 # Make All.zip
-if [ $OS = "mac" ]; then
+if [ "$(uname)" == "Darwin" ]; then
   cd "$ROOT/ci/bin"
   curl -s -S "https://socalabs.com/files/get.php?id=SID_Mac.zip" -o "$ROOT/ci/bin/SID_Mac.zip"  
   curl -s -S "https://socalabs.com/files/get.php?id=PAPU_Mac.zip" -o "$ROOT/ci/bin/PAPU_Mac.zip"  
@@ -196,13 +146,13 @@ if [ $OS = "mac" ]; then
   unzip Mverb2020_Mac.zip
   unzip Organ_Mac.zip
 
-  mkdir VST
-  mkdir VST3
-  mkdir AU
-  mv *.vst VST
-  mv *.vst3 VST3
-  mv *.component AU
-  zip -r All_Mac.zip AU VST VST3
+  mkdir -p vst
+  mkdir -p vst3
+  mkdir -p au
+  mv *.vst vst
+  mv *.vst3 vst3
+  mv *.component au
+  zip -r All_Mac.zip au vst vst3
 
   if [ "$BRANCH" = "release" ]; then
     curl -F "files=@All_Mac.zip" "https://socalabs.com/files/set.php?key=$APIKEY"
@@ -225,19 +175,19 @@ elif [ $OS = "linux" ]; then
   unzip Mverb2020_Linux.zip
   unzip Organ_Linux.zip
 
-  mkdir VST
-  mkdir VST3
-  mkdir LV2
-  mv *.so VST
-  mv *.vst3 VST3
-  mv *.lv2 LV2
+  mkdir -p vst
+  mkdir -p vst3
+  mkdir -p lv2
+  mv *.so vst
+  mv *.vst3 vst3
+  mv *.lv2 lv2
 
-  zip -r All_Linux.zip VST VST3 LV2
+  zip -r All_Linux.zip vst vst3 lv2
 
   if [ "$BRANCH" = "release" ]; then
     curl -F "files=@All_Linux.zip" "https://socalabs.com/files/set.php?key=$APIKEY"  
   fi
-else
+elif [ "$(expr substr $(uname -s) 1 10)" == "MINGW64_NT" ]; then
   cd "$ROOT/ci/bin"
   curl -s -S "https://socalabs.com/files/get.php?id=SID_Win.zip" -o "$ROOT/ci/bin/SID_Win.zip"  
   curl -s -S "https://socalabs.com/files/get.php?id=PAPU_Win.zip" -o "$ROOT/ci/bin/PAPU_Win.zip"  
@@ -255,7 +205,10 @@ else
   unzip Mverb2020_Win.zip
   unzip Organ_Win.zip
 
-  7z a All_Win.zip VST VST_32 VST3 VST3_32
+  mkdir -p vst
+  mkdir -p vst3
+
+  7z a All_Win.zip vst vst3
 
   if [ "$BRANCH" = "release" ]; then
     curl -F "files=@All_Win.zip" "https://socalabs.com/files/set.php?key=$APIKEY"
