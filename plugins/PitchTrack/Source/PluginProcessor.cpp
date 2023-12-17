@@ -13,7 +13,7 @@
 
 using namespace cycfi::q;
 using namespace cycfi::q::literals;
-using namespace cycfi::q::notes;
+using namespace cycfi::q::pitch_names;
 
 constexpr frequency low_e          = E[0];
 constexpr frequency high_e         = E[7];

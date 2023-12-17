@@ -36,7 +36,7 @@
 #endif
 
 #include <q/support/literals.hpp>
-#include <q/support/note_names.hpp>
+#include <q/support/pitch_names.hpp>
 #include <q/fx/signal_conditioner.hpp>
 #include <q/pitch/pitch_detector.hpp>
 

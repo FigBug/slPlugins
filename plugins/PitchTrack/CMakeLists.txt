@@ -58,6 +58,7 @@ target_link_libraries(PitchTrack
     audio_fft
     gin
     gin_dsp
+    gin_simd
     gin_graphics
     gin_gui
     gin_plugin

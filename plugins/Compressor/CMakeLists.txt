@@ -78,6 +78,7 @@ target_link_libraries(Compressor
     dRowAudio
     gin
     gin_dsp
+    gin_simd
     gin_graphics
     gin_gui
     gin_plugin
