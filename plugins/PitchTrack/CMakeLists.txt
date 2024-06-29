@@ -92,7 +92,3 @@ if (APPLE)
 			XCODE_ATTRIBUTE_ONLY_ACTIVE_ARCH[variant=Debug] "YES")
   endforeach()
 endif()     
-
-if (LINUX)
-  set (CMAKE_CXX_FLAGS "-stdlib=libc++ -std=c++20")
-endif()
