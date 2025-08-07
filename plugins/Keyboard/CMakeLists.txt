@@ -43,6 +43,7 @@ target_compile_definitions(Keyboard
     JUCE_JACK=1
     JUCE_REPORT_APP_USAGE=0
     JUCE_DISPLAY_SPLASH_SCREEN=0
+    JUCE_IGNORE_VST3_MISMATCHED_PARAMETER_ID_WARNING=1
 )
 
 target_sources(Keyboard

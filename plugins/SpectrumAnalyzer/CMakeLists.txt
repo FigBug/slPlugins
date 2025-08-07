@@ -41,6 +41,7 @@ target_compile_definitions(SpectrumAnalyzer
     JUCE_JACK=1
     JUCE_REPORT_APP_USAGE=0
     JUCE_DISPLAY_SPLASH_SCREEN=0
+    JUCE_IGNORE_VST3_MISMATCHED_PARAMETER_ID_WARNING=1
     JucePlugin_MaxNumInputChannels=2
     JucePlugin_MaxNumOutputChannels=2
     JucePlugin_PreferredChannelConfigurations=1,1,2,2
