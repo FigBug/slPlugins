@@ -85,7 +85,6 @@ target_link_libraries(XYScope
 )
 
 if (APPLE)
-	set_target_properties("juce_vst3_helper" PROPERTIES XCODE_ATTRIBUTE_CLANG_LINK_OBJC_RUNTIME NO)
   foreach(t ${FORMATS} "Assets" "All" "")
 		set_target_properties(${tgt} PROPERTIES
 			XCODE_ATTRIBUTE_CLANG_LINK_OBJC_RUNTIME NO
