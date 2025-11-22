@@ -15,10 +15,10 @@
 	url = git@github.com:TurnipHat/plugin_sdk.git
 [submodule "module/Q"]
 	path = modules/Q
-	url = https://github.com/cycfi/Q.git
+	url = git@github.com:cycfi/Q.git
 [submodule "modules/pitch_detector"]
 	path = modules/pitch_detector
 	url = git@github.com:FigBug/pitch_detector.git
 [submodule "modules/audio_fft"]
 	path = modules/audio_fft
-	url = https://github.com/adamski/audio_fft.git
+	url = git@github.com:adamski/audio_fft.git
