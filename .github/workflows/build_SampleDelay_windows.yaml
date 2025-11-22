@@ -1,0 +1,56 @@
+name: Build SampleDelay - Windows
+on:
+  push:
+    branches:
+      - master
+      - release
+    paths:
+      - 'plugins/SampleDelay/**'
+      - 'modules/**'
+      - '.github/workflows/build_SampleDelay_windows.yaml'
+jobs:
+  build:
+    name: Build SampleDelay - Windows
+    runs-on: windows-latest
+    steps:
+      - name: Fix up git URLs
+        run: |
+          "[url `"https://github.com/`"]`n  insteadOf = `"git@github.com:`"" | Out-File -FilePath $env:USERPROFILE\.gitconfig -Append -Encoding UTF8
+        shell: pwsh
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.ACCESS_TOKEN }}
+          submodules: recursive
+      - name: Build plugin
+        run: |
+          # Build
+          cd plugins/SampleDelay
+          cmake -B build
+          cmake --build build --config Release
+
+          # Package
+          New-Item -ItemType Directory -Force -Path "../../ci/bin"
+          cd ../../ci/bin
+          New-Item -ItemType Directory -Force -Path "vst"
+          New-Item -ItemType Directory -Force -Path "vst3"
+
+          Copy-Item "../../plugins/SampleDelay/build/SampleDelay_artefacts/Release/VST/SampleDelay.dll" "vst/"
+          Copy-Item "../../plugins/SampleDelay/build/SampleDelay_artefacts/Release/VST3/SampleDelay.vst3" "vst3/" -Recurse
+
+          # Create zip
+          7z a SampleDelay_Win.zip vst/SampleDelay.dll vst3/SampleDelay.vst3
+
+          # Upload to socalabs on release branch
+          $BRANCH = "${{github.ref}}" -replace 'refs/heads/', ''
+          if ($BRANCH -eq "release") {
+            curl.exe -F "files=@SampleDelay_Win.zip" "https://socalabs.com/files/set.php?key=$env:APIKEY"
+          }
+        shell: pwsh
+        env:
+          APIKEY: ${{ secrets.APIKEY }}
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: SampleDelay_Windows
+          path: ci/bin/*.zip
+          retention-days: 30

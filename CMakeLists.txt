@@ -1,5 +1,9 @@
 cmake_minimum_required(VERSION 3.15)
 
+# Top-level CMakeLists.txt for building all plugins at once
+# This is optional - each plugin can also be built independently from its own directory
+# by navigating to plugins/<plugin_name> and running cmake there.
+
 project(slPlugins VERSION 1.1.0)
 
 set (CMAKE_OSX_DEPLOYMENT_TARGET 10.11)

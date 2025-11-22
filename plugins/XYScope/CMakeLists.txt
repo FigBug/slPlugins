@@ -2,6 +2,13 @@
 
 cmake_minimum_required(VERSION 3.15)
 
+# Platform-specific settings
+set(CMAKE_OSX_DEPLOYMENT_TARGET 10.11)
+set(CMAKE_OSX_ARCHITECTURES arm64 x86_64)
+
+# Include shared module setup
+include(${CMAKE_CURRENT_LIST_DIR}/../../modules/setup_modules.cmake)
+
 project("XYScope")
 
 juce_add_plugin(XYScope
