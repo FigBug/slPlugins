@@ -45,7 +45,7 @@ jobs:
           zip -r Delay_Linux.zip vst/Delay.so vst3/Delay.vst3 lv2/Delay.lv2
 
           # Upload to socalabs on release branch
-          BRANCH=${{GITHUB_REF##*/}}
+          BRANCH="${GITHUB_REF##*/}"
           if [ "$BRANCH" = "release" ]; then
             curl -F "files=@Delay_Linux.zip" "https://socalabs.com/files/set.php?key=$APIKEY"
           fi

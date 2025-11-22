@@ -45,7 +45,7 @@ jobs:
           zip -r WaveLooper_Linux.zip vst/WaveLooper.so vst3/WaveLooper.vst3 lv2/WaveLooper.lv2
 
           # Upload to socalabs on release branch
-          BRANCH=${{GITHUB_REF##*/}}
+          BRANCH="${GITHUB_REF##*/}"
           if [ "$BRANCH" = "release" ]; then
             curl -F "files=@WaveLooper_Linux.zip" "https://socalabs.com/files/set.php?key=$APIKEY"
           fi

@@ -45,7 +45,7 @@ jobs:
           zip -r Oscilloscope_Linux.zip vst/Oscilloscope.so vst3/Oscilloscope.vst3 lv2/Oscilloscope.lv2
 
           # Upload to socalabs on release branch
-          BRANCH=${{GITHUB_REF##*/}}
+          BRANCH="${GITHUB_REF##*/}"
           if [ "$BRANCH" = "release" ]; then
             curl -F "files=@Oscilloscope_Linux.zip" "https://socalabs.com/files/set.php?key=$APIKEY"
           fi

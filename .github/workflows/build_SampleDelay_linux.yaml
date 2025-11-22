@@ -45,7 +45,7 @@ jobs:
           zip -r SampleDelay_Linux.zip vst/SampleDelay.so vst3/SampleDelay.vst3 lv2/SampleDelay.lv2
 
           # Upload to socalabs on release branch
-          BRANCH=${{GITHUB_REF##*/}}
+          BRANCH="${GITHUB_REF##*/}"
           if [ "$BRANCH" = "release" ]; then
             curl -F "files=@SampleDelay_Linux.zip" "https://socalabs.com/files/set.php?key=$APIKEY"
           fi

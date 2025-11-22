@@ -45,7 +45,7 @@ jobs:
           zip -r ChannelMute_Linux.zip vst/ChannelMute.so vst3/ChannelMute.vst3 lv2/ChannelMute.lv2
 
           # Upload to socalabs on release branch
-          BRANCH=${{GITHUB_REF##*/}}
+          BRANCH="${GITHUB_REF##*/}"
           if [ "$BRANCH" = "release" ]; then
             curl -F "files=@ChannelMute_Linux.zip" "https://socalabs.com/files/set.php?key=$APIKEY"
           fi

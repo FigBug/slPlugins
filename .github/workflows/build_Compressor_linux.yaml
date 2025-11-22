@@ -45,7 +45,7 @@ jobs:
           zip -r Compressor_Linux.zip vst/Compressor.so vst3/Compressor.vst3 lv2/Compressor.lv2
 
           # Upload to socalabs on release branch
-          BRANCH=${{GITHUB_REF##*/}}
+          BRANCH="${GITHUB_REF##*/}"
           if [ "$BRANCH" = "release" ]; then
             curl -F "files=@Compressor_Linux.zip" "https://socalabs.com/files/set.php?key=$APIKEY"
           fi

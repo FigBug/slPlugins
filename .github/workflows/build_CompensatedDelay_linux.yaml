@@ -45,7 +45,7 @@ jobs:
           zip -r CompensatedDelay_Linux.zip vst/CompensatedDelay.so vst3/CompensatedDelay.vst3 lv2/CompensatedDelay.lv2
 
           # Upload to socalabs on release branch
-          BRANCH=${{GITHUB_REF##*/}}
+          BRANCH="${GITHUB_REF##*/}"
           if [ "$BRANCH" = "release" ]; then
             curl -F "files=@CompensatedDelay_Linux.zip" "https://socalabs.com/files/set.php?key=$APIKEY"
           fi

@@ -77,7 +77,7 @@ jobs:
           fi
 
           # Upload to socalabs on release branch
-          BRANCH=${{GITHUB_REF##*/}}
+          BRANCH="${GITHUB_REF##*/}"
           if [ "$BRANCH" = "release" ]; then
             curl -F "files=@AddInvert_Mac.zip" "https://socalabs.com/files/set.php?key=$APIKEY"
           fi

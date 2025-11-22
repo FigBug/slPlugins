@@ -45,7 +45,7 @@ jobs:
           zip -r XYScope_Linux.zip vst/XYScope.so vst3/XYScope.vst3 lv2/XYScope.lv2
 
           # Upload to socalabs on release branch
-          BRANCH=${{GITHUB_REF##*/}}
+          BRANCH="${GITHUB_REF##*/}"
           if [ "$BRANCH" = "release" ]; then
             curl -F "files=@XYScope_Linux.zip" "https://socalabs.com/files/set.php?key=$APIKEY"
           fi

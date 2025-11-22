@@ -45,7 +45,7 @@ jobs:
           zip -r SpectrumAnalyzer_Linux.zip vst/SpectrumAnalyzer.so vst3/SpectrumAnalyzer.vst3 lv2/SpectrumAnalyzer.lv2
 
           # Upload to socalabs on release branch
-          BRANCH=${{GITHUB_REF##*/}}
+          BRANCH="${GITHUB_REF##*/}"
           if [ "$BRANCH" = "release" ]; then
             curl -F "files=@SpectrumAnalyzer_Linux.zip" "https://socalabs.com/files/set.php?key=$APIKEY"
           fi

@@ -45,7 +45,7 @@ jobs:
           zip -r PitchTrack_Linux.zip vst/PitchTrack.so vst3/PitchTrack.vst3 lv2/PitchTrack.lv2
 
           # Upload to socalabs on release branch
-          BRANCH=${{GITHUB_REF##*/}}
+          BRANCH="${GITHUB_REF##*/}"
           if [ "$BRANCH" = "release" ]; then
             curl -F "files=@PitchTrack_Linux.zip" "https://socalabs.com/files/set.php?key=$APIKEY"
           fi

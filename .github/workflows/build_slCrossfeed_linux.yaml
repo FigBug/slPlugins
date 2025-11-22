@@ -45,7 +45,7 @@ jobs:
           zip -r slCrossfeed_Linux.zip vst/slCrossfeed.so vst3/slCrossfeed.vst3 lv2/slCrossfeed.lv2
 
           # Upload to socalabs on release branch
-          BRANCH=${{GITHUB_REF##*/}}
+          BRANCH="${GITHUB_REF##*/}"
           if [ "$BRANCH" = "release" ]; then
             curl -F "files=@slCrossfeed_Linux.zip" "https://socalabs.com/files/set.php?key=$APIKEY"
           fi

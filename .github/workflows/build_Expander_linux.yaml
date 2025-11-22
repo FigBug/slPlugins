@@ -45,7 +45,7 @@ jobs:
           zip -r Expander_Linux.zip vst/Expander.so vst3/Expander.vst3 lv2/Expander.lv2
 
           # Upload to socalabs on release branch
-          BRANCH=${{GITHUB_REF##*/}}
+          BRANCH="${GITHUB_REF##*/}"
           if [ "$BRANCH" = "release" ]; then
             curl -F "files=@Expander_Linux.zip" "https://socalabs.com/files/set.php?key=$APIKEY"
           fi

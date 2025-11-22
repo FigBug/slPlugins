@@ -45,7 +45,7 @@ jobs:
           zip -r ABTester_Linux.zip vst/ABTester.so vst3/ABTester.vst3 lv2/ABTester.lv2
 
           # Upload to socalabs on release branch
-          BRANCH=${{GITHUB_REF##*/}}
+          BRANCH="${GITHUB_REF##*/}"
           if [ "$BRANCH" = "release" ]; then
             curl -F "files=@ABTester_Linux.zip" "https://socalabs.com/files/set.php?key=$APIKEY"
           fi

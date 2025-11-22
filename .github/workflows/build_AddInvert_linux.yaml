@@ -45,7 +45,7 @@ jobs:
           zip -r AddInvert_Linux.zip vst/AddInvert.so vst3/AddInvert.vst3 lv2/AddInvert.lv2
 
           # Upload to socalabs on release branch
-          BRANCH=${{GITHUB_REF##*/}}
+          BRANCH="${GITHUB_REF##*/}"
           if [ "$BRANCH" = "release" ]; then
             curl -F "files=@AddInvert_Linux.zip" "https://socalabs.com/files/set.php?key=$APIKEY"
           fi
