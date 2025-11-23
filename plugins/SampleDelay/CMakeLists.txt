@@ -34,7 +34,7 @@ else()
 endif()
 
 juce_add_plugin(${PLUGIN_NAME}
-    PRODUCT_NAME "Sample Delay"
+    PRODUCT_NAME "SampleDelay"
     VERSION ${PLUGIN_VERSION}
     COMPANY_NAME "SocaLabs"
     COMPANY_WEBSITE "www.socalabs.com"
