@@ -4,8 +4,8 @@
 //==============================================================================
 KeyboardAudioProcessorEditor::KeyboardAudioProcessorEditor (KeyboardAudioProcessor& p)
   : gin::ProcessorEditor (p), proc (p),
-    keyboard (processor.keyboardState, MidiKeyboardComponent::horizontalKeyboard),
-    modWheel (processor.controllerState, 1), pitchWheel (processor.controllerState, -1)
+    keyboard (proc.keyboardState, MidiKeyboardComponent::horizontalKeyboard),
+    modWheel (proc.controllerState, 1), pitchWheel (proc.controllerState, -1)
 {
     setGridSize (10, 2);
     
