@@ -56,7 +56,9 @@ target_compile_definitions(Maths
 
 target_sources(Maths
   PRIVATE
+    "Source/PluginEditor.h"
     "Source/PluginEditor.cpp"
+    "Source/PluginProcessor.h"
     "Source/PluginProcessor.cpp"
 )
 

@@ -49,7 +49,9 @@ target_compile_definitions(PitchTrack
 
 target_sources(PitchTrack
   PRIVATE
+    "Source/PluginEditor.h"
     "Source/PluginEditor.cpp"
+    "Source/PluginProcessor.h"
     "Source/PluginProcessor.cpp"
 )
 

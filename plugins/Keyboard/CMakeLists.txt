@@ -55,7 +55,9 @@ target_compile_definitions(Keyboard
 
 target_sources(Keyboard
   PRIVATE
+    "Source/PluginEditor.h"
     "Source/PluginEditor.cpp"
+    "Source/PluginProcessor.h"
     "Source/PluginProcessor.cpp"
 )
 

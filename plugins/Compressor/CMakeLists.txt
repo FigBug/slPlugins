@@ -56,7 +56,9 @@ target_compile_definitions(Compressor
 
 target_sources(Compressor
   PRIVATE
+    "Source/PluginEditor.h"
     "Source/PluginEditor.cpp"
+    "Source/PluginProcessor.h"
     "Source/PluginProcessor.cpp"
 )
 

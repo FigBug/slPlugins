@@ -52,7 +52,9 @@ target_compile_definitions(Gate
 
 target_sources(Gate
   PRIVATE
+    "Source/PluginEditor.h"
     "Source/PluginEditor.cpp"
+    "Source/PluginProcessor.h"
     "Source/PluginProcessor.cpp"
 )
 

@@ -56,7 +56,9 @@ target_compile_definitions(AddInvert
 
 target_sources(AddInvert
   PRIVATE
+    "Source/PluginEditor.h"
     "Source/PluginEditor.cpp"
+    "Source/PluginProcessor.h"
     "Source/PluginProcessor.cpp"
 )
 

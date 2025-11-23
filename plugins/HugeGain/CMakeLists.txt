@@ -55,7 +55,9 @@ target_compile_definitions(HugeGain
 
 target_sources(HugeGain
   PRIVATE
+    "Source/PluginEditor.h"
     "Source/PluginEditor.cpp"
+    "Source/PluginProcessor.h"
     "Source/PluginProcessor.cpp"
 )
 

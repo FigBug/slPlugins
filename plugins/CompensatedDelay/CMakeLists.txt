@@ -56,7 +56,9 @@ target_compile_definitions(CompensatedDelay
 
 target_sources(CompensatedDelay
   PRIVATE
+    "Source/PluginEditor.h"
     "Source/PluginEditor.cpp"
+    "Source/PluginProcessor.h"
     "Source/PluginProcessor.cpp"
 )
 

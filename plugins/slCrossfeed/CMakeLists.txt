@@ -30,6 +30,7 @@ juce_add_plugin(slCrossfeed
   PLUGIN_CODE "Cros"
   AAX_IDENTIFIER "com.socalabs.slCrossfeed"
   AU_EXPORT_PREFIX "slCrossfeedAU"
+  VST2_CATEGORY "kPlugCategEffect"
   LV2URI "https://socalabs.com/crossfeed/"
 )
 
@@ -52,15 +53,9 @@ target_sources(slCrossfeed
     "../../3rdparty/crossfeed/cautil.c"
     "../../3rdparty/crossfeed/crossfeed.c"
     "../../3rdparty/crossfeed/message_queue.c"
-    "../../common/slComponents.cpp"
-    "../../common/slDsp.cpp"
-    "../../common/slLookAndFeel.cpp"
-    "../../common/slParameter.cpp"
-    "../../common/slPluginEditor.cpp"
-    "../../common/slProcessor.cpp"
-    "../../common/slProgram.cpp"
-    "../../common/slUtil.cpp"
+    "Source/PluginEditor.h"
     "Source/PluginEditor.cpp"
+    "Source/PluginProcessor.h"
     "Source/PluginProcessor.cpp"
 )
 
@@ -97,4 +92,4 @@ if (APPLE)
 			XCODE_ATTRIBUTE_CLANG_LINK_OBJC_RUNTIME NO
 			XCODE_ATTRIBUTE_ONLY_ACTIVE_ARCH[variant=Debug] "YES")
   endforeach()
-endif()     
+endif()

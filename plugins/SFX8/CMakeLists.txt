@@ -60,12 +60,19 @@ target_compile_definitions(SFX8
 
 target_sources(SFX8
   PRIVATE
+    "../../modules/bfxr/SfxrParams.h"
     "../../modules/bfxr/SfxrParams.cpp"
+    "../../modules/bfxr/Util.h"
     "../../modules/bfxr/Util.cpp"
+    "Source/Pad.h"
     "Source/Pad.cpp"
+    "Source/PluginEditor.h"
     "Source/PluginEditor.cpp"
+    "Source/PluginProcessor.h"
     "Source/PluginProcessor.cpp"
+    "Source/UIComponents.h"
     "Source/UIComponents.cpp"
+    "Source/Voice.h"
     "Source/Voice.cpp"
 )
 

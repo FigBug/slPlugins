@@ -51,7 +51,9 @@ target_compile_definitions(XYScope
 
 target_sources(XYScope
   PRIVATE
+    "Source/PluginEditor.h"
     "Source/PluginEditor.cpp"
+    "Source/PluginProcessor.h"
     "Source/PluginProcessor.cpp"
 )
 
@@ -97,4 +99,4 @@ if (APPLE)
 			XCODE_ATTRIBUTE_CLANG_LINK_OBJC_RUNTIME NO
 			XCODE_ATTRIBUTE_ONLY_ACTIVE_ARCH[variant=Debug] "YES")
   endforeach()
-endif()     
+endif()

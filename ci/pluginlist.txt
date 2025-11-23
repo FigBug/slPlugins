@@ -4,6 +4,7 @@ ChannelMute
 CompensatedDelay
 Compressor
 Delay
+EQ3
 Expander
 Gate
 HugeGain
@@ -11,7 +12,10 @@ Limiter
 Maths
 Oscilloscope
 PitchTrack
-SFX8
 SampleDelay
+SFX8
+slCrossfeed
 SpectrumAnalyzer
 ToneGenerator
+WaveLooper
+XYScope

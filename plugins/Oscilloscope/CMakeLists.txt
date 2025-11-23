@@ -58,7 +58,9 @@ target_compile_definitions(Oscilloscope
 
 target_sources(Oscilloscope
   PRIVATE
+    "Source/PluginEditor.h"
     "Source/PluginEditor.cpp"
+    "Source/PluginProcessor.h"
     "Source/PluginProcessor.cpp"
 )
 

@@ -52,7 +52,9 @@ target_compile_definitions(WaveLooper
 
 target_sources(WaveLooper
   PRIVATE
+    "Source/PluginEditor.h"
     "Source/PluginEditor.cpp"
+    "Source/PluginProcessor.h"
     "Source/PluginProcessor.cpp"
 )
 

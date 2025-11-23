@@ -56,7 +56,9 @@ target_compile_definitions(SpectrumAnalyzer
 
 target_sources(SpectrumAnalyzer
   PRIVATE
+    "Source/PluginEditor.h"
     "Source/PluginEditor.cpp"
+    "Source/PluginProcessor.h"
     "Source/PluginProcessor.cpp"
 )
 

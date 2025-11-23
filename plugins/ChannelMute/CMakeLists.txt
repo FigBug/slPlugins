@@ -56,7 +56,9 @@ target_compile_definitions(ChannelMute
 
 target_sources(ChannelMute
   PRIVATE
+    "Source/PluginEditor.h"
     "Source/PluginEditor.cpp"
+    "Source/PluginProcessor.h"
     "Source/PluginProcessor.cpp"
 )
 

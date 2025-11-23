@@ -56,7 +56,9 @@ target_compile_definitions(Limiter
 
 target_sources(Limiter
   PRIVATE
+    "Source/PluginEditor.h"
     "Source/PluginEditor.cpp"
+    "Source/PluginProcessor.h"
     "Source/PluginProcessor.cpp"
 )
 

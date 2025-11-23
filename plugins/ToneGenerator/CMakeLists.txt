@@ -57,7 +57,9 @@ target_compile_definitions(ToneGenerator
 
 target_sources(ToneGenerator
   PRIVATE
+    "Source/PluginEditor.h"
     "Source/PluginEditor.cpp"
+    "Source/PluginProcessor.h"
     "Source/PluginProcessor.cpp"
 )
 

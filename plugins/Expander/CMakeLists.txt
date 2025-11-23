@@ -52,7 +52,9 @@ target_compile_definitions(Expander
 
 target_sources(Expander
   PRIVATE
+    "Source/PluginEditor.h"
     "Source/PluginEditor.cpp"
+    "Source/PluginProcessor.h"
     "Source/PluginProcessor.cpp"
 )
 

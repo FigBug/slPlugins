@@ -56,7 +56,9 @@ target_compile_definitions(SampleDelay
 
 target_sources(SampleDelay
   PRIVATE
+    "Source/PluginEditor.h"
     "Source/PluginEditor.cpp"
+    "Source/PluginProcessor.h"
     "Source/PluginProcessor.cpp"
 )
 
