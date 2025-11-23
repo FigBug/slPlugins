@@ -61,12 +61,12 @@ source_group(TREE ${CMAKE_CURRENT_SOURCE_DIR}/Source PREFIX Source FILES ${sourc
 # Binary data resources
 juce_add_binary_data(${PLUGIN_NAME}_BinaryData
     SOURCES
-        Resources/Acoustic Guitar.xml
-        Resources/Bass Guitar.xml
-        Resources/Electric Guitar.xml
-        Resources/Kick Snare.xml
-        Resources/Mix.xml
-        Resources/Vocals.xml
+        "Resources/Acoustic Guitar.xml"
+        "Resources/Bass Guitar.xml"
+        "Resources/Electric Guitar.xml"
+        "Resources/Kick Snare.xml"
+        "Resources/Mix.xml"
+        "Resources/Vocals.xml"
 )
 
 set_target_properties(${PLUGIN_NAME}_BinaryData PROPERTIES
