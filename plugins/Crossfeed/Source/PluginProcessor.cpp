@@ -2,10 +2,15 @@
 #include "PluginProcessor.h"
 #include "PluginEditor.h"
 
+static juce::String enableTextFunction (const gin::Parameter&, float v)
+{
+    return v > 0.0f ? "On" : "Off";
+}
+
 //==============================================================================
 CrossfeedAudioProcessor::CrossfeedAudioProcessor()
 {
-    enable = addPluginParameter (new slParameter (PARAM_ENABLE,       "Enable",       "",     0.0f,      1.0f, 1.0f,    1.0f, 1.0f));
+    enable = addExtParam ("enable",    "Enable", "", "",    { 0.0f,   1.0f, 1.0f, 1.0f}, 1.0f, 0.0f, enableTextFunction);
 }
 
 CrossfeedAudioProcessor::~CrossfeedAudioProcessor()
@@ -15,7 +20,7 @@ CrossfeedAudioProcessor::~CrossfeedAudioProcessor()
 //==============================================================================
 void CrossfeedAudioProcessor::prepareToPlay (double sampleRate, int samplesPerBlock)
 {
-    crossfeed_init (&crossfeed, sampleRate);
+    crossfeed_init (&crossfeed, (int)sampleRate);
     
     scratch.setSize (2, samplesPerBlock);
     
@@ -29,13 +34,13 @@ void CrossfeedAudioProcessor::releaseResources()
 
 void CrossfeedAudioProcessor::processBlock (AudioSampleBuffer& buffer, MidiBuffer&)
 {
-    enableVal.setValue (enable->getUserValue() > 0.5f ? 1.0f : 0.0f);
-    disableVal.setValue (enable->getUserValue() > 0.5f ? 0.0f : 1.0f);
+    enableVal.setTargetValue (enable->getUserValue() > 0.5f ? 1.0f : 0.0f);
+    disableVal.setTargetValue (enable->getUserValue() > 0.5f ? 0.0f : 1.0f);
     
     scratch.makeCopyOf (buffer, true);
     
     crossfeed_filter_inplace_noninterleaved (&crossfeed, scratch.getWritePointer (0),
-                                             scratch.getWritePointer (1), scratch.getNumSamples());
+                                             scratch.getWritePointer (1), (unsigned int)scratch.getNumSamples());
     
     gin::applyGain (buffer, disableVal);
     gin::applyGain (scratch, enableVal);
