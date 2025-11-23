@@ -57,9 +57,7 @@ file(GLOB_RECURSE source_files CONFIGURE_DEPENDS
 
 # Manually add C source files from 3rdparty/crossfeed
 set(crossfeed_files
-    ${CMAKE_CURRENT_SOURCE_DIR}/../../3rdparty/crossfeed/cautil.c
     ${CMAKE_CURRENT_SOURCE_DIR}/../../3rdparty/crossfeed/crossfeed.c
-    ${CMAKE_CURRENT_SOURCE_DIR}/../../3rdparty/crossfeed/message_queue.c
 )
 
 target_sources(${PLUGIN_NAME} PRIVATE ${source_files} ${crossfeed_files})
