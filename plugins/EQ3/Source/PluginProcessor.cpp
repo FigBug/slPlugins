@@ -30,7 +30,7 @@ void EQ3AudioProcessor::prepareToPlay (double sampleRate, int samplesPerBlock)
 
     gate.setSampleRate (sampleRate);
     gate.reset();
-    gate.setMode (Dynamics::gate);
+    gate.setMode (gin::Dynamics::gate);
     gate.setNumChannels (getTotalNumInputChannels());
 }
 
@@ -54,7 +54,7 @@ void EQ3AudioProcessor::processBlock (AudioSampleBuffer& buffer, MidiBuffer&)
 {
     int numSamples = buffer.getNumSamples();
 
-    ScratchBuffer fifoData (3, numSamples);
+    gin::ScratchBuffer fifoData (3, numSamples);
     if (getTotalNumInputChannels() == 2)
     {
         FloatVectorOperations::copy (fifoData.getWritePointer (0), buffer.getReadPointer (0), numSamples);
@@ -66,19 +66,19 @@ void EQ3AudioProcessor::processBlock (AudioSampleBuffer& buffer, MidiBuffer&)
         FloatVectorOperations::copy (fifoData.getWritePointer (0), buffer.getReadPointer (0), numSamples);
     }
 
-    ScratchBuffer envData (1, numSamples);
+    gin::ScratchBuffer envData (1, numSamples);
 
     if (isSmoothing())
     {
         int pos = 0;
         while (pos < numSamples)
         {
-            auto workBuffer = sliceBuffer (buffer, pos, 1);
+            auto workBuffer = gin::sliceBuffer (buffer, pos, 1);
             auto envWorkBuffer = sliceBuffer (envData, pos, 1);
 
             gate.setInputGain (input->getProcValue (1));
             gate.setOutputGain (output->getProcValue (1));
-            gate.setParams (attack->getProcValue (1),
+            gate.setParams (attack->getProcValue (1), 0,
                                release->getProcValue (1),
                                threshold->getProcValue (1),
                                1000,
@@ -94,7 +94,7 @@ void EQ3AudioProcessor::processBlock (AudioSampleBuffer& buffer, MidiBuffer&)
     {
         gate.setInputGain (input->getProcValue (numSamples));
         gate.setOutputGain (output->getProcValue (numSamples));
-        gate.setParams (attack->getProcValue (numSamples),
+        gate.setParams (attack->getProcValue (numSamples), 0,
                            release->getProcValue (numSamples),
                            threshold->getProcValue (numSamples),
                            1000,

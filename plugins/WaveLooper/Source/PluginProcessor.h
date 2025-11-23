@@ -4,7 +4,7 @@
 
 class WaveLooperAudioProcessorEditor;
 
-class WaveLooperAudioProcessor : public gin::GinProcessor
+class WaveLooperAudioProcessor : public gin::Processor
 {
 public:
     //==============================================================================

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../JuceLibraryCode/JuceHeader.h"
+#include <JuceHeader.h>
 #include "PluginProcessor.h"
 
 //==============================================================================
@@ -61,11 +61,11 @@ public:
 //==============================================================================
 /**
 */
-class WaveLooperAudioProcessorEditor : public gin::GinAudioProcessorEditor
+class WaveLooperAudioProcessorEditor : public gin::ProcessorEditor
 {
 public:
     WaveLooperAudioProcessorEditor (WaveLooperAudioProcessor&);
-    ~WaveLooperAudioProcessorEditor();
+    ~WaveLooperAudioProcessorEditor() override;
 
     //==============================================================================
     void resized() override;

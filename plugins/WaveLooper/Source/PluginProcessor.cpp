@@ -1,8 +1,6 @@
 #include "PluginProcessor.h"
 #include "PluginEditor.h"
 
-using namespace gin;
-
 //==============================================================================
 WaveLooperAudioProcessor::WaveLooperAudioProcessor()
 {
@@ -30,7 +28,7 @@ void WaveLooperAudioProcessor::setFile (const File& f)
 
 void WaveLooperAudioProcessor::prepareToPlay (double sampleRate, int samplesPerBlock)
 {
-    GinProcessor::prepareToPlay (sampleRate, samplesPerBlock);
+    gin::Processor::prepareToPlay (sampleRate, samplesPerBlock);
     
     oscillator.setSampleRateAndBlockSize (sampleRate, samplesPerBlock);
 }
@@ -60,7 +58,7 @@ AudioProcessorEditor* WaveLooperAudioProcessor::createEditor()
 
 //==============================================================================
 // This creates new instances of the plugin..
-WaveLooperAudioProcessor* JUCE_CALLTYPE createPluginFilter()
+juce::AudioProcessor* JUCE_CALLTYPE createPluginFilter()
 {
     return new WaveLooperAudioProcessor();
 }
