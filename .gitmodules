@@ -22,3 +22,6 @@
 [submodule "modules/audio_fft"]
 	path = modules/audio_fft
 	url = git@github.com:adamski/audio_fft.git
+[submodule "modules/infra"]
+	path = modules/infra
+	url = git@github.com:cycfi/infra.git

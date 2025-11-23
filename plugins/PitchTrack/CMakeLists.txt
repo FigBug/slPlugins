@@ -63,8 +63,8 @@ juce_generate_juce_header(${PLUGIN_NAME})
 # Extra include directories for Q library
 target_include_directories(${PLUGIN_NAME}
     PRIVATE
-        ${CMAKE_SOURCE_DIR}/modules/Q/infra/include
-        ${CMAKE_SOURCE_DIR}/modules/Q/q_lib/include
+        ${CMAKE_SOURCE_DIR}/../../modules/Q/q_lib/include
+        ${CMAKE_SOURCE_DIR}/../../modules/infra/include
 )
 
 target_compile_definitions(${PLUGIN_NAME}
