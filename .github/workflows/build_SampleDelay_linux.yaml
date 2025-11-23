@@ -37,9 +37,9 @@ jobs:
           cd ../../ci/bin
           mkdir -p lv2 vst vst3
 
-          cp -R "../../plugins/SampleDelay/build/SampleDelay_artefacts/Release/LV2/SampleDelay.lv2" lv2/
-          cp -R "../../plugins/SampleDelay/build/SampleDelay_artefacts/Release/VST/libSampleDelay.so" "vst/SampleDelay.so"
-          cp -R "../../plugins/SampleDelay/build/SampleDelay_artefacts/Release/VST3/SampleDelay.vst3" vst3/
+          cp -R "../../plugins/SampleDelay/build/SampleDelay_artefacts/LV2/SampleDelay.lv2" lv2/
+          cp -R "../../plugins/SampleDelay/build/SampleDelay_artefacts/VST/libSampleDelay.so" "vst/SampleDelay.so"
+          cp -R "../../plugins/SampleDelay/build/SampleDelay_artefacts/VST3/SampleDelay.vst3" vst3/
 
           # Create zip
           zip -r SampleDelay_Linux.zip vst/SampleDelay.so vst3/SampleDelay.vst3 lv2/SampleDelay.lv2

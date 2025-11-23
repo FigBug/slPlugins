@@ -37,9 +37,9 @@ jobs:
           cd ../../ci/bin
           mkdir -p lv2 vst vst3
 
-          cp -R "../../plugins/XYScope/build/XYScope_artefacts/Release/LV2/XYScope.lv2" lv2/
-          cp -R "../../plugins/XYScope/build/XYScope_artefacts/Release/VST/libXYScope.so" "vst/XYScope.so"
-          cp -R "../../plugins/XYScope/build/XYScope_artefacts/Release/VST3/XYScope.vst3" vst3/
+          cp -R "../../plugins/XYScope/build/XYScope_artefacts/LV2/XYScope.lv2" lv2/
+          cp -R "../../plugins/XYScope/build/XYScope_artefacts/VST/libXYScope.so" "vst/XYScope.so"
+          cp -R "../../plugins/XYScope/build/XYScope_artefacts/VST3/XYScope.vst3" vst3/
 
           # Create zip
           zip -r XYScope_Linux.zip vst/XYScope.so vst3/XYScope.vst3 lv2/XYScope.lv2

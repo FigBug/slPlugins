@@ -37,9 +37,9 @@ jobs:
           cd ../../ci/bin
           mkdir -p lv2 vst vst3
 
-          cp -R "../../plugins/slCrossfeed/build/slCrossfeed_artefacts/Release/LV2/slCrossfeed.lv2" lv2/
-          cp -R "../../plugins/slCrossfeed/build/slCrossfeed_artefacts/Release/VST/libslCrossfeed.so" "vst/slCrossfeed.so"
-          cp -R "../../plugins/slCrossfeed/build/slCrossfeed_artefacts/Release/VST3/slCrossfeed.vst3" vst3/
+          cp -R "../../plugins/slCrossfeed/build/slCrossfeed_artefacts/LV2/slCrossfeed.lv2" lv2/
+          cp -R "../../plugins/slCrossfeed/build/slCrossfeed_artefacts/VST/libslCrossfeed.so" "vst/slCrossfeed.so"
+          cp -R "../../plugins/slCrossfeed/build/slCrossfeed_artefacts/VST3/slCrossfeed.vst3" vst3/
 
           # Create zip
           zip -r slCrossfeed_Linux.zip vst/slCrossfeed.so vst3/slCrossfeed.vst3 lv2/slCrossfeed.lv2

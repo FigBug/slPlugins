@@ -37,9 +37,9 @@ jobs:
           cd ../../ci/bin
           mkdir -p lv2 vst vst3
 
-          cp -R "../../plugins/Keyboard/build/Keyboard_artefacts/Release/LV2/Keyboard.lv2" lv2/
-          cp -R "../../plugins/Keyboard/build/Keyboard_artefacts/Release/VST/libKeyboard.so" "vst/Keyboard.so"
-          cp -R "../../plugins/Keyboard/build/Keyboard_artefacts/Release/VST3/Keyboard.vst3" vst3/
+          cp -R "../../plugins/Keyboard/build/Keyboard_artefacts/LV2/Keyboard.lv2" lv2/
+          cp -R "../../plugins/Keyboard/build/Keyboard_artefacts/VST/libKeyboard.so" "vst/Keyboard.so"
+          cp -R "../../plugins/Keyboard/build/Keyboard_artefacts/VST3/Keyboard.vst3" vst3/
 
           # Create zip
           zip -r Keyboard_Linux.zip vst/Keyboard.so vst3/Keyboard.vst3 lv2/Keyboard.lv2

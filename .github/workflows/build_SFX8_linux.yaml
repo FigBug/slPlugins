@@ -37,9 +37,9 @@ jobs:
           cd ../../ci/bin
           mkdir -p lv2 vst vst3
 
-          cp -R "../../plugins/SFX8/build/SFX8_artefacts/Release/LV2/SFX8.lv2" lv2/
-          cp -R "../../plugins/SFX8/build/SFX8_artefacts/Release/VST/libSFX8.so" "vst/SFX8.so"
-          cp -R "../../plugins/SFX8/build/SFX8_artefacts/Release/VST3/SFX8.vst3" vst3/
+          cp -R "../../plugins/SFX8/build/SFX8_artefacts/LV2/SFX8.lv2" lv2/
+          cp -R "../../plugins/SFX8/build/SFX8_artefacts/VST/libSFX8.so" "vst/SFX8.so"
+          cp -R "../../plugins/SFX8/build/SFX8_artefacts/VST3/SFX8.vst3" vst3/
 
           # Create zip
           zip -r SFX8_Linux.zip vst/SFX8.so vst3/SFX8.vst3 lv2/SFX8.lv2

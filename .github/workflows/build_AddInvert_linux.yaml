@@ -37,9 +37,9 @@ jobs:
           cd ../../ci/bin
           mkdir -p lv2 vst vst3
 
-          cp -R "../../plugins/AddInvert/build/AddInvert_artefacts/Release/LV2/AddInvert.lv2" lv2/
-          cp -R "../../plugins/AddInvert/build/AddInvert_artefacts/Release/VST/libAddInvert.so" "vst/AddInvert.so"
-          cp -R "../../plugins/AddInvert/build/AddInvert_artefacts/Release/VST3/AddInvert.vst3" vst3/
+          cp -R "../../plugins/AddInvert/build/AddInvert_artefacts/LV2/AddInvert.lv2" lv2/
+          cp -R "../../plugins/AddInvert/build/AddInvert_artefacts/VST/libAddInvert.so" "vst/AddInvert.so"
+          cp -R "../../plugins/AddInvert/build/AddInvert_artefacts/VST3/AddInvert.vst3" vst3/
 
           # Create zip
           zip -r AddInvert_Linux.zip vst/AddInvert.so vst3/AddInvert.vst3 lv2/AddInvert.lv2

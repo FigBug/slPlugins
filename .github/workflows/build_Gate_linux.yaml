@@ -37,9 +37,9 @@ jobs:
           cd ../../ci/bin
           mkdir -p lv2 vst vst3
 
-          cp -R "../../plugins/Gate/build/Gate_artefacts/Release/LV2/Gate.lv2" lv2/
-          cp -R "../../plugins/Gate/build/Gate_artefacts/Release/VST/libGate.so" "vst/Gate.so"
-          cp -R "../../plugins/Gate/build/Gate_artefacts/Release/VST3/Gate.vst3" vst3/
+          cp -R "../../plugins/Gate/build/Gate_artefacts/LV2/Gate.lv2" lv2/
+          cp -R "../../plugins/Gate/build/Gate_artefacts/VST/libGate.so" "vst/Gate.so"
+          cp -R "../../plugins/Gate/build/Gate_artefacts/VST3/Gate.vst3" vst3/
 
           # Create zip
           zip -r Gate_Linux.zip vst/Gate.so vst3/Gate.vst3 lv2/Gate.lv2

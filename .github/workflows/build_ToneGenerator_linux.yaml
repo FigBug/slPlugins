@@ -37,9 +37,9 @@ jobs:
           cd ../../ci/bin
           mkdir -p lv2 vst vst3
 
-          cp -R "../../plugins/ToneGenerator/build/ToneGenerator_artefacts/Release/LV2/ToneGenerator.lv2" lv2/
-          cp -R "../../plugins/ToneGenerator/build/ToneGenerator_artefacts/Release/VST/libToneGenerator.so" "vst/ToneGenerator.so"
-          cp -R "../../plugins/ToneGenerator/build/ToneGenerator_artefacts/Release/VST3/ToneGenerator.vst3" vst3/
+          cp -R "../../plugins/ToneGenerator/build/ToneGenerator_artefacts/LV2/ToneGenerator.lv2" lv2/
+          cp -R "../../plugins/ToneGenerator/build/ToneGenerator_artefacts/VST/libToneGenerator.so" "vst/ToneGenerator.so"
+          cp -R "../../plugins/ToneGenerator/build/ToneGenerator_artefacts/VST3/ToneGenerator.vst3" vst3/
 
           # Create zip
           zip -r ToneGenerator_Linux.zip vst/ToneGenerator.so vst3/ToneGenerator.vst3 lv2/ToneGenerator.lv2

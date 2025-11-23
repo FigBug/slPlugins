@@ -37,9 +37,9 @@ jobs:
           cd ../../ci/bin
           mkdir -p lv2 vst vst3
 
-          cp -R "../../plugins/Expander/build/Expander_artefacts/Release/LV2/Expander.lv2" lv2/
-          cp -R "../../plugins/Expander/build/Expander_artefacts/Release/VST/libExpander.so" "vst/Expander.so"
-          cp -R "../../plugins/Expander/build/Expander_artefacts/Release/VST3/Expander.vst3" vst3/
+          cp -R "../../plugins/Expander/build/Expander_artefacts/LV2/Expander.lv2" lv2/
+          cp -R "../../plugins/Expander/build/Expander_artefacts/VST/libExpander.so" "vst/Expander.so"
+          cp -R "../../plugins/Expander/build/Expander_artefacts/VST3/Expander.vst3" vst3/
 
           # Create zip
           zip -r Expander_Linux.zip vst/Expander.so vst3/Expander.vst3 lv2/Expander.lv2

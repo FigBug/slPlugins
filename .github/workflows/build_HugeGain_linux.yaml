@@ -37,9 +37,9 @@ jobs:
           cd ../../ci/bin
           mkdir -p lv2 vst vst3
 
-          cp -R "../../plugins/HugeGain/build/HugeGain_artefacts/Release/LV2/HugeGain.lv2" lv2/
-          cp -R "../../plugins/HugeGain/build/HugeGain_artefacts/Release/VST/libHugeGain.so" "vst/HugeGain.so"
-          cp -R "../../plugins/HugeGain/build/HugeGain_artefacts/Release/VST3/HugeGain.vst3" vst3/
+          cp -R "../../plugins/HugeGain/build/HugeGain_artefacts/LV2/HugeGain.lv2" lv2/
+          cp -R "../../plugins/HugeGain/build/HugeGain_artefacts/VST/libHugeGain.so" "vst/HugeGain.so"
+          cp -R "../../plugins/HugeGain/build/HugeGain_artefacts/VST3/HugeGain.vst3" vst3/
 
           # Create zip
           zip -r HugeGain_Linux.zip vst/HugeGain.so vst3/HugeGain.vst3 lv2/HugeGain.lv2

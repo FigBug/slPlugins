@@ -37,9 +37,9 @@ jobs:
           cd ../../ci/bin
           mkdir -p lv2 vst vst3
 
-          cp -R "../../plugins/ChannelMute/build/ChannelMute_artefacts/Release/LV2/ChannelMute.lv2" lv2/
-          cp -R "../../plugins/ChannelMute/build/ChannelMute_artefacts/Release/VST/libChannelMute.so" "vst/ChannelMute.so"
-          cp -R "../../plugins/ChannelMute/build/ChannelMute_artefacts/Release/VST3/ChannelMute.vst3" vst3/
+          cp -R "../../plugins/ChannelMute/build/ChannelMute_artefacts/LV2/ChannelMute.lv2" lv2/
+          cp -R "../../plugins/ChannelMute/build/ChannelMute_artefacts/VST/libChannelMute.so" "vst/ChannelMute.so"
+          cp -R "../../plugins/ChannelMute/build/ChannelMute_artefacts/VST3/ChannelMute.vst3" vst3/
 
           # Create zip
           zip -r ChannelMute_Linux.zip vst/ChannelMute.so vst3/ChannelMute.vst3 lv2/ChannelMute.lv2

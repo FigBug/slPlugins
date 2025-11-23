@@ -37,9 +37,9 @@ jobs:
           cd ../../ci/bin
           mkdir -p lv2 vst vst3
 
-          cp -R "../../plugins/PitchTrack/build/PitchTrack_artefacts/Release/LV2/PitchTrack.lv2" lv2/
-          cp -R "../../plugins/PitchTrack/build/PitchTrack_artefacts/Release/VST/libPitchTrack.so" "vst/PitchTrack.so"
-          cp -R "../../plugins/PitchTrack/build/PitchTrack_artefacts/Release/VST3/PitchTrack.vst3" vst3/
+          cp -R "../../plugins/PitchTrack/build/PitchTrack_artefacts/LV2/PitchTrack.lv2" lv2/
+          cp -R "../../plugins/PitchTrack/build/PitchTrack_artefacts/VST/libPitchTrack.so" "vst/PitchTrack.so"
+          cp -R "../../plugins/PitchTrack/build/PitchTrack_artefacts/VST3/PitchTrack.vst3" vst3/
 
           # Create zip
           zip -r PitchTrack_Linux.zip vst/PitchTrack.so vst3/PitchTrack.vst3 lv2/PitchTrack.lv2

@@ -37,9 +37,9 @@ jobs:
           cd ../../ci/bin
           mkdir -p lv2 vst vst3
 
-          cp -R "../../plugins/Maths/build/Maths_artefacts/Release/LV2/Maths.lv2" lv2/
-          cp -R "../../plugins/Maths/build/Maths_artefacts/Release/VST/libMaths.so" "vst/Maths.so"
-          cp -R "../../plugins/Maths/build/Maths_artefacts/Release/VST3/Maths.vst3" vst3/
+          cp -R "../../plugins/Maths/build/Maths_artefacts/LV2/Maths.lv2" lv2/
+          cp -R "../../plugins/Maths/build/Maths_artefacts/VST/libMaths.so" "vst/Maths.so"
+          cp -R "../../plugins/Maths/build/Maths_artefacts/VST3/Maths.vst3" vst3/
 
           # Create zip
           zip -r Maths_Linux.zip vst/Maths.so vst3/Maths.vst3 lv2/Maths.lv2
