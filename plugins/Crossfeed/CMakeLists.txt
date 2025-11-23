@@ -1,11 +1,11 @@
 cmake_minimum_required(VERSION 3.24.0)
 
 # Plugin settings
-set(PLUGIN_NAME slCrossfeed)
+set(PLUGIN_NAME Crossfeed)
 set(PLUGIN_VERSION 1.0.0)
-set(BUNDLE_ID com.socalabs.slCrossfeed)
+set(BUNDLE_ID com.socalabs.Crossfeed)
 set(PLUGIN_CODE Cros)
-set(AU_ID slCrossfeedAU)
+set(AU_ID CrossfeedAU)
 set(LV2_URI https://socalabs.com/crossfeed/)
 
 # Platform-specific settings
@@ -34,7 +34,7 @@ else()
 endif()
 
 juce_add_plugin(${PLUGIN_NAME}
-    PRODUCT_NAME "slCrossfeed"
+    PRODUCT_NAME "Crossfeed"
     VERSION ${PLUGIN_VERSION}
     COMPANY_NAME "SocaLabs"
     COMPANY_WEBSITE "www.socalabs.com"
@@ -49,13 +49,13 @@ juce_add_plugin(${PLUGIN_NAME}
     LV2URI ${LV2_URI}
 )
 
-# Auto-discover source files from Source directory
+# Auto-discover source files
 file(GLOB_RECURSE source_files CONFIGURE_DEPENDS
     ${CMAKE_CURRENT_SOURCE_DIR}/Source/*.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Source/*.h
 )
 
-# Manually add C source files from 3rdparty/crossfeed (not using GLOB for these)
+# Manually add C source files from 3rdparty/crossfeed
 set(crossfeed_files
     ${CMAKE_CURRENT_SOURCE_DIR}/../../3rdparty/crossfeed/cautil.c
     ${CMAKE_CURRENT_SOURCE_DIR}/../../3rdparty/crossfeed/crossfeed.c
@@ -88,14 +88,23 @@ set_target_properties(${PLUGIN_NAME} PROPERTIES
 
 target_link_libraries(${PLUGIN_NAME}
     PRIVATE
+        dRowAudio
+        gin
+        gin_dsp
+        gin_simd
+        gin_graphics
+        gin_gui
+        gin_plugin
         juce::juce_audio_basics
         juce::juce_audio_devices
         juce::juce_audio_formats
         juce::juce_audio_plugin_client
         juce::juce_audio_processors
+        juce::juce_audio_utils
         juce::juce_core
         juce::juce_cryptography
         juce::juce_data_structures
+        juce::juce_dsp
         juce::juce_events
         juce::juce_graphics
         juce::juce_gui_basics

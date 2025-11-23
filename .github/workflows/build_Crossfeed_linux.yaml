@@ -1,16 +1,16 @@
-name: Build slCrossfeed - Linux
+name: Build Crossfeed - Linux
 on:
   push:
     branches:
       - master
       - release
     paths:
-      - 'plugins/slCrossfeed/**'
+      - 'plugins/Crossfeed/**'
       - 'modules/**'
-      - '.github/workflows/build_slCrossfeed_linux.yaml'
+      - '.github/workflows/build_Crossfeed_linux.yaml'
 jobs:
   build:
-    name: Build slCrossfeed - Linux
+    name: Build Crossfeed - Linux
     runs-on: ubuntu-latest
     steps:
       - name: Fix up git URLs
@@ -28,7 +28,7 @@ jobs:
       - name: Build plugin
         run: |
           # Build
-          cd plugins/slCrossfeed
+          cd plugins/Crossfeed
           cmake -B build -G Ninja -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++
           cmake --build build --config Release
 
@@ -37,17 +37,17 @@ jobs:
           cd ../../ci/bin
           mkdir -p lv2 vst vst3
 
-          cp -R "../../plugins/slCrossfeed/build/slCrossfeed_artefacts/LV2/slCrossfeed.lv2" lv2/
-          cp -R "../../plugins/slCrossfeed/build/slCrossfeed_artefacts/VST/libslCrossfeed.so" "vst/slCrossfeed.so"
-          cp -R "../../plugins/slCrossfeed/build/slCrossfeed_artefacts/VST3/slCrossfeed.vst3" vst3/
+          cp -R "../../plugins/Crossfeed/build/Crossfeed_artefacts/LV2/Crossfeed.lv2" lv2/
+          cp -R "../../plugins/Crossfeed/build/Crossfeed_artefacts/VST/libCrossfeed.so" "vst/Crossfeed.so"
+          cp -R "../../plugins/Crossfeed/build/Crossfeed_artefacts/VST3/Crossfeed.vst3" vst3/
 
           # Create zip
-          zip -r slCrossfeed_Linux.zip vst/slCrossfeed.so vst3/slCrossfeed.vst3 lv2/slCrossfeed.lv2
+          zip -r Crossfeed_Linux.zip vst/Crossfeed.so vst3/Crossfeed.vst3 lv2/Crossfeed.lv2
 
           # Upload to socalabs on release branch
           BRANCH="${GITHUB_REF##*/}"
           if [ "$BRANCH" = "release" ]; then
-            curl -F "files=@slCrossfeed_Linux.zip" "https://socalabs.com/files/set.php?key=$APIKEY"
+            curl -F "files=@Crossfeed_Linux.zip" "https://socalabs.com/files/set.php?key=$APIKEY"
           fi
         shell: bash
         env:
@@ -55,6 +55,6 @@ jobs:
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: slCrossfeed_Linux
+          name: Crossfeed_Linux
           path: ci/bin/*.zip
           retention-days: 30

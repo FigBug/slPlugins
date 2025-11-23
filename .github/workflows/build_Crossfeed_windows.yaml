@@ -1,16 +1,16 @@
-name: Build slCrossfeed - Windows
+name: Build Crossfeed - Windows
 on:
   push:
     branches:
       - master
       - release
     paths:
-      - 'plugins/slCrossfeed/**'
+      - 'plugins/Crossfeed/**'
       - 'modules/**'
-      - '.github/workflows/build_slCrossfeed_windows.yaml'
+      - '.github/workflows/build_Crossfeed_windows.yaml'
 jobs:
   build:
-    name: Build slCrossfeed - Windows
+    name: Build Crossfeed - Windows
     runs-on: windows-latest
     steps:
       - name: Fix up git URLs
@@ -24,7 +24,7 @@ jobs:
       - name: Build plugin
         run: |
           # Build
-          cd plugins/slCrossfeed
+          cd plugins/Crossfeed
           cmake -B build
           cmake --build build --config Release
 
@@ -34,16 +34,16 @@ jobs:
           New-Item -ItemType Directory -Force -Path "vst"
           New-Item -ItemType Directory -Force -Path "vst3"
 
-          Copy-Item "../../plugins/slCrossfeed/build/slCrossfeed_artefacts/Release/VST/slCrossfeed.dll" "vst/"
-          Copy-Item "../../plugins/slCrossfeed/build/slCrossfeed_artefacts/Release/VST3/slCrossfeed.vst3" "vst3/" -Recurse
+          Copy-Item "../../plugins/Crossfeed/build/Crossfeed_artefacts/Release/VST/Crossfeed.dll" "vst/"
+          Copy-Item "../../plugins/Crossfeed/build/Crossfeed_artefacts/Release/VST3/Crossfeed.vst3" "vst3/" -Recurse
 
           # Create zip
-          7z a slCrossfeed_Win.zip vst/slCrossfeed.dll vst3/slCrossfeed.vst3
+          7z a Crossfeed_Win.zip vst/Crossfeed.dll vst3/Crossfeed.vst3
 
           # Upload to socalabs on release branch
           $BRANCH = "${{github.ref}}" -replace 'refs/heads/', ''
           if ($BRANCH -eq "release") {
-            curl.exe -F "files=@slCrossfeed_Win.zip" "https://socalabs.com/files/set.php?key=$env:APIKEY"
+            curl.exe -F "files=@Crossfeed_Win.zip" "https://socalabs.com/files/set.php?key=$env:APIKEY"
           }
         shell: pwsh
         env:
@@ -51,6 +51,6 @@ jobs:
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: slCrossfeed_Windows
+          name: Crossfeed_Windows
           path: ci/bin/*.zip
           retention-days: 30

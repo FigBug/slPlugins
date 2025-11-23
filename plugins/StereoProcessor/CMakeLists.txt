@@ -70,9 +70,10 @@ target_compile_definitions(${PLUGIN_NAME}
         JUCE_MODAL_LOOPS_PERMITTED=1
         JUCE_JACK=0
         JUCE_IGNORE_VST3_MISMATCHED_PARAMETER_ID_WARNING=1
+        DONT_SET_USING_JUCE_NAMESPACE=1
         JucePlugin_MaxNumInputChannels=4
         JucePlugin_MaxNumOutputChannels=2
-        JucePlugin_PreferredChannelConfigurations=4,2
+        JucePlugin_PreferredChannelConfigurations={4,2}
 )
 
 set_target_properties(${PLUGIN_NAME} PROPERTIES
@@ -125,4 +126,4 @@ if(APPLE)
             )
         endif()
     endforeach()
-endif()        
+endif()

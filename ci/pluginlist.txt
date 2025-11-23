@@ -3,6 +3,7 @@ AddInvert
 ChannelMute
 CompensatedDelay
 Compressor
+Crossfeed
 Delay
 EQ3
 Expander
@@ -16,7 +17,6 @@ PitchTrack
 SampleDelay
 SFX8
 SimpleVerb
-slCrossfeed
 SpectrumAnalyzer
 StereoEnhancer
 StereoProcessor
