@@ -7,10 +7,15 @@ CrossfeedAudioProcessorEditor::CrossfeedAudioProcessorEditor (CrossfeedAudioProc
 {
     for (auto pp : p.getPluginParameters())
     {
-        auto k = new gin::Knob (pp);
+        gin::ParamComponent* pc;
         
-        addAndMakeVisible (k);
-        controls.add (k);
+        if (pp->isOnOff())
+            pc = new gin::Switch (pp);
+        else
+            pc = new gin::Knob (pp);
+        
+        addAndMakeVisible (pc);
+        controls.add (pc);
     }
     
     addAndMakeVisible (&meter);

@@ -10,9 +10,9 @@ ABTesterAudioProcessorEditor::ABTesterAudioProcessorEditor (ABTesterAudioProcess
         gin::ParamComponent* pc;
         
         if (pp->isOnOff())
-            pc = new Switch (pp);
+            pc = new gin::Switch (pp);
         else
-            pc = new Knob (pp);
+            pc = new gin::Knob (pp);
         
         addAndMakeVisible (pc);
         controls.add (pc);
