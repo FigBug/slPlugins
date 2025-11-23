@@ -55,7 +55,7 @@ void PluginProcessor::processBlock (juce::AudioSampleBuffer& buffer, juce::MidiB
         
         while (pos < numSamples)
         {
-            auto workBuffer = sliceBuffer (buffer, pos, 1);
+            auto workBuffer = gin::sliceBuffer (buffer, pos, 1);
 
             workBuffer.applyGain (0, 0, 1, gainl->getProcValue (1));
             workBuffer.applyGain (1, 0, 1, gainr->getProcValue (1));
@@ -72,7 +72,7 @@ void PluginProcessor::processBlock (juce::AudioSampleBuffer& buffer, juce::MidiB
     }
     
     if (clipp->getUserValue() != 0.0f)
-        clip (buffer, -1.0f, 1.0f);
+        gin::clip (buffer, -1.0f, 1.0f);
 }
 
 //==============================================================================

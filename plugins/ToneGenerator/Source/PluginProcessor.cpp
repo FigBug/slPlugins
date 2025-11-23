@@ -194,9 +194,9 @@ void slToneAudioProcessor::processBlock (juce::AudioSampleBuffer& buffer, juce::
     if (sineVal.isSmoothing() || sineVal.getTargetValue() > 0)
     {
         scratch.clear();
-        AudioBlock<float> block (scratch);
+        juce::dsp::AudioBlock<float> block (scratch);
 
-        sine.process (ProcessContextReplacing<float> (block));
+        sine.process (juce::dsp::ProcessContextReplacing<float> (block));
         applyGain (scratch, sineVal);
         buffer.addFrom (0, 0, scratch, 0, 0, numSamples);
     }
@@ -204,9 +204,9 @@ void slToneAudioProcessor::processBlock (juce::AudioSampleBuffer& buffer, juce::
     if (triangleVal.isSmoothing() || triangleVal.getTargetValue() > 0)
     {
         scratch.clear();
-        AudioBlock<float> block (scratch);
+        juce::dsp::AudioBlock<float> block (scratch);
 
-        triangle.process (ProcessContextReplacing<float> (block));
+        triangle.process (juce::dsp::ProcessContextReplacing<float> (block));
         applyGain (scratch, triangleVal);
         buffer.addFrom (0, 0, scratch, 0, 0, numSamples);
     }
@@ -214,9 +214,9 @@ void slToneAudioProcessor::processBlock (juce::AudioSampleBuffer& buffer, juce::
     if (sawUpVal.isSmoothing() || sawUpVal.getTargetValue() > 0)
     {
         scratch.clear();
-        AudioBlock<float> block (scratch);
+        juce::dsp::AudioBlock<float> block (scratch);
 
-        sawUp.process (ProcessContextReplacing<float> (block));
+        sawUp.process (juce::dsp::ProcessContextReplacing<float> (block));
         applyGain (scratch, sawUpVal);
         buffer.addFrom (0, 0, scratch, 0, 0, numSamples);
     }
@@ -224,9 +224,9 @@ void slToneAudioProcessor::processBlock (juce::AudioSampleBuffer& buffer, juce::
     if (sawDownVal.isSmoothing() || sawDownVal.getTargetValue() > 0)
     {
         scratch.clear();
-        AudioBlock<float> block (scratch);
+        juce::dsp::AudioBlock<float> block (scratch);
 
-        sawDown.process (ProcessContextReplacing<float> (block));
+        sawDown.process (juce::dsp::ProcessContextReplacing<float> (block));
         applyGain (scratch, sawDownVal);
         buffer.addFrom (0, 0, scratch, 0, 0, numSamples);
     }
@@ -234,9 +234,9 @@ void slToneAudioProcessor::processBlock (juce::AudioSampleBuffer& buffer, juce::
     if (squareVal.isSmoothing() || squareVal.getTargetValue() > 0)
     {
         scratch.clear();
-        AudioBlock<float> block (scratch);
+        juce::dsp::AudioBlock<float> block (scratch);
 
-        square.process (ProcessContextReplacing<float> (block));
+        square.process (juce::dsp::ProcessContextReplacing<float> (block));
         applyGain (scratch, squareVal);
         buffer.addFrom (0, 0, scratch, 0, 0, numSamples);
     }
@@ -244,9 +244,9 @@ void slToneAudioProcessor::processBlock (juce::AudioSampleBuffer& buffer, juce::
     if (noiseVal.isSmoothing() || noiseVal.getTargetValue() > 0)
     {
         scratch.clear();
-        AudioBlock<float> block (scratch);
+        juce::dsp::AudioBlock<float> block (scratch);
 
-        noise.process (ProcessContextReplacing<float> (block));
+        noise.process (juce::dsp::ProcessContextReplacing<float> (block));
         applyGain (scratch, noiseVal);
         buffer.addFrom (0, 0, scratch, 0, 0, numSamples);
     }

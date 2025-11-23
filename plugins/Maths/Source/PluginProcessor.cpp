@@ -172,12 +172,12 @@ void MathsAudioProcessor::processBlock (juce::AudioSampleBuffer& buffer, juce::M
         l = lData[i];
         r = rData[i];
         
-        memmove (li + 1, li, (size_t) (numElementsInArray (li) - 1) * sizeof (double));
-        memmove (ri + 1, ri, (size_t) (numElementsInArray (ri) - 1) * sizeof (double));
-        memmove (lo + 1, lo, (size_t) (numElementsInArray (lo) - 1) * sizeof (double));
-        memmove (ro + 1, ro, (size_t) (numElementsInArray (ro) - 1) * sizeof (double));
-        memmove (ao + 1, ao, (size_t) (numElementsInArray (ao) - 1) * sizeof (double));
-        memmove (bo + 1, bo, (size_t) (numElementsInArray (bo) - 1) * sizeof (double));
+        memmove (li + 1, li, (size_t) (juce::numElementsInArray (li) - 1) * sizeof (double));
+        memmove (ri + 1, ri, (size_t) (juce::numElementsInArray (ri) - 1) * sizeof (double));
+        memmove (lo + 1, lo, (size_t) (juce::numElementsInArray (lo) - 1) * sizeof (double));
+        memmove (ro + 1, ro, (size_t) (juce::numElementsInArray (ro) - 1) * sizeof (double));
+        memmove (ao + 1, ao, (size_t) (juce::numElementsInArray (ao) - 1) * sizeof (double));
+        memmove (bo + 1, bo, (size_t) (juce::numElementsInArray (bo) - 1) * sizeof (double));
 
         li[0] = l;
         ri[0] = r;

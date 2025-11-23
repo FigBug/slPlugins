@@ -7,7 +7,7 @@
 /**
 */
 class MathsAudioProcessorEditor : public gin::ProcessorEditor,
-                                  private TextEditor::Listener
+                                  private juce::TextEditor::Listener
 {
 public:
     MathsAudioProcessorEditor (MathsAudioProcessor&);
@@ -18,17 +18,17 @@ public:
     void refresh();
 
 private:
-    void textEditorReturnKeyPressed (TextEditor&) override;
-    void textEditorEscapeKeyPressed (TextEditor&) override;
-    void textEditorFocusLost (TextEditor&) override;
+    void textEditorReturnKeyPressed (juce::TextEditor&) override;
+    void textEditorEscapeKeyPressed (juce::TextEditor&) override;
+    void textEditorFocusLost (juce::TextEditor&) override;
     
     MathsAudioProcessor& mathsProcessor;
-    TextEditor l, r, a, b;
-    Label lLabel { "", "L out:" };
-    Label rLabel { "", "R out:" };
-    Label aLabel { "", "A var:" };
-    Label bLabel { "", "B var:" };
-    Label errors;
+    juce::TextEditor l, r, a, b;
+    juce::Label lLabel { "", "L out:" };
+    juce::Label rLabel { "", "R out:" };
+    juce::Label aLabel { "", "A var:" };
+    juce::Label bLabel { "", "B var:" };
+    juce::Label errors;
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MathsAudioProcessorEditor)
 };

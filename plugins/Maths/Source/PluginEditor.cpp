@@ -5,7 +5,7 @@
 MathsAudioProcessorEditor::MathsAudioProcessorEditor (MathsAudioProcessor& p)
     : gin::ProcessorEditor (p), mathsProcessor (p)
 {
-    Font f (Font::getDefaultMonospacedFontName(), 12, Font::plain);
+    juce::Font f (Font::getDefaultMonospacedFontName(), 12, Font::plain);
     
     l.setFont (f);
     r.setFont (f);
@@ -36,7 +36,7 @@ MathsAudioProcessorEditor::MathsAudioProcessorEditor (MathsAudioProcessor& p)
     a.setText (p.aEquation, dontSendNotification);
     b.setText (p.bEquation, dontSendNotification);
 
-    errors.setJustificationType (Justification::centred);
+    errors.setJustificationType (juce::Justification::centred);
 
     int count = 0;
     for (auto pp : p.getPluginParameters())
