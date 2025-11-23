@@ -2,7 +2,7 @@
 #include "PluginEditor.h"
 
 //==============================================================================
-GateAudioProcessorEditor::GateAudioProcessorEditor (GateAudioProcessor& p)
+EQ3AudioProcessorEditor::EQ3AudioProcessorEditor (EQ3AudioProcessor& p)
     : gin::ProcessorEditor (p, 60, 100), proc (p)
 {
     for (auto pp : p.getPluginParameters())
@@ -45,19 +45,19 @@ GateAudioProcessorEditor::GateAudioProcessorEditor (GateAudioProcessor& p)
         pp->addListener (this);
 }
 
-GateAudioProcessorEditor::~GateAudioProcessorEditor()
+EQ3AudioProcessorEditor::~EQ3AudioProcessorEditor()
 {
     for (auto p : proc.getPluginParameters())
         p->removeListener (this);
 }
 
 //==============================================================================
-void GateAudioProcessorEditor::parameterChanged (gin::Parameter*)
+void EQ3AudioProcessorEditor::valueUpdated (gin::Parameter*)
 {
     meter.repaint();
 }
 
-void GateAudioProcessorEditor::resized()
+void EQ3AudioProcessorEditor::resized()
 {
     gin::ProcessorEditor::resized();
 

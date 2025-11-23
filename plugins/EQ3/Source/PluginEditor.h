@@ -10,8 +10,8 @@ class EQ3AudioProcessorEditor : public gin::ProcessorEditor,
                                 private gin::Parameter::ParameterListener
 {
 public:
-    GateAudioProcessorEditor (GateAudioProcessor&);
-    ~GateAudioProcessorEditor() override;
+    EQ3AudioProcessorEditor (EQ3AudioProcessor&);
+    ~EQ3AudioProcessorEditor() override;
 
     //==============================================================================
     void resized() override;
@@ -27,5 +27,5 @@ private:
     gin::LevelMeter outputMeter {proc.gate.getOutputTracker()};
     gin::LevelMeter reductionMeter {proc.gate.getReductionTracker(), {-30, 0}};
 
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (GateAudioProcessorEditor)
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (EQ3AudioProcessorEditor)
 };
