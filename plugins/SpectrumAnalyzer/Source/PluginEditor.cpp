@@ -11,11 +11,9 @@
 #include "PluginProcessor.h"
 #include "PluginEditor.h"
 
-using namespace gin;
-
 //==============================================================================
 PluginEditor::PluginEditor (PluginProcessor& p)
-    : ProcessorEditor (p), proc (p)
+    : gin::ProcessorEditor (p), proc (p)
 {
     addAndMakeVisible (&scopeL);
     addAndMakeVisible (&scopeR);

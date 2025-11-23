@@ -12,8 +12,6 @@
 
 #include "../JuceLibraryCode/JuceHeader.h"
 
-using namespace juce::dsp;
-
 
 #define PARAM_ENABLE        "enable"
 #define PARAM_BANDLIMIT     "bandlimit"
@@ -52,12 +50,12 @@ public:
 private:
     bool bandLimited = true;
 
-    Oscillator<float> sine;
-    Oscillator<float> triangle;
-    Oscillator<float> sawUp;
-    Oscillator<float> sawDown;
-    Oscillator<float> square;
-    Oscillator<float> noise;
+    juce::dsp::Oscillator<float> sine;
+    juce::dsp::Oscillator<float> triangle;
+    juce::dsp::Oscillator<float> sawUp;
+    juce::dsp::Oscillator<float> sawDown;
+    juce::dsp::Oscillator<float> square;
+    juce::dsp::Oscillator<float> noise;
 
     juce::Component::SafePointer<slToneAudioProcessorEditor> editor;
 

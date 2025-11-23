@@ -5,37 +5,37 @@
 
 //==============================================================================
 class Waveform : public gin::WaveformComponent,
-                 public FileDragAndDropTarget
+                 public juce::FileDragAndDropTarget
 {
 public:
     Waveform (WaveLooperAudioProcessor& p) : proc (p)
     {
     }
     
-    bool isInterestedInFileDrag (const StringArray& files) override
+    bool isInterestedInFileDrag (const juce::StringArray& files) override
     {
         return true;
     }
 
-    void fileDragEnter (const StringArray&, int, int) override
+    void fileDragEnter (const juce::StringArray&, int, int) override
     {
         dragOver = true;
         repaint();
     }
 
-    void fileDragMove (const StringArray&, int, int) override
+    void fileDragMove (const juce::StringArray&, int, int) override
     {
         dragOver = true;
         repaint();
     }
 
-    void fileDragExit (const StringArray& files) override
+    void fileDragExit (const juce::StringArray& files) override
     {
         dragOver = false;
         repaint();
     }
 
-    void filesDropped (const StringArray& files, int x, int y) override
+    void filesDropped (const juce::StringArray& files, int x, int y) override
     {
         proc.setFile (files[0]);
         
@@ -43,13 +43,13 @@ public:
         repaint();
     }
     
-    void paint (Graphics& g) override
+    void paint (juce::Graphics& g) override
     {
         gin::WaveformComponent::paint (g);
-        
+
         if (dragOver)
         {
-            g.setColour (Colours::white.withAlpha (0.3f));
+            g.setColour (juce::Colours::white.withAlpha (0.3f));
             g.fillRect (getLocalBounds());
         }
     }

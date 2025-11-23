@@ -63,14 +63,12 @@ juce_generate_juce_header(${PLUGIN_NAME})
 
 target_compile_definitions(${PLUGIN_NAME}
     PRIVATE
-        JUCE_DISPLAY_SPLASH_SCREEN=0
-        JUCE_REPORT_APP_USAGE=0
         JUCE_WEB_BROWSER=0
         JUCE_USE_CURL=0
         JUCE_VST3_CAN_REPLACE_VST2=0
-        JUCE_MODAL_LOOPS_PERMITTED=1
         JUCE_JACK=0
         JUCE_IGNORE_VST3_MISMATCHED_PARAMETER_ID_WARNING=1
+        DONT_SET_USING_JUCE_NAMESPACE=1
         JucePlugin_MaxNumInputChannels=0
         JucePlugin_MaxNumOutputChannels=1
         JucePlugin_PreferredChannelConfigurations={0,1}

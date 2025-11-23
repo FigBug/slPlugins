@@ -28,9 +28,9 @@ CrossfeedAudioProcessorEditor::~CrossfeedAudioProcessorEditor()
 }
 
 //==============================================================================
-void CrossfeedAudioProcessorEditor::paint(Graphics& g)
+void CrossfeedAudioProcessorEditor::paint(juce::Graphics& g)
 {
-    g.fillAll (Colours::white);
+    g.fillAll (juce::Colours::white);
 }
 
 void CrossfeedAudioProcessorEditor::resized()

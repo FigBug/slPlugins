@@ -12,9 +12,7 @@
 #include "PluginEditor.h"
 #include <random>
 
-using namespace gin;
-
-String enableTextFunction (const Parameter&, float v)
+juce::String enableTextFunction (const gin::Parameter&, float v)
 {
     return v == 0.0f ? "Samples" : "Time";
 }
@@ -23,8 +21,8 @@ String enableTextFunction (const Parameter&, float v)
 CompensatedDelayAudioProcessor::CompensatedDelayAudioProcessor()
 {
     mode    = addExtParam ("mode",    "Mode",    "", "",   {   0.0f,     1.0f, 1.0f, 1.0f},    0.0f, 0.0f, enableTextFunction);
-    time    = addExtParam ("time",    "Time",    "", "ms", {   0.0f,  1000.0f, 0.0f, 1.0f},    1.0f, {0.2f, SmoothingType::eased});
-    samples = addExtParam ("samples", "Samples", "", "",   {   0.0f, 44100.0f, 1.0f, 1.0f},   50.0f, {0.2f, SmoothingType::eased});
+    time    = addExtParam ("time",    "Time",    "", "ms", {   0.0f,  1000.0f, 0.0f, 1.0f},    1.0f, {0.2f, gin::SmoothingType::eased});
+    samples = addExtParam ("samples", "Samples", "", "",   {   0.0f, 44100.0f, 1.0f, 1.0f},   50.0f, {0.2f, gin::SmoothingType::eased});
     
     time->conversionFunction = [] (float in) { return in / 1000.0f; };
     
@@ -82,12 +80,12 @@ void CompensatedDelayAudioProcessor::releaseResources()
 {
 }
 
-void CompensatedDelayAudioProcessor::processBlock (AudioSampleBuffer& buffer, MidiBuffer&)
+void CompensatedDelayAudioProcessor::processBlock (juce::AudioSampleBuffer& buffer, juce::MidiBuffer&)
 {
     int numSamples = buffer.getNumSamples();
     int ch = buffer.getNumChannels();
-    
-    ScratchBuffer scratch (ch, numSamples);
+
+    gin::ScratchBuffer scratch (ch, numSamples);
     
     for (int s = 0; s < numSamples; s++)
     {
@@ -126,14 +124,14 @@ bool CompensatedDelayAudioProcessor::hasEditor() const
     return true;
 }
 
-AudioProcessorEditor* CompensatedDelayAudioProcessor::createEditor()
+juce::AudioProcessorEditor* CompensatedDelayAudioProcessor::createEditor()
 {
     return new CompensatedDelayAudioProcessorEditor (*this);
 }
 
 //==============================================================================
 // This creates new instances of the plugin..
-AudioProcessor* JUCE_CALLTYPE createPluginFilter()
+juce::AudioProcessor* JUCE_CALLTYPE createPluginFilter()
 {
     return new CompensatedDelayAudioProcessor();
 }

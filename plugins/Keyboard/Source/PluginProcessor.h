@@ -7,17 +7,17 @@ class KeyboardAudioProcessorEditor;
 class ControllerState
 {
 public:
-    void processBuffer (MidiBuffer& buffer)
+    void processBuffer (juce::MidiBuffer& buffer)
     {
         {
-            ScopedLock sl (lock);
+            juce::ScopedLock sl (lock);
             for (auto& m : messages)
                 buffer.addEvent (m, 0);
             messages.clear();
         }
-        
-        MidiBuffer::Iterator itr (buffer);
-        MidiMessage msg;
+
+        juce::MidiBuffer::Iterator itr (buffer);
+        juce::MidiMessage msg;
         int time;
         
         while (itr.getNextEvent (msg, time))
@@ -29,9 +29,9 @@ public:
         }
     }
     
-    void addMessage (const MidiMessage& m)
+    void addMessage (const juce::MidiMessage& m)
     {
-        ScopedLock sl (lock);
+        juce::ScopedLock sl (lock);
         messages.add (m);
     }
     
@@ -46,8 +46,8 @@ public:
     }
     
 private:
-    CriticalSection lock;
-    Array<MidiMessage> messages;
+    juce::CriticalSection lock;
+    juce::Array<juce::MidiMessage> messages;
     int controllers[128] = {0};
     int pitchBend = 0;
 };
@@ -66,20 +66,20 @@ public:
     void prepareToPlay (double sampleRate, int samplesPerBlock) override;
     void releaseResources() override;
 
-    void processBlock (AudioSampleBuffer&, MidiBuffer&) override;
-    
+    void processBlock (juce::AudioSampleBuffer&, juce::MidiBuffer&) override;
+
     bool isMidiEffect() const override { return true; }
 
     //==============================================================================
-    AudioProcessorEditor* createEditor() override;
+    juce::AudioProcessorEditor* createEditor() override;
     bool hasEditor() const override;
 
     //==============================================================================
-    MidiKeyboardState keyboardState;
+    juce::MidiKeyboardState keyboardState;
     ControllerState controllerState;
 
 private:
-    Component::SafePointer<KeyboardAudioProcessorEditor> editor;
+    juce::Component::SafePointer<KeyboardAudioProcessorEditor> editor;
     
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (KeyboardAudioProcessor)

@@ -19,10 +19,10 @@ public:
     void prepareToPlay (double sampleRate, int samplesPerBlock) override;
     void releaseResources() override;
 
-    void processBlock (AudioSampleBuffer&, MidiBuffer&) override;
+    void processBlock (juce::AudioSampleBuffer&, juce::MidiBuffer&) override;
 
     //==============================================================================
-    AudioProcessorEditor* createEditor() override;
+    juce::AudioProcessorEditor* createEditor() override;
     bool hasEditor() const override;
 
     //==============================================================================
@@ -33,10 +33,10 @@ public:
 
 private:
     gin::LevelTracker outputLevel {48.0};
-    LinearSmoothedValue<float> enableVal;
-    LinearSmoothedValue<float> disableVal;
-    
-    AudioSampleBuffer scratch;
+    juce::LinearSmoothedValue<float> enableVal;
+    juce::LinearSmoothedValue<float> disableVal;
+
+    juce::AudioSampleBuffer scratch;
     
     crossfeed_t crossfeed;
     

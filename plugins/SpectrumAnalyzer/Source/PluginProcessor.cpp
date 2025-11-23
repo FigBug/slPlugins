@@ -12,10 +12,8 @@
 #include "PluginEditor.h"
 #include <random>
 
-using namespace gin;
-
 //==============================================================================
-String onOffTextFunction (const Parameter&, float v)
+juce::String onOffTextFunction (const gin::Parameter&, float v)
 {
     return v > 0.0f ? "On" : "Off";
 }
@@ -50,9 +48,9 @@ void PluginProcessor::releaseResources()
 {
 }
 
-void PluginProcessor::processBlock (AudioSampleBuffer& buffer, MidiBuffer&)
+void PluginProcessor::processBlock (juce::AudioSampleBuffer& buffer, juce::MidiBuffer&)
 {
-    ScopedLock sl (lock);
+    juce::ScopedLock sl (lock);
     if (editor != nullptr)
     {
         const int num = buffer.getNumSamples();
@@ -73,7 +71,7 @@ bool PluginProcessor::hasEditor() const
     return true;
 }
 
-AudioProcessorEditor* PluginProcessor::createEditor()
+juce::AudioProcessorEditor* PluginProcessor::createEditor()
 {
     editor = new PluginEditor (*this);
     return editor;
@@ -81,7 +79,7 @@ AudioProcessorEditor* PluginProcessor::createEditor()
 
 //==============================================================================
 // This creates new instances of the plugin..
-AudioProcessor* JUCE_CALLTYPE createPluginFilter()
+juce::AudioProcessor* JUCE_CALLTYPE createPluginFilter()
 {
     return new PluginProcessor();
 }

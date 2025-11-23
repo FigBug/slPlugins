@@ -2,8 +2,6 @@
 #include "PluginEditor.h"
 #include <random>
 
-using namespace gin;
-
 //==============================================================================
 MathsAudioProcessor::MathsAudioProcessor()
 {
@@ -11,7 +9,7 @@ MathsAudioProcessor::MathsAudioProcessor()
     addExtParam (PARAM_P2,      "p2 (0..1)",  "", "", {0.0f,  1.0f, 0.0f, 1.0f}, 1.0f, 0.0f);
     addExtParam (PARAM_P3,      "p3 (-1..1)", "", "", {-1.0f, 1.0f, 0.0f, 1.0f}, 1.0f, 0.0f);
     addExtParam (PARAM_P4,      "p4 (-1..1)", "", "", {-1.0f, 1.0f, 0.0f, 1.0f}, 1.0f, 0.0f);
-    addExtParam (PARAM_LIMITER, "Limiter",    "", "", { 0.0f, 1.0f, 1.0f, 1.0f}, 1.0f, 0.0f, [] (const Parameter&, float v) { return v > 0.5 ? "On" : "Off"; });
+    addExtParam (PARAM_LIMITER, "Limiter",    "", "", { 0.0f, 1.0f, 1.0f, 1.0f}, 1.0f, 0.0f, [] (const gin::Parameter&, float v) { return v > 0.5 ? "On" : "Off"; });
 
     setupParsers();
 }
@@ -73,7 +71,7 @@ void MathsAudioProcessor::setupParsers()
     auto csr = getSampleRate();
     if (csr == 0) csr = 44100.0;
     
-    auto setup = [&] (std::unique_ptr<AudioEquationParser>& newP, const String& eq) -> String
+    auto setup = [&] (std::unique_ptr<gin::AudioEquationParser>& newP, const juce::String& eq) -> juce::String
     {
         newP->setSampleRate (csr);
         newP->addConstants();
@@ -85,7 +83,7 @@ void MathsAudioProcessor::setupParsers()
         
         if (newP->hasError())
         {
-            String err = newP->getError();
+            juce::String err = newP->getError();
             DBG(lError);
             newP = nullptr;
             return err;
@@ -96,10 +94,10 @@ void MathsAudioProcessor::setupParsers()
         }
     };
     
-    auto newL = std::make_unique<AudioEquationParser>();
-    auto newR = std::make_unique<AudioEquationParser>();
-    auto newA = std::make_unique<AudioEquationParser>();
-    auto newB = std::make_unique<AudioEquationParser>();
+    auto newL = std::make_unique<gin::AudioEquationParser>();
+    auto newR = std::make_unique<gin::AudioEquationParser>();
+    auto newA = std::make_unique<gin::AudioEquationParser>();
+    auto newB = std::make_unique<gin::AudioEquationParser>();
 
     lError = setup (newL, lEquation);
     rError = setup (newR, rEquation);
@@ -107,8 +105,8 @@ void MathsAudioProcessor::setupParsers()
     bError = setup (newB, bEquation);
 
     {
-        ScopedLock sl (lock);
-        
+        juce::ScopedLock sl (lock);
+
         std::swap (lParser, newL);
         std::swap (rParser, newR);
         std::swap (aParser, newA);
@@ -133,12 +131,12 @@ void MathsAudioProcessor::setupVars (gin::EquationParser& p)
 
     for (int i = 0; i < 256; i++)
     {
-        p.addVariable (String::formatted ("li%d", i), &li[i]);
-        p.addVariable (String::formatted ("ri%d", i), &ri[i]);
-        p.addVariable (String::formatted ("lo%d", i), &lo[i]);
-        p.addVariable (String::formatted ("ro%d", i), &ro[i]);
-        p.addVariable (String::formatted ("ao%d", i), &lo[i]);
-        p.addVariable (String::formatted ("bo%d", i), &ro[i]);
+        p.addVariable (juce::String::formatted ("li%d", i), &li[i]);
+        p.addVariable (juce::String::formatted ("ri%d", i), &ri[i]);
+        p.addVariable (juce::String::formatted ("lo%d", i), &lo[i]);
+        p.addVariable (juce::String::formatted ("ro%d", i), &ro[i]);
+        p.addVariable (juce::String::formatted ("ao%d", i), &lo[i]);
+        p.addVariable (juce::String::formatted ("bo%d", i), &ro[i]);
     }
 }
 
@@ -146,11 +144,11 @@ void MathsAudioProcessor::releaseResources()
 {
 }
 
-void MathsAudioProcessor::processBlock (AudioSampleBuffer& buffer, MidiBuffer&)
+void MathsAudioProcessor::processBlock (juce::AudioSampleBuffer& buffer, juce::MidiBuffer&)
 {
-    ScopedLock sl (lock);
-    
-    ScopedNoDenormals noDenormals;
+    juce::ScopedLock sl (lock);
+
+    juce::ScopedNoDenormals noDenormals;
     
     float* lData = buffer.getWritePointer (0);
     float* rData = buffer.getWritePointer (1);
@@ -162,7 +160,7 @@ void MathsAudioProcessor::processBlock (AudioSampleBuffer& buffer, MidiBuffer&)
 
     if (auto p = getPlayHead())
     {
-        AudioPlayHead::CurrentPositionInfo pos;
+        juce::AudioPlayHead::CurrentPositionInfo pos;
         if (p->getCurrentPosition (pos))
         {
             c = pos.timeInSeconds;
@@ -228,7 +226,7 @@ bool MathsAudioProcessor::hasEditor() const
     return true;
 }
 
-AudioProcessorEditor* MathsAudioProcessor::createEditor()
+juce::AudioProcessorEditor* MathsAudioProcessor::createEditor()
 {
     editor = new MathsAudioProcessorEditor (*this);
     return editor;
@@ -236,7 +234,7 @@ AudioProcessorEditor* MathsAudioProcessor::createEditor()
 
 //==============================================================================
 // This creates new instances of the plugin..
-AudioProcessor* JUCE_CALLTYPE createPluginFilter()
+juce::AudioProcessor* JUCE_CALLTYPE createPluginFilter()
 {
     return new MathsAudioProcessor();
 }

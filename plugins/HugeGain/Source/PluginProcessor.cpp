@@ -12,10 +12,8 @@
 #include "PluginEditor.h"
 #include <random>
 
-using namespace gin;
-
 //==============================================================================
-static String onOffTextFunction (const Parameter&, float v)
+static juce::String onOffTextFunction (const gin::Parameter&, float v)
 {
     return v > 0.0f ? "On" : "Off";
 }
@@ -28,9 +26,9 @@ PluginProcessor::PluginProcessor()
     gainr = addExtParam (PARAM_GAIN_R, "Right", "", "dB", {-100.0f, 100.0f, 0.0f, 5.0f}, 0.0f, 0.1f);
     clipp  = addExtParam (PARAM_CLIP,  "Clip",  "", "",   {   0.0f,   1.0f, 1.0f, 1.0f}, 1.0f, 0.1f, onOffTextFunction);
     
-    gainl->conversionFunction  = [] (float in) { return Decibels::decibelsToGain (in); };
-    gains->conversionFunction  = [] (float in) { return Decibels::decibelsToGain (in); };
-    gainr->conversionFunction  = [] (float in) { return Decibels::decibelsToGain (in); };
+    gainl->conversionFunction  = [] (float in) { return juce::Decibels::decibelsToGain (in); };
+    gains->conversionFunction  = [] (float in) { return juce::Decibels::decibelsToGain (in); };
+    gainr->conversionFunction  = [] (float in) { return juce::Decibels::decibelsToGain (in); };
 }
 
 PluginProcessor::~PluginProcessor()
@@ -47,7 +45,7 @@ void PluginProcessor::releaseResources()
 {
 }
 
-void PluginProcessor::processBlock (AudioSampleBuffer& buffer, MidiBuffer&)
+void PluginProcessor::processBlock (juce::AudioSampleBuffer& buffer, juce::MidiBuffer&)
 {
     int numSamples = buffer.getNumSamples();
 
@@ -83,14 +81,14 @@ bool PluginProcessor::hasEditor() const
     return true;
 }
 
-AudioProcessorEditor* PluginProcessor::createEditor()
+juce::AudioProcessorEditor* PluginProcessor::createEditor()
 {
     return new PluginEditor (*this);
 }
 
 //==============================================================================
 // This creates new instances of the plugin..
-AudioProcessor* JUCE_CALLTYPE createPluginFilter()
+juce::AudioProcessor* JUCE_CALLTYPE createPluginFilter()
 {
     return new PluginProcessor();
 }

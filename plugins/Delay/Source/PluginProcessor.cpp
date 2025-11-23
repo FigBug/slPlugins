@@ -12,22 +12,20 @@
 #include "PluginEditor.h"
 #include <random>
 
-using namespace gin;
-
-String enableTextFunction (const Parameter&, float v)
+juce::String enableTextFunction (const gin::Parameter&, float v)
 {
     return v > 0.0f ? "On" : "Off";
 }
 
-String durationTextFunction (const Parameter&, float v)
+juce::String durationTextFunction (const gin::Parameter&, float v)
 {
-    return NoteDuration::getNoteDurations()[size_t (v)].getName();
+    return gin::NoteDuration::getNoteDurations()[size_t (v)].getName();
 }
 
 //==============================================================================
 DelayAudioProcessor::DelayAudioProcessor()
 {
-    float mxd = float (NoteDuration::getNoteDurations().size()) - 1.0f;
+    float mxd = float (gin::NoteDuration::getNoteDurations().size()) - 1.0f;
     
     sync  = addExtParam ("sync",  "Sync",      "", "",   {   0.0f,   1.0f, 1.0f, 1.0f},    0.0f, 0.0f, enableTextFunction);
     time  = addExtParam ("time",  "Delay",     "", "",   {   0.0f, 120.0f, 0.0f, 0.3f},    1.0f, 0.0f);
@@ -36,10 +34,10 @@ DelayAudioProcessor::DelayAudioProcessor()
     cf    = addExtParam ("cf",    "Crossfeed", "", "dB", {-100.0f,   0.0f, 0.0f, 5.0f}, -100.0f, 0.1f);
     mix   = addExtParam ("mix",   "Mix",       "", "%",  {   0.0f, 100.0f, 0.0f, 1.0f},    0.0f, 0.1f);
     
-    delay = addIntParam ("delay", "Delay",     "", "",   {   0.0f, 120.0f, 0.0f, 1.0f},    1.0f, {0.2f, SmoothingType::eased});
+    delay = addIntParam ("delay", "Delay",     "", "",   {   0.0f, 120.0f, 0.0f, 1.0f},    1.0f, {0.2f, gin::SmoothingType::eased});
     
-    fb->conversionFunction  = [] (float in) { return Decibels::decibelsToGain (in); };
-    cf->conversionFunction  = [] (float in) { return Decibels::decibelsToGain (in); };
+    fb->conversionFunction  = [] (float in) { return juce::Decibels::decibelsToGain (in); };
+    cf->conversionFunction  = [] (float in) { return juce::Decibels::decibelsToGain (in); };
     mix->conversionFunction = [] (float in) { return in / 100.0f; };
 }
 
@@ -79,7 +77,7 @@ void DelayAudioProcessor::updateInternalParams()
     }
 }
 
-void DelayAudioProcessor::processBlock (AudioSampleBuffer& buffer, MidiBuffer&)
+void DelayAudioProcessor::processBlock (juce::AudioSampleBuffer& buffer, juce::MidiBuffer&)
 {
     updateInternalParams();
 
@@ -115,14 +113,14 @@ bool DelayAudioProcessor::hasEditor() const
     return true;
 }
 
-AudioProcessorEditor* DelayAudioProcessor::createEditor()
+juce::AudioProcessorEditor* DelayAudioProcessor::createEditor()
 {
     return new DelayAudioProcessorEditor (*this);
 }
 
 //==============================================================================
 // This creates new instances of the plugin..
-AudioProcessor* JUCE_CALLTYPE createPluginFilter()
+juce::AudioProcessor* JUCE_CALLTYPE createPluginFilter()
 {
     return new DelayAudioProcessor();
 }

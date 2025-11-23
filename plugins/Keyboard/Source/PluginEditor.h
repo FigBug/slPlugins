@@ -3,8 +3,8 @@
 #include <JuceHeader.h>
 #include "PluginProcessor.h"
 
-class ControllerComponent : public Component,
-                            private Timer
+class ControllerComponent : public juce::Component,
+                            private juce::Timer
 {
 public:
     ControllerComponent (ControllerState& cs, int controller_)
@@ -23,17 +23,17 @@ public:
         }
     }
     
-    void paint (Graphics& g) override
+    void paint (juce::Graphics& g) override
     {
-        g.setColour (Colours::white);
+        g.setColour (juce::Colours::white);
         g.drawRect (getLocalBounds());
-        
+
         float p = controller >= 0 ? value / 127.0f : value / 16384.0f;
-        
+
         int h = getHeight() - 2;
         int w = getWidth() - 2;
-        
-        g.setColour (Colours::white.withAlpha (0.75f));
+
+        g.setColour (juce::Colours::white.withAlpha (0.75f));
         g.drawRect (1, int (1 + h - h * p), w, 1);
     }
     
@@ -55,7 +55,7 @@ public:
     
 private:
     KeyboardAudioProcessor& proc;
-    MidiKeyboardComponent keyboard;
+    juce::MidiKeyboardComponent keyboard;
     ControllerComponent modWheel, pitchWheel;
     
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (KeyboardAudioProcessorEditor)

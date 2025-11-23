@@ -14,7 +14,7 @@ public:
 
     //==============================================================================
     void resized() override;
-    void paint(Graphics& g) override;
+    void paint(juce::Graphics& g) override;
 
 private:
     CrossfeedAudioProcessor& proc;

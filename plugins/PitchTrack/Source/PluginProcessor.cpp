@@ -1,12 +1,8 @@
 #include "PluginProcessor.h"
 #include "PluginEditor.h"
 
-using namespace cycfi::q;
-using namespace cycfi::q::literals;
-using namespace cycfi::q::pitch_names;
-
-constexpr frequency low_e          = E[0];
-constexpr frequency high_e         = E[7];
+constexpr cycfi::q::frequency low_e          = cycfi::q::pitch_names::E[0];
+constexpr cycfi::q::frequency high_e         = cycfi::q::pitch_names::E[7];
 
 //==============================================================================
 PitchTrackAudioProcessor::PitchTrackAudioProcessor()
@@ -24,9 +20,9 @@ void PitchTrackAudioProcessor::prepareToPlay (double sampleRate_, int blockSize_
 
     freq = 0.0f;
     
-    auto cfg = signal_conditioner::config();
-    conditioner = std::make_unique<signal_conditioner> (cfg, low_e, high_e, std::uint32_t ( sampleRate_ ) );
-    detector = std::make_unique<pitch_detector> (low_e, high_e, std::uint32_t (sampleRate_), -45_dB);
+    auto cfg = cycfi::q::signal_conditioner::config();
+    conditioner = std::make_unique<cycfi::q::signal_conditioner> (cfg, low_e, high_e, std::uint32_t ( sampleRate_ ) );
+    detector = std::make_unique<cycfi::q::pitch_detector> (low_e, high_e, std::uint32_t (sampleRate_), cycfi::q::literals::operator""_dB(-45));
 
     yin = std::make_unique<adamski::PitchYIN> (int (sampleRate_), 512);
     mpm = std::make_unique<adamski::PitchMPM> (int (sampleRate_), 512);

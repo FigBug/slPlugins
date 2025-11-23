@@ -12,10 +12,8 @@
 #include "PluginEditor.h"
 #include <random>
 
-using namespace gin;
-
 //==============================================================================
-String onOffTextFunction (const Parameter&, float v)
+juce::String onOffTextFunction (const gin::Parameter&, float v)
 {
     return v > 0.0f ? "On" : "Off";
 }
@@ -50,10 +48,10 @@ void ChannelMuteAudioProcessor::releaseResources()
 {
 }
 
-void ChannelMuteAudioProcessor::processBlock (AudioSampleBuffer& buffer, MidiBuffer&)
+void ChannelMuteAudioProcessor::processBlock (juce::AudioSampleBuffer& buffer, juce::MidiBuffer&)
 {
-    lVal.setTargetValue (parameterIntValue (PARAM_MUTE_L) ? 0.0f : Decibels::decibelsToGain (parameterValue (PARAM_LEVEL_L)));
-    rVal.setTargetValue (parameterIntValue (PARAM_MUTE_R) ? 0.0f : Decibels::decibelsToGain (parameterValue (PARAM_LEVEL_R)));
+    lVal.setTargetValue (parameterIntValue (PARAM_MUTE_L) ? 0.0f : juce::Decibels::decibelsToGain (parameterValue (PARAM_LEVEL_L)));
+    rVal.setTargetValue (parameterIntValue (PARAM_MUTE_R) ? 0.0f : juce::Decibels::decibelsToGain (parameterValue (PARAM_LEVEL_R)));
 
     applyGain (buffer, 0, lVal);
     applyGain (buffer, 1, rVal);
@@ -65,7 +63,7 @@ bool ChannelMuteAudioProcessor::hasEditor() const
     return true;
 }
 
-AudioProcessorEditor* ChannelMuteAudioProcessor::createEditor()
+juce::AudioProcessorEditor* ChannelMuteAudioProcessor::createEditor()
 {
     editor = new ChannelMuteAudioProcessorEditor (*this);
     return editor;
@@ -73,7 +71,7 @@ AudioProcessorEditor* ChannelMuteAudioProcessor::createEditor()
 
 //==============================================================================
 // This creates new instances of the plugin..
-AudioProcessor* JUCE_CALLTYPE createPluginFilter()
+juce::AudioProcessor* JUCE_CALLTYPE createPluginFilter()
 {
     return new ChannelMuteAudioProcessor();
 }

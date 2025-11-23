@@ -12,8 +12,6 @@
 
 #include "../JuceLibraryCode/JuceHeader.h"
 
-using namespace juce::dsp;
-
 
 #define PARAM_MUTE_L      "muteL"
 #define PARAM_LEVEL_L     "levelL"
@@ -35,19 +33,19 @@ public:
     void prepareToPlay (double sampleRate, int samplesPerBlock) override;
     void releaseResources() override;
 
-    void processBlock (AudioSampleBuffer&, MidiBuffer&) override;
+    void processBlock (juce::AudioSampleBuffer&, juce::MidiBuffer&) override;
 
     //==============================================================================
-    AudioProcessorEditor* createEditor() override;
+    juce::AudioProcessorEditor* createEditor() override;
     bool hasEditor() const override;
 
     //==============================================================================
     
 private:
-    Component::SafePointer<ChannelMuteAudioProcessorEditor> editor;
+    juce::Component::SafePointer<ChannelMuteAudioProcessorEditor> editor;
 
-    LinearSmoothedValue<float> lVal;
-    LinearSmoothedValue<float> rVal;
+    juce::LinearSmoothedValue<float> lVal;
+    juce::LinearSmoothedValue<float> rVal;
     
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (ChannelMuteAudioProcessor)

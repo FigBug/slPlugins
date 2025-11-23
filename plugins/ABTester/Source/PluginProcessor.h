@@ -2,8 +2,6 @@
 
 #include <JuceHeader.h>
 
-using namespace juce::dsp;
-
 
 #define PARAM_AB        "ab"
 #define PARAM_LEVEL     "level"

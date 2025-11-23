@@ -86,7 +86,7 @@ void ExpanderAudioProcessor::processBlock (juce::AudioSampleBuffer& buffer, juce
         while (pos < numSamples)
         {
             auto workBuffer = gin::sliceBuffer (buffer, pos, 1);
-            auto envWorkBuffer = sliceBuffer (envData, pos, 1);
+            auto envWorkBuffer = gin::sliceBuffer (envData, pos, 1);
 
             expander.setInputGain (input->getProcValue (1));
             expander.setOutputGain (output->getProcValue (1));

@@ -11,7 +11,6 @@
 #include "PluginProcessor.h"
 #include "PluginEditor.h"
 
-using namespace gin;
 
 //==============================================================================
 DelayAudioProcessorEditor::DelayAudioProcessorEditor (DelayAudioProcessor& p)
@@ -19,14 +18,14 @@ DelayAudioProcessorEditor::DelayAudioProcessorEditor (DelayAudioProcessor& p)
 {
     for (auto pp : p.getPluginParameters())
     {
-        ParamComponent* pc;
-        
+        gin::ParamComponent* pc;
+
         if (pp == proc.beat)
-            pc = new Select (pp);
+            pc = new gin::Select (pp);
         else if (pp->isOnOff())
-            pc = new Switch (pp);
+            pc = new gin::Switch (pp);
         else
-            pc = new Knob (pp);
+            pc = new gin::Knob (pp);
         
         addAndMakeVisible (pc);
         controls.add (pc);
@@ -57,7 +56,7 @@ void DelayAudioProcessorEditor::resized()
     componentForParam (*proc.mix)->setBounds (getGridArea (4, 0));
 }
 
-void DelayAudioProcessorEditor::valueUpdated (Parameter* param)
+void DelayAudioProcessorEditor::valueUpdated (gin::Parameter* param)
 {
     if (param == proc.sync)
     {

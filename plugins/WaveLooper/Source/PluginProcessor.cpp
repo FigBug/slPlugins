@@ -21,7 +21,7 @@ void WaveLooperAudioProcessor::updateState()
     
 }
 
-void WaveLooperAudioProcessor::setFile (const File& f)
+void WaveLooperAudioProcessor::setFile (const juce::File& f)
 {
     
 }
@@ -37,7 +37,7 @@ void WaveLooperAudioProcessor::releaseResources()
 {
 }
 
-void WaveLooperAudioProcessor::processBlock (AudioSampleBuffer& buffer, MidiBuffer&)
+void WaveLooperAudioProcessor::processBlock (juce::AudioSampleBuffer& buffer, juce::MidiBuffer&)
 {
     if (sample != nullptr)
     {
@@ -51,7 +51,7 @@ bool WaveLooperAudioProcessor::hasEditor() const
     return true;
 }
 
-AudioProcessorEditor* WaveLooperAudioProcessor::createEditor()
+juce::AudioProcessorEditor* WaveLooperAudioProcessor::createEditor()
 {
     return new WaveLooperAudioProcessorEditor (*this);
 }

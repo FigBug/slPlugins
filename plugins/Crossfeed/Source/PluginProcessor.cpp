@@ -32,7 +32,7 @@ void CrossfeedAudioProcessor::releaseResources()
 {
 }
 
-void CrossfeedAudioProcessor::processBlock (AudioSampleBuffer& buffer, MidiBuffer&)
+void CrossfeedAudioProcessor::processBlock (juce::AudioSampleBuffer& buffer, juce::MidiBuffer&)
 {
     enableVal.setTargetValue (enable->getUserValue() > 0.5f ? 1.0f : 0.0f);
     disableVal.setTargetValue (enable->getUserValue() > 0.5f ? 0.0f : 1.0f);
@@ -57,14 +57,14 @@ bool CrossfeedAudioProcessor::hasEditor() const
     return true;
 }
 
-AudioProcessorEditor* CrossfeedAudioProcessor::createEditor()
+juce::AudioProcessorEditor* CrossfeedAudioProcessor::createEditor()
 {
     return new CrossfeedAudioProcessorEditor (*this);
 }
 
 //==============================================================================
 // This creates new instances of the plugin..
-AudioProcessor* JUCE_CALLTYPE createPluginFilter()
+juce::AudioProcessor* JUCE_CALLTYPE createPluginFilter()
 {
     return new CrossfeedAudioProcessor();
 }

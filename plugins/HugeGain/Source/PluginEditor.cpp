@@ -11,7 +11,6 @@
 #include "PluginProcessor.h"
 #include "PluginEditor.h"
 
-using namespace gin;
 
 //==============================================================================
 PluginEditor::PluginEditor (PluginProcessor& p)
@@ -19,12 +18,12 @@ PluginEditor::PluginEditor (PluginProcessor& p)
 {
     for (auto pp : p.getPluginParameters())
     {
-        ParamComponent* pc;
-        
+        gin::ParamComponent* pc;
+
         if (pp->isOnOff())
-            pc = new Switch (pp);
+            pc = new gin::Switch (pp);
         else
-            pc = new Knob (pp);
+            pc = new gin::Knob (pp);
 
         addAndMakeVisible (pc);
         controls.add (pc);

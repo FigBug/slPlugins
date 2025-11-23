@@ -15,8 +15,8 @@ EQ3AudioProcessor::EQ3AudioProcessor()
 
     attack->conversionFunction  = [] (float in) { return in / 1000.0; };
     release->conversionFunction = [] (float in) { return in / 1000.0; };
-    input->conversionFunction   = [] (float in) { return Decibels::decibelsToGain (in); };
-    output->conversionFunction  = [] (float in) { return Decibels::decibelsToGain (in); };
+    input->conversionFunction   = [] (float in) { return juce::Decibels::decibelsToGain (in); };
+    output->conversionFunction  = [] (float in) { return juce::Decibels::decibelsToGain (in); };
 }
 
 EQ3AudioProcessor::~EQ3AudioProcessor()
@@ -50,20 +50,20 @@ void EQ3AudioProcessor::releaseResources()
 {
 }
 
-void EQ3AudioProcessor::processBlock (AudioSampleBuffer& buffer, MidiBuffer&)
+void EQ3AudioProcessor::processBlock (juce::AudioSampleBuffer& buffer, juce::MidiBuffer&)
 {
     int numSamples = buffer.getNumSamples();
 
     gin::ScratchBuffer fifoData (3, numSamples);
     if (getTotalNumInputChannels() == 2)
     {
-        FloatVectorOperations::copy (fifoData.getWritePointer (0), buffer.getReadPointer (0), numSamples);
-        FloatVectorOperations::add (fifoData.getWritePointer (0), buffer.getReadPointer (1), numSamples);
-        FloatVectorOperations::multiply (fifoData.getWritePointer (0), 0.5, numSamples);
+        juce::FloatVectorOperations::copy (fifoData.getWritePointer (0), buffer.getReadPointer (0), numSamples);
+        juce::FloatVectorOperations::add (fifoData.getWritePointer (0), buffer.getReadPointer (1), numSamples);
+        juce::FloatVectorOperations::multiply (fifoData.getWritePointer (0), 0.5, numSamples);
     }
     else
     {
-        FloatVectorOperations::copy (fifoData.getWritePointer (0), buffer.getReadPointer (0), numSamples);
+        juce::FloatVectorOperations::copy (fifoData.getWritePointer (0), buffer.getReadPointer (0), numSamples);
     }
 
     gin::ScratchBuffer envData (1, numSamples);
@@ -74,7 +74,7 @@ void EQ3AudioProcessor::processBlock (AudioSampleBuffer& buffer, MidiBuffer&)
         while (pos < numSamples)
         {
             auto workBuffer = gin::sliceBuffer (buffer, pos, 1);
-            auto envWorkBuffer = sliceBuffer (envData, pos, 1);
+            auto envWorkBuffer = gin::sliceBuffer (envData, pos, 1);
 
             gate.setInputGain (input->getProcValue (1));
             gate.setOutputGain (output->getProcValue (1));
@@ -105,16 +105,16 @@ void EQ3AudioProcessor::processBlock (AudioSampleBuffer& buffer, MidiBuffer&)
 
     if (getTotalNumInputChannels() == 2)
     {
-        FloatVectorOperations::copy (fifoData.getWritePointer (1), buffer.getReadPointer (0), numSamples);
-        FloatVectorOperations::add (fifoData.getWritePointer (1), buffer.getReadPointer (1), numSamples);
-        FloatVectorOperations::multiply (fifoData.getWritePointer (1), 0.5, numSamples);
+        juce::FloatVectorOperations::copy (fifoData.getWritePointer (1), buffer.getReadPointer (0), numSamples);
+        juce::FloatVectorOperations::add (fifoData.getWritePointer (1), buffer.getReadPointer (1), numSamples);
+        juce::FloatVectorOperations::multiply (fifoData.getWritePointer (1), 0.5, numSamples);
     }
     else
     {
-        FloatVectorOperations::copy (fifoData.getWritePointer (1), buffer.getReadPointer (0), numSamples);
+        juce::FloatVectorOperations::copy (fifoData.getWritePointer (1), buffer.getReadPointer (0), numSamples);
     }
 
-    FloatVectorOperations::copy (fifoData.getWritePointer (2), envData.getReadPointer (0), numSamples);
+    juce::FloatVectorOperations::copy (fifoData.getWritePointer (2), envData.getReadPointer (0), numSamples);
 
     if (fifo.getFreeSpace() >= numSamples)
         fifo.write (fifoData);
@@ -126,14 +126,14 @@ bool EQ3AudioProcessor::hasEditor() const
     return true;
 }
 
-AudioProcessorEditor* EQ3AudioProcessor::createEditor()
+juce::AudioProcessorEditor* EQ3AudioProcessor::createEditor()
 {
     return new EQ3AudioProcessorEditor (*this);
 }
 
 //==============================================================================
 // This creates new instances of the plugin..
-AudioProcessor* JUCE_CALLTYPE createPluginFilter()
+juce::AudioProcessor* JUCE_CALLTYPE createPluginFilter()
 {
     return new EQ3AudioProcessor();
 }

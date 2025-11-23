@@ -11,7 +11,6 @@
 #include "PluginProcessor.h"
 #include "PluginEditor.h"
 
-using namespace gin;
 
 //==============================================================================
 CompensatedDelayAudioProcessorEditor::CompensatedDelayAudioProcessorEditor (CompensatedDelayAudioProcessor& p)
@@ -19,14 +18,14 @@ CompensatedDelayAudioProcessorEditor::CompensatedDelayAudioProcessorEditor (Comp
 {
     for (auto pp : p.getPluginParameters())
     {
-        ParamComponent* pc;
-        
+        gin::ParamComponent* pc;
+
         if (pp == proc.mode)
-            pc = new Select (pp);
+            pc = new gin::Select (pp);
         else if (pp->isOnOff())
-            pc = new Switch (pp);
+            pc = new gin::Switch (pp);
         else
-            pc = new Knob (pp);
+            pc = new gin::Knob (pp);
         
         addAndMakeVisible (pc);
         controls.add (pc);
@@ -54,7 +53,7 @@ void CompensatedDelayAudioProcessorEditor::resized()
     componentForParam (*proc.samples)->setBounds (getGridArea (3, 0));
 }
 
-void CompensatedDelayAudioProcessorEditor::valueUpdated (Parameter* param)
+void CompensatedDelayAudioProcessorEditor::valueUpdated (gin::Parameter* param)
 {
     if (param == proc.mode)
     {
