@@ -44,6 +44,9 @@ SFXAudioProcessor::SFXAudioProcessor()
                     40, 41, 42, 43,
                     36, 37, 38, 39 };
 
+
+    init();
+
     // Add pads
     for (int i = 0; i < 16; i++)
     {
@@ -101,8 +104,6 @@ SFXAudioProcessor::SFXAudioProcessor()
 
         p->toPluginParams();
     }
-
-    init();
 }
 
 SFXAudioProcessor::~SFXAudioProcessor()

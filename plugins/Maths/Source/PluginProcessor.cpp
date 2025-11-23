@@ -207,8 +207,8 @@ void MathsAudioProcessor::processBlock (juce::AudioSampleBuffer& buffer, juce::M
         
         if (parameterIntValue (PARAM_LIMITER) != 0)
         {
-            l2 = jlimit (-1.0, 1.0, l2);
-            r2 = jlimit (-1.0, 1.0, r2);
+            l2 = juce::jlimit (-1.0, 1.0, l2);
+            r2 = juce::jlimit (-1.0, 1.0, r2);
         }
         
         lData[i] = float (l2);

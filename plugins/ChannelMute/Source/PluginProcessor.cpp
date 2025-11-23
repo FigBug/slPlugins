@@ -53,8 +53,8 @@ void ChannelMuteAudioProcessor::processBlock (juce::AudioSampleBuffer& buffer, j
     lVal.setTargetValue (parameterIntValue (PARAM_MUTE_L) ? 0.0f : juce::Decibels::decibelsToGain (parameterValue (PARAM_LEVEL_L)));
     rVal.setTargetValue (parameterIntValue (PARAM_MUTE_R) ? 0.0f : juce::Decibels::decibelsToGain (parameterValue (PARAM_LEVEL_R)));
 
-    applyGain (buffer, 0, lVal);
-    applyGain (buffer, 1, rVal);
+    gin::applyGain (buffer, 0, lVal);
+    gin::applyGain (buffer, 1, rVal);
 }
 
 //==============================================================================

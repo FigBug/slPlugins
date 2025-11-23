@@ -15,10 +15,10 @@ public:
 
     //==============================================================================
     void resized() override;
-    Rectangle<int> getGridArea (int x, int y, int w = 1, int h = 1) override;
+    juce::Rectangle<int> getGridArea (int x, int y, int w = 1, int h = 1) override;
 
 private:
-    CriticalSection lock;
+    juce::CriticalSection lock;
     void updateScope();
     void valueUpdated (gin::Parameter*) override { updateScope(); }
     

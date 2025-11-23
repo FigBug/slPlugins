@@ -5,8 +5,8 @@
 MathsAudioProcessorEditor::MathsAudioProcessorEditor (MathsAudioProcessor& p)
     : gin::ProcessorEditor (p), mathsProcessor (p)
 {
-    juce::Font f (Font::getDefaultMonospacedFontName(), 12, Font::plain);
-    
+    juce::Font f (juce::Font::getDefaultMonospacedFontName(), 12, juce::Font::plain);
+
     l.setFont (f);
     r.setFont (f);
     a.setFont (f);
@@ -31,10 +31,10 @@ MathsAudioProcessorEditor::MathsAudioProcessorEditor (MathsAudioProcessor& p)
     a.addListener (this);
     b.addListener (this);
 
-    l.setText (p.lEquation, dontSendNotification);
-    r.setText (p.rEquation, dontSendNotification);
-    a.setText (p.aEquation, dontSendNotification);
-    b.setText (p.bEquation, dontSendNotification);
+    l.setText (p.lEquation, juce::dontSendNotification);
+    r.setText (p.rEquation, juce::dontSendNotification);
+    a.setText (p.aEquation, juce::dontSendNotification);
+    b.setText (p.bEquation, juce::dontSendNotification);
 
     errors.setJustificationType (juce::Justification::centred);
 
@@ -68,13 +68,13 @@ MathsAudioProcessorEditor::~MathsAudioProcessorEditor()
 //==============================================================================
 void MathsAudioProcessorEditor::refresh()
 {
-    l.setText (mathsProcessor.lEquation, dontSendNotification);
-    r.setText (mathsProcessor.rEquation, dontSendNotification);
-    a.setText (mathsProcessor.aEquation, dontSendNotification);
-    b.setText (mathsProcessor.bEquation, dontSendNotification);
+    l.setText (mathsProcessor.lEquation, juce::dontSendNotification);
+    r.setText (mathsProcessor.rEquation, juce::dontSendNotification);
+    a.setText (mathsProcessor.aEquation, juce::dontSendNotification);
+    b.setText (mathsProcessor.bEquation, juce::dontSendNotification);
 
-    String err;
-    auto doErr = [&] (String title, String msg)
+    juce::String err;
+    auto doErr = [&] (juce::String title, juce::String msg)
     {
         if (msg.isNotEmpty())
             err += title + " " + msg + " ";
@@ -85,7 +85,7 @@ void MathsAudioProcessorEditor::refresh()
     doErr ("A:", mathsProcessor.aError);
     doErr ("B:", mathsProcessor.bError);
 
-    errors.setText (err, dontSendNotification);
+    errors.setText (err, juce::dontSendNotification);
 }
 
 void MathsAudioProcessorEditor::resized()
@@ -117,7 +117,7 @@ void MathsAudioProcessorEditor::resized()
     errors.setBounds (rcError.reduced (4));
 }
 
-void MathsAudioProcessorEditor::textEditorReturnKeyPressed (TextEditor& ed)
+void MathsAudioProcessorEditor::textEditorReturnKeyPressed (juce::TextEditor& ed)
 {
     if (&ed == &l)
     {
@@ -145,19 +145,19 @@ void MathsAudioProcessorEditor::textEditorReturnKeyPressed (TextEditor& ed)
     }
 }
 
-void MathsAudioProcessorEditor::textEditorEscapeKeyPressed (TextEditor& ed)
+void MathsAudioProcessorEditor::textEditorEscapeKeyPressed (juce::TextEditor& ed)
 {
     if (&ed == &l)
-        l.setText (mathsProcessor.lEquation, dontSendNotification);
+        l.setText (mathsProcessor.lEquation, juce::dontSendNotification);
     else if (&ed == &r)
-        r.setText (mathsProcessor.rEquation, dontSendNotification);
+        r.setText (mathsProcessor.rEquation, juce::dontSendNotification);
     else if (&ed == &r)
-        a.setText (mathsProcessor.aEquation, dontSendNotification);
+        a.setText (mathsProcessor.aEquation, juce::dontSendNotification);
     else if (&ed == &r)
-        b.setText (mathsProcessor.bEquation, dontSendNotification);
+        b.setText (mathsProcessor.bEquation, juce::dontSendNotification);
 }
 
-void MathsAudioProcessorEditor::textEditorFocusLost (TextEditor& ed)
+void MathsAudioProcessorEditor::textEditorFocusLost (juce::TextEditor& ed)
 {
     textEditorReturnKeyPressed (ed);
 }

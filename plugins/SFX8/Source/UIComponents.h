@@ -438,7 +438,7 @@ private:
         m.addItem (juce::PopupMenu::Item ("Export Sound...").setAction ([this] { exportSound(); }));
         m.addItem (juce::PopupMenu::Item ("Export .WAV...").setAction ([this] { exportWav(); }));
 
-        m.showMenuAsync ({}, {});
+        m.showMenuAsync ({});
     }
 
     void toggleMidiLearn()
@@ -448,74 +448,94 @@ private:
 
     void importSound()
     {
-        juce::FileChooser fc ("Load", {}, "*.sfx8sound");
-        if (fc.browseForFileToOpen())
+        fileChooser = std::make_unique<juce::FileChooser> ("Load", juce::File(), "*.sfx8sound");
+        
+        fileChooser->launchAsync (juce::FileBrowserComponent::openMode | juce::FileBrowserComponent::canSelectFiles,
+                                 [this] (const juce::FileChooser& fc)
         {
-            auto json = juce::JSON::parse (fc.getResult().loadFileAsString());
-            if (auto obj = json.getDynamicObject())
+            auto file = fc.getResult();
+            if (file.existsAsFile())
             {
-                for (auto nv : obj->getProperties())
+                auto json = juce::JSON::parse (file.loadFileAsString());
+                if (auto obj = json.getDynamicObject())
                 {
-                    auto uid = nv.name.toString();
-                    if (uid == "name")
-                        pad.name = nv.value.toString();
-                    else
-                        pad.params.setParam (uid.toRawUTF8(), (float) nv.value);
+                    for (auto nv : obj->getProperties())
+                    {
+                        auto uid = nv.name.toString();
+                        if (uid == "name")
+                            pad.name = nv.value.toString();
+                        else
+                            pad.params.setParam (uid.toRawUTF8(), (float) nv.value);
+                    }
                 }
-            }
 
-            pad.toPluginParams();
-        }
+                pad.toPluginParams();
+            }
+        });
     }
 
     void exportSound()
     {
-        juce::FileChooser fc ("Save", {}, "*.sfx8sound");
-        if (fc.browseForFileToSave (true))
+        fileChooser = std::make_unique<juce::FileChooser> ("Save", juce::File(), "*.sfx8sound");
+        
+        fileChooser->launchAsync (juce::FileBrowserComponent::saveMode | juce::FileBrowserComponent::canSelectFiles | juce::FileBrowserComponent::warnAboutOverwriting,
+                                 [this] (const juce::FileChooser& fc)
         {
-            auto obj = new juce::DynamicObject();
+            auto file = fc.getResult();
+            if (file != juce::File())
+            {
+                auto obj = new juce::DynamicObject();
 
-            for (auto pid : pad.params.getParams())
-                obj->setProperty (juce::String (pid.c_str()), pad.params.getParam (pid));
-            obj->setProperty ("name", pad.name.get());
+                for (auto pid : pad.params.getParams())
+                    obj->setProperty (juce::String (pid.c_str()), pad.params.getParam (pid));
+                obj->setProperty ("name", pad.name.get());
 
-            auto text = juce::JSON::toString (juce::var (obj));
-            fc.getResult().replaceWithText (text);
-        }
+                auto text = juce::JSON::toString (juce::var (obj));
+                file.replaceWithText (text);
+            }
+        });
     }
 
     void exportWav()
     {
-        juce::FileChooser fc ("Save", {}, "*.wav");
-        if (fc.browseForFileToSave (true))
+        fileChooser = std::make_unique<juce::FileChooser> ("Save", juce::File(), "*.wav");
+        
+        fileChooser->launchAsync (juce::FileBrowserComponent::saveMode | juce::FileBrowserComponent::canSelectFiles | juce::FileBrowserComponent::warnAboutOverwriting,
+                                 [this] (const juce::FileChooser& fc)
         {
-            SfxrSynth sfxr (44100.0f);
-            pad.fromPluginParams();
-            sfxr.setParams (pad.params);
-            sfxr.reset (true);
-
-            juce::AudioSampleBuffer buffer (1, 128);
-            buffer.clear();
-
-            if (auto os = fc.getResult().createOutputStream())
+            auto file = fc.getResult();
+            if (file != juce::File())
             {
-                std::unique_ptr<juce::AudioFormatWriter> writer (juce::WavAudioFormat().createWriterFor (os.release(), 44100, 1, 16, {}, 0));
+                SfxrSynth sfxr (44100.0f);
+                pad.fromPluginParams();
+                sfxr.setParams (pad.params);
+                sfxr.reset (true);
 
-                if (writer != nullptr)
+                juce::AudioSampleBuffer buffer (1, 128);
+                buffer.clear();
+
+                if (auto os = file.createOutputStream())
                 {
-                    while (! sfxr.synthWave (buffer.getWritePointer (0), 0, 128))
+                    std::unique_ptr<juce::AudioFormatWriter> writer (juce::WavAudioFormat().createWriterFor (os.release(), 44100, 1, 16, {}, 0));
+
+                    if (writer != nullptr)
                     {
-                        writer->writeFromAudioSampleBuffer (buffer, 0, 128);
-                        buffer.clear();
+                        while (! sfxr.synthWave (buffer.getWritePointer (0), 0, 128))
+                        {
+                            writer->writeFromAudioSampleBuffer (buffer, 0, 128);
+                            buffer.clear();
+                        }
                     }
                 }
             }
-        }
+        });
     }
 
     SFXAudioProcessor& processor;
     Pad& pad;
     gin::AsyncLambdaValueTreeListener listener {processor.state};
+
+    std::unique_ptr<juce::FileChooser> fileChooser;
 
     MenuButton menu;
     juce::TextEditor name, note;

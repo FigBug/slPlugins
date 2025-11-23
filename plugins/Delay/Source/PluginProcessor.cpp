@@ -68,7 +68,7 @@ void DelayAudioProcessor::updateInternalParams()
 {
     if (sync->isOn())
     {
-        auto& duration = NoteDuration::getNoteDurations()[(size_t)beat->getUserValueInt()];
+        auto& duration = gin::NoteDuration::getNoteDurations()[(size_t)beat->getUserValueInt()];
         delay->setUserValue (duration.toSeconds (getPlayHead()));
     }
     else
@@ -88,7 +88,7 @@ void DelayAudioProcessor::processBlock (juce::AudioSampleBuffer& buffer, juce::M
         
         while (pos < numSamples)
         {
-            auto workBuffer = sliceBuffer (buffer, pos, 1);
+            auto workBuffer = gin::sliceBuffer (buffer, pos, 1);
             
             stereoDelay.setParams (delay->getProcValue (1), mix->getProcValue (1),
                                    fb->getProcValue (1), cf->getProcValue (1));

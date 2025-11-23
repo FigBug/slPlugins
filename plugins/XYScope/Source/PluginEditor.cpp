@@ -39,16 +39,16 @@ PluginEditor::~PluginEditor()
 
 //==============================================================================
 
-Rectangle<int> PluginEditor::getGridArea (int x, int y, int w, int h)
+juce::Rectangle<int> PluginEditor::getGridArea (int x, int y, int w, int h)
 {
-    return Rectangle<int> (getWidth() - inset - cx + x * cx, headerHeight + y * cy + inset, w * cx, h * cy);
+    return juce::Rectangle<int> (getWidth() - inset - cx + x * cx, headerHeight + y * cy + inset, w * cx, h * cy);
 }
 
 void PluginEditor::resized()
 {
     gin::ProcessorEditor::resized();
 
-    auto rc = Rectangle<int> (inset, headerHeight + inset, getWidth() - cx - 2 * inset, getHeight() - headerHeight - 2 * inset);
+    auto rc = juce::Rectangle<int> (inset, headerHeight + inset, getWidth() - cx - 2 * inset, getHeight() - headerHeight - 2 * inset);
     
     scope.setBounds (rc);
     

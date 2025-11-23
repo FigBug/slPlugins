@@ -45,7 +45,7 @@ void CompensatedDelayAudioProcessor::updateLatency()
     if (mode->getUserValueInt() == 0)
         setLatencySamples (sampPos);
     else
-        setLatencySamples (roundToInt (timePos * getSampleRate()));
+        setLatencySamples (juce::roundToInt (timePos * getSampleRate()));
 }
 
 //==============================================================================

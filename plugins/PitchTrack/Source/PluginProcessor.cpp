@@ -22,7 +22,7 @@ void PitchTrackAudioProcessor::prepareToPlay (double sampleRate_, int blockSize_
     
     auto cfg = cycfi::q::signal_conditioner::config();
     conditioner = std::make_unique<cycfi::q::signal_conditioner> (cfg, low_e, high_e, std::uint32_t ( sampleRate_ ) );
-    detector = std::make_unique<cycfi::q::pitch_detector> (low_e, high_e, std::uint32_t (sampleRate_), cycfi::q::literals::operator""_dB(-45));
+    detector = std::make_unique<cycfi::q::pitch_detector> (low_e, high_e, std::uint32_t (sampleRate_), cycfi::q::literals::operator""_dB((long double)-45.0));
 
     yin = std::make_unique<adamski::PitchYIN> (int (sampleRate_), 512);
     mpm = std::make_unique<adamski::PitchMPM> (int (sampleRate_), 512);
