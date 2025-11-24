@@ -29,29 +29,29 @@ PluginEditor::PluginEditor (PluginProcessor& p)
 
     scopeL.setColour (drow::Spectroscope::lineColourId, findColour (gin::PluginLookAndFeel::grey45ColourId));
     scopeL.setColour (drow::Spectroscope::backgroundColourId, juce::Colours::transparentBlack);
-    scopeL.setColour (drow::Spectroscope::traceColourId, Colours::white.overlaidWith (Colours::blue.withAlpha (0.3f)));
+    scopeL.setColour (drow::Spectroscope::traceColourId, juce::Colours::white.overlaidWith (juce::Colours::blue.withAlpha (0.3f)));
     scopeR.setColour (drow::Spectroscope::lineColourId, findColour (gin::PluginLookAndFeel::grey45ColourId));
     scopeR.setColour (drow::Spectroscope::backgroundColourId, juce::Colours::transparentBlack);
-    scopeR.setColour (drow::Spectroscope::traceColourId, Colours::white.overlaidWith (Colours::yellow.withAlpha (0.3f)));
+    scopeR.setColour (drow::Spectroscope::traceColourId, juce::Colours::white.overlaidWith (juce::Colours::yellow.withAlpha (0.3f)));
 
     sonogramL.setColour (drow::Sonogram::lineColourId, findColour (gin::PluginLookAndFeel::grey45ColourId));
     sonogramL.setColour (drow::Sonogram::backgroundColourId, juce::Colours::black);
-    sonogramL.setColour (drow::Sonogram::traceColourId, Colours::white);
+    sonogramL.setColour (drow::Sonogram::traceColourId, juce::Colours::white);
     sonogramR.setColour (drow::Sonogram::lineColourId, findColour (gin::PluginLookAndFeel::grey45ColourId));
     sonogramR.setColour (drow::Sonogram::backgroundColourId, juce::Colours::black);
-    sonogramR.setColour (drow::Sonogram::traceColourId, Colours::white);
+    sonogramR.setColour (drow::Sonogram::traceColourId, juce::Colours::white);
 
     for (auto pp : p.getPluginParameters())
     {
-        ParamComponent* pc;
-        
+        gin::ParamComponent* pc;
+
         if (pp->getUid() == PARAM_MODE)
-            pc = new Select (pp);
+            pc = new gin::Select (pp);
         else if (pp->isOnOff())
-            pc = new Switch (pp);
+            pc = new gin::Switch (pp);
         else
-            pc = new Knob (pp);
-        
+            pc = new gin::Knob (pp);
+
         addAndMakeVisible (pc);
         controls.add (pc);
     }
@@ -70,30 +70,30 @@ PluginEditor::~PluginEditor()
     for (auto pp : proc.getPluginParameters())
         pp->removeListener (this);
     
-    ScopedLock sl (proc.lock);
+    juce::ScopedLock sl (proc.lock);
     proc.editor = nullptr;
 }
 
 //==============================================================================
 
-Rectangle<int> PluginEditor::getGridArea (int x, int y, int w, int h)
+juce::Rectangle<int> PluginEditor::getGridArea (int x, int y, int w, int h)
 {
-    return Rectangle<int> (getWidth() - inset - cx + x * cx, headerHeight + y * cy + inset, w * cx, h * cy);
+    return juce::Rectangle<int> (getWidth() - inset - cx + x * cx, headerHeight + y * cy + inset, w * cx, h * cy);
 }
 
 void PluginEditor::resized()
 {
     gin::ProcessorEditor::resized();
 
-    auto rc = Rectangle<int> (inset, headerHeight + inset, getWidth() - cx - 2 * inset - 10, getHeight() - headerHeight - 2 * inset);
-    
+    auto rc = juce::Rectangle<int> (inset, headerHeight + inset, getWidth() - cx - 2 * inset - 10, getHeight() - headerHeight - 2 * inset);
+
     scopeL.setBounds (rc);
     scopeR.setBounds (rc);
 
     if (processor.getTotalNumInputChannels() == 1)
     {
         sonogramL.setBounds (rc);
-        sonogramR.setBounds (Rectangle<int>());
+        sonogramR.setBounds (juce::Rectangle<int>());
     }
     else
     {
