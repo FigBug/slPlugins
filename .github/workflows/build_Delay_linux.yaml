@@ -3,7 +3,7 @@ on:
   push:
     branches:
       - master
-      - release
+      - release/delay
     paths:
       - 'plugins/Delay/**'
       - 'modules/**'
@@ -46,7 +46,7 @@ jobs:
 
           # Upload to socalabs on release branch
           BRANCH="${GITHUB_REF##*/}"
-          if [ "$BRANCH" = "release" ]; then
+          if [ "$BRANCH" = "release/delay" ]; then
             curl -F "files=@Delay_Linux.zip" "https://socalabs.com/files/set.php?key=$APIKEY"
           fi
         shell: bash

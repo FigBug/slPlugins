@@ -3,7 +3,7 @@ on:
   push:
     branches:
       - master
-      - release
+      - release/compensateddelay
     paths:
       - 'plugins/CompensatedDelay/**'
       - 'modules/**'
@@ -78,7 +78,7 @@ jobs:
 
           # Upload to socalabs on release branch
           BRANCH="${GITHUB_REF##*/}"
-          if [ "$BRANCH" = "release" ]; then
+          if [ "$BRANCH" = "release/compensateddelay" ]; then
             curl -F "files=@CompensatedDelay_Mac.zip" "https://socalabs.com/files/set.php?key=$APIKEY"
           fi
         shell: bash

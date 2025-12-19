@@ -2,7 +2,8 @@ cmake_minimum_required(VERSION 3.24.0)
 
 # Plugin settings
 set(PLUGIN_NAME XYScope)
-set(PLUGIN_VERSION 1.0.0)
+file(READ ${CMAKE_CURRENT_SOURCE_DIR}/VERSION PLUGIN_VERSION)
+string(STRIP ${PLUGIN_VERSION} PLUGIN_VERSION)
 set(BUNDLE_ID com.socalabs.XYScope)
 set(PLUGIN_CODE SLxy)
 set(AU_ID slXYScopeAU)

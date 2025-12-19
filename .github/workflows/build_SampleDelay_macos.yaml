@@ -3,7 +3,7 @@ on:
   push:
     branches:
       - master
-      - release
+      - release/sampledelay
     paths:
       - 'plugins/SampleDelay/**'
       - 'modules/**'
@@ -78,7 +78,7 @@ jobs:
 
           # Upload to socalabs on release branch
           BRANCH="${GITHUB_REF##*/}"
-          if [ "$BRANCH" = "release" ]; then
+          if [ "$BRANCH" = "release/sampledelay" ]; then
             curl -F "files=@SampleDelay_Mac.zip" "https://socalabs.com/files/set.php?key=$APIKEY"
           fi
         shell: bash

@@ -3,7 +3,7 @@ on:
   push:
     branches:
       - master
-      - release
+      - release/crossfeed
     paths:
       - 'plugins/Crossfeed/**'
       - 'modules/**'
@@ -42,7 +42,7 @@ jobs:
 
           # Upload to socalabs on release branch
           $BRANCH = "${{github.ref}}" -replace 'refs/heads/', ''
-          if ($BRANCH -eq "release") {
+          if ($BRANCH -eq "release/crossfeed") {
             curl.exe -F "files=@Crossfeed_Win.zip" "https://socalabs.com/files/set.php?key=$env:APIKEY"
           }
         shell: pwsh

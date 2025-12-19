@@ -3,7 +3,7 @@ on:
   push:
     branches:
       - master
-      - release
+      - release/expander
     paths:
       - 'plugins/Expander/**'
       - 'modules/**'
@@ -78,7 +78,7 @@ jobs:
 
           # Upload to socalabs on release branch
           BRANCH="${GITHUB_REF##*/}"
-          if [ "$BRANCH" = "release" ]; then
+          if [ "$BRANCH" = "release/expander" ]; then
             curl -F "files=@Expander_Mac.zip" "https://socalabs.com/files/set.php?key=$APIKEY"
           fi
         shell: bash

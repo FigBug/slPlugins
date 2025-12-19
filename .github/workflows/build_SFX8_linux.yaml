@@ -3,7 +3,7 @@ on:
   push:
     branches:
       - master
-      - release
+      - release/sfx8
     paths:
       - 'plugins/SFX8/**'
       - 'modules/**'
@@ -46,7 +46,7 @@ jobs:
 
           # Upload to socalabs on release branch
           BRANCH="${GITHUB_REF##*/}"
-          if [ "$BRANCH" = "release" ]; then
+          if [ "$BRANCH" = "release/sfx8" ]; then
             curl -F "files=@SFX8_Linux.zip" "https://socalabs.com/files/set.php?key=$APIKEY"
           fi
         shell: bash

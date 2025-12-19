@@ -2,7 +2,8 @@ cmake_minimum_required(VERSION 3.24.0)
 
 # Plugin settings
 set(PLUGIN_NAME HugeGain)
-set(PLUGIN_VERSION 1.1.0)
+file(READ ${CMAKE_CURRENT_SOURCE_DIR}/VERSION PLUGIN_VERSION)
+string(STRIP ${PLUGIN_VERSION} PLUGIN_VERSION)
 set(BUNDLE_ID com.socalabs.HugeGain)
 set(PLUGIN_CODE SLhg)
 set(AU_ID slHugeGainAU)
