@@ -3,26 +3,8 @@
 #include <random>
 
 //==============================================================================
-static juce::String onOffTextFunction (const gin::Parameter&, float v)
-{
-    return v > 0.0f ? "On" : "Off";
-}
-
-static juce::String modeTextFunction (const gin::Parameter&, float v)
-{
-    switch (int (v))
-    {
-        case 0:  return "Spectroscope";
-        case 1:  return "Sonogram";
-        default: return "";
-    }
-}
-
-//==============================================================================
 PluginProcessor::PluginProcessor()
 {
-    addExtParam (PARAM_MODE, "Mode", "", "", {0.0f, 1.0f, 1.0f, 1.0f}, 0.0f, 0.0f, modeTextFunction);
-    addExtParam (PARAM_LOG,  "Log",  "", "", {0.0f, 1.0f, 1.0f, 1.0f}, 0.0f, 0.0f, onOffTextFunction);
 }
 
 PluginProcessor::~PluginProcessor()

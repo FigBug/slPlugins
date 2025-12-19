@@ -12,9 +12,8 @@ if(NOT TARGET juce::juce_core)
 endif()
 
 # Set VST2 SDK path only if not already set
-if(NOT DEFINED SLPLUGINS_VST2_SDK_SET)
+if(NOT TARGET juce_vst2_sdk)
     juce_set_vst2_sdk_path(${MODULES_DIR}/plugin_sdk/vstsdk2.4)
-    set(SLPLUGINS_VST2_SDK_SET TRUE CACHE INTERNAL "VST2 SDK path has been set")
 endif()
 
 # Add JUCE modules only if not already added
@@ -31,6 +30,7 @@ if(NOT TARGET gin)
     juce_add_module(${MODULES_DIR}/gin/modules/gin_network)
     juce_add_module(${MODULES_DIR}/gin/modules/gin_plugin)
     juce_add_module(${MODULES_DIR}/gin/modules/gin_graphics)
+    juce_add_module(${MODULES_DIR}/gin/modules/gin_standaloneplugin)
 endif()
 
 if(NOT TARGET pitch_detector)

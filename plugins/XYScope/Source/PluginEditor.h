@@ -6,8 +6,7 @@
 //==============================================================================
 /**
 */
-class PluginEditor  : public gin::ProcessorEditor,
-                      private gin::Parameter::ParameterListener
+class PluginEditor  : public gin::ProcessorEditor
 {
 public:
     PluginEditor (PluginProcessor&);
@@ -15,13 +14,10 @@ public:
 
     //==============================================================================
     void resized() override;
-    juce::Rectangle<int> getGridArea (int x, int y, int w = 1, int h = 1) override;
 
 private:
     juce::CriticalSection lock;
-    void updateScope();
-    void valueUpdated (gin::Parameter*) override { updateScope(); }
-    
+
     PluginProcessor& proc;
     gin::XYScope scope { proc.fifo };
 
