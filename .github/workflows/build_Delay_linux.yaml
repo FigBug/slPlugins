@@ -3,7 +3,8 @@ on:
   push:
     branches:
       - master
-      - release/delay
+    tags:
+      - 'delay_v*'
     paths:
       - 'plugins/Delay/**'
       - 'modules/**'
@@ -44,9 +45,8 @@ jobs:
           # Create zip
           zip -r Delay_Linux.zip vst/Delay.so vst3/Delay.vst3 lv2/Delay.lv2
 
-          # Upload to socalabs on release branch
-          BRANCH="${GITHUB_REF##*/}"
-          if [ "$BRANCH" = "release/delay" ]; then
+          # Upload to socalabs on release tag
+          if [[ "$GITHUB_REF" == refs/tags/delay_v* ]]; then
             curl -F "files=@Delay_Linux.zip" "https://socalabs.com/files/set.php?key=$APIKEY"
           fi
         shell: bash

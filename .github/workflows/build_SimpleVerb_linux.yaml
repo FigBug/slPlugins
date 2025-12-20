@@ -3,7 +3,8 @@ on:
   push:
     branches:
       - master
-      - release/simpleverb
+    tags:
+      - 'simpleverb_v*'
     paths:
       - 'plugins/SimpleVerb/**'
       - 'modules/**'
@@ -44,9 +45,8 @@ jobs:
           # Create zip
           zip -r SimpleVerb_Linux.zip vst/SimpleVerb.so vst3/SimpleVerb.vst3 lv2/SimpleVerb.lv2
 
-          # Upload to socalabs on release branch
-          BRANCH="${GITHUB_REF##*/}"
-          if [ "$BRANCH" = "release/simpleverb" ]; then
+          # Upload to socalabs on release tag
+          if [[ "$GITHUB_REF" == refs/tags/simpleverb_v* ]]; then
             curl -F "files=@SimpleVerb_Linux.zip" "https://socalabs.com/files/set.php?key=$APIKEY"
           fi
         shell: bash

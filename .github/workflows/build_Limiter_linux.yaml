@@ -3,7 +3,8 @@ on:
   push:
     branches:
       - master
-      - release/limiter
+    tags:
+      - 'limiter_v*'
     paths:
       - 'plugins/Limiter/**'
       - 'modules/**'
@@ -44,9 +45,8 @@ jobs:
           # Create zip
           zip -r Limiter_Linux.zip vst/Limiter.so vst3/Limiter.vst3 lv2/Limiter.lv2
 
-          # Upload to socalabs on release branch
-          BRANCH="${GITHUB_REF##*/}"
-          if [ "$BRANCH" = "release/limiter" ]; then
+          # Upload to socalabs on release tag
+          if [[ "$GITHUB_REF" == refs/tags/limiter_v* ]]; then
             curl -F "files=@Limiter_Linux.zip" "https://socalabs.com/files/set.php?key=$APIKEY"
           fi
         shell: bash

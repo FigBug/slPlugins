@@ -3,7 +3,8 @@ on:
   push:
     branches:
       - master
-      - release/sampledelay
+    tags:
+      - 'sampledelay_v*'
     paths:
       - 'plugins/SampleDelay/**'
       - 'modules/**'
@@ -40,9 +41,8 @@ jobs:
           # Create zip
           7z a SampleDelay_Win.zip vst/SampleDelay.dll vst3/SampleDelay.vst3
 
-          # Upload to socalabs on release branch
-          $BRANCH = "${{github.ref}}" -replace 'refs/heads/', ''
-          if ($BRANCH -eq "release/sampledelay") {
+          # Upload to socalabs on release tag
+          if ("${{github.ref}}" -like "refs/tags/sampledelay_v*") {
             curl.exe -F "files=@SampleDelay_Win.zip" "https://socalabs.com/files/set.php?key=$env:APIKEY"
           }
         shell: pwsh

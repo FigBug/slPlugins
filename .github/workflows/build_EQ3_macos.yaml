@@ -3,7 +3,8 @@ on:
   push:
     branches:
       - master
-      - release/eq3
+    tags:
+      - 'eq3_v*'
     paths:
       - 'plugins/EQ3/**'
       - 'modules/**'
@@ -76,9 +77,8 @@ jobs:
             zip -r EQ3_Mac.zip vst/EQ3.vst vst3/EQ3.vst3 au/EQ3.component
           fi
 
-          # Upload to socalabs on release branch
-          BRANCH="${GITHUB_REF##*/}"
-          if [ "$BRANCH" = "release/eq3" ]; then
+          # Upload to socalabs on release tag
+          if [[ "$GITHUB_REF" == refs/tags/eq3_v* ]]; then
             curl -F "files=@EQ3_Mac.zip" "https://socalabs.com/files/set.php?key=$APIKEY"
           fi
         shell: bash

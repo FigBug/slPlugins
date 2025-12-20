@@ -3,7 +3,8 @@ on:
   push:
     branches:
       - master
-      - release/expander
+    tags:
+      - 'expander_v*'
     paths:
       - 'plugins/Expander/**'
       - 'modules/**'
@@ -40,9 +41,8 @@ jobs:
           # Create zip
           7z a Expander_Win.zip vst/Expander.dll vst3/Expander.vst3
 
-          # Upload to socalabs on release branch
-          $BRANCH = "${{github.ref}}" -replace 'refs/heads/', ''
-          if ($BRANCH -eq "release/expander") {
+          # Upload to socalabs on release tag
+          if ("${{github.ref}}" -like "refs/tags/expander_v*") {
             curl.exe -F "files=@Expander_Win.zip" "https://socalabs.com/files/set.php?key=$env:APIKEY"
           }
         shell: pwsh

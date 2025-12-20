@@ -3,7 +3,8 @@ on:
   push:
     branches:
       - master
-      - release/maths
+    tags:
+      - 'maths_v*'
     paths:
       - 'plugins/Maths/**'
       - 'modules/**'
@@ -44,9 +45,8 @@ jobs:
           # Create zip
           zip -r Maths_Linux.zip vst/Maths.so vst3/Maths.vst3 lv2/Maths.lv2
 
-          # Upload to socalabs on release branch
-          BRANCH="${GITHUB_REF##*/}"
-          if [ "$BRANCH" = "release/maths" ]; then
+          # Upload to socalabs on release tag
+          if [[ "$GITHUB_REF" == refs/tags/maths_v* ]]; then
             curl -F "files=@Maths_Linux.zip" "https://socalabs.com/files/set.php?key=$APIKEY"
           fi
         shell: bash

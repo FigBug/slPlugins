@@ -3,7 +3,8 @@ on:
   push:
     branches:
       - master
-      - release/limiter
+    tags:
+      - 'limiter_v*'
     paths:
       - 'plugins/Limiter/**'
       - 'modules/**'
@@ -76,9 +77,8 @@ jobs:
             zip -r Limiter_Mac.zip vst/Limiter.vst vst3/Limiter.vst3 au/Limiter.component
           fi
 
-          # Upload to socalabs on release branch
-          BRANCH="${GITHUB_REF##*/}"
-          if [ "$BRANCH" = "release/limiter" ]; then
+          # Upload to socalabs on release tag
+          if [[ "$GITHUB_REF" == refs/tags/limiter_v* ]]; then
             curl -F "files=@Limiter_Mac.zip" "https://socalabs.com/files/set.php?key=$APIKEY"
           fi
         shell: bash

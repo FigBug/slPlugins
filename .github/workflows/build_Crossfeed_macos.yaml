@@ -3,7 +3,8 @@ on:
   push:
     branches:
       - master
-      - release/crossfeed
+    tags:
+      - 'crossfeed_v*'
     paths:
       - 'plugins/Crossfeed/**'
       - 'modules/**'
@@ -76,9 +77,8 @@ jobs:
             zip -r Crossfeed_Mac.zip vst/Crossfeed.vst vst3/Crossfeed.vst3 au/Crossfeed.component
           fi
 
-          # Upload to socalabs on release branch
-          BRANCH="${GITHUB_REF##*/}"
-          if [ "$BRANCH" = "release/crossfeed" ]; then
+          # Upload to socalabs on release tag
+          if [[ "$GITHUB_REF" == refs/tags/crossfeed_v* ]]; then
             curl -F "files=@Crossfeed_Mac.zip" "https://socalabs.com/files/set.php?key=$APIKEY"
           fi
         shell: bash

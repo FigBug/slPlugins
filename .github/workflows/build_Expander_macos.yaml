@@ -3,7 +3,8 @@ on:
   push:
     branches:
       - master
-      - release/expander
+    tags:
+      - 'expander_v*'
     paths:
       - 'plugins/Expander/**'
       - 'modules/**'
@@ -76,9 +77,8 @@ jobs:
             zip -r Expander_Mac.zip vst/Expander.vst vst3/Expander.vst3 au/Expander.component
           fi
 
-          # Upload to socalabs on release branch
-          BRANCH="${GITHUB_REF##*/}"
-          if [ "$BRANCH" = "release/expander" ]; then
+          # Upload to socalabs on release tag
+          if [[ "$GITHUB_REF" == refs/tags/expander_v* ]]; then
             curl -F "files=@Expander_Mac.zip" "https://socalabs.com/files/set.php?key=$APIKEY"
           fi
         shell: bash

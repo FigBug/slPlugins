@@ -3,7 +3,8 @@ on:
   push:
     branches:
       - master
-      - release/xyscope
+    tags:
+      - 'xyscope_v*'
     paths:
       - 'plugins/XYScope/**'
       - 'modules/**'
@@ -76,9 +77,8 @@ jobs:
             zip -r XYScope_Mac.zip vst/XYScope.vst vst3/XYScope.vst3 au/XYScope.component
           fi
 
-          # Upload to socalabs on release branch
-          BRANCH="${GITHUB_REF##*/}"
-          if [ "$BRANCH" = "release/xyscope" ]; then
+          # Upload to socalabs on release tag
+          if [[ "$GITHUB_REF" == refs/tags/xyscope_v* ]]; then
             curl -F "files=@XYScope_Mac.zip" "https://socalabs.com/files/set.php?key=$APIKEY"
           fi
         shell: bash

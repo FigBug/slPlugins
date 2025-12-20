@@ -3,7 +3,8 @@ on:
   push:
     branches:
       - master
-      - release/spectrumanalyzer
+    tags:
+      - 'spectrumanalyzer_v*'
     paths:
       - 'plugins/SpectrumAnalyzer/**'
       - 'modules/**'
@@ -40,9 +41,8 @@ jobs:
           # Create zip
           7z a SpectrumAnalyzer_Win.zip vst/SpectrumAnalyzer.dll vst3/SpectrumAnalyzer.vst3
 
-          # Upload to socalabs on release branch
-          $BRANCH = "${{github.ref}}" -replace 'refs/heads/', ''
-          if ($BRANCH -eq "release/spectrumanalyzer") {
+          # Upload to socalabs on release tag
+          if ("${{github.ref}}" -like "refs/tags/spectrumanalyzer_v*") {
             curl.exe -F "files=@SpectrumAnalyzer_Win.zip" "https://socalabs.com/files/set.php?key=$env:APIKEY"
           }
         shell: pwsh

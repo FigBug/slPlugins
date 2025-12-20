@@ -3,7 +3,8 @@ on:
   push:
     branches:
       - master
-      - release/pitchtrack
+    tags:
+      - 'pitchtrack_v*'
     paths:
       - 'plugins/PitchTrack/**'
       - 'modules/**'
@@ -44,9 +45,8 @@ jobs:
           # Create zip
           zip -r PitchTrack_Linux.zip vst/PitchTrack.so vst3/PitchTrack.vst3 lv2/PitchTrack.lv2
 
-          # Upload to socalabs on release branch
-          BRANCH="${GITHUB_REF##*/}"
-          if [ "$BRANCH" = "release/pitchtrack" ]; then
+          # Upload to socalabs on release tag
+          if [[ "$GITHUB_REF" == refs/tags/pitchtrack_v* ]]; then
             curl -F "files=@PitchTrack_Linux.zip" "https://socalabs.com/files/set.php?key=$APIKEY"
           fi
         shell: bash

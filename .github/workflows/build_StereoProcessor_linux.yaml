@@ -3,7 +3,8 @@ on:
   push:
     branches:
       - master
-      - release/stereoprocessor
+    tags:
+      - 'stereoprocessor_v*'
     paths:
       - 'plugins/StereoProcessor/**'
       - 'modules/**'
@@ -44,9 +45,8 @@ jobs:
           # Create zip
           zip -r StereoProcessor_Linux.zip vst/StereoProcessor.so vst3/StereoProcessor.vst3 lv2/StereoProcessor.lv2
 
-          # Upload to socalabs on release branch
-          BRANCH="${GITHUB_REF##*/}"
-          if [ "$BRANCH" = "release/stereoprocessor" ]; then
+          # Upload to socalabs on release tag
+          if [[ "$GITHUB_REF" == refs/tags/stereoprocessor_v* ]]; then
             curl -F "files=@StereoProcessor_Linux.zip" "https://socalabs.com/files/set.php?key=$APIKEY"
           fi
         shell: bash

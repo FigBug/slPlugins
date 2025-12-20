@@ -3,7 +3,8 @@ on:
   push:
     branches:
       - master
-      - release/keyboard
+    tags:
+      - 'keyboard_v*'
     paths:
       - 'plugins/Keyboard/**'
       - 'modules/**'
@@ -40,9 +41,8 @@ jobs:
           # Create zip
           7z a Keyboard_Win.zip vst/Keyboard.dll vst3/Keyboard.vst3
 
-          # Upload to socalabs on release branch
-          $BRANCH = "${{github.ref}}" -replace 'refs/heads/', ''
-          if ($BRANCH -eq "release/keyboard") {
+          # Upload to socalabs on release tag
+          if ("${{github.ref}}" -like "refs/tags/keyboard_v*") {
             curl.exe -F "files=@Keyboard_Win.zip" "https://socalabs.com/files/set.php?key=$env:APIKEY"
           }
         shell: pwsh

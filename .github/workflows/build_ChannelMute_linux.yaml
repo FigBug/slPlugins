@@ -3,7 +3,8 @@ on:
   push:
     branches:
       - master
-      - release/channelmute
+    tags:
+      - 'channelmute_v*'
     paths:
       - 'plugins/ChannelMute/**'
       - 'modules/**'
@@ -44,9 +45,8 @@ jobs:
           # Create zip
           zip -r ChannelMute_Linux.zip vst/ChannelMute.so vst3/ChannelMute.vst3 lv2/ChannelMute.lv2
 
-          # Upload to socalabs on release branch
-          BRANCH="${GITHUB_REF##*/}"
-          if [ "$BRANCH" = "release/channelmute" ]; then
+          # Upload to socalabs on release tag
+          if [[ "$GITHUB_REF" == refs/tags/channelmute_v* ]]; then
             curl -F "files=@ChannelMute_Linux.zip" "https://socalabs.com/files/set.php?key=$APIKEY"
           fi
         shell: bash

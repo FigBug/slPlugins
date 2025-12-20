@@ -3,7 +3,8 @@ on:
   push:
     branches:
       - master
-      - release/gate
+    tags:
+      - 'gate_v*'
     paths:
       - 'plugins/Gate/**'
       - 'modules/**'
@@ -44,9 +45,8 @@ jobs:
           # Create zip
           zip -r Gate_Linux.zip vst/Gate.so vst3/Gate.vst3 lv2/Gate.lv2
 
-          # Upload to socalabs on release branch
-          BRANCH="${GITHUB_REF##*/}"
-          if [ "$BRANCH" = "release/gate" ]; then
+          # Upload to socalabs on release tag
+          if [[ "$GITHUB_REF" == refs/tags/gate_v* ]]; then
             curl -F "files=@Gate_Linux.zip" "https://socalabs.com/files/set.php?key=$APIKEY"
           fi
         shell: bash

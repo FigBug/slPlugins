@@ -3,7 +3,8 @@ on:
   push:
     branches:
       - master
-      - release/compressor
+    tags:
+      - 'compressor_v*'
     paths:
       - 'plugins/Compressor/**'
       - 'modules/**'
@@ -40,9 +41,8 @@ jobs:
           # Create zip
           7z a Compressor_Win.zip vst/Compressor.dll vst3/Compressor.vst3
 
-          # Upload to socalabs on release branch
-          $BRANCH = "${{github.ref}}" -replace 'refs/heads/', ''
-          if ($BRANCH -eq "release/compressor") {
+          # Upload to socalabs on release tag
+          if ("${{github.ref}}" -like "refs/tags/compressor_v*") {
             curl.exe -F "files=@Compressor_Win.zip" "https://socalabs.com/files/set.php?key=$env:APIKEY"
           }
         shell: pwsh

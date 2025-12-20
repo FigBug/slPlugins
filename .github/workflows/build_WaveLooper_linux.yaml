@@ -3,7 +3,8 @@ on:
   push:
     branches:
       - master
-      - release/wavelooper
+    tags:
+      - 'wavelooper_v*'
     paths:
       - 'plugins/WaveLooper/**'
       - 'modules/**'
@@ -44,9 +45,8 @@ jobs:
           # Create zip
           zip -r WaveLooper_Linux.zip vst/WaveLooper.so vst3/WaveLooper.vst3 lv2/WaveLooper.lv2
 
-          # Upload to socalabs on release branch
-          BRANCH="${GITHUB_REF##*/}"
-          if [ "$BRANCH" = "release/wavelooper" ]; then
+          # Upload to socalabs on release tag
+          if [[ "$GITHUB_REF" == refs/tags/wavelooper_v* ]]; then
             curl -F "files=@WaveLooper_Linux.zip" "https://socalabs.com/files/set.php?key=$APIKEY"
           fi
         shell: bash

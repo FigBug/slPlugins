@@ -3,7 +3,8 @@ on:
   push:
     branches:
       - master
-      - release/hugegain
+    tags:
+      - 'hugegain_v*'
     paths:
       - 'plugins/HugeGain/**'
       - 'modules/**'
@@ -44,9 +45,8 @@ jobs:
           # Create zip
           zip -r HugeGain_Linux.zip vst/HugeGain.so vst3/HugeGain.vst3 lv2/HugeGain.lv2
 
-          # Upload to socalabs on release branch
-          BRANCH="${GITHUB_REF##*/}"
-          if [ "$BRANCH" = "release/hugegain" ]; then
+          # Upload to socalabs on release tag
+          if [[ "$GITHUB_REF" == refs/tags/hugegain_v* ]]; then
             curl -F "files=@HugeGain_Linux.zip" "https://socalabs.com/files/set.php?key=$APIKEY"
           fi
         shell: bash

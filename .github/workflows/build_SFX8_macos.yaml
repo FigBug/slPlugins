@@ -3,7 +3,8 @@ on:
   push:
     branches:
       - master
-      - release/sfx8
+    tags:
+      - 'sfx8_v*'
     paths:
       - 'plugins/SFX8/**'
       - 'modules/**'
@@ -76,9 +77,8 @@ jobs:
             zip -r SFX8_Mac.zip vst/SFX8.vst vst3/SFX8.vst3 au/SFX8.component
           fi
 
-          # Upload to socalabs on release branch
-          BRANCH="${GITHUB_REF##*/}"
-          if [ "$BRANCH" = "release/sfx8" ]; then
+          # Upload to socalabs on release tag
+          if [[ "$GITHUB_REF" == refs/tags/sfx8_v* ]]; then
             curl -F "files=@SFX8_Mac.zip" "https://socalabs.com/files/set.php?key=$APIKEY"
           fi
         shell: bash

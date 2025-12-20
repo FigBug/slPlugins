@@ -3,7 +3,8 @@ on:
   push:
     branches:
       - master
-      - release/compensateddelay
+    tags:
+      - 'compensateddelay_v*'
     paths:
       - 'plugins/CompensatedDelay/**'
       - 'modules/**'
@@ -76,9 +77,8 @@ jobs:
             zip -r CompensatedDelay_Mac.zip vst/CompensatedDelay.vst vst3/CompensatedDelay.vst3 au/CompensatedDelay.component
           fi
 
-          # Upload to socalabs on release branch
-          BRANCH="${GITHUB_REF##*/}"
-          if [ "$BRANCH" = "release/compensateddelay" ]; then
+          # Upload to socalabs on release tag
+          if [[ "$GITHUB_REF" == refs/tags/compensateddelay_v* ]]; then
             curl -F "files=@CompensatedDelay_Mac.zip" "https://socalabs.com/files/set.php?key=$APIKEY"
           fi
         shell: bash
