@@ -9,6 +9,9 @@ PluginEditor::PluginEditor (PluginProcessor& p)
 
     setGridSize (7, 4);
     makeResizable (getWidth(), getHeight(), 2000, 1500);
+    
+    scope.setColour (gin::XYScope::traceColourId, juce::Colours::limegreen);
+    scope.setColour (gin::XYScope::lineColourId, findColour (gin::PluginLookAndFeel::grey45ColourId));
 }
 
 PluginEditor::~PluginEditor()
