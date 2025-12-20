@@ -4,77 +4,139 @@
 #include "PluginProcessor.h"
 
 //==============================================================================
-class Waveform : public gin::WaveformComponent,
-                 public juce::FileDragAndDropTarget
+class SampleFileComponent : public gin::AudioSamplerBufferComponent,
+                            public juce::FileDragAndDropTarget,
+                            public juce::Timer
 {
 public:
-    Waveform (WaveLooperAudioProcessor& p) : proc (p)
+    SampleFileComponent (gin::SamplePlayer& player) : samplePlayer (player)
     {
+        startTimerHz (30);
     }
-    
+
+    ~SampleFileComponent() override
+    {
+        stopTimer();
+    }
+
+    void timerCallback() override
+    {
+        const bool isPlaying = samplePlayer.isPlaying();
+
+        if (wasPlaying && ! isPlaying)
+        {
+            if (onPlaybackStateChanged)
+                onPlaybackStateChanged();
+        }
+
+        if (samplePlayer.hasFileLoaded())
+        {
+            const double pos = samplePlayer.getPosition();
+            setPlayheads ({ static_cast<int> (pos) });
+        }
+
+        if (isPlaying || wasPlaying != isPlaying)
+            repaint();
+
+        wasPlaying = isPlaying;
+    }
+
     bool isInterestedInFileDrag (const juce::StringArray& files) override
     {
-        return true;
+        juce::AudioFormatManager mgr;
+        mgr.registerBasicFormats();
+
+        for (const auto& file : files)
+        {
+            if (mgr.findFormatForFileExtension (juce::File (file).getFileExtension()) != nullptr)
+                return true;
+        }
+        return false;
     }
 
     void fileDragEnter (const juce::StringArray&, int, int) override
     {
-        dragOver = true;
+        isDragOver = true;
         repaint();
     }
 
-    void fileDragMove (const juce::StringArray&, int, int) override
+    void fileDragExit (const juce::StringArray&) override
     {
-        dragOver = true;
+        isDragOver = false;
         repaint();
     }
 
-    void fileDragExit (const juce::StringArray& files) override
+    void filesDropped (const juce::StringArray& files, int, int) override
     {
-        dragOver = false;
+        isDragOver = false;
+
+        juce::AudioFormatManager mgr;
+        mgr.registerBasicFormats();
+
+        for (const auto& file : files)
+        {
+            juce::File f (file);
+            if (mgr.findFormatForFileExtension (f.getFileExtension()) != nullptr)
+            {
+                samplePlayer.load (f);
+                setBuffer (samplePlayer.getBuffer());
+                if (onFileDropped)
+                    onFileDropped();
+                break;
+            }
+        }
+
         repaint();
     }
 
-    void filesDropped (const juce::StringArray& files, int x, int y) override
-    {
-        proc.setFile (files[0]);
-        
-        dragOver = false;
-        repaint();
-    }
-    
     void paint (juce::Graphics& g) override
     {
-        gin::WaveformComponent::paint (g);
+        gin::AudioSamplerBufferComponent::paint (g);
 
-        if (dragOver)
+        if (! samplePlayer.hasFileLoaded())
         {
-            g.setColour (juce::Colours::white.withAlpha (0.3f));
-            g.fillRect (getLocalBounds());
+            g.setColour (findColour (gin::GinLookAndFeel::grey45ColourId));
+            g.drawText ("Drop audio file here", getLocalBounds(), juce::Justification::centred);
         }
+
+        if (isDragOver)
+        {
+            g.setColour (findColour (gin::GinLookAndFeel::accentColourId).withAlpha (0.2f));
+            g.fillAll();
+        }
+
+        g.setColour (findColour (gin::GinLookAndFeel::grey45ColourId));
+        g.drawRect (getLocalBounds());
     }
-    
-    WaveLooperAudioProcessor& proc;
-    bool dragOver = false;
+
+    std::function<void()> onFileDropped;
+    std::function<void()> onPlaybackStateChanged;
+
+private:
+    gin::SamplePlayer& samplePlayer;
+    bool isDragOver = false;
+    bool wasPlaying = false;
 };
 
 //==============================================================================
-/**
-*/
 class WaveLooperAudioProcessorEditor : public gin::ProcessorEditor
 {
 public:
     WaveLooperAudioProcessorEditor (WaveLooperAudioProcessor&);
     ~WaveLooperAudioProcessorEditor() override;
 
-    //==============================================================================
     void resized() override;
-    void refresh();
 
-private:    
+private:
+    void updatePlayStopButtons();
+    void showMenu();
+
     WaveLooperAudioProcessor& proc;
-    
-    Waveform thumbnail {proc};
+
+    SampleFileComponent sample { proc.samplePlayer };
+    gin::SVGButton      samplePlay;
+    gin::SVGButton      sampleStop;
+    gin::SVGButton      sampleMenu;
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (WaveLooperAudioProcessorEditor)
 };
