@@ -7,8 +7,6 @@ on:
       - 'compressor_v*'
     paths:
       - 'plugins/Compressor/**'
-      - 'modules/**'
-      - '.github/workflows/build_Compressor_linux.yaml'
 jobs:
   build:
     name: Build Compressor - Linux

@@ -7,8 +7,6 @@ on:
       - 'crossfeed_v*'
     paths:
       - 'plugins/Crossfeed/**'
-      - 'modules/**'
-      - '.github/workflows/build_Crossfeed_macos.yaml'
 jobs:
   build:
     name: Build Crossfeed - macOS

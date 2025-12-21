@@ -7,8 +7,6 @@ on:
       - 'maths_v*'
     paths:
       - 'plugins/Maths/**'
-      - 'modules/**'
-      - '.github/workflows/build_Maths_windows.yaml'
 jobs:
   build:
     name: Build Maths - Windows

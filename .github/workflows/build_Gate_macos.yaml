@@ -7,8 +7,6 @@ on:
       - 'gate_v*'
     paths:
       - 'plugins/Gate/**'
-      - 'modules/**'
-      - '.github/workflows/build_Gate_macos.yaml'
 jobs:
   build:
     name: Build Gate - macOS

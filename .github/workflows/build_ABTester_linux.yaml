@@ -7,8 +7,6 @@ on:
       - 'abtester_v*'
     paths:
       - 'plugins/ABTester/**'
-      - 'modules/**'
-      - '.github/workflows/build_ABTester_linux.yaml'
 jobs:
   build:
     name: Build ABTester - Linux

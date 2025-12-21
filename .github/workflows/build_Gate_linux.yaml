@@ -7,8 +7,6 @@ on:
       - 'gate_v*'
     paths:
       - 'plugins/Gate/**'
-      - 'modules/**'
-      - '.github/workflows/build_Gate_linux.yaml'
 jobs:
   build:
     name: Build Gate - Linux

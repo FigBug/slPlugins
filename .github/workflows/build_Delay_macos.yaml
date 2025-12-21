@@ -7,8 +7,6 @@ on:
       - 'delay_v*'
     paths:
       - 'plugins/Delay/**'
-      - 'modules/**'
-      - '.github/workflows/build_Delay_macos.yaml'
 jobs:
   build:
     name: Build Delay - macOS

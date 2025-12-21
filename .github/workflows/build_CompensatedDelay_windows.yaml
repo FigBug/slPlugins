@@ -7,8 +7,6 @@ on:
       - 'compensateddelay_v*'
     paths:
       - 'plugins/CompensatedDelay/**'
-      - 'modules/**'
-      - '.github/workflows/build_CompensatedDelay_windows.yaml'
 jobs:
   build:
     name: Build CompensatedDelay - Windows

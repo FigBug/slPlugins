@@ -7,8 +7,6 @@ on:
       - 'pitchtrack_v*'
     paths:
       - 'plugins/PitchTrack/**'
-      - 'modules/**'
-      - '.github/workflows/build_PitchTrack_macos.yaml'
 jobs:
   build:
     name: Build PitchTrack - macOS

@@ -7,8 +7,6 @@ on:
       - 'compensateddelay_v*'
     paths:
       - 'plugins/CompensatedDelay/**'
-      - 'modules/**'
-      - '.github/workflows/build_CompensatedDelay_macos.yaml'
 jobs:
   build:
     name: Build CompensatedDelay - macOS

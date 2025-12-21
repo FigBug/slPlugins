@@ -7,8 +7,6 @@ on:
       - 'channelmute_v*'
     paths:
       - 'plugins/ChannelMute/**'
-      - 'modules/**'
-      - '.github/workflows/build_ChannelMute_windows.yaml'
 jobs:
   build:
     name: Build ChannelMute - Windows

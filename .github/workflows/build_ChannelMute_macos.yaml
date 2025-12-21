@@ -7,8 +7,6 @@ on:
       - 'channelmute_v*'
     paths:
       - 'plugins/ChannelMute/**'
-      - 'modules/**'
-      - '.github/workflows/build_ChannelMute_macos.yaml'
 jobs:
   build:
     name: Build ChannelMute - macOS

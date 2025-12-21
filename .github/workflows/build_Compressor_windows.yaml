@@ -7,8 +7,6 @@ on:
       - 'compressor_v*'
     paths:
       - 'plugins/Compressor/**'
-      - 'modules/**'
-      - '.github/workflows/build_Compressor_windows.yaml'
 jobs:
   build:
     name: Build Compressor - Windows

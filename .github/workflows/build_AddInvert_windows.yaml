@@ -7,8 +7,6 @@ on:
       - 'addinvert_v*'
     paths:
       - 'plugins/AddInvert/**'
-      - 'modules/**'
-      - '.github/workflows/build_AddInvert_windows.yaml'
 jobs:
   build:
     name: Build AddInvert - Windows

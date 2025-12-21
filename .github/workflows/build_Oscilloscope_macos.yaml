@@ -7,8 +7,6 @@ on:
       - 'oscilloscope_v*'
     paths:
       - 'plugins/Oscilloscope/**'
-      - 'modules/**'
-      - '.github/workflows/build_Oscilloscope_macos.yaml'
 jobs:
   build:
     name: Build Oscilloscope - macOS

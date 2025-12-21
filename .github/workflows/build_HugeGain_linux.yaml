@@ -7,8 +7,6 @@ on:
       - 'hugegain_v*'
     paths:
       - 'plugins/HugeGain/**'
-      - 'modules/**'
-      - '.github/workflows/build_HugeGain_linux.yaml'
 jobs:
   build:
     name: Build HugeGain - Linux

@@ -7,8 +7,6 @@ on:
       - 'keyboard_v*'
     paths:
       - 'plugins/Keyboard/**'
-      - 'modules/**'
-      - '.github/workflows/build_Keyboard_linux.yaml'
 jobs:
   build:
     name: Build Keyboard - Linux

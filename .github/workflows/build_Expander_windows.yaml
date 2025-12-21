@@ -7,8 +7,6 @@ on:
       - 'expander_v*'
     paths:
       - 'plugins/Expander/**'
-      - 'modules/**'
-      - '.github/workflows/build_Expander_windows.yaml'
 jobs:
   build:
     name: Build Expander - Windows

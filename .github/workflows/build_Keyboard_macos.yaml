@@ -7,8 +7,6 @@ on:
       - 'keyboard_v*'
     paths:
       - 'plugins/Keyboard/**'
-      - 'modules/**'
-      - '.github/workflows/build_Keyboard_macos.yaml'
 jobs:
   build:
     name: Build Keyboard - macOS

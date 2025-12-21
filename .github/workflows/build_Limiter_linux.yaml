@@ -7,8 +7,6 @@ on:
       - 'limiter_v*'
     paths:
       - 'plugins/Limiter/**'
-      - 'modules/**'
-      - '.github/workflows/build_Limiter_linux.yaml'
 jobs:
   build:
     name: Build Limiter - Linux

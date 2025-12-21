@@ -7,8 +7,6 @@ on:
       - 'eq3_v*'
     paths:
       - 'plugins/EQ3/**'
-      - 'modules/**'
-      - '.github/workflows/build_EQ3_windows.yaml'
 jobs:
   build:
     name: Build EQ3 - Windows
