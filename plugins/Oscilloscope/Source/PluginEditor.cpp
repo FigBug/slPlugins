@@ -315,6 +315,7 @@ void PluginEditor::timerCallback()
 {
     flashState = ! flashState;
     updateRecordButtonColours();
+    updatePlayPauseButton();
 }
 
 void PluginEditor::updateRecordButtons()
@@ -356,10 +357,11 @@ void PluginEditor::updatePlayPauseButton()
     auto& innerScope = scope.getScope();
     bool isSingleMode = scopeProc.triggerRun->isOn();
     bool isPaused = innerScope.isPaused();
+    bool hasTriggered = innerScope.hasTriggered();
 
-    // Show play icon when paused or in single mode (waiting/frozen)
-    // Show pause icon when running normally
-    bool showPlay = isPaused || isSingleMode;
+    // Show play icon when paused, or in single mode AND has triggered (frozen)
+    // Show pause icon when running normally or waiting for trigger
+    bool showPlay = isPaused || (isSingleMode && hasTriggered);
     playPauseButton.rawSVG = showPlay ? playSVG : pauseSVG;
 
     auto accentColour = findColour (gin::GinLookAndFeel::accentColourId);

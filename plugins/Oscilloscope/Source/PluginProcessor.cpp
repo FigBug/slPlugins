@@ -77,7 +77,7 @@ PluginProcessor::PluginProcessor()
     verticalOffsetL  = addExtParam ("offset_l",        "Offset L",      "", "", {-2.0f,  2.0f,   0.0f, 1.0f}, 0.0f, 0.0f);
     verticalOffsetR  = addExtParam ("offset_r",        "Offset R",      "", "", {-2.0f,  2.0f,   0.0f, 1.0f}, 0.0f, 0.0f);
     triggerChannel   = addExtParam ("trigger_chan",    "Trigger Chan",  "", "", {-1.0f,  1.0f,   1.0f, 1.0f}, 0.0f, 0.0f, chanTextFunction);
-    triggerMode      = addExtParam ("trigger_mode",    "Trigger Mode",  "", "", {0.0f,   3.0f,   1.0f, 1.0f}, 1.0f, 0.0f, modeTextFunction);
+    triggerMode      = addExtParam ("trigger_mode",    "Trigger Mode",  "", "", {0.0f,   3.0f,   1.0f, 1.0f}, 3.0f, 0.0f, modeTextFunction);
     triggerLevel     = addExtParam ("trigger_level",   "Trigger Level", "", "", {-1.0f,  1.0f,   0.0f, 1.0f}, 0.0f, 0.0f, tlTextFunction);
     triggerPos       = addExtParam ("trigger_pos",     "Trigger Pos",   "", "", { 0.0f,  1.0f,   0.0f, 1.0f}, 0.0f, 0.0f, tpTextFunction);
     triggerRun       = addExtParam ("trigger_run",     "Trigger Run",   "", "", { 0.0f,  1.0f,   1.0f, 1.0f}, 0.0f, 0.0f, runTextFunction);
@@ -134,6 +134,13 @@ void PluginProcessor::processBlock (juce::AudioSampleBuffer& buffer, juce::MidiB
         auto& d = *pitchDetector;
         auto& c = *pitchConditioner;
 
+        auto updatePitch = [&] (float freq)
+        {
+            lastDetectedPitch.store (freq);
+            samplesSinceLastPitchUpdate = 0;
+            detectedPitch.store (freq);
+        };
+
         if (buffer.getNumChannels() == 1)
         {
             auto p = buffer.getReadPointer (0);
@@ -141,7 +148,7 @@ void PluginProcessor::processBlock (juce::AudioSampleBuffer& buffer, juce::MidiB
             {
                 auto v = c (p[i]);
                 if (d (v))
-                    detectedPitch.store (float (pitchDetector->get_frequency()));
+                    updatePitch (float (pitchDetector->get_frequency()));
             }
         }
         else if (buffer.getNumChannels() >= 2)
@@ -154,9 +161,14 @@ void PluginProcessor::processBlock (juce::AudioSampleBuffer& buffer, juce::MidiB
                 auto v = (l[i] + r[i]) / 2.0f;
                 v = c (v);
                 if (d (v))
-                    detectedPitch.store (float (pitchDetector->get_frequency()));
+                    updatePitch (float (pitchDetector->get_frequency()));
             }
         }
+
+        // Clear pitch if no update for 1 second worth of samples
+        samplesSinceLastPitchUpdate += buffer.getNumSamples();
+        if (samplesSinceLastPitchUpdate > int64_t (getSampleRate()))
+            detectedPitch.store (0.0f);
     }
 
     if (fifo.getFreeSpace() >= buffer.getNumSamples())

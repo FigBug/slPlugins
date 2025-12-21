@@ -75,23 +75,22 @@ void PitchScope::paint (juce::Graphics& g)
         }
     }
 
-    // Draw pitch info
-    float pitch = processor.getDetectedPitch();
-
-    if (pitch > 20.0f && pitch < 20000.0f)
+    // Draw pitch info (uses lastPitch which is cleared after timeout)
+    if (lastPitch > 20.0f && lastPitch < 20000.0f)
     {
-        int midiNote = frequencyToMidiNote (pitch);
+        int midiNote = frequencyToMidiNote (lastPitch);
         juce::String noteStr = midiNoteToString (midiNote);
 
         // Calculate cents deviation
-        float exactNote = 12.0f * std::log2 (pitch / 440.0f) + 69.0f;
+        float exactNote = 12.0f * std::log2 (lastPitch / 440.0f) + 69.0f;
         int cents = juce::roundToInt ((exactNote - float (midiNote)) * 100.0f);
         juce::String centsStr = (cents >= 0 ? "+" : "") + juce::String (cents);
 
-        juce::String text = juce::String (pitch, 1) + " Hz  " + noteStr + " (" + centsStr + ")";
+        juce::String text = juce::String (lastPitch, 1) + " Hz  " + noteStr + " (" + centsStr + ")";
 
-        auto pitchFont = g.getCurrentFont();
-        float textWidth = pitchFont.getStringWidthFloat (text) + 12.0f;
+        juce::GlyphArrangement glyphs;
+        glyphs.addLineOfText (g.getCurrentFont(), text, 0.0f, 0.0f);
+        float textWidth = glyphs.getBoundingBox (0, -1, true).getWidth() + 12.0f;
         float textX = w - textWidth - 4.0f;
         float textY = h - 20.0f;
 

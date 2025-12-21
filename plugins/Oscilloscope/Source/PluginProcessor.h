@@ -99,6 +99,8 @@ private:
     std::unique_ptr<cycfi::q::signal_conditioner> pitchConditioner;
     std::unique_ptr<cycfi::q::pitch_detector> pitchDetector;
     std::atomic<float> detectedPitch { 0.0f };
+    std::atomic<float> lastDetectedPitch { 0.0f };
+    int64_t samplesSinceLastPitchUpdate { 0 };
 
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (PluginProcessor)
