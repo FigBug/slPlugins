@@ -7,8 +7,6 @@ on:
       - 'wavelooper_v*'
     paths:
       - 'plugins/WaveLooper/**'
-      - 'modules/**'
-      - '.github/workflows/build_WaveLooper_linux.yaml'
 jobs:
   build:
     name: Build WaveLooper - Linux

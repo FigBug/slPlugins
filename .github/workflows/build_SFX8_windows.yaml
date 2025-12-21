@@ -7,8 +7,6 @@ on:
       - 'sfx8_v*'
     paths:
       - 'plugins/SFX8/**'
-      - 'modules/**'
-      - '.github/workflows/build_SFX8_windows.yaml'
 jobs:
   build:
     name: Build SFX8 - Windows

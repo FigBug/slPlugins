@@ -7,8 +7,6 @@ on:
       - 'stereoprocessor_v*'
     paths:
       - 'plugins/StereoProcessor/**'
-      - 'modules/**'
-      - '.github/workflows/build_StereoProcessor_linux.yaml'
 jobs:
   build:
     name: Build StereoProcessor - Linux

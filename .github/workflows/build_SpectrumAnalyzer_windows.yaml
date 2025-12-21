@@ -7,8 +7,6 @@ on:
       - 'spectrumanalyzer_v*'
     paths:
       - 'plugins/SpectrumAnalyzer/**'
-      - 'modules/**'
-      - '.github/workflows/build_SpectrumAnalyzer_windows.yaml'
 jobs:
   build:
     name: Build SpectrumAnalyzer - Windows

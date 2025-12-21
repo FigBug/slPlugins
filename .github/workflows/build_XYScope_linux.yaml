@@ -7,8 +7,6 @@ on:
       - 'xyscope_v*'
     paths:
       - 'plugins/XYScope/**'
-      - 'modules/**'
-      - '.github/workflows/build_XYScope_linux.yaml'
 jobs:
   build:
     name: Build XYScope - Linux

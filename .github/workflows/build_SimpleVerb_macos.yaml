@@ -7,8 +7,6 @@ on:
       - 'simpleverb_v*'
     paths:
       - 'plugins/SimpleVerb/**'
-      - 'modules/**'
-      - '.github/workflows/build_SimpleVerb_macos.yaml'
 jobs:
   build:
     name: Build SimpleVerb - macOS

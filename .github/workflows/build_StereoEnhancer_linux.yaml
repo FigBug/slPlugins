@@ -7,8 +7,6 @@ on:
       - 'stereoenhancer_v*'
     paths:
       - 'plugins/StereoEnhancer/**'
-      - 'modules/**'
-      - '.github/workflows/build_StereoEnhancer_linux.yaml'
 jobs:
   build:
     name: Build StereoEnhancer - Linux

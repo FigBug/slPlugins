@@ -7,8 +7,6 @@ on:
       - 'stereoprocessor_v*'
     paths:
       - 'plugins/StereoProcessor/**'
-      - 'modules/**'
-      - '.github/workflows/build_StereoProcessor_windows.yaml'
 jobs:
   build:
     name: Build StereoProcessor - Windows

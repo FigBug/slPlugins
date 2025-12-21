@@ -7,8 +7,6 @@ on:
       - 'tonegenerator_v*'
     paths:
       - 'plugins/ToneGenerator/**'
-      - 'modules/**'
-      - '.github/workflows/build_ToneGenerator_windows.yaml'
 jobs:
   build:
     name: Build ToneGenerator - Windows
