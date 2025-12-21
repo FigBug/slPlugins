@@ -7,8 +7,6 @@ on:
       - 'sampledelay_v*'
     paths:
       - 'plugins/SampleDelay/**'
-      - 'modules/**'
-      - '.github/workflows/build_SampleDelay_windows.yaml'
 jobs:
   build:
     name: Build SampleDelay - Windows

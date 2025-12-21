@@ -7,8 +7,6 @@ on:
       - 'sampledelay_v*'
     paths:
       - 'plugins/SampleDelay/**'
-      - 'modules/**'
-      - '.github/workflows/build_SampleDelay_macos.yaml'
 jobs:
   build:
     name: Build SampleDelay - macOS
