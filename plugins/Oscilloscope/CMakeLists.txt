@@ -82,6 +82,12 @@ set_target_properties(${PLUGIN_NAME} PROPERTIES
     CXX_VISIBILITY_PRESET hidden
 )
 
+target_include_directories(${PLUGIN_NAME}
+    PRIVATE
+        ${CMAKE_CURRENT_LIST_DIR}/../../modules/Q/q_lib/include
+        ${CMAKE_CURRENT_LIST_DIR}/../../modules/infra/include
+)
+
 target_link_libraries(${PLUGIN_NAME}
     PRIVATE
         gin
@@ -91,6 +97,7 @@ target_link_libraries(${PLUGIN_NAME}
         gin_gui
         gin_plugin
         gin_standaloneplugin
+        pitch_detector
         juce::juce_audio_basics
         juce::juce_audio_devices
         juce::juce_audio_formats

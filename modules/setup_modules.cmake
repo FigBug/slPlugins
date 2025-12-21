@@ -8,6 +8,10 @@ get_filename_component(MODULES_DIR "${CMAKE_CURRENT_LIST_DIR}" ABSOLUTE)
 
 # Add JUCE only if not already added
 if(NOT TARGET juce::juce_core)
+    set (JUCE_MODULES_ONLY OFF)
+    set (JUCE_ENABLE_MODULE_SOURCE_GROUPS ON)
+    set (JUCE_BUILD_EXTRAS OFF)
+    set (JUCE_BUILD_EXAMPLES OFF)
     add_subdirectory(${MODULES_DIR}/juce ${CMAKE_BINARY_DIR}/juce EXCLUDE_FROM_ALL)
 endif()
 
