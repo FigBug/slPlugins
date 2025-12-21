@@ -77,6 +77,12 @@ void WaveLooperAudioProcessorEditor::showMenu()
         proc.samplePlayer.setLooping (! isLooping);
     });
 
+    const bool isAutoPlay = proc.isAutoPlay();
+    menu.addItem ("Auto Play", true, isAutoPlay, [this, isAutoPlay]
+    {
+        proc.setAutoPlay (! isAutoPlay);
+    });
+
     menu.addSeparator();
 
     menu.addItem ("Load File...", [this]

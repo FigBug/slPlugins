@@ -22,12 +22,14 @@ void MidiLooperAudioProcessor::stateUpdated()
     }
 
     midiPlayer.setLooping (state.getProperty ("loop", true));
+    autoPlay = state.getProperty ("autoPlay", true);
 }
 
 void MidiLooperAudioProcessor::updateState()
 {
     state.setProperty ("midiPath", midiPlayer.getLoadedFile().getFullPathName(), nullptr);
     state.setProperty ("loop", midiPlayer.isLooping(), nullptr);
+    state.setProperty ("autoPlay", autoPlay, nullptr);
 }
 
 void MidiLooperAudioProcessor::prepareToPlay (double sampleRate, int samplesPerBlock)
@@ -45,6 +47,45 @@ void MidiLooperAudioProcessor::processBlock (juce::AudioSampleBuffer& buffer, ju
 {
     buffer.clear();
     midi.clear();
+
+    if (autoPlay && midiPlayer.hasFileLoaded())
+    {
+        auto* playHead = getPlayHead();
+        if (playHead != nullptr)
+        {
+            auto posInfo = playHead->getPosition();
+            if (posInfo.hasValue())
+            {
+                const bool isHostPlaying = posInfo->getIsPlaying();
+
+                if (isHostPlaying && ! wasHostPlaying)
+                    midiPlayer.play();
+                else if (! isHostPlaying && wasHostPlaying)
+                    midiPlayer.stop();
+
+                wasHostPlaying = isHostPlaying;
+
+                if (isHostPlaying)
+                {
+                    const double midiLength = midiPlayer.getLengthInSeconds();
+                    if (midiLength > 0.0)
+                    {
+                        if (auto timeInSeconds = posInfo->getTimeInSeconds())
+                        {
+                            double hostPos = *timeInSeconds;
+                            if (midiPlayer.isLooping())
+                                hostPos = std::fmod (hostPos, midiLength);
+
+                            const double currentPos = midiPlayer.getPlayheadPosition();
+                            if (std::abs (hostPos - currentPos) > 0.01)
+                                midiPlayer.setPlayheadPosition (hostPos);
+                        }
+                    }
+                }
+            }
+        }
+    }
+
     midiPlayer.processBlock (buffer.getNumSamples(), midi);
 }
 

@@ -15,6 +15,12 @@ MidiLooperAudioProcessorEditor::MidiLooperAudioProcessorEditor (MidiLooperAudioP
       midiStop ("stop", stopSVG, 4),
       midiMenu ("menu", menuSVG, 4)
 {
+    midiFile.setColour (gin::MidiFileComponent::backgroundColourId, findColour (gin::GinLookAndFeel::displayColourId));
+    midiFile.setColour (gin::MidiFileComponent::noteColourId, findColour (gin::GinLookAndFeel::accentColourId));
+    midiFile.setColour (gin::MidiFileComponent::playheadColourId, findColour (gin::GinLookAndFeel::accentColourId));
+    midiFile.setColour (gin::MidiFileComponent::outlineColourId, findColour (gin::GinLookAndFeel::grey45ColourId));
+    midiFile.setColour (gin::MidiFileComponent::dropHighlightColourId, findColour (gin::GinLookAndFeel::accentColourId).withAlpha (0.2f));
+
     midiFile.onFileDropped = [this]
     {
         updatePlayStopButtons();
@@ -69,6 +75,12 @@ void MidiLooperAudioProcessorEditor::showMenu()
     menu.addItem ("Loop", true, isLooping, [this, isLooping]
     {
         proc.midiPlayer.setLooping (! isLooping);
+    });
+
+    const bool isAutoPlay = proc.isAutoPlay();
+    menu.addItem ("Auto Play", true, isAutoPlay, [this, isAutoPlay]
+    {
+        proc.setAutoPlay (! isAutoPlay);
     });
 
     menu.addSeparator();

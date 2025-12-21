@@ -22,12 +22,14 @@ void WaveLooperAudioProcessor::stateUpdated()
     }
 
     samplePlayer.setLooping (state.getProperty ("loop", true));
+    autoPlay = state.getProperty ("autoPlay", true);
 }
 
 void WaveLooperAudioProcessor::updateState()
 {
     state.setProperty ("samplePath", samplePlayer.getLoadedFile().getFullPathName(), nullptr);
     state.setProperty ("loop", samplePlayer.isLooping(), nullptr);
+    state.setProperty ("autoPlay", autoPlay, nullptr);
 }
 
 void WaveLooperAudioProcessor::prepareToPlay (double sampleRate, int samplesPerBlock)
@@ -44,6 +46,48 @@ void WaveLooperAudioProcessor::releaseResources()
 void WaveLooperAudioProcessor::processBlock (juce::AudioSampleBuffer& buffer, juce::MidiBuffer&)
 {
     buffer.clear();
+
+    if (autoPlay && samplePlayer.hasFileLoaded())
+    {
+        auto* playHead = getPlayHead();
+        if (playHead != nullptr)
+        {
+            auto posInfo = playHead->getPosition();
+            if (posInfo.hasValue())
+            {
+                const bool isHostPlaying = posInfo->getIsPlaying();
+
+                if (isHostPlaying && ! wasHostPlaying)
+                    samplePlayer.play();
+                else if (! isHostPlaying && wasHostPlaying)
+                    samplePlayer.stop();
+
+                wasHostPlaying = isHostPlaying;
+
+                if (isHostPlaying)
+                {
+                    const double sampleLength = samplePlayer.getLengthInSeconds();
+                    if (sampleLength > 0.0)
+                    {
+                        if (auto timeInSeconds = posInfo->getTimeInSeconds())
+                        {
+                            double hostPos = *timeInSeconds;
+                            if (samplePlayer.isLooping())
+                                hostPos = std::fmod (hostPos, sampleLength);
+
+                            const double currentPos = samplePlayer.getPositionInSeconds();
+                            if (std::abs (hostPos - currentPos) > 0.01)
+                            {
+                                const double samplePos = hostPos * samplePlayer.getSourceSampleRate();
+                                samplePlayer.setPosition (samplePos);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
     samplePlayer.processBlock (buffer);
 }
 
