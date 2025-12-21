@@ -1,19 +1,9 @@
 #pragma once
 
 #include <JuceHeader.h>
+#include "AudioRecorder.h"
 
 class PluginEditor;
-
-#define PARAM_SAMPLES_PER_PIXEL     "samplesPerPixel"
-#define PARAM_VERTICAL_ZOOM         "zoom"
-#define PARAM_VERTICAL_OFFSET_L     "offset_l"
-#define PARAM_VERTICAL_OFFSET_R     "offset_r"
-#define PARAM_TRIGGER_CHANNEL       "trigger_chan"
-#define PARAM_TRIGGER_MODE          "trigger_mode"
-#define PARAM_TRIGGER_RUN           "trigger_run"
-#define PARAM_TRIGGER_RESET         "trigger_reset"
-#define PARAM_TRIGGER_LEVEL         "trigger_level"
-#define PARAM_TRIGGER_POS           "trigger_pos"
 
 //==============================================================================
 /**
@@ -29,17 +19,30 @@ public:
     void prepareToPlay (double sampleRate, int samplesPerBlock) override;
     void releaseResources() override;
     void numChannelsChanged() override;
-    
+
     void processBlock (juce::AudioSampleBuffer&, juce::MidiBuffer&) override;
 
     //==============================================================================
     juce::AudioProcessorEditor* createEditor() override;
     bool hasEditor() const override;
 
-    //==============================================================================    
+    //==============================================================================
     gin::AudioFifo fifo;
+    gin::AudioFifo recordFifo { 2, 44100 };
+    AudioRecorder audioRecorder { recordFifo };
 
-private:    
+    gin::Parameter::Ptr samplesPerPixel;
+    gin::Parameter::Ptr verticalZoom;
+    gin::Parameter::Ptr verticalOffsetL;
+    gin::Parameter::Ptr verticalOffsetR;
+    gin::Parameter::Ptr triggerChannel;
+    gin::Parameter::Ptr triggerMode;
+    gin::Parameter::Ptr triggerRun;
+    gin::Parameter::Ptr triggerReset;
+    gin::Parameter::Ptr triggerLevel;
+    gin::Parameter::Ptr triggerPos;
+
+private:
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (PluginProcessor)
 };

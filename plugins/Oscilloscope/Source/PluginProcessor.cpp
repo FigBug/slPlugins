@@ -4,12 +4,7 @@
 #include <random>
 
 //==============================================================================
-juce::String onOffTextFunction (const gin::Parameter& p)
-{
-    return p.getUserValue() > 0.0f ? "On" : "Off";
-}
-
-juce::String chanTextFunction (const gin::Parameter&, float v)
+static juce::String chanTextFunction (const gin::Parameter&, float v)
 {
     switch (int (v))
     {
@@ -20,7 +15,7 @@ juce::String chanTextFunction (const gin::Parameter&, float v)
     }
 }
 
-juce::String modeTextFunction (const gin::Parameter&, float v)
+static juce::String modeTextFunction (const gin::Parameter&, float v)
 {
     switch (int (v))
     {
@@ -31,17 +26,22 @@ juce::String modeTextFunction (const gin::Parameter&, float v)
     }
 }
 
-juce::String intTextFunction (const gin::Parameter&, float v)
+static juce::String intTextFunction (const gin::Parameter&, float v)
 {
     return juce::String (int (v));
 }
 
-juce::String tlTextFunction (const gin::Parameter&, float v)
+static juce::String tlTextFunction (const gin::Parameter&, float v)
 {
     return juce::String (v, 2);
 }
 
-juce::String runTextFunction (const gin::Parameter&, float v)
+static juce::String tpTextFunction (const gin::Parameter&, float v)
+{
+    return juce::String (v, 2);
+}
+
+static juce::String runTextFunction (const gin::Parameter&, float v)
 {
     switch (int (v))
     {
@@ -51,7 +51,7 @@ juce::String runTextFunction (const gin::Parameter&, float v)
     }
 }
 
-juce::String resetTextFunction (const gin::Parameter&, float)
+static juce::String resetTextFunction (const gin::Parameter&, float)
 {
     return "Reset";
 }
@@ -61,16 +61,16 @@ PluginProcessor::PluginProcessor()
 {
     fifo.setSize (2, 44100);
 
-    addExtParam (PARAM_SAMPLES_PER_PIXEL, "Samp/px",       "", "", {1.0f,   48.0f,  1.0f, 1.0f}, 1.0f, 0.0f, intTextFunction);
-    addExtParam (PARAM_VERTICAL_ZOOM,     "Zoom",          "", "", {0.1f,   100.0f, 0.0f, 0.3f}, 1.0f, 0.0f);
-    addExtParam (PARAM_VERTICAL_OFFSET_L, "Offset L",      "", "", {-2.0f,  2.0f,   0.0f, 1.0f}, 0.0f, 0.0f);
-    addExtParam (PARAM_VERTICAL_OFFSET_R, "Offset R",      "", "", {-2.0f,  2.0f,   0.0f, 1.0f}, 0.0f, 0.0f);
-    addExtParam (PARAM_TRIGGER_CHANNEL,   "Trigger Chan",  "", "", {-1.0f,  1.0f,   1.0f, 1.0f}, 0.0f, 0.0f, chanTextFunction);
-    addExtParam (PARAM_TRIGGER_MODE,      "Trigger Mode",  "", "", {0.0f,   2.0f,   1.0f, 1.0f}, 1.0f, 0.0f, modeTextFunction);
-    addExtParam (PARAM_TRIGGER_LEVEL,     "Trigger Level", "", "", {-1.0f,  1.0f,   0.0f, 1.0f}, 0.0f, 0.0f, tlTextFunction);
-    addExtParam (PARAM_TRIGGER_POS,       "Trigger Pos",   "", "", { 0.0f,  1.0f,   0.0f, 1.0f}, 0.0f, 0.0f, tlTextFunction);
-    addExtParam (PARAM_TRIGGER_RUN,       "Trigger Run",   "", "", { 0.0f,  1.0f,   1.0f, 1.0f}, 0.0f, 0.0f, runTextFunction);
-    addExtParam (PARAM_TRIGGER_RESET,     "Trigger Reset", "", "", { 0.0f,  1.0f,   1.0f, 1.0f}, 0.0f, 0.0f, resetTextFunction);
+    samplesPerPixel  = addExtParam ("samplesPerPixel", "Samp/px",       "", "", {1.0f,   48.0f,  1.0f, 1.0f}, 1.0f, 0.0f, intTextFunction);
+    verticalZoom     = addExtParam ("zoom",            "Zoom",          "", "", {0.1f,   100.0f, 0.0f, 0.3f}, 1.0f, 0.0f);
+    verticalOffsetL  = addExtParam ("offset_l",        "Offset L",      "", "", {-2.0f,  2.0f,   0.0f, 1.0f}, 0.0f, 0.0f);
+    verticalOffsetR  = addExtParam ("offset_r",        "Offset R",      "", "", {-2.0f,  2.0f,   0.0f, 1.0f}, 0.0f, 0.0f);
+    triggerChannel   = addExtParam ("trigger_chan",    "Trigger Chan",  "", "", {-1.0f,  1.0f,   1.0f, 1.0f}, 0.0f, 0.0f, chanTextFunction);
+    triggerMode      = addExtParam ("trigger_mode",    "Trigger Mode",  "", "", {0.0f,   2.0f,   1.0f, 1.0f}, 1.0f, 0.0f, modeTextFunction);
+    triggerLevel     = addExtParam ("trigger_level",   "Trigger Level", "", "", {-1.0f,  1.0f,   0.0f, 1.0f}, 0.0f, 0.0f, tlTextFunction);
+    triggerPos       = addExtParam ("trigger_pos",     "Trigger Pos",   "", "", { 0.0f,  1.0f,   0.0f, 1.0f}, 0.0f, 0.0f, tpTextFunction);
+    triggerRun       = addExtParam ("trigger_run",     "Trigger Run",   "", "", { 0.0f,  1.0f,   1.0f, 1.0f}, 0.0f, 0.0f, runTextFunction);
+    triggerReset     = addExtParam ("trigger_reset",   "Trigger Reset", "", "", { 0.0f,  1.0f,   1.0f, 1.0f}, 0.0f, 0.0f, resetTextFunction);
 }
 
 PluginProcessor::~PluginProcessor()
@@ -81,10 +81,13 @@ PluginProcessor::~PluginProcessor()
 void PluginProcessor::numChannelsChanged()
 {
     fifo.setSize (getTotalNumInputChannels(), 44100);
+    recordFifo.setSize (getTotalNumInputChannels(), int (getSampleRate()));
 }
 
-void PluginProcessor::prepareToPlay (double, int)
+void PluginProcessor::prepareToPlay (double sampleRate, int)
 {
+    recordFifo.setSize (getTotalNumInputChannels(), int (sampleRate));
+    audioRecorder.setSampleRate (sampleRate);
 }
 
 void PluginProcessor::releaseResources()
@@ -110,6 +113,9 @@ void PluginProcessor::processBlock (juce::AudioSampleBuffer& buffer, juce::MidiB
             fifo.write (stereoBuffer);
         }
     }
+
+    if (recordFifo.getFreeSpace() >= buffer.getNumSamples())
+        recordFifo.write (buffer);
 }
 
 //==============================================================================

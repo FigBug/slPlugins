@@ -69,6 +69,7 @@ target_compile_definitions(${PLUGIN_NAME}
         JUCE_VST3_CAN_REPLACE_VST2=0
         JUCE_JACK=0
         JUCE_IGNORE_VST3_MISMATCHED_PARAMETER_ID_WARNING=1
+        JUCE_USE_CUSTOM_PLUGIN_STANDALONE_APP=1
         DONT_SET_USING_JUCE_NAMESPACE=1
         JucePlugin_MaxNumInputChannels=2
         JucePlugin_MaxNumOutputChannels=2
@@ -83,13 +84,13 @@ set_target_properties(${PLUGIN_NAME} PROPERTIES
 
 target_link_libraries(${PLUGIN_NAME}
     PRIVATE
-        dRowAudio
         gin
         gin_dsp
         gin_simd
         gin_graphics
         gin_gui
         gin_plugin
+        gin_standaloneplugin
         juce::juce_audio_basics
         juce::juce_audio_devices
         juce::juce_audio_formats
