@@ -97,7 +97,6 @@ target_link_libraries(${PLUGIN_NAME}
         gin_gui
         gin_plugin
         gin_standaloneplugin
-        pitch_detector
         juce::juce_audio_basics
         juce::juce_audio_devices
         juce::juce_audio_formats
