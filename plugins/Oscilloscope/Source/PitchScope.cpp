@@ -48,7 +48,7 @@ void PitchScope::paint (juce::Graphics& g)
     g.setFont (font);
 
     // dB levels to draw (both positive and negative amplitude)
-    const float dbLevels[] = { 0.0f, -3.0f, -6.0f, -10.0f, -20.0f, -40.0f };
+    const float dbLevels[] = { 0.0f, -3.0f, -6.0f, -10.0f, -20.0f };
 
     for (float db : dbLevels)
     {
