@@ -75,6 +75,11 @@ void PitchScope::paint (juce::Graphics& g)
         }
     }
 
+    {
+        float yPos = ampToY (0.0f);
+        g.drawHorizontalLine (int (yPos), 0.0f, w);
+    }
+
     // Draw pitch info (uses lastPitch which is cleared after timeout)
     if (lastPitch > 20.0f && lastPitch < 20000.0f)
     {
