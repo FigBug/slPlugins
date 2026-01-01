@@ -52,3 +52,7 @@ jobs:
           name: Delay_Linux
           path: ci/bin/*.zip
           retention-days: 30
+      - name: Upload to GitHub Release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: ci/bin/*.zip
