@@ -5,8 +5,6 @@ on:
       - master
     tags:
       - 'compressor_v*'
-    paths:
-      - 'plugins/Compressor/**'
 jobs:
   build:
     name: Build Compressor - Linux

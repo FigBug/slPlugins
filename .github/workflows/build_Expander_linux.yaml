@@ -5,8 +5,6 @@ on:
       - master
     tags:
       - 'expander_v*'
-    paths:
-      - 'plugins/Expander/**'
 jobs:
   build:
     name: Build Expander - Linux

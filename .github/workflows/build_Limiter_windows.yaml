@@ -5,8 +5,6 @@ on:
       - master
     tags:
       - 'limiter_v*'
-    paths:
-      - 'plugins/Limiter/**'
 jobs:
   build:
     name: Build Limiter - Windows

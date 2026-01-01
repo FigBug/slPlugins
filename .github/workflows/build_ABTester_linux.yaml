@@ -5,8 +5,6 @@ on:
       - master
     tags:
       - 'abtester_v*'
-    paths:
-      - 'plugins/ABTester/**'
 jobs:
   build:
     name: Build ABTester - Linux

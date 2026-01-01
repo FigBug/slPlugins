@@ -5,8 +5,6 @@ on:
       - master
     tags:
       - 'xyscope_v*'
-    paths:
-      - 'plugins/XYScope/**'
 jobs:
   build:
     name: Build XYScope - macOS

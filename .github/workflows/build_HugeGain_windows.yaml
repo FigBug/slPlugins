@@ -5,8 +5,6 @@ on:
       - master
     tags:
       - 'hugegain_v*'
-    paths:
-      - 'plugins/HugeGain/**'
 jobs:
   build:
     name: Build HugeGain - Windows

@@ -5,8 +5,6 @@ on:
       - master
     tags:
       - 'sampledelay_v*'
-    paths:
-      - 'plugins/SampleDelay/**'
 jobs:
   build:
     name: Build SampleDelay - macOS

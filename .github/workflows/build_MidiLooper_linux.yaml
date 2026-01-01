@@ -5,8 +5,6 @@ on:
       - master
     tags:
       - 'midilooper_v*'
-    paths:
-      - 'plugins/MidiLooper/**'
 jobs:
   build:
     name: Build MidiLooper - Linux

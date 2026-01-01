@@ -5,8 +5,6 @@ on:
       - master
     tags:
       - 'oscilloscope_v*'
-    paths:
-      - 'plugins/Oscilloscope/**'
 jobs:
   build:
     name: Build Oscilloscope - macOS

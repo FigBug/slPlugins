@@ -5,8 +5,6 @@ on:
       - master
     tags:
       - 'delay_v*'
-    paths:
-      - 'plugins/Delay/**'
 jobs:
   build:
     name: Build Delay - Windows

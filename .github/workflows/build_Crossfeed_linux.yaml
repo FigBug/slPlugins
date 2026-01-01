@@ -5,8 +5,6 @@ on:
       - master
     tags:
       - 'crossfeed_v*'
-    paths:
-      - 'plugins/Crossfeed/**'
 jobs:
   build:
     name: Build Crossfeed - Linux

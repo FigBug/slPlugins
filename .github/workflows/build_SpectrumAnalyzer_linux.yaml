@@ -5,8 +5,6 @@ on:
       - master
     tags:
       - 'spectrumanalyzer_v*'
-    paths:
-      - 'plugins/SpectrumAnalyzer/**'
 jobs:
   build:
     name: Build SpectrumAnalyzer - Linux

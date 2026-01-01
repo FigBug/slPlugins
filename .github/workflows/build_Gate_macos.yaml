@@ -5,8 +5,6 @@ on:
       - master
     tags:
       - 'gate_v*'
-    paths:
-      - 'plugins/Gate/**'
 jobs:
   build:
     name: Build Gate - macOS

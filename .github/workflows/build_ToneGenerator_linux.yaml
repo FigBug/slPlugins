@@ -5,8 +5,6 @@ on:
       - master
     tags:
       - 'tonegenerator_v*'
-    paths:
-      - 'plugins/ToneGenerator/**'
 jobs:
   build:
     name: Build ToneGenerator - Linux

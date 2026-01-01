@@ -5,8 +5,6 @@ on:
       - master
     tags:
       - 'sfx8_v*'
-    paths:
-      - 'plugins/SFX8/**'
 jobs:
   build:
     name: Build SFX8 - Linux

@@ -5,8 +5,6 @@ on:
       - master
     tags:
       - 'addinvert_v*'
-    paths:
-      - 'plugins/AddInvert/**'
 jobs:
   build:
     name: Build AddInvert - macOS
