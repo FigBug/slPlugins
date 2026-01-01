@@ -3,8 +3,8 @@ on:
   push:
     branches:
       - master
-    tags:
-      - 'stereoprocessor_v*'
+    paths:
+      - 'plugins/StereoProcessor/**'
 jobs:
   build:
     name: Build StereoProcessor - Windows
@@ -36,11 +36,6 @@ jobs:
 
           # Create zip
           7z a StereoProcessor_Win.zip vst/StereoProcessor.dll vst3/StereoProcessor.vst3
-
-          # Upload to socalabs on release tag
-          if ("${{github.ref}}" -like "refs/tags/stereoprocessor_v*") {
-            curl.exe -F "files=@StereoProcessor_Win.zip" "https://socalabs.com/files/set.php?key=$env:APIKEY"
-          }
         shell: pwsh
         env:
           APIKEY: ${{ secrets.APIKEY }}

@@ -3,8 +3,8 @@ on:
   push:
     branches:
       - master
-    tags:
-      - 'addinvert_v*'
+    paths:
+      - 'plugins/AddInvert/**'
 jobs:
   build:
     name: Build AddInvert - Linux
@@ -40,11 +40,6 @@ jobs:
 
           # Create zip
           zip -r AddInvert_Linux.zip vst/AddInvert.so vst3/AddInvert.vst3 lv2/AddInvert.lv2
-
-          # Upload to socalabs on release tag
-          if [[ "$GITHUB_REF" == refs/tags/addinvert_v* ]]; then
-            curl -F "files=@AddInvert_Linux.zip" "https://socalabs.com/files/set.php?key=$APIKEY"
-          fi
         shell: bash
         env:
           APIKEY: ${{ secrets.APIKEY }}

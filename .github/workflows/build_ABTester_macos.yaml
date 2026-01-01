@@ -3,8 +3,8 @@ on:
   push:
     branches:
       - master
-    tags:
-      - 'abtester_v*'
+    paths:
+      - 'plugins/ABTester/**'
 jobs:
   build:
     name: Build ABTester - macOS
@@ -71,11 +71,6 @@ jobs:
             xcrun stapler staple vst3/ABTester.vst3
             xcrun stapler staple au/ABTester.component
             zip -r ABTester_Mac.zip vst/ABTester.vst vst3/ABTester.vst3 au/ABTester.component
-          fi
-
-          # Upload to socalabs on release tag
-          if [[ "$GITHUB_REF" == refs/tags/abtester_v* ]]; then
-            curl -F "files=@ABTester_Mac.zip" "https://socalabs.com/files/set.php?key=$APIKEY"
           fi
         shell: bash
         env:

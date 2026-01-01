@@ -3,8 +3,8 @@ on:
   push:
     branches:
       - master
-    tags:
-      - 'compressor_v*'
+    paths:
+      - 'plugins/Compressor/**'
 jobs:
   build:
     name: Build Compressor - macOS
@@ -71,11 +71,6 @@ jobs:
             xcrun stapler staple vst3/Compressor.vst3
             xcrun stapler staple au/Compressor.component
             zip -r Compressor_Mac.zip vst/Compressor.vst vst3/Compressor.vst3 au/Compressor.component
-          fi
-
-          # Upload to socalabs on release tag
-          if [[ "$GITHUB_REF" == refs/tags/compressor_v* ]]; then
-            curl -F "files=@Compressor_Mac.zip" "https://socalabs.com/files/set.php?key=$APIKEY"
           fi
         shell: bash
         env:

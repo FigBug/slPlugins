@@ -3,8 +3,8 @@ on:
   push:
     branches:
       - master
-    tags:
-      - 'abtester_v*'
+    paths:
+      - 'plugins/ABTester/**'
 jobs:
   build:
     name: Build ABTester - Linux
@@ -40,11 +40,6 @@ jobs:
 
           # Create zip
           zip -r ABTester_Linux.zip vst/ABTester.so vst3/ABTester.vst3 lv2/ABTester.lv2
-
-          # Upload to socalabs on release tag
-          if [[ "$GITHUB_REF" == refs/tags/abtester_v* ]]; then
-            curl -F "files=@ABTester_Linux.zip" "https://socalabs.com/files/set.php?key=$APIKEY"
-          fi
         shell: bash
         env:
           APIKEY: ${{ secrets.APIKEY }}

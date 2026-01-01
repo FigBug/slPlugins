@@ -3,8 +3,8 @@ on:
   push:
     branches:
       - master
-    tags:
-      - 'stereoprocessor_v*'
+    paths:
+      - 'plugins/StereoProcessor/**'
 jobs:
   build:
     name: Build StereoProcessor - macOS
@@ -71,11 +71,6 @@ jobs:
             xcrun stapler staple vst3/StereoProcessor.vst3
             xcrun stapler staple au/StereoProcessor.component
             zip -r StereoProcessor_Mac.zip vst/StereoProcessor.vst vst3/StereoProcessor.vst3 au/StereoProcessor.component
-          fi
-
-          # Upload to socalabs on release tag
-          if [[ "$GITHUB_REF" == refs/tags/stereoprocessor_v* ]]; then
-            curl -F "files=@StereoProcessor_Mac.zip" "https://socalabs.com/files/set.php?key=$APIKEY"
           fi
         shell: bash
         env:

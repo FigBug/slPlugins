@@ -3,8 +3,8 @@ on:
   push:
     branches:
       - master
-    tags:
-      - 'wavelooper_v*'
+    paths:
+      - 'plugins/WaveLooper/**'
 jobs:
   build:
     name: Build WaveLooper - Windows
@@ -36,11 +36,6 @@ jobs:
 
           # Create zip
           7z a WaveLooper_Win.zip vst/WaveLooper.dll vst3/WaveLooper.vst3
-
-          # Upload to socalabs on release tag
-          if ("${{github.ref}}" -like "refs/tags/wavelooper_v*") {
-            curl.exe -F "files=@WaveLooper_Win.zip" "https://socalabs.com/files/set.php?key=$env:APIKEY"
-          }
         shell: pwsh
         env:
           APIKEY: ${{ secrets.APIKEY }}

@@ -3,8 +3,8 @@ on:
   push:
     branches:
       - master
-    tags:
-      - 'compensateddelay_v*'
+    paths:
+      - 'plugins/CompensatedDelay/**'
 jobs:
   build:
     name: Build CompensatedDelay - Linux
@@ -40,11 +40,6 @@ jobs:
 
           # Create zip
           zip -r CompensatedDelay_Linux.zip vst/CompensatedDelay.so vst3/CompensatedDelay.vst3 lv2/CompensatedDelay.lv2
-
-          # Upload to socalabs on release tag
-          if [[ "$GITHUB_REF" == refs/tags/compensateddelay_v* ]]; then
-            curl -F "files=@CompensatedDelay_Linux.zip" "https://socalabs.com/files/set.php?key=$APIKEY"
-          fi
         shell: bash
         env:
           APIKEY: ${{ secrets.APIKEY }}

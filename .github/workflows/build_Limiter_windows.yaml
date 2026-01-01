@@ -3,8 +3,8 @@ on:
   push:
     branches:
       - master
-    tags:
-      - 'limiter_v*'
+    paths:
+      - 'plugins/Limiter/**'
 jobs:
   build:
     name: Build Limiter - Windows
@@ -36,11 +36,6 @@ jobs:
 
           # Create zip
           7z a Limiter_Win.zip vst/Limiter.dll vst3/Limiter.vst3
-
-          # Upload to socalabs on release tag
-          if ("${{github.ref}}" -like "refs/tags/limiter_v*") {
-            curl.exe -F "files=@Limiter_Win.zip" "https://socalabs.com/files/set.php?key=$env:APIKEY"
-          }
         shell: pwsh
         env:
           APIKEY: ${{ secrets.APIKEY }}

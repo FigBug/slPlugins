@@ -3,8 +3,8 @@ on:
   push:
     branches:
       - master
-    tags:
-      - 'crossfeed_v*'
+    paths:
+      - 'plugins/Crossfeed/**'
 jobs:
   build:
     name: Build Crossfeed - Linux
@@ -40,11 +40,6 @@ jobs:
 
           # Create zip
           zip -r Crossfeed_Linux.zip vst/Crossfeed.so vst3/Crossfeed.vst3 lv2/Crossfeed.lv2
-
-          # Upload to socalabs on release tag
-          if [[ "$GITHUB_REF" == refs/tags/crossfeed_v* ]]; then
-            curl -F "files=@Crossfeed_Linux.zip" "https://socalabs.com/files/set.php?key=$APIKEY"
-          fi
         shell: bash
         env:
           APIKEY: ${{ secrets.APIKEY }}

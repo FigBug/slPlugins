@@ -1,0 +1,90 @@
+name: Release Crossfeed - macOS
+on:
+  push:
+    tags:
+      - 'crossfeed_v*'
+jobs:
+  build:
+    name: Release Crossfeed - macOS
+    runs-on: macos-latest
+    steps:
+      - name: Fix up git URLs
+        run: |
+          echo -e '[url "https://github.com/"]\n  insteadOf = "git@github.com:"' >> ~/.gitconfig
+        shell: bash
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.ACCESS_TOKEN }}
+          submodules: recursive
+      - uses: maxim-lobanov/setup-xcode@v1
+        with:
+          xcode-version: latest-stable
+      - name: Build plugin
+        run: |
+          # Create a temp keychain
+          echo "Create a keychain"
+          security create-keychain -p nr4aGPyz Keys.keychain
+
+          echo $APPLICATION | base64 -D -o /tmp/Application.p12
+          echo $INSTALLER | base64 -D -o /tmp/Installer.p12
+
+          security import /tmp/Application.p12 -t agg -k Keys.keychain -P aym9PKWB -A -T /usr/bin/codesign
+          security import /tmp/Installer.p12 -t agg -k Keys.keychain -P aym9PKWB -A -T /usr/bin/codesign
+
+          security list-keychains -s Keys.keychain
+          security default-keychain -s Keys.keychain
+          security unlock-keychain -p nr4aGPyz Keys.keychain
+          security set-keychain-settings -l -u -t 13600 Keys.keychain
+          security set-key-partition-list -S apple-tool:,apple: -s -k nr4aGPyz Keys.keychain
+
+          DEV_APP_ID="Developer ID Application: Roland Rabien (3FS7DJDG38)"
+
+          # Build
+          cd plugins/Crossfeed
+          cmake -B build -G Xcode
+          cmake --build build --config Release
+
+          # Package
+          mkdir -p ../../ci/bin
+          cd ../../ci/bin
+          mkdir -p au vst vst3
+
+          cp -R "../../plugins/Crossfeed/build/Crossfeed_artefacts/Release/AU/Crossfeed.component" au/
+          cp -R "../../plugins/Crossfeed/build/Crossfeed_artefacts/Release/VST/Crossfeed.vst" vst/
+          cp -R "../../plugins/Crossfeed/build/Crossfeed_artefacts/Release/VST3/Crossfeed.vst3" vst3/
+
+          # Code sign
+          codesign -s "$DEV_APP_ID" -v "vst/Crossfeed.vst" --options=runtime --timestamp --force
+          codesign -s "$DEV_APP_ID" -v "vst3/Crossfeed.vst3" --options=runtime --timestamp --force
+          codesign -s "$DEV_APP_ID" -v "au/Crossfeed.component" --options=runtime --timestamp --force
+
+          # Notarize
+          zip -r Crossfeed_Mac.zip vst/Crossfeed.vst vst3/Crossfeed.vst3 au/Crossfeed.component
+
+          if [[ -n "$APPLE_USER" ]]; then
+            xcrun notarytool submit --verbose --apple-id "$APPLE_USER" --password "$APPLE_PASS" --team-id "3FS7DJDG38" --wait --timeout 30m Crossfeed_Mac.zip
+
+            rm Crossfeed_Mac.zip
+            xcrun stapler staple vst/Crossfeed.vst
+            xcrun stapler staple vst3/Crossfeed.vst3
+            xcrun stapler staple au/Crossfeed.component
+            zip -r Crossfeed_Mac.zip vst/Crossfeed.vst vst3/Crossfeed.vst3 au/Crossfeed.component
+          fi
+
+          # Upload to socalabs on release tag
+          if [[ "$GITHUB_REF" == refs/tags/crossfeed_v* ]]; then
+            curl -F "files=@Crossfeed_Mac.zip" "https://socalabs.com/files/set.php?key=$APIKEY"
+          fi
+        shell: bash
+        env:
+          APPLICATION: ${{ secrets.APPLICATION }}
+          INSTALLER: ${{ secrets.INSTALLER }}
+          APPLE_PASS: ${{ secrets.APPLE_PASS }}
+          APPLE_USER: ${{ secrets.APPLE_USER }}
+          APIKEY: ${{ secrets.APIKEY }}
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: Crossfeed_macOS
+          path: ci/bin/*.zip
+          retention-days: 30

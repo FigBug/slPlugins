@@ -3,8 +3,8 @@ on:
   push:
     branches:
       - master
-    tags:
-      - 'stereoenhancer_v*'
+    paths:
+      - 'plugins/StereoEnhancer/**'
 jobs:
   build:
     name: Build StereoEnhancer - Windows
@@ -36,11 +36,6 @@ jobs:
 
           # Create zip
           7z a StereoEnhancer_Win.zip vst/StereoEnhancer.dll vst3/StereoEnhancer.vst3
-
-          # Upload to socalabs on release tag
-          if ("${{github.ref}}" -like "refs/tags/stereoenhancer_v*") {
-            curl.exe -F "files=@StereoEnhancer_Win.zip" "https://socalabs.com/files/set.php?key=$env:APIKEY"
-          }
         shell: pwsh
         env:
           APIKEY: ${{ secrets.APIKEY }}

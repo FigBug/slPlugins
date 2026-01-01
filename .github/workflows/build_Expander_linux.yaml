@@ -3,8 +3,8 @@ on:
   push:
     branches:
       - master
-    tags:
-      - 'expander_v*'
+    paths:
+      - 'plugins/Expander/**'
 jobs:
   build:
     name: Build Expander - Linux
@@ -40,11 +40,6 @@ jobs:
 
           # Create zip
           zip -r Expander_Linux.zip vst/Expander.so vst3/Expander.vst3 lv2/Expander.lv2
-
-          # Upload to socalabs on release tag
-          if [[ "$GITHUB_REF" == refs/tags/expander_v* ]]; then
-            curl -F "files=@Expander_Linux.zip" "https://socalabs.com/files/set.php?key=$APIKEY"
-          fi
         shell: bash
         env:
           APIKEY: ${{ secrets.APIKEY }}

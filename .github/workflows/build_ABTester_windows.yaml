@@ -3,8 +3,8 @@ on:
   push:
     branches:
       - master
-    tags:
-      - 'abtester_v*'
+    paths:
+      - 'plugins/ABTester/**'
 jobs:
   build:
     name: Build ABTester - Windows
@@ -36,11 +36,6 @@ jobs:
 
           # Create zip
           7z a ABTester_Win.zip vst/ABTester.dll vst3/ABTester.vst3
-
-          # Upload to socalabs on release tag
-          if ("${{github.ref}}" -like "refs/tags/abtester_v*") {
-            curl.exe -F "files=@ABTester_Win.zip" "https://socalabs.com/files/set.php?key=$env:APIKEY"
-          }
         shell: pwsh
         env:
           APIKEY: ${{ secrets.APIKEY }}

@@ -3,8 +3,8 @@ on:
   push:
     branches:
       - master
-    tags:
-      - 'stereoenhancer_v*'
+    paths:
+      - 'plugins/StereoEnhancer/**'
 jobs:
   build:
     name: Build StereoEnhancer - Linux
@@ -40,11 +40,6 @@ jobs:
 
           # Create zip
           zip -r StereoEnhancer_Linux.zip vst/StereoEnhancer.so vst3/StereoEnhancer.vst3 lv2/StereoEnhancer.lv2
-
-          # Upload to socalabs on release tag
-          if [[ "$GITHUB_REF" == refs/tags/stereoenhancer_v* ]]; then
-            curl -F "files=@StereoEnhancer_Linux.zip" "https://socalabs.com/files/set.php?key=$APIKEY"
-          fi
         shell: bash
         env:
           APIKEY: ${{ secrets.APIKEY }}

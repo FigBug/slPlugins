@@ -3,8 +3,8 @@ on:
   push:
     branches:
       - master
-    tags:
-      - 'oscilloscope_v*'
+    paths:
+      - 'plugins/Oscilloscope/**'
 jobs:
   build:
     name: Build Oscilloscope - Linux
@@ -40,11 +40,6 @@ jobs:
 
           # Create zip
           zip -r Oscilloscope_Linux.zip vst/Oscilloscope.so vst3/Oscilloscope.vst3 lv2/Oscilloscope.lv2
-
-          # Upload to socalabs on release tag
-          if [[ "$GITHUB_REF" == refs/tags/oscilloscope_v* ]]; then
-            curl -F "files=@Oscilloscope_Linux.zip" "https://socalabs.com/files/set.php?key=$APIKEY"
-          fi
         shell: bash
         env:
           APIKEY: ${{ secrets.APIKEY }}

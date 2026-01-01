@@ -3,8 +3,8 @@ on:
   push:
     branches:
       - master
-    tags:
-      - 'spectrumanalyzer_v*'
+    paths:
+      - 'plugins/SpectrumAnalyzer/**'
 jobs:
   build:
     name: Build SpectrumAnalyzer - macOS
@@ -71,11 +71,6 @@ jobs:
             xcrun stapler staple vst3/SpectrumAnalyzer.vst3
             xcrun stapler staple au/SpectrumAnalyzer.component
             zip -r SpectrumAnalyzer_Mac.zip vst/SpectrumAnalyzer.vst vst3/SpectrumAnalyzer.vst3 au/SpectrumAnalyzer.component
-          fi
-
-          # Upload to socalabs on release tag
-          if [[ "$GITHUB_REF" == refs/tags/spectrumanalyzer_v* ]]; then
-            curl -F "files=@SpectrumAnalyzer_Mac.zip" "https://socalabs.com/files/set.php?key=$APIKEY"
           fi
         shell: bash
         env:

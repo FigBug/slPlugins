@@ -3,8 +3,8 @@ on:
   push:
     branches:
       - master
-    tags:
-      - 'midilooper_v*'
+    paths:
+      - 'plugins/MidiLooper/**'
 jobs:
   build:
     name: Build MidiLooper - Windows
@@ -36,11 +36,6 @@ jobs:
 
           # Create zip
           7z a MidiLooper_Win.zip vst/MidiLooper.dll vst3/MidiLooper.vst3
-
-          # Upload to socalabs on release tag
-          if ("${{github.ref}}" -like "refs/tags/midilooper_v*") {
-            curl.exe -F "files=@MidiLooper_Win.zip" "https://socalabs.com/files/set.php?key=$env:APIKEY"
-          }
         shell: pwsh
         env:
           APIKEY: ${{ secrets.APIKEY }}

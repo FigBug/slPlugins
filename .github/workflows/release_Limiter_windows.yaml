@@ -1,0 +1,50 @@
+name: Release Limiter - Windows
+on:
+  push:
+    tags:
+      - 'limiter_v*'
+jobs:
+  build:
+    name: Release Limiter - Windows
+    runs-on: windows-latest
+    steps:
+      - name: Fix up git URLs
+        run: |
+          "[url `"https://github.com/`"]`n  insteadOf = `"git@github.com:`"" | Out-File -FilePath $env:USERPROFILE\.gitconfig -Append -Encoding UTF8
+        shell: pwsh
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.ACCESS_TOKEN }}
+          submodules: recursive
+      - name: Build plugin
+        run: |
+          # Build
+          cd plugins/Limiter
+          cmake -B build
+          cmake --build build --config Release
+
+          # Package
+          New-Item -ItemType Directory -Force -Path "../../ci/bin"
+          cd ../../ci/bin
+          New-Item -ItemType Directory -Force -Path "vst"
+          New-Item -ItemType Directory -Force -Path "vst3"
+
+          Copy-Item "../../plugins/Limiter/build/Limiter_artefacts/Release/VST/Limiter.dll" "vst/"
+          Copy-Item "../../plugins/Limiter/build/Limiter_artefacts/Release/VST3/Limiter.vst3" "vst3/" -Recurse
+
+          # Create zip
+          7z a Limiter_Win.zip vst/Limiter.dll vst3/Limiter.vst3
+
+          # Upload to socalabs on release tag
+          if ("${{github.ref}}" -like "refs/tags/limiter_v*") {
+            curl.exe -F "files=@Limiter_Win.zip" "https://socalabs.com/files/set.php?key=$env:APIKEY"
+          }
+        shell: pwsh
+        env:
+          APIKEY: ${{ secrets.APIKEY }}
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: Limiter_Windows
+          path: ci/bin/*.zip
+          retention-days: 30

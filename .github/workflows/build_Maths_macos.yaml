@@ -3,8 +3,8 @@ on:
   push:
     branches:
       - master
-    tags:
-      - 'maths_v*'
+    paths:
+      - 'plugins/Maths/**'
 jobs:
   build:
     name: Build Maths - macOS
@@ -71,11 +71,6 @@ jobs:
             xcrun stapler staple vst3/Maths.vst3
             xcrun stapler staple au/Maths.component
             zip -r Maths_Mac.zip vst/Maths.vst vst3/Maths.vst3 au/Maths.component
-          fi
-
-          # Upload to socalabs on release tag
-          if [[ "$GITHUB_REF" == refs/tags/maths_v* ]]; then
-            curl -F "files=@Maths_Mac.zip" "https://socalabs.com/files/set.php?key=$APIKEY"
           fi
         shell: bash
         env:

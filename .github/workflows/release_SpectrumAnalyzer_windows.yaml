@@ -1,0 +1,50 @@
+name: Release SpectrumAnalyzer - Windows
+on:
+  push:
+    tags:
+      - 'spectrumanalyzer_v*'
+jobs:
+  build:
+    name: Release SpectrumAnalyzer - Windows
+    runs-on: windows-latest
+    steps:
+      - name: Fix up git URLs
+        run: |
+          "[url `"https://github.com/`"]`n  insteadOf = `"git@github.com:`"" | Out-File -FilePath $env:USERPROFILE\.gitconfig -Append -Encoding UTF8
+        shell: pwsh
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.ACCESS_TOKEN }}
+          submodules: recursive
+      - name: Build plugin
+        run: |
+          # Build
+          cd plugins/SpectrumAnalyzer
+          cmake -B build
+          cmake --build build --config Release
+
+          # Package
+          New-Item -ItemType Directory -Force -Path "../../ci/bin"
+          cd ../../ci/bin
+          New-Item -ItemType Directory -Force -Path "vst"
+          New-Item -ItemType Directory -Force -Path "vst3"
+
+          Copy-Item "../../plugins/SpectrumAnalyzer/build/SpectrumAnalyzer_artefacts/Release/VST/SpectrumAnalyzer.dll" "vst/"
+          Copy-Item "../../plugins/SpectrumAnalyzer/build/SpectrumAnalyzer_artefacts/Release/VST3/SpectrumAnalyzer.vst3" "vst3/" -Recurse
+
+          # Create zip
+          7z a SpectrumAnalyzer_Win.zip vst/SpectrumAnalyzer.dll vst3/SpectrumAnalyzer.vst3
+
+          # Upload to socalabs on release tag
+          if ("${{github.ref}}" -like "refs/tags/spectrumanalyzer_v*") {
+            curl.exe -F "files=@SpectrumAnalyzer_Win.zip" "https://socalabs.com/files/set.php?key=$env:APIKEY"
+          }
+        shell: pwsh
+        env:
+          APIKEY: ${{ secrets.APIKEY }}
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: SpectrumAnalyzer_Windows
+          path: ci/bin/*.zip
+          retention-days: 30

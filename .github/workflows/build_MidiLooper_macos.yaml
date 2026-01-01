@@ -3,8 +3,8 @@ on:
   push:
     branches:
       - master
-    tags:
-      - 'midilooper_v*'
+    paths:
+      - 'plugins/MidiLooper/**'
 jobs:
   build:
     name: Build MidiLooper - macOS
@@ -71,11 +71,6 @@ jobs:
             xcrun stapler staple vst3/MidiLooper.vst3
             xcrun stapler staple au/MidiLooper.component
             zip -r MidiLooper_Mac.zip vst/MidiLooper.vst vst3/MidiLooper.vst3 au/MidiLooper.component
-          fi
-
-          # Upload to socalabs on release tag
-          if [[ "$GITHUB_REF" == refs/tags/midilooper_v* ]]; then
-            curl -F "files=@MidiLooper_Mac.zip" "https://socalabs.com/files/set.php?key=$APIKEY"
           fi
         shell: bash
         env:

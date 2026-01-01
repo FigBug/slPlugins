@@ -3,8 +3,8 @@ on:
   push:
     branches:
       - master
-    tags:
-      - 'addinvert_v*'
+    paths:
+      - 'plugins/AddInvert/**'
 jobs:
   build:
     name: Build AddInvert - macOS
@@ -71,11 +71,6 @@ jobs:
             xcrun stapler staple vst3/AddInvert.vst3
             xcrun stapler staple au/AddInvert.component
             zip -r AddInvert_Mac.zip vst/AddInvert.vst vst3/AddInvert.vst3 au/AddInvert.component
-          fi
-
-          # Upload to socalabs on release tag
-          if [[ "$GITHUB_REF" == refs/tags/addinvert_v* ]]; then
-            curl -F "files=@AddInvert_Mac.zip" "https://socalabs.com/files/set.php?key=$APIKEY"
           fi
         shell: bash
         env:

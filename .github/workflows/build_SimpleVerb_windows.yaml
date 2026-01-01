@@ -3,8 +3,8 @@ on:
   push:
     branches:
       - master
-    tags:
-      - 'simpleverb_v*'
+    paths:
+      - 'plugins/SimpleVerb/**'
 jobs:
   build:
     name: Build SimpleVerb - Windows
@@ -36,11 +36,6 @@ jobs:
 
           # Create zip
           7z a SimpleVerb_Win.zip vst/SimpleVerb.dll vst3/SimpleVerb.vst3
-
-          # Upload to socalabs on release tag
-          if ("${{github.ref}}" -like "refs/tags/simpleverb_v*") {
-            curl.exe -F "files=@SimpleVerb_Win.zip" "https://socalabs.com/files/set.php?key=$env:APIKEY"
-          }
         shell: pwsh
         env:
           APIKEY: ${{ secrets.APIKEY }}

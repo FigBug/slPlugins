@@ -3,8 +3,8 @@ on:
   push:
     branches:
       - master
-    tags:
-      - 'crossfeed_v*'
+    paths:
+      - 'plugins/Crossfeed/**'
 jobs:
   build:
     name: Build Crossfeed - Windows
@@ -36,11 +36,6 @@ jobs:
 
           # Create zip
           7z a Crossfeed_Win.zip vst/Crossfeed.dll vst3/Crossfeed.vst3
-
-          # Upload to socalabs on release tag
-          if ("${{github.ref}}" -like "refs/tags/crossfeed_v*") {
-            curl.exe -F "files=@Crossfeed_Win.zip" "https://socalabs.com/files/set.php?key=$env:APIKEY"
-          }
         shell: pwsh
         env:
           APIKEY: ${{ secrets.APIKEY }}

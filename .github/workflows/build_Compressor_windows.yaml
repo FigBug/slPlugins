@@ -3,8 +3,8 @@ on:
   push:
     branches:
       - master
-    tags:
-      - 'compressor_v*'
+    paths:
+      - 'plugins/Compressor/**'
 jobs:
   build:
     name: Build Compressor - Windows
@@ -36,11 +36,6 @@ jobs:
 
           # Create zip
           7z a Compressor_Win.zip vst/Compressor.dll vst3/Compressor.vst3
-
-          # Upload to socalabs on release tag
-          if ("${{github.ref}}" -like "refs/tags/compressor_v*") {
-            curl.exe -F "files=@Compressor_Win.zip" "https://socalabs.com/files/set.php?key=$env:APIKEY"
-          }
         shell: pwsh
         env:
           APIKEY: ${{ secrets.APIKEY }}

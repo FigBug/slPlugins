@@ -3,8 +3,8 @@ on:
   push:
     branches:
       - master
-    tags:
-      - 'compensateddelay_v*'
+    paths:
+      - 'plugins/CompensatedDelay/**'
 jobs:
   build:
     name: Build CompensatedDelay - Windows
@@ -36,11 +36,6 @@ jobs:
 
           # Create zip
           7z a CompensatedDelay_Win.zip vst/CompensatedDelay.dll vst3/CompensatedDelay.vst3
-
-          # Upload to socalabs on release tag
-          if ("${{github.ref}}" -like "refs/tags/compensateddelay_v*") {
-            curl.exe -F "files=@CompensatedDelay_Win.zip" "https://socalabs.com/files/set.php?key=$env:APIKEY"
-          }
         shell: pwsh
         env:
           APIKEY: ${{ secrets.APIKEY }}

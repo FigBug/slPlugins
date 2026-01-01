@@ -3,8 +3,8 @@ on:
   push:
     branches:
       - master
-    tags:
-      - 'midilooper_v*'
+    paths:
+      - 'plugins/MidiLooper/**'
 jobs:
   build:
     name: Build MidiLooper - Linux
@@ -40,11 +40,6 @@ jobs:
 
           # Create zip
           zip -r MidiLooper_Linux.zip vst/MidiLooper.so vst3/MidiLooper.vst3 lv2/MidiLooper.lv2
-
-          # Upload to socalabs on release tag
-          if [[ "$GITHUB_REF" == refs/tags/midilooper_v* ]]; then
-            curl -F "files=@MidiLooper_Linux.zip" "https://socalabs.com/files/set.php?key=$APIKEY"
-          fi
         shell: bash
         env:
           APIKEY: ${{ secrets.APIKEY }}

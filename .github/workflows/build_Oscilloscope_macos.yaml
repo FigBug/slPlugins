@@ -3,8 +3,8 @@ on:
   push:
     branches:
       - master
-    tags:
-      - 'oscilloscope_v*'
+    paths:
+      - 'plugins/Oscilloscope/**'
 jobs:
   build:
     name: Build Oscilloscope - macOS
@@ -71,11 +71,6 @@ jobs:
             xcrun stapler staple vst3/Oscilloscope.vst3
             xcrun stapler staple au/Oscilloscope.component
             zip -r Oscilloscope_Mac.zip vst/Oscilloscope.vst vst3/Oscilloscope.vst3 au/Oscilloscope.component
-          fi
-
-          # Upload to socalabs on release tag
-          if [[ "$GITHUB_REF" == refs/tags/oscilloscope_v* ]]; then
-            curl -F "files=@Oscilloscope_Mac.zip" "https://socalabs.com/files/set.php?key=$APIKEY"
           fi
         shell: bash
         env:

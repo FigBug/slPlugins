@@ -3,8 +3,8 @@ on:
   push:
     branches:
       - master
-    tags:
-      - 'oscilloscope_v*'
+    paths:
+      - 'plugins/Oscilloscope/**'
 jobs:
   build:
     name: Build Oscilloscope - Windows
@@ -36,11 +36,6 @@ jobs:
 
           # Create zip
           7z a Oscilloscope_Win.zip vst/Oscilloscope.dll vst3/Oscilloscope.vst3
-
-          # Upload to socalabs on release tag
-          if ("${{github.ref}}" -like "refs/tags/oscilloscope_v*") {
-            curl.exe -F "files=@Oscilloscope_Win.zip" "https://socalabs.com/files/set.php?key=$env:APIKEY"
-          }
         shell: pwsh
         env:
           APIKEY: ${{ secrets.APIKEY }}

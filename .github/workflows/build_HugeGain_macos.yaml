@@ -3,8 +3,8 @@ on:
   push:
     branches:
       - master
-    tags:
-      - 'hugegain_v*'
+    paths:
+      - 'plugins/HugeGain/**'
 jobs:
   build:
     name: Build HugeGain - macOS
@@ -71,11 +71,6 @@ jobs:
             xcrun stapler staple vst3/HugeGain.vst3
             xcrun stapler staple au/HugeGain.component
             zip -r HugeGain_Mac.zip vst/HugeGain.vst vst3/HugeGain.vst3 au/HugeGain.component
-          fi
-
-          # Upload to socalabs on release tag
-          if [[ "$GITHUB_REF" == refs/tags/hugegain_v* ]]; then
-            curl -F "files=@HugeGain_Mac.zip" "https://socalabs.com/files/set.php?key=$APIKEY"
           fi
         shell: bash
         env:

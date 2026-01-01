@@ -3,8 +3,8 @@ on:
   push:
     branches:
       - master
-    tags:
-      - 'spectrumanalyzer_v*'
+    paths:
+      - 'plugins/SpectrumAnalyzer/**'
 jobs:
   build:
     name: Build SpectrumAnalyzer - Linux
@@ -40,11 +40,6 @@ jobs:
 
           # Create zip
           zip -r SpectrumAnalyzer_Linux.zip vst/SpectrumAnalyzer.so vst3/SpectrumAnalyzer.vst3 lv2/SpectrumAnalyzer.lv2
-
-          # Upload to socalabs on release tag
-          if [[ "$GITHUB_REF" == refs/tags/spectrumanalyzer_v* ]]; then
-            curl -F "files=@SpectrumAnalyzer_Linux.zip" "https://socalabs.com/files/set.php?key=$APIKEY"
-          fi
         shell: bash
         env:
           APIKEY: ${{ secrets.APIKEY }}

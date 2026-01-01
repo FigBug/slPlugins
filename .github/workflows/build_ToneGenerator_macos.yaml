@@ -3,8 +3,8 @@ on:
   push:
     branches:
       - master
-    tags:
-      - 'tonegenerator_v*'
+    paths:
+      - 'plugins/ToneGenerator/**'
 jobs:
   build:
     name: Build ToneGenerator - macOS
@@ -71,11 +71,6 @@ jobs:
             xcrun stapler staple vst3/ToneGenerator.vst3
             xcrun stapler staple au/ToneGenerator.component
             zip -r ToneGenerator_Mac.zip vst/ToneGenerator.vst vst3/ToneGenerator.vst3 au/ToneGenerator.component
-          fi
-
-          # Upload to socalabs on release tag
-          if [[ "$GITHUB_REF" == refs/tags/tonegenerator_v* ]]; then
-            curl -F "files=@ToneGenerator_Mac.zip" "https://socalabs.com/files/set.php?key=$APIKEY"
           fi
         shell: bash
         env:

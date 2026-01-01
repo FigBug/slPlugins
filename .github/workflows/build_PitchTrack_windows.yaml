@@ -3,8 +3,8 @@ on:
   push:
     branches:
       - master
-    tags:
-      - 'pitchtrack_v*'
+    paths:
+      - 'plugins/PitchTrack/**'
 jobs:
   build:
     name: Build PitchTrack - Windows
@@ -36,11 +36,6 @@ jobs:
 
           # Create zip
           7z a PitchTrack_Win.zip vst/PitchTrack.dll vst3/PitchTrack.vst3
-
-          # Upload to socalabs on release tag
-          if ("${{github.ref}}" -like "refs/tags/pitchtrack_v*") {
-            curl.exe -F "files=@PitchTrack_Win.zip" "https://socalabs.com/files/set.php?key=$env:APIKEY"
-          }
         shell: pwsh
         env:
           APIKEY: ${{ secrets.APIKEY }}

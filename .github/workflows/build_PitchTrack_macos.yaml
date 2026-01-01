@@ -3,8 +3,8 @@ on:
   push:
     branches:
       - master
-    tags:
-      - 'pitchtrack_v*'
+    paths:
+      - 'plugins/PitchTrack/**'
 jobs:
   build:
     name: Build PitchTrack - macOS
@@ -71,11 +71,6 @@ jobs:
             xcrun stapler staple vst3/PitchTrack.vst3
             xcrun stapler staple au/PitchTrack.component
             zip -r PitchTrack_Mac.zip vst/PitchTrack.vst vst3/PitchTrack.vst3 au/PitchTrack.component
-          fi
-
-          # Upload to socalabs on release tag
-          if [[ "$GITHUB_REF" == refs/tags/pitchtrack_v* ]]; then
-            curl -F "files=@PitchTrack_Mac.zip" "https://socalabs.com/files/set.php?key=$APIKEY"
           fi
         shell: bash
         env:

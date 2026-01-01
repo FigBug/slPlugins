@@ -3,8 +3,8 @@ on:
   push:
     branches:
       - master
-    tags:
-      - 'wavelooper_v*'
+    paths:
+      - 'plugins/WaveLooper/**'
 jobs:
   build:
     name: Build WaveLooper - macOS
@@ -71,11 +71,6 @@ jobs:
             xcrun stapler staple vst3/WaveLooper.vst3
             xcrun stapler staple au/WaveLooper.component
             zip -r WaveLooper_Mac.zip vst/WaveLooper.vst vst3/WaveLooper.vst3 au/WaveLooper.component
-          fi
-
-          # Upload to socalabs on release tag
-          if [[ "$GITHUB_REF" == refs/tags/wavelooper_v* ]]; then
-            curl -F "files=@WaveLooper_Mac.zip" "https://socalabs.com/files/set.php?key=$APIKEY"
           fi
         shell: bash
         env:

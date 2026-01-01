@@ -1,0 +1,54 @@
+name: Release Crossfeed - Linux
+on:
+  push:
+    tags:
+      - 'crossfeed_v*'
+jobs:
+  build:
+    name: Release Crossfeed - Linux
+    runs-on: ubuntu-latest
+    steps:
+      - name: Fix up git URLs
+        run: |
+          echo -e '[url "https://github.com/"]\n  insteadOf = "git@github.com:"' >> ~/.gitconfig
+        shell: bash
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.ACCESS_TOKEN }}
+          submodules: recursive
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install clang ninja-build git ladspa-sdk freeglut3-dev g++ libasound2-dev libcurl4-openssl-dev libfreetype6-dev libjack-jackd2-dev libx11-dev libxcomposite-dev libxcursor-dev libxinerama-dev libxrandr-dev mesa-common-dev webkit2gtk-4.0 juce-tools xvfb
+      - name: Build plugin
+        run: |
+          # Build
+          cd plugins/Crossfeed
+          cmake -B build -G Ninja -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++
+          cmake --build build --config Release
+
+          # Package
+          mkdir -p ../../ci/bin
+          cd ../../ci/bin
+          mkdir -p lv2 vst vst3
+
+          cp -R "../../plugins/Crossfeed/build/Crossfeed_artefacts/LV2/Crossfeed.lv2" lv2/
+          cp -R "../../plugins/Crossfeed/build/Crossfeed_artefacts/VST/libCrossfeed.so" "vst/Crossfeed.so"
+          cp -R "../../plugins/Crossfeed/build/Crossfeed_artefacts/VST3/Crossfeed.vst3" vst3/
+
+          # Create zip
+          zip -r Crossfeed_Linux.zip vst/Crossfeed.so vst3/Crossfeed.vst3 lv2/Crossfeed.lv2
+
+          # Upload to socalabs on release tag
+          if [[ "$GITHUB_REF" == refs/tags/crossfeed_v* ]]; then
+            curl -F "files=@Crossfeed_Linux.zip" "https://socalabs.com/files/set.php?key=$APIKEY"
+          fi
+        shell: bash
+        env:
+          APIKEY: ${{ secrets.APIKEY }}
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: Crossfeed_Linux
+          path: ci/bin/*.zip
+          retention-days: 30

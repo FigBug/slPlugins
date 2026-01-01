@@ -1,0 +1,50 @@
+name: Release MidiLooper - Windows
+on:
+  push:
+    tags:
+      - 'midilooper_v*'
+jobs:
+  build:
+    name: Release MidiLooper - Windows
+    runs-on: windows-latest
+    steps:
+      - name: Fix up git URLs
+        run: |
+          "[url `"https://github.com/`"]`n  insteadOf = `"git@github.com:`"" | Out-File -FilePath $env:USERPROFILE\.gitconfig -Append -Encoding UTF8
+        shell: pwsh
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.ACCESS_TOKEN }}
+          submodules: recursive
+      - name: Build plugin
+        run: |
+          # Build
+          cd plugins/MidiLooper
+          cmake -B build
+          cmake --build build --config Release
+
+          # Package
+          New-Item -ItemType Directory -Force -Path "../../ci/bin"
+          cd ../../ci/bin
+          New-Item -ItemType Directory -Force -Path "vst"
+          New-Item -ItemType Directory -Force -Path "vst3"
+
+          Copy-Item "../../plugins/MidiLooper/build/MidiLooper_artefacts/Release/VST/MidiLooper.dll" "vst/"
+          Copy-Item "../../plugins/MidiLooper/build/MidiLooper_artefacts/Release/VST3/MidiLooper.vst3" "vst3/" -Recurse
+
+          # Create zip
+          7z a MidiLooper_Win.zip vst/MidiLooper.dll vst3/MidiLooper.vst3
+
+          # Upload to socalabs on release tag
+          if ("${{github.ref}}" -like "refs/tags/midilooper_v*") {
+            curl.exe -F "files=@MidiLooper_Win.zip" "https://socalabs.com/files/set.php?key=$env:APIKEY"
+          }
+        shell: pwsh
+        env:
+          APIKEY: ${{ secrets.APIKEY }}
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: MidiLooper_Windows
+          path: ci/bin/*.zip
+          retention-days: 30

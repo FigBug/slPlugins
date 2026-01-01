@@ -3,8 +3,8 @@ on:
   push:
     branches:
       - master
-    tags:
-      - 'gate_v*'
+    paths:
+      - 'plugins/Gate/**'
 jobs:
   build:
     name: Build Gate - Linux
@@ -40,11 +40,6 @@ jobs:
 
           # Create zip
           zip -r Gate_Linux.zip vst/Gate.so vst3/Gate.vst3 lv2/Gate.lv2
-
-          # Upload to socalabs on release tag
-          if [[ "$GITHUB_REF" == refs/tags/gate_v* ]]; then
-            curl -F "files=@Gate_Linux.zip" "https://socalabs.com/files/set.php?key=$APIKEY"
-          fi
         shell: bash
         env:
           APIKEY: ${{ secrets.APIKEY }}

@@ -3,8 +3,8 @@ on:
   push:
     branches:
       - master
-    tags:
-      - 'expander_v*'
+    paths:
+      - 'plugins/Expander/**'
 jobs:
   build:
     name: Build Expander - macOS
@@ -71,11 +71,6 @@ jobs:
             xcrun stapler staple vst3/Expander.vst3
             xcrun stapler staple au/Expander.component
             zip -r Expander_Mac.zip vst/Expander.vst vst3/Expander.vst3 au/Expander.component
-          fi
-
-          # Upload to socalabs on release tag
-          if [[ "$GITHUB_REF" == refs/tags/expander_v* ]]; then
-            curl -F "files=@Expander_Mac.zip" "https://socalabs.com/files/set.php?key=$APIKEY"
           fi
         shell: bash
         env:

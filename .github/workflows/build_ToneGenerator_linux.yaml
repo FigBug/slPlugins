@@ -3,8 +3,8 @@ on:
   push:
     branches:
       - master
-    tags:
-      - 'tonegenerator_v*'
+    paths:
+      - 'plugins/ToneGenerator/**'
 jobs:
   build:
     name: Build ToneGenerator - Linux
@@ -40,11 +40,6 @@ jobs:
 
           # Create zip
           zip -r ToneGenerator_Linux.zip vst/ToneGenerator.so vst3/ToneGenerator.vst3 lv2/ToneGenerator.lv2
-
-          # Upload to socalabs on release tag
-          if [[ "$GITHUB_REF" == refs/tags/tonegenerator_v* ]]; then
-            curl -F "files=@ToneGenerator_Linux.zip" "https://socalabs.com/files/set.php?key=$APIKEY"
-          fi
         shell: bash
         env:
           APIKEY: ${{ secrets.APIKEY }}

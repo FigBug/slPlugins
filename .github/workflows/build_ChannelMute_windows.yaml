@@ -3,8 +3,8 @@ on:
   push:
     branches:
       - master
-    tags:
-      - 'channelmute_v*'
+    paths:
+      - 'plugins/ChannelMute/**'
 jobs:
   build:
     name: Build ChannelMute - Windows
@@ -36,11 +36,6 @@ jobs:
 
           # Create zip
           7z a ChannelMute_Win.zip vst/ChannelMute.dll vst3/ChannelMute.vst3
-
-          # Upload to socalabs on release tag
-          if ("${{github.ref}}" -like "refs/tags/channelmute_v*") {
-            curl.exe -F "files=@ChannelMute_Win.zip" "https://socalabs.com/files/set.php?key=$env:APIKEY"
-          }
         shell: pwsh
         env:
           APIKEY: ${{ secrets.APIKEY }}

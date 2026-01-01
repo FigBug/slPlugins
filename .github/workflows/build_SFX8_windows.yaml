@@ -3,8 +3,8 @@ on:
   push:
     branches:
       - master
-    tags:
-      - 'sfx8_v*'
+    paths:
+      - 'plugins/SFX8/**'
 jobs:
   build:
     name: Build SFX8 - Windows
@@ -36,11 +36,6 @@ jobs:
 
           # Create zip
           7z a SFX8_Win.zip vst/SFX8.dll vst3/SFX8.vst3
-
-          # Upload to socalabs on release tag
-          if ("${{github.ref}}" -like "refs/tags/sfx8_v*") {
-            curl.exe -F "files=@SFX8_Win.zip" "https://socalabs.com/files/set.php?key=$env:APIKEY"
-          }
         shell: pwsh
         env:
           APIKEY: ${{ secrets.APIKEY }}

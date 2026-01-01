@@ -3,8 +3,8 @@ on:
   push:
     branches:
       - master
-    tags:
-      - 'addinvert_v*'
+    paths:
+      - 'plugins/AddInvert/**'
 jobs:
   build:
     name: Build AddInvert - Windows
@@ -36,11 +36,6 @@ jobs:
 
           # Create zip
           7z a AddInvert_Win.zip vst/AddInvert.dll vst3/AddInvert.vst3
-
-          # Upload to socalabs on release tag
-          if ("${{github.ref}}" -like "refs/tags/addinvert_v*") {
-            curl.exe -F "files=@AddInvert_Win.zip" "https://socalabs.com/files/set.php?key=$env:APIKEY"
-          }
         shell: pwsh
         env:
           APIKEY: ${{ secrets.APIKEY }}

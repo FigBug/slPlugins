@@ -3,8 +3,8 @@ on:
   push:
     branches:
       - master
-    tags:
-      - 'stereoenhancer_v*'
+    paths:
+      - 'plugins/StereoEnhancer/**'
 jobs:
   build:
     name: Build StereoEnhancer - macOS
@@ -71,11 +71,6 @@ jobs:
             xcrun stapler staple vst3/StereoEnhancer.vst3
             xcrun stapler staple au/StereoEnhancer.component
             zip -r StereoEnhancer_Mac.zip vst/StereoEnhancer.vst vst3/StereoEnhancer.vst3 au/StereoEnhancer.component
-          fi
-
-          # Upload to socalabs on release tag
-          if [[ "$GITHUB_REF" == refs/tags/stereoenhancer_v* ]]; then
-            curl -F "files=@StereoEnhancer_Mac.zip" "https://socalabs.com/files/set.php?key=$APIKEY"
           fi
         shell: bash
         env:
