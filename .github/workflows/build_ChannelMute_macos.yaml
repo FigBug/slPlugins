@@ -9,6 +9,7 @@ jobs:
   build:
     name: Build ChannelMute - macOS
     runs-on: macos-latest
+    timeout-minutes: 30
     steps:
       - name: Fix up git URLs
         run: |

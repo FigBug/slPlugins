@@ -9,6 +9,7 @@ jobs:
   build:
     name: Build StereoEnhancer - Windows
     runs-on: windows-latest
+    timeout-minutes: 30
     steps:
       - name: Fix up git URLs
         run: |

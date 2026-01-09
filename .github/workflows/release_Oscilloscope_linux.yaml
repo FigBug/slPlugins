@@ -7,6 +7,7 @@ jobs:
   build:
     name: Release Oscilloscope - Linux
     runs-on: ubuntu-latest
+    timeout-minutes: 30
     steps:
       - name: Fix up git URLs
         run: |
