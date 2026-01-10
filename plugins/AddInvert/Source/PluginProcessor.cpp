@@ -9,8 +9,17 @@ juce::String abTextFunction (const gin::Parameter&, float v)
 }
 
 //==============================================================================
-AddInvertAudioProcessor::AddInvertAudioProcessor()
+static gin::ProcessorOptions createProcessorOptions()
 {
+    gin::ProcessorOptions opts;
+    opts.hasMidiLearn = true;
+    return opts;
+}
+
+AddInvertAudioProcessor::AddInvertAudioProcessor()
+    : gin::Processor (false, createProcessorOptions())
+{
+    init();
 }
 
 AddInvertAudioProcessor::~AddInvertAudioProcessor()
@@ -26,8 +35,11 @@ void AddInvertAudioProcessor::releaseResources()
 {
 }
 
-void AddInvertAudioProcessor::processBlock (juce::AudioSampleBuffer& buffer, juce::MidiBuffer&)
+void AddInvertAudioProcessor::processBlock (juce::AudioSampleBuffer& buffer, juce::MidiBuffer& midi)
 {
+    if (midiLearn)
+        midiLearn->processBlock (midi, buffer.getNumSamples());
+
     const int numChans = buffer.getNumChannels();
     const int numSamples = buffer.getNumSamples();
     

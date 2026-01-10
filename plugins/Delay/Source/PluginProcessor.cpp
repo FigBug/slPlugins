@@ -23,10 +23,18 @@ juce::String durationTextFunction (const gin::Parameter&, float v)
 }
 
 //==============================================================================
+static gin::ProcessorOptions createProcessorOptions()
+{
+    gin::ProcessorOptions opts;
+    opts.hasMidiLearn = true;
+    return opts;
+}
+
 DelayAudioProcessor::DelayAudioProcessor()
+    : gin::Processor (false, createProcessorOptions())
 {
     float mxd = float (gin::NoteDuration::getNoteDurations().size()) - 1.0f;
-    
+
     sync  = addExtParam ("sync",  "Sync",      "", "",   {   0.0f,   1.0f, 1.0f, 1.0f},    0.0f, 0.0f, enableTextFunction);
     time  = addExtParam ("time",  "Delay",     "", "",   {   0.0f, 120.0f, 0.0f, 0.3f},    1.0f, 0.0f);
     beat  = addExtParam ("beat",  "Delay",     "", "",   {   0.0f,    mxd, 1.0f, 1.0f},   13.0f, 0.0f, durationTextFunction);
@@ -39,6 +47,8 @@ DelayAudioProcessor::DelayAudioProcessor()
     fb->conversionFunction  = [] (float in) { return juce::Decibels::decibelsToGain (in); };
     cf->conversionFunction  = [] (float in) { return juce::Decibels::decibelsToGain (in); };
     mix->conversionFunction = [] (float in) { return in / 100.0f; };
+
+    init();
 }
 
 DelayAudioProcessor::~DelayAudioProcessor()
@@ -77,8 +87,11 @@ void DelayAudioProcessor::updateInternalParams()
     }
 }
 
-void DelayAudioProcessor::processBlock (juce::AudioSampleBuffer& buffer, juce::MidiBuffer&)
+void DelayAudioProcessor::processBlock (juce::AudioSampleBuffer& buffer, juce::MidiBuffer& midi)
 {
+    if (midiLearn)
+        midiLearn->processBlock (midi, buffer.getNumSamples());
+
     updateInternalParams();
 
     int numSamples = buffer.getNumSamples();

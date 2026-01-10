@@ -13,7 +13,15 @@ static juce::String enableTextFunction (const gin::Parameter&, float v)
 }
 
 //==============================================================================
+static gin::ProcessorOptions createProcessorOptions()
+{
+    gin::ProcessorOptions opts;
+    opts.hasMidiLearn = true;
+    return opts;
+}
+
 SampleDelayAudioProcessor::SampleDelayAudioProcessor()
+    : gin::Processor (false, createProcessorOptions())
 {
     mode     = addExtParam ("mode",     "Mode",      "", "",   {   0.0f,     1.0f, 1.0f, 1.0f},    0.0f, 0.0f, modeTextFunction);
 	link     = addExtParam ("link",     "Link",      "", "",   {   0.0f,     1.0f, 1.0f, 1.0f},    1.0f, 0.0f, enableTextFunction);
@@ -26,6 +34,8 @@ SampleDelayAudioProcessor::SampleDelayAudioProcessor()
 
     timeL->conversionFunction = [] (float in) { return in / 1000.0f; };
 	timeR->conversionFunction = [] (float in) { return in / 1000.0f; };
+
+    init();
 }
 
 SampleDelayAudioProcessor::~SampleDelayAudioProcessor()
@@ -62,8 +72,11 @@ void SampleDelayAudioProcessor::releaseResources()
 {
 }
 
-void SampleDelayAudioProcessor::processBlock (juce::AudioSampleBuffer& buffer, juce::MidiBuffer&)
+void SampleDelayAudioProcessor::processBlock (juce::AudioSampleBuffer& buffer, juce::MidiBuffer& midi)
 {
+    if (midiLearn)
+        midiLearn->processBlock (midi, buffer.getNumSamples());
+
     int numSamples = buffer.getNumSamples();
     int ch = buffer.getNumChannels();
     

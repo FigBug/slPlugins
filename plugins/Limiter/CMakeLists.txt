@@ -48,6 +48,7 @@ juce_add_plugin(${PLUGIN_NAME}
     AU_MAIN_TYPE kAudioUnitType_Effect
     VST2_CATEGORY kPlugCategEffect
     LV2URI ${LV2_URI}
+    NEEDS_MIDI_INPUT ON
 )
 
 # Auto-discover source files

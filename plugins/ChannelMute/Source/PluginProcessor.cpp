@@ -24,13 +24,23 @@ inline bool oddEven (int x)
     return (x % 2 == 0) ? 1 : -1;
 }
 //==============================================================================
+static gin::ProcessorOptions createProcessorOptions()
+{
+    gin::ProcessorOptions opts;
+    opts.hasMidiLearn = true;
+    return opts;
+}
+
 ChannelMuteAudioProcessor::ChannelMuteAudioProcessor()
+    : gin::Processor (false, createProcessorOptions())
 {
     //==============================================================================
     addExtParam (PARAM_MUTE_L,    "Mute L",       "", "",   {  0.0f,  1.0f, 1.0f, 1.0f}, 0.0f, 0.0f, onOffTextFunction);
     addExtParam (PARAM_LEVEL_L,   "Level L",      "", "dB", {-100.0f, 6.0f, 0.0f, 5.0f}, 0.0f, 0.0f);
     addExtParam (PARAM_MUTE_R,    "Mute R",       "", "",   {  0.0f,  1.0f, 1.0f, 1.0f}, 0.0f, 0.0f, onOffTextFunction);
     addExtParam (PARAM_LEVEL_R,   "Level R",      "", "dB", {-100.0f, 6.0f, 0.0f, 5.0f}, 0.0f, 0.0f);
+
+    init();
 }
 
 ChannelMuteAudioProcessor::~ChannelMuteAudioProcessor()
@@ -48,8 +58,11 @@ void ChannelMuteAudioProcessor::releaseResources()
 {
 }
 
-void ChannelMuteAudioProcessor::processBlock (juce::AudioSampleBuffer& buffer, juce::MidiBuffer&)
+void ChannelMuteAudioProcessor::processBlock (juce::AudioSampleBuffer& buffer, juce::MidiBuffer& midi)
 {
+    if (midiLearn)
+        midiLearn->processBlock (midi, buffer.getNumSamples());
+
     lVal.setTargetValue (parameterIntValue (PARAM_MUTE_L) ? 0.0f : juce::Decibels::decibelsToGain (parameterValue (PARAM_LEVEL_L)));
     rVal.setTargetValue (parameterIntValue (PARAM_MUTE_R) ? 0.0f : juce::Decibels::decibelsToGain (parameterValue (PARAM_LEVEL_R)));
 

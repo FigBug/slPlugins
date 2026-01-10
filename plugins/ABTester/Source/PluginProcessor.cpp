@@ -9,11 +9,21 @@ static juce::String abTextFunction (const gin::Parameter&, float v)
 }
 
 //==============================================================================
+static gin::ProcessorOptions createProcessorOptions()
+{
+    gin::ProcessorOptions opts;
+    opts.hasMidiLearn = true;
+    return opts;
+}
+
 ABTesterAudioProcessor::ABTesterAudioProcessor()
+    : gin::Processor (false, createProcessorOptions())
 {
     //==============================================================================
     addExtParam (PARAM_AB,    "A / B", "", "",    { 0.0f,   1.0f, 1.0f, 1.0f}, 0.0f, 0.0f, abTextFunction);
     addExtParam (PARAM_LEVEL, "Level", "", "dB",  {-100.0f, 6.0f, 0.0f, 5.0f}, 0.0f, 0.0f);
+
+    init();
 }
 
 ABTesterAudioProcessor::~ABTesterAudioProcessor()
@@ -31,8 +41,11 @@ void ABTesterAudioProcessor::releaseResources()
 {
 }
 
-void ABTesterAudioProcessor::processBlock (juce::AudioSampleBuffer& buffer, juce::MidiBuffer&)
+void ABTesterAudioProcessor::processBlock (juce::AudioSampleBuffer& buffer, juce::MidiBuffer& midi)
 {
+    if (midiLearn)
+        midiLearn->processBlock (midi, buffer.getNumSamples());
+
     aVal.setTargetValue (parameterIntValue (PARAM_AB) == 0 ? juce::Decibels::decibelsToGain (parameterValue (PARAM_LEVEL)) : 0);
     bVal.setTargetValue (parameterIntValue (PARAM_AB) == 1 ? juce::Decibels::decibelsToGain (parameterValue (PARAM_LEVEL)) : 0);
 

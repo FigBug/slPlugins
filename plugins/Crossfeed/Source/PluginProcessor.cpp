@@ -8,9 +8,19 @@ static juce::String enableTextFunction (const gin::Parameter&, float v)
 }
 
 //==============================================================================
+static gin::ProcessorOptions createProcessorOptions()
+{
+    gin::ProcessorOptions opts;
+    opts.hasMidiLearn = true;
+    return opts;
+}
+
 CrossfeedAudioProcessor::CrossfeedAudioProcessor()
+    : gin::Processor (false, createProcessorOptions())
 {
     enable = addExtParam ("enable",    "Enable", "", "",    { 0.0f,   1.0f, 1.0f, 1.0f}, 1.0f, 0.0f, enableTextFunction);
+
+    init();
 }
 
 CrossfeedAudioProcessor::~CrossfeedAudioProcessor()
@@ -32,8 +42,11 @@ void CrossfeedAudioProcessor::releaseResources()
 {
 }
 
-void CrossfeedAudioProcessor::processBlock (juce::AudioSampleBuffer& buffer, juce::MidiBuffer&)
+void CrossfeedAudioProcessor::processBlock (juce::AudioSampleBuffer& buffer, juce::MidiBuffer& midi)
 {
+    if (midiLearn)
+        midiLearn->processBlock (midi, buffer.getNumSamples());
+
     enableVal.setTargetValue (enable->getUserValue() > 0.5f ? 1.0f : 0.0f);
     disableVal.setTargetValue (enable->getUserValue() > 0.5f ? 0.0f : 1.0f);
     

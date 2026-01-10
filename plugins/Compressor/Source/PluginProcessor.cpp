@@ -3,10 +3,18 @@
 #include <random>
 
 //==============================================================================
+static gin::ProcessorOptions createProcessorOptions()
+{
+    gin::ProcessorOptions opts;
+    opts.hasMidiLearn = true;
+    return opts;
+}
+
 CompressorAudioProcessor::CompressorAudioProcessor()
+    : gin::Processor (false, createProcessorOptions())
 {
     fifo.setSize (3, 44100);
-    
+
     attack    = addExtParam ("attack",    "Attack",    "", "ms",   { 1.0f,   200.0f, 0.0f, 0.4f},    1.0f, 0.1f);
     release   = addExtParam ("release",   "Release",   "", "ms",   { 1.0f,  2000.0f, 0.0f, 0.4f},    5.0f, 0.1f);
     ratio     = addExtParam ("ratio",     "Ratio",     "", "",     { 1.0f,    30.0f, 0.0f, 0.4f},    5.0f, 0.1f);
@@ -26,6 +34,8 @@ CompressorAudioProcessor::CompressorAudioProcessor()
         if (auto data = BinaryData::getNamedResource (BinaryData::namedResourceList[i], sz))
             extractProgram (BinaryData::originalFilenames[i], juce::MemoryBlock (data, size_t (sz)));
     }
+
+    init();
 }
 
 CompressorAudioProcessor::~CompressorAudioProcessor()
@@ -58,8 +68,11 @@ void CompressorAudioProcessor::releaseResources()
 {
 }
 
-void CompressorAudioProcessor::processBlock (juce::AudioSampleBuffer& buffer, juce::MidiBuffer&)
+void CompressorAudioProcessor::processBlock (juce::AudioSampleBuffer& buffer, juce::MidiBuffer& midi)
 {
+    if (midiLearn)
+        midiLearn->processBlock (midi, buffer.getNumSamples());
+
     int numSamples = buffer.getNumSamples();
 
     gin::ScratchBuffer fifoData (3, numSamples);

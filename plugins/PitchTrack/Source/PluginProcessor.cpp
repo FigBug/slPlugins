@@ -5,8 +5,17 @@ constexpr cycfi::q::frequency low_e          = cycfi::q::pitch_names::E[0];
 constexpr cycfi::q::frequency high_e         = cycfi::q::pitch_names::E[7];
 
 //==============================================================================
-PitchTrackAudioProcessor::PitchTrackAudioProcessor()
+static gin::ProcessorOptions createProcessorOptions()
 {
+    gin::ProcessorOptions opts;
+    opts.hasMidiLearn = true;
+    return opts;
+}
+
+PitchTrackAudioProcessor::PitchTrackAudioProcessor()
+    : gin::Processor (false, createProcessorOptions())
+{
+    init();
 }
 
 PitchTrackAudioProcessor::~PitchTrackAudioProcessor()
@@ -34,8 +43,11 @@ void PitchTrackAudioProcessor::releaseResources()
 {
 }
 
-void PitchTrackAudioProcessor::processBlock (juce::AudioSampleBuffer& buffer, juce::MidiBuffer&)
+void PitchTrackAudioProcessor::processBlock (juce::AudioSampleBuffer& buffer, juce::MidiBuffer& midi)
 {
+    if (midiLearn)
+        midiLearn->processBlock (midi, buffer.getNumSamples());
+
     //
     // cycfi::q
     //

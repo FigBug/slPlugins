@@ -18,7 +18,15 @@ juce::String enableTextFunction (const gin::Parameter&, float v)
 }
 
 //==============================================================================
+static gin::ProcessorOptions createProcessorOptions()
+{
+    gin::ProcessorOptions opts;
+    opts.hasMidiLearn = true;
+    return opts;
+}
+
 CompensatedDelayAudioProcessor::CompensatedDelayAudioProcessor()
+    : gin::Processor (false, createProcessorOptions())
 {
     mode    = addExtParam ("mode",    "Mode",    "", "",   {   0.0f,     1.0f, 1.0f, 1.0f},    0.0f, 0.0f, enableTextFunction);
     time    = addExtParam ("time",    "Time",    "", "ms", {   0.0f,  1000.0f, 0.0f, 1.0f},    1.0f, {0.2f, gin::SmoothingType::eased});
@@ -29,8 +37,10 @@ CompensatedDelayAudioProcessor::CompensatedDelayAudioProcessor()
     mode->addListener (this);
     time->addListener (this);
     samples->addListener (this);
-    
+
     updateLatency();
+
+    init();
 }
 
 CompensatedDelayAudioProcessor::~CompensatedDelayAudioProcessor()
@@ -80,8 +90,11 @@ void CompensatedDelayAudioProcessor::releaseResources()
 {
 }
 
-void CompensatedDelayAudioProcessor::processBlock (juce::AudioSampleBuffer& buffer, juce::MidiBuffer&)
+void CompensatedDelayAudioProcessor::processBlock (juce::AudioSampleBuffer& buffer, juce::MidiBuffer& midi)
 {
+    if (midiLearn)
+        midiLearn->processBlock (midi, buffer.getNumSamples());
+
     int numSamples = buffer.getNumSamples();
     int ch = buffer.getNumChannels();
 

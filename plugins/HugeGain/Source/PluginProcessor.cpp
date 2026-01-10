@@ -19,7 +19,15 @@ static juce::String onOffTextFunction (const gin::Parameter&, float v)
 }
 
 //==============================================================================
+static gin::ProcessorOptions createProcessorOptions()
+{
+    gin::ProcessorOptions opts;
+    opts.hasMidiLearn = true;
+    return opts;
+}
+
 PluginProcessor::PluginProcessor()
+    : gin::Processor (false, createProcessorOptions())
 {
     gainl = addExtParam (PARAM_GAIN_L, "Left",  "", "dB", {-100.0f, 100.0f, 0.0f, 5.0f}, 0.0f, 0.1f);
     gains = addExtParam (PARAM_GAIN_S, "Both",  "", "dB", {-100.0f, 100.0f, 0.0f, 5.0f}, 0.0f, 0.1f);
@@ -29,6 +37,8 @@ PluginProcessor::PluginProcessor()
     gainl->conversionFunction  = [] (float in) { return juce::Decibels::decibelsToGain (in); };
     gains->conversionFunction  = [] (float in) { return juce::Decibels::decibelsToGain (in); };
     gainr->conversionFunction  = [] (float in) { return juce::Decibels::decibelsToGain (in); };
+
+    init();
 }
 
 PluginProcessor::~PluginProcessor()
@@ -45,8 +55,11 @@ void PluginProcessor::releaseResources()
 {
 }
 
-void PluginProcessor::processBlock (juce::AudioSampleBuffer& buffer, juce::MidiBuffer&)
+void PluginProcessor::processBlock (juce::AudioSampleBuffer& buffer, juce::MidiBuffer& midi)
 {
+    if (midiLearn)
+        midiLearn->processBlock (midi, buffer.getNumSamples());
+
     int numSamples = buffer.getNumSamples();
 
     if (isSmoothing())

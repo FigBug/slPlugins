@@ -68,7 +68,15 @@ static juce::String syncTextFunction (const gin::Parameter&, float v)
 }
 
 //==============================================================================
+static gin::ProcessorOptions createProcessorOptions()
+{
+    gin::ProcessorOptions opts;
+    opts.hasMidiLearn = true;
+    return opts;
+}
+
 PluginProcessor::PluginProcessor()
+    : gin::Processor (false, createProcessorOptions())
 {
     fifo.setSize (2, 44100);
 
@@ -83,6 +91,8 @@ PluginProcessor::PluginProcessor()
     triggerRun       = addExtParam ("trigger_run",     "Trigger Run",   "", "", { 0.0f,  1.0f,   1.0f, 1.0f}, 0.0f, 0.0f, runTextFunction);
     sync             = addExtParam ("sync",            "Sync",          "", "", { 0.0f,  1.0f,   1.0f, 1.0f}, 0.0f, 0.0f, syncTextFunction);
     beatSync         = addExtParam ("beat_sync",       "Beats",         "", "", { 1.0f,  32.0f,  1.0f, 1.0f}, 4.0f, 0.0f, beatSyncTextFunction);
+
+    init();
 }
 
 PluginProcessor::~PluginProcessor()
@@ -113,8 +123,11 @@ void PluginProcessor::releaseResources()
 {
 }
 
-void PluginProcessor::processBlock (juce::AudioSampleBuffer& buffer, juce::MidiBuffer&)
+void PluginProcessor::processBlock (juce::AudioSampleBuffer& buffer, juce::MidiBuffer& midi)
 {
+    if (midiLearn)
+        midiLearn->processBlock (midi, buffer.getNumSamples());
+
     // Capture playhead info for beat sync
     if (auto* playHead = getPlayHead())
     {

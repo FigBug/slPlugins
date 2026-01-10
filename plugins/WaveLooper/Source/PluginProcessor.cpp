@@ -1,10 +1,18 @@
 #include "PluginProcessor.h"
 #include "PluginEditor.h"
 
+static gin::ProcessorOptions createProcessorOptions()
+{
+    gin::ProcessorOptions opts;
+    opts.hasMidiLearn = true;
+    return opts;
+}
+
 WaveLooperAudioProcessor::WaveLooperAudioProcessor()
-    : gin::Processor (BusesProperties().withOutput ("Output", juce::AudioChannelSet::stereo(), true))
+    : gin::Processor (BusesProperties().withOutput ("Output", juce::AudioChannelSet::stereo(), true), false, createProcessorOptions())
 {
     samplePlayer.setLooping (true);
+    init();
 }
 
 WaveLooperAudioProcessor::~WaveLooperAudioProcessor()
@@ -43,8 +51,11 @@ void WaveLooperAudioProcessor::releaseResources()
 {
 }
 
-void WaveLooperAudioProcessor::processBlock (juce::AudioSampleBuffer& buffer, juce::MidiBuffer&)
+void WaveLooperAudioProcessor::processBlock (juce::AudioSampleBuffer& buffer, juce::MidiBuffer& midi)
 {
+    if (midiLearn)
+        midiLearn->processBlock (midi, buffer.getNumSamples());
+
     buffer.clear();
 
     if (autoPlay && samplePlayer.hasFileLoaded())

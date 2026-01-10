@@ -8,8 +8,16 @@ static juce::String percentTextFunction (const gin::Parameter&, float v)
 }
 
 //==============================================================================
+static gin::ProcessorOptions createProcessorOptions()
+{
+    gin::ProcessorOptions opts;
+    opts.withAdditionalCredits ({"Michael \"LOSER\" Gruhn"});
+    opts.hasMidiLearn = true;
+    return opts;
+}
+
 AudioProcessor::AudioProcessor()
-    : gin::Processor (false, gin::ProcessorOptions().withAdditionalCredits ({"Michael \"LOSER\" Gruhn"}))
+    : gin::Processor (false, createProcessorOptions())
 {
     width1      = addExtParam ("width1",    "Width",     "", "%",   {   0.0f,   1.0f, 0.0f, 1.0f}, 0.5f, 0.1f, percentTextFunction);
     center1     = addExtParam ("center1",   "Center",    "", "%",   {   0.0f,   1.0f, 0.0f, 1.0f}, 0.5f, 0.1f, percentTextFunction);
@@ -42,8 +50,11 @@ void AudioProcessor::releaseResources()
 {
 }
 
-void AudioProcessor::processBlock (juce::AudioSampleBuffer& buffer, juce::MidiBuffer&)
+void AudioProcessor::processBlock (juce::AudioSampleBuffer& buffer, juce::MidiBuffer& midi)
 {
+    if (midiLearn)
+        midiLearn->processBlock (midi, buffer.getNumSamples());
+
     int numSamples = buffer.getNumSamples();
     if (isSmoothing())
     {

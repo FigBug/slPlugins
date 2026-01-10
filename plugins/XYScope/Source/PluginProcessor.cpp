@@ -3,8 +3,17 @@
 #include <random>
 
 //==============================================================================
-PluginProcessor::PluginProcessor()
+static gin::ProcessorOptions createProcessorOptions()
 {
+    gin::ProcessorOptions opts;
+    opts.hasMidiLearn = true;
+    return opts;
+}
+
+PluginProcessor::PluginProcessor()
+    : gin::Processor (false, createProcessorOptions())
+{
+    init();
 }
 
 PluginProcessor::~PluginProcessor()
@@ -21,8 +30,11 @@ void PluginProcessor::releaseResources()
 {
 }
 
-void PluginProcessor::processBlock (juce::AudioSampleBuffer& buffer, juce::MidiBuffer&)
+void PluginProcessor::processBlock (juce::AudioSampleBuffer& buffer, juce::MidiBuffer& midi)
 {
+    if (midiLearn)
+        midiLearn->processBlock (midi, buffer.getNumSamples());
+
     if (fifo.getFreeSpace() >= buffer.getNumSamples())
         fifo.write (buffer);
 }

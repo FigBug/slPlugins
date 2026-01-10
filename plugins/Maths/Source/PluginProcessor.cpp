@@ -3,7 +3,15 @@
 #include <random>
 
 //==============================================================================
+static gin::ProcessorOptions createProcessorOptions()
+{
+    gin::ProcessorOptions opts;
+    opts.hasMidiLearn = true;
+    return opts;
+}
+
 MathsAudioProcessor::MathsAudioProcessor()
+    : gin::Processor (false, createProcessorOptions())
 {
     addExtParam (PARAM_P1,      "p1 (0..1)",  "", "", {0.0f,  1.0f, 0.0f, 1.0f}, 1.0f, 0.0f);
     addExtParam (PARAM_P2,      "p2 (0..1)",  "", "", {0.0f,  1.0f, 0.0f, 1.0f}, 1.0f, 0.0f);
@@ -12,6 +20,8 @@ MathsAudioProcessor::MathsAudioProcessor()
     addExtParam (PARAM_LIMITER, "Limiter",    "", "", { 0.0f, 1.0f, 1.0f, 1.0f}, 1.0f, 0.0f, [] (const gin::Parameter&, float v) { return v > 0.5 ? "On" : "Off"; });
 
     setupParsers();
+
+    init();
 }
 
 MathsAudioProcessor::~MathsAudioProcessor()
@@ -144,8 +154,11 @@ void MathsAudioProcessor::releaseResources()
 {
 }
 
-void MathsAudioProcessor::processBlock (juce::AudioSampleBuffer& buffer, juce::MidiBuffer&)
+void MathsAudioProcessor::processBlock (juce::AudioSampleBuffer& buffer, juce::MidiBuffer& midi)
 {
+    if (midiLearn)
+        midiLearn->processBlock (midi, buffer.getNumSamples());
+
     juce::ScopedLock sl (lock);
 
     juce::ScopedNoDenormals noDenormals;

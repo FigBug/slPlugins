@@ -19,10 +19,20 @@ juce::String modeTextFunction (const gin::Parameter&, float v)
 }
 
 //==============================================================================
+static gin::ProcessorOptions createProcessorOptions()
+{
+    gin::ProcessorOptions opts;
+    opts.hasMidiLearn = true;
+    return opts;
+}
+
 PluginProcessor::PluginProcessor()
+    : gin::Processor (false, createProcessorOptions())
 {
     addExtParam (PARAM_MODE, "Mode", "", "", {0.0f, 1.0f, 1.0f, 1.0f}, 0.0f, 0.0f, modeTextFunction);
     addExtParam (PARAM_LOG,  "Log",  "", "", {0.0f, 1.0f, 1.0f, 1.0f}, 0.0f, 0.0f, onOffTextFunction);
+
+    init();
 }
 
 PluginProcessor::~PluginProcessor()
@@ -38,8 +48,11 @@ void PluginProcessor::releaseResources()
 {
 }
 
-void PluginProcessor::processBlock (juce::AudioSampleBuffer& buffer, juce::MidiBuffer&)
+void PluginProcessor::processBlock (juce::AudioSampleBuffer& buffer, juce::MidiBuffer& midi)
 {
+    if (midiLearn)
+        midiLearn->processBlock (midi, buffer.getNumSamples());
+
     juce::ScopedLock sl (lock);
     if (editor != nullptr)
     {

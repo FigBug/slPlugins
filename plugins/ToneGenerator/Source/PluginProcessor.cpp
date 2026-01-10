@@ -24,7 +24,15 @@ inline bool oddEven (int x)
     return (x % 2 == 0) ? 1 : -1;
 }
 //==============================================================================
+static gin::ProcessorOptions createProcessorOptions()
+{
+    gin::ProcessorOptions opts;
+    opts.hasMidiLearn = true;
+    return opts;
+}
+
 slToneAudioProcessor::slToneAudioProcessor()
+    : gin::Processor (false, createProcessorOptions())
 {
     //==============================================================================
     auto sineFunc = [&] (float in) -> float
@@ -138,6 +146,8 @@ slToneAudioProcessor::slToneAudioProcessor()
     addExtParam (PARAM_SAW_DN_LEVEL, "Saw Down",     "", "dB", {-100.0f,     6.0f, 0.0f, 5.0f}, -100.0f, 0.0f);
     addExtParam (PARAM_SQUARE_LEVEL, "Square",       "", "dB", {-100.0f,     6.0f, 0.0f, 5.0f}, -100.0f, 0.0f);
     addExtParam (PARAM_NOISE_LEVEL,  "Noise",        "", "dB", {-100.0f,     6.0f, 0.0f, 5.0f}, -100.0f, 0.0f);
+
+    init();
 }
 
 slToneAudioProcessor::~slToneAudioProcessor()
@@ -167,8 +177,11 @@ void slToneAudioProcessor::releaseResources()
 {
 }
 
-void slToneAudioProcessor::processBlock (juce::AudioSampleBuffer& buffer, juce::MidiBuffer&)
+void slToneAudioProcessor::processBlock (juce::AudioSampleBuffer& buffer, juce::MidiBuffer& midi)
 {
+    if (midiLearn)
+        midiLearn->processBlock (midi, buffer.getNumSamples());
+
     buffer.clear();
 
     int numSamples = buffer.getNumSamples();

@@ -13,7 +13,15 @@
 #include <random>
 
 //==============================================================================
+static gin::ProcessorOptions createProcessorOptions()
+{
+    gin::ProcessorOptions opts;
+    opts.hasMidiLearn = true;
+    return opts;
+}
+
 ExpanderAudioProcessor::ExpanderAudioProcessor()
+    : gin::Processor (false, createProcessorOptions())
 {
     fifo.setSize (3, 44100);
 
@@ -29,6 +37,8 @@ ExpanderAudioProcessor::ExpanderAudioProcessor()
     release->conversionFunction = [] (float in) { return in / 1000.0; };
     input->conversionFunction   = [] (float in) { return juce::Decibels::decibelsToGain (in); };
     output->conversionFunction  = [] (float in) { return juce::Decibels::decibelsToGain (in); };
+
+    init();
 }
 
 ExpanderAudioProcessor::~ExpanderAudioProcessor()
@@ -62,8 +72,11 @@ void ExpanderAudioProcessor::releaseResources()
 {
 }
 
-void ExpanderAudioProcessor::processBlock (juce::AudioSampleBuffer& buffer, juce::MidiBuffer&)
+void ExpanderAudioProcessor::processBlock (juce::AudioSampleBuffer& buffer, juce::MidiBuffer& midi)
 {
+    if (midiLearn)
+        midiLearn->processBlock (midi, buffer.getNumSamples());
+
     int numSamples = buffer.getNumSamples();
 
     gin::ScratchBuffer fifoData (3, numSamples);

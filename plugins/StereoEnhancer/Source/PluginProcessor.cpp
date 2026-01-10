@@ -8,8 +8,16 @@ static juce::String percentTextFunction (const gin::Parameter&, float v)
 }
 
 //==============================================================================
+static gin::ProcessorOptions createProcessorOptions()
+{
+    gin::ProcessorOptions opts;
+    opts.withAdditionalCredits ({"Michael \"LOSER\" Gruhn"});
+    opts.hasMidiLearn = true;
+    return opts;
+}
+
 AudioProcessor::AudioProcessor()
-    : gin::Processor (false, gin::ProcessorOptions().withAdditionalCredits ({"Michael \"LOSER\" Gruhn"}))
+    : gin::Processor (false, createProcessorOptions())
 {
     widthLP     = addExtParam ("widthLP",       "Width",    "", "%",   { 0.0f, 1.0f, 0.0f, 1.0f }, 0.5f, 0.1f, percentTextFunction);
     freqHPFader = addExtParam ("freqHPFader",   "Freq HP",  "", "%",   { 0.0f, 1.0f, 0.0f, 1.0f }, 0.5f, 0.1f, percentTextFunction);
@@ -37,8 +45,11 @@ void AudioProcessor::releaseResources()
 {
 }
 
-void AudioProcessor::processBlock (juce::AudioSampleBuffer& buffer, juce::MidiBuffer&)
+void AudioProcessor::processBlock (juce::AudioSampleBuffer& buffer, juce::MidiBuffer& midi)
 {
+    if (midiLearn)
+        midiLearn->processBlock (midi, buffer.getNumSamples());
+
     int numSamples = buffer.getNumSamples();
     if (isSmoothing())
     {

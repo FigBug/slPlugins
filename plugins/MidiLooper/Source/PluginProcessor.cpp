@@ -1,10 +1,18 @@
 #include "PluginProcessor.h"
 #include "PluginEditor.h"
 
+static gin::ProcessorOptions createProcessorOptions()
+{
+    gin::ProcessorOptions opts;
+    opts.hasMidiLearn = true;
+    return opts;
+}
+
 MidiLooperAudioProcessor::MidiLooperAudioProcessor()
-    : gin::Processor (BusesProperties(), true)
+    : gin::Processor (BusesProperties(), false, createProcessorOptions())
 {
     midiPlayer.setLooping (true);
+    init();
 }
 
 MidiLooperAudioProcessor::~MidiLooperAudioProcessor()
@@ -45,6 +53,9 @@ void MidiLooperAudioProcessor::releaseResources()
 
 void MidiLooperAudioProcessor::processBlock (juce::AudioSampleBuffer& buffer, juce::MidiBuffer& midi)
 {
+    if (midiLearn)
+        midiLearn->processBlock (midi, buffer.getNumSamples());
+
     buffer.clear();
     midi.clear();
 

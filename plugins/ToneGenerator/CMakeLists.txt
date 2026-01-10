@@ -49,6 +49,7 @@ juce_add_plugin(${PLUGIN_NAME}
     VST2_CATEGORY kPlugCategGenerator
     LV2URI ${LV2_URI}
     IS_SYNTH TRUE
+    NEEDS_MIDI_INPUT ON
 )
 
 # Auto-discover source files

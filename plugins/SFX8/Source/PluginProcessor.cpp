@@ -32,8 +32,16 @@ static juce::String waveTextFunc (const gin::Parameter&, float v)
 }
 
 //==============================================================================
+static gin::ProcessorOptions createProcessorOptions()
+{
+    gin::ProcessorOptions opts;
+    opts.withAdditionalCredits ({"Thomas Vian"});
+    opts.hasMidiLearn = true;
+    return opts;
+}
+
 SFXAudioProcessor::SFXAudioProcessor()
-    : gin::Processor (false, gin::ProcessorOptions().withAdditionalCredits ({"Thomas Vian"}))
+    : gin::Processor (false, createProcessorOptions())
 {
     // Add voices
     for (int i = 0; i < 32; i++)
@@ -230,6 +238,9 @@ void SFXAudioProcessor::processBlock (juce::AudioSampleBuffer& buffer, juce::Mid
 {
     juce::ScopedLock sl (lock);
     juce::ScopedNoDenormals noDenormals;
+
+    if (gin::Processor::midiLearn)
+        gin::Processor::midiLearn->processBlock (midi, buffer.getNumSamples());
 
     buffer.clear();
 
