@@ -49,18 +49,7 @@ jobs:
           name: Delay_Windows
           path: ci/bin/*.zip
           retention-days: 30
-      - name: Extract Changelog
-        run: |
-          VERSION="${GITHUB_REF_NAME#delay_v}"
-          awk -v ver="$VERSION" '
-            BEGIN { found=0; printing=0; pattern="^"ver":?$" }
-            $0 ~ pattern { found=1; printing=1; next }
-            printing && /^[0-9]+\.[0-9]+\.[0-9]+:?$/ { printing=0 }
-            printing { print }
-          ' ./plugins/Delay/Changelist.txt > /tmp/release_notes.txt
-        shell: bash
       - name: Upload to GitHub Release
         uses: softprops/action-gh-release@v1
         with:
           files: ci/bin/*.zip
-          body_path: /tmp/release_notes.txt
