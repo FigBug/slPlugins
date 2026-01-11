@@ -1,0 +1,7 @@
+1.0.0
+- Initial release
+- 10-band graphic equalizer with ISO standard frequencies
+- Optional high-pass and low-pass filters with 12/24 dB slopes
+- Output gain control
+- Real-time spectrum analyzer showing pre and post EQ signal
+- Filter response curve overlay
