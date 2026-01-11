@@ -10,22 +10,28 @@ PitchTrackAudioProcessorEditor::PitchTrackAudioProcessorEditor (PitchTrackAudioP
     addAndMakeVisible (pitchLabel);
     addAndMakeVisible (centsDisplay);
 
-    noteLabel.setFont (juce::FontOptions (200));
+    noteLabel.setLookAndFeel (&labelLookAndFeel);
+    noteLabel.setFont (juce::FontOptions (50));
     noteLabel.setJustificationType (juce::Justification::centred);
 
-    centsLabel.setFont (juce::FontOptions (50));
+    centsLabel.setLookAndFeel (&labelLookAndFeel);
+    centsLabel.setFont (juce::FontOptions (20));
     centsLabel.setJustificationType (juce::Justification::centred);
 
-    pitchLabel.setFont (juce::FontOptions (50));
+    pitchLabel.setLookAndFeel (&labelLookAndFeel);
+    pitchLabel.setFont (juce::FontOptions (20));
     pitchLabel.setJustificationType (juce::Justification::centred);
     
     startTimerHz (4);
     
-    setGridSize (7, 3);
+    setGridSize (5, 3);
 }
 
 PitchTrackAudioProcessorEditor::~PitchTrackAudioProcessorEditor()
 {
+    noteLabel.setLookAndFeel (nullptr);
+    centsLabel.setLookAndFeel (nullptr);
+    pitchLabel.setLookAndFeel (nullptr);
 }
 
 //==============================================================================
@@ -38,18 +44,13 @@ void PitchTrackAudioProcessorEditor::resized()
 {
     gin::ProcessorEditor::resized();
 
-    auto r = getFullGridArea().withSizeKeepingCentre (75, 75);
+    auto r = getFullGridArea().reduced (20);
+
+    centsDisplay.setBounds (r.removeFromBottom (30));
+    centsLabel.setBounds (r.removeFromBottom (30));
+    pitchLabel.setBounds (r.removeFromBottom (30));
 
     noteLabel.setBounds (r);
-
-    r = r.removeFromBottom (25).translated (0, 25);
-    centsLabel.setBounds (r);
-
-    r = r.translated (0, 25);
-    pitchLabel.setBounds (r);
-
-    r = r.translated (0, 25).withSizeKeepingCentre (75, 25);
-    centsDisplay.setBounds (r);
 }
 
 void PitchTrackAudioProcessorEditor::timerCallback()

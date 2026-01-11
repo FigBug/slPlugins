@@ -4,6 +4,16 @@
 #include "PluginProcessor.h"
 
 //==============================================================================
+class LabelLookAndFeel : public gin::CopperLookAndFeel
+{
+public:
+    juce::Font getLabelFont (juce::Label& label) override
+    {
+        return label.getFont();
+    }
+};
+
+//==============================================================================
 class CentsDisplay : public juce::Component,
                      private juce::Timer
 {
@@ -26,7 +36,7 @@ public:
             displayedCents += diff * damping;
             repaint();
         }
-        else if (displayedCents != targetCents)
+        else
         {
             displayedCents = targetCents;
             repaint();
@@ -39,7 +49,7 @@ public:
         auto centreY = bounds.getCentreY();
 
         // Draw tick marks every 10 cents
-        g.setColour (juce::Colours::white.withAlpha (0.3f));
+        g.setColour (findColour (gin::CopperLookAndFeel::grey90ColourId).withAlpha (0.3f));
         for (int i = -50; i <= 50; i += 10)
         {
             auto normX = i / 50.0f;
@@ -48,7 +58,7 @@ public:
             g.drawLine (tickX, centreY - tickHeight / 2, tickX, centreY + tickHeight / 2, 1.0f);
         }
 
-        g.setColour (juce::Colours::white);
+        g.setColour (findColour (gin::CopperLookAndFeel::grey90ColourId));
 
         if (std::abs (displayedCents) < 0.5f)
         {
@@ -111,6 +121,8 @@ public:
 
 private:
     PitchTrackAudioProcessor& proc;
+
+    LabelLookAndFeel labelLookAndFeel;
 
     juce::Label noteLabel;
     juce::Label centsLabel;
