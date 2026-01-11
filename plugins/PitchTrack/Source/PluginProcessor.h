@@ -61,19 +61,15 @@ public:
 
     //==============================================================================
     
-    gin::LevelTracker& getOutputLevel() { return outputLevel; }
     float getPitch();
 
 private:
-    gin::LevelTracker outputLevel {48.0};
+    std::unique_ptr<cycfi::q::signal_conditioner> pitchConditioner;
+    std::unique_ptr<cycfi::q::pitch_detector> pitchDetector;
 
-    std::unique_ptr<cycfi::q::signal_conditioner> conditioner;
-    std::unique_ptr<cycfi::q::pitch_detector> detector;
-
-    std::unique_ptr<adamski::PitchYIN> yin;
-    std::unique_ptr<adamski::PitchMPM> mpm;
-
-    float freq = 0.0f;
+    std::atomic<float> detectedPitch { 0.0f };
+    std::atomic<float> lastDetectedPitch { 0.0f };
+    int64_t samplesSinceLastPitchUpdate { 0 };
 
     gin::AudioFifo fifo;
         

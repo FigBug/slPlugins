@@ -26,14 +26,13 @@ void PitchTrackAudioProcessor::prepareToPlay (double sampleRate_, int blockSize_
 {
     gin::Processor::prepareToPlay (sampleRate_, blockSize_);
 
-    freq = 0.0f;
-    
-    auto cfg = cycfi::q::signal_conditioner::config();
-    conditioner = std::make_unique<cycfi::q::signal_conditioner> (cfg, low_e, high_e, std::uint32_t ( sampleRate_ ) );
-    detector = std::make_unique<cycfi::q::pitch_detector> (low_e, high_e, std::uint32_t (sampleRate_), cycfi::q::literals::operator""_dB((long double)-45.0));
+    lastDetectedPitch.store (0.0);
+    samplesSinceLastPitchUpdate = 0;
+    detectedPitch.store (0.0);
 
-    yin = std::make_unique<adamski::PitchYIN> (int (sampleRate_), 512);
-    mpm = std::make_unique<adamski::PitchMPM> (int (sampleRate_), 512);
+    auto cfg = cycfi::q::signal_conditioner::config();
+    pitchConditioner = std::make_unique<cycfi::q::signal_conditioner> (cfg, low_e, high_e, std::uint32_t (sampleRate_));
+    pitchDetector = std::make_unique<cycfi::q::pitch_detector> (low_e, high_e, std::uint32_t (sampleRate_), cycfi::q::decibel { -45.0, cycfi::q::direct_unit });
 
     fifo.setSize (1, std::max (blockSize_ * 2, 512 * 2));
 }
@@ -50,61 +49,53 @@ void PitchTrackAudioProcessor::processBlock (juce::AudioSampleBuffer& buffer, ju
     //
     // cycfi::q
     //
-    auto& d = *detector;
-    auto& c = *conditioner;
-
-    if (buffer.getNumChannels() == 1)
+    if (pitchDetector && pitchConditioner)
     {
-        auto p = buffer.getReadPointer (0);
-        for (int i = 0; i < buffer.getNumSamples(); i++)
+        auto& d = *pitchDetector;
+        auto& c = *pitchConditioner;
+
+        auto updatePitch = [&] (float freq)
         {
-            auto v = p[i];
-            v = c (v);
-            if (d (v))
-                freq = detector->get_frequency();
-        }
-    }
-    else
-    {
-        auto l = buffer.getReadPointer (0);
-        auto r = buffer.getReadPointer (1);
-        
-        for (int i = 0; i < buffer.getNumSamples(); i++)
+            lastDetectedPitch.store (freq);
+            samplesSinceLastPitchUpdate = 0;
+            detectedPitch.store (freq);
+        };
+
+        if (buffer.getNumChannels() == 1)
         {
-            auto v = (l[i] + r[i]) / 2.0f;
-            v = c (v);
-            if (d (v))
-                freq = detector->get_frequency();
+            auto p = buffer.getReadPointer (0);
+            for (int i = 0; i < buffer.getNumSamples(); i++)
+            {
+                auto v = c (p[i]);
+                if (d (v))
+                    updatePitch (float (pitchDetector->get_frequency()));
+            }
         }
+        else if (buffer.getNumChannels() >= 2)
+        {
+            auto l = buffer.getReadPointer (0);
+            auto r = buffer.getReadPointer (1);
+
+            for (int i = 0; i < buffer.getNumSamples(); i++)
+            {
+                auto v = (l[i] + r[i]) / 2.0f;
+                v = c (v);
+                if (d (v))
+                    updatePitch (float (pitchDetector->get_frequency()));
+            }
+        }
+
+        // Clear pitch if no update for 1 second worth of samples
+        samplesSinceLastPitchUpdate += buffer.getNumSamples();
+        if (samplesSinceLastPitchUpdate > int64_t (getSampleRate()))
+            detectedPitch.store (0.0f);
     }
-    DBG(freq);
-
-    //
-    // adamski
-    //
-    if (buffer.getNumChannels() == 1)
-        fifo.write (buffer);
-    else
-        fifo.write (gin::monoBuffer (buffer));
-
-    while (fifo.getNumReady() >= 512)
-    {
-        gin::ScratchBuffer buf (1, 512);
-        fifo.read (buf);
-
-        auto p1 = yin->getPitchInHz (buf.getReadPointer (0));
-        auto p2 = mpm->getPitch (buf.getReadPointer (0));
-
-        DBG(p1);
-        DBG(p2);
-
-        freq = (p1 + p2) / 2.0f;
-    }
+    DBG(detectedPitch.load());
 }
 
 float PitchTrackAudioProcessor::getPitch()
 {
-    return freq;
+    return detectedPitch.load();
 }
 
 //==============================================================================

@@ -87,7 +87,6 @@ set_target_properties(${PLUGIN_NAME} PROPERTIES
 
 target_link_libraries(${PLUGIN_NAME}
     PRIVATE
-        audio_fft
         gin
         gin_dsp
         gin_simd
@@ -109,7 +108,6 @@ target_link_libraries(${PLUGIN_NAME}
         juce::juce_gui_basics
         juce::juce_gui_extra
         juce::juce_opengl
-        pitch_detector
     PUBLIC
         juce::juce_recommended_config_flags
         juce::juce_recommended_lto_flags
