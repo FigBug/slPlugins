@@ -62,7 +62,6 @@ void FilterResponseCurve::paint (juce::Graphics& g)
             response *= proc.lpFilter.getResponseMagnitude (freq);
 
         auto db = juce::Decibels::gainToDecibels (response);
-        db = juce::jlimit (-24.0f, 24.0f, db);
 
         auto y = dbToY (db);
 
