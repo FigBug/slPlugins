@@ -3,8 +3,6 @@
 #include <JuceHeader.h>
 #include "../../../3rdparty/crossfeed/crossfeed.h"
 
-#define PARAM_ENABLE        "enable"
-
 //==============================================================================
 /**
 */
@@ -30,6 +28,7 @@ public:
     gin::LevelTracker& getOutputLevel() { return outputLevel; }
     
     gin::Parameter::Ptr enable;
+    gin::AudioFifo fifo { 2, 44100 };
 
 private:
     gin::LevelTracker outputLevel {48.0};
@@ -37,7 +36,7 @@ private:
     juce::LinearSmoothedValue<float> disableVal;
 
     juce::AudioSampleBuffer scratch;
-    
+
     crossfeed_t crossfeed;
     
     //==============================================================================

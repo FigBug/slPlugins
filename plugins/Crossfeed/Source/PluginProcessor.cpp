@@ -43,24 +43,34 @@ void CrossfeedAudioProcessor::releaseResources()
 
 void CrossfeedAudioProcessor::processBlock (juce::AudioSampleBuffer& buffer, juce::MidiBuffer& midi)
 {
+    const auto numSamples = buffer.getNumSamples();
+
     if (midiLearn)
-        midiLearn->processBlock (midi, buffer.getNumSamples());
+        midiLearn->processBlock (midi, numSamples);
+
+    auto pre = gin::monoBuffer (buffer);
 
     enableVal.setTargetValue (enable->getUserValue() > 0.5f ? 1.0f : 0.0f);
     disableVal.setTargetValue (enable->getUserValue() > 0.5f ? 0.0f : 1.0f);
     
     scratch.makeCopyOf (buffer, true);
     
-    crossfeed_filter_inplace_noninterleaved (&crossfeed, scratch.getWritePointer (0),
-                                             scratch.getWritePointer (1), (unsigned int)scratch.getNumSamples());
-    
+    crossfeed_filter_inplace_noninterleaved (&crossfeed, scratch.getWritePointer (0), scratch.getWritePointer (1), (unsigned int)numSamples);
+
+    auto post = gin::monoBuffer (scratch);
+
+    gin::ScratchBuffer analyze (2, numSamples);
+    analyze.clear();
+    analyze.addFrom (0, 0, pre, 0, 0, numSamples);
+    analyze.addFrom (1, 0, post, 0, 0, numSamples);
+    if (fifo.getFreeSpace() >= numSamples)
+        fifo.write (analyze);
+
     gin::applyGain (buffer, disableVal);
     gin::applyGain (scratch, enableVal);
     
-    buffer.addFrom (0, 0, scratch, 0, 0, buffer.getNumSamples());
-    buffer.addFrom (1, 0, scratch, 1, 0, buffer.getNumSamples());
-    
-    outputLevel.trackBuffer (buffer);
+    buffer.addFrom (0, 0, scratch, 0, 0, numSamples);
+    buffer.addFrom (1, 0, scratch, 1, 0, numSamples);
 }
 
 //==============================================================================
