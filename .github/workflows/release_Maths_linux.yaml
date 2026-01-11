@@ -37,6 +37,11 @@ jobs:
           cp -R "../../plugins/Maths/build/Maths_artefacts/VST/libMaths.so" "vst/Maths.so"
           cp -R "../../plugins/Maths/build/Maths_artefacts/VST3/Maths.vst3" vst3/
 
+          # Strip debug symbols
+          strip vst/Maths.so
+          strip vst3/Maths.vst3/Contents/x86_64-linux/Maths.so
+          strip lv2/Maths.lv2/libMaths.so
+
           # Create zip
           zip -r Maths_Linux.zip vst/Maths.so vst3/Maths.vst3 lv2/Maths.lv2
 

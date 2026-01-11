@@ -39,6 +39,11 @@ jobs:
           cp -R "../../plugins/XYScope/build/XYScope_artefacts/VST/libXYScope.so" "vst/XYScope.so"
           cp -R "../../plugins/XYScope/build/XYScope_artefacts/VST3/XYScope.vst3" vst3/
 
+          # Strip debug symbols
+          strip vst/XYScope.so
+          strip vst3/XYScope.vst3/Contents/x86_64-linux/XYScope.so
+          strip lv2/XYScope.lv2/libXYScope.so
+
           # Create zip
           zip -r XYScope_Linux.zip vst/XYScope.so vst3/XYScope.vst3 lv2/XYScope.lv2
         shell: bash

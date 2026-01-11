@@ -39,6 +39,11 @@ jobs:
           cp -R "../../plugins/SFX8/build/SFX8_artefacts/VST/libSFX8.so" "vst/SFX8.so"
           cp -R "../../plugins/SFX8/build/SFX8_artefacts/VST3/SFX8.vst3" vst3/
 
+          # Strip debug symbols
+          strip vst/SFX8.so
+          strip vst3/SFX8.vst3/Contents/x86_64-linux/SFX8.so
+          strip lv2/SFX8.lv2/libSFX8.so
+
           # Create zip
           zip -r SFX8_Linux.zip vst/SFX8.so vst3/SFX8.vst3 lv2/SFX8.lv2
         shell: bash

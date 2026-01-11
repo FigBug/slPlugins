@@ -39,6 +39,11 @@ jobs:
           cp -R "../../plugins/Oscilloscope/build/Oscilloscope_artefacts/VST/libOscilloscope.so" "vst/Oscilloscope.so"
           cp -R "../../plugins/Oscilloscope/build/Oscilloscope_artefacts/VST3/Oscilloscope.vst3" vst3/
 
+          # Strip debug symbols
+          strip vst/Oscilloscope.so
+          strip vst3/Oscilloscope.vst3/Contents/x86_64-linux/Oscilloscope.so
+          strip lv2/Oscilloscope.lv2/libOscilloscope.so
+
           # Create zip
           zip -r Oscilloscope_Linux.zip vst/Oscilloscope.so vst3/Oscilloscope.vst3 lv2/Oscilloscope.lv2
         shell: bash

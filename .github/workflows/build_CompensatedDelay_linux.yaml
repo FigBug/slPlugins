@@ -39,6 +39,11 @@ jobs:
           cp -R "../../plugins/CompensatedDelay/build/CompensatedDelay_artefacts/VST/libCompensatedDelay.so" "vst/CompensatedDelay.so"
           cp -R "../../plugins/CompensatedDelay/build/CompensatedDelay_artefacts/VST3/CompensatedDelay.vst3" vst3/
 
+          # Strip debug symbols
+          strip vst/CompensatedDelay.so
+          strip vst3/CompensatedDelay.vst3/Contents/x86_64-linux/CompensatedDelay.so
+          strip lv2/CompensatedDelay.lv2/libCompensatedDelay.so
+
           # Create zip
           zip -r CompensatedDelay_Linux.zip vst/CompensatedDelay.so vst3/CompensatedDelay.vst3 lv2/CompensatedDelay.lv2
         shell: bash

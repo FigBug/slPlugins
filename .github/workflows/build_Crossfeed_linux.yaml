@@ -39,6 +39,11 @@ jobs:
           cp -R "../../plugins/Crossfeed/build/Crossfeed_artefacts/VST/libCrossfeed.so" "vst/Crossfeed.so"
           cp -R "../../plugins/Crossfeed/build/Crossfeed_artefacts/VST3/Crossfeed.vst3" vst3/
 
+          # Strip debug symbols
+          strip vst/Crossfeed.so
+          strip vst3/Crossfeed.vst3/Contents/x86_64-linux/Crossfeed.so
+          strip lv2/Crossfeed.lv2/libCrossfeed.so
+
           # Create zip
           zip -r Crossfeed_Linux.zip vst/Crossfeed.so vst3/Crossfeed.vst3 lv2/Crossfeed.lv2
         shell: bash

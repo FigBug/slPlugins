@@ -39,6 +39,11 @@ jobs:
           cp -R "../../plugins/SimpleVerb/build/SimpleVerb_artefacts/VST/libSimpleVerb.so" "vst/SimpleVerb.so"
           cp -R "../../plugins/SimpleVerb/build/SimpleVerb_artefacts/VST3/SimpleVerb.vst3" vst3/
 
+          # Strip debug symbols
+          strip vst/SimpleVerb.so
+          strip vst3/SimpleVerb.vst3/Contents/x86_64-linux/SimpleVerb.so
+          strip lv2/SimpleVerb.lv2/libSimpleVerb.so
+
           # Create zip
           zip -r SimpleVerb_Linux.zip vst/SimpleVerb.so vst3/SimpleVerb.vst3 lv2/SimpleVerb.lv2
         shell: bash

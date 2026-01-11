@@ -37,6 +37,11 @@ jobs:
           cp -R "../../plugins/HugeGain/build/HugeGain_artefacts/VST/libHugeGain.so" "vst/HugeGain.so"
           cp -R "../../plugins/HugeGain/build/HugeGain_artefacts/VST3/HugeGain.vst3" vst3/
 
+          # Strip debug symbols
+          strip vst/HugeGain.so
+          strip vst3/HugeGain.vst3/Contents/x86_64-linux/HugeGain.so
+          strip lv2/HugeGain.lv2/libHugeGain.so
+
           # Create zip
           zip -r HugeGain_Linux.zip vst/HugeGain.so vst3/HugeGain.vst3 lv2/HugeGain.lv2
 

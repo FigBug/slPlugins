@@ -37,6 +37,11 @@ jobs:
           cp -R "../../plugins/StereoProcessor/build/StereoProcessor_artefacts/VST/libStereoProcessor.so" "vst/StereoProcessor.so"
           cp -R "../../plugins/StereoProcessor/build/StereoProcessor_artefacts/VST3/StereoProcessor.vst3" vst3/
 
+          # Strip debug symbols
+          strip vst/StereoProcessor.so
+          strip vst3/StereoProcessor.vst3/Contents/x86_64-linux/StereoProcessor.so
+          strip lv2/StereoProcessor.lv2/libStereoProcessor.so
+
           # Create zip
           zip -r StereoProcessor_Linux.zip vst/StereoProcessor.so vst3/StereoProcessor.vst3 lv2/StereoProcessor.lv2
 

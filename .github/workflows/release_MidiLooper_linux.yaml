@@ -37,6 +37,11 @@ jobs:
           cp -R "../../plugins/MidiLooper/build/MidiLooper_artefacts/VST/libMidiLooper.so" "vst/MidiLooper.so"
           cp -R "../../plugins/MidiLooper/build/MidiLooper_artefacts/VST3/MidiLooper.vst3" vst3/
 
+          # Strip debug symbols
+          strip vst/MidiLooper.so
+          strip vst3/MidiLooper.vst3/Contents/x86_64-linux/MidiLooper.so
+          strip lv2/MidiLooper.lv2/libMidiLooper.so
+
           # Create zip
           zip -r MidiLooper_Linux.zip vst/MidiLooper.so vst3/MidiLooper.vst3 lv2/MidiLooper.lv2
 

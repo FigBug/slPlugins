@@ -39,6 +39,11 @@ jobs:
           cp -R "../../plugins/Expander/build/Expander_artefacts/VST/libExpander.so" "vst/Expander.so"
           cp -R "../../plugins/Expander/build/Expander_artefacts/VST3/Expander.vst3" vst3/
 
+          # Strip debug symbols
+          strip vst/Expander.so
+          strip vst3/Expander.vst3/Contents/x86_64-linux/Expander.so
+          strip lv2/Expander.lv2/libExpander.so
+
           # Create zip
           zip -r Expander_Linux.zip vst/Expander.so vst3/Expander.vst3 lv2/Expander.lv2
         shell: bash

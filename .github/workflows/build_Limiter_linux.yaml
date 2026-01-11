@@ -39,6 +39,11 @@ jobs:
           cp -R "../../plugins/Limiter/build/Limiter_artefacts/VST/libLimiter.so" "vst/Limiter.so"
           cp -R "../../plugins/Limiter/build/Limiter_artefacts/VST3/Limiter.vst3" vst3/
 
+          # Strip debug symbols
+          strip vst/Limiter.so
+          strip vst3/Limiter.vst3/Contents/x86_64-linux/Limiter.so
+          strip lv2/Limiter.lv2/libLimiter.so
+
           # Create zip
           zip -r Limiter_Linux.zip vst/Limiter.so vst3/Limiter.vst3 lv2/Limiter.lv2
         shell: bash

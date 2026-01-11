@@ -37,6 +37,11 @@ jobs:
           cp -R "../../plugins/Compressor/build/Compressor_artefacts/VST/libCompressor.so" "vst/Compressor.so"
           cp -R "../../plugins/Compressor/build/Compressor_artefacts/VST3/Compressor.vst3" vst3/
 
+          # Strip debug symbols
+          strip vst/Compressor.so
+          strip vst3/Compressor.vst3/Contents/x86_64-linux/Compressor.so
+          strip lv2/Compressor.lv2/libCompressor.so
+
           # Create zip
           zip -r Compressor_Linux.zip vst/Compressor.so vst3/Compressor.vst3 lv2/Compressor.lv2
 

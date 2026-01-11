@@ -39,6 +39,11 @@ jobs:
           cp -R "../../plugins/ABTester/build/ABTester_artefacts/VST/libABTester.so" "vst/ABTester.so"
           cp -R "../../plugins/ABTester/build/ABTester_artefacts/VST3/ABTester.vst3" vst3/
 
+          # Strip debug symbols
+          strip vst/ABTester.so
+          strip vst3/ABTester.vst3/Contents/x86_64-linux/ABTester.so
+          strip lv2/ABTester.lv2/libABTester.so
+
           # Create zip
           zip -r ABTester_Linux.zip vst/ABTester.so vst3/ABTester.vst3 lv2/ABTester.lv2
         shell: bash

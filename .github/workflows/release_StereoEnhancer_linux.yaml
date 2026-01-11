@@ -37,6 +37,11 @@ jobs:
           cp -R "../../plugins/StereoEnhancer/build/StereoEnhancer_artefacts/VST/libStereoEnhancer.so" "vst/StereoEnhancer.so"
           cp -R "../../plugins/StereoEnhancer/build/StereoEnhancer_artefacts/VST3/StereoEnhancer.vst3" vst3/
 
+          # Strip debug symbols
+          strip vst/StereoEnhancer.so
+          strip vst3/StereoEnhancer.vst3/Contents/x86_64-linux/StereoEnhancer.so
+          strip lv2/StereoEnhancer.lv2/libStereoEnhancer.so
+
           # Create zip
           zip -r StereoEnhancer_Linux.zip vst/StereoEnhancer.so vst3/StereoEnhancer.vst3 lv2/StereoEnhancer.lv2
 

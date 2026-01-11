@@ -37,6 +37,11 @@ jobs:
           cp -R "../../plugins/SampleDelay/build/SampleDelay_artefacts/VST/libSampleDelay.so" "vst/SampleDelay.so"
           cp -R "../../plugins/SampleDelay/build/SampleDelay_artefacts/VST3/SampleDelay.vst3" vst3/
 
+          # Strip debug symbols
+          strip vst/SampleDelay.so
+          strip vst3/SampleDelay.vst3/Contents/x86_64-linux/SampleDelay.so
+          strip lv2/SampleDelay.lv2/libSampleDelay.so
+
           # Create zip
           zip -r SampleDelay_Linux.zip vst/SampleDelay.so vst3/SampleDelay.vst3 lv2/SampleDelay.lv2
 

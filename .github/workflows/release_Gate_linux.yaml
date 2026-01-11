@@ -37,6 +37,11 @@ jobs:
           cp -R "../../plugins/Gate/build/Gate_artefacts/VST/libGate.so" "vst/Gate.so"
           cp -R "../../plugins/Gate/build/Gate_artefacts/VST3/Gate.vst3" vst3/
 
+          # Strip debug symbols
+          strip vst/Gate.so
+          strip vst3/Gate.vst3/Contents/x86_64-linux/Gate.so
+          strip lv2/Gate.lv2/libGate.so
+
           # Create zip
           zip -r Gate_Linux.zip vst/Gate.so vst3/Gate.vst3 lv2/Gate.lv2
 

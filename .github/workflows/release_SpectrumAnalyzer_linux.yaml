@@ -37,6 +37,11 @@ jobs:
           cp -R "../../plugins/SpectrumAnalyzer/build/SpectrumAnalyzer_artefacts/VST/libSpectrumAnalyzer.so" "vst/SpectrumAnalyzer.so"
           cp -R "../../plugins/SpectrumAnalyzer/build/SpectrumAnalyzer_artefacts/VST3/SpectrumAnalyzer.vst3" vst3/
 
+          # Strip debug symbols
+          strip vst/SpectrumAnalyzer.so
+          strip vst3/SpectrumAnalyzer.vst3/Contents/x86_64-linux/SpectrumAnalyzer.so
+          strip lv2/SpectrumAnalyzer.lv2/libSpectrumAnalyzer.so
+
           # Create zip
           zip -r SpectrumAnalyzer_Linux.zip vst/SpectrumAnalyzer.so vst3/SpectrumAnalyzer.vst3 lv2/SpectrumAnalyzer.lv2
 

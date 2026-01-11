@@ -39,6 +39,11 @@ jobs:
           cp -R "../../plugins/ChannelMute/build/ChannelMute_artefacts/VST/libChannelMute.so" "vst/ChannelMute.so"
           cp -R "../../plugins/ChannelMute/build/ChannelMute_artefacts/VST3/ChannelMute.vst3" vst3/
 
+          # Strip debug symbols
+          strip vst/ChannelMute.so
+          strip vst3/ChannelMute.vst3/Contents/x86_64-linux/ChannelMute.so
+          strip lv2/ChannelMute.lv2/libChannelMute.so
+
           # Create zip
           zip -r ChannelMute_Linux.zip vst/ChannelMute.so vst3/ChannelMute.vst3 lv2/ChannelMute.lv2
         shell: bash

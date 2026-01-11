@@ -39,6 +39,11 @@ jobs:
           cp -R "../../plugins/Delay/build/Delay_artefacts/VST/libDelay.so" "vst/Delay.so"
           cp -R "../../plugins/Delay/build/Delay_artefacts/VST3/Delay.vst3" vst3/
 
+          # Strip debug symbols
+          strip vst/Delay.so
+          strip vst3/Delay.vst3/Contents/x86_64-linux/Delay.so
+          strip lv2/Delay.lv2/libDelay.so
+
           # Create zip
           zip -r Delay_Linux.zip vst/Delay.so vst3/Delay.vst3 lv2/Delay.lv2
         shell: bash

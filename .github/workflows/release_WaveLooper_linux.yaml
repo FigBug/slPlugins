@@ -37,6 +37,11 @@ jobs:
           cp -R "../../plugins/WaveLooper/build/WaveLooper_artefacts/VST/libWaveLooper.so" "vst/WaveLooper.so"
           cp -R "../../plugins/WaveLooper/build/WaveLooper_artefacts/VST3/WaveLooper.vst3" vst3/
 
+          # Strip debug symbols
+          strip vst/WaveLooper.so
+          strip vst3/WaveLooper.vst3/Contents/x86_64-linux/WaveLooper.so
+          strip lv2/WaveLooper.lv2/libWaveLooper.so
+
           # Create zip
           zip -r WaveLooper_Linux.zip vst/WaveLooper.so vst3/WaveLooper.vst3 lv2/WaveLooper.lv2
 

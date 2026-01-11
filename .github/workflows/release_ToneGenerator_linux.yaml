@@ -37,6 +37,11 @@ jobs:
           cp -R "../../plugins/ToneGenerator/build/ToneGenerator_artefacts/VST/libToneGenerator.so" "vst/ToneGenerator.so"
           cp -R "../../plugins/ToneGenerator/build/ToneGenerator_artefacts/VST3/ToneGenerator.vst3" vst3/
 
+          # Strip debug symbols
+          strip vst/ToneGenerator.so
+          strip vst3/ToneGenerator.vst3/Contents/x86_64-linux/ToneGenerator.so
+          strip lv2/ToneGenerator.lv2/libToneGenerator.so
+
           # Create zip
           zip -r ToneGenerator_Linux.zip vst/ToneGenerator.so vst3/ToneGenerator.vst3 lv2/ToneGenerator.lv2
 
