@@ -106,6 +106,11 @@ cat pluginlist.txt | while read PLUGIN; do
     cp -R "$ROOT/Builds/ninja-clang/plugins/${PLUGIN}/${PLUGIN}_artefacts/Release/VST/lib$PLUGIN.so" "$ROOT/ci/bin/vst/$PLUGIN.so"
     cp -R "$ROOT/Builds/ninja-clang/plugins/${PLUGIN}/${PLUGIN}_artefacts/Release/VST3/$PLUGIN.vst3" "$ROOT/ci/bin/vst3"
 
+    # Strip debug symbols
+    strip vst/$PLUGIN.so
+    strip vst3/$PLUGIN.vst3/Contents/x86_64-linux/$PLUGIN.so
+    strip lv2/$PLUGIN.lv2/lib$PLUGIN.so
+
     # Upload
     cd "$ROOT/ci/bin"
     zip -r ${PLUGIN}_Linux.zip vst/$PLUGIN.so vst3/$PLUGIN.vst3 lv2/$PLUGIN.lv2
