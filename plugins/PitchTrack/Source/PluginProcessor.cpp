@@ -7,9 +7,8 @@ constexpr cycfi::q::frequency high_e         = cycfi::q::pitch_names::E[7];
 //==============================================================================
 static gin::ProcessorOptions createProcessorOptions()
 {
-    gin::ProcessorOptions opts;
-    opts.hasMidiLearn = true;
-    return opts;
+    return gin::ProcessorOptions()
+        .withMidiLearn();
 }
 
 PitchTrackAudioProcessor::PitchTrackAudioProcessor()

@@ -10,10 +10,9 @@ static juce::String percentTextFunction (const gin::Parameter&, float v)
 //==============================================================================
 static gin::ProcessorOptions createProcessorOptions()
 {
-    gin::ProcessorOptions opts;
-    opts.withAdditionalCredits ({"Michael \"LOSER\" Gruhn"});
-    opts.hasMidiLearn = true;
-    return opts;
+    return gin::ProcessorOptions()
+        .withAdditionalCredits ({"Michael \"LOSER\" Gruhn"})
+        .withMidiLearn();
 }
 
 AudioProcessor::AudioProcessor()

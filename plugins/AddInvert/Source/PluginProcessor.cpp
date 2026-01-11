@@ -11,9 +11,8 @@ juce::String abTextFunction (const gin::Parameter&, float v)
 //==============================================================================
 static gin::ProcessorOptions createProcessorOptions()
 {
-    gin::ProcessorOptions opts;
-    opts.hasMidiLearn = true;
-    return opts;
+    return gin::ProcessorOptions()
+        .withMidiLearn();
 }
 
 AddInvertAudioProcessor::AddInvertAudioProcessor()

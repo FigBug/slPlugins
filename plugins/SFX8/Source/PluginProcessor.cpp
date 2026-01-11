@@ -34,10 +34,9 @@ static juce::String waveTextFunc (const gin::Parameter&, float v)
 //==============================================================================
 static gin::ProcessorOptions createProcessorOptions()
 {
-    gin::ProcessorOptions opts;
-    opts.withAdditionalCredits ({"Thomas Vian"});
-    opts.hasMidiLearn = true;
-    return opts;
+    return gin::ProcessorOptions()
+        .withAdditionalCredits ({"Thomas Vian"})
+        .withMidiLearn();
 }
 
 SFXAudioProcessor::SFXAudioProcessor()
