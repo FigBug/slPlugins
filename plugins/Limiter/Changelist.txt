@@ -1,2 +1,5 @@
+1.1.2:
+- Added presets
+
 1.1.1:
 - Added MIDI learn

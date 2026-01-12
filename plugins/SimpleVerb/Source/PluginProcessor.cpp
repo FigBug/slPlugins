@@ -25,7 +25,14 @@ AudioProcessor::AudioProcessor()
     hp          = addExtParam ("hp",        "HP",       "", "%",   {   0.0f,   1.0f, 0.0f, 1.0f}, 0.1f, 0.1f, percentTextFunction);
     wet         = addExtParam ("wet",       "Wet",      "", "%",   {   0.0f,   1.0f, 0.0f, 1.0f}, 0.4f, 0.1f, percentTextFunction);
     dry         = addExtParam ("dry",       "Dry",      "", "%",   {   0.0f,   1.0f, 0.0f, 1.0f}, 0.3f, 0.1f, percentTextFunction);
-    
+
+    for (int i = 0; i < BinaryData::namedResourceListSize; i++)
+    {
+        int sz = 0;
+        if (auto data = BinaryData::getNamedResource (BinaryData::namedResourceList[i], sz))
+            extractProgram (BinaryData::originalFilenames[i], juce::MemoryBlock (data, size_t (sz)));
+    }
+
     init();
 }
 

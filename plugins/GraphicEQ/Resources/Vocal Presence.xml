@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<state name="Vocal Presence" valueTree="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&#13;&#10;&#13;&#10;&lt;state/&gt;&#13;&#10;">
+  <param uid="band0" val="-2.0"/>
+  <param uid="band1" val="-1.0"/>
+  <param uid="band2" val="0.0"/>
+  <param uid="band3" val="2.0"/>
+  <param uid="band4" val="4.0"/>
+  <param uid="band5" val="4.0"/>
+  <param uid="band6" val="3.0"/>
+  <param uid="band7" val="2.0"/>
+  <param uid="band8" val="1.0"/>
+  <param uid="band9" val="0.0"/>
+  <param uid="lpEnable" val="0.0"/>
+  <param uid="lpFreq" val="20000.0"/>
+  <param uid="lpSlope" val="12.0"/>
+  <param uid="hpEnable" val="1.0"/>
+  <param uid="hpFreq" val="80.0"/>
+  <param uid="hpSlope" val="12.0"/>
+  <param uid="output" val="-1.0"/>
+</state>

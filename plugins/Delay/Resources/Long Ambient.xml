@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<state name="Long Ambient" valueTree="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&#13;&#10;&#13;&#10;&lt;state/&gt;&#13;&#10;">
+  <param uid="sync" val="0.0"/>
+  <param uid="time" val="500.0"/>
+  <param uid="beat" val="13.0"/>
+  <param uid="fb" val="-4.0"/>
+  <param uid="cf" val="-6.0"/>
+  <param uid="mix" val="25.0"/>
+</state>

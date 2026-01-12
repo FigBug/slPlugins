@@ -26,7 +26,14 @@ AudioProcessor::AudioProcessor()
     center2     = addExtParam ("center2",   "Center",    "", "%",   {   0.0f,   1.0f, 0.0f, 1.0f}, 0.5f, 0.1f, percentTextFunction);
     width2      = addExtParam ("width2",    "Width",     "", "%",   {   0.0f,   1.0f, 0.0f, 1.0f}, 0.5f, 0.1f, percentTextFunction);
     output      = addExtParam ("output",    "Output",    "", "%",   {   0.0f,   1.0f, 0.0f, 1.0f}, 0.5f, 0.1f, percentTextFunction);
-    
+
+    for (int i = 0; i < BinaryData::namedResourceListSize; i++)
+    {
+        int sz = 0;
+        if (auto data = BinaryData::getNamedResource (BinaryData::namedResourceList[i], sz))
+            extractProgram (BinaryData::originalFilenames[i], juce::MemoryBlock (data, size_t (sz)));
+    }
+
     init();
 }
 

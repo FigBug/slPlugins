@@ -1,3 +1,6 @@
+1.0.1:
+- Added presets
+
 1.0.0
 - Initial release
 - 10-band graphic equalizer with ISO standard frequencies

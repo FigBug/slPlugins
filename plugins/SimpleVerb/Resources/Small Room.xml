@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<state name="Small Room" valueTree="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&#13;&#10;&#13;&#10;&lt;state/&gt;&#13;&#10;">
+  <param uid="room" val="0.3"/>
+  <param uid="damp" val="0.6"/>
+  <param uid="predelay" val="5.0"/>
+  <param uid="lp" val="8000.0"/>
+  <param uid="hp" val="100.0"/>
+  <param uid="wet" val="0.25"/>
+  <param uid="dry" val="1.0"/>
+</state>

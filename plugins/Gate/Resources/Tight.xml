@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<state name="Tight" valueTree="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&#13;&#10;&#13;&#10;&lt;state/&gt;&#13;&#10;">
+  <param uid="attack" val="0.5"/>
+  <param uid="hold" val="10.0"/>
+  <param uid="release" val="30.0"/>
+  <param uid="threshold" val="-35.0"/>
+  <param uid="knee" val="0.0"/>
+  <param uid="input" val="0.0"/>
+  <param uid="output" val="0.0"/>
+</state>

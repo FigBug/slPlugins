@@ -60,6 +60,24 @@ file(GLOB_RECURSE source_files CONFIGURE_DEPENDS
 target_sources(${PLUGIN_NAME} PRIVATE ${source_files})
 source_group(TREE ${CMAKE_CURRENT_SOURCE_DIR}/Source PREFIX Source FILES ${source_files})
 
+# Binary data resources
+juce_add_binary_data(${PLUGIN_NAME}_BinaryData
+    SOURCES
+        "Resources/Subtle Wide.xml"
+        "Resources/Wide Highs.xml"
+        "Resources/Extra Wide.xml"
+        "Resources/Mono Bass.xml"
+        "Resources/Mono Bass Wide Highs.xml"
+        "Resources/Narrow.xml"
+)
+
+set_target_properties(${PLUGIN_NAME}_BinaryData PROPERTIES
+    POSITION_INDEPENDENT_CODE TRUE
+    VISIBILITY_INLINES_HIDDEN TRUE
+    C_VISIBILITY_PRESET hidden
+    CXX_VISIBILITY_PRESET hidden
+)
+
 juce_generate_juce_header(${PLUGIN_NAME})
 
 target_compile_definitions(${PLUGIN_NAME}
@@ -83,6 +101,7 @@ set_target_properties(${PLUGIN_NAME} PROPERTIES
 
 target_link_libraries(${PLUGIN_NAME}
     PRIVATE
+        ${PLUGIN_NAME}_BinaryData
         dRowAudio
         gin
         gin_dsp

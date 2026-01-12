@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<state name="Eighth Note" valueTree="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&#13;&#10;&#13;&#10;&lt;state/&gt;&#13;&#10;">
+  <param uid="sync" val="1.0"/>
+  <param uid="time" val="1.0"/>
+  <param uid="beat" val="11.0"/>
+  <param uid="fb" val="-8.0"/>
+  <param uid="cf" val="-100.0"/>
+  <param uid="mix" val="30.0"/>
+</state>

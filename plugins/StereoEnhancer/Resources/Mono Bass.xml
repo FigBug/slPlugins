@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<state name="Mono Bass" valueTree="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&#13;&#10;&#13;&#10;&lt;state/&gt;&#13;&#10;">
+  <param uid="widthLP" val="0.0"/>
+  <param uid="freqHPFader" val="120.0"/>
+  <param uid="widthHP" val="1.0"/>
+</state>

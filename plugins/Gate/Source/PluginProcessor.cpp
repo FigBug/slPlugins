@@ -38,6 +38,13 @@ GateAudioProcessor::GateAudioProcessor()
     input->conversionFunction   = [] (float in) { return juce::Decibels::decibelsToGain (in); };
     output->conversionFunction  = [] (float in) { return juce::Decibels::decibelsToGain (in); };
 
+    for (int i = 0; i < BinaryData::namedResourceListSize; i++)
+    {
+        int sz = 0;
+        if (auto data = BinaryData::getNamedResource (BinaryData::namedResourceList[i], sz))
+            extractProgram (BinaryData::originalFilenames[i], juce::MemoryBlock (data, size_t (sz)));
+    }
+
     init();
 }
 

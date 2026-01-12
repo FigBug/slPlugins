@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<state name="Vocals" valueTree="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&#13;&#10;&#13;&#10;&lt;state/&gt;&#13;&#10;">
+  <param uid="attack" val="15.0"/>
+  <param uid="release" val="250.0"/>
+  <param uid="ratio" val="1.8"/>
+  <param uid="threshold" val="-45.0"/>
+  <param uid="knee" val="12.0"/>
+  <param uid="input" val="0.0"/>
+  <param uid="output" val="0.0"/>
+</state>

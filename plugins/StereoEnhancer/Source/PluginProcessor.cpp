@@ -21,7 +21,14 @@ AudioProcessor::AudioProcessor()
     widthLP     = addExtParam ("widthLP",       "Width",    "", "%",   { 0.0f, 1.0f, 0.0f, 1.0f }, 0.5f, 0.1f, percentTextFunction);
     freqHPFader = addExtParam ("freqHPFader",   "Freq HP",  "", "%",   { 0.0f, 1.0f, 0.0f, 1.0f }, 0.5f, 0.1f, percentTextFunction);
     widthHP     = addExtParam ("widthHP",       "Width HP", "", "%",   { 0.0f, 1.0f, 0.0f, 1.0f }, 0.0f, 0.1f, percentTextFunction);
-    
+
+    for (int i = 0; i < BinaryData::namedResourceListSize; i++)
+    {
+        int sz = 0;
+        if (auto data = BinaryData::getNamedResource (BinaryData::namedResourceList[i], sz))
+            extractProgram (BinaryData::originalFilenames[i], juce::MemoryBlock (data, size_t (sz)));
+    }
+
     init();
 }
 

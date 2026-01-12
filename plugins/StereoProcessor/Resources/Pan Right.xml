@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<state name="Pan Right" valueTree="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&#13;&#10;&#13;&#10;&lt;state/&gt;&#13;&#10;">
+  <param uid="width1" val="1.0"/>
+  <param uid="center1" val="1.0"/>
+  <param uid="pan1" val="50.0"/>
+  <param uid="rotation" val="0.0"/>
+  <param uid="pan2" val="50.0"/>
+  <param uid="center2" val="1.0"/>
+  <param uid="width2" val="1.0"/>
+  <param uid="output" val="0.0"/>
+</state>

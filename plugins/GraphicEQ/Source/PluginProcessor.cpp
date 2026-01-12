@@ -70,6 +70,13 @@ GraphicEQAudioProcessor::GraphicEQAudioProcessor()
     outputGain = addExtParam ("output", "Output", "", "dB", { -12.0f, 12.0f, 0.0f, 1.0f }, 0.0f, 0.1f);
     outputGain->conversionFunction = [] (float in) { return juce::Decibels::decibelsToGain (in); };
 
+    for (int i = 0; i < BinaryData::namedResourceListSize; i++)
+    {
+        int sz = 0;
+        if (auto data = BinaryData::getNamedResource (BinaryData::namedResourceList[i], sz))
+            extractProgram (BinaryData::originalFilenames[i], juce::MemoryBlock (data, size_t (sz)));
+    }
+
     init();
 }
 

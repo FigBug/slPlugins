@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<state name="Wide Highs" valueTree="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&#13;&#10;&#13;&#10;&lt;state/&gt;&#13;&#10;">
+  <param uid="widthLP" val="1.0"/>
+  <param uid="freqHPFader" val="500.0"/>
+  <param uid="widthHP" val="1.6"/>
+</state>
