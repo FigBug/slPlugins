@@ -7,9 +7,11 @@ Crossfeed
 Delay
 Expander
 Gate
+GraphicEQ
 HugeGain
 Limiter
 Maths
+MidiLooper
 Oscilloscope
 PitchTrack
 SampleDelay
