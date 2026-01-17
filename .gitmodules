@@ -1,27 +1,27 @@
 [submodule "module/dRowAudio"]
 	path = modules/dRowAudio
-	url = git@github.com:FigBug/drowaudio.git
+	url = https://github.com/FigBug/drowaudio.git
 [submodule "module/gin"]
 	path = modules/gin
-	url = git@github.com:FigBug/Gin.git
+	url = https://github.com/FigBug/Gin.git
 [submodule "module/juce"]
 	path = modules/juce
-	url = git@github.com:WeAreROLI/JUCE.git
+	url = https://github.com/WeAreROLI/JUCE.git
 [submodule "module/bfxr"]
 	path = modules/bfxr
-	url = git@github.com:FigBug/bfxr.git
+	url = https://github.com/FigBug/bfxr.git
 [submodule "module/plugin_sdk"]
 	path = modules/plugin_sdk
-	url = git@github.com:TurnipHat/plugin_sdk.git
+	url = https://github.com/TurnipHat/plugin_sdk.git
 [submodule "module/Q"]
 	path = modules/Q
-	url = git@github.com:cycfi/Q.git
+	url = https://github.com/cycfi/Q.git
 [submodule "modules/pitch_detector"]
 	path = modules/pitch_detector
-	url = git@github.com:FigBug/pitch_detector.git
+	url = https://github.com/FigBug/pitch_detector.git
 [submodule "modules/audio_fft"]
 	path = modules/audio_fft
-	url = git@github.com:adamski/audio_fft.git
+	url = https://github.com/adamski/audio_fft.git
 [submodule "modules/infra"]
 	path = modules/infra
-	url = git@github.com:cycfi/infra.git
+	url = https://github.com/cycfi/infra.git
