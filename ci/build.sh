@@ -50,6 +50,7 @@ if [ "$(uname)" == "Darwin" ]; then
   mkdir -p ci/bin/au
   mkdir -p ci/bin/vst
   mkdir -p ci/bin/vst3
+  mkdir -p ci/bin/clap
 elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
   cmake --preset ninja-clang
   cmake --build --preset ninja-clang --config Release
@@ -57,12 +58,14 @@ elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
   mkdir -p ci/bin/lv2
   mkdir -p ci/bin/vst
   mkdir -p ci/bin/vst3
+  mkdir -p ci/bin/clap
 elif [ "$(expr substr $(uname -s) 1 10)" == "MINGW64_NT" ]; then
   cmake --preset vs
   cmake --build --preset vs --config Release
 
   mkdir -p ci/bin/vst
   mkdir -p ci/bin/vst3
+  mkdir -p ci/bin/clap
 fi
 
 cd "$ROOT/ci"
@@ -75,15 +78,17 @@ cat pluginlist.txt | while read PLUGIN; do
     cp -R "$ROOT/Builds/xcode/plugins/${PLUGIN}/${PLUGIN}_artefacts/Release/AU/$PLUGIN.component" "$ROOT/ci/bin/au"
     cp -R "$ROOT/Builds/xcode/plugins/${PLUGIN}/${PLUGIN}_artefacts/Release/VST/$PLUGIN.vst" "$ROOT/ci/bin/vst"
     cp -R "$ROOT/Builds/xcode/plugins/${PLUGIN}/${PLUGIN}_artefacts/Release/VST3/$PLUGIN.vst3" "$ROOT/ci/bin/vst3"
+    cp -R "$ROOT/Builds/xcode/plugins/${PLUGIN}/${PLUGIN}_artefacts/Release/CLAP/$PLUGIN.clap" "$ROOT/ci/bin/clap"
 
     cd "$ROOT/ci/bin"
     codesign -s "$DEV_APP_ID" -v "vst/$PLUGIN.vst" --options=runtime --timestamp --force
     codesign -s "$DEV_APP_ID" -v "vst3/$PLUGIN.vst3" --options=runtime --timestamp --force
     codesign -s "$DEV_APP_ID" -v "au/$PLUGIN.component" --options=runtime --timestamp --force
+    codesign -s "$DEV_APP_ID" -v "clap/$PLUGIN.clap" --options=runtime --timestamp --force
 
     # Notarize
     cd "$ROOT/ci/bin"
-    zip -r ${PLUGIN}_Mac.zip vst/${PLUGIN}.vst vst3/${PLUGIN}.vst3 au/${PLUGIN}.component
+    zip -r ${PLUGIN}_Mac.zip vst/${PLUGIN}.vst vst3/${PLUGIN}.vst3 au/${PLUGIN}.component clap/${PLUGIN}.clap
 
     if [[ -n "$APPLE_USER" ]]; then
       xcrun notarytool submit --verbose --apple-id "$APPLE_USER" --password "$APPLE_PASS" --team-id "3FS7DJDG38" --wait --timeout 30m ${PLUGIN}_Mac.zip
@@ -92,7 +97,8 @@ cat pluginlist.txt | while read PLUGIN; do
       xcrun stapler staple vst/$PLUGIN.vst
       xcrun stapler staple vst3/$PLUGIN.vst3
       xcrun stapler staple au/$PLUGIN.component
-      zip -r ${PLUGIN}_Mac.zip vst/$PLUGIN.vst vst3/$PLUGIN.vst3 au/$PLUGIN.component
+      xcrun stapler staple clap/$PLUGIN.clap
+      zip -r ${PLUGIN}_Mac.zip vst/$PLUGIN.vst vst3/$PLUGIN.vst3 au/$PLUGIN.component clap/$PLUGIN.clap
     fi
 
     if [ "$BRANCH" = "release" ]; then
@@ -105,15 +111,17 @@ cat pluginlist.txt | while read PLUGIN; do
     cp -R "$ROOT/Builds/ninja-clang/plugins/${PLUGIN}/${PLUGIN}_artefacts/Release/LV2/$PLUGIN.lv2" "$ROOT/ci/bin/lv2"
     cp -R "$ROOT/Builds/ninja-clang/plugins/${PLUGIN}/${PLUGIN}_artefacts/Release/VST/lib$PLUGIN.so" "$ROOT/ci/bin/vst/$PLUGIN.so"
     cp -R "$ROOT/Builds/ninja-clang/plugins/${PLUGIN}/${PLUGIN}_artefacts/Release/VST3/$PLUGIN.vst3" "$ROOT/ci/bin/vst3"
+    cp -R "$ROOT/Builds/ninja-clang/plugins/${PLUGIN}/${PLUGIN}_artefacts/Release/CLAP/$PLUGIN.clap" "$ROOT/ci/bin/clap"
 
     # Strip debug symbols
     strip vst/$PLUGIN.so
     strip vst3/$PLUGIN.vst3/Contents/x86_64-linux/$PLUGIN.so
     strip lv2/$PLUGIN.lv2/lib$PLUGIN.so
+    strip clap/$PLUGIN.clap/$PLUGIN.so
 
     # Upload
     cd "$ROOT/ci/bin"
-    zip -r ${PLUGIN}_Linux.zip vst/$PLUGIN.so vst3/$PLUGIN.vst3 lv2/$PLUGIN.lv2
+    zip -r ${PLUGIN}_Linux.zip vst/$PLUGIN.so vst3/$PLUGIN.vst3 lv2/$PLUGIN.lv2 clap/$PLUGIN.clap
 
     if [ "$BRANCH" = "release" ]; then
       curl -F "files=@${PLUGIN}_Linux.zip" "https://socalabs.com/files/set.php?key=$APIKEY"
@@ -124,8 +132,9 @@ cat pluginlist.txt | while read PLUGIN; do
 
     cp -R "$ROOT/Builds/vs/plugins/${PLUGIN}/${PLUGIN}_artefacts/Release/VST/$PLUGIN.dll" "$ROOT/ci/bin/vst"
     cp -R "$ROOT/Builds/vs/plugins/${PLUGIN}/${PLUGIN}_artefacts/Release/VST3/$PLUGIN.vst3" "$ROOT/ci/bin/vst3"
+    cp -R "$ROOT/Builds/vs/plugins/${PLUGIN}/${PLUGIN}_artefacts/Release/CLAP/$PLUGIN.clap" "$ROOT/ci/bin/clap"
 
-    7z a ${PLUGIN}_Win.zip vst/$PLUGIN.dll vst3/$PLUGIN.vst3 
+    7z a ${PLUGIN}_Win.zip vst/$PLUGIN.dll vst3/$PLUGIN.vst3 clap/$PLUGIN.clap
     if [ "$BRANCH" = "release" ]; then
       curl -F "files=@${PLUGIN}_Win.zip" "https://socalabs.com/files/set.php?key=$APIKEY"
     fi

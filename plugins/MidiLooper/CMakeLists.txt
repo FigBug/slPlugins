@@ -53,6 +53,10 @@ juce_add_plugin(${PLUGIN_NAME}
     IS_MIDI_EFFECT TRUE
 )
 
+clap_juce_extensions_plugin(TARGET ${PLUGIN_NAME}
+    CLAP_ID "${BUNDLE_ID}"
+    CLAP_FEATURES note-effect utility)
+
 # Auto-discover source files
 file(GLOB_RECURSE source_files CONFIGURE_DEPENDS
     ${CMAKE_CURRENT_SOURCE_DIR}/Source/*.cpp

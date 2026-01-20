@@ -15,6 +15,11 @@ if(NOT TARGET juce::juce_core)
     add_subdirectory(${MODULES_DIR}/juce ${CMAKE_BINARY_DIR}/juce EXCLUDE_FROM_ALL)
 endif()
 
+# Add clap-juce-extensions only if not already added
+if(NOT TARGET clap_juce_extensions)
+    add_subdirectory(${MODULES_DIR}/clap-juce-extensions ${CMAKE_BINARY_DIR}/clap-juce-extensions EXCLUDE_FROM_ALL)
+endif()
+
 # Set VST2 SDK path only if not already set
 if(NOT TARGET juce_vst2_sdk)
     juce_set_vst2_sdk_path(${MODULES_DIR}/plugin_sdk/vstsdk2.4)

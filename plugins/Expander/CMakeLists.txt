@@ -51,6 +51,10 @@ juce_add_plugin(${PLUGIN_NAME}
     NEEDS_MIDI_INPUT ON
 )
 
+clap_juce_extensions_plugin(TARGET ${PLUGIN_NAME}
+    CLAP_ID "${BUNDLE_ID}"
+    CLAP_FEATURES audio-effect expander)
+
 # Auto-discover source files
 file(GLOB_RECURSE source_files CONFIGURE_DEPENDS
     ${CMAKE_CURRENT_SOURCE_DIR}/Source/*.cpp
