@@ -1,0 +1,18 @@
+SocaLabs effects plug-in installer
+==================================
+
+This installer places a single SocaLabs effects plug-in into your system audio
+plug-in folders.
+
+Components:
+  • VST                  /Library/Audio/Plug-Ins/VST
+  • VST3                 /Library/Audio/Plug-Ins/VST3
+  • Audio Unit           /Library/Audio/Plug-Ins/Components
+  • CLAP                 /Library/Audio/Plug-Ins/CLAP
+
+Plugins that bundle factory presets install them under
+  /Library/Audio/Presets/SocaLabs/<PluginName>
+
+User-saved presets live under
+  ~/Library/Audio/Presets/SocaLabs/<PluginName>
+and are not touched by this installer.

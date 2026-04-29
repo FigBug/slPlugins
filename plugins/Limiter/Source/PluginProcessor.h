@@ -9,6 +9,9 @@ class LimiterAudioProcessor : public gin::Processor
 {
 public:
     //==============================================================================
+    juce::File getProgramDirectory() override;
+    juce::Array<juce::File> getFactoryProgramDirectories() override;
+
     LimiterAudioProcessor();
     ~LimiterAudioProcessor() override;
 

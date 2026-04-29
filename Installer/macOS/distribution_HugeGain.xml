@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<installer-gui-script minSpecVersion="2">
+    <title>HugeGain</title>
+    <organization>com.socalabs</organization>
+    <domains enable_anywhere="false" enable_currentUserHome="false" enable_localSystem="true"/>
+    <options customize="always" require-scripts="false" rootVolumeOnly="true"/>
+    <license file="EULA.rtf"/>
+    <welcome    file="welcome.txt"   mime-type="text/plain"/>
+
+    <choices-outline>
+        <line choice="com.socalabs.hugegain.vst"/>
+        <line choice="com.socalabs.hugegain.vst3"/>
+        <line choice="com.socalabs.hugegain.au"/>
+        <line choice="com.socalabs.hugegain.clap"/>
+
+    </choices-outline>
+
+    <choice id="com.socalabs.hugegain.vst"
+            title="VST"
+            description="Install the VST plug-in to /Library/Audio/Plug-Ins/VST"
+            visible="true">
+        <pkg-ref id="com.socalabs.hugegain.vst.pkg"/>
+    </choice>
+
+    <choice id="com.socalabs.hugegain.vst3"
+            title="VST3"
+            description="Install the VST3 plug-in to /Library/Audio/Plug-Ins/VST3"
+            visible="true">
+        <pkg-ref id="com.socalabs.hugegain.vst3.pkg"/>
+    </choice>
+
+    <choice id="com.socalabs.hugegain.au"
+            title="Audio Unit"
+            description="Install the Audio Unit plug-in to /Library/Audio/Plug-Ins/Components"
+            visible="true">
+        <pkg-ref id="com.socalabs.hugegain.au.pkg"/>
+    </choice>
+
+    <choice id="com.socalabs.hugegain.clap"
+            title="CLAP"
+            description="Install the CLAP plug-in to /Library/Audio/Plug-Ins/CLAP"
+            visible="true">
+        <pkg-ref id="com.socalabs.hugegain.clap.pkg"/>
+    </choice>
+
+    <pkg-ref id="com.socalabs.hugegain.vst.pkg"  version="0">vst.pkg</pkg-ref>
+    <pkg-ref id="com.socalabs.hugegain.vst3.pkg" version="0">vst3.pkg</pkg-ref>
+    <pkg-ref id="com.socalabs.hugegain.au.pkg"   version="0">au.pkg</pkg-ref>
+    <pkg-ref id="com.socalabs.hugegain.clap.pkg" version="0">clap.pkg</pkg-ref>
+
+</installer-gui-script>

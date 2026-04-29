@@ -3,6 +3,47 @@
 #include <random>
 
 //==============================================================================
+//==============================================================================
+namespace
+{
+    juce::File userResourceRoot()
+    {
+       #if JUCE_MAC
+        return juce::File::getSpecialLocation (juce::File::userHomeDirectory)
+                  .getChildFile ("Library/Audio/Presets/SocaLabs/Compressor");
+       #elif JUCE_WINDOWS
+        return juce::File::getSpecialLocation (juce::File::userApplicationDataDirectory)
+                  .getChildFile ("SocaLabs/Compressor");
+       #else
+        return juce::File::getSpecialLocation (juce::File::userApplicationDataDirectory)
+                  .getChildFile ("SocaLabs/Compressor");
+       #endif
+    }
+
+    juce::File systemResourceRoot()
+    {
+       #if JUCE_MAC
+        return juce::File ("/Library/Audio/Presets/SocaLabs/Compressor");
+       #elif JUCE_WINDOWS
+        return juce::File::getSpecialLocation (juce::File::commonApplicationDataDirectory)
+                  .getChildFile ("SocaLabs/Compressor");
+       #else
+        return juce::File ("/usr/share/SocaLabs/Compressor");
+       #endif
+    }
+
+    juce::File legacyUserProgramDirectory()
+    {
+       #if JUCE_MAC
+        return juce::File::getSpecialLocation (juce::File::userApplicationDataDirectory)
+                  .getChildFile ("Application Support/com.socalabs/Compressor/programs");
+       #else
+        return juce::File::getSpecialLocation (juce::File::userApplicationDataDirectory)
+                  .getChildFile ("com.socalabs/Compressor/programs");
+       #endif
+    }
+}
+
 static gin::ProcessorOptions createProcessorOptions()
 {
     return gin::ProcessorOptions()
@@ -26,14 +67,21 @@ CompressorAudioProcessor::CompressorAudioProcessor()
     release->conversionFunction = [] (float in) { return in / 1000.0; };
     input->conversionFunction   = [] (float in) { return juce::Decibels::decibelsToGain (in); };
     output->conversionFunction  = [] (float in) { return juce::Decibels::decibelsToGain (in); };
-
-    for (int i = 0; i < BinaryData::namedResourceListSize; i++)
+    // One-time migration of any user presets from the pre-installer location.
+    // Factory presets now live in systemResourceRoot()/Presets and are surfaced
+    // via getFactoryProgramDirectories(). User saves go to userResourceRoot()/Presets.
     {
-        int sz = 0;
-        if (auto data = BinaryData::getNamedResource (BinaryData::namedResourceList[i], sz))
-            extractProgram (BinaryData::originalFilenames[i], juce::MemoryBlock (data, size_t (sz)));
+        auto oldDir = legacyUserProgramDirectory();
+        auto newDir = userResourceRoot().getChildFile ("Presets");
+        if (oldDir.isDirectory()
+            && newDir.findChildFiles (juce::File::findFiles, false, "*.xml").isEmpty())
+        {
+            if (! newDir.isDirectory())
+                newDir.createDirectory();
+            for (auto f : oldDir.findChildFiles (juce::File::findFiles, false, "*.xml"))
+                f.copyFileTo (newDir.getChildFile (f.getFileName()));
+        }
     }
-
     init();
 }
 
@@ -158,5 +206,18 @@ juce::AudioProcessorEditor* CompressorAudioProcessor::createEditor()
 juce::AudioProcessor* JUCE_CALLTYPE createPluginFilter()
 {
     return new CompressorAudioProcessor();
+}
+//==============================================================================
+juce::File CompressorAudioProcessor::getProgramDirectory()
+{
+    auto dir = userResourceRoot().getChildFile ("Presets");
+    if (! dir.isDirectory())
+        dir.createDirectory();
+    return dir;
+}
+
+juce::Array<juce::File> CompressorAudioProcessor::getFactoryProgramDirectories()
+{
+    return { systemResourceRoot().getChildFile ("Presets") };
 }
 

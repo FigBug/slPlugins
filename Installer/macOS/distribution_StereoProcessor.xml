@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<installer-gui-script minSpecVersion="2">
+    <title>StereoProcessor</title>
+    <organization>com.socalabs</organization>
+    <domains enable_anywhere="false" enable_currentUserHome="false" enable_localSystem="true"/>
+    <options customize="always" require-scripts="false" rootVolumeOnly="true"/>
+    <license file="EULA.rtf"/>
+    <welcome    file="welcome.txt"   mime-type="text/plain"/>
+
+    <choices-outline>
+        <line choice="com.socalabs.stereoprocessor.vst"/>
+        <line choice="com.socalabs.stereoprocessor.vst3"/>
+        <line choice="com.socalabs.stereoprocessor.au"/>
+        <line choice="com.socalabs.stereoprocessor.clap"/>
+        <line choice="com.socalabs.stereoprocessor.resources"/>
+    </choices-outline>
+
+    <choice id="com.socalabs.stereoprocessor.vst"
+            title="VST"
+            description="Install the VST plug-in to /Library/Audio/Plug-Ins/VST"
+            visible="true">
+        <pkg-ref id="com.socalabs.stereoprocessor.vst.pkg"/>
+    </choice>
+
+    <choice id="com.socalabs.stereoprocessor.vst3"
+            title="VST3"
+            description="Install the VST3 plug-in to /Library/Audio/Plug-Ins/VST3"
+            visible="true">
+        <pkg-ref id="com.socalabs.stereoprocessor.vst3.pkg"/>
+    </choice>
+
+    <choice id="com.socalabs.stereoprocessor.au"
+            title="Audio Unit"
+            description="Install the Audio Unit plug-in to /Library/Audio/Plug-Ins/Components"
+            visible="true">
+        <pkg-ref id="com.socalabs.stereoprocessor.au.pkg"/>
+    </choice>
+
+    <choice id="com.socalabs.stereoprocessor.clap"
+            title="CLAP"
+            description="Install the CLAP plug-in to /Library/Audio/Plug-Ins/CLAP"
+            visible="true">
+        <pkg-ref id="com.socalabs.stereoprocessor.clap.pkg"/>
+    </choice>
+    <choice id="com.socalabs.stereoprocessor.resources"
+            title="Factory Presets"
+            description="Install factory content to /Library/Audio/Presets/SocaLabs/StereoProcessor"
+            visible="true"
+            enabled="false"
+            selected="true">
+        <pkg-ref id="com.socalabs.stereoprocessor.resources.pkg"/>
+    </choice>
+
+    <pkg-ref id="com.socalabs.stereoprocessor.vst.pkg"  version="0">vst.pkg</pkg-ref>
+    <pkg-ref id="com.socalabs.stereoprocessor.vst3.pkg" version="0">vst3.pkg</pkg-ref>
+    <pkg-ref id="com.socalabs.stereoprocessor.au.pkg"   version="0">au.pkg</pkg-ref>
+    <pkg-ref id="com.socalabs.stereoprocessor.clap.pkg" version="0">clap.pkg</pkg-ref>
+    <pkg-ref id="com.socalabs.stereoprocessor.resources.pkg" version="0">resources.pkg</pkg-ref>
+</installer-gui-script>

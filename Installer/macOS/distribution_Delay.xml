@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<installer-gui-script minSpecVersion="2">
+    <title>Delay</title>
+    <organization>com.socalabs</organization>
+    <domains enable_anywhere="false" enable_currentUserHome="false" enable_localSystem="true"/>
+    <options customize="always" require-scripts="false" rootVolumeOnly="true"/>
+    <license file="EULA.rtf"/>
+    <welcome    file="welcome.txt"   mime-type="text/plain"/>
+
+    <choices-outline>
+        <line choice="com.socalabs.delay.vst"/>
+        <line choice="com.socalabs.delay.vst3"/>
+        <line choice="com.socalabs.delay.au"/>
+        <line choice="com.socalabs.delay.clap"/>
+        <line choice="com.socalabs.delay.resources"/>
+    </choices-outline>
+
+    <choice id="com.socalabs.delay.vst"
+            title="VST"
+            description="Install the VST plug-in to /Library/Audio/Plug-Ins/VST"
+            visible="true">
+        <pkg-ref id="com.socalabs.delay.vst.pkg"/>
+    </choice>
+
+    <choice id="com.socalabs.delay.vst3"
+            title="VST3"
+            description="Install the VST3 plug-in to /Library/Audio/Plug-Ins/VST3"
+            visible="true">
+        <pkg-ref id="com.socalabs.delay.vst3.pkg"/>
+    </choice>
+
+    <choice id="com.socalabs.delay.au"
+            title="Audio Unit"
+            description="Install the Audio Unit plug-in to /Library/Audio/Plug-Ins/Components"
+            visible="true">
+        <pkg-ref id="com.socalabs.delay.au.pkg"/>
+    </choice>
+
+    <choice id="com.socalabs.delay.clap"
+            title="CLAP"
+            description="Install the CLAP plug-in to /Library/Audio/Plug-Ins/CLAP"
+            visible="true">
+        <pkg-ref id="com.socalabs.delay.clap.pkg"/>
+    </choice>
+    <choice id="com.socalabs.delay.resources"
+            title="Factory Presets"
+            description="Install factory content to /Library/Audio/Presets/SocaLabs/Delay"
+            visible="true"
+            enabled="false"
+            selected="true">
+        <pkg-ref id="com.socalabs.delay.resources.pkg"/>
+    </choice>
+
+    <pkg-ref id="com.socalabs.delay.vst.pkg"  version="0">vst.pkg</pkg-ref>
+    <pkg-ref id="com.socalabs.delay.vst3.pkg" version="0">vst3.pkg</pkg-ref>
+    <pkg-ref id="com.socalabs.delay.au.pkg"   version="0">au.pkg</pkg-ref>
+    <pkg-ref id="com.socalabs.delay.clap.pkg" version="0">clap.pkg</pkg-ref>
+    <pkg-ref id="com.socalabs.delay.resources.pkg" version="0">resources.pkg</pkg-ref>
+</installer-gui-script>

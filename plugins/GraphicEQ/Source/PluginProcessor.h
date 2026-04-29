@@ -9,6 +9,9 @@ public:
     static constexpr int numBands = 10;
 
     //==============================================================================
+    juce::File getProgramDirectory() override;
+    juce::Array<juce::File> getFactoryProgramDirectories() override;
+
     GraphicEQAudioProcessor();
     ~GraphicEQAudioProcessor() override;
 

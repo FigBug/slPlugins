@@ -79,4 +79,9 @@ Builds
 JuceLibraryCode
 ci/zip
 cmake-build
+.claudebin
+Installer/macOS/bin
+Installer/win/bin
+Installer/win/_signingtools
+Installer/linux/bin
 .claude
