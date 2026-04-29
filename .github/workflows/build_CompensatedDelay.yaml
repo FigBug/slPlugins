@@ -1,14 +1,27 @@
-name: Release
+name: Build CompensatedDelay
 on:
   push:
-    tags:
+    branches:
       - '**'
+    tags-ignore:
+      - '**'
+    paths:
+      - 'plugins/CompensatedDelay/**'
+      - 'modules/**'
+      - 'CMakeLists.txt'
+      - 'CMakePresets.json'
+      - 'Installer/**'
+      - 'ci/pluginlist.txt'
+      - '.github/workflows/build_CompensatedDelay.yaml'
+
+concurrency:
+  group: build-CompensatedDelay-${{ github.ref || github.run_id }}
 
 jobs:
   build:
-    name: Build
+    name: Build CompensatedDelay
     runs-on: ${{ matrix.os }}
-    timeout-minutes: 120
+    timeout-minutes: 45
     strategy:
       fail-fast: false
       matrix:
@@ -42,8 +55,8 @@ jobs:
         run: choco install innosetup --no-progress -y
         shell: bash
 
-      - name: Build installers
-        run: ./Installer/build.sh
+      - name: Build installer
+        run: ./Installer/build.sh CompensatedDelay
         shell: bash
         env:
           APPLICATION: ${{ secrets.APPLICATION }}
@@ -58,22 +71,6 @@ jobs:
         uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: Binaries ${{ matrix.name }}
+          name: CompensatedDelay ${{ matrix.name }}
           path: bin/*
           retention-days: 30
-
-  release:
-    name: Release
-    needs: build
-    runs-on: ubuntu-latest
-    timeout-minutes: 30
-    steps:
-      - uses: actions/checkout@v4
-      - name: Download Artifacts
-        uses: actions/download-artifact@v4
-      - name: Upload installers
-        run: ./release_uploader.sh
-        shell: bash
-        env:
-          GH_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-          APIKEY:   ${{ secrets.APIKEY }}

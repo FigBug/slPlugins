@@ -35,9 +35,9 @@ fi
 echo "$NOTES" > /tmp/release_notes.txt
 
 ASSETS=()
-[ -f "./Binaries Linux/${PLUGIN}.deb" ]   && ASSETS+=("./Binaries Linux/${PLUGIN}.deb")
-[ -f "./Binaries Windows/${PLUGIN}.exe" ] && ASSETS+=("./Binaries Windows/${PLUGIN}.exe")
-[ -f "./Binaries macOS/${PLUGIN}.pkg" ]   && ASSETS+=("./Binaries macOS/${PLUGIN}.pkg")
+[ -f "./${PLUGIN} Linux/${PLUGIN}.deb" ]   && ASSETS+=("./${PLUGIN} Linux/${PLUGIN}.deb")
+[ -f "./${PLUGIN} Windows/${PLUGIN}.exe" ] && ASSETS+=("./${PLUGIN} Windows/${PLUGIN}.exe")
+[ -f "./${PLUGIN} macOS/${PLUGIN}.pkg" ]   && ASSETS+=("./${PLUGIN} macOS/${PLUGIN}.pkg")
 
 gh release create "$TAG" --title "$TAG" -F /tmp/release_notes.txt "${ASSETS[@]}"
 

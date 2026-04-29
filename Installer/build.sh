@@ -2,9 +2,13 @@
 set -x
 
 #
-# slPlugins installer driver. Builds all 24 plugins once via cmake, then loops
-# through ci/pluginlist.txt to produce 24 separate .pkg / .exe / .deb installers.
+# slPlugins installer driver. With no argument, builds every plugin in
+# ci/pluginlist.txt and produces a separate .pkg / .exe / .deb per plugin.
+# With a single PLUGIN argument, builds only that plugin's targets — the
+# per-plugin GitHub workflows pass this so each plugin runs as its own job.
 #
+
+SINGLE_PLUGIN="${1:-}"
 
 cd "$(dirname "$0")"
 cd ..
@@ -24,7 +28,24 @@ mkdir -p "$PROJECT_ROOT/Installer/$PLATFORM/bin"
 rm -Rf "$PROJECT_ROOT/bin"
 mkdir -p "$PROJECT_ROOT/bin"
 
-PLUGINS=$(cat "$PROJECT_ROOT/ci/pluginlist.txt" | tr -d '\r' | grep -v '^$')
+if [ -n "$SINGLE_PLUGIN" ]; then
+  PLUGINS="$SINGLE_PLUGIN"
+else
+  PLUGINS=$(cat "$PROJECT_ROOT/ci/pluginlist.txt" | tr -d '\r' | grep -v '^$')
+fi
+
+# Per-platform target list for cmake — limited to the requested plugin(s) so a
+# per-plugin workflow doesn't drag in the other 24.
+build_targets() {
+  local FORMATS="$1"
+  local out=""
+  for plugin in $PLUGINS; do
+    for fmt in $FORMATS; do
+      out="$out --target ${plugin}_${fmt}"
+    done
+  done
+  echo "$out"
+}
 
 ############################################################
 # macOS — pkgbuild + productbuild per plugin
@@ -52,7 +73,7 @@ if [ "$PLATFORM" = "macOS" ]; then
 
   cd "$PROJECT_ROOT"
   cmake --preset xcode
-  cmake --build --preset xcode --config Release
+  cmake --build --preset xcode --config Release $(build_targets "VST VST3 AU CLAP")
 
   STAGE_BASE="$PROJECT_ROOT/Installer/macOS/bin"
 
@@ -146,7 +167,7 @@ if [ "$PLATFORM" = "macOS" ]; then
 elif [ "$PLATFORM" = "linux" ]; then
   cd "$PROJECT_ROOT"
   cmake --preset ninja-clang
-  cmake --build --preset ninja-clang --config Release
+  cmake --build --preset ninja-clang --config Release $(build_targets "VST VST3 LV2 CLAP")
 
   for PLUGIN in $PLUGINS; do
     PLOWER=$(echo "$PLUGIN" | tr '[:upper:]' '[:lower:]')
@@ -180,7 +201,7 @@ DEBEOF
 else
   cd "$PROJECT_ROOT"
   cmake --preset vs
-  cmake --build --preset vs --config Release
+  cmake --build --preset vs --config Release $(build_targets "VST VST3 CLAP")
 
   uuid_re='^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$'
   WIN_SIGN=0

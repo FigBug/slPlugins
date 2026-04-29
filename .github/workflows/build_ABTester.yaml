@@ -1,17 +1,27 @@
-name: Build
+name: Build ABTester
 on:
   push:
     branches:
       - '**'
+    tags-ignore:
+      - '**'
+    paths:
+      - 'plugins/ABTester/**'
+      - 'modules/**'
+      - 'CMakeLists.txt'
+      - 'CMakePresets.json'
+      - 'Installer/**'
+      - 'ci/pluginlist.txt'
+      - '.github/workflows/build_ABTester.yaml'
 
 concurrency:
-  group: build-${{ github.ref || github.run_id }}
+  group: build-ABTester-${{ github.ref || github.run_id }}
 
 jobs:
   build:
-    name: Build
+    name: Build ABTester
     runs-on: ${{ matrix.os }}
-    timeout-minutes: 120
+    timeout-minutes: 45
     strategy:
       fail-fast: false
       matrix:
@@ -45,8 +55,8 @@ jobs:
         run: choco install innosetup --no-progress -y
         shell: bash
 
-      - name: Build installers
-        run: ./Installer/build.sh
+      - name: Build installer
+        run: ./Installer/build.sh ABTester
         shell: bash
         env:
           APPLICATION: ${{ secrets.APPLICATION }}
@@ -61,6 +71,6 @@ jobs:
         uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: Binaries ${{ matrix.name }}
+          name: ABTester ${{ matrix.name }}
           path: bin/*
           retention-days: 30
