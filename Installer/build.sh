@@ -167,7 +167,10 @@ if [ "$PLATFORM" = "macOS" ]; then
 elif [ "$PLATFORM" = "linux" ]; then
   cd "$PROJECT_ROOT"
   cmake --preset ninja-clang
-  cmake --build --preset ninja-clang --config Release $(build_targets "VST VST3 LV2 CLAP")
+  # Linux LV2 link fails when only --target X_LV2 is built (juce LTO bitcode
+  # for juce_core/juce_gui_basics doesn't resolve from a single-target build).
+  # Build everything; we still only package the requested plugin below.
+  cmake --build --preset ninja-clang --config Release
 
   for PLUGIN in $PLUGINS; do
     PLOWER=$(echo "$PLUGIN" | tr '[:upper:]' '[:lower:]')
