@@ -1,0 +1,5 @@
+#!/bin/sh
+# Bundle installer cleanup is per-plugin and best-effort. Each component
+# pkgbuilt below installs over whatever was already there; we don't wipe
+# the parent directories because other vendors' plug-ins may live alongside.
+exit 0

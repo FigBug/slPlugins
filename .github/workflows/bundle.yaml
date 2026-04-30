@@ -1,0 +1,60 @@
+name: Bundle
+on:
+  workflow_dispatch:
+
+concurrency:
+  group: bundle-${{ github.run_id }}
+
+jobs:
+  bundle:
+    name: ${{ matrix.bundle.name }} - ${{ matrix.platform.name }}
+    runs-on: ${{ matrix.platform.os }}
+    timeout-minutes: 90
+    strategy:
+      fail-fast: false
+      matrix:
+        bundle:
+          - { name: SocaLabs,   id: socalabs,   slugs: "" }
+          - { name: 8BitTreats, id: 8bittreats, slugs: "commodore-64-sid,rp2a03,papu,sn76489" }
+        platform:
+          - { name: macOS,   os: macos-latest }
+          - { name: Linux,   os: ubuntu-latest }
+          - { name: Windows, os: windows-latest }
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Linux dependencies
+        if: matrix.platform.name == 'Linux'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends fakeroot dpkg jq curl
+        shell: bash
+
+      - name: Install Windows dependencies
+        if: matrix.platform.name == 'Windows'
+        run: |
+          choco install innosetup --no-progress -y
+          choco install innounp   --no-progress -y
+          choco install jq        --no-progress -y
+        shell: bash
+
+      - name: Build bundle
+        run: ./Bundle/build.sh "${{ matrix.bundle.name }}" "${{ matrix.bundle.id }}" "${{ matrix.bundle.slugs }}"
+        shell: bash
+        env:
+          APPLICATION:         ${{ secrets.APPLICATION }}
+          INSTALLER:           ${{ secrets.INSTALLER }}
+          APPLE_USER:          ${{ secrets.APPLE_USER }}
+          APPLE_PASS:          ${{ secrets.APPLE_PASS }}
+          AZURE_TENANT_ID:     ${{ secrets.AZURE_TENANT_ID }}
+          AZURE_CLIENT_ID:     ${{ secrets.AZURE_CLIENT_ID }}
+          AZURE_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET }}
+          APIKEY:              ${{ secrets.APIKEY }}
+
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: ${{ matrix.bundle.name }} ${{ matrix.platform.name }}
+          path: bin/*
+          retention-days: 30
