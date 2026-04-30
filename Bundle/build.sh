@@ -250,29 +250,13 @@ DEBEOF
 # Windows — innounp -x → merge → ISCC → Azure Trusted Signing
 ############################################################
 else
-  mkdir -p "$STAGE/VST" "$STAGE/VST3" "$STAGE/CLAP" "$STAGE/Resources"
-
-  for exe in "$DOWNLOADS"/*.exe; do
-    SLUG=$(basename "$exe" .exe)
-    TMP="/tmp/innounp_$SLUG"
-    rm -rf "$TMP" && mkdir -p "$TMP"
-    # innounp -x extracts files; -d sets output dir; -y overwrites; -m extracts internal
-    innounp -x -d"$TMP" -y "$exe" || true
-
-    # Inno Setup writes paths with constants like {commoncf64} which innounp
-    # leaves as literal directory names. Walk every plausible location.
-    for ROOT in "$TMP/{commoncf64}" "$TMP/{cf64}" "$TMP/{commonpf64}" "$TMP/{app}" "$TMP"; do
-      [ -d "$ROOT/VST"  ] && cp -R "$ROOT/VST/"*  "$STAGE/VST/"  2>/dev/null || true
-      [ -d "$ROOT/VST3" ] && cp -R "$ROOT/VST3/"* "$STAGE/VST3/" 2>/dev/null || true
-      [ -d "$ROOT/CLAP" ] && cp -R "$ROOT/CLAP/"* "$STAGE/CLAP/" 2>/dev/null || true
-    done
-    # Factory presets land under {commonappdata}\SocaLabs\<Plugin>\
-    for ROOT in "$TMP/{commonappdata}" "$TMP/{commonappdata}/SocaLabs" "$TMP"; do
-      if [ -d "$ROOT/SocaLabs" ]; then
-        cp -R "$ROOT/SocaLabs" "$STAGE/Resources/" 2>/dev/null || true
-      fi
-    done
-  done
+  # Wrapper-of-installers approach. innounp can't unpack signed Inno Setup 6.x
+  # installers (chokes with "setup files are corrupted or made by incompatible
+  # version"), so instead include each plug-in's signed .exe as a payload and
+  # run them silently from [Run]. This also preserves each plug-in's existing
+  # Authenticode signature.
+  mkdir -p "$STAGE/payloads"
+  cp "$DOWNLOADS"/*.exe "$STAGE/payloads/"
 
   uuid_re='^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$'
   WIN_SIGN=0
@@ -291,11 +275,22 @@ else
     sign_file () { "$SIGNTOOL" sign -v -fd SHA256 -tr "http://timestamp.acs.microsoft.com" -td SHA256 -dlib "$DLIB" -dmdf "$METADATA" "$1"; }
   fi
 
-  # ISCC will run from $STAGE; place EULA + welcome alongside the .iss.
+  # ISCC will run from $STAGE; place EULA alongside the .iss.
   cp "$PROJECT_ROOT/Bundle/EULA.rtf" "$STAGE/EULA.rtf"
 
+  # Build per-plugin [Files] + [Run] entries
+  RUN_ENTRIES=""
+  FILES_ENTRIES=""
+  for exe in "$DOWNLOADS"/*.exe; do
+    SLUG=$(basename "$exe" .exe)
+    FILES_ENTRIES="${FILES_ENTRIES}Source: \"payloads\\\\${SLUG}.exe\"; DestDir: \"{tmp}\"; Flags: deleteafterinstall ignoreversion
+"
+    RUN_ENTRIES="${RUN_ENTRIES}Filename: \"{tmp}\\\\${SLUG}.exe\"; Parameters: \"/VERYSILENT /SUPPRESSMSGBOXES /NORESTART\"; StatusMsg: \"Installing ${SLUG}...\"; Flags: runhidden
+"
+  done
+
   cat > "$STAGE/${BUNDLE_NAME}.iss" <<ISSEOF
-; ${BUNDLE_NAME} bundle (Inno Setup)
+; ${BUNDLE_NAME} bundle (Inno Setup wrapper-of-installers)
 
 #define MyAppName "${BUNDLE_NAME}"
 #define MyAppCompany "SocaLabs"
@@ -312,7 +307,7 @@ AppVersion={#MyAppVersion}
 AppCopyright={#MyAppCopyright}
 AppPublisher={#MyAppPublisher}
 AppPublisherURL={#MyAppURL}
-DefaultDirName={commoncf64}\\VST3
+DefaultDirName={commonpf64}\\${BUNDLE_NAME}
 OutputDir=.
 OutputBaseFilename=${BUNDLE_NAME}
 Compression=lzma/ultra
@@ -320,6 +315,7 @@ SolidCompression=true
 LicenseFile=EULA.rtf
 DisableDirPage=yes
 DisableProgramGroupPage=yes
+CreateUninstallRegKey=no
 ArchitecturesAllowed=x64compatible
 ArchitecturesInstallIn64BitMode=x64compatible
 PrivilegesRequired=admin
@@ -333,10 +329,9 @@ VersionInfoProductName={#MyAppCompany} {#MyAppName} {#MyAppVersion}
 Name: english; MessagesFile: compiler:Default.isl
 
 [Files]
-Source: "VST\\*";       DestDir: "{commoncf64}\\VST";                  Flags: ignoreversion overwritereadonly recursesubdirs createallsubdirs
-Source: "VST3\\*";      DestDir: "{commoncf64}\\VST3";                 Flags: ignoreversion overwritereadonly recursesubdirs createallsubdirs
-Source: "CLAP\\*";      DestDir: "{commoncf64}\\CLAP";                 Flags: ignoreversion overwritereadonly recursesubdirs createallsubdirs
-Source: "Resources\\SocaLabs\\*"; DestDir: "{commonappdata}\\SocaLabs"; Flags: ignoreversion overwritereadonly recursesubdirs createallsubdirs skipifsourcedoesntexist
+${FILES_ENTRIES}
+[Run]
+${RUN_ENTRIES}
 ISSEOF
 
   ISCC="/c/Program Files (x86)/Inno Setup 6/ISCC.exe"
