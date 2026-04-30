@@ -232,28 +232,29 @@ else
   ISCC="/c/Program Files (x86)/Inno Setup 6/ISCC.exe"
   [ -f "$ISCC" ] || ISCC="/c/Program Files/Inno Setup 6/ISCC.exe"
 
+  # Run ISCC from Installer/win/ (where the .iss files live, so their `..\..\`
+  # source paths into the repo resolve correctly). Stage the binaries to the
+  # plugin-agnostic ./bin folder before each ISCC call and clean between plugins
+  # so we don't leak files from one plugin into another's installer.
+  WIN_BIN="$PROJECT_ROOT/Installer/win/bin"
   for PLUGIN in $PLUGINS; do
     ART_DIR="$PROJECT_ROOT/Builds/vs/plugins/$PLUGIN/${PLUGIN}_artefacts/Release"
-    STAGE="$PROJECT_ROOT/Installer/win/$PLUGIN"
-    rm -Rf "$STAGE"
-    mkdir -p "$STAGE/bin/VST" "$STAGE/bin/VST3" "$STAGE/bin/CLAP"
 
-    cp -R "$ART_DIR/VST/$PLUGIN.dll"   "$STAGE/bin/VST/"
-    cp -R "$ART_DIR/VST3/$PLUGIN.vst3" "$STAGE/bin/VST3/"
-    cp -R "$ART_DIR/CLAP/$PLUGIN.clap" "$STAGE/bin/CLAP/"
+    rm -Rf "$WIN_BIN/VST" "$WIN_BIN/VST3" "$WIN_BIN/CLAP"
+    mkdir -p "$WIN_BIN/VST" "$WIN_BIN/VST3" "$WIN_BIN/CLAP"
+    cp -R "$ART_DIR/VST/$PLUGIN.dll"   "$WIN_BIN/VST/"
+    cp -R "$ART_DIR/VST3/$PLUGIN.vst3" "$WIN_BIN/VST3/"
+    cp -R "$ART_DIR/CLAP/$PLUGIN.clap" "$WIN_BIN/CLAP/"
 
     if [ "$WIN_SIGN" = "1" ]; then
-      sign_file "$STAGE/bin/VST/$PLUGIN.dll"
-      sign_file "$STAGE/bin/VST3/$PLUGIN.vst3/Contents/x86_64-win/$PLUGIN.vst3"
-      sign_file "$STAGE/bin/CLAP/$PLUGIN.clap"
+      sign_file "$WIN_BIN/VST/$PLUGIN.dll"
+      sign_file "$WIN_BIN/VST3/$PLUGIN.vst3/Contents/x86_64-win/$PLUGIN.vst3"
+      sign_file "$WIN_BIN/CLAP/$PLUGIN.clap"
     fi
 
-    # Run ISCC from STAGE so OutputDir=.\bin works as expected.
-    cp "$PROJECT_ROOT/Installer/win/${PLUGIN}.iss" "$STAGE/${PLUGIN}.iss"
-    cp -R "$PROJECT_ROOT/Installer/EULA.rtf" "$STAGE/../EULA.rtf"
-    (cd "$STAGE" && "$ISCC" "${PLUGIN}.iss")
+    (cd "$PROJECT_ROOT/Installer/win" && "$ISCC" "${PLUGIN}.iss")
 
-    EXE_OUT="$STAGE/bin/${PLUGIN}.exe"
+    EXE_OUT="$WIN_BIN/${PLUGIN}.exe"
     [ "$WIN_SIGN" = "1" ] && sign_file "$EXE_OUT"
     cp "$EXE_OUT" "$PROJECT_ROOT/bin/"
   done
