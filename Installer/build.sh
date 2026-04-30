@@ -167,10 +167,15 @@ if [ "$PLATFORM" = "macOS" ]; then
 elif [ "$PLATFORM" = "linux" ]; then
   cd "$PROJECT_ROOT"
   cmake --preset ninja-clang
-  # Linux LV2 link fails when only --target X_LV2 is built (juce LTO bitcode
-  # for juce_core/juce_gui_basics doesn't resolve from a single-target build).
-  # Build everything; we still only package the requested plugin below.
-  cmake --build --preset ninja-clang --config Release
+  # Use JUCE's per-plugin _All umbrella target. Targeting individual format
+  # targets (e.g. X_LV2) leaves juce_core/juce_gui_basics LTO bitcode
+  # unresolved at link time on Linux; _All sweeps in the SharedCode and every
+  # format target in one dependency closure.
+  TARGETS=""
+  for p in $PLUGINS; do
+    TARGETS="$TARGETS --target ${p}_All"
+  done
+  cmake --build --preset ninja-clang --config Release $TARGETS
 
   for PLUGIN in $PLUGINS; do
     PLOWER=$(echo "$PLUGIN" | tr '[:upper:]' '[:lower:]')
