@@ -75,5 +75,5 @@ jobs:
         run: ./release_uploader.sh
         shell: bash
         env:
-          GH_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           APIKEY:   ${{ secrets.APIKEY }}

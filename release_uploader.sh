@@ -21,9 +21,9 @@ if [ -z "$PLUGIN" ]; then
   exit 1
 fi
 
+VER="${TAG#${PLUGIN_LOWER}_v}"
 NOTES=""
 if [ -f "plugins/$PLUGIN/Changelist.txt" ]; then
-  VER="${TAG#${PLUGIN_LOWER}_v}"
   NOTES=$(awk -v ver="$VER" '
       BEGIN { found=0; printing=0; pattern="^"ver":?$" }
       $0 ~ pattern { found=1; printing=1; next }
@@ -42,5 +42,9 @@ ASSETS=()
 gh release create "$TAG" --title "$TAG" -F /tmp/release_notes.txt "${ASSETS[@]}"
 
 for f in "${ASSETS[@]}"; do
-  curl -F "files=@${f}" "https://socalabs.com/files/set.php?key=$APIKEY"
+  curl -sS --fail-with-body -F "files=@${f}" \
+          -F "plugin=${PLUGIN_LOWER}" \
+          -F "version=${VER}" \
+          -F "changelog=${NOTES}" \
+          "https://socalabs.com/files/upload.php?key=$APIKEY"
 done
