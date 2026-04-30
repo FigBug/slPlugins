@@ -38,7 +38,7 @@ juce_add_plugin(${PLUGIN_NAME}
     PRODUCT_NAME "GraphicEQ"
     VERSION ${PLUGIN_VERSION}
     COMPANY_NAME "SocaLabs"
-    COMPANY_WEBSITE "www.socalabs.com"
+    COMPANY_WEBSITE "https://socalabs.com/"
     COMPANY_EMAIL "info@socalabs.com"
     BUNDLE_ID ${BUNDLE_ID}
     FORMATS ${FORMATS}
