@@ -291,6 +291,9 @@ else
     sign_file () { "$SIGNTOOL" sign -v -fd SHA256 -tr "http://timestamp.acs.microsoft.com" -td SHA256 -dlib "$DLIB" -dmdf "$METADATA" "$1"; }
   fi
 
+  # ISCC will run from $STAGE; place EULA + welcome alongside the .iss.
+  cp "$PROJECT_ROOT/Bundle/EULA.rtf" "$STAGE/EULA.rtf"
+
   cat > "$STAGE/${BUNDLE_NAME}.iss" <<ISSEOF
 ; ${BUNDLE_NAME} bundle (Inno Setup)
 
@@ -314,7 +317,7 @@ OutputDir=.
 OutputBaseFilename=${BUNDLE_NAME}
 Compression=lzma/ultra
 SolidCompression=true
-LicenseFile=..\\EULA.rtf
+LicenseFile=EULA.rtf
 DisableDirPage=yes
 DisableProgramGroupPage=yes
 ArchitecturesAllowed=x64compatible
