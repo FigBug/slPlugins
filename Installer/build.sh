@@ -3,9 +3,14 @@ set -x
 
 #
 # slPlugins installer driver. With no argument, builds every plugin in
-# ci/pluginlist.txt and produces a separate .pkg / .exe / .deb per plugin.
-# With a single PLUGIN argument, builds only that plugin's targets — the
-# per-plugin GitHub workflows pass this so each plugin runs as its own job.
+# ci/pluginlist.txt. With a single PLUGIN argument, builds only that plugin —
+# the per-plugin GitHub workflows pass this so each plugin runs as its own
+# parallel job.
+#
+# Each plugin is built from its own plugins/<P>/CMakeLists.txt as an
+# independent cmake project (`cmake -S plugins/<P> -B plugins/<P>/build`).
+# This sidesteps the cross-plugin LTO interference we hit when invoking the
+# top-level CMakeLists with --target X_LV2.
 #
 
 SINGLE_PLUGIN="${1:-}"
@@ -34,17 +39,32 @@ else
   PLUGINS=$(cat "$PROJECT_ROOT/ci/pluginlist.txt" | tr -d '\r' | grep -v '^$')
 fi
 
-# Per-platform target list for cmake — limited to the requested plugin(s) so a
-# per-plugin workflow doesn't drag in the other 24.
-build_targets() {
-  local FORMATS="$1"
-  local out=""
-  for plugin in $PLUGINS; do
-    for fmt in $FORMATS; do
-      out="$out --target ${plugin}_${fmt}"
-    done
-  done
-  echo "$out"
+# Configure + build a single plugin from its own CMakeLists.txt. Echoes the
+# build directory so callers can locate the artefacts.
+build_one_plugin() {
+  local P=$1
+  local PDIR="$PROJECT_ROOT/plugins/$P"
+
+  if [ "$PLATFORM" = "macOS" ]; then
+    local BDIR="$PDIR/build-xcode"
+    cmake -S "$PDIR" -B "$BDIR" -GXcode \
+          -DCMAKE_OSX_ARCHITECTURES="arm64;x86_64" \
+          -DCMAKE_OSX_DEPLOYMENT_TARGET=10.13 1>&2
+    cmake --build "$BDIR" --config Release 1>&2
+    echo "$BDIR"
+  elif [ "$PLATFORM" = "linux" ]; then
+    local BDIR="$PDIR/build-ninja"
+    cmake -S "$PDIR" -B "$BDIR" -GNinja \
+          -DCMAKE_BUILD_TYPE=Release \
+          -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++ 1>&2
+    cmake --build "$BDIR" --config Release 1>&2
+    echo "$BDIR"
+  else
+    local BDIR="$PDIR/build-vs"
+    cmake -S "$PDIR" -B "$BDIR" -G"Visual Studio 17 2022" -A x64 1>&2
+    cmake --build "$BDIR" --config Release 1>&2
+    echo "$BDIR"
+  fi
 }
 
 ############################################################
@@ -71,17 +91,14 @@ if [ "$PLATFORM" = "macOS" ]; then
     security set-key-partition-list -S apple-tool:,apple: -s -k "$KC_PASS" Keys.keychain
   fi
 
-  cd "$PROJECT_ROOT"
-  cmake --preset xcode
-  cmake --build --preset xcode --config Release $(build_targets "VST VST3 AU CLAP")
-
   STAGE_BASE="$PROJECT_ROOT/Installer/macOS/bin"
 
   for PLUGIN in $PLUGINS; do
+    BDIR=$(build_one_plugin "$PLUGIN")
     PLOWER=$(echo "$PLUGIN" | tr '[:upper:]' '[:lower:]')
     BUNDLE_BASE="com.socalabs.${PLOWER}"
     VERSION=$(cat "$PROJECT_ROOT/plugins/$PLUGIN/VERSION" | tr -d '[:space:]')
-    ART_DIR="$PROJECT_ROOT/Builds/xcode/plugins/$PLUGIN/${PLUGIN}_artefacts/Release"
+    ART_DIR="$BDIR/${PLUGIN}_artefacts/Release"
 
     STAGE="$STAGE_BASE/$PLUGIN/stage"
     PKG_DIR="$STAGE_BASE/$PLUGIN/pkgs"
@@ -115,7 +132,6 @@ if [ "$PLATFORM" = "macOS" ]; then
     pkgbuild --root "$STAGE/au"   --install-location "/Library/Audio/Plug-Ins/Components" --identifier "${BUNDLE_BASE}.au.pkg"   --version "$VERSION" "$PKG_DIR/au.pkg"
     pkgbuild --root "$STAGE/clap" --install-location "/Library/Audio/Plug-Ins/CLAP"       --identifier "${BUNDLE_BASE}.clap.pkg" --version "$VERSION" "$PKG_DIR/clap.pkg"
 
-    # Per-plugin scripts dir (needs only the matching preinstall + shared postinstall).
     SCRIPTS="$STAGE/scripts"
     mkdir -p "$SCRIPTS"
     cp "$PROJECT_ROOT/Installer/macOS/scripts/preinstall_${PLUGIN}" "$SCRIPTS/preinstall"
@@ -125,7 +141,6 @@ if [ "$PLATFORM" = "macOS" ]; then
     if [ "$HAS_PRESETS" = "yes" ]; then
       pkgbuild --root "$STAGE/resources" --install-location "/" --identifier "${BUNDLE_BASE}.resources.pkg" --version "$VERSION" --scripts "$SCRIPTS" "$PKG_DIR/resources.pkg"
     else
-      # Use the scripts component on the CLAP package so preinstall/postinstall still run.
       pkgbuild --root "$STAGE/clap" --install-location "/Library/Audio/Plug-Ins/CLAP" --identifier "${BUNDLE_BASE}.clap.pkg" --version "$VERSION" --scripts "$SCRIPTS" "$PKG_DIR/clap.pkg"
     fi
 
@@ -162,32 +177,32 @@ if [ "$PLATFORM" = "macOS" ]; then
   done
 
 ############################################################
-# Linux — per-plugin .deb via dpkg-deb + cmake --install per component
+# Linux — per-plugin .deb via dpkg-deb (no cmake --install / CPack)
 ############################################################
 elif [ "$PLATFORM" = "linux" ]; then
-  cd "$PROJECT_ROOT"
-  cmake --preset ninja-clang
-  # Use JUCE's per-plugin _All umbrella target. Targeting individual format
-  # targets (e.g. X_LV2) leaves juce_core/juce_gui_basics LTO bitcode
-  # unresolved at link time on Linux; _All sweeps in the SharedCode and every
-  # format target in one dependency closure.
-  TARGETS=""
-  for p in $PLUGINS; do
-    TARGETS="$TARGETS --target ${p}_All"
-  done
-  cmake --build --preset ninja-clang --config Release $TARGETS
-
   for PLUGIN in $PLUGINS; do
+    BDIR=$(build_one_plugin "$PLUGIN")
     PLOWER=$(echo "$PLUGIN" | tr '[:upper:]' '[:lower:]')
     VERSION=$(cat "$PROJECT_ROOT/plugins/$PLUGIN/VERSION" | tr -d '[:space:]')
     DEB_ROOT="$PROJECT_ROOT/Installer/linux/bin/$PLUGIN"
+    DEB_USR="$DEB_ROOT/usr"
     rm -Rf "$DEB_ROOT"
-    mkdir -p "$DEB_ROOT/DEBIAN" "$DEB_ROOT/usr"
+    mkdir -p "$DEB_ROOT/DEBIAN" "$DEB_USR/lib/vst" "$DEB_USR/lib/vst3" "$DEB_USR/lib/lv2" "$DEB_USR/lib/clap"
 
-    cmake --install "$PROJECT_ROOT/Builds/ninja-clang" --component "$PLUGIN" --prefix "$DEB_ROOT/usr"
+    ART="$BDIR/${PLUGIN}_artefacts/Release"
+    cp    "$ART/VST/lib${PLUGIN}.so"    "$DEB_USR/lib/vst/${PLUGIN}.so"
+    cp -R "$ART/VST3/${PLUGIN}.vst3"    "$DEB_USR/lib/vst3/"
+    cp -R "$ART/LV2/${PLUGIN}.lv2"      "$DEB_USR/lib/lv2/"
+    cp    "$ART/CLAP/${PLUGIN}.clap"    "$DEB_USR/lib/clap/${PLUGIN}.clap"
 
-    SIZE_KB=$(du -sk "$DEB_ROOT/usr" | awk '{print $1}')
+    if [ -d "$PROJECT_ROOT/plugins/${PLUGIN}/Resources" ] && \
+       compgen -G "$PROJECT_ROOT/plugins/${PLUGIN}/Resources/*.xml" > /dev/null; then
+      mkdir -p "$DEB_USR/share/SocaLabs/${PLUGIN}/Presets"
+      cp "$PROJECT_ROOT/plugins/${PLUGIN}/Resources/"*.xml \
+         "$DEB_USR/share/SocaLabs/${PLUGIN}/Presets/"
+    fi
 
+    SIZE_KB=$(du -sk "$DEB_USR" | awk '{print $1}')
     cat > "$DEB_ROOT/DEBIAN/control" <<DEBEOF
 Package: ${PLOWER}
 Version: ${VERSION}
@@ -207,10 +222,6 @@ DEBEOF
 # Windows — Inno Setup + Azure Trusted Signing per plugin
 ############################################################
 else
-  cd "$PROJECT_ROOT"
-  cmake --preset vs
-  cmake --build --preset vs --config Release $(build_targets "VST VST3 CLAP")
-
   uuid_re='^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$'
   WIN_SIGN=0
   if [ -n "${AZURE_TENANT_ID:-}" ] || [ -n "${AZURE_CLIENT_ID:-}" ] || [ -n "${AZURE_CLIENT_SECRET:-}" ]; then
@@ -237,13 +248,10 @@ else
   ISCC="/c/Program Files (x86)/Inno Setup 6/ISCC.exe"
   [ -f "$ISCC" ] || ISCC="/c/Program Files/Inno Setup 6/ISCC.exe"
 
-  # Run ISCC from Installer/win/ (where the .iss files live, so their `..\..\`
-  # source paths into the repo resolve correctly). Stage the binaries to the
-  # plugin-agnostic ./bin folder before each ISCC call and clean between plugins
-  # so we don't leak files from one plugin into another's installer.
   WIN_BIN="$PROJECT_ROOT/Installer/win/bin"
   for PLUGIN in $PLUGINS; do
-    ART_DIR="$PROJECT_ROOT/Builds/vs/plugins/$PLUGIN/${PLUGIN}_artefacts/Release"
+    BDIR=$(build_one_plugin "$PLUGIN")
+    ART_DIR="$BDIR/${PLUGIN}_artefacts/Release"
 
     rm -Rf "$WIN_BIN/VST" "$WIN_BIN/VST3" "$WIN_BIN/CLAP"
     mkdir -p "$WIN_BIN/VST" "$WIN_BIN/VST3" "$WIN_BIN/CLAP"
