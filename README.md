@@ -21,33 +21,33 @@ This step is required before building, as the plugins depend on JUCE and other t
 
 ## Build Status
 
-| Plugin | macOS | Linux | Windows |
-|--------|-------|-------|---------|
-| ABTester | ![macOS](https://github.com/FigBug/slPlugins/workflows/Build%20ABTester%20-%20macOS/badge.svg) | ![Linux](https://github.com/FigBug/slPlugins/workflows/Build%20ABTester%20-%20Linux/badge.svg) | ![Windows](https://github.com/FigBug/slPlugins/workflows/Build%20ABTester%20-%20Windows/badge.svg) |
-| AddInvert | ![macOS](https://github.com/FigBug/slPlugins/workflows/Build%20AddInvert%20-%20macOS/badge.svg) | ![Linux](https://github.com/FigBug/slPlugins/workflows/Build%20AddInvert%20-%20Linux/badge.svg) | ![Windows](https://github.com/FigBug/slPlugins/workflows/Build%20AddInvert%20-%20Windows/badge.svg) |
-| ChannelMute | ![macOS](https://github.com/FigBug/slPlugins/workflows/Build%20ChannelMute%20-%20macOS/badge.svg) | ![Linux](https://github.com/FigBug/slPlugins/workflows/Build%20ChannelMute%20-%20Linux/badge.svg) | ![Windows](https://github.com/FigBug/slPlugins/workflows/Build%20ChannelMute%20-%20Windows/badge.svg) |
-| CompensatedDelay | ![macOS](https://github.com/FigBug/slPlugins/workflows/Build%20CompensatedDelay%20-%20macOS/badge.svg) | ![Linux](https://github.com/FigBug/slPlugins/workflows/Build%20CompensatedDelay%20-%20Linux/badge.svg) | ![Windows](https://github.com/FigBug/slPlugins/workflows/Build%20CompensatedDelay%20-%20Windows/badge.svg) |
-| Compressor | ![macOS](https://github.com/FigBug/slPlugins/workflows/Build%20Compressor%20-%20macOS/badge.svg) | ![Linux](https://github.com/FigBug/slPlugins/workflows/Build%20Compressor%20-%20Linux/badge.svg) | ![Windows](https://github.com/FigBug/slPlugins/workflows/Build%20Compressor%20-%20Windows/badge.svg) |
-| Crossfeed | ![macOS](https://github.com/FigBug/slPlugins/workflows/Build%20Crossfeed%20-%20macOS/badge.svg) | ![Linux](https://github.com/FigBug/slPlugins/workflows/Build%20Crossfeed%20-%20Linux/badge.svg) | ![Windows](https://github.com/FigBug/slPlugins/workflows/Build%20Crossfeed%20-%20Windows/badge.svg) |
-| Delay | ![macOS](https://github.com/FigBug/slPlugins/workflows/Build%20Delay%20-%20macOS/badge.svg) | ![Linux](https://github.com/FigBug/slPlugins/workflows/Build%20Delay%20-%20Linux/badge.svg) | ![Windows](https://github.com/FigBug/slPlugins/workflows/Build%20Delay%20-%20Windows/badge.svg) |
-| Expander | ![macOS](https://github.com/FigBug/slPlugins/workflows/Build%20Expander%20-%20macOS/badge.svg) | ![Linux](https://github.com/FigBug/slPlugins/workflows/Build%20Expander%20-%20Linux/badge.svg) | ![Windows](https://github.com/FigBug/slPlugins/workflows/Build%20Expander%20-%20Windows/badge.svg) |
-| Gate | ![macOS](https://github.com/FigBug/slPlugins/workflows/Build%20Gate%20-%20macOS/badge.svg) | ![Linux](https://github.com/FigBug/slPlugins/workflows/Build%20Gate%20-%20Linux/badge.svg) | ![Windows](https://github.com/FigBug/slPlugins/workflows/Build%20Gate%20-%20Windows/badge.svg) |
-| GraphicEQ | ![macOS](https://github.com/FigBug/slPlugins/workflows/Build%20GraphicEQ%20-%20macOS/badge.svg) | ![Linux](https://github.com/FigBug/slPlugins/workflows/Build%20GraphicEQ%20-%20Linux/badge.svg) | ![Windows](https://github.com/FigBug/slPlugins/workflows/Build%20GraphicEQ%20-%20Windows/badge.svg) |
-| HugeGain | ![macOS](https://github.com/FigBug/slPlugins/workflows/Build%20HugeGain%20-%20macOS/badge.svg) | ![Linux](https://github.com/FigBug/slPlugins/workflows/Build%20HugeGain%20-%20Linux/badge.svg) | ![Windows](https://github.com/FigBug/slPlugins/workflows/Build%20HugeGain%20-%20Windows/badge.svg) |
-| Limiter | ![macOS](https://github.com/FigBug/slPlugins/workflows/Build%20Limiter%20-%20macOS/badge.svg) | ![Linux](https://github.com/FigBug/slPlugins/workflows/Build%20Limiter%20-%20Linux/badge.svg) | ![Windows](https://github.com/FigBug/slPlugins/workflows/Build%20Limiter%20-%20Windows/badge.svg) |
-| Maths | ![macOS](https://github.com/FigBug/slPlugins/workflows/Build%20Maths%20-%20macOS/badge.svg) | ![Linux](https://github.com/FigBug/slPlugins/workflows/Build%20Maths%20-%20Linux/badge.svg) | ![Windows](https://github.com/FigBug/slPlugins/workflows/Build%20Maths%20-%20Windows/badge.svg) |
-| MidiLooper | ![macOS](https://github.com/FigBug/slPlugins/workflows/Build%20MidiLooper%20-%20macOS/badge.svg) | ![Linux](https://github.com/FigBug/slPlugins/workflows/Build%20MidiLooper%20-%20Linux/badge.svg) | ![Windows](https://github.com/FigBug/slPlugins/workflows/Build%20MidiLooper%20-%20Windows/badge.svg) |
-| Oscilloscope | ![macOS](https://github.com/FigBug/slPlugins/workflows/Build%20Oscilloscope%20-%20macOS/badge.svg) | ![Linux](https://github.com/FigBug/slPlugins/workflows/Build%20Oscilloscope%20-%20Linux/badge.svg) | ![Windows](https://github.com/FigBug/slPlugins/workflows/Build%20Oscilloscope%20-%20Windows/badge.svg) |
-| PitchTrack | ![macOS](https://github.com/FigBug/slPlugins/workflows/Build%20PitchTrack%20-%20macOS/badge.svg) | ![Linux](https://github.com/FigBug/slPlugins/workflows/Build%20PitchTrack%20-%20Linux/badge.svg) | ![Windows](https://github.com/FigBug/slPlugins/workflows/Build%20PitchTrack%20-%20Windows/badge.svg) |
-| SFX8 | ![macOS](https://github.com/FigBug/slPlugins/workflows/Build%20SFX8%20-%20macOS/badge.svg) | ![Linux](https://github.com/FigBug/slPlugins/workflows/Build%20SFX8%20-%20Linux/badge.svg) | ![Windows](https://github.com/FigBug/slPlugins/workflows/Build%20SFX8%20-%20Windows/badge.svg) |
-| SampleDelay | ![macOS](https://github.com/FigBug/slPlugins/workflows/Build%20SampleDelay%20-%20macOS/badge.svg) | ![Linux](https://github.com/FigBug/slPlugins/workflows/Build%20SampleDelay%20-%20Linux/badge.svg) | ![Windows](https://github.com/FigBug/slPlugins/workflows/Build%20SampleDelay%20-%20Windows/badge.svg) |
-| SimpleVerb | ![macOS](https://github.com/FigBug/slPlugins/workflows/Build%20SimpleVerb%20-%20macOS/badge.svg) | ![Linux](https://github.com/FigBug/slPlugins/workflows/Build%20SimpleVerb%20-%20Linux/badge.svg) | ![Windows](https://github.com/FigBug/slPlugins/workflows/Build%20SimpleVerb%20-%20Windows/badge.svg) |
-| SpectrumAnalyzer | ![macOS](https://github.com/FigBug/slPlugins/workflows/Build%20SpectrumAnalyzer%20-%20macOS/badge.svg) | ![Linux](https://github.com/FigBug/slPlugins/workflows/Build%20SpectrumAnalyzer%20-%20Linux/badge.svg) | ![Windows](https://github.com/FigBug/slPlugins/workflows/Build%20SpectrumAnalyzer%20-%20Windows/badge.svg) |
-| StereoEnhancer | ![macOS](https://github.com/FigBug/slPlugins/workflows/Build%20StereoEnhancer%20-%20macOS/badge.svg) | ![Linux](https://github.com/FigBug/slPlugins/workflows/Build%20StereoEnhancer%20-%20Linux/badge.svg) | ![Windows](https://github.com/FigBug/slPlugins/workflows/Build%20StereoEnhancer%20-%20Windows/badge.svg) |
-| StereoProcessor | ![macOS](https://github.com/FigBug/slPlugins/workflows/Build%20StereoProcessor%20-%20macOS/badge.svg) | ![Linux](https://github.com/FigBug/slPlugins/workflows/Build%20StereoProcessor%20-%20Linux/badge.svg) | ![Windows](https://github.com/FigBug/slPlugins/workflows/Build%20StereoProcessor%20-%20Windows/badge.svg) |
-| ToneGenerator | ![macOS](https://github.com/FigBug/slPlugins/workflows/Build%20ToneGenerator%20-%20macOS/badge.svg) | ![Linux](https://github.com/FigBug/slPlugins/workflows/Build%20ToneGenerator%20-%20Linux/badge.svg) | ![Windows](https://github.com/FigBug/slPlugins/workflows/Build%20ToneGenerator%20-%20Windows/badge.svg) |
-| WaveLooper | ![macOS](https://github.com/FigBug/slPlugins/workflows/Build%20WaveLooper%20-%20macOS/badge.svg) | ![Linux](https://github.com/FigBug/slPlugins/workflows/Build%20WaveLooper%20-%20Linux/badge.svg) | ![Windows](https://github.com/FigBug/slPlugins/workflows/Build%20WaveLooper%20-%20Windows/badge.svg) |
-| XYScope | ![macOS](https://github.com/FigBug/slPlugins/workflows/Build%20XYScope%20-%20macOS/badge.svg) | ![Linux](https://github.com/FigBug/slPlugins/workflows/Build%20XYScope%20-%20Linux/badge.svg) | ![Windows](https://github.com/FigBug/slPlugins/workflows/Build%20XYScope%20-%20Windows/badge.svg) |
+| Plugin | Build |
+|--------|-------|
+| ABTester | ![Build ABTester](https://github.com/FigBug/slPlugins/workflows/Build%20ABTester/badge.svg) |
+| AddInvert | ![Build AddInvert](https://github.com/FigBug/slPlugins/workflows/Build%20AddInvert/badge.svg) |
+| ChannelMute | ![Build ChannelMute](https://github.com/FigBug/slPlugins/workflows/Build%20ChannelMute/badge.svg) |
+| CompensatedDelay | ![Build CompensatedDelay](https://github.com/FigBug/slPlugins/workflows/Build%20CompensatedDelay/badge.svg) |
+| Compressor | ![Build Compressor](https://github.com/FigBug/slPlugins/workflows/Build%20Compressor/badge.svg) |
+| Crossfeed | ![Build Crossfeed](https://github.com/FigBug/slPlugins/workflows/Build%20Crossfeed/badge.svg) |
+| Delay | ![Build Delay](https://github.com/FigBug/slPlugins/workflows/Build%20Delay/badge.svg) |
+| Expander | ![Build Expander](https://github.com/FigBug/slPlugins/workflows/Build%20Expander/badge.svg) |
+| Gate | ![Build Gate](https://github.com/FigBug/slPlugins/workflows/Build%20Gate/badge.svg) |
+| GraphicEQ | ![Build GraphicEQ](https://github.com/FigBug/slPlugins/workflows/Build%20GraphicEQ/badge.svg) |
+| HugeGain | ![Build HugeGain](https://github.com/FigBug/slPlugins/workflows/Build%20HugeGain/badge.svg) |
+| Limiter | ![Build Limiter](https://github.com/FigBug/slPlugins/workflows/Build%20Limiter/badge.svg) |
+| Maths | ![Build Maths](https://github.com/FigBug/slPlugins/workflows/Build%20Maths/badge.svg) |
+| MidiLooper | ![Build MidiLooper](https://github.com/FigBug/slPlugins/workflows/Build%20MidiLooper/badge.svg) |
+| Oscilloscope | ![Build Oscilloscope](https://github.com/FigBug/slPlugins/workflows/Build%20Oscilloscope/badge.svg) |
+| PitchTrack | ![Build PitchTrack](https://github.com/FigBug/slPlugins/workflows/Build%20PitchTrack/badge.svg) |
+| SampleDelay | ![Build SampleDelay](https://github.com/FigBug/slPlugins/workflows/Build%20SampleDelay/badge.svg) |
+| SFX8 | ![Build SFX8](https://github.com/FigBug/slPlugins/workflows/Build%20SFX8/badge.svg) |
+| SimpleVerb | ![Build SimpleVerb](https://github.com/FigBug/slPlugins/workflows/Build%20SimpleVerb/badge.svg) |
+| SpectrumAnalyzer | ![Build SpectrumAnalyzer](https://github.com/FigBug/slPlugins/workflows/Build%20SpectrumAnalyzer/badge.svg) |
+| StereoEnhancer | ![Build StereoEnhancer](https://github.com/FigBug/slPlugins/workflows/Build%20StereoEnhancer/badge.svg) |
+| StereoProcessor | ![Build StereoProcessor](https://github.com/FigBug/slPlugins/workflows/Build%20StereoProcessor/badge.svg) |
+| ToneGenerator | ![Build ToneGenerator](https://github.com/FigBug/slPlugins/workflows/Build%20ToneGenerator/badge.svg) |
+| WaveLooper | ![Build WaveLooper](https://github.com/FigBug/slPlugins/workflows/Build%20WaveLooper/badge.svg) |
+| XYScope | ![Build XYScope](https://github.com/FigBug/slPlugins/workflows/Build%20XYScope/badge.svg) |
 
 ## Building
 
