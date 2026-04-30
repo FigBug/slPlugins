@@ -50,13 +50,13 @@ Name: "clap"; Description: "CLAP plug-in"; Types: full custom; Flags: checkablea
 
 
 [InstallDelete]
-Type: files;          Name: "{commoncf64}\VST\XYScope.dll";   Components: vst
+Type: files;          Name: "{commoncf64}\VST2\XYScope.dll";   Components: vst
 Type: filesandordirs; Name: "{commoncf64}\VST3\XYScope.vst3"; Components: vst3
 Type: files;          Name: "{commoncf64}\CLAP\XYScope.clap"; Components: clap
 
 
 [Files]
-Source: "bin\VST\XYScope.dll";    DestDir: "{commoncf64}\VST";                Flags: ignoreversion overwritereadonly; Components: vst
+Source: "bin\VST\XYScope.dll";    DestDir: "{commoncf64}\VST2";                Flags: ignoreversion overwritereadonly; Components: vst
 Source: "bin\VST3\XYScope.vst3\*"; DestDir: "{commoncf64}\VST3\XYScope.vst3\"; Flags: ignoreversion overwritereadonly recursesubdirs; Components: vst3
 Source: "bin\CLAP\XYScope.clap";   DestDir: "{commoncf64}\CLAP";              Flags: ignoreversion overwritereadonly; Components: clap
 

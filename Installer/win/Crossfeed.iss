@@ -50,13 +50,13 @@ Name: "clap"; Description: "CLAP plug-in"; Types: full custom; Flags: checkablea
 
 
 [InstallDelete]
-Type: files;          Name: "{commoncf64}\VST\Crossfeed.dll";   Components: vst
+Type: files;          Name: "{commoncf64}\VST2\Crossfeed.dll";   Components: vst
 Type: filesandordirs; Name: "{commoncf64}\VST3\Crossfeed.vst3"; Components: vst3
 Type: files;          Name: "{commoncf64}\CLAP\Crossfeed.clap"; Components: clap
 
 
 [Files]
-Source: "bin\VST\Crossfeed.dll";    DestDir: "{commoncf64}\VST";                Flags: ignoreversion overwritereadonly; Components: vst
+Source: "bin\VST\Crossfeed.dll";    DestDir: "{commoncf64}\VST2";                Flags: ignoreversion overwritereadonly; Components: vst
 Source: "bin\VST3\Crossfeed.vst3\*"; DestDir: "{commoncf64}\VST3\Crossfeed.vst3\"; Flags: ignoreversion overwritereadonly recursesubdirs; Components: vst3
 Source: "bin\CLAP\Crossfeed.clap";   DestDir: "{commoncf64}\CLAP";              Flags: ignoreversion overwritereadonly; Components: clap
 

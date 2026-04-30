@@ -50,13 +50,13 @@ Name: "clap"; Description: "CLAP plug-in"; Types: full custom; Flags: checkablea
 Name: "resources"; Description: "Factory presets"; Types: full custom; Flags: fixed
 
 [InstallDelete]
-Type: files;          Name: "{commoncf64}\VST\Expander.dll";   Components: vst
+Type: files;          Name: "{commoncf64}\VST2\Expander.dll";   Components: vst
 Type: filesandordirs; Name: "{commoncf64}\VST3\Expander.vst3"; Components: vst3
 Type: files;          Name: "{commoncf64}\CLAP\Expander.clap"; Components: clap
 Type: filesandordirs; Name: "{commonappdata}\SocaLabs\Expander\Presets";    Components: resources
 
 [Files]
-Source: "bin\VST\Expander.dll";    DestDir: "{commoncf64}\VST";                Flags: ignoreversion overwritereadonly; Components: vst
+Source: "bin\VST\Expander.dll";    DestDir: "{commoncf64}\VST2";                Flags: ignoreversion overwritereadonly; Components: vst
 Source: "bin\VST3\Expander.vst3\*"; DestDir: "{commoncf64}\VST3\Expander.vst3\"; Flags: ignoreversion overwritereadonly recursesubdirs; Components: vst3
 Source: "bin\CLAP\Expander.clap";   DestDir: "{commoncf64}\CLAP";              Flags: ignoreversion overwritereadonly; Components: clap
 Source: "..\..\plugins\Expander\Resources\*.xml"; DestDir: "{commonappdata}\SocaLabs\Expander\Presets\"; Flags: ignoreversion; Components: resources

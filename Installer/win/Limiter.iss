@@ -50,13 +50,13 @@ Name: "clap"; Description: "CLAP plug-in"; Types: full custom; Flags: checkablea
 Name: "resources"; Description: "Factory presets"; Types: full custom; Flags: fixed
 
 [InstallDelete]
-Type: files;          Name: "{commoncf64}\VST\Limiter.dll";   Components: vst
+Type: files;          Name: "{commoncf64}\VST2\Limiter.dll";   Components: vst
 Type: filesandordirs; Name: "{commoncf64}\VST3\Limiter.vst3"; Components: vst3
 Type: files;          Name: "{commoncf64}\CLAP\Limiter.clap"; Components: clap
 Type: filesandordirs; Name: "{commonappdata}\SocaLabs\Limiter\Presets";    Components: resources
 
 [Files]
-Source: "bin\VST\Limiter.dll";    DestDir: "{commoncf64}\VST";                Flags: ignoreversion overwritereadonly; Components: vst
+Source: "bin\VST\Limiter.dll";    DestDir: "{commoncf64}\VST2";                Flags: ignoreversion overwritereadonly; Components: vst
 Source: "bin\VST3\Limiter.vst3\*"; DestDir: "{commoncf64}\VST3\Limiter.vst3\"; Flags: ignoreversion overwritereadonly recursesubdirs; Components: vst3
 Source: "bin\CLAP\Limiter.clap";   DestDir: "{commoncf64}\CLAP";              Flags: ignoreversion overwritereadonly; Components: clap
 Source: "..\..\plugins\Limiter\Resources\*.xml"; DestDir: "{commonappdata}\SocaLabs\Limiter\Presets\"; Flags: ignoreversion; Components: resources

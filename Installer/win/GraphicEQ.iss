@@ -50,13 +50,13 @@ Name: "clap"; Description: "CLAP plug-in"; Types: full custom; Flags: checkablea
 Name: "resources"; Description: "Factory presets"; Types: full custom; Flags: fixed
 
 [InstallDelete]
-Type: files;          Name: "{commoncf64}\VST\GraphicEQ.dll";   Components: vst
+Type: files;          Name: "{commoncf64}\VST2\GraphicEQ.dll";   Components: vst
 Type: filesandordirs; Name: "{commoncf64}\VST3\GraphicEQ.vst3"; Components: vst3
 Type: files;          Name: "{commoncf64}\CLAP\GraphicEQ.clap"; Components: clap
 Type: filesandordirs; Name: "{commonappdata}\SocaLabs\GraphicEQ\Presets";    Components: resources
 
 [Files]
-Source: "bin\VST\GraphicEQ.dll";    DestDir: "{commoncf64}\VST";                Flags: ignoreversion overwritereadonly; Components: vst
+Source: "bin\VST\GraphicEQ.dll";    DestDir: "{commoncf64}\VST2";                Flags: ignoreversion overwritereadonly; Components: vst
 Source: "bin\VST3\GraphicEQ.vst3\*"; DestDir: "{commoncf64}\VST3\GraphicEQ.vst3\"; Flags: ignoreversion overwritereadonly recursesubdirs; Components: vst3
 Source: "bin\CLAP\GraphicEQ.clap";   DestDir: "{commoncf64}\CLAP";              Flags: ignoreversion overwritereadonly; Components: clap
 Source: "..\..\plugins\GraphicEQ\Resources\*.xml"; DestDir: "{commonappdata}\SocaLabs\GraphicEQ\Presets\"; Flags: ignoreversion; Components: resources

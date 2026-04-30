@@ -50,13 +50,13 @@ Name: "clap"; Description: "CLAP plug-in"; Types: full custom; Flags: checkablea
 
 
 [InstallDelete]
-Type: files;          Name: "{commoncf64}\VST\WaveLooper.dll";   Components: vst
+Type: files;          Name: "{commoncf64}\VST2\WaveLooper.dll";   Components: vst
 Type: filesandordirs; Name: "{commoncf64}\VST3\WaveLooper.vst3"; Components: vst3
 Type: files;          Name: "{commoncf64}\CLAP\WaveLooper.clap"; Components: clap
 
 
 [Files]
-Source: "bin\VST\WaveLooper.dll";    DestDir: "{commoncf64}\VST";                Flags: ignoreversion overwritereadonly; Components: vst
+Source: "bin\VST\WaveLooper.dll";    DestDir: "{commoncf64}\VST2";                Flags: ignoreversion overwritereadonly; Components: vst
 Source: "bin\VST3\WaveLooper.vst3\*"; DestDir: "{commoncf64}\VST3\WaveLooper.vst3\"; Flags: ignoreversion overwritereadonly recursesubdirs; Components: vst3
 Source: "bin\CLAP\WaveLooper.clap";   DestDir: "{commoncf64}\CLAP";              Flags: ignoreversion overwritereadonly; Components: clap
 

@@ -50,13 +50,13 @@ Name: "clap"; Description: "CLAP plug-in"; Types: full custom; Flags: checkablea
 
 
 [InstallDelete]
-Type: files;          Name: "{commoncf64}\VST\SFX8.dll";   Components: vst
+Type: files;          Name: "{commoncf64}\VST2\SFX8.dll";   Components: vst
 Type: filesandordirs; Name: "{commoncf64}\VST3\SFX8.vst3"; Components: vst3
 Type: files;          Name: "{commoncf64}\CLAP\SFX8.clap"; Components: clap
 
 
 [Files]
-Source: "bin\VST\SFX8.dll";    DestDir: "{commoncf64}\VST";                Flags: ignoreversion overwritereadonly; Components: vst
+Source: "bin\VST\SFX8.dll";    DestDir: "{commoncf64}\VST2";                Flags: ignoreversion overwritereadonly; Components: vst
 Source: "bin\VST3\SFX8.vst3\*"; DestDir: "{commoncf64}\VST3\SFX8.vst3\"; Flags: ignoreversion overwritereadonly recursesubdirs; Components: vst3
 Source: "bin\CLAP\SFX8.clap";   DestDir: "{commoncf64}\CLAP";              Flags: ignoreversion overwritereadonly; Components: clap
 

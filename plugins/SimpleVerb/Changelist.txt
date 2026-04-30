@@ -1,3 +1,6 @@
+1.0.5:
+- VST2 install path
+
 1.0.4:
 - AGPL license
 
