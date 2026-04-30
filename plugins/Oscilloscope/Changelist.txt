@@ -1,2 +1,5 @@
+1.2.4:
+- Created installers
+
 1.2.3:
 - Added MIDI learn

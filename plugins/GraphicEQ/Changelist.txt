@@ -1,3 +1,6 @@
+1.0.2:
+- Created installers
+
 1.0.1:
 - Added presets
 
