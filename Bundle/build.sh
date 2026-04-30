@@ -70,7 +70,9 @@ case "$PLATFORM" in
 esac
 
 # ---- Download installers ----
+# tr -d '\r' guards against Git-Bash-on-Windows reading CRLF from jq output.
 jq -r ".[] | \"\(.slug)|\(.downloads.$FILE_KEY)\"" /tmp/bundle_plugins.json \
+  | tr -d '\r' \
   | while IFS='|' read -r SLUG URL; do
       [ -z "$SLUG" ] && continue
       echo "Downloading $SLUG: $URL"
