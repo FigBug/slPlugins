@@ -37,6 +37,7 @@ This step is required before building, as the plugins depend on JUCE and other t
 | Limiter | ![Build Limiter](https://github.com/FigBug/slPlugins/workflows/Build%20Limiter/badge.svg) |
 | Maths | ![Build Maths](https://github.com/FigBug/slPlugins/workflows/Build%20Maths/badge.svg) |
 | MidiLooper | ![Build MidiLooper](https://github.com/FigBug/slPlugins/workflows/Build%20MidiLooper/badge.svg) |
+| MidiMonitor | ![Build MidiMonitor](https://github.com/FigBug/slPlugins/workflows/Build%20MidiMonitor/badge.svg) |
 | Oscilloscope | ![Build Oscilloscope](https://github.com/FigBug/slPlugins/workflows/Build%20Oscilloscope/badge.svg) |
 | PitchTrack | ![Build PitchTrack](https://github.com/FigBug/slPlugins/workflows/Build%20PitchTrack/badge.svg) |
 | SampleDelay | ![Build SampleDelay](https://github.com/FigBug/slPlugins/workflows/Build%20SampleDelay/badge.svg) |

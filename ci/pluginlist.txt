@@ -12,6 +12,7 @@ HugeGain
 Limiter
 Maths
 MidiLooper
+MidiMonitor
 Oscilloscope
 PitchTrack
 SampleDelay

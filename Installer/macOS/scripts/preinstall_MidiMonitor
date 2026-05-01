@@ -1,0 +1,7 @@
+#!/bin/sh
+rm -Rf "/Library/Audio/Plug-Ins/VST/MidiMonitor.vst"
+rm -Rf "/Library/Audio/Plug-Ins/VST3/MidiMonitor.vst3"
+rm -Rf "/Library/Audio/Plug-Ins/Components/MidiMonitor.component"
+rm -Rf "/Library/Audio/Plug-Ins/CLAP/MidiMonitor.clap"
+
+exit 0

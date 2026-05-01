@@ -34,6 +34,7 @@ SLPLUGINS=(
     "Limiter"
     "Maths"
     "MidiLooper"
+    "MidiMonitor"
     "Oscilloscope"
     "PitchTrack"
     "SFX8"
