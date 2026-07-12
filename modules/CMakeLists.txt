@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.15)
 
-add_subdirectory(juce)
+add_subdirectory(juce EXCLUDE_FROM_ALL)
 if(NOT TARGET juce_vst2_sdk)
     juce_set_vst2_sdk_path(${CMAKE_CURRENT_LIST_DIR}/plugin_sdk/vstsdk2.4)
 endif()
