@@ -55,6 +55,9 @@ clap_juce_extensions_plugin(TARGET ${PLUGIN_NAME}
     CLAP_ID "${BUNDLE_ID}"
     CLAP_FEATURES audio-effect stereo-width)
 
+# Emit dSYM (macOS) / PDB (Windows) in Release for crash symbolication.
+sl_enable_crash_symbols(${PLUGIN_NAME})
+
 # Auto-discover source files
 file(GLOB_RECURSE source_files CONFIGURE_DEPENDS
     ${CMAKE_CURRENT_SOURCE_DIR}/Source/*.cpp
