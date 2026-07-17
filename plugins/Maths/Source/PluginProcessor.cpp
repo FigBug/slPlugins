@@ -1,4 +1,5 @@
 #include "PluginProcessor.h"
+#include <mutex>
 #include "PluginEditor.h"
 #include <random>
 
@@ -9,9 +10,32 @@ static gin::ProcessorOptions createProcessorOptions()
         .withMidiLearn();
 }
 
+// If the shared CrashReporter is installed, launch it once per process (on the
+// first plugin instance) so it can scan and upload any crash from last session.
+static void launchCrashReporterOnce()
+{
+    static std::once_flag flag;
+    std::call_once (flag, []
+    {
+       #if JUCE_MAC
+        juce::File app ("/Library/Application Support/Rabien Software/Crash Reporter/CrashReporter.app");
+       #elif JUCE_WINDOWS
+        auto app = juce::File::getSpecialLocation (juce::File::globalApplicationsDirectory)
+                       .getChildFile ("Rabien Software").getChildFile ("Crash Reporter").getChildFile ("CrashReporter.exe");
+       #else
+        juce::File app;
+       #endif
+
+        if (app.exists())
+            juce::Process::openDocument (app.getFullPathName(), {});
+    });
+}
+
 MathsAudioProcessor::MathsAudioProcessor()
     : gin::Processor (false, createProcessorOptions())
 {
+    launchCrashReporterOnce();
+
     addExtParam (PARAM_P1,      "p1 (0..1)",  "", "", {0.0f,  1.0f, 0.0f, 1.0f}, 1.0f, 0.0f);
     addExtParam (PARAM_P2,      "p2 (0..1)",  "", "", {0.0f,  1.0f, 0.0f, 1.0f}, 1.0f, 0.0f);
     addExtParam (PARAM_P3,      "p3 (-1..1)", "", "", {-1.0f, 1.0f, 0.0f, 1.0f}, 1.0f, 0.0f);
