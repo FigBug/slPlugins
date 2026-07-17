@@ -49,6 +49,8 @@ Name: "vst3"; Description: "VST3 plug-in"; Types: full custom; Flags: checkablea
 Name: "clap"; Description: "CLAP plug-in"; Types: full custom; Flags: checkablealone
 Name: "resources"; Description: "Factory presets"; Types: full custom; Flags: fixed
 
+Name: "crashreporter"; Description: "Crash reporter (shared component, only updated if newer)"; Types: full custom; Flags: checkablealone
+
 [InstallDelete]
 Type: files;          Name: "{commoncf64}\VST2\GraphicEQ.dll";   Components: vst
 Type: filesandordirs; Name: "{commoncf64}\VST3\GraphicEQ.vst3"; Components: vst3
@@ -60,3 +62,6 @@ Source: "bin\VST\GraphicEQ.dll";    DestDir: "{commoncf64}\VST2";               
 Source: "bin\VST3\GraphicEQ.vst3\*"; DestDir: "{commoncf64}\VST3\GraphicEQ.vst3\"; Flags: ignoreversion overwritereadonly recursesubdirs; Components: vst3
 Source: "bin\CLAP\GraphicEQ.clap";   DestDir: "{commoncf64}\CLAP";              Flags: ignoreversion overwritereadonly; Components: clap
 Source: "..\..\plugins\GraphicEQ\Resources\*.xml"; DestDir: "{commonappdata}\SocaLabs\GraphicEQ\Presets\"; Flags: ignoreversion; Components: resources
+; CrashReporter (shared): app only updated if newer + never removed; JSON always installed, never removed.
+Source: "bin\CrashReporter\CrashReporter.exe"; DestDir: "{commonpf}\Rabien Software\Crash Reporter"; Flags: skipifsourcedoesntexist uninsneveruninstall; Components: crashreporter
+Source: "bin\CrashReporter\graphiceq.json";   DestDir: "{commonappdata}\Rabien Software\Crash Reporter\Plugins"; Flags: ignoreversion uninsneveruninstall

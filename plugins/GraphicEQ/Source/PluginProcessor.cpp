@@ -1,4 +1,5 @@
 #include "PluginProcessor.h"
+#include <mutex>
 #include "PluginEditor.h"
 
 //==============================================================================
@@ -43,6 +44,27 @@ namespace
     }
 }
 
+// If the shared CrashReporter is installed, launch it once per process (on the
+// first plugin instance) so it can scan and upload any crash from last session.
+static void launchCrashReporterOnce()
+{
+    static std::once_flag flag;
+    std::call_once (flag, []
+    {
+       #if JUCE_MAC
+        juce::File app ("/Library/Application Support/Rabien Software/Crash Reporter/CrashReporter.app");
+       #elif JUCE_WINDOWS
+        auto app = juce::File::getSpecialLocation (juce::File::globalApplicationsDirectory)
+                       .getChildFile ("Rabien Software").getChildFile ("Crash Reporter").getChildFile ("CrashReporter.exe");
+       #else
+        juce::File app;
+       #endif
+
+        if (app.exists())
+            juce::Process::openDocument (app.getFullPathName(), {});
+    });
+}
+
 GraphicEQAudioProcessor::GraphicEQAudioProcessor()
     : gin::Processor (BusesProperties()
                         .withInput ("Input", juce::AudioChannelSet::stereo(), true)
@@ -50,6 +72,8 @@ GraphicEQAudioProcessor::GraphicEQAudioProcessor()
                       false,
                       gin::ProcessorOptions().withMidiLearn())
 {
+    launchCrashReporterOnce();
+
     fifo.setSize (2, 44100);
 
     // Band gain parameters with 0.1s smoothing
