@@ -7,12 +7,8 @@ on:
       - '**'
     paths:
       - 'plugins/Oscilloscope/**'
-      - 'modules/**'
-      - 'CMakeLists.txt'
-      - 'CMakePresets.json'
-      - 'Installer/**'
-      - 'ci/pluginlist.txt'
-      - '.github/workflows/build_Oscilloscope.yaml'
+      - 'Installer/macOS/distribution_Oscilloscope.xml'
+      - 'Installer/win/Oscilloscope.iss'
 
 concurrency:
   group: build-Oscilloscope-${{ github.ref || github.run_id }}

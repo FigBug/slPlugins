@@ -7,12 +7,8 @@ on:
       - '**'
     paths:
       - 'plugins/PitchTrack/**'
-      - 'modules/**'
-      - 'CMakeLists.txt'
-      - 'CMakePresets.json'
-      - 'Installer/**'
-      - 'ci/pluginlist.txt'
-      - '.github/workflows/build_PitchTrack.yaml'
+      - 'Installer/macOS/distribution_PitchTrack.xml'
+      - 'Installer/win/PitchTrack.iss'
 
 concurrency:
   group: build-PitchTrack-${{ github.ref || github.run_id }}

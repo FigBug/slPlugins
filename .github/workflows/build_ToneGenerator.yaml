@@ -7,12 +7,8 @@ on:
       - '**'
     paths:
       - 'plugins/ToneGenerator/**'
-      - 'modules/**'
-      - 'CMakeLists.txt'
-      - 'CMakePresets.json'
-      - 'Installer/**'
-      - 'ci/pluginlist.txt'
-      - '.github/workflows/build_ToneGenerator.yaml'
+      - 'Installer/macOS/distribution_ToneGenerator.xml'
+      - 'Installer/win/ToneGenerator.iss'
 
 concurrency:
   group: build-ToneGenerator-${{ github.ref || github.run_id }}

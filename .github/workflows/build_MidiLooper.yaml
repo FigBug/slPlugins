@@ -7,12 +7,8 @@ on:
       - '**'
     paths:
       - 'plugins/MidiLooper/**'
-      - 'modules/**'
-      - 'CMakeLists.txt'
-      - 'CMakePresets.json'
-      - 'Installer/**'
-      - 'ci/pluginlist.txt'
-      - '.github/workflows/build_MidiLooper.yaml'
+      - 'Installer/macOS/distribution_MidiLooper.xml'
+      - 'Installer/win/MidiLooper.iss'
 
 concurrency:
   group: build-MidiLooper-${{ github.ref || github.run_id }}

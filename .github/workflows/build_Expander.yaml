@@ -7,12 +7,8 @@ on:
       - '**'
     paths:
       - 'plugins/Expander/**'
-      - 'modules/**'
-      - 'CMakeLists.txt'
-      - 'CMakePresets.json'
-      - 'Installer/**'
-      - 'ci/pluginlist.txt'
-      - '.github/workflows/build_Expander.yaml'
+      - 'Installer/macOS/distribution_Expander.xml'
+      - 'Installer/win/Expander.iss'
 
 concurrency:
   group: build-Expander-${{ github.ref || github.run_id }}

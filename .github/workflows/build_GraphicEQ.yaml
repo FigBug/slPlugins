@@ -7,12 +7,8 @@ on:
       - '**'
     paths:
       - 'plugins/GraphicEQ/**'
-      - 'modules/**'
-      - 'CMakeLists.txt'
-      - 'CMakePresets.json'
-      - 'Installer/**'
-      - 'ci/pluginlist.txt'
-      - '.github/workflows/build_GraphicEQ.yaml'
+      - 'Installer/macOS/distribution_GraphicEQ.xml'
+      - 'Installer/win/GraphicEQ.iss'
 
 concurrency:
   group: build-GraphicEQ-${{ github.ref || github.run_id }}

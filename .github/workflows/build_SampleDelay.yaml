@@ -7,12 +7,8 @@ on:
       - '**'
     paths:
       - 'plugins/SampleDelay/**'
-      - 'modules/**'
-      - 'CMakeLists.txt'
-      - 'CMakePresets.json'
-      - 'Installer/**'
-      - 'ci/pluginlist.txt'
-      - '.github/workflows/build_SampleDelay.yaml'
+      - 'Installer/macOS/distribution_SampleDelay.xml'
+      - 'Installer/win/SampleDelay.iss'
 
 concurrency:
   group: build-SampleDelay-${{ github.ref || github.run_id }}

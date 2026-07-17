@@ -7,12 +7,8 @@ on:
       - '**'
     paths:
       - 'plugins/WaveLooper/**'
-      - 'modules/**'
-      - 'CMakeLists.txt'
-      - 'CMakePresets.json'
-      - 'Installer/**'
-      - 'ci/pluginlist.txt'
-      - '.github/workflows/build_WaveLooper.yaml'
+      - 'Installer/macOS/distribution_WaveLooper.xml'
+      - 'Installer/win/WaveLooper.iss'
 
 concurrency:
   group: build-WaveLooper-${{ github.ref || github.run_id }}

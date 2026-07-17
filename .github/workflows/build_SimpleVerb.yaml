@@ -7,12 +7,8 @@ on:
       - '**'
     paths:
       - 'plugins/SimpleVerb/**'
-      - 'modules/**'
-      - 'CMakeLists.txt'
-      - 'CMakePresets.json'
-      - 'Installer/**'
-      - 'ci/pluginlist.txt'
-      - '.github/workflows/build_SimpleVerb.yaml'
+      - 'Installer/macOS/distribution_SimpleVerb.xml'
+      - 'Installer/win/SimpleVerb.iss'
 
 concurrency:
   group: build-SimpleVerb-${{ github.ref || github.run_id }}

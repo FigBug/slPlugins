@@ -7,12 +7,8 @@ on:
       - '**'
     paths:
       - 'plugins/SFX8/**'
-      - 'modules/**'
-      - 'CMakeLists.txt'
-      - 'CMakePresets.json'
-      - 'Installer/**'
-      - 'ci/pluginlist.txt'
-      - '.github/workflows/build_SFX8.yaml'
+      - 'Installer/macOS/distribution_SFX8.xml'
+      - 'Installer/win/SFX8.iss'
 
 concurrency:
   group: build-SFX8-${{ github.ref || github.run_id }}

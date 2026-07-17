@@ -7,12 +7,8 @@ on:
       - '**'
     paths:
       - 'plugins/Gate/**'
-      - 'modules/**'
-      - 'CMakeLists.txt'
-      - 'CMakePresets.json'
-      - 'Installer/**'
-      - 'ci/pluginlist.txt'
-      - '.github/workflows/build_Gate.yaml'
+      - 'Installer/macOS/distribution_Gate.xml'
+      - 'Installer/win/Gate.iss'
 
 concurrency:
   group: build-Gate-${{ github.ref || github.run_id }}

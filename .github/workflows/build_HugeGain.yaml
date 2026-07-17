@@ -7,12 +7,8 @@ on:
       - '**'
     paths:
       - 'plugins/HugeGain/**'
-      - 'modules/**'
-      - 'CMakeLists.txt'
-      - 'CMakePresets.json'
-      - 'Installer/**'
-      - 'ci/pluginlist.txt'
-      - '.github/workflows/build_HugeGain.yaml'
+      - 'Installer/macOS/distribution_HugeGain.xml'
+      - 'Installer/win/HugeGain.iss'
 
 concurrency:
   group: build-HugeGain-${{ github.ref || github.run_id }}

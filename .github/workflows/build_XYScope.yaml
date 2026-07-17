@@ -7,12 +7,8 @@ on:
       - '**'
     paths:
       - 'plugins/XYScope/**'
-      - 'modules/**'
-      - 'CMakeLists.txt'
-      - 'CMakePresets.json'
-      - 'Installer/**'
-      - 'ci/pluginlist.txt'
-      - '.github/workflows/build_XYScope.yaml'
+      - 'Installer/macOS/distribution_XYScope.xml'
+      - 'Installer/win/XYScope.iss'
 
 concurrency:
   group: build-XYScope-${{ github.ref || github.run_id }}
