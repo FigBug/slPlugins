@@ -13,6 +13,7 @@
         <line choice="com.socalabs.simpleverb.au"/>
         <line choice="com.socalabs.simpleverb.clap"/>
         <line choice="com.socalabs.simpleverb.resources"/>
+        <line choice="com.socalabs.simpleverb.crashreporter"/>
     </choices-outline>
 
     <choice id="com.socalabs.simpleverb.vst"
@@ -51,9 +52,19 @@
         <pkg-ref id="com.socalabs.simpleverb.resources.pkg"/>
     </choice>
 
+    <choice id="com.socalabs.simpleverb.crashreporter"
+            title="Crash Reporter"
+            description="Install the shared crash reporter that sends crash reports to SocaLabs. Recommended; only updated if newer."
+            visible="true"
+            enabled="true"
+            selected="true">
+        <pkg-ref id="com.socalabs.simpleverb.crashreporter.pkg"/>
+    </choice>
+
     <pkg-ref id="com.socalabs.simpleverb.vst.pkg"  version="0">vst.pkg</pkg-ref>
     <pkg-ref id="com.socalabs.simpleverb.vst3.pkg" version="0">vst3.pkg</pkg-ref>
     <pkg-ref id="com.socalabs.simpleverb.au.pkg"   version="0">au.pkg</pkg-ref>
     <pkg-ref id="com.socalabs.simpleverb.clap.pkg" version="0">clap.pkg</pkg-ref>
     <pkg-ref id="com.socalabs.simpleverb.resources.pkg" version="0">resources.pkg</pkg-ref>
+    <pkg-ref id="com.socalabs.simpleverb.crashreporter.pkg" version="0">reporter.pkg</pkg-ref>
 </installer-gui-script>
