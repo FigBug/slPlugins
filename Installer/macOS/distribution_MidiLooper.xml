@@ -13,6 +13,7 @@
         <line choice="com.socalabs.midilooper.au"/>
         <line choice="com.socalabs.midilooper.clap"/>
 
+        <line choice="com.socalabs.midilooper.crashreporter"/>
     </choices-outline>
 
     <choice id="com.socalabs.midilooper.vst"
@@ -43,9 +44,19 @@
         <pkg-ref id="com.socalabs.midilooper.clap.pkg"/>
     </choice>
 
+    <choice id="com.socalabs.midilooper.crashreporter"
+            title="Crash Reporter"
+            description="Install the shared crash reporter that sends crash reports to SocaLabs. Recommended; only updated if newer."
+            visible="true"
+            enabled="true"
+            selected="true">
+        <pkg-ref id="com.socalabs.midilooper.crashreporter.pkg"/>
+    </choice>
+
     <pkg-ref id="com.socalabs.midilooper.vst.pkg"  version="0">vst.pkg</pkg-ref>
     <pkg-ref id="com.socalabs.midilooper.vst3.pkg" version="0">vst3.pkg</pkg-ref>
     <pkg-ref id="com.socalabs.midilooper.au.pkg"   version="0">au.pkg</pkg-ref>
     <pkg-ref id="com.socalabs.midilooper.clap.pkg" version="0">clap.pkg</pkg-ref>
 
+    <pkg-ref id="com.socalabs.midilooper.crashreporter.pkg" version="0">reporter.pkg</pkg-ref>
 </installer-gui-script>
