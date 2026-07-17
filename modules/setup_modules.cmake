@@ -49,3 +49,23 @@ endif()
 if(NOT TARGET audio_fft)
     juce_add_module(${MODULES_DIR}/audio_fft)
 endif()
+
+# --- Crash symbolication: emit dSYM (macOS) / PDB (Windows) in Release. ---
+# Call sl_enable_crash_symbols(<PluginName>) from a plugin's CMakeLists AFTER
+# juce_add_plugin (+ clap_juce_extensions_plugin) so every format target that
+# exists gets debug symbols the crash server can symbolicate from.
+function(sl_enable_crash_symbols plugin)
+    foreach(suffix "" "_VST" "_VST3" "_AU" "_CLAP" "_Standalone" "_LV2")
+        set(tgt "${plugin}${suffix}")
+        if(TARGET ${tgt})
+            if(APPLE)
+                set_target_properties(${tgt} PROPERTIES
+                    XCODE_ATTRIBUTE_DEBUG_INFORMATION_FORMAT[variant=Release] "dwarf-with-dsym")
+            elseif(WIN32)
+                target_compile_options(${tgt} PRIVATE "$<$<CONFIG:Release>:/Zi>")
+                target_link_options(${tgt} PRIVATE
+                    "$<$<CONFIG:Release>:/DEBUG>" "$<$<CONFIG:Release>:/OPT:REF>" "$<$<CONFIG:Release>:/OPT:ICF>")
+            endif()
+        endif()
+    endforeach()
+endfunction()

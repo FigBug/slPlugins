@@ -20,6 +20,36 @@ cd ..
 PROJECT_ROOT=$(pwd)
 VENDOR=SocaLabs
 
+#
+# Crash reporting: bundle the shared CrashReporter + each plugin's registration
+# JSON, and upload debug symbols so crashes can be symbolicated. The CrashReporter
+# download is public (no key). Symbol upload authenticates with SYMBOL_API_KEY
+# (the SocaLabs team key) and names the plugin, so one CI secret covers them all.
+#
+CRASH_BASE="https://crashreports.rabiensoftware.com"
+
+curl_path () {
+  if command -v cygpath >/dev/null 2>&1; then cygpath -m "$1"; else printf '%s' "$1"; fi
+}
+
+fetch_reporter () { # $1 platform, $2 output file
+  if curl -fsSL "$CRASH_BASE/reporter/latest/?platform=$1" -o "$(curl_path "$2")"; then
+    return 0
+  fi
+  echo "WARNING: could not fetch CrashReporter for $1 (none published yet?)"
+  return 1
+}
+
+upload_symbols () { # $1 platform, $2 plugin, $3 zip file
+  if [ -z "${SYMBOL_API_KEY:-}" ]; then echo "SYMBOL_API_KEY not set — skipping symbol upload"; return 0; fi
+  if [ ! -f "$3" ]; then echo "No symbol archive $3 — skipping"; return 0; fi
+  echo "Uploading $1 symbols for $2 $VERSION"
+  curl -fsS -H "X-API-Key: $SYMBOL_API_KEY" \
+    -F "platform=$1" -F "plugin=$2" -F "version=$VERSION" -F "files[]=@$(curl_path "$3")" \
+    "$CRASH_BASE/symbols/" || echo "WARNING: symbol upload failed"
+  echo
+}
+
 if [ "$(uname)" = "Darwin" ]; then
   PLATFORM=macOS
 elif [ "$(expr substr "$(uname -s)" 1 5)" = "Linux" ]; then
@@ -61,7 +91,7 @@ build_one_plugin() {
     echo "$BDIR"
   else
     local BDIR="$PDIR/build-vs"
-    cmake -S "$PDIR" -B "$BDIR" -G"Visual Studio 17 2022" -A x64 1>&2
+    cmake -S "$PDIR" -B "$BDIR" -G"Visual Studio 18 2026" -A x64 1>&2
     cmake --build "$BDIR" --config Release 1>&2
     echo "$BDIR"
   fi
@@ -93,6 +123,13 @@ if [ "$PLATFORM" = "macOS" ]; then
 
   STAGE_BASE="$PROJECT_ROOT/Installer/macOS/bin"
 
+  # Fetch the shared CrashReporter.app once for all plugins in this run.
+  REP_APP_SRC="$STAGE_BASE/_reporter/CrashReporter.app"
+  rm -Rf "$STAGE_BASE/_reporter"; mkdir -p "$STAGE_BASE/_reporter"
+  if fetch_reporter mac "$STAGE_BASE/_reporter/CrashReporter_Mac.zip"; then
+    ( cd "$STAGE_BASE/_reporter" && unzip -qo CrashReporter_Mac.zip && rm CrashReporter_Mac.zip )
+  fi
+
   for PLUGIN in $PLUGINS; do
     BDIR=$(build_one_plugin "$PLUGIN")
     PLOWER=$(echo "$PLUGIN" | tr '[:upper:]' '[:lower:]')
@@ -120,6 +157,13 @@ if [ "$PLATFORM" = "macOS" ]; then
     fi
     find "$STAGE" -name ".DS_Store" -delete
 
+    # Strip shipped binaries so the OS can't symbolicate crash logs locally
+    # (the server does it from the dSYMs built below). strip preserves the UUID.
+    strip -x "$STAGE/vst/$PLUGIN.vst/Contents/MacOS/$PLUGIN"
+    strip -x "$STAGE/vst3/$PLUGIN.vst3/Contents/MacOS/$PLUGIN"
+    strip -x "$STAGE/au/$PLUGIN.component/Contents/MacOS/$PLUGIN"
+    strip -x "$STAGE/clap/$PLUGIN.clap/Contents/MacOS/$PLUGIN"
+
     if [ -n "${APPLICATION:-}" ]; then
       codesign -s "$DEV_APP_ID" --options=runtime --timestamp --force -v "$STAGE/vst/$PLUGIN.vst"
       codesign -s "$DEV_APP_ID" --options=runtime --timestamp --force -v "$STAGE/vst3/$PLUGIN.vst3"
@@ -143,6 +187,24 @@ if [ "$PLATFORM" = "macOS" ]; then
     else
       pkgbuild --root "$STAGE/clap" --install-location "/Library/Audio/Plug-Ins/CLAP" --identifier "${BUNDLE_BASE}.clap.pkg" --version "$VERSION" --scripts "$SCRIPTS" "$PKG_DIR/clap.pkg"
     fi
+
+    # CrashReporter component: the shared app (staged under .incoming, promoted by
+    # the postinstall only if newer) + this plugin's registration JSON.
+    REP_STAGE="$STAGE/reporter"
+    REP_ROOT="$REP_STAGE/Library/Application Support/Rabien Software/Crash Reporter"
+    rm -Rf "$REP_STAGE"; mkdir -p "$REP_ROOT/Plugins" "$REP_ROOT/.incoming"
+    if [ -d "$REP_APP_SRC" ]; then
+      cp -R "$REP_APP_SRC" "$REP_ROOT/.incoming/CrashReporter.app"
+      [ -n "${APPLICATION:-}" ] && codesign -s "$DEV_APP_ID" --options=runtime --timestamp --force -v "$REP_ROOT/.incoming/CrashReporter.app"
+    fi
+    cp "$PROJECT_ROOT/plugins/$PLUGIN/crashreporter.json" "$REP_ROOT/Plugins/${PLOWER}.json"
+    find "$REP_STAGE" -name ".DS_Store" -delete
+    chmod +x "$PROJECT_ROOT/Installer/macOS/reporter-scripts/postinstall"
+    COMP_PLIST="$STAGE/reporter-component.plist"
+    pkgbuild --analyze --root "$REP_STAGE" "$COMP_PLIST"
+    /usr/libexec/PlistBuddy -c "Set :0:BundleIsRelocatable false" "$COMP_PLIST" 2>/dev/null || true
+    pkgbuild --root "$REP_STAGE" --install-location "/" --identifier "${BUNDLE_BASE}.crashreporter.pkg" --version "$VERSION" \
+             --component-plist "$COMP_PLIST" --scripts "$PROJECT_ROOT/Installer/macOS/reporter-scripts" "$PKG_DIR/reporter.pkg"
 
     cp "$PROJECT_ROOT/Installer/EULA.rtf"          "$PKG_DIR/EULA.rtf"
     cp "$PROJECT_ROOT/Installer/macOS/welcome.txt" "$PKG_DIR/welcome.txt"
@@ -174,6 +236,15 @@ if [ "$PLATFORM" = "macOS" ]; then
     fi
 
     cp "$PKG_OUT" "$PROJECT_ROOT/bin/"
+
+    # Symbols: generate any missing dSYMs, zip, and upload for this plugin.
+    for pair in "VST:$PLUGIN.vst" "VST3:$PLUGIN.vst3" "AU:$PLUGIN.component" "CLAP:$PLUGIN.clap"; do
+      d="${pair%%:*}"; b="${pair#*:}"; dsym="$ART_DIR/$d/$b.dSYM"; bin="$ART_DIR/$d/$b/Contents/MacOS/$PLUGIN"
+      if [ ! -d "$dsym" ] && [ -f "$bin" ]; then dsymutil "$bin" -o "$dsym" || true; fi
+    done
+    ( cd "$ART_DIR" && zip -r "$PROJECT_ROOT/bin/${PLUGIN}_Symbols_Mac.zip" \
+        AU/$PLUGIN.component.dSYM VST/$PLUGIN.vst.dSYM VST3/$PLUGIN.vst3.dSYM CLAP/$PLUGIN.clap.dSYM 2>/dev/null || true )
+    upload_symbols mac "$PLUGIN" "$PROJECT_ROOT/bin/${PLUGIN}_Symbols_Mac.zip"
   done
 
 ############################################################
@@ -259,6 +330,15 @@ else
     cp -R "$ART_DIR/VST3/$PLUGIN.vst3" "$WIN_BIN/VST3/"
     cp -R "$ART_DIR/CLAP/$PLUGIN.clap" "$WIN_BIN/CLAP/"
 
+    # CrashReporter: latest signed build + this plugin's registration JSON.
+    PLOWER=$(echo "$PLUGIN" | tr '[:upper:]' '[:lower:]')
+    REP_DIR="$WIN_BIN/CrashReporter"
+    rm -Rf "$REP_DIR"; mkdir -p "$REP_DIR"
+    if fetch_reporter win "$REP_DIR/CrashReporter_Win.zip"; then
+      ( cd "$REP_DIR" && 7z x -y CrashReporter_Win.zip >/dev/null && rm CrashReporter_Win.zip )
+    fi
+    cp "$PROJECT_ROOT/plugins/$PLUGIN/crashreporter.json" "$REP_DIR/${PLOWER}.json"
+
     if [ "$WIN_SIGN" = "1" ]; then
       sign_file "$WIN_BIN/VST/$PLUGIN.dll"
       sign_file "$WIN_BIN/VST3/$PLUGIN.vst3/Contents/x86_64-win/$PLUGIN.vst3"
@@ -270,5 +350,14 @@ else
     EXE_OUT="$WIN_BIN/${PLUGIN}.exe"
     [ "$WIN_SIGN" = "1" ] && sign_file "$EXE_OUT"
     cp "$EXE_OUT" "$PROJECT_ROOT/bin/"
+
+    # Symbols — PDBs for crash symbolication.
+    SYM_DIR="$WIN_BIN/symbols"
+    rm -Rf "$SYM_DIR"; mkdir -p "$SYM_DIR/VST" "$SYM_DIR/VST3" "$SYM_DIR/CLAP"
+    cp "$ART_DIR/VST/$PLUGIN.pdb"  "$SYM_DIR/VST/"  2>/dev/null || true
+    cp "$ART_DIR/VST3/$PLUGIN.pdb" "$SYM_DIR/VST3/" 2>/dev/null || true
+    cp "$ART_DIR/CLAP/$PLUGIN.pdb" "$SYM_DIR/CLAP/" 2>/dev/null || true
+    ( cd "$SYM_DIR" && 7z a "$PROJECT_ROOT/bin/${PLUGIN}_Symbols_Win.zip" VST VST3 CLAP >/dev/null )
+    upload_symbols win "$PLUGIN" "$PROJECT_ROOT/bin/${PLUGIN}_Symbols_Win.zip"
   done
 fi

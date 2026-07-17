@@ -13,6 +13,7 @@
         <line choice="com.socalabs.compressor.au"/>
         <line choice="com.socalabs.compressor.clap"/>
         <line choice="com.socalabs.compressor.resources"/>
+        <line choice="com.socalabs.compressor.crashreporter"/>
     </choices-outline>
 
     <choice id="com.socalabs.compressor.vst"
@@ -51,9 +52,19 @@
         <pkg-ref id="com.socalabs.compressor.resources.pkg"/>
     </choice>
 
+    <choice id="com.socalabs.compressor.crashreporter"
+            title="Crash Reporter"
+            description="Install the shared crash reporter that sends crash reports to SocaLabs. Recommended; only updated if newer."
+            visible="true"
+            enabled="true"
+            selected="true">
+        <pkg-ref id="com.socalabs.compressor.crashreporter.pkg"/>
+    </choice>
+
     <pkg-ref id="com.socalabs.compressor.vst.pkg"  version="0">vst.pkg</pkg-ref>
     <pkg-ref id="com.socalabs.compressor.vst3.pkg" version="0">vst3.pkg</pkg-ref>
     <pkg-ref id="com.socalabs.compressor.au.pkg"   version="0">au.pkg</pkg-ref>
     <pkg-ref id="com.socalabs.compressor.clap.pkg" version="0">clap.pkg</pkg-ref>
     <pkg-ref id="com.socalabs.compressor.resources.pkg" version="0">resources.pkg</pkg-ref>
+    <pkg-ref id="com.socalabs.compressor.crashreporter.pkg" version="0">reporter.pkg</pkg-ref>
 </installer-gui-script>
