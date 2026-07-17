@@ -13,6 +13,7 @@
         <line choice="com.socalabs.delay.au"/>
         <line choice="com.socalabs.delay.clap"/>
         <line choice="com.socalabs.delay.resources"/>
+        <line choice="com.socalabs.delay.crashreporter"/>
     </choices-outline>
 
     <choice id="com.socalabs.delay.vst"
@@ -51,9 +52,19 @@
         <pkg-ref id="com.socalabs.delay.resources.pkg"/>
     </choice>
 
+    <choice id="com.socalabs.delay.crashreporter"
+            title="Crash Reporter"
+            description="Install the shared crash reporter that sends crash reports to SocaLabs. Recommended; only updated if newer."
+            visible="true"
+            enabled="true"
+            selected="true">
+        <pkg-ref id="com.socalabs.delay.crashreporter.pkg"/>
+    </choice>
+
     <pkg-ref id="com.socalabs.delay.vst.pkg"  version="0">vst.pkg</pkg-ref>
     <pkg-ref id="com.socalabs.delay.vst3.pkg" version="0">vst3.pkg</pkg-ref>
     <pkg-ref id="com.socalabs.delay.au.pkg"   version="0">au.pkg</pkg-ref>
     <pkg-ref id="com.socalabs.delay.clap.pkg" version="0">clap.pkg</pkg-ref>
     <pkg-ref id="com.socalabs.delay.resources.pkg" version="0">resources.pkg</pkg-ref>
+    <pkg-ref id="com.socalabs.delay.crashreporter.pkg" version="0">reporter.pkg</pkg-ref>
 </installer-gui-script>
