@@ -103,7 +103,7 @@ if [ "$PLATFORM" = "macOS" ]; then
     security set-key-partition-list -S apple-tool:,apple: -s -k "$KC_PASS" Keys.keychain
   fi
 
-  mkdir -p "$STAGE/vst" "$STAGE/vst3" "$STAGE/au" "$STAGE/clap" "$STAGE/resources"
+  mkdir -p "$STAGE/vst" "$STAGE/vst3" "$STAGE/au" "$STAGE/clap" "$STAGE/resources" "$STAGE/crashreporter/Library"
 
   for pkg in "$DOWNLOADS"/*.pkg; do
     SLUG=$(basename "$pkg" .pkg)
@@ -111,7 +111,7 @@ if [ "$PLATFORM" = "macOS" ]; then
     rm -rf "$EX"
     pkgutil --expand "$pkg" "$EX"
 
-    for COMPONENT in vst vst3 au clap resources; do
+    for COMPONENT in vst vst3 au clap resources reporter; do
       PAYLOAD="$EX/$COMPONENT.pkg/Payload"
       [ -f "$PAYLOAD" ] || continue
 
@@ -128,6 +128,13 @@ if [ "$PLATFORM" = "macOS" ]; then
         # Merge Library tree into the staged resources component.
         if [ -d "$OUT/Library" ]; then
           cp -RL "$OUT/Library" "$STAGE/resources/"
+        fi
+      elif [ "$COMPONENT" = "reporter" ]; then
+        # Shared CrashReporter.app (staged under .incoming) + this plugin's
+        # registration JSON, both rooted at "/". Merge so the single app is shared
+        # and every bundled plugin's JSON accumulates in the Plugins folder.
+        if [ -d "$OUT/Library" ]; then
+          cp -RL "$OUT/Library/." "$STAGE/crashreporter/Library/"
         fi
       else
         # Move the .vst / .vst3 / .component / .clap bundle(s) into the staged dir.
@@ -157,6 +164,27 @@ if [ "$PLATFORM" = "macOS" ]; then
   pkgbuild --root "$STAGE/clap"      --install-location "/Library/Audio/Plug-Ins/CLAP"       --identifier "com.socalabs.${BUNDLE_ID}.clap"      --version "$BUNDLE_VERSION" "$PKG_DIR/clap.pkg"
   pkgbuild --root "$STAGE/resources" --install-location "/"                                  --identifier "com.socalabs.${BUNDLE_ID}.resources" --version "$BUNDLE_VERSION" --scripts "$PROJECT_ROOT/Bundle/macOS/scripts" "$PKG_DIR/resources.pkg"
 
+  # CrashReporter component: the shared app (installed only if newer, via the
+  # reporter-scripts postinstall) + every bundled plugin's registration JSON.
+  CR_LINE=""; CR_CHOICE=""; CR_PKGREF=""
+  if find "$STAGE/crashreporter/Library" -name "*.json" 2>/dev/null | grep -q .; then
+    CR_APP="$STAGE/crashreporter/Library/Application Support/Rabien Software/Crash Reporter/.incoming/CrashReporter.app"
+    if [ -n "${APPLICATION:-}" ] && [ -d "$CR_APP" ]; then
+      codesign -s "$DEV_APP_ID" --options=runtime --timestamp --force -v "$CR_APP"
+    fi
+    CR_PLIST="$STAGE/reporter-component.plist"
+    pkgbuild --analyze --root "$STAGE/crashreporter" "$CR_PLIST"
+    /usr/libexec/PlistBuddy -c "Set :0:BundleIsRelocatable false" "$CR_PLIST" 2>/dev/null || true
+    pkgbuild --root "$STAGE/crashreporter" --install-location "/" \
+             --identifier "com.socalabs.${BUNDLE_ID}.crashreporter" --version "$BUNDLE_VERSION" \
+             --component-plist "$CR_PLIST" \
+             --scripts "$PROJECT_ROOT/Installer/macOS/reporter-scripts" \
+             "$PKG_DIR/reporter.pkg"
+    CR_LINE='        <line choice="crashreporter"/>'
+    CR_CHOICE="    <choice id=\"crashreporter\" title=\"Crash Reporter\" visible=\"false\"><pkg-ref id=\"com.socalabs.${BUNDLE_ID}.crashreporter\"/></choice>"
+    CR_PKGREF="    <pkg-ref id=\"com.socalabs.${BUNDLE_ID}.crashreporter\" version=\"0\">reporter.pkg</pkg-ref>"
+  fi
+
   cat > "$PKG_DIR/distribution.xml" <<EOF
 <?xml version="1.0" encoding="utf-8"?>
 <installer-gui-script minSpecVersion="2">
@@ -173,6 +201,7 @@ if [ "$PLATFORM" = "macOS" ]; then
         <line choice="au"/>
         <line choice="clap"/>
         <line choice="resources"/>
+${CR_LINE}
     </choices-outline>
 
     <choice id="vst"       title="VST"             visible="false"><pkg-ref id="com.socalabs.${BUNDLE_ID}.vst"/></choice>
@@ -180,12 +209,13 @@ if [ "$PLATFORM" = "macOS" ]; then
     <choice id="au"        title="Audio Unit"      visible="false"><pkg-ref id="com.socalabs.${BUNDLE_ID}.au"/></choice>
     <choice id="clap"      title="CLAP"            visible="false"><pkg-ref id="com.socalabs.${BUNDLE_ID}.clap"/></choice>
     <choice id="resources" title="Factory Content" visible="false"><pkg-ref id="com.socalabs.${BUNDLE_ID}.resources"/></choice>
-
+${CR_CHOICE}
     <pkg-ref id="com.socalabs.${BUNDLE_ID}.vst"       version="0">vst.pkg</pkg-ref>
     <pkg-ref id="com.socalabs.${BUNDLE_ID}.vst3"      version="0">vst3.pkg</pkg-ref>
     <pkg-ref id="com.socalabs.${BUNDLE_ID}.au"        version="0">au.pkg</pkg-ref>
     <pkg-ref id="com.socalabs.${BUNDLE_ID}.clap"      version="0">clap.pkg</pkg-ref>
     <pkg-ref id="com.socalabs.${BUNDLE_ID}.resources" version="0">resources.pkg</pkg-ref>
+${CR_PKGREF}
 </installer-gui-script>
 EOF
 
