@@ -323,6 +323,7 @@ else
   for PLUGIN in $PLUGINS; do
     BDIR=$(build_one_plugin "$PLUGIN")
     ART_DIR="$BDIR/${PLUGIN}_artefacts/Release"
+    VERSION=$(cat "$PROJECT_ROOT/plugins/$PLUGIN/VERSION" | tr -d '[:space:]')
 
     rm -Rf "$WIN_BIN/VST" "$WIN_BIN/VST3" "$WIN_BIN/CLAP"
     mkdir -p "$WIN_BIN/VST" "$WIN_BIN/VST3" "$WIN_BIN/CLAP"
