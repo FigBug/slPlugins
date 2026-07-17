@@ -49,6 +49,8 @@ Name: "vst3"; Description: "VST3 plug-in"; Types: full custom; Flags: checkablea
 Name: "clap"; Description: "CLAP plug-in"; Types: full custom; Flags: checkablealone
 
 
+Name: "crashreporter"; Description: "Crash reporter (shared component, only updated if newer)"; Types: full custom; Flags: checkablealone
+
 [InstallDelete]
 Type: files;          Name: "{commoncf64}\VST2\AddInvert.dll";   Components: vst
 Type: filesandordirs; Name: "{commoncf64}\VST3\AddInvert.vst3"; Components: vst3
@@ -59,4 +61,7 @@ Type: files;          Name: "{commoncf64}\CLAP\AddInvert.clap"; Components: clap
 Source: "bin\VST\AddInvert.dll";    DestDir: "{commoncf64}\VST2";                Flags: ignoreversion overwritereadonly; Components: vst
 Source: "bin\VST3\AddInvert.vst3\*"; DestDir: "{commoncf64}\VST3\AddInvert.vst3\"; Flags: ignoreversion overwritereadonly recursesubdirs; Components: vst3
 Source: "bin\CLAP\AddInvert.clap";   DestDir: "{commoncf64}\CLAP";              Flags: ignoreversion overwritereadonly; Components: clap
+; CrashReporter (shared): app only updated if newer + never removed; JSON always installed, never removed.
+Source: "bin\CrashReporter\CrashReporter.exe"; DestDir: "{commonpf}\Rabien Software\Crash Reporter"; Flags: skipifsourcedoesntexist uninsneveruninstall; Components: crashreporter
+Source: "bin\CrashReporter\addinvert.json";   DestDir: "{commonappdata}\Rabien Software\Crash Reporter\Plugins"; Flags: ignoreversion uninsneveruninstall
 
