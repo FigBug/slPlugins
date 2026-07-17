@@ -13,6 +13,7 @@
         <line choice="com.socalabs.expander.au"/>
         <line choice="com.socalabs.expander.clap"/>
         <line choice="com.socalabs.expander.resources"/>
+        <line choice="com.socalabs.expander.crashreporter"/>
     </choices-outline>
 
     <choice id="com.socalabs.expander.vst"
@@ -51,9 +52,19 @@
         <pkg-ref id="com.socalabs.expander.resources.pkg"/>
     </choice>
 
+    <choice id="com.socalabs.expander.crashreporter"
+            title="Crash Reporter"
+            description="Install the shared crash reporter that sends crash reports to SocaLabs. Recommended; only updated if newer."
+            visible="true"
+            enabled="true"
+            selected="true">
+        <pkg-ref id="com.socalabs.expander.crashreporter.pkg"/>
+    </choice>
+
     <pkg-ref id="com.socalabs.expander.vst.pkg"  version="0">vst.pkg</pkg-ref>
     <pkg-ref id="com.socalabs.expander.vst3.pkg" version="0">vst3.pkg</pkg-ref>
     <pkg-ref id="com.socalabs.expander.au.pkg"   version="0">au.pkg</pkg-ref>
     <pkg-ref id="com.socalabs.expander.clap.pkg" version="0">clap.pkg</pkg-ref>
     <pkg-ref id="com.socalabs.expander.resources.pkg" version="0">resources.pkg</pkg-ref>
+    <pkg-ref id="com.socalabs.expander.crashreporter.pkg" version="0">reporter.pkg</pkg-ref>
 </installer-gui-script>
