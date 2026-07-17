@@ -68,7 +68,6 @@ juce_generate_juce_header(${PLUGIN_NAME})
 
 target_compile_definitions(${PLUGIN_NAME}
     PRIVATE
-        DROWAUDIO_USE_FFTREAL=1
         JUCE_WEB_BROWSER=0
         JUCE_USE_CURL=0
         JUCE_VST3_CAN_REPLACE_VST2=0
@@ -88,7 +87,6 @@ set_target_properties(${PLUGIN_NAME} PROPERTIES
 
 target_link_libraries(${PLUGIN_NAME}
     PRIVATE
-        dRowAudio
         gin
         gin_dsp
         gin_simd

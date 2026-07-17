@@ -50,11 +50,9 @@ void AddInvertAudioProcessor::processBlock (juce::AudioSampleBuffer& buffer, juc
     if (aL && bL) juce::FloatVectorOperations::addWithMultiply (aL, bL, -1.0f, numSamples);
     if (bL && bR) juce::FloatVectorOperations::addWithMultiply (aR, bR, -1.0f, numSamples);
     
-    if (editor != nullptr)
-    {
-        juce::AudioSampleBuffer outputBuffer (buffer.getArrayOfWritePointers(), 2, numSamples);
-        editor->scope.addSamples (outputBuffer);
-    }
+    juce::AudioSampleBuffer outputBuffer (buffer.getArrayOfWritePointers(), 2, numSamples);
+    if (fifo.getFreeSpace() >= numSamples)
+        fifo.write (outputBuffer);
 }
 
 //==============================================================================
@@ -65,8 +63,7 @@ bool AddInvertAudioProcessor::hasEditor() const
 
 juce::AudioProcessorEditor* AddInvertAudioProcessor::createEditor()
 {
-    editor = new AddInvertAudioProcessorEditor (*this);
-    return editor.getComponent();
+    return new AddInvertAudioProcessorEditor (*this);
 }
 
 //==============================================================================

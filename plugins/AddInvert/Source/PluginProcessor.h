@@ -2,7 +2,6 @@
 
 #include <JuceHeader.h>
 
-class AddInvertAudioProcessorEditor;
 //==============================================================================
 /**
 */
@@ -24,10 +23,9 @@ public:
     bool hasEditor() const override;
 
     //==============================================================================
-    
+    gin::AudioFifo fifo { 2, 44100 };
+
 private:
-    juce::Component::SafePointer<AddInvertAudioProcessorEditor> editor;
-    
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (AddInvertAudioProcessor)
 };

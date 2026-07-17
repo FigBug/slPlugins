@@ -112,7 +112,6 @@ set_target_properties(${PLUGIN_NAME} PROPERTIES
 target_link_libraries(${PLUGIN_NAME}
     PRIVATE
         ${PLUGIN_NAME}_BinaryData
-        dRowAudio
         gin
         gin_dsp
         gin_simd

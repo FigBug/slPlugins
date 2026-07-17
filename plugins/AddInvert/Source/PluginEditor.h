@@ -14,11 +14,10 @@ public:
 
     //==============================================================================
     void resized() override;
-    
-    drow::TriggeredScope scope;
 
 private:
     AddInvertAudioProcessor& aiProcessor;
+    gin::TriggeredScope scope { aiProcessor.fifo };
     
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (AddInvertAudioProcessorEditor)
 };
