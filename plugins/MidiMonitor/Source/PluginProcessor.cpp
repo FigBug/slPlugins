@@ -1,4 +1,5 @@
 #include "PluginProcessor.h"
+#include <mutex>
 #include "PluginEditor.h"
 
 static gin::ProcessorOptions createProcessorOptions()
@@ -11,6 +12,27 @@ static juce::String onOffTextFunction (const gin::Parameter&, float v)
     return v > 0.5f ? "On" : "Off";
 }
 
+// If the shared CrashReporter is installed, launch it once per process (on the
+// first plugin instance) so it can scan and upload any crash from last session.
+static void launchCrashReporterOnce()
+{
+    static std::once_flag flag;
+    std::call_once (flag, []
+    {
+       #if JUCE_MAC
+        juce::File app ("/Library/Application Support/Rabien Software/Crash Reporter/CrashReporter.app");
+       #elif JUCE_WINDOWS
+        auto app = juce::File::getSpecialLocation (juce::File::globalApplicationsDirectory)
+                       .getChildFile ("Rabien Software").getChildFile ("Crash Reporter").getChildFile ("CrashReporter.exe");
+       #else
+        juce::File app;
+       #endif
+
+        if (app.exists())
+            juce::Process::openDocument (app.getFullPathName(), {});
+    });
+}
+
 MidiMonitorAudioProcessor::MidiMonitorAudioProcessor()
     : gin::Processor (
        #if JucePlugin_Build_Standalone
@@ -20,6 +42,8 @@ MidiMonitorAudioProcessor::MidiMonitorAudioProcessor()
        #endif
         false, createProcessorOptions())
 {
+    launchCrashReporterOnce();
+
     showNoteOn    = addIntParam (PARAM_SHOW_NOTE_ON,    "Show Note On",    "", "", { 0.0f, 1.0f, 1.0f, 1.0f }, 1.0f, 0.0f, onOffTextFunction);
     showNoteOff   = addIntParam (PARAM_SHOW_NOTE_OFF,   "Show Note Off",   "", "", { 0.0f, 1.0f, 1.0f, 1.0f }, 1.0f, 0.0f, onOffTextFunction);
     showCC        = addIntParam (PARAM_SHOW_CC,         "Show CC",         "", "", { 0.0f, 1.0f, 1.0f, 1.0f }, 1.0f, 0.0f, onOffTextFunction);
