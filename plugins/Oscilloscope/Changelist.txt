@@ -1,3 +1,6 @@
+1.2.8:
+- Crash reporting improvements
+
 1.2.7:
 - Added crash reporting
 

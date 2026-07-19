@@ -22,9 +22,9 @@ VENDOR=SocaLabs
 
 #
 # Crash reporting: bundle the shared CrashReporter + each plugin's registration
-# JSON, and upload debug symbols so crashes can be symbolicated. The CrashReporter
-# download is public (no key). Symbol upload authenticates with SYMBOL_API_KEY
-# (the SocaLabs team key) and names the plugin, so one CI secret covers them all.
+# JSON. Debug symbols are zipped into bin/ here and uploaded to the crash server
+# later by the release job (release_uploader.sh), never from this build. The
+# CrashReporter download is public (no key needed).
 #
 CRASH_BASE="https://crashreports.rabiensoftware.com"
 
@@ -38,16 +38,6 @@ fetch_reporter () { # $1 platform, $2 output file
   fi
   echo "WARNING: could not fetch CrashReporter for $1 (none published yet?)"
   return 1
-}
-
-upload_symbols () { # $1 platform, $2 plugin, $3 zip file
-  if [ -z "${SYMBOL_API_KEY:-}" ]; then echo "SYMBOL_API_KEY not set — skipping symbol upload"; return 0; fi
-  if [ ! -f "$3" ]; then echo "No symbol archive $3 — skipping"; return 0; fi
-  echo "Uploading $1 symbols for $2 $VERSION"
-  curl -fsS -H "X-API-Key: $SYMBOL_API_KEY" \
-    -F "platform=$1" -F "plugin=$2" -F "version=$VERSION" -F "files[]=@$(curl_path "$3")" \
-    "$CRASH_BASE/symbols/" || echo "WARNING: symbol upload failed"
-  echo
 }
 
 if [ "$(uname)" = "Darwin" ]; then
@@ -237,14 +227,14 @@ if [ "$PLATFORM" = "macOS" ]; then
 
     cp "$PKG_OUT" "$PROJECT_ROOT/bin/"
 
-    # Symbols: generate any missing dSYMs, zip, and upload for this plugin.
+    # Symbols: generate any missing dSYMs and zip for this plugin (uploaded to
+    # the crash server later by the release job, not here).
     for pair in "VST:$PLUGIN.vst" "VST3:$PLUGIN.vst3" "AU:$PLUGIN.component" "CLAP:$PLUGIN.clap"; do
       d="${pair%%:*}"; b="${pair#*:}"; dsym="$ART_DIR/$d/$b.dSYM"; bin="$ART_DIR/$d/$b/Contents/MacOS/$PLUGIN"
       if [ ! -d "$dsym" ] && [ -f "$bin" ]; then dsymutil "$bin" -o "$dsym" || true; fi
     done
     ( cd "$ART_DIR" && zip -r "$PROJECT_ROOT/bin/${PLUGIN}_Symbols_Mac.zip" \
         AU/$PLUGIN.component.dSYM VST/$PLUGIN.vst.dSYM VST3/$PLUGIN.vst3.dSYM CLAP/$PLUGIN.clap.dSYM 2>/dev/null || true )
-    upload_symbols mac "$PLUGIN" "$PROJECT_ROOT/bin/${PLUGIN}_Symbols_Mac.zip"
   done
 
 ############################################################
@@ -359,6 +349,5 @@ else
     cp "$ART_DIR/VST3/$PLUGIN.pdb" "$SYM_DIR/VST3/" 2>/dev/null || true
     cp "$ART_DIR/CLAP/$PLUGIN.pdb" "$SYM_DIR/CLAP/" 2>/dev/null || true
     ( cd "$SYM_DIR" && 7z a "$PROJECT_ROOT/bin/${PLUGIN}_Symbols_Win.zip" VST VST3 CLAP >/dev/null )
-    upload_symbols win "$PLUGIN" "$PROJECT_ROOT/bin/${PLUGIN}_Symbols_Win.zip"
   done
 fi

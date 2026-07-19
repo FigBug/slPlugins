@@ -34,6 +34,24 @@ fi
 [ -z "$NOTES" ] && NOTES="Release $TAG"
 echo "$NOTES" > /tmp/release_notes.txt
 
+# --- Debug symbols -> crash server -------------------------------------------
+# Uploaded here (not the build job) so a failed upload fails the release. Auth is
+# the SocaLabs team key + a plugin selector (monorepo). The server stores symbols
+# write-once per (plugin, platform, version): a re-tagged or rebuilt version whose
+# symbols already exist returns 409 and fails the release loudly — delete the
+# stale symbols in the crash site, then re-run.
+CRASH_BASE="https://crashreports.rabiensoftware.com"
+upload_symbols () { # $1 platform, $2 zip
+  if [ ! -f "$2" ]; then echo "Error: expected symbols $2 not found"; exit 1; fi
+  echo "Uploading $1 symbols for $PLUGIN $VER"
+  curl -sS --fail-with-body -H "X-API-Key: $SYMBOL_API_KEY" \
+    -F "platform=$1" -F "plugin=$PLUGIN" -F "version=$VER" -F "files[]=@$2" \
+    "$CRASH_BASE/symbols/"
+  echo
+}
+upload_symbols mac "./${PLUGIN} macOS/${PLUGIN}_Symbols_Mac.zip"
+upload_symbols win "./${PLUGIN} Windows/${PLUGIN}_Symbols_Win.zip"
+
 ASSETS=()
 [ -f "./${PLUGIN} Linux/${PLUGIN}.deb" ]   && ASSETS+=("./${PLUGIN} Linux/${PLUGIN}.deb")
 [ -f "./${PLUGIN} Windows/${PLUGIN}.exe" ] && ASSETS+=("./${PLUGIN} Windows/${PLUGIN}.exe")
