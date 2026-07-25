@@ -22,10 +22,12 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 set(CMAKE_CXX_VISIBILITY_PRESET hidden)
 set(CMAKE_VISIBILITY_INLINES_HIDDEN ON)
 
+# JUCE 9 requires C and CXX enabled before it is added, so project() must
+# come before setup_modules.cmake
+project(${PLUGIN_NAME} VERSION ${PLUGIN_VERSION} LANGUAGES C CXX)
+
 # Include shared module setup
 include(${CMAKE_CURRENT_LIST_DIR}/../../modules/setup_modules.cmake)
-
-project(${PLUGIN_NAME} VERSION ${PLUGIN_VERSION})
 
 # Plugin formats
 if(WIN32)
