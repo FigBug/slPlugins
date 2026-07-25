@@ -1,6 +1,7 @@
 
 #include "PluginProcessor.h"
 #include <mutex>
+#include <cstdlib>
 #include "PluginEditor.h"
 
 static juce::String enableTextFunction (const gin::Parameter&, float v)
@@ -53,7 +54,14 @@ CrossfeedAudioProcessor::~CrossfeedAudioProcessor()
 //==============================================================================
 void CrossfeedAudioProcessor::prepareToPlay (double sampleRate, int samplesPerBlock)
 {
-    crossfeed_init (&crossfeed, (int)sampleRate);
+    // crossfeed only has kernels for 44.1k, 48k and 96k; snap to the nearest
+    // so init can't fail and leave a zeroed filter (divide by zero in processBlock)
+    int bestRate = 44100;
+    for (int rate : { 48000, 96000 })
+        if (std::abs ((int)sampleRate - rate) < std::abs ((int)sampleRate - bestRate))
+            bestRate = rate;
+
+    crossfeed_init (&crossfeed, bestRate);
     
     scratch.setSize (2, samplesPerBlock);
     
