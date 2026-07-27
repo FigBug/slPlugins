@@ -79,6 +79,9 @@ target_compile_definitions(${PLUGIN_NAME}
         JUCE_JACK=0
         JUCE_IGNORE_VST3_MISMATCHED_PARAMETER_ID_WARNING=1
         DONT_SET_USING_JUCE_NAMESPACE=1
+        JucePlugin_MaxNumInputChannels=2
+        JucePlugin_MaxNumOutputChannels=2
+        JucePlugin_PreferredChannelConfigurations={2,2},{1,1}
 )
 
 set_target_properties(${PLUGIN_NAME} PROPERTIES

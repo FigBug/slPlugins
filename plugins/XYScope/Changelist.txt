@@ -1,3 +1,6 @@
+1.0.7:
+- Fix crash when host uses a mono channel layout
+
 1.0.6:
 - Crash reporting improvements
 

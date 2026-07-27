@@ -1,3 +1,6 @@
+1.1.8:
+- Declare supported channel configurations
+
 1.1.7:
 - Crash reporting improvements
 
