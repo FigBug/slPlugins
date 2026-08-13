@@ -1,0 +1,7 @@
+#!/bin/sh
+rm -Rf "/Library/Audio/Plug-Ins/VST/BitCrusher.vst"
+rm -Rf "/Library/Audio/Plug-Ins/VST3/BitCrusher.vst3"
+rm -Rf "/Library/Audio/Plug-Ins/Components/BitCrusher.component"
+rm -Rf "/Library/Audio/Plug-Ins/CLAP/BitCrusher.clap"
+rm -Rf "/Library/Audio/Presets/SocaLabs/BitCrusher/Presets"
+exit 0

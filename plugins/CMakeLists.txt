@@ -1,5 +1,6 @@
 add_subdirectory(ABTester)
 add_subdirectory(AddInvert)
+add_subdirectory(BitCrusher)
 add_subdirectory(ChannelMute)
 add_subdirectory(CompensatedDelay)
 add_subdirectory(Compressor)

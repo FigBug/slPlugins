@@ -1,5 +1,6 @@
 ABTester
 AddInvert
+BitCrusher
 ChannelMute
 CompensatedDelay
 Compressor
