@@ -38,7 +38,7 @@ BitCrusherAudioProcessorEditor::BitCrusherAudioProcessorEditor (BitCrusherAudioP
     scope.setColour (gin::TriggeredScope::traceColourId + 1, findColour (gin::PluginLookAndFeel::whiteColourId).withAlpha (0.7f));
     scope.setColour (gin::TriggeredScope::envelopeColourId + 1, juce::Colours::transparentBlack);
 
-    setGridSize (3, 2);
+    setGridSize (6, 1);
 }
 
 BitCrusherAudioProcessorEditor::~BitCrusherAudioProcessorEditor()
@@ -54,5 +54,5 @@ void BitCrusherAudioProcessorEditor::resized()
     componentForParam (*proc.rate)->setBounds (getGridArea (1, 0));
     componentForParam (*proc.dirty)->setBounds (getGridArea (2, 0));
 
-    scope.setBounds (getGridArea (0, 1, 3, 1));
+    scope.setBounds (getGridArea (3, 0, 3, 1));
 }
