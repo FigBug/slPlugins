@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<state name="8 Bit Retro" valueTree="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&#13;&#10;&#13;&#10;&lt;state/&gt;&#13;&#10;">
+  <param uid="bits" val="8.0"/>
+  <param uid="rate" val="22050.0"/>
+  <param uid="dirty" val="0.0"/>
+</state>
