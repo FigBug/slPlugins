@@ -64,4 +64,4 @@ Source: "bin\CLAP\BitCrusher.clap";   DestDir: "{commoncf64}\CLAP";             
 Source: "..\..\plugins\BitCrusher\Resources\*.xml"; DestDir: "{commonappdata}\SocaLabs\BitCrusher\Presets\"; Flags: ignoreversion; Components: resources
 ; CrashReporter (shared): app only updated if newer + never removed; JSON always installed, never removed.
 Source: "bin\CrashReporter\CrashReporter.exe"; DestDir: "{commonpf}\Rabien Software\Crash Reporter"; Flags: skipifsourcedoesntexist uninsneveruninstall; Components: crashreporter
-Source: "bin\CrashReporter\expander.json";   DestDir: "{commonappdata}\Rabien Software\Crash Reporter\Plugins"; Flags: ignoreversion uninsneveruninstall
+Source: "bin\CrashReporter\bitcrusher.json";   DestDir: "{commonappdata}\Rabien Software\Crash Reporter\Plugins"; Flags: ignoreversion uninsneveruninstall
