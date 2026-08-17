@@ -1,3 +1,6 @@
+1.0.4:
+- General bug fixes and improvements
+
 1.0.3:
 - General bug fixes and improvements
 
