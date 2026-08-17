@@ -5,7 +5,8 @@
 AddInvertAudioProcessorEditor::AddInvertAudioProcessorEditor (AddInvertAudioProcessor& p)
     : gin::ProcessorEditor (p), aiProcessor (p)
 {
-    titleBar.setShowPresets (false);
+    if (titleBar != nullptr)
+        titleBar->setShowPresets (false);
     addAndMakeVisible (&scope);
     
     setGridSize (4, 2);

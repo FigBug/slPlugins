@@ -244,7 +244,8 @@ MidiMonitorAudioProcessorEditor::MidiMonitorAudioProcessorEditor (MidiMonitorAud
     keyboard.setLowestVisibleKey (36);
     addAndMakeVisible (keyboard);
 
-    titleBar.setShowPresets (false);
+    if (titleBar != nullptr)
+        titleBar->setShowPresets (false);
 
     proc.showNoteOn   ->addListener (this);
     proc.showNoteOff  ->addListener (this);
