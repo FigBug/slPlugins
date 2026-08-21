@@ -1,3 +1,6 @@
+1.0.10:
+- Fixed possible crash when processing before initialization
+
 1.0.9:
 - General bug fixes and improvements
 
