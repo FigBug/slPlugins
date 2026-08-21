@@ -69,26 +69,22 @@ SampleDelayAudioProcessor::~SampleDelayAudioProcessor()
 void SampleDelayAudioProcessor::prepareToPlay (double sampleRate, int samplesPerBlock)
 {
     gin::Processor::prepareToPlay (sampleRate, samplesPerBlock);
-    
+
     int ch = std::max (getTotalNumInputChannels(), getTotalNumOutputChannels());
     double sr = getSampleRate();
-     
-    delayLine.setSize (ch, std::max (1.1, sr / 44100.0 + 0.1), sr);
+    if (sr <= 0.0)
+        sr = 44100.0;
+
+    // the samples parameter goes up to 44100 samples regardless of sample rate,
+    // and the time parameter up to 1s, so cover whichever is longer
+    delayLine.setSize (ch, std::max (1.1, 44101.0 / sr + 0.1), sr);
 }
 
 void SampleDelayAudioProcessor::reset()
 {
     gin::Processor::reset();
-    
-    delayLine.clear();
-}
 
-void SampleDelayAudioProcessor::numChannelsChanged ()
-{
-    int ch = getTotalNumInputChannels();
-    double sr = getSampleRate();
-    
-    delayLine.setSize (ch, std::max (1.1, sr / 44100.0 + 0.1), sr);
+    delayLine.clear();
 }
 
 void SampleDelayAudioProcessor::releaseResources()
@@ -101,8 +97,9 @@ void SampleDelayAudioProcessor::processBlock (juce::AudioSampleBuffer& buffer, j
         midiLearn->processBlock (midi, buffer.getNumSamples());
 
     int numSamples = buffer.getNumSamples();
-    int ch = buffer.getNumChannels();
-    
+    // the host may process with more channels than the delay line was prepared for
+    int ch = std::min (buffer.getNumChannels(), delayLine.getNumChannels());
+
     gin::ScratchBuffer scratch (ch, numSamples);
     
     for (int s = 0; s < numSamples; s++)

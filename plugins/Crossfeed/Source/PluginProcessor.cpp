@@ -42,6 +42,10 @@ CrossfeedAudioProcessor::CrossfeedAudioProcessor()
 {
     launchCrashReporterOnce();
 
+    // in case the host processes before prepareToPlay, don't leave the filter
+    // uninitialized (divide by zero / garbage kernel in processBlock)
+    crossfeed_init (&crossfeed, 44100);
+
     enable = addExtParam ("enable",    "Enable", "", "",    { 0.0f,   1.0f, 1.0f, 1.0f}, 1.0f, 0.0f, enableTextFunction);
 
     init();

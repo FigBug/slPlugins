@@ -28,8 +28,6 @@ public:
     gin::Parameter::Ptr mode, link, time, samples, timeL, samplesL, timeR, samplesR;
 
 private:
-    void numChannelsChanged () override;
-    
     gin::DelayLine delayLine { 2, 2 };
     
     //==============================================================================
