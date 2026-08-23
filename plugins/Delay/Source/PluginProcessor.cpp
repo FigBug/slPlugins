@@ -13,14 +13,29 @@
 #include "PluginEditor.h"
 #include <random>
 
-juce::String enableTextFunction (const gin::Parameter&, float v)
+std::variant<float, juce::String> enableTextFunction (const gin::Parameter&, const std::variant<float, juce::String>& in)
 {
-    return v > 0.0f ? "On" : "Off";
+    if (auto v = std::get_if<float> (&in))
+        return juce::String (*v > 0.0f ? "On" : "Off");
+
+    auto t = std::get<juce::String> (in).trim();
+    if (t.equalsIgnoreCase ("On"))  return 1.0f;
+    if (t.equalsIgnoreCase ("Off")) return 0.0f;
+    return t.getFloatValue();
 }
 
-juce::String durationTextFunction (const gin::Parameter&, float v)
+std::variant<float, juce::String> durationTextFunction (const gin::Parameter&, const std::variant<float, juce::String>& in)
 {
-    return gin::NoteDuration::getNoteDurations()[size_t (v)].getName();
+    auto& durations = gin::NoteDuration::getNoteDurations();
+
+    if (auto v = std::get_if<float> (&in))
+        return durations[size_t (*v)].getName();
+
+    auto t = std::get<juce::String> (in).trim();
+    for (size_t i = 0; i < durations.size(); i++)
+        if (t.equalsIgnoreCase (durations[i].getName()))
+            return float (i);
+    return t.getFloatValue();
 }
 
 //==============================================================================

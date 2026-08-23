@@ -4,9 +4,15 @@
 #include <random>
 
 //==============================================================================
-juce::String abTextFunction (const gin::Parameter&, float v)
+std::variant<float, juce::String> abTextFunction (const gin::Parameter&, const std::variant<float, juce::String>& in)
 {
-    return v > 0.0f ? "A" : "B";
+    if (auto v = std::get_if<float> (&in))
+        return juce::String (*v > 0.0f ? "A" : "B");
+
+    auto t = std::get<juce::String> (in).trim();
+    if (t.equalsIgnoreCase ("A")) return 1.0f;
+    if (t.equalsIgnoreCase ("B")) return 0.0f;
+    return t.getFloatValue();
 }
 
 //==============================================================================

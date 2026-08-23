@@ -4,19 +4,33 @@
 #include <random>
 
 //==============================================================================
-juce::String onOffTextFunction (const gin::Parameter&, float v)
+std::variant<float, juce::String> onOffTextFunction (const gin::Parameter&, const std::variant<float, juce::String>& in)
 {
-    return v > 0.0f ? "On" : "Off";
+    if (auto v = std::get_if<float> (&in))
+        return juce::String (*v > 0.0f ? "On" : "Off");
+
+    auto t = std::get<juce::String> (in).trim();
+    if (t.equalsIgnoreCase ("On"))  return 1.0f;
+    if (t.equalsIgnoreCase ("Off")) return 0.0f;
+    return t.getFloatValue();
 }
 
-juce::String modeTextFunction (const gin::Parameter&, float v)
+std::variant<float, juce::String> modeTextFunction (const gin::Parameter&, const std::variant<float, juce::String>& in)
 {
-    switch (int (v))
+    if (auto v = std::get_if<float> (&in))
     {
-        case 0:  return "Spectroscope";
-        case 1:  return "Sonogram";
-        default: return "";
+        switch (int (*v))
+        {
+            case 0:  return juce::String ("Spectroscope");
+            case 1:  return juce::String ("Sonogram");
+            default: return juce::String();
+        }
     }
+
+    auto t = std::get<juce::String> (in).trim();
+    if (t.equalsIgnoreCase ("Spectroscope")) return 0.0f;
+    if (t.equalsIgnoreCase ("Sonogram"))     return 1.0f;
+    return t.getFloatValue();
 }
 
 //==============================================================================

@@ -5,67 +5,122 @@
 #include <random>
 
 //==============================================================================
-static juce::String chanTextFunction (const gin::Parameter&, float v)
+static std::variant<float, juce::String> chanTextFunction (const gin::Parameter&, const std::variant<float, juce::String>& in)
 {
-    switch (int (v))
+    if (auto v = std::get_if<float> (&in))
     {
-        case -1: return "Ave";
-        case 0:  return "Left";
-        case 1:  return "Right";
-        default: return "";
+        switch (int (*v))
+        {
+            case -1: return juce::String ("Ave");
+            case 0:  return juce::String ("Left");
+            case 1:  return juce::String ("Right");
+            default: return juce::String();
+        }
     }
+
+    auto t = std::get<juce::String> (in).trim();
+    if (t.equalsIgnoreCase ("Ave"))   return -1.0f;
+    if (t.equalsIgnoreCase ("Left"))  return 0.0f;
+    if (t.equalsIgnoreCase ("Right")) return 1.0f;
+    return t.getFloatValue();
 }
 
-static juce::String modeTextFunction (const gin::Parameter&, float v)
+static std::variant<float, juce::String> modeTextFunction (const gin::Parameter&, const std::variant<float, juce::String>& in)
 {
-    switch (int (v))
+    const juce::StringArray names { "Off", "Up", "Down", "Auto" };
+
+    if (auto v = std::get_if<float> (&in))
     {
-        case 0:  return "Off";
-        case 1:  return "Up";
-        case 2:  return "Down";
-        case 3:  return "Auto";
-        default: return "";
+        auto idx = int (*v);
+        return juce::isPositiveAndBelow (idx, names.size()) ? names[idx] : juce::String();
     }
+
+    auto t = std::get<juce::String> (in).trim();
+    for (int i = 0; i < names.size(); i++)
+        if (t.equalsIgnoreCase (names[i]))
+            return float (i);
+    return t.getFloatValue();
 }
 
-static juce::String sppTextFunction (const gin::Parameter&, float v)
+static std::variant<float, juce::String> sppTextFunction (const gin::Parameter&, const std::variant<float, juce::String>& in)
 {
-    if (v < 1.0f)
-        return "1/" + juce::String (juce::roundToInt (1.0f / v));
-    return juce::String (juce::roundToInt (v));
-}
-
-static juce::String tlTextFunction (const gin::Parameter&, float v)
-{
-    if (std::abs (v) < 0.0001f)
-        return "-inf dB";
-    return juce::String (juce::Decibels::gainToDecibels (std::abs (v)), 1) + " dB";
-}
-
-static juce::String tpTextFunction (const gin::Parameter&, float v)
-{
-    return juce::String (v, 2);
-}
-
-static juce::String runTextFunction (const gin::Parameter&, float v)
-{
-    switch (int (v))
+    if (auto v = std::get_if<float> (&in))
     {
-        case 0:  return "Normal";
-        case 1:  return "Single";
-        default: return "";
+        if (*v < 1.0f)
+            return "1/" + juce::String (juce::roundToInt (1.0f / *v));
+        return juce::String (juce::roundToInt (*v));
     }
+
+    auto t = std::get<juce::String> (in).trim();
+    if (t.startsWith ("1/"))
+    {
+        auto denom = t.substring (2).getFloatValue();
+        return denom > 0.0f ? 1.0f / denom : 1.0f;
+    }
+    return t.getFloatValue();
 }
 
-static juce::String beatSyncTextFunction (const gin::Parameter&, float v)
+static std::variant<float, juce::String> tlTextFunction (const gin::Parameter&, const std::variant<float, juce::String>& in)
 {
-    int beats = int (v);
-    return juce::String (beats) + (beats == 1 ? " beat" : " beats");
+    if (auto v = std::get_if<float> (&in))
+    {
+        if (std::abs (*v) < 0.0001f)
+            return juce::String ("-inf dB");
+        return juce::String (juce::Decibels::gainToDecibels (std::abs (*v)), 1) + " dB";
+    }
+
+    auto t = std::get<juce::String> (in).trim();
+    if (t.startsWithIgnoreCase ("-inf"))
+        return 0.0f;
+    return juce::Decibels::decibelsToGain (t.getFloatValue());
 }
 
-static juce::String syncTextFunction (const gin::Parameter&, float v)
+static std::variant<float, juce::String> tpTextFunction (const gin::Parameter&, const std::variant<float, juce::String>& in)
 {
-    return v > 0.5f ? "On" : "Off";
+    if (auto v = std::get_if<float> (&in))
+        return juce::String (*v, 2);
+
+    return std::get<juce::String> (in).getFloatValue();
+}
+
+static std::variant<float, juce::String> runTextFunction (const gin::Parameter&, const std::variant<float, juce::String>& in)
+{
+    if (auto v = std::get_if<float> (&in))
+    {
+        switch (int (*v))
+        {
+            case 0:  return juce::String ("Normal");
+            case 1:  return juce::String ("Single");
+            default: return juce::String();
+        }
+    }
+
+    auto t = std::get<juce::String> (in).trim();
+    if (t.equalsIgnoreCase ("Normal")) return 0.0f;
+    if (t.equalsIgnoreCase ("Single")) return 1.0f;
+    return t.getFloatValue();
+}
+
+static std::variant<float, juce::String> beatSyncTextFunction (const gin::Parameter&, const std::variant<float, juce::String>& in)
+{
+    if (auto v = std::get_if<float> (&in))
+    {
+        int beats = int (*v);
+        return juce::String (beats) + (beats == 1 ? " beat" : " beats");
+    }
+
+    return float (int (std::get<juce::String> (in).getFloatValue()));
+}
+
+static std::variant<float, juce::String> syncTextFunction (const gin::Parameter&, const std::variant<float, juce::String>& in)
+{
+    if (auto v = std::get_if<float> (&in))
+        return juce::String (*v > 0.5f ? "On" : "Off");
+
+    auto t = std::get<juce::String> (in).trim();
+    if (t.equalsIgnoreCase ("On"))  return 1.0f;
+    if (t.equalsIgnoreCase ("Off")) return 0.0f;
+    return t.getFloatValue();
 }
 
 //==============================================================================

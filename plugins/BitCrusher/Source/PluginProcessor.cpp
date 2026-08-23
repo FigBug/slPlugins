@@ -42,17 +42,32 @@ namespace
        #endif
     }
 
-    juce::String onOffTextFunction (const gin::Parameter&, float v)
+    std::variant<float, juce::String> onOffTextFunction (const gin::Parameter&, const std::variant<float, juce::String>& in)
     {
-        return v > 0.0f ? "On" : "Off";
+        if (auto v = std::get_if<float> (&in))
+            return juce::String (*v > 0.0f ? "On" : "Off");
+
+        auto t = std::get<juce::String> (in).trim();
+        if (t.equalsIgnoreCase ("On"))  return 1.0f;
+        if (t.equalsIgnoreCase ("Off")) return 0.0f;
+        return t.getFloatValue();
     }
 
-    juce::String freqTextFunction (const gin::Parameter&, float v)
+    std::variant<float, juce::String> freqTextFunction (const gin::Parameter&, const std::variant<float, juce::String>& in)
     {
-        if (v >= 1000.0f)
-            return juce::String (v / 1000.0f, 1) + " kHz";
+        if (auto v = std::get_if<float> (&in))
+        {
+            if (*v >= 1000.0f)
+                return juce::String (*v / 1000.0f, 1) + " kHz";
 
-        return juce::String (juce::roundToInt (v)) + " Hz";
+            return juce::String (juce::roundToInt (*v)) + " Hz";
+        }
+
+        auto t = std::get<juce::String> (in).trim();
+        auto freq = t.getFloatValue();
+        if (t.endsWithIgnoreCase ("kHz") || (! t.endsWithIgnoreCase ("Hz") && freq < 30.0f))
+            freq *= 1000.0f;
+        return freq;
     }
 }
 

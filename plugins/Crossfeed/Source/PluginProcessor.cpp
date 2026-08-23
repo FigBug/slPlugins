@@ -4,9 +4,15 @@
 #include <cstdlib>
 #include "PluginEditor.h"
 
-static juce::String enableTextFunction (const gin::Parameter&, float v)
+static std::variant<float, juce::String> enableTextFunction (const gin::Parameter&, const std::variant<float, juce::String>& in)
 {
-    return v > 0.0f ? "On" : "Off";
+    if (auto v = std::get_if<float> (&in))
+        return juce::String (*v > 0.0f ? "On" : "Off");
+
+    auto t = std::get<juce::String> (in).trim();
+    if (t.equalsIgnoreCase ("On"))  return 1.0f;
+    if (t.equalsIgnoreCase ("Off")) return 0.0f;
+    return t.getFloatValue();
 }
 
 //==============================================================================

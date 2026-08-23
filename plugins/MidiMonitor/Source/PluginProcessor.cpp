@@ -7,9 +7,15 @@ static gin::ProcessorOptions createProcessorOptions()
     return gin::ProcessorOptions();
 }
 
-static juce::String onOffTextFunction (const gin::Parameter&, float v)
+static std::variant<float, juce::String> onOffTextFunction (const gin::Parameter&, const std::variant<float, juce::String>& in)
 {
-    return v > 0.5f ? "On" : "Off";
+    if (auto v = std::get_if<float> (&in))
+        return juce::String (*v > 0.5f ? "On" : "Off");
+
+    auto t = std::get<juce::String> (in).trim();
+    if (t.equalsIgnoreCase ("On"))  return 1.0f;
+    if (t.equalsIgnoreCase ("Off")) return 0.0f;
+    return t.getFloatValue();
 }
 
 // If the shared CrashReporter is installed, launch it once per process (on the

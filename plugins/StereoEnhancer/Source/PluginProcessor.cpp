@@ -3,9 +3,12 @@
 #include "PluginEditor.h"
 #include <random>
 
-static juce::String percentTextFunction (const gin::Parameter&, float v)
+static std::variant<float, juce::String> percentTextFunction (const gin::Parameter&, const std::variant<float, juce::String>& in)
 {
-    return juce::String (juce::roundToInt (v * 100));
+    if (auto v = std::get_if<float> (&in))
+        return juce::String (juce::roundToInt (*v * 100));
+
+    return std::get<juce::String> (in).getFloatValue() / 100.0f;
 }
 
 //==============================================================================
