@@ -69,4 +69,4 @@ jobs:
         with:
           name: PitchTrack ${{ matrix.name }}
           path: bin/*
-          retention-days: 30
+          retention-days: 3

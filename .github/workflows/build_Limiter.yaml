@@ -69,4 +69,4 @@ jobs:
         with:
           name: Limiter ${{ matrix.name }}
           path: bin/*
-          retention-days: 30
+          retention-days: 3

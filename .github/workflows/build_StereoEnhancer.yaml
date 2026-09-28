@@ -69,4 +69,4 @@ jobs:
         with:
           name: StereoEnhancer ${{ matrix.name }}
           path: bin/*
-          retention-days: 30
+          retention-days: 3
