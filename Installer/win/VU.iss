@@ -1,0 +1,67 @@
+; VU installer (Inno Setup)
+
+#define MyAppName "VU"
+#define MyAppCompany "SocaLabs"
+#define MyAppPublisher "SocaLabs"
+#define MyAppCopyright "2026 SocaLabs"
+#define MyAppURL "https://socalabs.com/"
+#define MyAppVersion GetStringFileInfo("bin\VST3\VU.vst3\Contents\x86_64-win\VU.vst3", "ProductVersion")
+#define MyDefaultDirName "{commoncf64}\VST3"
+
+[Setup]
+AppID={{81112793-1998-4E51-A323-4E9F83510813}
+AppName={#MyAppCompany} {#MyAppName} {#MyAppVersion}
+AppVerName={#MyAppCompany} {#MyAppName} {#MyAppVersion}
+AppVersion={#MyAppVersion}
+AppCopyright={#MyAppCopyright}
+AppPublisher={#MyAppPublisher}
+AppPublisherURL={#MyAppURL}
+AppSupportURL={#MyAppURL}
+AppUpdatesURL={#MyAppURL}
+DefaultDirName={#MyDefaultDirName}
+DisableProgramGroupPage=yes
+OutputDir=.\bin
+OutputBaseFilename=VU
+Compression=lzma/ultra
+SolidCompression=true
+ShowLanguageDialog=auto
+LicenseFile=..\EULA.rtf
+InternalCompressLevel=ultra
+MinVersion=0,6.1.7600
+ArchitecturesAllowed=x64compatible
+ArchitecturesInstallIn64BitMode=x64compatible
+DisableDirPage=yes
+DisableWelcomePage=no
+VersionInfoVersion={#MyAppVersion}
+VersionInfoCompany={#MyAppPublisher}
+VersionInfoCopyright={#MyAppCopyright}
+VersionInfoProductName={#MyAppCompany} {#MyAppName} {#MyAppVersion} (64-bit)
+VersionInfoProductVersion={#MyAppVersion}
+Uninstallable=no
+PrivilegesRequired=admin
+
+[Languages]
+Name: english; MessagesFile: compiler:Default.isl
+
+[Components]
+Name: "vst";  Description: "VST plug-in";  Types: full custom; Flags: checkablealone
+Name: "vst3"; Description: "VST3 plug-in"; Types: full custom; Flags: checkablealone
+Name: "clap"; Description: "CLAP plug-in"; Types: full custom; Flags: checkablealone
+
+
+Name: "crashreporter"; Description: "Crash reporter (shared component, only updated if newer)"; Types: full custom; Flags: checkablealone
+
+[InstallDelete]
+Type: files;          Name: "{commoncf64}\VST2\VU.dll";   Components: vst
+Type: filesandordirs; Name: "{commoncf64}\VST3\VU.vst3"; Components: vst3
+Type: files;          Name: "{commoncf64}\CLAP\VU.clap"; Components: clap
+
+
+[Files]
+Source: "bin\VST\VU.dll";    DestDir: "{commoncf64}\VST2";                Flags: ignoreversion overwritereadonly; Components: vst
+Source: "bin\VST3\VU.vst3\*"; DestDir: "{commoncf64}\VST3\VU.vst3\"; Flags: ignoreversion overwritereadonly recursesubdirs; Components: vst3
+Source: "bin\CLAP\VU.clap";   DestDir: "{commoncf64}\CLAP";              Flags: ignoreversion overwritereadonly; Components: clap
+; CrashReporter (shared): app only updated if newer + never removed; JSON always installed, never removed.
+Source: "bin\CrashReporter\CrashReporter.exe"; DestDir: "{commonpf}\Rabien Software\Crash Reporter"; Flags: skipifsourcedoesntexist uninsneveruninstall; Components: crashreporter
+Source: "bin\CrashReporter\vu.json";   DestDir: "{commonappdata}\Rabien Software\Crash Reporter\Plugins"; Flags: ignoreversion uninsneveruninstall
+

@@ -25,3 +25,4 @@ StereoProcessor
 ToneGenerator
 WaveLooper
 XYScope
+VU

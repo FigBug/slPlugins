@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<installer-gui-script minSpecVersion="2">
+    <title>VU</title>
+    <organization>com.socalabs</organization>
+    <domains enable_anywhere="false" enable_currentUserHome="false" enable_localSystem="true"/>
+    <options customize="always" require-scripts="false" rootVolumeOnly="true"/>
+    <license file="EULA.rtf"/>
+    <welcome    file="welcome.txt"   mime-type="text/plain"/>
+
+    <choices-outline>
+        <line choice="com.socalabs.vu.vst"/>
+        <line choice="com.socalabs.vu.vst3"/>
+        <line choice="com.socalabs.vu.au"/>
+        <line choice="com.socalabs.vu.clap"/>
+
+        <line choice="com.socalabs.vu.crashreporter"/>
+    </choices-outline>
+
+    <choice id="com.socalabs.vu.vst"
+            title="VST"
+            description="Install the VST plug-in to /Library/Audio/Plug-Ins/VST"
+            visible="true">
+        <pkg-ref id="com.socalabs.vu.vst.pkg"/>
+    </choice>
+
+    <choice id="com.socalabs.vu.vst3"
+            title="VST3"
+            description="Install the VST3 plug-in to /Library/Audio/Plug-Ins/VST3"
+            visible="true">
+        <pkg-ref id="com.socalabs.vu.vst3.pkg"/>
+    </choice>
+
+    <choice id="com.socalabs.vu.au"
+            title="Audio Unit"
+            description="Install the Audio Unit plug-in to /Library/Audio/Plug-Ins/Components"
+            visible="true">
+        <pkg-ref id="com.socalabs.vu.au.pkg"/>
+    </choice>
+
+    <choice id="com.socalabs.vu.clap"
+            title="CLAP"
+            description="Install the CLAP plug-in to /Library/Audio/Plug-Ins/CLAP"
+            visible="true">
+        <pkg-ref id="com.socalabs.vu.clap.pkg"/>
+    </choice>
+
+    <choice id="com.socalabs.vu.crashreporter"
+            title="Crash Reporter"
+            description="Install the shared crash reporter that sends crash reports to SocaLabs. Recommended; only updated if newer."
+            visible="true"
+            enabled="true"
+            selected="true">
+        <pkg-ref id="com.socalabs.vu.crashreporter.pkg"/>
+    </choice>
+
+    <pkg-ref id="com.socalabs.vu.vst.pkg"  version="0">vst.pkg</pkg-ref>
+    <pkg-ref id="com.socalabs.vu.vst3.pkg" version="0">vst3.pkg</pkg-ref>
+    <pkg-ref id="com.socalabs.vu.au.pkg"   version="0">au.pkg</pkg-ref>
+    <pkg-ref id="com.socalabs.vu.clap.pkg" version="0">clap.pkg</pkg-ref>
+
+    <pkg-ref id="com.socalabs.vu.crashreporter.pkg" version="0">reporter.pkg</pkg-ref>
+</installer-gui-script>

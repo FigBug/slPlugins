@@ -45,6 +45,7 @@ SLPLUGINS=(
     "StereoProcessor"
     "ToneGenerator"
     "WaveLooper"
+    "VU"
     "XYScope"
 )
 
