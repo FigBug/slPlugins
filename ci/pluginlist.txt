@@ -26,3 +26,5 @@ ToneGenerator
 WaveLooper
 XYScope
 VU
+Correlation
+Loudness

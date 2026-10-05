@@ -48,6 +48,8 @@ This step is required before building, as the plugins depend on JUCE and other t
 | StereoProcessor | ![Build StereoProcessor](https://github.com/FigBug/slPlugins/workflows/Build%20StereoProcessor/badge.svg) |
 | ToneGenerator | ![Build ToneGenerator](https://github.com/FigBug/slPlugins/workflows/Build%20ToneGenerator/badge.svg) |
 | WaveLooper | ![Build WaveLooper](https://github.com/FigBug/slPlugins/workflows/Build%20WaveLooper/badge.svg) |
+| Correlation | ![Build Correlation](https://github.com/FigBug/slPlugins/workflows/Build%20Correlation/badge.svg) |
+| Loudness | ![Build Loudness](https://github.com/FigBug/slPlugins/workflows/Build%20Loudness/badge.svg) |
 | VU | ![Build VU](https://github.com/FigBug/slPlugins/workflows/Build%20VU/badge.svg) |
 | XYScope | ![Build XYScope](https://github.com/FigBug/slPlugins/workflows/Build%20XYScope/badge.svg) |
 
