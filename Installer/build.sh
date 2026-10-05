@@ -69,7 +69,7 @@ build_one_plugin() {
     local BDIR="$PDIR/build-xcode"
     cmake -S "$PDIR" -B "$BDIR" -GXcode \
           -DCMAKE_OSX_ARCHITECTURES="arm64;x86_64" \
-          -DCMAKE_OSX_DEPLOYMENT_TARGET=10.13 1>&2
+          -DCMAKE_OSX_DEPLOYMENT_TARGET=12.0 1>&2
     cmake --build "$BDIR" --config Release 1>&2
     echo "$BDIR"
   elif [ "$PLATFORM" = "linux" ]; then

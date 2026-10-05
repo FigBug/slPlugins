@@ -10,7 +10,7 @@ set(AU_ID slOscilloscopeAU)
 set(LV2_URI https://socalabs.com/oscilloscope/)
 
 # Platform-specific settings
-set(CMAKE_OSX_DEPLOYMENT_TARGET 10.11)
+set(CMAKE_OSX_DEPLOYMENT_TARGET 12.0)
 
 if(APPLE)
     set(CMAKE_OSX_ARCHITECTURES arm64 x86_64)
