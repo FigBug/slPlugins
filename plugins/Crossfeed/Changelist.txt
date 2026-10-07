@@ -1,3 +1,6 @@
+1.0.11:
+- Fix crash on load in hosts that bundle an older Visual C++ runtime (Audacity, TARecorder)
+
 1.0.10:
 - Fixed possible crash when processing before initialization
 

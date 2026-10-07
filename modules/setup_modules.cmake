@@ -3,6 +3,15 @@
 
 cmake_minimum_required(VERSION 3.15)
 
+# Link the MSVC runtime statically (/MT), like the standalone SocaLabs plugin
+# repos do. Installer/build.sh configures each plugin from its own
+# plugins/<P>/CMakeLists.txt, so the same setting in the top-level
+# CMakeLists.txt never applied and the DLLs were built against the dynamic
+# runtime. Hosts that ship an older msvcp140.dll next to their exe (Audacity,
+# TARecorder) then loaded our newer-toolchain code against that old DLL and
+# crashed on the first std::mutex lock during plugin construction.
+set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")
+
 # Get the path to the modules directory (parent of this file)
 get_filename_component(MODULES_DIR "${CMAKE_CURRENT_LIST_DIR}" ABSOLUTE)
 

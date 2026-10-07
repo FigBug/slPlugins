@@ -1,3 +1,6 @@
+1.1.11:
+- Fix crash on load in hosts that bundle an older Visual C++ runtime (Audacity, TARecorder)
+
 1.1.10:
 - Fixed crash when processing with a mono channel configuration
 

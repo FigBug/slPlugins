@@ -1,3 +1,7 @@
+1.0.3:
+- Fix crash on load in hosts that bundle an older Visual C++ runtime (Audacity, TARecorder)
+- Fix crash on exit in hosts that quit with plugins still loaded (FL Studio)
+
 1.0.2:
 - General bug fixes and improvements
 
