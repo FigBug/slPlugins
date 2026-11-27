@@ -1,3 +1,6 @@
+1.0.6:
+- Remove the unused stereo audio output so the plugin is MIDI-only in all formats
+
 1.0.5:
 - Fix crash on load in hosts that bundle an older Visual C++ runtime (Audacity, TARecorder)
 - Fix crash on exit in hosts that quit with plugins still loaded (FL Studio)

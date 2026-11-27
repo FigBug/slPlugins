@@ -40,13 +40,7 @@ static void launchCrashReporterOnce()
 }
 
 MidiMonitorAudioProcessor::MidiMonitorAudioProcessor()
-    : gin::Processor (
-       #if JucePlugin_Build_Standalone
-        BusesProperties().withOutput ("Output", juce::AudioChannelSet::stereo(), true),
-       #else
-        BusesProperties(),
-       #endif
-        false, createProcessorOptions())
+    : gin::Processor (BusesProperties(), false, createProcessorOptions())
 {
     launchCrashReporterOnce();
 
